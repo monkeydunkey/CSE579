@@ -20,6 +20,7 @@ from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
 
 def convert_pdf_to_txt(path):
+    print ('parsing file', path)
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
     codec = 'utf-8'
@@ -63,17 +64,19 @@ for i,f in enumerate(files): # there was a ,start=1 here that I removed, can't r
 
   pdf_path = os.path.join(Config.pdf_dir, f)
   txt_path = os.path.join(Config.txt_dir, txt_basename)
-  textData = convert_pdf_to_txt(pdf_path)
-  ##cmd = "pdftotext %s %s" % (pdf_path, txt_path)
-  ##os.system(cmd)
-  with open(txt_path, 'wb') as fp:
-    fp.write(textData)
-  print('%d/%d' % (i, len(files)))
+  try:
+    textData = convert_pdf_to_txt(pdf_path)
+    ##cmd = "pdftotext %s %s" % (pdf_path, txt_path)
+    ##os.system(cmd)
+    with open(txt_path, 'wb') as fp:
+        fp.write(textData)
+    print('%d/%d' % (i, len(files)))
 
-  # check output was made
-  if not os.path.isfile(txt_path):
-    # there was an error with converting the pdf
-    print('there was a problem with parsing %s to text, creating an empty text file.' % (pdf_path, ))
-    os.system('touch ' + txt_path) # create empty file, but it's a record of having tried to convert
-
+    # check output was made
+    if not os.path.isfile(txt_path):
+        # there was an error with converting the pdf
+        print('there was a problem with parsing %s to text, creating an empty text file.' % (pdf_path, ))
+        os.system('touch ' + txt_path) # create empty file, but it's a record of having tried to convert
+  except Exception as e:
+      print ('There was an exception in parsing file', f)
   time.sleep(0.01) # silly way for allowing for ctrl+c termination
