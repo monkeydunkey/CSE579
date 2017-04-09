@@ -14,12 +14,19 @@ numok = 0
 numtot = 0
 db = pickle.load(open(Config.db_path, 'rb'))
 for pid,j in db.items():
-
+  cats = ['cs.cv', 'cs.cl', 'cs.ne', 'cs.lg', 'cs.ai']
   pdfs = [x['href'] for x in j['links'] if x['type'] == 'application/pdf']
+  categoryPath = "None"
+  for tag in j['tags']:
+      if tag['term'].lower() in cats:
+          categoryPath = tag['term']
+          break
   assert len(pdfs) == 1
   pdf_url = pdfs[0] + '.pdf'
   basename = pdf_url.split('/')[-1]
-  fname = os.path.join(Config.pdf_dir, basename)
+  #IF the specific category path was not created creating it
+  if not os.path.exists(os.path.join(Config.pdf_dir, categoryPath)): os.makedirs(os.path.join(Config.pdf_dir, categoryPath))
+  fname = os.path.join(Config.pdf_dir, categoryPath, basename)
 
   # try retrieve the pdf
   numtot += 1
