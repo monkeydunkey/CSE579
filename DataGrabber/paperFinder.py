@@ -16,6 +16,7 @@ for pid,j in db.items():
     if len(paper_titles) <= 0:
         break
     if j['title'].strip().lower() in paper_titles:
+        print 'found', j['title']
         paper_titles.remove(j['title'].strip().lower())
 
 if len(paper_titles) == 0:
