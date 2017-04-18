@@ -1,0 +1,1001 @@
+SSP: Semantic Space Projection
+
+for Knowledge Graph Embedding with Text Descriptions
+
+Han Xiao, Minlie Huang, Xiaoyan Zhu
+
+State Key Lab. of Intelligent Technology and Systems,
+National Lab. for Information Science and Technology,
+
+Dept. of Computer Science and Technology, Tsinghua University, Beijing 100084, PR China
+
+bookman@vip.163.com; {aihuang,zxy-dcs}@tsinghua.edu.cn
+
+6
+1
+0
+2
+
+ 
+t
+c
+O
+5
+2
+
+ 
+
+ 
+ 
+]
+L
+C
+.
+s
+c
+[
+ 
+ 
+
+2
+v
+5
+3
+8
+4
+0
+
+.
+
+4
+0
+6
+1
+:
+v
+i
+X
+r
+a
+
+Abstract
+
+Knowledge graph embedding represents entities and relations
+in knowledge graph as low-dimensional, continuous vectors,
+and thus enables knowledge graph compatible with machine
+learning models. Though there have been a variety of mod-
+els for knowledge graph embedding, most methods merely
+concentrate on the fact triples, while supplementary textual
+descriptions of entities and relations have not been fully em-
+ployed. To this end, this paper proposes the semantic space
+projection (SSP) model which jointly learns from the sym-
+bolic triples and textual descriptions. Our model builds in-
+teraction between the two information sources, and employs
+textual descriptions to discover semantic relevance and offer
+precise semantic embedding. Extensive experiments show
+that our method achieves substantial improvements against
+baselines on the tasks of knowledge graph completion and
+entity classiﬁcation.
+
+Introduction
+
+Knowledge graph provides an effective basis for NLP in
+many tasks such as question answering, web search and se-
+mantic analysis. In order to provide a numerical computa-
+tion framework for knowledge graph, knowledge graph em-
+bedding represents the entities and relations in a continuous
+low-dimensional vector space. More speciﬁcally, a basic
+fact in knowledge graph is usually represented as a sym-
+bolic triple (h, r, t), where the representation vectors of the
+head entity, the relation and the tail entity are to be repre-
+sented by vectors, say h, r, t, respectively. To this end, a
+number of embedding methods have been proposed, such
+as TransE (Bordes et al. 2013), PTransE (Lin, Liu, and Sun
+2015), KG2E (He et al. 2015) etc.
+
+As a key branch of embedding models, the translation-
+based methods adopt the principle of translating the head
+entity to the tail one by a relation-speciﬁc vector, mathe-
+matically as h + r = t. As Fig.1 shows, in the knowledge
+graph, the entities such as h, t have textual descriptions,
+which contain much supplementary semantic information
+about knowledge triples.
+
+Copyright c(cid:13) 2016, Association for the Advancement of Artiﬁcial
+Intelligence (www.aaai.org). All rights reserved.
+
+Figure 1: Textual descriptions for entities in a fact triple.
+
+Despite the success of conventional knowledge graph em-
+bedding models, there are still two reasons why textual de-
+scriptions would be necessary in this task: discovering se-
+mantic relevance and offering precise semantic expression.
+Firstly, the semantic relevance between entities is capa-
+ble to recognize the true triples, which are difﬁcult to be
+inferred only with fact triples. For example, the triple (Anna
+Roosevelt, Parents, Franklin Roosevelt), indicates “Franklin
+Roosevelt” is the parent of “Anna Roosevelt”. However,
+it’s quite difﬁcult to infer this fact merely from other sym-
+bolic triples.
+In contrast, in the textual description of the
+head entity, there are many keywords such as “Roosevelt”
+and “Daughter of the President”, which may infer the fact
+triple easily. Speciﬁcally, we measure the possibility of a
+triple by projecting the loss onto a hyperplane that repre-
+sents the semantic relevance between entities. Thus, it is
+always possible to accept a fact triple so long as the 2-norm
+of the projected loss vector onto the semantic hyperplane is
+sufﬁciently small.
+
+Secondly, precise semantic expression could promote the
+discriminative ability between two triples. For instance,
+when we query about the profession of “Daniel Sturgeon”,
+there are two possible options: “politician” and “lawyer”.
+It’s hard to distinguish if only focusing on the symbolic
+triples. However, the textual description of “Daniel Stur-
+geon” is full of politics-related keywords such as “Demo-
+cratic Party”, “State Legislature” etc. and even “Politi-
+cian”. The textual descriptions help to reﬁne the topic
+of “Daniel Sturgeon” in a more precise way from the so-
+cial celebrities to the government ofﬁcers, which makes the
+true answer “politician” more preferable. Formally, even
+though the loss vectors of the two facts are almost of equal
+norm, after respectively projected onto the “politician” and
+“lawyer” related semantic hyperplanes, the losses are distin-
+
+guished reasonably. In this way, precise semantic expression
+reﬁnes the embedding.
+
+Besides, our method outperforms all the baselines on the
+tasks of knowledge graph completion and entity classiﬁca-
+tion, which justiﬁes the effectiveness of our proposal.
+
+Related Work
+
+Figure 2: Simple illustration of TransE and SSP where
+h + r − t is the loss vector. The loss vectors of the two
+triples in (a) are length-equal, thus, it is hard to identify the
+correctness. But, we involve a semantic hyperplane as (b),
+the projection to which could distinguish the loss vectors for
+considering the semantics of triples.
+
+The existing embedding methods with textual semantics
+such as DKRL (Xie et al. 2016) and “Jointly” (Zhong et al.
+2015), have achieved much success. But there are still one
+important disadvantage, that is the weak-correlation model-
+ing issue, indicating current models could hardly character-
+ize the strong correlations between texts and triples. In the
+DKRL, for a triple, the embedding vector of the head entity
+is translated to that of the tail one as well as possible, and
+then the vectors of texts and entities are concatenated as the
+ﬁnal embedding vectors. Besides, the “Jointly” model gen-
+erally attempts to make the embeddings of the correspond-
+ing entity and text coherent. Both DKRL and “Jointly” apply
+ﬁrst-order constraints which are weak in capturing the corre-
+lation of texts and triples. It’s noteworthy that triple embed-
+ding is always the main procedure and textual descriptions
+must interact with triples for better embedding. Only in
+this way, the semantic effects could make more senses. Ac-
+tually, the strong correlation, that the high-order restriction,
+would interact texts and triples to complement each other
+in a more semantics-speciﬁc way than simple constraints.
+For the above example of “Daniel Sturgeon”, the textual
+descriptions imply two candidate answers “Banker” and
+“Politician”. Thus, by considering both triples and texts,
+we can obtain the true answer. Therefore, we focus on the
+stronger semantic interaction by projecting triple embedding
+onto a semantic subspace such as hyperplane, as shown in
+Fig.2. Mathematically, the quadratic constraint is adopted to
+model the strong correlation, thus the embedding topologies
+are sufﬁciently semantics-speciﬁc.
+
+We evaluate the effectiveness of our model Semantic Sub-
+space Projection (SSP) on two tasks that are knowledge
+graph completion and entity classiﬁcation, for three bench-
+mark datasets that are the subsets of Wordnet (Miller 1995)
+and Freebase (Bollacker et al. 2008). Experimental results
+on real-world datasets show that our model consistently out-
+performs the other baselines with an extensive improvement.
+Contributions. We propose a knowledge graph embed-
+ding method SSP which models the strong correlations be-
+tween the symbolic triples and the textual descriptions by
+performing the embedding process in a semantic subspace.
+
+We have surveyed the previous studies and categorized the
+embedding methods into two branches: Translation-Based
+Embedding models that use only symbolic triples and “Text-
+Aware” Embedding models that involves textual descrip-
+tions.
+Triple-Speciﬁc Embedding
+TransE (Bordes et al. 2013) is a pioneering work for this
+branch, which translates the head entity to the tail one by
+the relation vector, or h + r = t. Naturally, the L2 norm
+of the loss vector is the score function, which measures the
+plausibility of a triple and a smaller score is better.
+
+The following variants transform entities into different
+subspaces. TransH (Wang et al. 2014b) utilizes the relation-
+speciﬁc hyperplane to lay the entities. TransR (Lin et al.
+2015) applies the relation-related matrix to rotate the em-
+bedding space. Similar researches include TransG (Xiao,
+Huang, and Zhu 2016), TransD (Ji et al. ), and TransM (Fan
+et al. 2014).
+
+Further researches encode additional structural informa-
+tion into embedding. PTransE (Lin, Liu, and Sun 2015) is a
+path-based model, simultaneously considering the informa-
+tion and conﬁdence level of a path in the knowledge graph.
+(Wang, Wang, and Guo 2015) incorporate the rules to re-
+strict the embeddings for the complex relation types such
+as 1-N, N-1 and N-N. SSE (Guo et al. 2015) aims at dis-
+covering the geometric structure of embedding topologies
+and then based on these assumptions, designs a semantically
+smoothing score function. Also, KG2E (He et al. 2015) in-
+volves probabilistic analysis to characterize the uncertainty
+concepts of knowledge graph. There are also some other
+works such as SE (Bordes et al. 2011), LFM (Jenatton et
+al. 2012), NTN (Socher et al. 2013) and RESCAL (Nickel,
+Tresp, and Kriegel 2011), TransA (Xiao et al. 2015), etc.
+Embedding with Textual Information
+“Text-Aware” Embedding, which attempts to representing
+knowledge graph with textual information, generally dates
+back to NTN (Socher et al. 2013). NTN makes use of en-
+tity name and embeds an entity as the average word embed-
+ding vectors of the name. (Wang et al. 2014a) attempts to
+aligning the knowledge graph with the corpus then jointly
+conducting knowledge embedding and word embedding.
+However, the necessity of the alignment information limits
+this method both in performance and practical applicabil-
+ity. Thus, (Zhong et al. 2015) proposes the “Jointly” method
+that only aligns the freebase entity to the corresponding
+wiki-page. DKRL (Xie et al. 2016) extends the translation-
+based embedding methods from the triple-speciﬁc one to
+the “Text-Aware” model. More importantly, DKRL adopts
+a CNN-structure to represent words, which promotes the
+expressive ability of word semantics. Generally speaking,
+by further jointing knowledge and texts, DKRL obtains the
+state-of-the-art performance of this branch.
+
+Methodology
+
+In this section, we ﬁrst introduce our model and discuss the
+details. Furthermore, we provide two different perspective
+to address the advantages of our model. We also list some
+notations: all the symbols h, t indicate the head and tail en-
+tity, respectively. h (or t) is the embedding of the entity
+from the triples, sh (or st) is the semantic vector generated
+from the texts, and d is the dimension of embedding.
+
+The data involved in our model are the knowledge triples
+and the textual descriptions of entities. In experiments, we
+adopt the “entity descriptions” of Freebase and the textual
+deﬁnitions of Wordnet as textual information.
+
+Model Description
+Previous analysis in the introduction suggests to character-
+ize the strong correlation between triples and texts. For the
+purpose of interacting between the symbolic triples and tex-
+tual descriptions, this paper attempts to restrict the embed-
+ding procedure of a speciﬁc triple in the semantic subspace.
+Speciﬁcally, we leverage a hyperplane with normal vector
+= S(sh, st) as the subspace, where S : R2d (cid:55)→ Rd is
+.
+s
+the semantic composition function which will be discussed
+in § 3.2 , and sh, st is the head-speciﬁc and tail-speciﬁc se-
+mantic vectors, respectively.
+The score function in the translation-based methods is
+||h + r − t||2
+2, which means the triple embedding focuses on
+= h + r − t . According to our motiva-
+.
+the loss vector e
+tion, assuming e is length-ﬁxed, the target is to maximize the
+component inside the hyperplane, which is ||e − s(cid:62)es||2
+2. In
+detail, the component of the loss in the normal vector direc-
+tion is (s(cid:62)es), then the other orthogonal one, that is inside
+the hyperplane, is (e − s(cid:62)es).
+
+It’s natural that the total loss vector should also be pun-
+ished. To this end, we introduce a factor λ to balance the
+two parts, stated as:
+
+fr(h, t) = −λ||e − s(cid:62)es||2
+
+2 + ||e||2
+
+2
+
+where λ is a suitable hyper-parameter. Moreover, a smaller
+score means the triple is more plausible. For clarity, the def-
+initions of the symbols are boxed. Notably, the projection
+part in our score function is negative, so more projection
+means less loss.
+
+Semantic Vector Generation
+There are at least two methods that could be leveraged to
+generate the semantic vectors: topic model (Blei 2012) such
+as LSA, LDA, NMF (Stevens et al. 2012) and word em-
+bedding such as CBOW (Mikolov, Yih, and Zweig 2013),
+Skip-Gram (Mikolov et al. 2013). More concretely, this
+paper adopts the topic model, treating each entity descrip-
+tion as a document and then obtains the topic distribution
+of document as the semantic vector of entity. The entities
+are usually organized by the topic in knowledge base, for
+example, “entity type” is used in Freebase to categorize en-
+tities. Therefore, we conjecture that the topic model could
+be more suitable. Notably, the word embedding would also
+work well though maybe not better.
+
+Given the pre-trained semantic vectors, our model ﬁxes
+them and then optimizes the other parameters. We call this
+setting Standard (short as Std.). The reason why we could
+not adapt all the parameters, is that the training procedure
+would reﬁll the semantic vectors and ﬂush the semantics
+out. For the purpose of jointly learning the semantics and
+the embeddings, we conduct the topic model and the em-
+bedding model, simultaneously. In this way, the symbolic
+triples also impose a positive effect on the textual semantics
+and we call this setting Joint.
+
+As each component of a semantic vector indicates the rel-
+evant level to a topic, we suggest the semantic composition
+should take the addition form:
+S(sh, st) =
+
+sh + st
+||sh + st||2
+
+2
+
+where the normalization is applied to make a normal vector.
+Since the largest components represent the topics, the ad-
+dition operator corresponds to the union of topics, making
+the composition indicate the entire semantics. For example,
+when sh = (0.1, 0.9, 0.0) and st = (0.8, 0.0, 0.2), the topic
+of the head entity is #2 and that of the tail is #1, while the
+composition is s = (0.45, 0.45, 0.10), corresponding to the
+topic of #1,#2, which is accordant to our intuition.
+Correlation Perspective
+Speciﬁcally, our model attempts to lay the loss h(cid:48) − t onto
+the hyperplane, where h(cid:48)
+.
+= h + r is the translated head en-
+tity. Mathematically, if a line lies on a hyperplane, so do
+all the points of this line. Correspondingly, the loss lays on
+the hyperplane, implying the head and tail entity also lay
+on it, as the beginning and ending point. Thus, there ex-
+ists the important restriction, that the entities co-occur in
+a triple should be embedded in the semantic space com-
+posed by the associated textual semantics. This restriction
+is implemented as a quadric form to characterize the strong
+correlation between texts and triples, in other words, to in-
+teract with both the information sources. A strong interac-
+tion between the textual descriptions and symbolic triples
+complements each other in a more semantics-speciﬁc form,
+which guarantees the semantic effects. More concretely, the
+embeddings are decided in the training procedure not only
+by triples but also by textual semantics, based on which,
+our embedding topologies are semantically different from
+the other methods.
+Semantic Perspective
+There are two semantic effects for textual descriptions: dis-
+covering semantic relevance and offering precise semantic
+expression. Our model characterizes the strong correla-
+tions with a semantic hyperplane, which is capable of tak-
+ing the advantages of both two semantic effects.
+
+Firstly, according to the correlation perspective, the enti-
+ties which are semantically relevant, approximately lay on
+a consistent hyperplane. Therefore, the loss vector between
+them (h(cid:48) − t) is also around the hyperplane. Based on this
+geometric insight, when a head entity matches a negative
+tail, the triple is far from the hyperplane, making a large loss
+to be classiﬁed. Conversely, even if a correct triple makes
+
+much loss, the score function after projected onto the hyper-
+plane could be relatively smaller (or better). By this mean,
+the semantic relevance achieved from the texts, promotes
+embedding. For instance, the fact triple (Portsmouth Foot-
+ball Club, Locate, Portsmouth) could hardly be inferred only
+within the triple embedding. It ranks 11,549 out of 14,951
+by TransE in link prediction, which means a totally impos-
+sible fact. But the keywords “Portsmouth”, “England”, and
+“Football” occur many times in both the textual descriptions,
+making the two entities semantically relevant. Unsurpris-
+ingly, after the semantic projection, the case ranks 65 out of
+14,951 in our model, which is much more plausible.
+
+Secondly, all the equal-length loss vectors 1 in TransE
+are equivalent in term of discrimination, which leads to
+the weak distinction. However, with textual semantics, the
+discriminative ability could be strengthened in our model.
+Speciﬁcally, the equal-length loss vectors are measured with
+the projection onto the corresponding semantic hyperplanes,
+which makes a reasonable division of the losses. For an in-
+stance of the query about which ﬁlm “John Powell” con-
+tributes to, there are two candidate entities, that the true an-
+swer “Kung Fu Panda” and the negative one “Terminator
+Salvation”. Without textual semantics, it’s difﬁcult to dis-
+criminate, thus the losses calculated by TransE are 8.1 and
+8.0, respectively, leading to a hard decision. Diving into the
+textural semantics, we discover, “John Powell” is much rel-
+evant to the topic of “Animated Films”, which matches that
+of “Kung Fu Panda” and does not for the other. Based on
+this fact, both the query and the true answer lie in the “An-
+imated Films”-directed hyperplane, whereas the query and
+the negative one do not co-occur in the corresponding asso-
+ciated semantic hyperplane. Thus, the projected loss of the
+true answer could be much less than that of the false one.
+Concretely, the losses in our model are 8.5 and 10.8, respec-
+tively, which are sufﬁcient for discrimination.
+
+Objectives & Training
+There are two parts in the objective function, which are re-
+spectively embedding-speciﬁc and topic-speciﬁc. To bal-
+ance the two parts, a hyper-parameter µ is introduced. Over-
+all, the total loss is:
+
+L = Lembed + µLtopic
+
+(1)
+Notably, there is only the ﬁrst part in the Standard setting
+where µ = 0 in fact.
+
+In term of the embedding-related objective, the rank-
+based hinge loss is applied, which means to maximize the
+discriminative margin between the golden triples and the
+negative ones:
+
+(cid:88)
+
+L
+
+embed
+
+=
+
+(h, r, t) ∈ ∆
+(h(cid:48), r(cid:48), t(cid:48)) ∈ ∆(cid:48)
+
+[fr(cid:48)(h(cid:48), t(cid:48)) − fr(h, t) + γ]+
+
+where ∆ is the set of golden triples and ∆(cid:48) is that of the
+negative ones. γ is the margin, and [ · ]+ = max( · , 0) is
+the hinge loss. The false triples are sampled with “Bernoulli
+
+1Two vectors have equal-length iff they have the same l2 norm.
+
+Sampling Method” as introduced in (Wang et al. 2014b) and
+the method selects the negative samples from the set of
+
+{(h(cid:48), r, t)|h(cid:48) ∈ E} ∪ {(h, r, t(cid:48))|t(cid:48) ∈ E}
+∪ {(h, r(cid:48), t)|r(cid:48) ∈ R}
+
+e∈E, w∈De
+
+(cid:88)
+
+Ltopic =
+
+We initialize the embedding vectors by the similar methods
+used in the deep neural network (Glorot and Bengio 2010)
+and pre-train the topic model with Non-negative Matrix Fac-
+torization (NMF) (Stevens et al. 2012). The stochastic gradi-
+ent descent algorithm (SGD) is adopted in the optimization.
+For the topic-related objective, we take the advantage of
+the NMF Topic Model (Stevens et al. 2012), which is both
+simple and effective. Then we re-write the target as an inner-
+product form with the L2-loss, stated as:
+(Ce,w − s(cid:62)
+e w)2
+se ≥ 0, w ≥ 0
+
+(3)
+where E is the set of entities, and De is the set of words in
+the description of entity e. Ce,w is the times of the word w
+occurring in the description e. se is the semantic vector of
+entity e and w is the topic distribution of word w. Similarly,
+SGD is applied in the optimization.
+Theoretically, our computation complexity is comparable
+to TransE, as O(ν × O(T ransE)), and the small constance
+ν is caused by the projection operation and topic calculation.
+In practice, TransE costs 0.28s for one round in Link Predic-
+tion and our model costs 0.36s in the same setting. Gener-
+ally, TransE is most efﬁcient among all the translation-based
+methods, while our method could be comparable to TransE
+in running time, justifying the efﬁciency of our model.
+
+(2)
+
+Experiments
+
+Datasets & General Settings
+Our experiments are conducted on three public benchmark
+datasets that are the subsets of Wordnet and Freebase. About
+the statistics of these datasets, we strongly suggest the read-
+ers to refer to (Xie et al. 2016) and (Lin et al. 2015). The
+entity descriptions of FB15K and FB20K are the same as
+DKRL (Xie et al. 2016), each of which is a small part of the
+corresponding wiki-page. The textual information of WN18
+is the deﬁnitions that we extract from the Wordnet. Notably,
+for the zero-shot learning, FB20K is involved, which is also
+built by the authors of DKRL.
+Knowledge Graph Completion
+Evaluation Protocol. The same protocol used in previous
+studies, is adopted. First, for each testing triple (h, r, t), we
+replace the tail t (or the head h) with every entity e in the
+knowledge graph. Then, a probabilistic score of this cor-
+rupted triple is calculated with the score function fr(h, t).
+By ranking these scores in ascending order, we then get the
+rank of the original triple. The evaluation metrics are the av-
+erage of the ranks as Mean Rank and the proportion of test-
+ing triple whose rank is not larger than 10 (as HITS@10).
+This is called “Raw” setting. When we ﬁlter out the cor-
+rupted triples that exist in the training, validation, or test
+
+datasets, this is the“Filter” setting. If a corrupted triple exists
+in the knowledge graph, ranking it ahead the original triple
+is also correct. To eliminate this effect, the “Filter” setting
+is more preferred. In both settings, a higher HITS@10 and
+a lower Mean Rank mean better performance.
+
+Table 1: Mean Rank and HITS@10 of Knowledge Graph
+Completion (For Predicting Entity) on FB15K and WN18.
+
+FB15K
+TransE
+TransH
+Jointly
+
+DKRL(BOW)
+DKRL(ALL)
+SSP (Std.)
+SSP (Joint)
+
+WN18
+TransE
+TransH
+
+SSP (Std.)
+SSP (Joint)
+
+Mean Rank
+119
+210
+212
+87
+39 1
+167 1
+113
+200
+91
+181
+154
+77
+163
+82
+Mean Rank
+263
+251
+338
+401
+193
+204
+168
+156
+
+HITS@10
+66.1
+48.5
+45.7
+64.4
+77.3 1
+51.7 1
+57.6
+44.3
+67.4
+49.6
+57.1
+78.6
+57.2
+79.0
+HITS@10
+75.4
+89.2
+82.3
+73.0
+91.4
+81.3
+81.2
+93.2
+
+Implementation. As the datasets are the same, we di-
+rectly report the experimental results of several baselines
+from the literature. We have attempted several settings on
+the validation dataset to get the best conﬁguration. Under the
+“bern.” sampling strategy, the optimal conﬁgurations of our
+model SSP are as follows. For WN18, embedding dimen-
+sion d = 100, learning rate α = 0.001, margin γ = 6.0, bal-
+ance factor λ = 0.2 and for SSP(Joint) µ = 0.1. For FB15K,
+embedding dimension d = 100, learning rate α = 0.001,
+margin γ = 1.8, balance factor λ = 0.2 and for SSP(Joint)
+µ = 0.1. We train the model until convergence.
+
+Table 2: Mean Rank and HITS@10 of Knowledge Graph
+Completion (For Predicting Relation) on FB15K.
+
+FB15K
+TransE
+TransH
+
+DKRL(BOW)
+DKRL(ALL)
+SSP (Std.)
+SSP (Joint)
+
+Mean Rank HITS@10
+90.2
+2.91
+8.25
+72.5
+82.7
+2.85
+90.8
+2.41
+1.58
+89.2
+90.9
+1.87
+
+2.53
+7.91
+2.51
+2.03
+1.22
+1.47
+
+69.5
+60.3
+65.3
+69.8
+69.9
+70.0
+
+Results Evaluation results are reported in Tab.1 and
+Tab.2. Note that “Jointly” refers to (Zhong et al. 2015). We
+observe that:
+1. SSP outperforms all the baselines in all the tasks, demon-
+strating the effectiveness of our models and the correct-
+ness of our theoretical analysis. Speciﬁcally, SSP(Joint)
+
+1This method involves much more extra text corpus, thus it’s
+
+unfair to directly compare with others.
+
+Table 3: The MAP result of Entity Classiﬁcation
+
+Metrics
+TransE
+BOW
+
+DKRL(BOW)
+DKRL(ALL)
+
+NMF
+
+SSP (Std.)
+SSP (Joint)
+
+-
+
+FB15K FB20K
+87.8
+86.3
+89.3
+90.1
+86.1
+93.2
+94.4
+
+57.5
+52.0
+61.9
+59.6
+
+67.4
+
+-
+
+improves much more than SSP(Std.) for jointly learning
+the textual semantics and symbolic triples.
+
+2. DKRL and “Jointly” model only consider the ﬁrst-order
+constraints, which interact between the textual and sym-
+bolic information, unsatisfactorily. By focusing on the
+strong correlation, SSP outperforms them. Notice that the
+“Jointly” model involves much more additional data to
+produce the result, but SSP also has an remarkable ad-
+vantage against it. Though TransH is also a hyperplane-
+based method, SSP adopts the hyperplane in a semantics-
+speciﬁc way rather than a simple relation-speciﬁc form.
+
+3. TransE could be treated as missing textual descriptions,
+and DKRL(BOW) could be viewed as missing symbolic
+triples. SSP (Joint) improves 12.4% against TransE while
+20.9% against DKRL(BOW), illustrating the triple em-
+bedding is always the key point and the interactions be-
+tween the two information sources is a key factor.
+
+Entity Classiﬁcation
+This task is essentially a multi-label classiﬁcation, focusing
+on predicting entity types, which is crucial and widely used
+in many NLP & IR tasks (Neelakantan and Chang 2015).
+The entity in Freebase always has types, for instance, the
+entity types of “Scots” are Human Language, Rosetta Lan-
+guoid.
+
+We adopt the same datasets as DKRL, for the details of
+which, we refer readers to (Xie et al. 2016). Overall, this
+is a multi-label classiﬁcation task with 50 classes, which
+means for each entity, the method should provide a set of
+types rather than a single type.
+
+Evaluation Protocol In the training, we use the concate-
+nation of semantic vector and embedding vector (se, e) as
+entity representation, which is the feature for the front-end
+classiﬁer. For a fair comparison, our front-end classiﬁer is
+also the Logistic Regression as DKRL in a one-versus-rest
+setting for multi-label classiﬁcation. The evaluation is fol-
+lowing (Neelakantan and Chang 2015), which applies the
+mean average precision (MAP) that is commonly used in
+multi-label classiﬁcation. Speciﬁcally, for an entity, if the
+methods predict a rank list of types and there are three cor-
+rect types that lie in #1, #2, #4, the MAP is calculated as
+1/1+2/2+3/4
+. For FB20K, the methods could only make use
+of the descriptions. Obviously, FB20K is a zero-shot sce-
+nario which is really hard.
+
+3
+
+the number of triples whose rank is larger than m in TransE
+and less than n in our models. For instance, the number 601
+means there are 601 triples whose ranks are less than 100
+in SSP(S.) while their ranks are more than 500 in TransE.
+Note that SSP(S.) indicates the standard setting, and SSP(J.)
+means the joint setting. The statistic results indicate that
+many triples beneﬁt from the semantic relevance offered by
+textual descriptions. The experiments also justify the the-
+oretical analysis about the semantic relevance and demon-
+strate the effectiveness of our models.
+
+We also study some speciﬁc cases. The triple (Luis
+Miguel Gallego Basteri, Music Artist Genre, Ballad) ranks
+at 1,602 in TransE while 8 in SSP. Looking into the textual
+details, we discover the two entities share the relevant topics
+of “Cross-Country” and “Music”. For another triple that
+(Laura Elizabeth Dern, Film Performance, Alice Doesn’t
+Live Here Anymore), it ranks at 1,137 in TransE while 77
+in SSP, where the two entities share relevant semantics such
+as “Best Actress” and “Academy Award”.
+
+Table 4: Rank statistics of Link Prediction. The number in
+each cell indicates the number of triples, and r is the rank
+given by the corresponding models.
+
+SSP(S.)#r≤100
+
+SSP(J.)#r≤100
+
+TransE#r≥500
+TransE#r≥1000
+TransE#r≥2000
+TransE#r≥3000
+
+601
+275
+80
+32
+
+672
+298
+89
+39
+
+Precise Semantic Expression Analysis
+As discussed previously, precise semantic expression leads
+to better discrimination. To justify this claim, we have
+collected the negative triples by link prediction, which are
+scored sightly better than the golden ones by TransE (that
+means, these are hard examples for TransE), and then plotted
+the SSP score difference between each corresponding pair
+of the negative and golden triples as Fig.3 shows. All these
+triples are predicted wrongly by TransE, but with precise se-
+mantic expression, our model correctly distinguishes 82.0%
+(Std.) and 83.2% (Joint) of them. In the histogram, the right
+bars indicate that SSP makes correct decision while TransE
+fails and the left bars mean both SSP and TransE fail. The
+experiments justify the theoretical analysis about the pre-
+cise semantic expression and demonstrate the effectiveness
+of our models.
+
+Conclusion
+
+In this paper, we propose the knowledge graph embedding
+model SSP, which jointly learns from the symbolic triples
+and textual descriptions. SSP could interact between the
+triples and texts by characterizing the strong correlations be-
+tween fact triples and textual descriptions. The textual de-
+scriptions have much effect on discovering semantic rele-
+vance and then offering precise semantic expression. Exten-
+sive experiments show our method achieves the substantial
+improvements against the state-of-the-art baselines.
+
+Figure 3: Precise semantic expression analysis for SSP
+(Std.). The x-axis indicates the score difference, where a
+bigger value means better. The y-axis means the proportion
+of the corresponding triple pairs. The gray part indicates
+that both the TransE and SSP make mistakes while the yel-
+low colored part means that SSP succeeds but TransE fails.
+The statistics are similar for the SSP(J.) setting.
+
+Implementation. As the datasets are the same, we di-
+rectly report the experimental results of several baselines
+from the literature. We have attempted several settings on
+the validation dataset to get the best conﬁguration. Under the
+“bern.” sampling strategy, the optimal conﬁgurations of our
+model SSP are as follows. For FB15K,embedding dimen-
+sion d = 100, learning rate α = 0.001, margin γ = 1.8, bal-
+ance factor λ = 0.2 and for SSP(Joint) µ = 0.1. For FB20K,
+embedding dimension d = 100, learning rate α = 0.001,
+margin γ = 1.8, balance factor λ = 0.2 and for SSP(Joint)
+µ = 0.1. We train the model until convergence.
+
+Results The evaluation results are listed in Tab. 3. No-
+tably, TransE is only triple-speciﬁc and SSP (Std.) performs
+as well as the NMF in the zero-shot learning. Thus they are
+trivial for FB20K. The observations are as follows:
+1. Overall, our method SSP yields the best accuracy, justify-
+
+ing the effectiveness of our method.
+
+2. Compared to NMF and TransE, the results show that the
+interactions between triples and texts make a key differ-
+ence and only one of them could hardly produce an ef-
+fective performance. The promotion of SSP (Joint) in
+FB20K demonstrates the triple embedding also has a pos-
+itive effect on textual semantics.
+
+3. Compared to TransE, the improvements illustrate the ef-
+fectiveness of semantic integration. Compared to DKRL,
+the promotion demonstrates the important role of model-
+ing strong correlation.
+
+Semantic Relevance Analysis
+One beneﬁt of modeling semantic relevance is the ability to
+correctly classify the triples that could not be discriminated
+by just using the information from symbolic triples. Hence,
+we make statistic analysis of the results in Link Prediction,
+as reported in the Tab.4. The number in each cell means
+
+References
+
+[Blei 2012] Blei, D. M. 2012. Probabilistic topic models.
+Communications of the ACM 55(4):77–84.
+[Bollacker et al. 2008] Bollacker, K.; Evans, C.; Paritosh, P.;
+Sturge, T.; and Taylor, J. 2008. Freebase: a collaboratively
+created graph database for structuring human knowledge. In
+Proceedings of the 2008 ACM SIGMOD international con-
+ference on Management of data, 1247–1250. ACM.
+[Bordes et al. 2011] Bordes, A.; Weston, J.; Collobert, R.;
+Bengio, Y.; et al. 2011. Learning structured embeddings of
+knowledge bases. In Proceedings of the Twenty-ﬁfth AAAI
+Conference on Artiﬁcial Intelligence.
+[Bordes et al. 2013] Bordes, A.; Usunier, N.; Garcia-Duran,
+A.; Weston, J.; and Yakhnenko, O. 2013. Translating em-
+beddings for modeling multi-relational data. In Advances in
+Neural Information Processing Systems, 2787–2795.
+[Fan et al. 2014] Fan, M.; Zhou, Q.; Chang, E.; and Zheng,
+T. F. 2014. Transition-based knowledge graph embedding
+In Proceedings of the
+with relational mapping properties.
+28th Paciﬁc Asia Conference on Language, Information, and
+Computation, 328–337.
+[Glorot and Bengio 2010] Glorot, X., and Bengio, Y. 2010.
+Understanding the difﬁculty of training deep feedforward
+In International conference on artiﬁcial
+neural networks.
+intelligence and statistics, 249–256.
+[Guo et al. 2015] Guo, S.; Wang, Q.; Wang, B.; Wang, L.;
+and Guo, L. 2015. Semantically smooth knowledge graph
+embedding. In Proceedings of ACL.
+[He et al. 2015] He, S.; Liu, K.; Ji, G.; and Zhao, J. 2015.
+Learning to represent knowledge graphs with gaussian em-
+bedding. In Proceedings of the 24th ACM International on
+Conference on Information and Knowledge Management,
+623–632. ACM.
+[Jenatton et al. 2012] Jenatton, R.; Roux, N. L.; Bordes, A.;
+and Obozinski, G. R. 2012. A latent factor model for highly
+In Advances in Neural Information
+multi-relational data.
+Processing Systems, 3167–3175.
+[Ji et al. ] Ji, G.; He, S.; Xu, L.; Liu, K.; and Zhao, J. Knowl-
+edge graph embedding via dynamic mapping matrix.
+[Lin et al. 2015] Lin, Y.; Liu, Z.; Sun, M.; Liu, Y.; and Zhu,
+X.
+2015. Learning entity and relation embeddings for
+knowledge graph completion. In Proceedings of the Twenty-
+Ninth AAAI Conference on Artiﬁcial Intelligence.
+[Lin, Liu, and Sun 2015] Lin, Y.; Liu, Z.; and Sun, M.
+2015. Modeling relation paths for representation learn-
+ing of knowledge bases. Proceedings of the 2015 Confer-
+ence on Empirical Methods in Natural Language Processing
+(EMNLP). Association for Computational Linguistics.
+[Mikolov et al. 2013] Mikolov, T.; Sutskever, I.; Chen, K.;
+Corrado, G. S.; and Dean, J. 2013. Distributed represen-
+tations of words and phrases and their compositionality. In
+Advances in neural information processing systems, 3111–
+3119.
+[Mikolov, Yih, and Zweig 2013] Mikolov, T.; Yih, W.-t.; and
+Zweig, G. 2013. Linguistic regularities in continuous space
+word representations. In HLT-NAACL, 746–751.
+
+1995. Wordnet:
+
+[Miller 1995] Miller, G. A.
+a lexi-
+cal database for english. Communications of the ACM
+38(11):39–41.
+[Neelakantan and Chang 2015] Neelakantan, A., and Chang,
+M.-W. 2015.
+Inferring missing entity type instances for
+knowledge base completion: New dataset and methods.
+arXiv preprint arXiv:1504.06658.
+[Nickel, Tresp, and Kriegel 2011] Nickel, M.; Tresp, V.; and
+Kriegel, H.-P. 2011. A three-way model for collective learn-
+ing on multi-relational data. In Proceedings of the 28th inter-
+national conference on machine learning (ICML-11), 809–
+816.
+[Socher et al. 2013] Socher, R.; Chen, D.; Manning, C. D.;
+and Ng, A. 2013. Reasoning with neural tensor networks
+for knowledge base completion. In Advances in Neural In-
+formation Processing Systems, 926–934.
+[Stevens et al. 2012] Stevens, K.; Kegelmeyer, P.; Andrze-
+jewski, D.; and Buttler, D. 2012. Exploring topic coher-
+ence over many models and many topics. In Proceedings of
+the 2012 Joint Conference on Empirical Methods in Natu-
+ral Language Processing and Computational Natural Lan-
+guage Learning, 952–961. Association for Computational
+Linguistics.
+[Wang et al. 2014a] Wang, Z.; Zhang, J.; Feng, J.; and Chen,
+Z. 2014a. Knowledge graph and text jointly embedding. In
+EMNLP, 1591–1601. Citeseer.
+[Wang et al. 2014b] Wang, Z.; Zhang, J.; Feng, J.; and Chen,
+Z. 2014b. Knowledge graph embedding by translating on
+In Proceedings of the Twenty-Eighth AAAI
+hyperplanes.
+Conference on Artiﬁcial Intelligence, 1112–1119.
+[Wang, Wang, and Guo 2015] Wang, Q.; Wang, B.; and Guo,
+L. 2015. Knowledge base completion using embeddings
+In Proceedings of the 24th International Joint
+and rules.
+Conference on Artiﬁcial Intelligence.
+[Xiao et al. 2015] Xiao, H.; Huang, M.; Hao, Y.; and Zhu, X.
+2015. TransA: An adaptive approach for knowledge graph
+embedding. arXiv preprint arXiv:1509.05490.
+[Xiao, Huang, and Zhu 2016] Xiao, H.; Huang, M.; and Zhu,
+X. 2016. Transg : A generative model for knowledge graph
+embedding. In Proceedings of the 29th international confer-
+ence on computational linguistics. Association for Compu-
+tational Linguistics.
+[Xie et al. 2016] Xie, R.; Liu, Z.; Jia, J.; Luan, H.; and Sun,
+M. 2016. Representation learning of knowledge graphs with
+entity descriptions.
+[Zhong et al. 2015] Zhong, H.; Zhang, J.; Wang, Z.; Wan,
+H.; and Chen, Z. 2015. Aligning knowledge and text em-
+beddings by entity descriptions. In Proceedings of EMNLP,
+267–272.
+
+

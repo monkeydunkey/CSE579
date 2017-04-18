@@ -1,0 +1,1205 @@
+6
+1
+0
+2
+
+ 
+c
+e
+D
+7
+2
+
+ 
+
+ 
+ 
+]
+
+G
+L
+.
+s
+c
+[
+ 
+ 
+
+3
+v
+9
+7
+7
+0
+
+.
+
+2
+0
+4
+1
+:
+v
+i
+X
+r
+a
+
+UNLocBoX
+
+A MATLAB convex optimization toolbox for proximal-splitting methods
+
+Nathanael Perraudin, Vassilis Kalofolias, David Shuman, Pierre Vandergheynst
+
+October 2016
+
+Abstract
+
+Convex optimization is an essential tool for machine learning, as many of its problems can be formu-
+lated as minimization problems of speciﬁc objective functions. While there is a large variety of algorithms
+available to solve convex problems, we can argue that it becomes more and more important to focus on
+efﬁcient, scalable methods that can deal with big data. When the objective function can be written as a
+sum of “simple” terms, proximal splitting methods are a good choice. UNLocBoX is a MATLAB library
+that implements many of these methods, designed to solve convex optimization problems of the form
+minx∈RN PK
+n=1 fn(x). It contains the most recent solvers such as FISTA, Douglas-Rachford, SDMM as
+well a primal dual techniques such as Chambolle-Pock and forward-backward-forward. It also includes an
+extensive list of common proximal operators that can be combined, allowing for a quick implementation
+of a large variety of convex problems.
+
+1 Introduction
+
+When solving a machine learning problem, very often we need to transform it ﬁrst into an optimization
+problem before being able to solve it. This amounts to expressing the cost of a possible solution x as an
+objective function f (x), and then try to minimize it in to achieve the best result x∗:
+
+x∗ = arg min
+
+x
+
+f (x).
+
+(1)
+
+Having an explicit objective function to minimize before designing an algorithm not only makes its solution
+easier, but also can make the goal clearer.
+
+Many models lead to convex objective functions. Convexity is a very desirable trait, as then we can
+always ﬁnd a1 solution x∗ of problem (1), at the global minimum of the function f (x). If the latter is not
+convex, we usually need to compromise with ﬁnding a local minimum that is suboptimal with respect to the
+objective function, as it only approximately solves Problem (1).
+
+Many problems in machine learning have an objective function that can be written as a sum of simpler
+
+ones:
+
+x∗ = arg min
+x∈RN
+
+fn(x).
+
+K
+
+Xn=1
+
+(2)
+
+1This does not always imply that there is only one solution, for this we need strong convexity, that is the case in most interesting
+
+problems.
+
+1
+
+This is for example the kind of objective function used for many maximum a posteriori (MAP) estimators,
+where each additional prior or constraint leads to a new term fi(x). We will see this example in a bit more
+detail in the next section.
+
+When the objective function has this structure, it is beneﬁcial to take advantage of it, by using proximal
+splitting optimization methods. As we explain in the next section, these methods solve simpler problems,
+based on each fi(x) separately, and use them as intermediate steps towards a global minimum of f (x).
+Proximal splitting methods have the big advantage of being scalable (depending on fi) especially due to this
+decoupling of the different parts of the objective function. This is especially important in machine learning
+applications, as (1) the number of variables is typically large and (2) accuracy is only relatively important.
+Therefore, recently we observe a paradigm shift from methods whose main objective is convergence in few
+iterations2 to methods whose main goal is a low per-iteration complexity.
+
+1.1 UNLocBoX
+
+UNLocBoX is a convex optimization toolbox for solving problems in the form (2) with MATLAB. It focuses
+especially on proximal splitting methods, and our goal is to keep its use simple, and at the same time very
+efﬁcient and suitable for solving large-scale problems. UNLocBoX is to be used by both novice and ad-
+vanced users of optimization. For the novice, it sufﬁces to deﬁne the objective function as a sum of simpler
+ones, and a general solver will automatically choose the optimization framework that is more suitable for
+that speciﬁc problem. The advanced user, on the other hand, has a great level of control, as he can choose the
+solver he prefers from a wide variety of proximal splitting methods, and change the parameters according to
+his needs. This freedom of choice makes UNLocBoX also a great hands-on tool for learning or practicing
+convex optimization.
+
+UNLocBoX, however, is not to be used completely blindly as a black box. It requires a minimal knowl-
+edge from the user, that is (1) to be able to write the objective function as a sum of simpler ones, and (2) to
+identify if each of them is differentiable or not. For the differentiable he needs to provide the gradient. For
+the non-differentiable, he might need to provide a proximal operator (see next Section), if it does not already
+exist among the ones already implemented in the toolbox. For users that want to use a complete black box
+optimization solution, we refer them to CVX [9]. The reason for using UNLocBoX instead is that it is much
+more efﬁcient, and scalable for a much larger number of variables, as it exploits the structure of the objective
+function to efﬁciently solve each sub-problem in an iterative fashion.
+
+The documentation of the UNLocBoX is complete, meaning that every single function is documented.
+Even if it is not perfect, it has improved signiﬁcantly with time and we expect it to continue to do so. You can
+ﬁnd it online at https://lst2.epfl.ch/unlocbox/doc. Everything is also periodically updated
+into a big PDF ﬁle.
+
+The design of UNLocBoX was largely inspired by the LTFAT toolbox [12]. The authors are jointly
+
+developing mat2doc a documentation system that allows to generate documentation from source ﬁles.
+
+2 Proximal splitting
+
+To understand the idea behind proximal-splitting methods, let us take the simple example of linear regression
+from noisy linear observations y ∈ RM . Assuming that y ≈ Ax with Gaussian noise, we want to infer
+2A few years ago, the trend was to focus on convergence to large accuracy in few iterations, that made Newton-iteration-based
+methods (like interior-point methods) very popular. However, these methods have a high per-iteration complexity, typically quadratic
+in the number of variables, that makes them impractical for modern large-scale applications.
+
+2
+
+x ∈ RN using a maximum a-posteriori (MAP) estimator. If further assume a Gaussian prior on x, the MAP
+estimator is given by
+(3)
+
+x∗ = arg min
+
+x∈RN kAx − yk2
+
+2 + γkxk2
+2.
+
+This problem is not particularly difﬁcult: both parts of the objective function f (x) are differentiable, and we
+know that the solution of our problem lies at the point where the gradient of x is zero: ∇xf (x) = 0. This
+condition leads to a linear system of equations, but since we are interested in scalable solutions we would not
+try to directly solve the system (that costs O(N 3)). A more scalable solution is to use the gradient descent
+method, which has a cost of only O(N M ) per iteration:
+
+xi ← xi−1 − λ∇xf|x=xi−1,
+
+(4)
+
+where f |x=xi−1 is the gradient of f with respect to x, computed at the point x = xi−1, and λ is the step-size.
+2,
+2 and f2(x) = kxk2
+we can rewrite the iteration (4) as
+
+Taking into account the splitting of f (x) = f1(x) + f2(x) with f1(x) = kAx − yk2
+
+or even approximate it with
+
+xi ← xi−1 − λ∇xf1|x=xi−1 ,
+xi ← xi − λ∇xf2|x=xi−1 ,
+
+xi ← xi−1 − λ∇xf1|x=xi−1 ,
+xi ← xi − λ∇xf2|x=xi,
+
+(5)
+(6)
+
+(7)
+(8)
+
+where the second step uses the solution xi computed after the ﬁrst step. Both the above iterative schemes are
+guaranteed to converge to the minimum, as long as λ is small enough. Obviously, when making a step that
+reduces the value of f1(x), we might increase the value of f2(x). By keeping λ small, the effect of reducing
+the ﬁrst is stronger than the effect of increasing the second (as we choose the steepest descend direction for
+f1 using its gradient).
+
+The idea of proximal splitting is to generalize this iteration for non-differentiable functions. Suppose for
+example that instead of a Gaussian prior we have a Laplace prior on x. Then the problem we need to solve
+is
+
+x∗ = arg min
+
+x∈RN kAx − yk2
+
+2 + γkxk1.
+
+(9)
+
+As the second term is not differentiable, we replace the corresponding gradient descent step with a proximal
+step, that is obtained as the solution of
+
+xi ← arg min
+
+x∈RN
+
+γkxk1 +
+
+1
+2kx − xi−1k2,
+
+(10)
+
+where γ again plays the role of the step size. When γ is small, solving the above problem will obtain a
+solution very close to the one of the previous step, but for which the norm-1 of x is still smaller. Alternating
+between a gradient step for f1 and a proximal step for f2 is the well-known proximal gradient or forward-
+backward algorithm, also known as the iterative soft thresholding algorithm [8]- or ISTA for this speciﬁc
+choice of f2. Simply choosing wisely the step sizes can accelerate the convergence rate of the algorithm,
+leading to the Fast ISTA or FISTA [1].
+
+Note that the complexity of solving each sub-problem is O(N ), therefore the overall complexity scales
+only linearly to the number of variables N . This is of huge importance for many machine learning problems
+
+3
+
+where there is a large number of variables, and makes proximal splitting techniques more usable in practice
+than for example second order methods.
+
+In UNLocBoX we implement many algorithms like the ones above, along with the Douglas-Rachford
+algorithm [6, 11]-[3], capable of solving the problem for two non-differentiable terms, two primal-dual-
+based algorithms [10] that deal with two non-differentiable and a differentiable term, and other generalized
+algorithms that can handle more than 2 terms in f (x). For an overview of proximal splitting methods we
+refer the reader to the work of [5], and for primal-dual algorithms to the review of [10].
+
+2.1 The proximal operator
+In general, a proximal operator of a lower semi-continuous convex function fi from RN to (−∞, +∞] is
+deﬁned as
+
+proxf (x) := arg min
+
+(11)
+
+y∈RN (cid:26) 1
+
+2kx − yk2
+
+2 + f (y)(cid:27) .
+
+Proximal operators have many interesting properties that make them very useful in iterative methods. For
+example, note that the objective function is strictly convex, therefore the optimization problem (11) has a
+unique solution, making the proximal operator well-deﬁned.
+
+A very important property of the proximal operator is that for an input xi it provides an output xi+1 that
+
+obtains a smaller value of f :
+
+with equality only if
+
+xi+1 = proxf (xi) ⇒ f (xi+1) ≤ f (xi),
+
+xi = xi+1 = arg min
+x∈RN
+
+f (x).
+
+Therefore, the iteration xi+1 = proxf (xi) leads to the minimum of f (x). Proximal splitting methods can be
+seen as methods that generalize this iteration, alternating between the proximal operators of different terms
+fi of f .
+
+The success of proximal splitting methods for scalable applications is based on the fact that for many
+convex functions f (x), the corresponding proximal operator (11) can be solved using only O(N ) operations.
+For example, solving (10) for f (x) = kxk1 is done by elementwise soft-thresholding:
+
+softγ(α) =(max(0, α − γ),
+
+min(0, α + γ),
+
+if α ≥ 0,
+if α < 0.
+
+(12)
+
+In the great review [4] there is a list of many convex terms along with their proximal operators, while it is
+usually easy to deﬁne our own.
+
+3 Structure of the UNLocBoX
+
+The most important function of the toolbox is solvep, as it automatically chooses a speciﬁc solver for a
+given objective function given as a sum of convex terms. Additionally, the toolbox mainly contains four
+groups of functions:
+
+1. Solvers. (See Section 3.3) They form the core of the toolbox and are usually called by solvep. The
+toolbox includes most of the recent techniques, like forward-backward (FISTA), Douglas-Rachford,
+PPXA, SDMM, as well as many primal-dual techniques.
+
+4
+
+2. Proximal operators. (See Section 3.2) The proximal operators of the most common functions help
+the user quickly solve standard problems. The toolbox also includes many projection operators that
+are needed for adding hard constraints.
+
+3. Demonstration ﬁles. They show how to start with the toolbox.
+
+4. Utility functions. A set of small functions that are useful for various problems of the toolbox, includ-
+
+ing functions that could easily be part of standard MATLAB.
+
+An optimization problem is solved in two steps. First, the user needs to deﬁne the parts of the objective
+function (Sections 3.1 and 3.2) and then choose a solver (Section 3.3) or let the software automatically
+select one.
+
+In Problem (2), each function fk(x) is modeled as a structure with special ﬁelds: eval, prox, grad,
+beta. For a function f, the ﬁeld f.eval is a MATLAB function handle that takes as input the optimization
+variables x and returns the value f (x). In MATLAB, write:
+
+1
+
+f.eval = @(x) eval_f(x)
+
+where eval_f(x) returns the scalar value of f (x).
+
+3.1 Deﬁning differentiable functions
+
+If the function f is differentiable (and we can compute the gradient), we have to specify the gradient in the
+ﬁeld f.grad as a handle of a function that takes as input the optimization variables x and returns ∇f (x).
+In MATLAB, write:
+
+1
+
+f.grad = @(x) grad_f(x)
+
+where grad_f(x) returns the value of ∇f (x). For differentiable functions, the ﬁeld beta needs also
+to be speciﬁed. It contains an upper bound on the Lipschitz constant of the gradient. A function f has a
+β-Lipschitz-continuous gradient ∇f if
+
+k∇f (x) − ∇f (y)k2 ≤ βkx − yk2
+
+∀x, y ∈ RN ,
+
+(13)
+
+where β > 0. In other words, the Lipschitz constant is an upper bound of the norm of the gradient operator.
+As an example, to deﬁne the function f (x) = 5kAx − yk2
+
+2, you would write:
+
+1
+
+2
+
+3
+
+f.eval = @(x) 5 * norm(A*x - y)^2;
+f.grad = @(x) 2 * 5 * A'*(A*x - y);
+f.beta = 2 * 5 * norm(A)^2;
+
+Note that we use the operator norm (norm-2 of a matrix) of A, and the fact that kA⊤Ak = kAk2. Because
+the gradient can be written as 10A⊤(Ax − y) = (10A⊤A)x + constant(x), the Lipschitz constant is equal
+to k10A⊤Ak.
+
+5
+
+3.2 Deﬁning proximal operators
+
+If the function f is not differentiable, it has to be minimized using its proximal operator. For a lower semi-
+continuous function f , they are deﬁned as:
+
+proxλf (x) := arg min
+
+2 + λf (y)(cid:19) .
+
+y∈RN (cid:18) 1
+
+2kx − yk2
+
+In order to facilitate the deﬁnition of functions and to allow for fast implementations, the UNLocBoX in-
+cludes a variety of proximal operators. The proximal operators of UNLocBoX are deﬁned as MATLAB
+functions that take three input parameters: x, lambda, param. First, x is the initial signal, that is,
+the signal in the current iteration, before applying the proximal operator. Then lambda is the weight of
+the objective function, multiplied by a step-size needed by each algorithm. Finally, param is a MATLAB
+structure that contains a set of optional parameters.
+
+In this case, the ﬁeld f.prox is another function handle that takes as input a vector x along with a
+positive real number τ and returns proxτ f (x). The parameter τ is usually decomposed into γ · c where γ is
+the step-size needed by the algorithm and c is the weight of the function. To deﬁne a function c · f (x), in
+MATLAB, we write:
+
+1
+
+f1.prox = @(x, T) prox_f1(x, c*T)
+
+where prox_f1(x, T) can be a standard MATLAB function that solves the problem proxT f1 (x) given
+in equation (11). Note that we use this form of input so that the solver is free to apply the step-size it needs,
+that is equivalent to multiplying f (x) by a constant.
+
+The most typical non-differentiable function used in optimization is the ℓ1-norm. It is used as a relaxation
+
+for the ℓ0 norm and thus favor sparsity. Fox example the function f (x) = 7kxk1 can be implemented as:
+
+1
+
+2
+
+f.eval = @(x) 7 * norm(x, 1);
+f.prox = @(x, T) prox_l1(x, 7*T);
+
+In many applications, the signal is assumed to be sparse within a special set of atoms W . In this case, the
+basis is speciﬁed in the optional argument of the function. As an example, the function f (x) = 3kW xk1 is
+encoded as:
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+f.eval = @(x) 3 * norm(x,1);
+param_l1.A = @(x) W * x;
+param_l1.At = @(x) W' * x;
+param_l1.tight = 0;
+param_l1.nu = norm(W)^2;
+f.prox = @(x, T) prox_l1( x, 3*T, param_l1 );
+
+In this special example, we assume that W is a matrix. The argument param_l1.nu is very important. It
+is an upper bound on the squared norm of the operator:
+
+√ν ≥ max
+
+x6=0
+
+kW xk2
+kxk2
+
+= λmax(W ).
+
+Note that if W W ∗ = I, meaning that the operator W ∗ is tight, the parameter param_l1.tight can be
+set to 1 so that simpler computations can be used. In the non-tight case, the algorithm will perform inner
+
+6
+
+iterations. As inner iterations leads to slower optimization, it is recommended avoiding this case. To do so,
+primal-dual solvers can be used. Their presentation is beyond the scope of this paper.
+
+As a general rule, the user deﬁnes a function with its gradient whenever it is possible and keep the
+
+proximal form for non-differentiable functions. This usually allows the use of more efﬁcient solvers.
+
+The UNLocBoX includes the proximal operators of the most common norms (a non-exhaustive list is
+
+available in Table 1).
+
+Name
+ℓ1 norm
+ℓ2 norm (squared)
+ℓ12 mixed norm
+
+different groups of elements
+
+Discrete deﬁnition
+n=1 |xn|
+n=1 |xn|2
+
+kxk1 =PN
+kxk2 =PN
+kxk12 = Pg∈G kxgk2, where xg ⊂ x are
+Pnp∇1x(n) + ∇2x(n) (2 dimensional)
+kxk∗ = Pmin{m,n}
+
+Pn k∇x(n)k2
+
+σi, where σi are the
+
+=
+
+singular values of x
+
+i=1
+
+ℓT V total variation norm kxkT V
+ℓ∗ nuclear norm
+
+Input type
+Vector
+Vector
+Vector or matrix
+
+Matrix
+
+Matrix
+
+=
+
+Table 1: Presentation of the norms
+
+UNLocBoX solvers and proximal operators are not linked to a particular input size. As a result, the
+optimization variables can be in a vector, matrix, or tensor form. However, the user should make sure that
+the returned arguments of the gradient and of the proximal operator are of the same size as the one of the
+optimization variable x.
+
+Adding constraints
+In order to restrict the set of admissible solutions to a convex set C ⊂ RL, i.e. ﬁnd the optimal solution to
+(1) considering only solutions in C, we can use projection operators instead of proximal operators. Indeed,
+proximal operators are generalizations of projections. For any non-empty, closed and convex set C ⊂ RL,
+the indicator function of C is deﬁned as
+
+(14)
+
+iC : RL → {0, +∞} : x 7→(0,
+
+if x ∈ C
++∞ otherwise.
+The corresponding proximal operator is given by the projection onto the set C:
+x∈RL (cid:26) 1
+2 + iC(x)(cid:27)
+2ky − xk2
+x∈C (cid:8)ky − xk2
+2(cid:9)
+
+PC(y) = arg min
+
+= arg min
+
+,
+
+Such constraints are useful, for example, when we want the solution to be restricted to satisfy a linear
+equation or inequality.
+
+For consistency, the projection operators also take 3 arguments as input. However the second argument is
+simply ignored by the solver, as an indicator function is invariant to multiplications by any positive number.
+To implement the constraint kxk2 ≤ 2, one would simply write
+
+7
+
+1
+
+2
+
+3
+
+f.eval = @(x) eps;
+param_b2.epsilon = 2
+f.prox = @(x, T) prox_b2(x, T, param_b2);
+
+For constraints, we do not specify a particular objective function. Theoretically, it should be inﬁnite when
+the constraint is not satisﬁed. In practice, inﬁnite is not manageable for a computer and it is simply better to
+ignore this case.
+
+3.3 Solvers
+
+The UNLocBoX solvers are categorized them into 2 different groups. First, there are speciﬁc solvers that
+minimize only two functions (Forward backward, Douglas-Rachford, ADMM, forward-backward-forward,
+Chambolle-Pock,...). Those are usually more efﬁcient. Second, there are general solvers that are more
+general but less efﬁcient (Generalized forward backward, PPXA, SDMM,...). Not all possible solvers are
+included into the UNLocBoX. However the toolbox offers a general framework, where the user can add his
+own solvers.
+
+In general a solver takes three kinds of inputs: an initialization point x0, the functions to be minimized
+and an optional structure of parameters. As a rule into the UNLocBoX, we use the following convention.
+The initialization point is always the ﬁrst argument (except for SDMM), then comes the functions and ﬁnally
+the optional structure of parameters.
+
+Selection of a solver The UNLocBoX contains a general solving function called solvep able to select a
+good solver for in most of the cases. Additionally, if some problem functions are differentiable, it computes
+an optimal time-step automatically. To minimize the sum of the functions f1, f2, f3, we write in
+MATLAB:
+
+1
+
+sol = solvep(x_0, {f1, f2, f3}, param);
+
+The solver can also be selected manually with:
+
+1
+
+sol = forward_backward(x_0, f1, f2, param);
+
+Optional solver parameters are all contained into the optional structure param. Different functions might
+need different parameters, but most of them are common. Table A presents a summary of the most important
+one. The solvers return 2 arguments, the solution, i.e.
+the minimizer of the problem, and a structure of
+general information that is detailed in Table A.
+
+Selection of the time-step The UNLocBoX is automatically selecting the best time step based on the
+Lipschitz constant of the differentiable functions. However, if the problem contains only non-differentiable
+function, it may be necessary to introduce it manually in the optional ﬁeld param.gamma. In this case,
+the time-step deﬁnes the compromise between convergence speed and accuracy, lower value leading toward
+more accurate solutions.
+
+8
+
+4 Example
+
+Let us suppose that we have a noisy image of dimension n × n with missing pixels. Our goal is to ﬁnd
+the closest image to the original one. We assume that the positions of the missing pixels are known. We
+additionally assume the image to be composed of well-delimited patches of colors, i.e.
+to have a sparse
+gradient. Finally, we suppose that known pixels are subject to some Gaussian noise with a variance of ǫ.
+
+Original image
+
+Noisy image
+
+Measurements
+
+Figure 1: This ﬁgure shows the image chosen for this example: the cameraman.
+
+At this point, the problem can be expressed in a mathematical form. We will simulate the masking
+
+operation by a mask A. This leads to the generative process:
+
+y = Ax + n
+
+where x is the vectorized image we want to recover, y are the observe noisy pixels and n a vector encoding
+the noise. If we assume the noise to be Gaussian i.i.d, we can insert this generative model into our problem
+in form of a constraint:
+
+C = {x ∈ Rn2
+
+|
+
+kAx − yk2 ≤ ǫ}
+
+Note that ǫ can be chosen equal to 0 to exactly satisfy the constraint Ax = y in the noiseless case. In our
+case, as the measurements are noisy, we set ǫ to the standard deviation of the noise multiplied by √#y,
+where #y is the number of elements of y. When the noise level is not known, this parameter has to be
+adjusted manually or using hyper-parameter selection techniques.
+
+As we assume the image to have a sparse gradient, we add a total variation term in the optimization
+
+problem and we get:
+
+arg min
+
+x
+
+kxkT V
+
+subject
+
+to
+
+kAx − yk2 ≤ ǫ
+
+(Problem I),
+
+where kxkT V = k√∇1x + ∇2xk1 is traditionally referred as the total variation norm3. ǫ can also be seen as
+
+a parameter that tunes the conﬁdence to the measurements. This is not the only way to deﬁne the problem.
+We could also write:
+
+arg min
+
+x
+
+kAx − yk2
+
+2 + λkxkT V
+
+(Problem II)
+
+with the ﬁrst term playing the role of a data ﬁdelity term and the second a prior assumption on the signal.
+λ adjusts the tradeoff between measurement ﬁdelity and prior assumption. We call it the regularization
+
+3In fact it is only a semi norm as it does not satisfy the separability property.
+
+9
+
+parameter. The smaller it is, the more we trust the measurements and vice-versa. ǫ play a similar role as
+λ. Note that there exists a bijective mapping between the parameters λ and ǫ, leading to the same solution.
+The mapping function is not trivial to determine. Choosing between one or the other problem will affect the
+solvers and the convergence rate. Note also that in Problem II we prefer to use the squared ℓ2 norm, as it is
+directly differentiable, including at 0. This choice does not affect the range of solutions, only the mapping
+between λ and ǫ.
+
+Solving Problem I The UNLocBoX solvers take as input functions with their proximal operator or with
+their gradient. In the toolbox, functions are modeled with structure objects containing special ﬁelds. One
+ﬁeld contains an operator to evaluate the function and the other allows to compute either the gradient (in
+case of differentiable function) or the proximal operator ( in case of non-differentiable functions). In this
+example, we need to provide two functions:
+
+• f1(x) = kxkT V , the total variation norm has a proximal operator deﬁned as:
+
+proxf 1,γ (z) = arg min
+
+x
+
+1
+2kx − zk2
+
+2 + γkzkT V .
+
+In MATLAB this function is deﬁned with:
+
+1
+
+2
+
+3
+
+4
+
+param_tv.verbose = 1;
+param_tv.maxit = 50;
+f1.prox = @(x,T) prox_tv(x , T, param_tv);
+f1.eval = @(x) norm_tv(x);
+
+This function is a structure with two ﬁelds. First, f1.prox is an operator taking as input x and T and
+evaluating the proximal operator of the function (T plays the role of γ is the equation above). Second,
+and sometime optional, f1.eval is also an operator evaluating the function at x.
+The proximal operator of the TV norm is already implemented in the UNLocBoX by the function
+prox_tv. We tune it by setting the maximum number of iterations and a verbosity level. Other pa-
+rameters are also available (see documentation https://lts2.epfl.ch/unlocbox/doc.php).
+
+– param_tv.verbose selects the display level (0 no log, 1 summary at convergence and 2 display all
+
+steps).
+
+– param_tv.maxit deﬁnes the maximum number of iterations.
+
+• f2 is the indicator function of the set S deﬁnes by kAx − yk2 < ǫ. Its proximal operator of f2 as
+
+proxf 2,γ (z) = arg min
+
+x
+
+1
+2kx − zk2
+
+2 + iS(x),
+
+with iS(x) is zero if x is in the set S and inﬁnite otherwise. This previous problem has an identical
+solution as:
+
+arg min
+
+z kx − zk2
+
+2
+
+subject
+
+to
+
+kAz − byk2 ≤ ǫ
+
+which is simply a projection on the B2-ball. In MATLAB, we write:
+
+10
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+param_proj.epsilon = epsilon;
+param_proj.A = A;
+param_proj.At = A;
+param_proj.y = y;
+f2.prox = @(x, T) proj_b2(x, T, param_proj);
+f2.eval = @(x) eps;
+
+The prox ﬁeld of f2 is in that case the operator computing the projection. Since we suppose that the
+constraint is satisﬁed, the value of the indicator function is 0. For implementation reasons, it is better
+to set the value of the operator f2.eval to eps than to 0. Note that this hypothesis could lead to strange
+evolution of the objective function as the constraint is not always satisﬁed during the optimization
+process. Here the parameter A and At are mandatory. Note that A = At, since the masking operator can
+be performed by a diagonal matrix containing 1’s for observed pixels and 0’s for hidden pixels.
+
+At this point, a solver needs to be selected. The UNLocBoX includes a universal solving function
+solvep able to select a solver for your problem. The automatic choice might not be optimal as some solvers
+are optimized for speciﬁc problems. In this example, we present two of them forward_backward and
+douglas_rachford. Both of them take as input two functions (they have generalizations taking more
+functions), a starting point and some optional parameters.
+
+In our problem, neither function is differentiable (for some points of the domain), leading to the impos-
+sibility to compute the gradient. In that case, solvers (such as forward backward) using gradient descent
+cannot be used. As a consequence, we will use Douglas-Rachford instead. In MATLAB, we write:
+
+1
+
+2
+
+3
+
+4
+
+5
+
+param.verbose = 1;
+param.maxit = 100;
+param.tol = 10e-5;
+param.gamma = 1;
+sol = douglas_rachford(y, f1, f2, param);
+
+Note that if the last line could be replaced with
+
+1
+
+sol = solvep(y, {f1, f2}, param);
+
+the function solvep would automatically select Douglas-Rachford as a solver.
+
+• param.verbose selects the display level (0 no log, 1 summary at convergence and 2 display all steps).
+
+• param.maxit deﬁnes the maximum number of iterations.
+
+• param.tol is stopping criteria for the loop. The algorithm stops if
+
+n(t)
+where n(t) is the objective function at iteration t
+
+n(t) − n(t − 1)
+
+< tol,
+
+• param.gamma deﬁnes the step-size. When only non-differentiable functions are minimized, it is a
+compromise between convergence speed and precision. When differentiable functions are minimized,
+a too large step-size gamma may lead to the divergence of the algorithm. In this case, the user can let
+the UNLocBoX automatically set the step-size.
+
+The solution is displayed in ﬁgure 2
+
+11
+
+Problem I - Douglas Rachford
+
+Figure 2: This ﬁgure shows the reconstructed image by solving Problem I using Douglas Rachford algorithm.
+
+Solving Problem II Solving Problem II instead of Problem I can be done with a small modiﬁcation of the
+previous code. First we deﬁne another function as follows:
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+param_l2.A = A;
+param_l2.At = A;
+param_l2.y = y;
+param_l2.verbose = 1;
+f3.prox = @(x,T) prox_l2( x, lambda * T, param_l2 );
+f3.grad = @(x) 2 * lambda * A(A(x) - y);
+f3.eval = @(x) lambda * norm(A(x) - y, 'fro')^2;
+
+The squared ℓ2-norm is a differentiable function allowing the use of the forward backward solver. The gra-
+dient is deﬁned in an additional ﬁeld grad. In general, the user provides only the gradient or the proximal
+operator to a function. However, for this example we deﬁne both in order to compare two solvers. The prox-
+imal operator is used by the aforementioned Douglas-Rachford algorithm while the gradient is computed for
+the forward backward algorithm. The solvers can be called by:
+
+sol21 = forward_backward(y, f1, f3, param);
+
+1
+
+or:
+
+1
+
+sol22 = douglas_rachford(y, f3, f1, param);
+
+These two solvers converge (up to numerical error) to the same solution. However, convergence speed might
+be different. As we perform only 100 iterations with both of them, we do not obtain exactly the same result.
+Nonetheless, the differences cannot be perceived by eyes (see Figure 3).
+
+12
+
+Problem II - Forward Backward
+
+Problem II - Douglas Rachford
+
+Figure 3: This ﬁgure shows the reconstructed image by solving problem II.
+
+13
+
+References
+
+[1] A. Beck and M. Teboulle. A fast iterative shrinkage-thresholding algorithm for linear inverse problems.
+
+SIAM Journal on Imaging Sciences, 2(1):183–202, 2009.
+
+[2] P.L. Combettes. Solving monotone inclusions via compositions of nonexpansive averaged operators.
+
+Optimization, 53(5-6), 2004.
+
+[3] P.L. Combettes and J.C. Pesquet. A douglas–rachford splitting approach to nonsmooth convex varia-
+
+tional signal recovery. Selected Topics in Signal Processing, IEEE Journal of, 1(4):564–574, 2007.
+
+[4] P.L. Combettes and J.C. Pesquet. Proximal splitting methods in signal processing. Fixed-Point Algo-
+
+rithms for Inverse Problems in Science and Engineering, pages 185–212, 2011.
+
+[5] P.L. Combettes and V.R. Wajs. Signal recovery by proximal forward-backward splitting. Multiscale
+
+Modeling & Simulation, 4(4):1168–1200, 2005.
+
+[6] J. Douglas and HH Rachford. On the numerical solution of heat conduction problems in two and three
+
+space variables. Transactions of the American mathematical Society, 82(2):421–439, 1956.
+
+[7] J. Eckstein and D.P. Bertsekas. On the douglas—rachford splitting method and the proximal point
+
+algorithm for maximal monotone operators. Mathematical Programming, 55(1):293–318, 1992.
+
+[8] D. Gabay. Chapter ix applications of the method of multipliers to variational inequalities. Studies in
+
+mathematics and its applications, 15:299–331, 1983.
+
+[9] Michael Grant and Stephen Boyd. Cvx: Matlab software for disciplined convex programming.
+
+[10] Nikos Komodakis and Jean-Christophe Pesquet. Playing with duality: An overview of recent primal?
+dual approaches for solving large-scale optimization problems. IEEE Signal Processing Magazine,
+32(6):31–54, 2015.
+
+[11] P.L. Lions and B. Mercier. Splitting algorithms for the sum of two nonlinear operators. SIAM Journal
+
+on Numerical Analysis, 16(6):964–979, 1979.
+
+[12] Zdenˇek Pr˚uša, Peter L. Søndergaard, Nicki Holighaus, Christoph Wiesmeyr, and Peter Balazs. The
+Large Time-Frequency Analysis Toolbox 2.0. In Mitsuko Aramaki, Olivier Derrien, Richard Kronland-
+Martinet, and Sølvi Ystad, editors, Sound, Music, and Motion, Lecture Notes in Computer Science,
+pages 419–442. Springer International Publishing, 2014.
+
+[13] P. Tseng. Applications of a splitting algorithm to decomposition in convex programming and varia-
+
+tional inequalities. SIAM Journal on Control and Optimization, 29(1):119–138, 1991.
+
+14
+
+A Appendix: solver details
+
+Field
+tol
+stopping_criterion
+algo
+maxit
+gamma
+verbose
+debug_mode
+
+Explanation
+Tolerance used in the stopping criterion of the problem.
+Stopping criterion (see table A)
+Selection of a speciﬁc solver
+Maximum number of iterations
+To manually specify the timestep. (To be used carefully)
+Verbosity level
+Boolean to activate the computation of all internal vari-
+ables.
+
+Table 2: Most common solver parameters as the ﬁelds of an optional structure.
+
+Field
+algo
+iter
+time
+final_eval
+crit
+rel_norm
+
+Criterion
+TOL_EPS
+ABS_TOL
+MAX_IT
+USER
+--
+
+Explanation
+Algorithm used
+Number of iterations
+Time of execution of the function in sec.
+Final evaluation of the objective function
+Stopping criterion used see table A
+Relative norm at convergence
+
+Table 3: Information returned by the solver
+
+Explanation
+Tolerance achieved
+Objective function below the tolerance
+Maximum number of iterations
+Stop by the user "ctrl + D" in the command window.
+Other
+
+Table 4: Stopping criteria
+
+15
+
+B Appendix: example’s code
+
+1 %% Initialisation
+2 clear;
+3 close all;
+4
+5 % Loading toolbox
+6 init_unlocbox;
+7
+8 verbose = 2; % verbosity level
+9
+
+10
+11 %% Load an image
+12
+13 % Original image
+14 im_original = cameraman;
+15
+16 % Displaying original image
+17 imagesc_gray(im_original, 1, 'Original image');
+18
+19 %% Creation of the problem
+20
+21 sigma_noise = 10/255;
+22 im_noisy = im_original + sigma_noise * randn(size(im_original));
+23
+24 % Create a matrix with randomly 50 % of zeros entry
+25 p = 0.5;
+26 matA = rand(size(im_original));
+27 matA = (matA > (1-p));
+28 % Define the operator
+29 A = @(x) matA .* x;
+30
+31 % Masked image
+32 y = A(im_noisy);
+33
+34 % Displaying the noisy image
+35 imagesc_gray(im_noisy, 2, 'Noisy image');
+36
+37 % Displaying masked image
+38 imagesc_gray(y, 3, 'Measurements');
+39
+
+40
+41 %% Setting the proximity operator
+42
+43 lambda = 1;
+44 % setting the function f1 (norm TV)
+45 param_tv.verbose = verbose - 1;
+46 param_tv.maxit = 100;
+47 f1.prox = @(x, T) prox_tv(x, lambda*T, param_tv);
+48 f1.eval = @(x) lambda * norm_tv(x);
+49
+50 % setting the function f2
+51 param_proj.epsilon = sqrt(sigma_noise^2 * numel(im_original) * p);
+52 param_proj.A = A;
+53 param_proj.At = A;
+54 param_proj.y = y;
+
+16
+
+55 param_proj.verbose = verbose - 1;
+56 f2.prox = @(x, T) proj_b2(x, T, param_proj);
+57 f2.eval = @(x) eps;
+58
+
+% display parameter
+
+% tolerance to stop iterating
+
+% maximum number of iterations
+
+59
+60 %% Solving problem I
+61
+62 % setting different parameters for the simulation
+63 param_dg.verbose = verbose;
+64 param_dg.maxit = 100;
+65 param_dg.tol = 1e-5;
+66 param_dg.gamma = 0.1 ;
+67 fig = figure(100);
+68 param_dg.do_sol = @(x) plot_image(x, fig); % plotting plugin
+69
+70 % solving the problem with Douglas Rachord
+71 param_dg.method = 'douglas_rachford';
+72 sol = solvep(y, {f1, f2}, param_dg);
+73
+74 %% Displaying the result
+75 imagesc_gray(sol, 4, 'Problem I - Douglas Rachford');
+76
+
+% Convergence parameter
+
+77
+78 %% Defining the function for problem II
+79
+80 lambda = 0.05;
+81 % setting the function f1 (norm TV)
+82 param_tv.verbose = verbose-1;
+83 param_tv.maxit = 50;
+84 f1.prox = @(x, T) prox_tv(x, lambda * T, param_tv);
+85 f1.eval = @(x) lambda * norm_tv(x);
+86
+87 % setting the function f3
+88 f3.grad = @(x) 2 * A(A(x) - y);
+89 f3.eval = @(x) norm(A(x) - y, 'fro')^2;
+90 f3.beta = 2;
+91
+92 % To be able to use also Douglas Rachford
+93 param_l2.A = A;
+94 param_l2.At = A;
+95 param_l2.y = y;
+96 param_l2.verbose = verbose - 1;
+97 param_l2.tightT = 1;
+98 param_l2.pcg = 0;
+99 param_l2.nu = 1;
+100 f3.prox = @(x,T) prox_l2(x, T, param_l2);
+101
+
+% display parameter
+
+102
+103 %% Solving problem II (forward backward)
+104 param_fw.verbose = verbose;
+105 param_fw.maxit = 100;
+106 param_fw.tol = 1e-5;
+107 fig = figure(100);
+108 param_fw.do_sol = @(x) plot_image(x, fig); % plotting plugin
+109 param_fw.method = 'forward_backward';
+110 sol21 = solvep(y, {f1, f3}, param_fw);
+111 close(fig);
+112
+
+% maximum number of iterations
+
+% tolerance to stop iterating
+
+17
+
+113 %% Displaying the result
+114 imagesc_gray(sol21, 5, 'Problem II - Forward Backward' );
+115
+
+% Convergence parameter
+
+116
+117 %% Solving problem II (Douglas Rachford)
+118 param_dg.method = 'douglas_rachford';
+119 param_dg.gamma = 0.5 ;
+120 fig = figure(100);
+121 param_dg.do_sol = @(x) plot_image(x, fig); % plotting plugin
+122 sol22 = douglas_rachford(y, f3, f1, param_dg);
+123 close(fig);
+124
+125 %% Displaying the result
+126 imagesc_gray(sol22, 6, 'Problem II - Douglas Rachford');
+127
+
+128
+129 %% Close the UNLcoBoX
+130 close_unlocbox;
+
+18
+
+This figure "logoEPFL.jpg" is available in "jpg"(cid:10) format from:
+
+http://arxiv.org/ps/1402.0779v3
+
+

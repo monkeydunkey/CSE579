@@ -1,0 +1,9 @@
+No appropriate embedding found for: knowledge graph
+No appropriate embedding found for: mean rank
+No appropriate embedding found for: objective function
+No appropriate embedding found for: forward backward
+No appropriate embedding found for: arg min
+No appropriate embedding found for: solving problem
+No appropriate embedding found for: f1 f2
+No appropriate embedding found for: step cost
+No appropriate embedding found for: cost step

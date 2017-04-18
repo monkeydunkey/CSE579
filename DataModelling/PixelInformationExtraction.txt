@@ -1,0 +1,1133 @@
+A¨aron van den Oord Nal Kalchbrenner Koray Kavukcuoglu Modeling the distribution of natural images is a landmark problem in unsupervised learning.
+0.93 (A¨aron van den Oord Nal Kalchbrenner Koray Kavukcuoglu Modeling; is; a landmark problem in unsupervised learning)
+
+This task requires an image model that is at once expressive, tractable and scalable.
+0.85 (This task; requires; an image model that is at once expressive, tractable and scalable)
+0.62 (an image model; is once expressive; )
+
+We present a deep neural network that sequentially predicts the pixels in an image along the two spatial dimensions.
+0.33 (We; present; a deep neural network that sequentially predicts the pixels in an image along the two spatial dimensions)
+0.94 (a deep neural network; sequentially predicts; the pixels in an image along the two spatial dimensions)
+
+Our method models the discrete probability of the raw pixel values and encodes the complete set of dependencies in the image.
+0.64 (Our method; models; the discrete probability of the raw pixel values)
+0.60 (Our method; encodes; the complete set of dependencies in the image)
+
+Architectural novelties include fast twodimensional recurrent layers and an effective use of residual connections in deep recurrent networks.
+0.94 (Architectural novelties; include; fast twodimensional recurrent layers and an effective use of residual connections in deep recurrent networks)
+
+We achieve log-likelihood scores on natural images that are considerably better than the previous state of the art.
+0.45 (We; achieve; log-likelihood scores; L:on natural images)
+0.89 (natural images; are; considerably better than the previous state of the art)
+
+Our main results also provide benchmarks on the diverse ImageNet dataset.
+0.66 (Our main results; provide; benchmarks on the diverse ImageNet dataset)
+
+Samples generated from the model appear crisp, varied and globally coherent.
+
+Introduction Generative image modeling is a central problem in unsupervised learning.
+0.94 (Introduction Generative image modeling; is; a central problem in unsupervised learning)
+
+Probabilistic density models can be used for a wide variety of tasks that range from image compression and forms of reconstruction such as image inpainting (e.g., see Figure 1) and deblurring, to generation of new images.
+0.91 (Probabilistic density models; can be used; for a wide variety of tasks)
+0.86 (tasks; range; from image compression and forms of reconstruction such as image inpainting)
+
+When the model is conditioned on external information, possible applications also include creating images based on text descriptions or simulating future frames in a planning task.
+0.90 (the model; is conditioned; on external information)
+0.96 (possible applications; also include; creating images based on text descriptions or simulating future frames in a planning task; T:When the model is conditioned on external information)
+0.89 (images; based; on text descriptions)
+
+One of the great advantages in generative modeling is that there are practically endless amounts of image data available to learn from.
+0.85 (One of the great advantages in generative modeling; is; that there are practically endless amounts of image data available to learn from)
+
+However, because images are high dimensional and highly structured, estimating the distribution of natural images is extremely challenging.
+0.75 (images; are; high dimensional and highly structured)
+0.68 (images; structured; )
+0.87 (estimating the distribution of natural images; is; extremely challenging)
+
+One of the most important obstacles in generative modeling is building complex and expressive models that are also tractable and scalable.
+0.91 (One of the most important obstacles in generative modeling; is building; complex and expressive models that are also tractable and scalable)
+0.77 (complex and expressive models; are also; tractable and scalable)
+
+This trade-off has resulted in a large variety of generative models, each having their advantages.
+0.90 (This trade-off; has resulted; in a large variety of generative models)
+0.39 (each; having; their advantages)
+
+Most work focuses on stochastic latent variable models such as VAE’s (Rezende et al., 2014; Kingma & Welling, 2013) that aim to extract meaningful representations, but often come with an intractable inference step that can hinder their performance.
+0.95 (Most work; focuses; on stochastic latent variable models such as VAE's (Rezende et al)
+0.88 (Kingma & Welling; come; T:often)
+0.84 (an intractable inference step; can hinder; their performance)
+0.90 (Kingma & Welling; aim; to extract meaningful representations)
+0.90 Context(Kingma & Welling aim):(Kingma & Welling; aim to extract; meaningful representations)
+
+One effective approach to tractably model a joint distribution of the pixels in the image is to cast it as a product of conditional distributions; this approach has been adopted in autoregressive models such as NADE (Larochelle & Murray, 2011) and fully visible neural networks (Neal, 1992; Bengio & Bengio, 2000).
+0.94 (this approach; has been adopted; L:in autoregressive models such as NADE (Larochelle & Murray, 2011) and fully visible neural networks)
+0.95 Context(this approach has been adopted):(One effective approach to tractably model a joint distribution of the pixels in the image; is; to cast it as a product of conditional distributions)
+
+The factorization turns the joint modeling problem into a sequence problem, where one learns to predict the next pixel given all the previously generated pixels.
+0.93 (The factorization; turns; the joint modeling problem; into a sequence problem)
+0.55 (one; learns; to predict the next pixel)
+0.55 Context(one learns):(one; learns to predict; the next pixel given all the previously generated pixels)
+
+But to model the highly nonlinear and longrange correlations between pixels and the complex conditional distributions that result, a highly expressive sequence model is necessary.
+0.74 (the complex conditional distributions; result; )
+0.85 (a highly expressive sequence model; is; necessary)
+
+Recurrent Neural Networks (RNN) are powerful models that offer a compact, shared parametrization of a series of conditional distributions.
+0.87 (Recurrent Neural Networks; are; powerful models that offer a compact, shared parametrization of a series of conditional distributions)
+0.93 (powerful models; offer; a compact, shared parametrization of a series of conditional distributions)
+
+RNNs have been shown to excel at hard sequence problems ranging from handwriting generation (Graves, 2013), to character prediction (Sutskever et al., 2011) and to machine translation (Kalchbrenner & Blunsom, 2013).
+0.56 (RNNs; have been shown; )
+0.79 (RNNs; to excel; L:at hard sequence problems)
+0.91 (hard sequence problems; ranging; from handwriting generation)
+
+A two-dimensional RNN has produced very promising results in modeling grayscale images and textures (Theis & Bethge, 2015).
+0.94 (A two-dimensional RNN; has produced; very promising results in modeling grayscale images and textures)
+
+In this paper we advance two-dimensional RNNs and apply them to large-scale modeling of natural images.
+0.64 (we; advance; two-dimensional RNNs; L:In this paper)
+0.40 (we; apply; them; to large-scale modeling of natural images; T:In this paper)
+
+The resulting PixelRNNs are composed of up to twelve, fast two-dimensional Long Short-Term Memory (LSTM) layers.
+0.78 (The resulting PixelRNNs; are composed; of up to twelve)
+
+These layers use LSTM units in their state (Hochreiter & Schmidhuber, 1997; Graves & Schmidhuber, 2009) and adopt a convolution to compute at once all the states along one of the spatial dimensions of the data.
+0.86 (These layers; use; LSTM units in their state)
+0.93 (These layers; adopt; a convolution to compute at once all the states along one of the spatial dimensions of the data)
+
+We design two types of these layers.
+0.45 (We; design; two types of these layers)
+
+The ﬁrst type is the Row LSTM layer where the convolution is applied along each row; a similar technique is described in (Stollenga et al., 2015).
+0.94 (the convolution; is applied; L:LSTM layer)
+0.91 (a similar technique; is described; L:in (Stollenga et al., 2015)
+0.92 Context(a similar technique is described):(The ﬁrst type; is; the Row)
+
+The second type is the Diagonal BiLSTM layer where the convolution is applied in a novel fashion along the diagonals of the image.
+0.94 (The second type; is; the Diagonal BiLSTM layer)
+0.94 (the convolution; is applied; L:the Diagonal BiLSTM layer)
+
+The networks also incorporate residual connections (He et al., 2015) around LSTM layers; we observe that this helps with training of the PixelRNN for up to twelve layers of depth.
+0.32 (we; observe; that this helps with training of the PixelRNN for up to twelve layers of depth)
+0.83 Context(we observe):(The networks; also incorporate; residual connections (He et al)
+0.56 Context(we observe):(this; helps; with training of the PixelRNN for up to twelve layers of depth)
+
+We also consider a second, simpliﬁed architecture which shares the same core components as the PixelRNN.
+0.61 (We; also consider; a second, simpliﬁed architecture which shares the same core components as the PixelRNN)
+0.93 (a second, simpliﬁed architecture; shares; the same core components as the PixelRNN)
+
+We observe that Convolutional Neural Networks (CNN) can also be used as sequence model with a ﬁxed dependency range, by using Masked convolutions.
+0.32 (We; observe; that Convolutional Neural Networks (CNN) can also be used as sequence model with a ﬁxed dependency range, by using Masked convolutions)
+0.94 Context(We observe):(Convolutional Neural Networks; can also be used; as sequence model with a ﬁxed dependency range, by using Masked convolutions)
+
+The PixelCNN architecture is a fully convolutional network of ﬁfteen layers that preserves the spatial resolution of its input throughout the layers and outputs a conditional distribution at each location.
+0.85 (The PixelCNN architecture; is; a fully convolutional network of ﬁfteen layers that preserves the spatial resolution of its input throughout the layers and outputs a conditional distribution at each location)
+0.87 (a fully convolutional network of ﬁfteen layers; preserves; the spatial resolution of its input throughout the layers)
+0.93 (a fully convolutional network of ﬁfteen layers; outputs; a conditional distribution; L:at each location)
+
+Both PixelRNN and PixelCNN capture the full generality of pixel inter-dependencies without introducing independence assumptions as in e.g., latent variable models.
+0.89 (Both PixelRNN and PixelCNN; capture; the full generality of pixel inter-dependencies)
+
+The dependencies are also maintained between the RGB color values within each individual pixel.
+0.92 (The dependencies; are also maintained; L:between the RGB color values within each individual pixel)
+
+Furthermore, in contrast to previous approaches that model the pixels as continuous values (e.g., Theis & Bethge (2015); Gregor et al.
+0.89 (previous approaches; model; the pixels; as continuous values (e.g.)
+0.95 (Gregor; et; al)
+
+(2014)), we model the pixels as discrete values using a multinomial distribution implemented with a simple softmax layer.
+0.45 (we; model; the pixels as discrete values)
+0.90 (discrete values; using; a multinomial distribution implemented with a simple softmax layer)
+0.91 (a multinomial distribution; implemented; with a simple softmax layer)
+
+We observe that this approach gives both representational and training advantages for our models.
+0.17 (We; observe; that this approach gives both representational and training advantages for our models)
+0.80 Context(We observe):(this approach; gives; both representational and training advantages for our models)
+
+Proceedings of the 33 rd International Conference on Machine Learning, New York, NY, USA, 2016.
+
+JMLR: W&CP volume 48.
+
+Copyright 2016 by the author(s).
+
+ The contributions of the paper are as follows.
+0.81 (The contributions of the paper; are; as follows)
+
+In Section 3 we design two types of PixelRNNs corresponding to the two types of LSTM layers; we describe the purely convolutional PixelCNN that is our fastest architecture; and we design a Multi-Scale version of the PixelRNN.
+0.91 (PixelRNNs; corresponding; to the two types of LSTM layers)
+0.90 (the purely convolutional PixelCNN; is; our fastest architecture)
+0.50 (we; design; a Multi-Scale version of the PixelRNN)
+0.44 (we; describe; the purely convolutional PixelCNN)
+0.54 Context(we describe):(we; design; two types of PixelRNNs; L:In Section 3)
+
+In Section 5 we show the relative beneﬁts of using the discrete softmax distribution in our models and of adopting residual connections for the LSTM layers.
+0.67 (we; show; the relative beneﬁts of using the discrete softmax distribution in our models and of adopting residual connections for the LSTM layers; L:In Section 5)
+
+Next we test the models on MNIST and on CIFAR-10 and show that they obtain loglikelihood scores that are considerably better than previous results.
+0.70 (we; test; the models on MNIST and on CIFAR-10; L:Next)
+0.89 (loglikelihood scores; are; considerably better than previous results)
+0.20 (we; show; that they obtain loglikelihood scores; L:Next)
+0.31 Context(we show):(they; obtain; loglikelihood scores that are considerably better than previous results)
+
+We also provide results for the large-scale ImageNet dataset resized to both 32 × 32 and 64 × 64 pixels; to our knowledge likelihood values from generative models have not previously been reported on this dataset.
+0.96 (the large-scale ImageNet; dataset resized; to both 32 × 32 and 64 × 64 pixels)
+
+Finally, we give a qualitative evaluation of the samples generated from the PixelRNNs.
+0.60 (we; give; a qualitative evaluation of the samples; T:Finally)
+0.92 (the samples; generated; from the PixelRNNs)
+
+Model Our aim is to estimate a distribution over natural images that can be used to tractably compute the likelihood of images and to generate new ones.
+0.70 (Our aim; is; to estimate a distribution over natural images)
+0.93 (natural images; can be used; to tractably compute the likelihood of images and to generate new ones)
+
+The network scans the image one row at a time and one pixel at a time within each row.
+0.95 (The network; scans; the image; T:at a time and one pixel at a time within each row)
+
+For each pixel it predicts the conditional distribution over the possible pixel values given the scanned context.
+0.45 (it; predicts; the conditional distribution over the possible pixel values)
+0.92 (the possible pixel values; given; the scanned context)
+
+Figure 2 illustrates this process.
+0.90 (Figure 2; illustrates; this process)
+
+The joint distribution over the image pixels is factorized into a product of conditional distributions.
+0.94 (The joint distribution over the image pixels; is factorized; into a product of conditional distributions)
+
+The parameters used in the predictions are shared across all pixel positions in the image.
+0.90 (The parameters; used; L:in the predictions)
+0.93 (The parameters used in the predictions; are shared; across all pixel positions in the image)
+
+To capture the generation process, Theis & Bethge (2015) propose to use a two-dimensional LSTM network (Graves & Schmidhuber, 2009) that starts at the top left pixel and proceeds towards the bottom right pixel.
+0.94 (Theis & Bethge (2015; to use; a two-dimensional LSTM network)
+0.95 (a two-dimensional LSTM network; starts; L:at the top)
+
+The advantage of the LSTM network is that it effectively handles long-range dependencies that are central to object and scene understanding.
+0.91 (long-range dependencies; are; central to object and scene understanding)
+0.80 (The advantage of the LSTM network; is; that it effectively handles long-range dependencies)
+0.28 Context(The advantage of the LSTM network is):(it; effectively handles; long-range dependencies that are central to object and scene understanding)
+
+The two-dimensional structure ensures that the signals are well propagated both in the left-to-right and topto-bottom directions.
+0.85 (The two-dimensional structure; ensures; that the signals are well propagated both in the left-to-right and topto-bottom directions)
+0.69 Context(The two - dimensional structure ensures):(the signals; are well propagated; )
+
+In this section we ﬁrst focus on the form of the distribution, whereas the next section will be devoted to describing the architectural innovations inside PixelRNN.
+0.60 (we; ﬁrst focus; on the form of the distribution; L:In this section)
+0.93 (the next section; will be devoted; to describing the architectural innovations inside PixelRNN)
+
+Generating an Image Pixel by Pixel The goal is to assign a probability p(x) to each image x formed of n× n pixels.
+0.95 (The goal; is; to assign a probability p(x) to each image)
+0.70 (each image; formed; )
+
+We can write the image x as a onedimensional sequence x1, ..., xn2 where pixels are taken from the image row by row.
+0.44 (We; can write x; the image)
+0.89 (pixels; are taken; from the image row; by row)
+
+To estimate the joint distribution p(x) we write it as the product of the conditional distributions over the pixels:  Center: To generate a pixel in the multi-scale case we can also condition on the subsampled image pixels (in light blue).
+0.42 (we; write; it; as the product of the conditional distributions over the pixels)
+0.41 (it; To generate; a pixel in the multi-scale case)
+0.45 (we; can also condition; on the subsampled image pixels)
+
+Right: Diagram of the connectivity inside a masked convolution.
+
+In the ﬁrst layer, each of the RGB channels is connected to previous channels and to the context, but is not connected to itself.
+0.96 (each of the RGB channels; is connected; L:In the ﬁrst layer)
+0.81 (each of the RGB channels; is not connected; )
+
+In subsequent layers, the channels are also connected to themselves.
+0.93 (the channels; are also connected; L:In subsequent layers)
+
+x1xixnxn2Context xn2Multi-scale contextx1xixnxn2RGBRGBRGBMaskAMaskBContextPixel Recurrent Neural Networks The value p(xi|x1, ..., xi−1) is the probability of the i-th pixel xi given all the previous pixels x1, ..., xi−1.
+0.89 (xi−1; is; the probability of the i-th pixel xi given all the previous pixels x1, ..., xi−1)
+
+The generation proceeds row by row and pixel by pixel.
+
+Figure 2 (Left) illustrates the conditioning scheme.
+0.89 (Figure 2; illustrates; the conditioning scheme)
+
+Each pixel xi is in turn jointly determined by three values, one for each of the color channels Red, Green and Blue (RGB).
+0.93 (Each pixel xi; is; in turn)
+0.90 (Each pixel xi; jointly determined; by three values)
+
+We rewrite the distribution p(xi|x<i) as the following product: p(xi,R|x<i)p(xi,G|x<i, xi,R)p(xi,B|x<i, xi,R, xi,G) (2) Each of the colors is thus conditioned on the other channels as well as on all the previously generated pixels.
+0.45 (We; rewrite; the distribution p)
+0.52 (xi; x; p)
+0.47 Context(xi x):(|x<i) as the following product; p; )
+0.97 (R, xi,G) (2) Each of the colors; is conditioned; on the other channels as well as on all the previously generated pixels)
+
+Note that during training and evaluation the distributions over the pixel values are computed in parallel, while the generation of an image is sequential.
+0.85 (the generation of an image; is; sequential)
+
+Pixels as Discrete Variables Previous approaches use a continuous distribution for the values of the pixels in the image (e.g.
+0.97 (Pixels as Discrete Variables Previous approaches; use e.g.; a continuous distribution for the values of the pixels in the image)
+
+Theis & Bethge (2015); Uria et al.
+0.95 (Uria; et; al)
+
+By contrast we model p(x) as a discrete distribution, with every conditional distribution in Equation 2 being a multinomial that is modeled with a softmax layer.
+0.45 (we; model; p; as a discrete distribution)
+0.87 (every conditional distribution in Equation 2; being; a multinomial that is modeled with a softmax layer)
+0.89 (a multinomial; is modeled; with a softmax layer)
+
+Each channel variable xi,∗ simply takes one of 256 distinct values.
+0.91 (Each channel variable xi; simply takes; one of 256 distinct values)
+
+The discrete distribution is representationally simple and has the advantage of being arbitrarily multimodal without prior on the shape (see Fig.
+0.83 (The discrete distribution; is; representationally simple)
+0.95 (The discrete distribution; has; the advantage of being arbitrarily multimodal without prior on the shape)
+
+Experimentally we also ﬁnd the discrete distribution to be easy to learn and to produce better performance compared to a continuous distribution (Section 5).
+0.73 (we; ﬁnd; the discrete distribution; to be easy to learn and to produce better performance compared to a continuous distribution; T:Experimentally)
+0.53 (we; to be; easy to learn and to produce better performance compared to a continuous distribution)
+
+Pixel Recurrent Neural Networks In this section we describe the architectural components that compose the PixelRNN.
+0.39 (we; describe; the architectural components that compose the PixelRNN; L:In this section)
+0.91 (the architectural components; compose; the PixelRNN)
+
+In Sections 3.1 and 3.2, we describe the two types of LSTM layers that use convolutions to compute at once the states along one of the spatial dimensions.
+0.64 (we; describe; the two types of LSTM layers; L:In Sections 3.1 and 3.2)
+0.94 (LSTM layers; use; convolutions; to compute at once the states along one of the spatial dimensions)
+
+In Section 3.3 we describe how to incorporate residual connections to improve the training of a PixelRNN with many LSTM layers.
+0.69 (we; describe; how to incorporate residual connections to improve the training of a PixelRNN with many LSTM layers; L:In Section 3.3)
+0.44 Context(we describe):(we; describe to incorporate; residual connections; to improve the training of a PixelRNN with many LSTM layers)
+0.33 Context(we describe to incorporate):(we; describe to incorporate residual connections to improve; the training of a PixelRNN with many LSTM layers)
+
+In Section 3.4 we describe the softmax layer that computes the discrete joint distribution of the colors and the masking technique that ensures the proper conditioning scheme.
+0.46 (we; describe; the softmax layer that computes the discrete joint distribution of the colors and the masking technique; L:In Section 3.4)
+0.93 (the softmax layer; computes; the discrete joint distribution of the colors and the masking technique)
+0.90 (the masking technique; ensures; the proper conditioning scheme)
+
+In Section 3.5 we describe the PixelCNN architecture.
+0.64 (we; describe; the PixelCNN architecture; L:In Section 3.5)
+
+Finally in Section 3.6 we describe the multi-scale architecture.
+0.60 (we; describe; the multi-scale architecture; T:Finally; L:in Section 3.6)
+
+The Row LSTM is a unidirectional layer that processes the image row by row from top to bottom computing features for a whole row at once; the computation is performed with a one-dimensional convolution.
+0.89 (a unidirectional layer; processes at once; the image row)
+0.69 (the computation; is performed; )
+0.83 Context(the computation is performed):(The Row; is; a unidirectional layer that processes the image row by row from top to bottom computing features for a whole row at once)
+
+For a pixel xi the layer captures a roughly triangular context above the pixel as shown in Figure 4 (center).
+0.55 (For; xi; a pixel)
+0.94 (the layer; captures; a roughly triangular context above the pixel as shown in Figure 4 (center))
+
+The kernel of the onedimensional convolution has size k × 1 where k ≥ 3; the larger the value of k the broader the context that is captured.
+0.95 (The kernel of the onedimensional convolution; has; size k × 1)
+0.74 (the broader the context; is captured; )
+
+The weight sharing in the convolution ensures translation invariance of the computed features along each row.
+0.73 (The weight; sharing; )
+0.93 (The weight sharing in the convolution; ensures; translation invariance of the computed features along each row)
+
+The computation proceeds as follows.
+
+An LSTM layer has an input-to-state component and a recurrent state-to-state component that together determine the four gates inside the LSTM core.
+0.96 (An LSTM layer; has; an input-to-state component and a recurrent state-to-state component)
+
+To enhance parallelization in the Row LSTM the input-to-state component is ﬁrst computed for the entire two-dimensional input map; for this a k × 1 convolution is used to follow the row-wise orientation of the LSTM itself.
+0.93 (this a k × 1 convolution; to follow; the row-wise orientation of the LSTM)
+0.96 (this a k × 1 convolution; is used; to follow the row-wise orientation of the LSTM; T:for)
+0.95 Context(this a k × 1 convolution is used):(LSTM the input-to-state component; is ﬁrst computed; for the entire two-dimensional input map)
+
+The convolution is masked to include only the valid context (see Section 3.4) and produces a tensor of size 4h × n × n, representing the four gate vectors for each position in the input map, where h is the number of output feature maps.
+0.90 (The convolution; is masked n; to include only the valid context)
+0.91 (h; is; the number of output feature maps; L:the input map)
+0.90 (The convolution; to include; only the valid context (see Section 3.4)
+0.88 (The convolution; produces n; a tensor of size 4)
+0.86 (h; representing; the four gate vectors for each position in the input map)
+
+To compute one step of the state-to-state component of the LSTM layer, one is given the previous hidden and cell states hi−1 and ci−1, each of size h × n × 1.
+0.79 (size h; n ×; 1)
+
+The new hidden and cell states hi, ci are obtained as follows:  When the spatial layer is computed left to right and column by column, the output map is shifted back into the original size.
+0.96 (The new hidden and cell states hi; are obtained; ci)
+0.91 (the spatial layer; is computed; left to right and column by column)
+0.92 (the spatial layer; left; to right and column; by column)
+
+The convolution uses a kernel of size 2 × 1.
+0.90 (The convolution; uses; a kernel of size 2 × 1)
+
+[oi, fi, ii, gi] = σ(Kss (cid:126) hi−1 + Kis (cid:126) xi) ci = fi (cid:12) ci−1 + ii (cid:12) gi hi = oi (cid:12) tanh(ci) where xi of size h × n × 1 is row i of the input map, and (cid:126) represents the convolution operation and (cid:12) the elementwise multiplication.
+0.75 (size h; n ×; )
+0.69 (i of the input map, and (cid:126; represents; the convolution operation)
+0.39 Context(i of the input map , and ( cid:126 represents):(1; is; row)
+
+The weights Kss and Kis are the kernel weights for the state-to-state and the input-to-state components, where the latter is precomputed as described above.
+0.96 (The weights Kss and Kis; are; the kernel weights for the state-to-state and the input-to-state components)
+0.77 (the latter; is precomputed; T:as described above)
+
+In the case of the output, forget and input gates oi, fi and ii, the activation σ is the logistic sigmoid function, whereas for the content gate gi, σ is the tanh function.
+0.93 (the activation σ; is; the logistic sigmoid function)
+0.85 (σ; is; the tanh function)
+
+Each step computes at once the new state for an entire row of the input map.
+0.94 (Each step; computes; T:at once; the new state for an entire row of the input map)
+
+Because the Row LSTM has a triangular receptive ﬁeld (Figure 4), it is unable to capture the entire available context.
+0.91 (the Row; has; a triangular receptive ﬁeld)
+0.52 (it; is; unable to capture the entire available context)
+0.41 (it; to capture; the entire available context)
+
+We train PixelRNNs of up to twelve layers of depth.
+0.45 (We; train; PixelRNNs of up to twelve layers of depth)
+
+As a means to both increase convergence speed and propagate signals more directly through the network, we deploy residual connections (He et al., 2015) from one LSTM layer to the next.
+0.46 (we; deploy; residual connections (He et al., 2015) from one LSTM layer to the next)
+
+Figure 5 shows a diagram of the residual blocks.
+0.93 (Figure 5; shows; a diagram of the residual blocks)
+
+The input map to the PixelRNN LSTM layer has 2h features.
+0.94 (The input map to the PixelRNN LSTM layer; has; 2h features)
+
+The input-to-state component reduces the number of features by producing h features per gate.
+0.94 (The input-to-state component; reduces; the number of features; by producing h features per gate)
+
+After applying the recurrent layer, the output map is upsampled back to 2h features per position via a 1 × 1 convolution and the input map is added to the output map.
+0.95 (the output map; is upsampled; back to 2h features per position; T:After applying the recurrent layer)
+0.90 (the output map; is added; to the output map)
+
+This method is related to previous approaches that use gating along the depth of the recurrent network (Kalchbrenner et al., 2015; Zhang et al., 2016), but has the advantage of not requiring additional gates.
+0.90 (This method; is related; to previous approaches)
+0.89 (previous approaches; use; gating along the depth of the recurrent network)
+0.95 (Zhang et al., 2016; has; the advantage of not requiring additional gates)
+
+Apart from residual connections, one can also use learnable skip connections from each layer to the output.
+
+In the experiments we evaluate the relative effectiveness of residual and layer-to-output skip connections.
+0.70 (we; evaluate; the relative effectiveness of residual and layer-to-output skip connections; L:In the experiments)
+
+ The h features for each input position at every layer in the network are split into three parts, each corresponding to one of the RGB channels.
+0.90 (three parts; corresponding; to one of the RGB channels)
+0.86 (The h; features; for each input position at every layer in the network; are split into three parts)
+
+When predicting the R channel for the current pixel xi, only the generated pixels left and above of xi can be used as context.
+0.81 (only the generated pixels; left; )
+0.98 (only the generated pixels left and above of xi; can be used; as context; T:When predicting the R channel for the current pixel xi)
+
+When predicting the G channel, the value of the R channel can also be used as context in addition to the previously generated pixels.
+0.97 (the value of the R channel; can also be used; as context in addition to the previously generated pixels; T:When predicting the G channel)
+
+Likewise, for the B channel, the values of both the R and G channels can be used.
+0.84 (the values of both the R and G channels; can be used; )
+
+To restrict connections in the network to these dependencies, we apply a mask to the inputto-state convolutions and to other purely convolutional layers in a PixelRNN.
+0.61 (we; apply; a mask; to the inputto-state convolutions and to other purely convolutional layers in a PixelRNN)
+
+We use two types of masks that we indicate with mask A and mask B, as shown in Figure 2 (Right).
+0.24 (We; use; two types of masks that we indicate with mask A and mask B,)
+0.92 (two types of masks; indicate; with mask A and mask B)
+
+Mask A is applied only to the ﬁrst convolutional layer in a PixelRNN and restricts the connections to those neighboring pixels and to those colors in the current pixels that have already been predicted.
+0.94 (Mask A; is applied; only to the ﬁrst convolutional layer in a PixelRNN)
+0.86 (Mask A; restricts; the connections to those neighboring pixels and to those colors in the current pixels)
+0.75 (the current pixels; have been predicted; T:already)
+
+On the other hand, mask B is applied to all the subsequent input-to-state convolutional transitions and relaxes the restrictions of mask A by also allowing the connection from a color to itself.
+0.88 (mask B; is applied; to all the subsequent input-to-state convolutional transitions)
+0.80 (mask B; relaxes; the restrictions of mask A)
+
+The masks can be easily implemented by zeroing out the corresponding weights in the input-to-state convolutions after each update.
+0.94 (The masks; can be easily implemented; T:by zeroing out the corresponding weights in the input-to-state convolutions after each update)
+0.89 (The masks; by zeroing out; the corresponding weights; L:in the input-to-state convolutions; T:after each update)
+
+Similar masks have also been used in variational autoencoders (Gregor et al., 2014; Germain et al., 2015).
+0.90 (Similar masks; have also been used; L:in variational autoencoders)
+
+ The Diagonal BiLSTM is designed to both parallelize the computation and to capture the entire available context for any image size.
+0.92 (The Diagonal BiLSTM; is designed; to both parallelize the computation and to capture the entire available context for any image size)
+0.80 (The Diagonal BiLSTM; to parallelize; the computation)
+0.80 (The Diagonal BiLSTM; to to capture; the entire available context for any image size)
+
+Each of the two directions of the layer scans the image in a diagonal fashion starting from a corner at the top and reaching the opposite corner at the bottom.
+0.96 (Each of the two directions of the layer; scans; the image)
+0.91 (a diagonal fashion; starting; from a corner at the top)
+
+Each step in the computation computes at once the LSTM state along a diagonal in the image.
+0.81 (Each step in the computation; computes; T:at once)
+
+Figure 4 (right) illustrates the computation and the resulting receptive ﬁeld.
+0.91 (Figure 4 (right; illustrates; the computation and the resulting receptive ﬁeld)
+
+The diagonal computation proceeds as follows.
+
+We ﬁrst skew the input map into a space that makes it easy to apply convolutions along diagonals.
+0.52 (We; ﬁrst skew; the input map; into a space)
+0.81 (a space; makes; it easy to apply convolutions along diagonals)
+
+The skewing operation offsets each row of the input map by one position with respect to the previous row, as illustrated in Figure 3; this results in a map of size n × (2n − 1).
+0.89 (The skewing operation; offsets; each row of the input map)
+
+At this point we can compute the input-to-state and state-to-state components of the Diagonal BiLSTM.
+0.74 (we; can compute; the input-to-state and state-to-state components of the Diagonal BiLSTM; T:At this point)
+
+For each of the two directions, the input-to-state component is simply a 1× 1 convolution K is that contributes to the four gates in the LSTM core; the operation generates a 4h × n × n tensor.
+0.77 (a 4h; n ×; )
+0.88 (the operation; generates; a 4h × n × n tensor)
+0.78 Context(the operation generates):(the input-to-state component; is simply; )
+0.82 Context(the operation generates):(K; is; that contributes to the four gates in the LSTM core)
+
+The state-to-state recurrent component is then computed with a column-wise convolution K ss that has a kernel of size 2 × 1.
+0.95 (The state-to-state recurrent component; is computed; with a column-wise convolution; T:then)
+0.77 (a column-wise convolution; ss; that has a kernel of size 2 × 1)
+0.14 Context(a column-wise convolution ss):(that; has; a kernel of size 2 × 1)
+
+The step takes the previous hidden and cell states, combines the contribution of the input-to-state component and produces the next hidden and cell states, as deﬁned in Equation 3.
+0.90 (The step; takes; the previous hidden and cell states)
+
+The output feature map is then skewed back into an n × n map by removing the offset positions.
+0.79 (The output feature map; is back; then skewed)
+
+This computation is repeated for each of the two directions.
+0.90 (This computation; is repeated; for each of the two directions)
+
+Given the two output maps, to prevent the layer from seeing future pixels, the right output map is then shifted down by one row and added to the left output map.
+0.90 (the layer; from seeing; future pixels)
+0.93 (the right output map; is shifted down; by one row; T:then)
+0.94 (the right output map; added; to the left output map; T:then)
+
+Besides reaching the full dependency ﬁeld, the Diagonal BiLSTM has the additional advantage that it uses a convolutional kernel of size 2 × 1 that processes a minimal amount of information at each step yielding a highly nonlinear computation.
+0.75 (the Diagonal BiLSTM; has; the additional advantage that it uses a convolutional kernel of size 2 × 1)
+0.33 (it; uses; a convolutional kernel of size 2 × 1 that processes a minimal amount of information at each step)
+0.93 (a convolutional kernel of size 2 × 1; processes; a minimal amount of information)
+0.90 (each step; yielding; a highly nonlinear computation)
+
+Kernel sizes larger than 2 × 1 are not particularly useful as they do not broaden the already global receptive ﬁeld of the Diagonal BiLSTM.
+0.88 (Kernel sizes larger than 2 × 1; are not; particularly useful)
+0.66 (they; do not broaden; the already global receptive ﬁeld of the Diagonal BiLSTM)
+
+PixelCNNRow LSTMDiagonal BiLSTMReLU 1x1 Conv+ReLU 3x3 Convh2hReLU 1x1 Convh2hLSTM+2h1x1 Convh2hPixel Recurrent Neural Networks Row LSTM 7 × 7 conv mask A Multiple residual blocks: (see ﬁg 5) Row LSTM Conv 3 × 3 mask B i-s: 3 × 1 mask B s-s: 3 × 1 no mask Diagonal BiLSTM i-s: 1 × 1 mask B s-s: 1 × 2 no mask ReLU followed by 1 × 1 conv, mask B (2 layers) 256-way Softmax for each RGB color (Natural images) Table 1.
+0.80 (ﬁg 5) Row LSTM Conv 3; ×; )
+0.77 (ReLU; followed; )
+
+Details of the architectures.
+
+In the LSTM architectures i-s and s-s stand for input-state and state-state convolutions.
+
+The Row and Diagonal LSTM layers have a potentially unbounded dependency range within their receptive ﬁeld.
+0.84 (The Row and Diagonal LSTM layers; have; a potentially unbounded dependency range within their receptive ﬁeld)
+
+This comes with a computational cost as each state needs to be computed sequentially.
+0.34 (This; comes; T:as each state needs to be computed sequentially)
+0.77 (each state; needs; to be computed sequentially)
+0.70 (each state; to be computed sequentially; )
+
+One simple workaround is to make the receptive ﬁeld large, but not unbounded.
+0.83 (One simple workaround; is; to make)
+
+We can use standard convolutional layers to capture a bounded receptive ﬁeld and compute features for all pixel positions at once.
+0.50 (We; can use; standard convolutional layers; to capture a bounded receptive ﬁeld and compute features for all pixel positions at once)
+0.39 Context(We can use):(We; can use standard convolutional layers to capture; a bounded receptive ﬁeld)
+0.29 Context(We can use):(We; can use standard convolutional layers to compute; features for all pixel positions at once)
+
+The PixelCNN uses multiple convolutional layers that preserve the spatial resolution; pooling layers are not used.
+0.90 (multiple convolutional layers; preserve; the spatial resolution)
+0.69 (pooling layers; are not used; )
+0.79 Context(pooling layers are not used):(The PixelCNN; uses; multiple convolutional layers that preserve the spatial resolution)
+
+Masks are adopted in the convolutions to avoid seeing the future context; masks have previously also been used in non-convolutional models such as MADE (Germain et al., 2015).
+0.88 (masks; have also been used; L:in non-convolutional models such as MADE (Germain et al; T:previously)
+0.77 Context(masks have also been used):(Masks; are adopted; L:in the convolutions; to avoid seeing the future context)
+
+Note that the advantage of parallelization of the PixelCNN over the PixelRNN is only available during training or during evaluating of test images.
+
+The image generation process is sequential for both kinds of networks, as each sampled pixel needs to be given as input back into the network.
+0.94 (The image generation process; is; sequential for both kinds of networks)
+0.91 (each sampled pixel; needs; to be given as input back into the network)
+0.90 (each sampled pixel; to be given; as input back into the network)
+
+Multi-Scale PixelRNN The Multi-Scale PixelRNN is composed of an unconditional PixelRNN and one or more conditional PixelRNNs.
+0.93 (The Multi-Scale PixelRNN; is composed; of an unconditional PixelRNN and one or more conditional PixelRNNs)
+
+The unconditional network ﬁrst generates in the standard way a smaller s×s image that is subsampled from the original image.
+0.85 (The unconditional network ﬁrst; generates; a smaller s×s image that is subsampled from the original image)
+0.91 (a smaller s×s image; is subsampled; from the original image)
+
+The conditional network then takes the s × s image as an additional input and generates a larger n × n image, as shown in Figure 2 (Middle).
+0.94 (The conditional network; takes; the s × s image; as an additional input; T:then)
+0.90 (The conditional network; generates; a larger n × n image)
+
+The conditional network is similar to a standard PixelRNN, but each of its layers is biased with an upsampled version of the small s × s image.
+0.94 (The conditional network; is; similar to a standard PixelRNN)
+0.39 (each of its layers; is biased; )
+
+The upsampling and biasing processes are deﬁned as follows.
+0.93 (The upsampling and biasing processes; are deﬁned; as follows)
+
+In the upsampling process, one uses a convolutional network with deconvolutional layers to construct an enlarged feature map of size c × n × n, where c is the number of features in the output map of the upsampling network.
+0.54 (one; uses n; L:In the upsampling process)
+
+Then, in the biasing process, for each layer in the conditional PixelRNN, one simply maps the c × n × n conditioning map into a 4h × n × n map that is added to the input-to-state map of the corresponding layer; this is performed using a 1× 1 unmasked convolution.
+0.54 (one; simply maps n; T:Then; L:in the biasing process)
+0.87 (n map; is added; to the input-to-state map of the corresponding layer)
+0.15 (this; is performed; )
+
+The larger n × n image is then generated as usual.
+0.85 (The larger n × n image; is generated; as usual; T:then)
+
+Speciﬁcations of Models In this section we give the speciﬁcations of the PixelRNNs used in the experiments.
+0.50 (we; give; the speciﬁcations of the PixelRNNs)
+0.93 (the PixelRNNs; used; L:in the experiments)
+
+We have four types of networks: the PixelRNN based on Row LSTM, the one based on Diagonal BiLSTM, the fully convolutional one and the MultiScale one.
+0.45 (We; have; four types of networks)
+0.94 (the PixelRNN; based; L:on Row LSTM)
+0.92 (the one; based; L:on Diagonal BiLSTM)
+
+Table 1 speciﬁes each layer in the single-scale networks.
+
+The ﬁrst layer is a 7 × 7 convolution that uses the mask of type A.
+0.89 (The ﬁrst layer; is; a 7 × 7 convolution that uses the mask of type A.)
+0.91 (a 7 × 7 convolution; uses; the mask of type A.)
+
+The two types of LSTM networks then use a variable number of recurrent layers.
+0.97 (The two types of LSTM networks; use; a variable number of recurrent layers; T:then)
+
+The input-to-state convolution in this layer uses a mask of type B, whereas the state-to-state convolution is not masked.
+0.95 (The input-to-state convolution in this layer; uses; a mask of type B)
+0.82 (the state-to-state convolution; is not masked; )
+
+The PixelCNN uses convolutions of size 3 × 3 with a mask of type B.
+0.94 (The PixelCNN; uses; convolutions of size 3 × 3; with a mask of type B.)
+
+The top feature map is then passed through a couple of layers consisting of a Rectiﬁed Linear Unit (ReLU) and a 1×1 convolution.
+0.93 (The top feature map; is passed; through a couple of layers; T:then)
+0.94 (layers; consisting; of a Rectiﬁed Linear Unit (ReLU) and a 1×1 convolution)
+
+For the CIFAR-10 and ImageNet experiments, these layers have 1024 feature maps; for the MNIST experiment, the layers have 32 feature maps.
+0.94 (the layers; have; 32 feature maps; L:for the MNIST experiment)
+0.94 Context(the layers have):(these layers; have; 1024 feature maps; T:For the CIFAR-10 and ImageNet experiments)
+
+Residual and layer-to-output connections are used across the layers of all three networks.
+0.94 (Residual and layer-to-output connections; are used; L:across the layers of all three networks)
+
+The networks used in the experiments have the following hyperparameters.
+0.90 (The networks; used; L:in the experiments)
+0.93 (The networks used in the experiments; have; the following hyperparameters)
+
+For MNIST we use a Diagonal BiLSTM with 7 layers and a value of h = 16 (Section 3.3 and Figure 5 right).
+0.61 (we; use; a Diagonal BiLSTM; with 7 layers and a value of h = 16 (Section 3.3 and Figure 5 right)
+
+For CIFAR-10 the Row and Diagonal BiLSTMs have 12 layers and a number of h = 128 units.
+0.97 (the Row and Diagonal BiLSTMs; have; 12 layers and a number of h = 128 units; T:For CIFAR-10)
+
+The PixelCNN has 15 layers and h = 128.
+0.94 (The PixelCNN; has; 15 layers and h = 128)
+
+For 32 × 32 ImageNet we adopt a 12 layer Row LSTM with h = 384 units and for 64 × 64 ImageNet we use a 4 layer Row LSTM with h = 512 units; the latter model does not use residual connections.
+0.60 (we; adopt; a 12 layer Row; with h = 384 units; T:For 32 × 32)
+0.89 (the latter model; does not use; residual connections)
+0.53 Context(the latter model does not use):(we; use; a 4 layer Row; with h = 512 units; T:for 64 × 64)
+
+Experiments In this section we describe our experiments and results.
+0.31 (we; describe; our experiments and results)
+
+We begin by describing the way we evaluate and compare our results.
+0.19 (we; evaluate; )
+0.27 (we; compare; our results)
+0.40 (We; begin; by describing the way)
+0.26 Context(We begin):(We; begin by describing; the way we evaluate and compare our results)
+
+In Section 5.2 we give details about the training.
+0.60 (we; give; details about the training; L:In Section 5.2)
+
+Then we give results on the relative effectiveness of architectural components and our best results on the MNIST, CIFAR-10 and ImageNet datasets.
+0.61 (we; give; results on the relative effectiveness of architectural components and our best results on the MNIST, CIFAR-10 and ImageNet datasets; T:Then)
+
+All our models are trained and evaluated on the loglikelihood loss function coming from a discrete distribution.
+0.36 (All our models; are trained; )
+0.62 (All our models; evaluated; L:on the loglikelihood loss function)
+0.92 (the loglikelihood loss function; coming; from a discrete distribution)
+
+Although natural image data is usually modeled with continuous distributions using density functions, we can compare our results with previous art in the following way.
+0.92 (natural image data; is modeled; with continuous distributions; T:usually)
+0.90 (continuous distributions; using; density functions)
+0.31 (we; can compare; our results; with previous art in the following way)
+
+In the literature it is currently best practice to add realvalued noise to the pixel values to dequantize the data when using density functions (Uria et al., 2013).
+0.76 (it; is; T:currently; best practice to add realvalued noise to the pixel values; L:In the literature)
+
+When uniform noise is added (with values in the interval [0, 1]), then the log-likelihoods of continuous and discrete models are directly comparable (Theis et al., 2015).
+0.73 (uniform noise; is added; )
+
+In our case, we can use the values from the discrete distribution as a piecewiseuniform continuous function that has a constant value for every interval [i, i + 1], i = 1, 2, .
+0.93 (a piecewiseuniform continuous function; has; a constant value for every interval)
+0.32 (i; +; 1], i = 1)
+0.39 Context(i +):(we; can use; the values; from the discrete distribution as a piecewiseuniform continuous function; L:In our case)
+
+This corresponding distribution will have the same log-likelihood (on data with added noise) as the original discrete distribution (on discrete data).
+0.94 (This corresponding distribution; will have; the same log-likelihood (on data with added noise)
+
+For MNIST we report the negative log-likelihood in nats as it is common practice in literature.
+0.49 (we; report; the negative log-likelihood in nats; T:as it is common practice in literature; T:For MNIST)
+0.52 (it; is; common practice in literature)
+
+For CIFAR-10 and ImageNet we report negative log-likelihoods in bits per dimension.
+0.64 (we; report; negative log-likelihoods in bits per dimension; T:For CIFAR-10 and ImageNet)
+
+The total discrete log-likelihood is normalized by the dimensionality of the images (e.g., 32× 32× 3 = 3072 for CIFAR-10).
+0.93 (The total discrete log-likelihood; is normalized; by the dimensionality of the images)
+
+These numbers are interpretable as the number of bits that a compression scheme based on this model would need to compress every RGB color value (van den Oord & Schrauwen, 2014b; Theis et al., 2015); in practice there is also a small overhead due to arithmetic coding.
+0.91 (a compression scheme; based; on this model)
+0.93 (a compression scheme based on this model; would need; to compress every RGB color value)
+0.93 Context(a compression scheme based on this model would need):(a compression scheme based on this model; would need to compress; every RGB color value)
+
+Our models are trained on GPUs using the Torch toolbox.
+0.68 (Our models; are trained; L:on GPUs)
+
+From the different parameter update rules tried, RMSProp gives best convergence performance and is used for all experiments.
+0.79 (the different parameter update rules; tried; )
+0.86 (RMSProp; gives; best; convergence performance)
+
+The learning rate schedules were manually set for every dataset to the highest values that allowed fast convergence.
+0.92 (The learning rate schedules; were manually set; for every dataset to the highest values)
+0.90 (the highest values; allowed; fast convergence)
+
+The batch sizes also vary for different datasets.
+0.90 (The batch sizes; vary; for different datasets)
+
+For smaller datasets such as MNIST and CIFAR-10 we use smaller batch sizes of 16 images as this seems to regularize the models.
+0.45 (we; use; smaller batch sizes of 16 images; T:as this seems to regularize the models)
+0.15 (this; seems; )
+
+For ImageNet we use as large a batch size as allowed by the GPU memory; this corresponds to 64 images/batch for 32 × 32 ImageNet, and 32 images/batch for 64 × 64 ImageNet.
+0.49 (this; corresponds; to 64 images/batch for 32 × 32 ImageNet, and 32 images/batch)
+0.40 Context(this corresponds):(we; use; as large a batch size)
+
+Apart from scaling and centering the images at the input of the network, we don’t use any other preprocessing or augmentation.
+
+For the multinomial loss function we use the raw pixel color values as categories.
+0.45 (we; use; the raw pixel color values; as categories)
+
+For all the PixelRNN models, we learn the initial recurrent state of the network.
+0.45 (we; learn; the initial recurrent state of the network)
+
+Apart from being intuitive and easy to implement, we ﬁnd that using a softmax on discrete pixel values instead of a mixture density approach on continuous pixel values gives better results.
+
+For the Row LSTM model with a softmax output distribution we obtain 3.06 bits/dim on the CIFAR10 validation set.
+0.69 (we; obtain; 3.06 bits; on the CIFAR10 validation set; T:For the Row LSTM model with a softmax output distribution)
+0.11 Context(we obtain):(we; obtain 3.06 bits dim; )
+
+For the same model with a Mixture of Conditional Gaussian Scale Mixtures (MCGSM) (Theis & Bethge, 2015) we obtain 3.22 bits/dim.
+0.45 (we; obtain; 3.22 bits)
+
+In Figure 6 we show a few softmax activations from the model.
+0.66 (we; show; a few softmax activations from the model; L:In Figure 6)
+
+Although we don’t embed prior information about the meaning or relations of the 256 color categories, e.g.
+0.56 (we; do n't embed e.g.; prior information about the meaning or relations of the 256 color categories)
+
+that pixel values 51 and 52 are neighbors, the distributions predicted by the model are meaningful and can be multimodal, skewed, peaked or long tailed.
+0.77 (that pixel; values; 51 and 52)
+0.93 (that pixel; are; neighbors, the distributions predicted by the model are meaningful and can be multimodal, skewed, peaked or long tailed)
+0.90 (the distributions; predicted; by the model)
+0.83 (the distributions predicted by the model; are; meaningful)
+0.80 (the distributions predicted by the model; can be; multimodal, skewed, peaked or long tailed)
+
+Also note that values 0 and 255 often get a much higher probability as they are more frequent.
+0.36 (they; are; more frequent)
+
+Another advantage of the discrete distribution is that we do not worry about parts of the distribution mass lying outside the interval [0, 255], which is something that typically happens with continuous distributions.
+0.93 (parts of the distribution mass; lying; outside the interval)
+0.79 (the interval; is; something that typically happens with continuous distributions)
+0.88 (something; typically happens; with continuous distributions)
+0.82 (Another advantage of the discrete distribution; is; that we do not worry about parts of the distribution mass)
+0.40 Context(Another advantage of the discrete distribution is):(we; do not worry; about parts of the distribution mass)
+
+ The top left shows the distribution of the ﬁrst pixel red value (ﬁrst value to sample).
+0.93 (The top left; shows; the distribution of the ﬁrst pixel red value)
+
+Another core component of the networks is residual connections.
+0.95 (Another core component of the networks; is; residual connections)
+
+In Table 2 we show the results of having residual connections, having standard skip connections or having both, in the 12-layer CIFAR-10 Row LSTM model.
+0.79 (we; show; the results of having residual connections, having standard skip connections or having both, in the 12-layer CIFAR-10 Row LSTM model; L:In Table 2)
+
+We see that using residual connections is as effective as using skip connections; using both is also effective and preserves the advantage.
+0.26 (using both; is also; effective)
+0.27 Context(using both is also):(We; see; that using residual connections is as effective as using skip connections)
+0.91 Context(We see using both is also):(using residual connections; is; as effective as using skip connections)
+0.53 (using both; preserves; the advantage)
+
+Effect of residual and skip connections in the Row LSTM network evaluated on the Cifar-10 validation set in bits/dim.
+0.95 (the Row LSTM network; evaluated; L:on the Cifar-10 validation)
+0.96 (the Cifar-10 validation; set; in bits)
+0.85 (the Cifar-10 validation; dim; )
+
+When using both the residual and skip connections, we see in Table 3 that performance of the Row LSTM improves with increased depth.
+0.39 (we; see; L:in Table 3; that performance of the Row; T:When using both the residual and skip connections)
+0.70 (the Row; improves; )
+
+This holds for up to the 12 LSTM layers that we tried.
+0.50 (This; holds; for up to the 12 LSTM layers)
+0.93 (the 12 LSTM layers; tried; we)
+
+ 0 50 100 150 200 250 0 50 100 150 200 250 0 50 100 150 200 250 0 50 100 150 200 250 0                                                                               2550                                                                            255 0                                                                               255 0                                                                               255 0                                                                               255Pixel Recurrent Neural Networks  In general we can see that the models capture local spatial dependencies relatively well.
+0.19 (we; can see; that the models capture local spatial dependencies relatively well)
+0.87 Context(we can see):(the models; capture relatively well; local spatial dependencies)
+
+The ImageNet model seems to be better at capturing more global structures than the CIFAR-10 model.
+0.80 (The ImageNet model; seems; )
+0.96 (The ImageNet model; to be; better at capturing more global structures than the CIFAR-10 model)
+
+The ImageNet model was larger and trained on much more data, which explains the qualitative difference in samples.
+0.95 (The ImageNet model; was; larger and trained on much more data)
+0.90 (much more data; explains; the qualitative difference in samples)
+
+Effect of the number of layers on the negative log likelihood evaluated on the CIFAR-10 validation set (bits/dim).
+0.93 (the negative log likelihood; evaluated; L:on the CIFAR-10 validation set)
+
+Although the goal of our work was to model natural images on a large scale, we also tried our model on the binary version (Salakhutdinov & Murray, 2008) of MNIST (LeCun et al., 1998) as it is a good sanity check and there is a lot of previous art on this dataset to compare with.
+0.76 (the goal of our work; was; to model natural images on a large scale)
+0.27 (we; tried; our model)
+0.52 (it; is; a good sanity check)
+
+In Table 4 we report the performance of the Diagonal BiLSTM model and that of previous published results.
+0.51 (we; report; the performance of the Diagonal BiLSTM model and that of previous published results; T:In Table 4)
+
+To our knowledge this is the best reported result on MNIST so far.
+0.42 (this; is so far; the best reported result on MNIST)
+
+Next we test our models on the CIFAR-10 dataset (Krizhevsky, 2009).
+0.56 (we; test; our models on the CIFAR-10 dataset; L:Next)
+
+Table 5 lists the results of our models and that of previously published approaches.
+
+All our results were obtained without data augmentation.
+0.36 (All our results; were obtained; )
+
+For the proposed networks, the Diagonal BiLSTM has the best performance, followed by the Row LSTM and the PixelCNN.
+0.95 (the Diagonal BiLSTM; has; the best performance, followed by the Row LSTM and the PixelCNN)
+0.72 (the best performance; followed; )
+
+This coincides with the size of the respective receptive ﬁelds: the Diagonal BiLSTM has a global view, the Row LSTM has a partially occluded view and the PixelCNN sees the fewest pixels in the context.
+0.89 (LSTM; has; a partially occluded view)
+0.93 (the PixelCNN; sees; the fewest pixels in the context)
+0.88 (the Diagonal BiLSTM; has; a global view)
+0.13 Context(the Diagonal BiLSTM has):(This; coincides; )
+
+This suggests that effectively capturing a large receptive ﬁeld is important.
+0.15 (This; suggests; that effectively capturing a large receptive ﬁeld is important)
+0.84 Context(This suggests):(effectively capturing a large receptive ﬁeld; is; important)
+
+Figure 7 (left) shows CIFAR-10 samples generated Model DBM 2hl [1]: DBN 2hl [2]: NADE [3]: EoNADE 2hl (128 orderings) [3]: EoNADE-5 2hl (128 orderings) [4]: DLGM [5]: DLGM 8 leapfrog steps [6]: DARN 1hl [7]: MADE 2hl (32 masks) [8]: DRAW [9]: PixelCNN: Row LSTM: Diagonal BiLSTM (1 layer, h = 32): Diagonal BiLSTM (7 layers, h = 16): NLL Test ≈ 84.62 ≈ 84.55 88.33 85.10 84.68 ≈ 86.60 ≈ 85.51 ≈ 84.13 86.64 ≤ 80.97 81.30 80.54 80.75 79.20 Table 4.
+0.94 (Figure 7 (left; shows; CIFAR-10 samples)
+0.82 (CIFAR-10 samples; generated; )
+
+Test set performance of different models on MNIST in nats (negative log-likelihood).
+0.90 (Test; set; performance of different models on MNIST; in nats)
+
+Prior results taken from [1] (Salakhutdinov & Hinton, 2009), [2] (Murray & Salakhutdinov, 2009), [3] (Uria et al., 2014), [4] (Raiko et al., 2014), [5] (Rezende et al., 2014), [6] (Salimans et al., 2015), [7] (Gregor et al., 2014), [8] (Germain et al., 2015), [9] (Gregor et al., 2015).
+0.77 (Prior results; taken; from [1)
+0.95 (Salimans; et; al)
+
+Although to our knowledge the are no published results on the ILSVRC ImageNet dataset (Russakovsky et al., 2015) that we can compare our models with, we give our ImageNet log-likelihood performance in Table 6 (without data augmentation).
+0.46 (we; can compare; our models; with, we give our ImageNet log-likelihood performance in Table 6 (without data augmentation)
+0.46 (we; give; our ImageNet log-likelihood performance in Table 6 (without data augmentation)
+
+On ImageNet the current PixelRNNs do not appear to overﬁt, as we saw that their validation performance improved with size and depth.
+0.97 (the current PixelRNNs; do not appear; to overﬁt; T:On ImageNet)
+0.15 (we; saw; that their validation performance improved with size and depth)
+0.31 Context(we saw):(their validation performance; improved; )
+
+The main constraint on model size are currently computation time and GPU memory.
+0.94 (The main constraint on model size; are; T:currently; computation time and GPU memory)
+
+Note that the ImageNet models are in general less compressible than the CIFAR-10 images.
+
+ImageNet has greater variety of images, and the CIFAR-10 images were most  Left: normal model, right: multi-scale model.
+0.94 (ImageNet; has; greater variety of images)
+0.83 (the CIFAR-10 images; were most Left; )
+
+The single-scale model trained on 64x64 images is less able to capture global structure than the 32x32 model.
+0.93 (The single-scale model; trained; on 64x64 images)
+0.97 (The single-scale model trained on 64x64 images; is; less able to capture global structure than the 32x32 model)
+0.94 (The single-scale model trained on 64x64 images; to capture; global structure than the 32x32 model)
+
+The multi-scale model seems to resolve this problem.
+0.75 (The multi-scale model; seems; )
+0.90 (The multi-scale model; to resolve; this problem)
+
+Although these models get similar performance in log-likelihood, the samples on the right do seem globally more coherent.
+0.93 (these models; get; similar performance in log-likelihood)
+
+Model Uniform Distribution: Multivariate Gaussian: NICE [1]: Deep Diffusion [2]: Deep GMMs [3]: RIDE [4]: PixelCNN: Row LSTM: Diagonal BiLSTM: Table 5.
+
+Test set performance of different models on CIFAR-10 in bits/dim.
+0.94 (Test; set; performance of different models on CIFAR-10 in bits)
+0.88 (different models on CIFAR-10 in bits; dim; )
+
+For our models we give training performance in brackets.
+0.44 (we; give; training performance in brackets; T:For our models)
+
+[1] (Dinh et al., 2014), [2] (Sohl-Dickstein et al., 2015), [3] (van den Oord & Schrauwen, 2014a), [4] personal communication (Theis & Bethge, 2015).
+
+Image size NLL Validation (Train) 32x32: 64x64: Table 6.
+
+Negative log-likelihood performance on 32×32 and 64× 64 ImageNet in bits/dim.
+0.92 (Negative log-likelihood performance on 32×32 and 64× 64 ImageNet in bits; dim; )
+
+ Note that diversity of the completions is high, which can be attributed to the log-likelihood loss function used in this generative model, as it encourages models with high entropy.
+0.93 (the log-likelihood loss function; used; L:in this generative model)
+0.45 (it; encourages; models with high entropy)
+
+As these are sampled from the model, we can easily generate millions of different completions.
+0.26 (these; are sampled; )
+0.45 (we; can easily generate; millions of different completions)
+
+It is also interesting to see that textures such as water, wood and shrubbery are also inputed relative well (see Figure 1).
+
+likely resized with a different algorithm than the one we used for ImageNet images.
+
+The ImageNet images are less blurry, which means neighboring pixels are less correlated to each other and thus less predictable.
+0.83 (The ImageNet images; are; less blurry)
+
+Because the downsampling method can inﬂuence the compression performance, we have made the used downsampled images available1.
+0.91 (the downsampling method; can inﬂuence; the compression performance)
+0.45 (we; have made; the used downsampled images)
+
+Figure 7 (right) shows 32 × 32 samples drawn from our model trained on ImageNet.
+0.87 (Figure 7 (right; shows; 32 × 32 samples drawn from our model)
+0.89 (32 × 32 samples; drawn; from our model)
+0.68 (our model; trained; on ImageNet)
+
+Figure 8 shows 64 × 64 samples from the same model with and without multi-scale conditioning.
+0.95 (Figure 8; shows; 64 × 64 samples from the same model with and without multi-scale conditioning)
+
+Finally, we also show image completions sampled from the model in Figure 9.
+0.48 (we; show; image completions sampled from the model in Figure 9)
+0.90 (image completions; sampled; from the model in Figure 9)
+
+Conclusion In this paper we signiﬁcantly improve and build upon deep recurrent neural networks as generative models for natural images.
+0.55 (we; signiﬁcantly improve; T:Conclusion In this paper)
+0.53 (we; build; L:upon deep recurrent neural networks as generative models for natural images)
+
+We have described novel two-dimensional LSTM layers: the Row LSTM and the Diagonal BiLSTM, that scale more easily to larger datasets.
+0.50 (We; have described; novel two-dimensional LSTM layers)
+0.72 (the Row LSTM and the Diagonal BiLSTM; scale more easily; )
+
+The models were trained to model the raw RGB pixel values.
+0.92 (The models; were trained; to model the raw RGB pixel values)
+0.90 (The models; to model; the raw RGB pixel values)
+
+We treated the pixel values as discrete random variables by using a softmax layer in the conditional distributions.
+0.39 (We; treated; the pixel values; as discrete random variables)
+0.29 Context(We treated):(We; treated the pixel values by using; a softmax layer in the conditional distributions)
+
+We employed masked convolutions to allow PixelRNNs to model full dependencies between the color channels.
+0.50 (We; employed; masked convolutions; to allow PixelRNNs to model full dependencies between the color channels)
+0.39 Context(We employed):(We; employed masked convolutions to allow; PixelRNNs to model full dependencies between the color channels)
+0.87 Context(We employed to allow):(PixelRNNs; to model; full dependencies between the color channels)
+
+We proposed and evaluated architectural improvements in these models resulting in PixelRNNs with up to 12 LSTM layers.
+0.19 (We; proposed; )
+0.41 (We; evaluated; architectural improvements in these models)
+
+We have shown that the PixelRNNs signiﬁcantly improve the state of the art on the MNIST and CIFAR-10 datasets.
+0.32 (We; have shown; that the PixelRNNs signiﬁcantly improve the state of the art on the MNIST and CIFAR-10 datasets)
+0.95 Context(We have shown):(the PixelRNNs; signiﬁcantly improve; the state of the art on the MNIST and CIFAR-10 datasets)
+
+We also provide new benchmarks for generative image modeling on the ImageNet dataset.
+0.61 (We; also provide; new benchmarks for generative image modeling on the ImageNet dataset)
+
+Based on the samples and completions drawn from the models we can conclude that the PixelRNNs are able to model both spatially local and long-range correlations and are able to produce images that are sharp and coherent.
+0.91 (the PixelRNNs; are; able to produce images)
+0.94 (the samples and completions; drawn; from the models)
+0.31 (we; can conclude; that the PixelRNNs are able to model both spatially local and long-range correlations and are able to produce images)
+0.94 Context(we can conclude):(the PixelRNNs; are; able to model both spatially local and long-range correlations)
+0.72 (images; are; sharp and coherent)
+0.91 (the PixelRNNs; to model; both spatially local and long-range correlations)
+
+Given that these models improve as we make them larger and that there is practically unlimited data available to train on, more computation and larger models are likely to further improve the results.
+0.75 (these models; improve; T:as we make them larger and that there is practically unlimited data available to train on)
+0.31 (we; make; them larger)
+0.93 (more computation and larger models; are; likely to further improve the results)
+0.87 (more computation and larger models; to improve; the results)
+
+Acknowledgements The authors would like to thank Shakir Mohamed and Guillaume Desjardins for helpful input on this paper and Lucas Theis, Alex Graves, Karen Simonyan, Lasse Espeholt, Danilo Rezende, Karol Gregor and Ivo Danihelka for insightful discussions.
+0.93 (The authors; would like; to thank Shakir Mohamed and Guillaume Desjardins for helpful input on this paper and Lucas Theis, Alex Graves, Karen Simonyan, Lasse Espeholt, Danilo Rezende, Karol Gregor and Ivo Danihelka for insightful discussions)
+0.92 Context(The authors would like):(The authors; would like to thank; for helpful input on this paper and Lucas Theis, Alex Graves, Karen Simonyan, Lasse Espeholt, Danilo Rezende, Karol Gregor and Ivo Danihelka for insightful discussions)
+
+References Bengio, Yoshua and Bengio, Samy.
+
+Modeling highdimensional discrete data with multi-layer neural networks.
+
+Dinh, Laurent, Krueger, David, and Bengio, Yoshua.
+
+NICE: Non-linear independent components estimation.
+
+arXiv preprint arXiv:1410.8516, 2014.
+0.80 (arXiv; preprint; arXiv:1410.8516)
+
+Germain, Mathieu, Gregor, Karol, Murray, Iain, and Larochelle, Hugo.
+
+MADE: Masked autoencoder for distribution estimation.
+
+arXiv preprint arXiv:1502.03509, 2015.
+0.80 (arXiv; preprint; arXiv:1502.03509)
+
+Generating sequences with recurrent neural networks.
+
+arXiv preprint arXiv:1308.0850, 2013.
+0.80 (arXiv; preprint; arXiv:1308.0850)
+
+Graves, Alex and Schmidhuber, J¨urgen.
+
+Ofﬂine handwriting recognition with multidimensional recurrent neural networks.
+
+In Advances in Neural Information Processing Systems, 2009.
+
+Gregor, Karol, Danihelka, Ivo, Mnih, Andriy, Blundell, Charles, and Wierstra, Daan.
+
+In Proceedings of the 31st International Conference on Machine Learning, 2014.
+
+Gregor, Karol, Danihelka, Ivo, Graves, Alex, and Wierstra, Daan.
+
+DRAW: A recurrent neural network for image generation.
+
+Proceedings of the 32nd International Conference on Machine Learning, 2015.
+
+He, Kaiming, Zhang, Xiangyu, Ren, Shaoqing, and Sun, Jian.
+
+Deep residual learning for image recognition.
+
+arXiv preprint arXiv:1512.03385, 2015.
+0.80 (arXiv; preprint; arXiv:1512.03385)
+
+Hochreiter, Sepp and Schmidhuber, J¨urgen.
+
+Kalchbrenner, Nal and Blunsom, Phil.
+
+Recurrent continuous translation models.
+
+In Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing, 2013.
+
+Kalchbrenner, Nal, Danihelka, Ivo, and Graves, Alex.
+
+arXiv preprint Grid long short-term memory.
+0.93 (arXiv; preprint; Grid long short-term memory)
+
+Kingma, Diederik P and Welling, Max.
+
+Auto-encoding arXiv preprint arXiv:1312.6114, Krizhevsky, Alex.
+0.84 (Auto-encoding arXiv; preprint; arXiv:1312.6114)
+
+Learning multiple layers of features Larochelle, Hugo and Murray, Iain.
+
+The neural autoregressive distribution estimator.
+
+The Journal of Machine Learning Research, 2011.
+
+LeCun, Yann, Bottou, L´eon, Bengio, Yoshua, and Haffner, Patrick.
+
+Gradient-based learning applied to document recognition.
+0.92 (Gradient-based learning; applied; to document recognition)
+
+Proceedings of the IEEE, 1998.
+
+Murray, Iain and Salakhutdinov, Ruslan R.
+
+Evaluating probabilities under high-dimensional latent variable models.
+
+In Advances in Neural Information Processing Systems, 2009.
+
+Connectionist learning of belief netthe 31st International Conference on Machine Learning, 2014.
+
+Raiko, Tapani, Li, Yao, Cho, Kyunghyun, and Bengio, Yoshua.
+
+Iterative neural autoregressive distribution esIn Advances in Neural Information timator NADE-k.
+
+van den Oord, A¨aron and Schrauwen, Benjamin.
+
+Factoring variations in natural images with deep gaussian mixture models.
+
+In Advances in Neural Information Processing Systems, 2014a.
+
+van den Oord, A¨aron and Schrauwen, Benjamin.
+
+The student-t mixture as a natural image patch prior with application to image compression.
+
+The Journal of Machine Learning Research, 2014b.
+
+Zhang, Yu, Chen, Guoguo, Yu, Dong, Yao, Kaisheng, Khudanpur, Sanjeev, and Glass, James.
+
+Highway long shortterm memory RNNs for distant speech recognition.
+0.95 (Highway; shortterm; memory RNNs; for distant speech recognition; T:long)
+
+In Proceedings of the International Conference on Acoustics, Speech and Signal Processing, 2016.
+
+Rezende, Danilo J, Mohamed, Shakir, and Wierstra, Daan.
+
+Stochastic backpropagation and approximate inference In Proceedings of the 31st in deep generative models.
+
+International Conference on Machine Learning, 2014.
+
+Russakovsky, Olga, Deng, Jia, Su, Hao, Krause, Jonathan, Satheesh, Sanjeev, Ma, Sean, Huang, Zhiheng, Karpathy, Andrej, Khosla, Aditya, Bernstein, Michael, Berg, Alexander C., and Fei-Fei, Li.
+
+ImageNet Large Scale Visual Recognition Challenge.
+
+International Journal of Computer Vision (IJCV), 2015.
+
+Salakhutdinov, Ruslan and Hinton, Geoffrey E.
+
+In International Conference on Artiﬁcial Intelligence and Statistics, 2009.
+
+Salakhutdinov, Ruslan and Murray, Iain.
+
+On the quantitative analysis of deep belief networks.
+
+In Proceedings of the 25th international conference on Machine learning, 2008.
+
+Salimans, Tim, Kingma, Diederik P, and Welling, Max.
+
+Markov chain monte carlo and variational inference: Bridging the gap.
+
+Proceedings of the 32nd International Conference on Machine Learning, 2015.
+
+Sohl-Dickstein, Jascha, Weiss, Eric A., Maheswaranathan, Niru, and Ganguli, Surya.
+
+Deep unsupervised learning using nonequilibrium thermodynamics.
+0.90 (Deep; unsupervised learning; using nonequilibrium thermodynamics)
+0.90 Context(Deep unsupervised learning):(Deep; unsupervised learning using; nonequilibrium thermodynamics)
+
+Proceedings of the 32nd International Conference on Machine Learning, 2015.
+
+Stollenga, Marijn F, Byeon, Wonmin, Liwicki, Marcus, and Schmidhuber, Juergen.
+
+Parallel multi-dimensional lstm, with application to fast biomedical volumetric imIn Advances in Neural Information age segmentation.
+
+Sutskever, Ilya, Martens, James, and Hinton, Geoffrey E.
+
+Generating text with recurrent neural networks.
+
+In Proceedings of the 28th International Conference on Machine Learning, 2011.
+
+Theis, Lucas and Bethge, Matthias.
+
+Generative image modeling using spatial LSTMs.
+0.91 (Generative image modeling; using; spatial LSTMs)
+
+In Advances in Neural Information Processing Systems, 2015.
+
+Theis, Lucas, van den Oord, A¨aron, and Bethge, Matthias.
+
+A note on the evaluation of generative models.
+
+arXiv preprint arXiv:1511.01844, 2015.
+0.80 (arXiv; preprint; arXiv:1511.01844)
+
+Iain, and Larochelle, Hugo.
+
+RNADE: The real-valued neural autoregressive densityestimator.
+
+In Advances in Neural Information Processing Systems, 2013.
+
+Uria, Benigno, Murray, Iain, and Larochelle, Hugo.
+
+A deep and tractable density estimator.
+
+In Proceedings of
+

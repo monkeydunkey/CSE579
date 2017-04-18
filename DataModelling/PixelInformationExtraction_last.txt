@@ -1,0 +1,97 @@
+The paper;outputs;a deep neural network that sequentially predicts the pixels in an image along the two spatial dimensions)
+
+The paper;uses;the discrete probability of the raw pixel values)
+
+The paper;uses;the complete set of dependencies in the image)
+
+The paper;outputs;benchmarks on the diverse imagenet dataset)
+
+The paper;uses;two-dimensional rnns;l:in this paper)
+
+The paper;uses;them;to large-scale modeling of natural images;t:in this paper)
+
+The paper;outputs;two types of these layers)
+
+The paper;uses;a second, simpliﬁed architecture which shares the same core components as the pixelrnn)
+
+The paper;uses;as sequence model with a ﬁxed dependency range, by using masked convolutions)
+
+The paper;uses;the pixels as discrete values)
+
+The paper;uses;a multinomial distribution implemented with a simple softmax layer)
+
+The paper;outputs;a multi-scale version of the pixelrnn)
+
+The paper;outputs;the purely convolutional pixelcnn)
+
+The paper;outputs;two types of pixelrnns;l:in section 3)
+
+The paper;uses;to tractably compute the likelihood of images and to generate new ones)
+
+The paper;uses;p;as a discrete distribution)
+
+The paper;uses;with a softmax layer)
+
+The paper;outputs;the architectural components that compose the pixelrnn;l:in this section)
+
+The paper;outputs;the two types of lstm layers;l:in sections 3.1 and 3.2)
+
+The paper;uses;convolutions;to compute at once the states along one of the spatial dimensions)
+
+The paper;outputs;how to incorporate residual connections to improve the training of a pixelrnn with many lstm layers;l:in section 3.3)
+
+The paper;outputs;residual connections;to improve the training of a pixelrnn with many lstm layers)
+
+The paper;outputs;the training of a pixelrnn with many lstm layers)
+
+The paper;outputs;the softmax layer that computes the discrete joint distribution of the colors and the masking technique;l:in section 3.4)
+
+The paper;outputs;the pixelcnn architecture;l:in section 3.5)
+
+The paper;outputs;the multi-scale architecture;t:finally;l:in section 3.6)
+
+The paper;uses;a mask;to the inputto-state convolutions and to other purely convolutional layers in a pixelrnn)
+
+The paper;uses;two types of masks that we indicate with mask a and mask b,)
+
+The paper;uses;standard convolutional layers;to capture a bounded receptive ﬁeld and compute features for all pixel positions at once)
+
+The paper;uses;a bounded receptive ﬁeld)
+
+The paper;uses;features for all pixel positions at once)
+
+The paper;uses;l:in the experiments)
+
+The paper;uses;a diagonal bilstm;with 7 layers and a value of h = 16 (section 3.3 and figure 5 right)
+
+The paper;uses;residual connections)
+
+The paper;uses;a 4 layer row;with h = 512 units;t:for 64 × 64)
+
+The paper;outputs;our experiments and results)
+
+The paper;uses;with continuous distributions;t:usually)
+
+The paper;uses;density functions)
+
+The paper;uses;the values;from the discrete distribution as a piecewiseuniform continuous function;l:in our case)
+
+The paper;uses;smaller batch sizes of 16 images;t:as this seems to regularize the models)
+
+The paper;uses;as large a batch size)
+
+The paper;uses;the raw pixel color values;as categories)
+
+The paper;solves;to model natural images on a large scale)
+
+The paper;outputs;novel two-dimensional lstm layers)
+
+The paper;uses;a softmax layer in the conditional distributions)
+
+The paper;uses;full dependencies between the color channels)
+
+The paper;solves;)
+
+The paper;outputs;new benchmarks for generative image modeling on the imagenet dataset)
+
+The paper;uses;both spatially local and long-range correlations)
