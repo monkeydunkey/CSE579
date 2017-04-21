@@ -1,0 +1,151 @@
+The paper  |  outputs  | deep neural network
+The paper  |  outputs  | pixels
+The paper  |  outputs  | image
+The paper  |  outputs  | spatial dimensions
+The paper  |  outputs  | deep neural network that sequentially predicts the pixels in an image along the two spatial dimensions
+The paper  |  uses  | discrete probability
+The paper  |  uses  | raw pixel values
+The paper  |  uses  | discrete probability of the raw pixel values
+The paper  |  uses  | complete set
+The paper  |  uses  | dependencies
+The paper  |  uses  | image
+The paper  |  uses  | complete set of dependencies in the image
+The paper  |  outputs  | benchmarks
+The paper  |  outputs  | diverse imagenet dataset
+The paper  |  outputs  | benchmarks on the diverse imagenet dataset
+The paper  |  uses  | two-dimensional rnns
+The paper  |  uses  | two-dimensional rnns
+The paper  |  uses  | large-scale modeling
+The paper  |  uses  | natural images
+The paper  |  uses  | two-dimensional rnns to large-scale modeling of natural images
+The paper  |  outputs  | types
+The paper  |  outputs  | layers
+The paper  |  outputs  | types of these layers
+The paper  |  uses  | simpliﬁed architecture
+The paper  |  uses  | shares
+The paper  |  uses  | same core components
+The paper  |  uses  | pixelrnn
+The paper  |  uses  | simpliﬁed architecture which shares the same core components as the pixelrnn
+The paper  |  uses  | sequence model
+The paper  |  uses  | ﬁxed dependency range
+The paper  |  uses  | masked convolutions
+The paper  |  uses  | sequence model with a ﬁxed dependency range , by using masked convolutions
+The paper  |  uses  | pixels
+The paper  |  uses  | discrete values
+The paper  |  uses  | pixels as discrete values
+The paper  |  uses  | multinomial distribution
+The paper  |  uses  | simple softmax layer
+The paper  |  uses  | multinomial distribution implemented with a simple softmax layer
+The paper  |  outputs  | multi-scale version
+The paper  |  outputs  | pixelrnn
+The paper  |  outputs  | multi-scale version of the pixelrnn
+The paper  |  outputs  | purely convolutional pixelcnn
+The paper  |  outputs  | types
+The paper  |  outputs  | pixelrnns
+The paper  |  outputs  | types of pixelrnns
+The paper  |  uses  | likelihood
+The paper  |  uses  | images
+The paper  |  uses  | new ones
+The paper  |  uses  | likelihood of images and to generate new ones
+The paper  |  uses  | p
+The paper  |  uses  | discrete distribution
+The paper  |  uses  | p as a discrete distribution
+The paper  |  uses  | softmax layer
+The paper  |  outputs  | architectural components
+The paper  |  outputs  | pixelrnn
+The paper  |  outputs  | architectural components that compose the pixelrnn
+The paper  |  outputs  | types
+The paper  |  outputs  | lstm layers
+The paper  |  outputs  | types of lstm layers
+The paper  |  uses  | convolutions
+The paper  |  uses  | states
+The paper  |  uses  | spatial dimensions
+The paper  |  uses  | convolutions to compute at once the states along one of the spatial dimensions
+The paper  |  outputs  | residual connections
+The paper  |  outputs  | training
+The paper  |  outputs  | pixelrnn
+The paper  |  outputs  | many lstm layers
+The paper  |  outputs  | residual connections to improve the training of a pixelrnn with many lstm layers
+The paper  |  outputs  | residual connections
+The paper  |  outputs  | training
+The paper  |  outputs  | pixelrnn
+The paper  |  outputs  | many lstm layers
+The paper  |  outputs  | residual connections to improve the training of a pixelrnn with many lstm layers
+The paper  |  outputs  | training
+The paper  |  outputs  | pixelrnn
+The paper  |  outputs  | many lstm layers
+The paper  |  outputs  | training of a pixelrnn with many lstm layers
+The paper  |  outputs  | softmax layer
+The paper  |  outputs  | discrete joint distribution
+The paper  |  outputs  | colors
+The paper  |  outputs  | masking technique
+The paper  |  outputs  | softmax layer that computes the discrete joint distribution of the colors and the masking technique
+The paper  |  outputs  | pixelcnn architecture
+The paper  |  outputs  | multi-scale architecture
+The paper  |  uses  | mask
+The paper  |  uses  | inputto-state convolutions
+The paper  |  uses  | convolutional layers
+The paper  |  uses  | pixelrnn
+The paper  |  uses  | mask to the inputto-state convolutions and to other purely convolutional layers in a pixelrnn
+The paper  |  uses  | types
+The paper  |  uses  | masks
+The paper  |  uses  | mask
+The paper  |  uses  | mask b
+The paper  |  uses  | types of masks that we indicate with mask a and mask b
+The paper  |  uses  | standard convolutional layers
+The paper  |  uses  | bounded receptive ﬁeld
+The paper  |  uses  | compute features
+The paper  |  uses  | pixel positions
+The paper  |  uses  | standard convolutional layers to capture a bounded receptive ﬁeld and compute features for all pixel positions
+The paper  |  uses  | bounded receptive ﬁeld
+The paper  |  uses  | features
+The paper  |  uses  | pixel positions
+The paper  |  uses  | features for all pixel positions
+The paper  |  uses  | l
+The paper  |  uses  | experiments
+The paper  |  uses  | l : in the experiments
+The paper  |  uses  | diagonal bilstm
+The paper  |  uses  | layers
+The paper  |  uses  | value
+The paper  |  uses  | h =
+The paper  |  uses  | section
+The paper  |  uses  | figure
+The paper  |  uses  | right
+The paper  |  uses  | diagonal bilstm with 7 layers and a value of h = 16 ( section 3.3 and figure 5 right
+The paper  |  uses  | residual connections
+The paper  |  uses  | layer row
+The paper  |  uses  | units
+The paper  |  uses  | layer row with h = 512 units
+The paper  |  outputs  | experiments
+The paper  |  outputs  | results
+The paper  |  outputs  | experiments and results
+The paper  |  uses  | continuous distributions
+The paper  |  uses  | density functions
+The paper  |  uses  | values
+The paper  |  uses  | discrete distribution
+The paper  |  uses  | piecewiseuniform continuous
+The paper  |  uses  | function
+The paper  |  uses  | values from the discrete distribution as a piecewiseuniform continuous function
+The paper  |  uses  | smaller batch sizes
+The paper  |  uses  | images
+The paper  |  uses  | smaller batch sizes of 16 images
+The paper  |  uses  | batch size
+The paper  |  uses  | raw pixel color values
+The paper  |  uses  | categories
+The paper  |  uses  | raw pixel color values as categories
+The paper  |  solves  | model natural
+The paper  |  solves  | images
+The paper  |  solves  | large scale
+The paper  |  solves  | model natural images on a large scale
+The paper  |  outputs  | novel two-dimensional lstm layers
+The paper  |  uses  | softmax layer
+The paper  |  uses  | conditional distributions
+The paper  |  uses  | softmax layer in the conditional distributions
+The paper  |  uses  | full dependencies
+The paper  |  uses  | color channels
+The paper  |  uses  | full dependencies between the color channels
+The paper  |  outputs  | new benchmarks
+The paper  |  outputs  | generative image
+The paper  |  outputs  | imagenet dataset
+The paper  |  outputs  | new benchmarks for generative image modeling on the imagenet dataset
+The paper  |  uses  | long-range correlations
