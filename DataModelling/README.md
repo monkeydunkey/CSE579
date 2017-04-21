@@ -9,15 +9,15 @@ There are 3 relations that are extracted from the paper
 2. Uses: This describes the tools and methods used in the paper
 3. Solves: This describes the aim of the paper or the problem it is trying to solve
 
-The file - "PixelInformationExtraction_last.txt" contains the list of the above described relations found in the paper
+The file [PixelInformationExtraction_last.txt](https://github.com/monkeydunkey/CSE579/blob/master/DataModelling/PixelInformationExtraction_last.txt) contains the list of the above described relations found in the paper
 
 ## Process
-1. Clean the text obtained from the pdf-to-text conversion (fileFormatter.py). Following are the cleaning steps:
+1. Clean the text obtained from the pdf-to-text conversion (fileFormatter.py). Input file can be found [here](https://github.com/monkeydunkey/CSE579/blob/master/DataModelling/PixelRecurrentNeuralNetworks.txt). Following are the cleaning steps:
     * Remove single character lines
     * Logically regarrange the paragraphs as the text output from pdfminer might not be logically arranged
     * Remove line breaks introduced by pdfminer in text parsing
     * Filter out all the lines that don't have any mention of the paper. For this I am looking for terms like ['our', 'we', 'us'] in lines
-   * The cleaned file name is - "DataModelling/PixelRecurrentNeuralNetworks_formatted_reduced.txt"
+   * The cleaned file can be found [here](https://github.com/monkeydunkey/CSE579/blob/master/DataModelling/PixelRecurrentNeuralNetworks_formatted_reduced.txt)
 2. The cleaned file is now provided as an input to the openie information extractor you can read more about it [here](https://github.com/allenai/openie-standalone). The output of this process can be found in: "PixelInformationExtraction_reduced.txt"
 3. Apply fileReducer.py to reduce the number of relations and keep only those that match to one of the 4 types of relation described above
 
