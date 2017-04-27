@@ -1,0 +1,393 @@
+deep neural network isa http://en.wikipedia.org/wiki/Deep_neural_network?oldid=703184571
+deep neural network isa http://en.wikipedia.org/wiki/Deep_neural_network
+deep neural network isa http://dbpedia.org/resource/Deep_learning
+deep neural network isa nodeID://b3422826
+pixels isa http://en.wikipedia.org/wiki/Pixels?oldid=621411467
+pixels isa http://en.wikipedia.org/wiki/Pixels
+pixels isa http://dbpedia.org/resource/Pixel
+pixels isa nodeID://b9389437
+image isa http://www.wikidata.org/entity/Q478798
+image isa http://linked-web-apis.fit.cvut.cz/resource/image_format
+image isa http://rdf.freebase.com/ns/m.0jg24
+image isa http://el.dbpedia.org/resource/Εικόνα
+image isa http://fr.dbpedia.org/resource/Image
+image isa http://de.dbpedia.org/resource/Abbild
+image isa http://es.dbpedia.org/resource/Imagen
+image isa http://eu.dbpedia.org/resource/Irudi
+image isa http://id.dbpedia.org/resource/Citra
+image isa http://it.dbpedia.org/resource/Immagine
+image isa http://ja.dbpedia.org/resource/画像
+image isa http://ko.dbpedia.org/resource/상_(시각)
+image isa http://pt.dbpedia.org/resource/Imagem
+image isa http://wikidata.dbpedia.org/resource/Q478798
+image isa http://en.wikipedia.org/wiki/Image?oldid=707511646
+image isa http://commons.wikimedia.org/wiki/Special:FilePath/Faust_bei_der_Arbeit.JPG
+image isa http://en.wikipedia.org/wiki/Image
+image isa http://commons.wikimedia.org/wiki/Special:FilePath/Faust_bei_der_Arbeit.JPG?width=300
+image isa http://dbpedia.org/resource/Category:Computer_graphics
+image isa http://dbpedia.org/resource/Category:Digital_photography
+image isa http://dbpedia.org/resource/Category:Graphic_design
+image isa http://dbpedia.org/resource/Category:Photography
+image isa http://dbpedia.org/resource/Category:Vision
+image isa http://lens.blogs.nytimes.com/2011/01/12/obama-image-copyright-case-is-settled/
+image isa http://www.lawyerscourt.com/copyrights/legal-issues-regarding-images/
+image isa http://www.digitalpreservation.gov/formats/fdd/still_fdd.shtml
+image isa http://www.apple.com/science/insidetheimage/bzreaction/
+image isa http://www.iprg.co.in
+image isa nodeID://b27522277
+spatial dimensions isa http://en.wikipedia.org/wiki/Spatial_dimensions?oldid=629074604
+spatial dimensions isa http://en.wikipedia.org/wiki/Spatial_dimensions
+spatial dimensions isa http://dbpedia.org/resource/Dimension
+spatial dimensions isa nodeID://b10995287
+complete set isa nodeID://b20564579
+dependencies isa http://en.wikipedia.org/wiki/Dependencies?oldid=455455271
+dependencies isa http://en.wikipedia.org/wiki/Dependencies
+dependencies isa http://dbpedia.org/resource/Dependency
+dependencies isa nodeID://b3464834
+image isa http://www.wikidata.org/entity/Q478798
+image isa http://linked-web-apis.fit.cvut.cz/resource/image_format
+image isa http://rdf.freebase.com/ns/m.0jg24
+image isa http://el.dbpedia.org/resource/Εικόνα
+image isa http://fr.dbpedia.org/resource/Image
+image isa http://de.dbpedia.org/resource/Abbild
+image isa http://es.dbpedia.org/resource/Imagen
+image isa http://eu.dbpedia.org/resource/Irudi
+image isa http://id.dbpedia.org/resource/Citra
+image isa http://it.dbpedia.org/resource/Immagine
+image isa http://ja.dbpedia.org/resource/画像
+image isa http://ko.dbpedia.org/resource/상_(시각)
+image isa http://pt.dbpedia.org/resource/Imagem
+image isa http://wikidata.dbpedia.org/resource/Q478798
+image isa http://en.wikipedia.org/wiki/Image?oldid=707511646
+image isa http://commons.wikimedia.org/wiki/Special:FilePath/Faust_bei_der_Arbeit.JPG
+image isa http://en.wikipedia.org/wiki/Image
+image isa http://commons.wikimedia.org/wiki/Special:FilePath/Faust_bei_der_Arbeit.JPG?width=300
+image isa http://dbpedia.org/resource/Category:Computer_graphics
+image isa http://dbpedia.org/resource/Category:Digital_photography
+image isa http://dbpedia.org/resource/Category:Graphic_design
+image isa http://dbpedia.org/resource/Category:Photography
+image isa http://dbpedia.org/resource/Category:Vision
+image isa http://lens.blogs.nytimes.com/2011/01/12/obama-image-copyright-case-is-settled/
+image isa http://www.lawyerscourt.com/copyrights/legal-issues-regarding-images/
+image isa http://www.digitalpreservation.gov/formats/fdd/still_fdd.shtml
+image isa http://www.apple.com/science/insidetheimage/bzreaction/
+image isa http://www.iprg.co.in
+image isa nodeID://b27522277
+benchmarks isa http://en.wikipedia.org/wiki/Benchmarks?oldid=17009017
+benchmarks isa http://en.wikipedia.org/wiki/Benchmarks
+benchmarks isa http://dbpedia.org/resource/Benchmark
+benchmarks isa nodeID://b1805195
+types isa http://en.wikipedia.org/wiki/Types?oldid=16429955
+types isa http://en.wikipedia.org/wiki/Types
+types isa http://dbpedia.org/resource/Type
+types isa nodeID://b12126754
+layers isa http://en.wikipedia.org/wiki/Layers?oldid=81299042
+layers isa http://en.wikipedia.org/wiki/Layers
+layers isa http://dbpedia.org/resource/Layer
+layers isa nodeID://b6662951
+shares isa http://en.wikipedia.org/wiki/Shares?oldid=443024185
+shares isa http://en.wikipedia.org/wiki/Shares
+shares isa http://dbpedia.org/resource/Share_(finance)
+shares isa nodeID://b10685533
+pixels isa http://en.wikipedia.org/wiki/Pixels?oldid=621411467
+pixels isa http://en.wikipedia.org/wiki/Pixels
+pixels isa http://dbpedia.org/resource/Pixel
+pixels isa nodeID://b9389437
+multinomial distribution isa http://dbpedia.org/class/yago/Abstraction100002137
+multinomial distribution isa http://dbpedia.org/class/yago/Arrangement105726596
+multinomial distribution isa http://dbpedia.org/class/yago/Cognition100023271
+multinomial distribution isa http://dbpedia.org/class/yago/Distribution105729036
+multinomial distribution isa http://dbpedia.org/class/yago/PsychologicalFeature100023100
+multinomial distribution isa http://dbpedia.org/class/yago/Structure105726345
+multinomial distribution isa http://dbpedia.org/class/yago/WikicatDiscreteDistributions
+multinomial distribution isa http://dbpedia.org/class/yago/WikicatExponentialFamilyDistributions
+multinomial distribution isa http://dbpedia.org/class/yago/WikicatMultivariateDiscreteDistributions
+multinomial distribution isa http://dbpedia.org/class/yago/WikicatProbabilityDistributions
+multinomial distribution isa http://rdf.freebase.com/ns/m.0416fj
+multinomial distribution isa http://www.wikidata.org/entity/Q1147928
+multinomial distribution isa http://fr.dbpedia.org/resource/Loi_multinomiale
+multinomial distribution isa http://cs.dbpedia.org/resource/Multinomické_rozdělení
+multinomial distribution isa http://de.dbpedia.org/resource/Multinomialverteilung
+multinomial distribution isa http://el.dbpedia.org/resource/Πολυωνυμική_κατανομή
+multinomial distribution isa http://es.dbpedia.org/resource/Distribución_multinomial
+multinomial distribution isa http://it.dbpedia.org/resource/Distribuzione_multinomiale
+multinomial distribution isa http://ja.dbpedia.org/resource/多項分布
+multinomial distribution isa http://ko.dbpedia.org/resource/다항_분포
+multinomial distribution isa http://nl.dbpedia.org/resource/Multinomiale_verdeling
+multinomial distribution isa http://pt.dbpedia.org/resource/Distribuição_multinomial
+multinomial distribution isa http://wikidata.dbpedia.org/resource/Q1147928
+multinomial distribution isa http://yago-knowledge.org/resource/Multinomial_distribution
+multinomial distribution isa http://en.wikipedia.org/wiki/Multinomial_distribution?oldid=706366219
+multinomial distribution isa http://en.wikipedia.org/wiki/Multinomial_distribution
+multinomial distribution isa http://dbpedia.org/resource/Category:Discrete_distributions
+multinomial distribution isa http://dbpedia.org/resource/Category:Exponential_family_distributions
+multinomial distribution isa http://dbpedia.org/resource/Category:Factorial_and_binomial_topics
+multinomial distribution isa http://dbpedia.org/resource/Category:Probability_distributions
+multinomial distribution isa http://dbpedia.org/resource/Category:Multivariate_discrete_distributions
+multinomial distribution isa nodeID://b27374753
+types isa http://en.wikipedia.org/wiki/Types?oldid=16429955
+types isa http://en.wikipedia.org/wiki/Types
+types isa http://dbpedia.org/resource/Type
+types isa nodeID://b12126754
+likelihood isa http://en.wikipedia.org/wiki/Likelihood?oldid=644286940
+likelihood isa http://en.wikipedia.org/wiki/Likelihood
+likelihood isa http://dbpedia.org/resource/Likelihood_function
+likelihood isa nodeID://b6780656
+images isa http://linked-web-apis.fit.cvut.cz/resource/images_format
+images isa http://www.wikidata.org/entity/Q1206726
+images isa http://de.dbpedia.org/resource/Images
+images isa http://it.dbpedia.org/resource/Images
+images isa http://nl.dbpedia.org/resource/Images
+images isa http://wikidata.dbpedia.org/resource/Q1206726
+images isa http://en.wikipedia.org/wiki/Images?oldid=689193786
+images isa http://en.wikipedia.org/wiki/Images
+images isa http://dbpedia.org/resource/The_Images_(Tasmania)
+images isa http://dbpedia.org/resource/Images_(Amii_Stewart_album)
+images isa http://dbpedia.org/resource/Images_(Brotherhood_of_Man_album)
+images isa http://dbpedia.org/resource/Images_(Cilla_Black_album)
+images isa http://dbpedia.org/resource/Images_(Dan_Hartman_album)
+images isa http://dbpedia.org/resource/Images_(EP)
+images isa http://dbpedia.org/resource/Images_(Lucio_Battisti_album)
+images isa http://dbpedia.org/resource/Images_(Ronnie_Milsap_album)
+images isa http://dbpedia.org/resource/Images_(Skempton)
+images isa http://dbpedia.org/resource/Images_(Sonny_Red_album)
+images isa http://dbpedia.org/resource/Images_(The_Walker_Brothers_album)
+images isa http://dbpedia.org/resource/Images_(ballet)
+images isa http://dbpedia.org/resource/Images_(book)
+images isa http://dbpedia.org/resource/Images_(film)
+images isa http://dbpedia.org/resource/Images_pour_orchestre
+images isa http://dbpedia.org/resource/Images_–_The_Best_of_Jean_Michel_Jarre
+images isa http://dbpedia.org/resource/Swingin'_Easy
+images isa http://dbpedia.org/resource/Wikipedia:Images
+images isa nodeID://b25867085
+p isa http://dbpedia.org/class/yago/Abstraction100002137
+p isa http://dbpedia.org/class/yago/Artifact100021939
+p isa http://dbpedia.org/class/yago/Communication100033020
+p isa http://dbpedia.org/class/yago/Creation103129123
+p isa http://dbpedia.org/class/yago/Document103217458
+p isa http://dbpedia.org/class/yago/Letter106624161
+p isa http://dbpedia.org/class/yago/Matter106365467
+p isa http://dbpedia.org/class/yago/Object100002684
+p isa http://dbpedia.org/class/yago/PhysicalEntity100001930
+p isa http://dbpedia.org/class/yago/Representation104076846
+p isa http://dbpedia.org/class/yago/Text106387980
+p isa http://dbpedia.org/class/yago/Whole100003553
+p isa http://dbpedia.org/class/yago/Writing106362953
+p isa http://dbpedia.org/class/yago/WrittenCommunication106349220
+p isa http://dbpedia.org/class/yago/WikicatISOBasicLatinLetters
+p isa http://dbpedia.org/class/yago/WikicatLatinLetters
+p isa http://rdf.freebase.com/ns/m.05thg
+p isa http://www.wikidata.org/entity/Q9946
+p isa http://fr.dbpedia.org/resource/P_(lettre)
+p isa http://cs.dbpedia.org/resource/P
+p isa http://de.dbpedia.org/resource/P
+p isa http://el.dbpedia.org/resource/P
+p isa http://es.dbpedia.org/resource/P
+p isa http://eu.dbpedia.org/resource/P
+p isa http://id.dbpedia.org/resource/P
+p isa http://it.dbpedia.org/resource/P
+p isa http://ja.dbpedia.org/resource/P
+p isa http://ko.dbpedia.org/resource/P
+p isa http://nl.dbpedia.org/resource/P_(letter)
+p isa http://pl.dbpedia.org/resource/P
+p isa http://pt.dbpedia.org/resource/P
+p isa http://wikidata.dbpedia.org/resource/Q9946
+p isa http://yago-knowledge.org/resource/P
+p isa http://en.wikipedia.org/wiki/P?oldid=708032541
+p isa http://commons.wikimedia.org/wiki/Special:FilePath/P_cursive.gif
+p isa http://en.wikipedia.org/wiki/P
+p isa http://commons.wikimedia.org/wiki/Special:FilePath/P_cursive.gif?width=300
+p isa http://dbpedia.org/resource/Category:ISO_basic_Latin_letters
+p isa nodeID://b27507803
+discrete distribution isa http://en.wikipedia.org/wiki/Discrete_distribution?oldid=427737912
+discrete distribution isa http://en.wikipedia.org/wiki/Discrete_distribution
+discrete distribution isa http://dbpedia.org/resource/Probability_distribution
+discrete distribution isa nodeID://b3566884
+types isa http://en.wikipedia.org/wiki/Types?oldid=16429955
+types isa http://en.wikipedia.org/wiki/Types
+types isa http://dbpedia.org/resource/Type
+types isa nodeID://b12126754
+convolutions isa nodeID://b14166538
+states isa http://en.wikipedia.org/wiki/States?oldid=665096296
+states isa http://en.wikipedia.org/wiki/States
+states isa http://dbpedia.org/resource/State
+states isa nodeID://b11158883
+spatial dimensions isa http://en.wikipedia.org/wiki/Spatial_dimensions?oldid=629074604
+spatial dimensions isa http://en.wikipedia.org/wiki/Spatial_dimensions
+spatial dimensions isa http://dbpedia.org/resource/Dimension
+spatial dimensions isa nodeID://b10995287
+training isa http://www.w3.org/2002/07/owl#Thing
+training isa http://dbpedia.org/resource/On-the-job_training
+training isa http://www.wikidata.org/entity/Q918385
+training isa http://ko.dbpedia.org/resource/훈련
+training isa http://nl.dbpedia.org/resource/Trainen
+training isa http://pl.dbpedia.org/resource/Trening
+training isa http://pt.dbpedia.org/resource/Treinamento
+training isa http://cs.dbpedia.org/resource/Trénink
+training isa http://de.dbpedia.org/resource/Training
+training isa http://es.dbpedia.org/resource/Entrenamiento
+training isa http://id.dbpedia.org/resource/Pelatihan
+training isa http://it.dbpedia.org/resource/Addestramento
+training isa http://ja.dbpedia.org/resource/訓練
+training isa http://wikidata.dbpedia.org/resource/Q918385
+training isa http://rdf.freebase.com/ns/m.014jg3
+training isa http://en.wikipedia.org/wiki/Training?oldid=705756253
+training isa http://commons.wikimedia.org/wiki/Special:FilePath/Christer_Fuglesang_underwater_EVA_simulation_for_STS-116.jpg
+training isa http://en.wikipedia.org/wiki/Training
+training isa http://commons.wikimedia.org/wiki/Special:FilePath/Christer_Fuglesang_underwater_EVA_simulation_for_STS-116.jpg?width=300
+training isa http://dbpedia.org/resource/Category:Training
+training isa nodeID://b27515210
+training isa http://www.w3.org/2002/07/owl#Thing
+training isa http://dbpedia.org/resource/On-the-job_training
+training isa http://www.wikidata.org/entity/Q918385
+training isa http://ko.dbpedia.org/resource/훈련
+training isa http://nl.dbpedia.org/resource/Trainen
+training isa http://pl.dbpedia.org/resource/Trening
+training isa http://pt.dbpedia.org/resource/Treinamento
+training isa http://cs.dbpedia.org/resource/Trénink
+training isa http://de.dbpedia.org/resource/Training
+training isa http://es.dbpedia.org/resource/Entrenamiento
+training isa http://id.dbpedia.org/resource/Pelatihan
+training isa http://it.dbpedia.org/resource/Addestramento
+training isa http://ja.dbpedia.org/resource/訓練
+training isa http://wikidata.dbpedia.org/resource/Q918385
+training isa http://rdf.freebase.com/ns/m.014jg3
+training isa http://en.wikipedia.org/wiki/Training?oldid=705756253
+training isa http://commons.wikimedia.org/wiki/Special:FilePath/Christer_Fuglesang_underwater_EVA_simulation_for_STS-116.jpg
+training isa http://en.wikipedia.org/wiki/Training
+training isa http://commons.wikimedia.org/wiki/Special:FilePath/Christer_Fuglesang_underwater_EVA_simulation_for_STS-116.jpg?width=300
+training isa http://dbpedia.org/resource/Category:Training
+training isa nodeID://b27515210
+training isa http://www.w3.org/2002/07/owl#Thing
+training isa http://dbpedia.org/resource/On-the-job_training
+training isa http://www.wikidata.org/entity/Q918385
+training isa http://ko.dbpedia.org/resource/훈련
+training isa http://nl.dbpedia.org/resource/Trainen
+training isa http://pl.dbpedia.org/resource/Trening
+training isa http://pt.dbpedia.org/resource/Treinamento
+training isa http://cs.dbpedia.org/resource/Trénink
+training isa http://de.dbpedia.org/resource/Training
+training isa http://es.dbpedia.org/resource/Entrenamiento
+training isa http://id.dbpedia.org/resource/Pelatihan
+training isa http://it.dbpedia.org/resource/Addestramento
+training isa http://ja.dbpedia.org/resource/訓練
+training isa http://wikidata.dbpedia.org/resource/Q918385
+training isa http://rdf.freebase.com/ns/m.014jg3
+training isa http://en.wikipedia.org/wiki/Training?oldid=705756253
+training isa http://commons.wikimedia.org/wiki/Special:FilePath/Christer_Fuglesang_underwater_EVA_simulation_for_STS-116.jpg
+training isa http://en.wikipedia.org/wiki/Training
+training isa http://commons.wikimedia.org/wiki/Special:FilePath/Christer_Fuglesang_underwater_EVA_simulation_for_STS-116.jpg?width=300
+training isa http://dbpedia.org/resource/Category:Training
+training isa nodeID://b27515210
+colors isa http://en.wikipedia.org/wiki/Colors?oldid=700247218
+colors isa http://en.wikipedia.org/wiki/Colors
+colors isa http://dbpedia.org/resource/Color
+colors isa nodeID://b2974319
+mask isa http://www.w3.org/2002/07/owl#Thing
+mask isa http://dbpedia.org/resource/Traditional_African_masks
+mask isa http://dbpedia.org/resource/Masks_among_Eskimo_peoples
+mask isa http://dbpedia.org/resource/Korean_mask
+mask isa http://dbpedia.org/resource/Carnival_of_Venice
+mask isa http://www.wikidata.org/entity/Q161524
+mask isa http://fr.dbpedia.org/resource/Masque
+mask isa http://cs.dbpedia.org/resource/Maska
+mask isa http://de.dbpedia.org/resource/Maske
+mask isa http://es.dbpedia.org/resource/Máscara
+mask isa http://id.dbpedia.org/resource/Topeng
+mask isa http://it.dbpedia.org/resource/Maschera
+mask isa http://ja.dbpedia.org/resource/仮面
+mask isa http://ko.dbpedia.org/resource/탈
+mask isa http://nl.dbpedia.org/resource/Masker
+mask isa http://pl.dbpedia.org/resource/Maska
+mask isa http://pt.dbpedia.org/resource/Máscara
+mask isa http://wikidata.dbpedia.org/resource/Q161524
+mask isa http://rdf.freebase.com/ns/m.01kr41
+mask isa http://en.wikipedia.org/wiki/Mask?oldid=701619145
+mask isa http://commons.wikimedia.org/wiki/Special:FilePath/Musee_de_la_bible_et_Terre_Sainte_001.JPG
+mask isa http://en.wikipedia.org/wiki/Mask
+mask isa http://commons.wikimedia.org/wiki/Special:FilePath/Musee_de_la_bible_et_Terre_Sainte_001.JPG?width=300
+mask isa http://dbpedia.org/resource/Category:African_clothing
+mask isa http://dbpedia.org/resource/Category:Masks
+mask isa http://africa.si.edu/pubaccess/pages/classifs/divqry1.asp?ClassificationID=13&ObjectTypeID=-1
+mask isa http://costaricatraditionalfacemask.blogspot.co.uk/
+mask isa http://www.english.pitt.edu/people/faculty/smith-susan.html
+mask isa http://www.museumsyndicate.com/tag.php?id=135
+mask isa http://www.endicott-studio.com/gal/galmasks/masks1.html
+mask isa http://www.kasrl.org/noh_mask.html
+mask isa http://www.cs.okstate.edu/~subhashk/Ritual-Masks-Sacrifice.pdf
+mask isa http://www.deathmask.kiev.ua
+mask isa http://www.youtube.com/watch?v=q_HMwgsQbPI
+mask isa nodeID://b27496287
+types isa http://en.wikipedia.org/wiki/Types?oldid=16429955
+types isa http://en.wikipedia.org/wiki/Types
+types isa http://dbpedia.org/resource/Type
+types isa nodeID://b12126754
+masks isa http://en.wikipedia.org/wiki/Masks?oldid=187292332
+masks isa http://en.wikipedia.org/wiki/Masks
+masks isa http://dbpedia.org/resource/Mask
+masks isa nodeID://b7476323
+mask isa http://www.w3.org/2002/07/owl#Thing
+mask isa http://dbpedia.org/resource/Traditional_African_masks
+mask isa http://dbpedia.org/resource/Masks_among_Eskimo_peoples
+mask isa http://dbpedia.org/resource/Korean_mask
+mask isa http://dbpedia.org/resource/Carnival_of_Venice
+mask isa http://www.wikidata.org/entity/Q161524
+mask isa http://fr.dbpedia.org/resource/Masque
+mask isa http://cs.dbpedia.org/resource/Maska
+mask isa http://de.dbpedia.org/resource/Maske
+mask isa http://es.dbpedia.org/resource/Máscara
+mask isa http://id.dbpedia.org/resource/Topeng
+mask isa http://it.dbpedia.org/resource/Maschera
+mask isa http://ja.dbpedia.org/resource/仮面
+mask isa http://ko.dbpedia.org/resource/탈
+mask isa http://nl.dbpedia.org/resource/Masker
+mask isa http://pl.dbpedia.org/resource/Maska
+mask isa http://pt.dbpedia.org/resource/Máscara
+mask isa http://wikidata.dbpedia.org/resource/Q161524
+mask isa http://rdf.freebase.com/ns/m.01kr41
+mask isa http://en.wikipedia.org/wiki/Mask?oldid=701619145
+mask isa http://commons.wikimedia.org/wiki/Special:FilePath/Musee_de_la_bible_et_Terre_Sainte_001.JPG
+mask isa http://en.wikipedia.org/wiki/Mask
+mask isa http://commons.wikimedia.org/wiki/Special:FilePath/Musee_de_la_bible_et_Terre_Sainte_001.JPG?width=300
+mask isa http://dbpedia.org/resource/Category:African_clothing
+mask isa http://dbpedia.org/resource/Category:Masks
+mask isa http://africa.si.edu/pubaccess/pages/classifs/divqry1.asp?ClassificationID=13&ObjectTypeID=-1
+mask isa http://costaricatraditionalfacemask.blogspot.co.uk/
+mask isa http://www.english.pitt.edu/people/faculty/smith-susan.html
+mask isa http://www.museumsyndicate.com/tag.php?id=135
+mask isa http://www.endicott-studio.com/gal/galmasks/masks1.html
+mask isa http://www.kasrl.org/noh_mask.html
+mask isa http://www.cs.okstate.edu/~subhashk/Ritual-Masks-Sacrifice.pdf
+mask isa http://www.deathmask.kiev.ua
+mask isa http://www.youtube.com/watch?v=q_HMwgsQbPI
+mask isa nodeID://b27496287
+features isa http://en.wikipedia.org/wiki/Features?oldid=141103476
+features isa http://en.wikipedia.org/wiki/Features
+features isa http://dbpedia.org/resource/Feature
+features isa nodeID://b4269998
+l isa http://www.wikidata.org/entity/Q9927
+l isa http://fr.dbpedia.org/resource/L_(lettre)
+l isa http://cs.dbpedia.org/resource/L
+l isa http://de.dbpedia.org/resource/L
+l isa http://el.dbpedia.org/resource/L
+l isa http://es.dbpedia.org/resource/L
+l isa http://eu.dbpedia.org/resource/L
+l isa http://id.dbpedia.org/resource/L
+l isa http://it.dbpedia.org/resource/L
+l isa http://ja.dbpedia.org/resource/L
+l isa http://ko.dbpedia.org/resource/L
+l isa http://nl.dbpedia.org/resource/L_(letter)
+l isa http://pl.dbpedia.org/resource/L
+l isa http://pt.dbpedia.org/resource/L
+l isa http://wikidata.dbpedia.org/resource/Q9927
+l isa http://rdf.freebase.com/ns/m.0crf4h
+l isa http://en.wikipedia.org/wiki/L?oldid=708242928
+l isa http://commons.wikimedia.org/wiki/Special:FilePath/L_cursiva.gif
+l isa http://en.wikipedia.org/wiki/L
+l isa http://commons.wikimedia.org/wiki/Special:FilePath/L_cursiva.gif?width=300
+l isa http://dbpedia.org/resource/Category:ISO_basic_Latin_letters
+l isa nodeID://b27510335
+experiments isa http://en.wikipedia.org/wiki/Experiments?oldid=633927689
+experiments isa http://en.wikipedia.org/wiki/Experiments
+experiments isa http://dbpedia.org/resource/Experiment
+experiments isa nodeID://b4151795
