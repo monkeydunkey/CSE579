@@ -6,6 +6,8 @@ sbt "runMain edu.knowitall.openie.OpenIECli --input-file /Users/shashankbhushan/
 '''
 import re
 import os
+import time
+
 def process_paragraph(para):
     para = para.replace('\n', ' ').replace('- ', '')
     return (removingFigureDef(para))
@@ -37,19 +39,25 @@ def reOrderParagraphs(paragraphs):
                     break
     return paragraphs
 
-#TODO: Make it generic
-inFile = open('PixelRecurrentNeuralNetworks.txt')
-fileData = inFile.read()
-paragraphs = map(process_paragraph, filter(lambda x: len(x.split(' ')) > 4, fileData.split('\n\n')))
-reOrderP = reOrderParagraphs(paragraphs)
-totalText = (' '.join(reOrderP)).replace('- ', '')
-
-#Filtering out small and useless lines
-
-formattedLines = '.\n'.join(filter(lineFilter , totalText.split('. ')))
-
-
-outFile = open('PixelRecurrentNeuralNetworks_formatted_reduced.txt', 'w')
-#Considering only those lines whose length is more than 4
-outFile.writelines(formattedLines)
-outFile.close()
+DIR = "/Users/shashankbhushan/Documents/Github/cse579"
+inFolder = "DataGrabber/data/txt"
+outFolder = "DataModelling/FormattedFiles"
+folders = os.listdir(os.path.join(DIR, inFolder))
+for j,dire in enumerate(folders):
+    files = os.listdir(os.path.join(DIR, inFolder, dire))
+    for i,f in enumerate(files):
+        print 'Formatting file', f
+        input_file_path = os.path.join(DIR, inFolder, dire, f)
+        output_file_path = os.path.join(DIR, outFolder,f)
+        inFile = open(input_file_path)
+        fileData = inFile.read()
+        paragraphs = map(process_paragraph, filter(lambda x: len(x.split(' ')) > 4, fileData.split('\n\n')))
+        reOrderP = reOrderParagraphs(paragraphs)
+        totalText = (' '.join(reOrderP)).replace('- ', '')
+        #Filtering out small and useless lines
+        formattedLines = '.\n'.join(filter(lineFilter , totalText.split('. ')))
+        outFile = open(output_file_path, 'w')
+        #Considering only those lines whose length is more than 4
+        outFile.writelines(formattedLines)
+        outFile.close()
+        time.sleep(0.01) # silly way for allowing for ctrl+c termination

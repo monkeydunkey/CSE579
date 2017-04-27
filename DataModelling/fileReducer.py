@@ -21,12 +21,13 @@ The relations in which we are interested are:
 from nltk import word_tokenize
 from nltk import pos_tag
 import re
+import os
 
 from collections import defaultdict
-outputRelationTerms = ['present', 'presents', 'design', 'designed', 'provide', 'describe']
-usesRelationTerms = ['models', 'model', 'encode', 'encodes', 'using', 'uses', 'use', 'advance', 'apply', 'consider']
+outputRelationTerms = ['present', 'presents', 'design', 'designed', 'provide', 'describe', 'achieve', 'introduce', 'report', 'create', 'construct', 'define', 'demonstrate', 'produce', 'publish']
+usesRelationTerms = ['models', 'model', 'encode', 'encodes', 'using', 'uses', 'use', 'advance', 'apply', 'consider', 'fit', 'employ', 'incorporate', 'examine', 'utilize', 'found', 'require']
 #There might be some special work required for this this
-solvesRelationTerms = ['aims', 'aims to', 'solves', 'goal', 'aim', 'solve', 'solved', 'propose']
+solvesRelationTerms = ['aims', 'aims to', 'solves', 'goal', 'aim', 'solve', 'solved', 'propose', 'build', 'hypothesis']
 #Simpler regex: ((JJ.?)+\s)?(NN.?)+\s?
 ADJ_NN_patt = re.compile("((JJ.?)+\s?)*((NN.?)+\s?)+((JJ.?)+\s?)*")
 
@@ -104,7 +105,8 @@ def breakRulesPOS(rule):
 def resolvePropositions(rules, ind, rulesToResolve, ruleParts):
     # pattern to find and remove rules of the form L:, T:
     # This just basically identify some more meta information about the thing at hand
-    tagPatt = re.compile(" \w:")
+    #Older pattern " \w:"
+    tagPatt = re.compile(" \w\s?:")
     #TODO we will find all the errors and corner cases only after the whole thing is run on a sizeable dataset
     resolvedRule = ""
     for r in rulesToResolve:
@@ -145,29 +147,36 @@ def reduceRuleGroup(rule):
     reducedRules = map(reduceRule, lines[1:])
     return "\n".join(reducedRules)
 
+DIR = "/Users/shashankbhushan/Documents/Github/cse579"
+inFolder = "DataModelling/RuleFiles"
+outFolder = "DataModelling/ReducedRuleFiles"
+files = os.listdir(os.path.join(DIR, inFolder))
+for i,f in enumerate(files):
+    if "DS_Store" in f:
+        continue
+    print 'Reducing rules for file', f
+    input_file_path = os.path.join(DIR, inFolder, f)
+    output_file_path = os.path.join(DIR, outFolder,f)
+    inputFile = open(input_file_path)
+    rules = inputFile.read().split('\n\n')
+    RuleGroups = filter(lambda x: len(x.strip()) > 2, map(reduceRuleGroup, rules))
+    reducedRules = []
+    for rules in RuleGroups:
+        reducedRules.extend(rules.split("\n"))
 
-inFilePath = 'PixelInformationExtraction_reduced.txt'
-inputFile = open(inFilePath)
-rules = inputFile.read().split('\n\n')
-RuleGroups = filter(lambda x: len(x.strip()) > 2, map(reduceRuleGroup, rules))
-reducedRules = []
-for rules in RuleGroups:
-    reducedRules.extend(rules.split("\n"))
+    #Map Propositions to nouns
+    for i in range(len(reducedRules)):
+        ruleParts = reducedRules[i].split('$')
+        lastRule = ruleParts[-1].strip().split(';')
+        if len(lastRule) > 1:
+            reducedRules[i] = resolvePropositions(reducedRules, i, lastRule, ruleParts)
 
-#Map Propositions to nouns
-for i in range(len(reducedRules)):
-    ruleParts = reducedRules[i].split('$')
-    lastRule = ruleParts[-1].strip().split(';')
-    if len(lastRule) > 1:
-        reducedRules[i] = resolvePropositions(reducedRules, i, lastRule, ruleParts)
+    #POS tag based entity identification
+    rules = []
+    for rule in reducedRules:
+        rules.extend(breakRulesPOS(rule))
 
-#POS tag based entity identification
-rules = []
-for rule in reducedRules:
-    rules.extend(breakRulesPOS(rule))
-
-
-outFile = open('PixelInformationExtraction_POS_test.txt', 'w')
-#Considering only those lines whose length is more than 4
-outFile.writelines('\n'.join(rules))
-outFile.close()
+    outFile = open(output_file_path, 'w')
+    #Considering only those lines whose length is more than 4
+    outFile.writelines('\n'.join(rules))
+    outFile.close()
