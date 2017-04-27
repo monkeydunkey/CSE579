@@ -13,6 +13,10 @@ have = set(os.listdir(Config.pdf_dir)) # get list of all pdfs we already have
 numok = 0
 numtot = 0
 db = pickle.load(open(Config.db_path, 'rb'))
+
+with open('listImpPaper.txt') as f:
+        paper_titles = set([x.split('"')[1].strip().replace(".", "").lower() for x in f.readlines()])
+
 for pid,j in db.items():
   cats = ['cs.cv', 'cs.cl', 'cs.ne', 'cs.lg', 'cs.ai']
   pdfs = [x['href'] for x in j['links'] if x['type'] == 'application/pdf']
@@ -31,7 +35,7 @@ for pid,j in db.items():
   # try retrieve the pdf
   numtot += 1
   try:
-    if not basename in have:
+    if not basename in have and j['title'].strip().lower() in paper_titles:
       print('fetching %s into %s' % (pdf_url, fname))
       req = urlopen(pdf_url)#, None, timeout_secs)
       with open(fname, 'wb') as fp:
