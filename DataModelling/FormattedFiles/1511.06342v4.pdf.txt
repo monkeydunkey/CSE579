@@ -1,0 +1,98 @@
+Towards this goal, we deﬁne a novel method of multitask and transfer learning that enables an autonomous agent to learn how to behave in multiple tasks simultaneously, and then generalize its knowledge to new domains.
+We then show that the representations learnt by the deep policy network are capable of generalizing to new tasks with no prior expert guidance, speeding up learning in novel environments.
+Although our method can in general be applied to a wide range of problems, we use Atari games as a testing environment to demonstrate these methods.
+To ﬁrst accomplish multitask learning, we design a method called “Actor-Mimic” that leverages techniques from model compression to train a single multitask network using guidance from a set of game-speciﬁc expert networks.
+To then achieve transfer learning, we treat a multitask network as being a DQN which was pre-trained on a set of source tasks.
+We show experimentally that this multitask pre-training can result in a DQN that learns a target task signiﬁcantly faster than a DQN starting from a random initialization, effectively demonstrating that the source task representations generalize to the target task.
+For a given policy, we can further deﬁne the Q-value t=0 γtrt|s0 = s, a0 = a] where H is the step when the game ends.
+To train a DQN on the (n+1)th step, we set the network’s loss to (cid:19)2(cid:35) a(cid:48)∈A Q(s(cid:48), a(cid:48); θ(n)) − Q(s, a; θ(n+1)) r + γ · max where M(·) is a uniform probability distribution over a replay memory, which is a set of the m previous (s, a, r, s(cid:48)) transition tuples seen during play, where m is the size of the memory.
+Given a set of source games S1, ..., SN , our ﬁrst goal is to obtain a single multitask policy network that can play any source game at as near an expert level as possible.
+To train this multitask policy network, we use guidance from a set of expert DQN networks E1, ..., EN , where Ei is an expert specialized in source task Si.
+As the range of the expert value functions could vary widely between games, we found it difﬁcult to directly distill knowledge from the expert value functions.
+The alternative we develop here is to instead match policies by ﬁrst transforming Q-values using a softmax.
+Intuitively, we can view using the softmax from the perspective of forcing the student to focus more on mimicking the action chosen by the guiding expert at each state, where the exact values of the state are less important.
+We call this method “Actor-Mimic” as it is an actor, i.e.
+In particular, our technique ﬁrst transforms each expert DQN into a policy network by a Boltzmann distribution deﬁned over the Q-value outputs, πEi(a|s) = where τ is a temperature parameter and AEi is the action space used by the expert Ei, AEi ⊆ A.
+Given a state s from source task Si, we then deﬁne the policy objective over the multitask network as the cross-entropy between the expert network’s policy and the current multitask policy: where πAMN(a|s; θ) is the multitask Actor-Mimic Network (AMN) policy, parameterized by θ.
+In contrast to the Q-learning objective which recursively relies on itself as a target value, we now have a stable supervised training signal (the expert network output) to guide the multitask network.
+To acquire training data, we can sample either the expert network or the AMN action outputs to generate the trajectories used in the loss.
+Empirically we have observed that sampling from the AMN while it is learning gives the best results.
+We later prove that in either case of sampling from the expert or AMN as it is learning, the AMN will converge to the expert policy using the policy regression loss, at least in the case when the AMN is a linear function approximator.
+We use an -greedy policy no matter which network we sample actions from, which with probability  picks a random action uniformly and with probability 1 −  chooses an action from the network.
+We can obtain further guidance from the expert networks in the following way.
+Note that the dimension of hAMN(s) does not necessarily need to be equal to hEi(s), and this is the case in some of our experiments.
+We deﬁne a feature regression network fi(hAMN(s)) that, for a given state s, attempts to predict the features hEi(s) from hAMN(s).
+A justiﬁcation for this objective is that if we have a perfect regression from multitask to expert features, all the information in the expert features is contained in the multitask features.
+Empirically we have found that the feature regression objective’s primary beneﬁt is that it can increase the performance of transfer learning in some target tasks.
+Intuitively, we can think of the policy regression objective as a teacher (expert network) telling a student (AMN) how they should act (mimic expert’s actions), while the feature regression objective is analogous to a teacher telling a student why it should act that way (mimic expert’s thinking process).
+policy(θ) + β ∗ Li Published as a conference paper at ICLR 2016 3.4 TRANSFERING KNOWLEDGE: ACTOR-MIMIC AS PRETRAINING Now that we have a method of training a network that is an expert at all source tasks, we can proceed to the task of transferring source task knowledge to a novel but related target task.
+To enable transfer to a new task, we ﬁrst remove the ﬁnal softmax layer of the AMN.
+We then use the weights of AMN as an instantiation for a DQN that will be trained on the new target task.
+4 CONVERGENCE PROPERTIES OF ACTOR-MIMIC We further study the convergence properties of the proposed Actor-Mimic under a framework similar to (Perkins & Precup, 2002).
+To avoid confusion onwards, we use notation p(a|s; θ) for the softmax policies in the policy regression objective.
+A training epoch is 250,000 frames and for each training epoch we evaluate the networks with a testing epoch that lasts 125,000 frames.
+We report AMN and expert DQN test reward for each testing epoch and the mean and max of DQN performance.
+In the testing epoch we use  = 0.05 in the -greedy policy.
+Our empirical observations conﬁrm this theoretical prediction.
+5 EXPERIMENTS In the following experiments, we validate the Actor-Mimic method by demonstrating its effectiveness at both multitask and transfer learning in the Arcade Learning Environment (ALE).
+For our experiments, we use subsets of a collection of 20 Atari games.
+We additionally chose 1 game, the game of Seaquest, on which the DQN had performed poorly when compared to a human expert.
+5.1 MULTITASK To ﬁrst evaluate the actor-mimic objective on multitask learning, we demonstrate the effectiveness of training an AMN over multiple games simultaneously.
+In this particular case, since our focus is 036#105ATLANTISAMNDQNDQN-MaxDQN-Mean-5025100BOXING0200400BREAKOUT07.515#104CRAZY CLIMBER05010005001000ENDURO050100-40040PONG050100040008000SEAQUEST050100012502500SPACE INVADERSPublished as a conference paper at ICLR 2016 Atlantis Boxing Breakout Crazy Climber 57279 273.15 541000 377.96 165065 347.01 584196 370.32 288.2% 93.61% 127.0% 108.0% 93.00% 97.98% Enduro Seaquest 457.60 4278.9 808.00 6200.5 499.3 1177.3 686.77 1466.0 109.1% 78.01% 27.51% 85.00% 93.25% 23.64% Table 1: Actor-Mimic results on a set of eight Atari games.
+We compare the AMN performance to that of the expert DQNs trained separately on each game.
+For the AMN, we report maximum test reward ever achieved in epochs 1-100 and mean test reward in epochs 91-100.
+For the DQN, we report maximum test reward ever achieved until convergence and mean test reward in the last 10 epochs of DQN training.
+Additionally, at the last row of the table we report the percentage ratio of the AMN reward to the expert DQN reward for every game for both mean and max rewards.
+These percentage ratios are plotted in  on multitask learning and not transfer learning, we disregard the feature regression objective and set β to 0.
+We can see that the AMN quickly reaches close-to-expert performance on 7 games out of 8, only taking around 20 epochs or 5 million training frames to settle to a stable behaviour.
+We also observed this increase in source task performance again when we later on increased the AMN model complexity for the transfer experiments (see Atlantis experiments in Appendix D).
+We compare the performance of our AMN against a baseline of two different multitask DQN architectures in Appendix C.
+5.2 TRANSFER We have found that although a small AMN can learn how to behave at a close-to-expert level on multiple source tasks, a larger AMN can more easily transfer knowledge to target tasks after being trained on the source tasks.
+For the transfer experiments, we therefore signiﬁcantly increased the AMN model complexity relative to that of an expert.
+We additionally found that using an AMN trained for too long on the source tasks hurt transfer, as it is likely overﬁtting.
+Therefore for the transfer experiments, we train the AMN on only 4 million frames for each of the source games.
+We additionally independently evaluate the beneﬁt of the feature regression objective during transfer by having one AMN trained with only the policy regression objective (AMN-policy) and another trained using both feature and policy regression (AMN-feature).
+We can see that the AMN pretraining provides a deﬁnite increase in learning speed for the 3 games of Breakout, Star Gunner and Video Pinball.
+We report the average test reward every 4 training epochs (equivalent to 1 million training frames), where the average is over 4 testing epochs that are evaluated immediately after each training epoch.
+For each game, we bold out the network results that have the highest average testing reward for that particular column.
+When running Krull we observed that the policy learnt by any DQN regardless of the initialization was a sort of unexpected local maximum.
+For the games of Gopher and Robotank, we can see that the multitask pretraining does not have any signiﬁcant positive effect.
+Our approach is most similar to the technique of (Hinton et al., 2015) Published as a conference paper at ICLR 2016 which matches the high-temperature outputs of the mimic network with that of the expert network.
+In addition, we also tried an objective that provides expert guidance at the feature level instead of only at the output level.
+In contrast to these model compression techniques, our method is not concerned with decreasing test time computation but instead using experts to provide otherwise unavailable supervision to a mimic network on several distinct tasks.
+One such method, called DAGGER (Ross et al., 2011), is similar to our approach in that it trains a policy to directly mimic an expert’s behaviour while sampling actions from the mimic agent.
+First, we can exploit the automatic feature construction ability of deep networks to transfer knowledge to new tasks, as long as the raw data between tasks is in the same form, i.e.
+Second, we can deﬁne objectives which take into account intermediate representations of the state and not just the policy outputs, for example the feature regression objective which provides a richer training signal to the mimic network than just samples of the expert’s action output.
+7 DISCUSSION In this paper we deﬁned Actor-Mimic, a novel method for training a single deep policy network over a set of related source tasks.
+We have shown that a network trained using Actor-Mimic is capable of reaching expert performance on many games simultaneously, while having the same model complexity as a single expert.
+Using targeted knowledge transfer can potentially help in cases of negative transfer observed in our experiments.
+For any ij elements T 1 ij in the transition matrices, we have, ≤|A|(cid:107)π1(a|sj) − π2(a|sj)(cid:107) ≤|A|(cid:107)π1 − π2(cid:107)∞.
+We follow a similar contraction argument made in Perkins & Precup (2002) , and show the iterative algorithm is a contraction process.
+APPENDIX B AMN TRAINING DETAILS All of our Actor-Mimic Networks (AMNs) were trained using the Adam (Kingma & Ba, 2015) optimization algorithm.
+While playing a certain game, we mask out AMN action outputs that are not valid for that game and take the softmax over only the subset of valid actions.
+We use a replay memory for each game to reduce correlations between successive frames and stabilize network training.
+Because the memory requirements of having the standard replay memory size of 1,000,000 frames for each game are prohibitive when we are training over many source games, for AMNs we use a per-game 100,000 frame replay memory.
+For the transfer experiments with the feature regression objective, we set the scaling parameter β to 0.01 and the feature prediction network fi was set to a linear projection from the AMN features to the ith expert features.
+For the policy regression objective, we use a softmax temperature of 1 in all cases.
+Additionally, during training for all AMNs we use an -greedy policy with  set to a constant 0.1.
+During training, we choose actions based on the AMN and not the expert DQN.
+We do not use weight decay during AMN training as we empirically found that it did not provide any large beneﬁts.
+For the experiments using the DQN algorithm, we optimize the networks with RMSProp.
+We use the full 1,000,000 frame replay memory when training any DQN.
+APPENDIX C MULTITASK DQN BASELINE RESULTS As a baseline, we trained DQN networks over 8 games simultaneously to test their performance against the Actor-Mimic method.
+We tried two different architectures, the ﬁrst is using the basic DQN procedure on all 8 games.
+This network has a single 18 action output shared by all games, but when we train or test in a particular game, we mask out and ignore the action values from actions that are invalid for that particular game.
+A training epoch is 250,000 frames and for each training epoch we evaluate the networks with a testing epoch that lasts 125,000 frames.
+We report AMN, expert DQN and MDQN test reward for each testing epoch.
+In the testing epoch we use  = 0.05 in the -greedy policy.
+A training epoch is 250,000 frames and for each training epoch we evaluate the networks with a testing epoch that lasts 125,000 frames.
+We report AMN, expert DQN and MCDQN test reward for each testing epoch.
+In the testing epoch we use  = 0.05 in the -greedy policy.
+From the ﬁgures, we can observe that the AMN is far more stable during training as well as being consistently higher in performance than either the MDQN or MCDQN methods.
+Between the MDQN and MCDQN, we can see that the MCDQN hardly improves results even though it has signiﬁcantly larger computational cost that scales linearly with the number of source games.
+For the speciﬁc details of the architectures we tested, for the MDQN the architecture was: 8x8x4x324 1 → 4x4x32x64-2 → 3x3x64x64-1 → 512 fully-connected units → 18 actions.
+1 Here we represent convolutional layers as WxWxCxN-S, where W is the width of the (square) convolution kernel, C is the number of input images, N is the number of ﬁlter maps and S is the convolution stride.
+We compare against the (smaller network) expert DQNs, which are trained until convergence.
+We also report the maximum test reward the expert DQN achieved over all training epochs, as well as the mean testing reward achieved over the last 10 epochs.
+We compare against the (smaller network) expert DQNs, which are trained until convergence.
+We also report the maximum test reward the expert DQN achieved over all training epochs, as well as the mean testing reward achieved over the last 10 epochs

@@ -1,0 +1,90 @@
+We present in this paper a systematic study on how to morph a well-trained neural network to a new one so that its network function can be completely preserved.
+We deﬁne this as network morphism in this research.
+To meet this requirement, we ﬁrst introduce the network morphism equations, and then develop novel morphing algorithms for all these morphing types for both classic and convolutional neural networks.
+We propose a family of parametric-activation functions to facilitate the morphing of any continuous non-linear activation neurons.
+To accomplish such an ideal goal, we need to systematically study how to morph a well-trained neural network to a new one with its network function completely preserved.
+We call such operations network morphism.
+Although network morphism generally does not impose constraints on the architecture of the child network, we limit the investigation of network morphism to the expanding mode, which intuitively means that the child network is deeper and/or wider than its parent network.
+In this work, we derive network morphism equations for a successful morphing operation to follow, based on which novel network morphism algorithms can be developed for all these morphing types.
+To overcome the issues associated with IdMorph, we introduce several practices for the morphism operation to follow, and propose a deconvolution-based algorithm for network depth morphing.
+deal with the non-linearity, we introduce the concept of parametric-activation function family, which is deﬁned as an adjoint function family for arbitrary non-linear activation function.
+To the best of our knowledge, this is the ﬁrst work about network morphism, except the recent work (Chen et al., 2015) that introduces the IdMorph.
+We conduct extensive experiments to show the effectiveness of the proposed network morphism learning scheme on widely used benchmark datasets for both classic and convolutional neural networks.
+Furthermore, we show that the proposed network morphism is able to internally regularize the network, that typically leads to an improved performance.
+Finally, we also successfully morph the well-known 16layered VGG net (Simonyan & Zisserman, 2014) to a better 15 of the training time comperforming model, with only 1 paring against the training from scratch.
+Related Work We brieﬂy introduce recent work related to network morphism and identify the differences from this work.
+Network Morphism We shall ﬁrst discuss the depth morphing in the linear case, which actually also involves with width and kernel size morphing.
+Then we shall describe how to deal with the non-linearities in the neural networks.
+Finally, we shall present the stand-alone versions for width morphing and kernel size morphing, followed by the subnet morphing.
+Next, we consider the case of a deep convolutional neural network (DCNN).
+Thus, we call the hidden layers as blobs, and weight matrices as ﬁlters.
+We ﬁrst drop all the non-linear activation functions and consider a neural network only connected with fully connected layers.
+For network morphism, we shall insert a new hidden layer Bl, so that the child network satisﬁes: Bl+1 = Fl+1 · Bl = Fl+1 · (Fl · Bl−1) = G · Bl−1, (2) where Bl ∈ RCl, Fl ∈ RCl×Cl−1, and Fl+1 ∈ RCl+1×Cl.
+If ˜K = K, we will have ˜G = G.
+Hence, we are able to unify them into one equation: ˜G = Fl+1 (cid:126) Fl, (6) where (cid:126) is a non-communicative operator that can either be an inner product or a multi-channel convolution.
+We call Equation (6) as the network morphism equation (for depth in the linear case).
+Network Morphism Algorithms: Linear Case In this section, we introduce two algorithms to solve for the network morphism equation (6).
+Since the solutions to Equation (6) might not be unique, we shall make the morphism operation to follow the desired practices that: 1) the parameters will contain as many nonzero elements as possible, and 2) the parameters will need to be in a consistent scale.
+Next, we introduce two algorithms based on deconvolution to solve the network morphism equation (6), i.e., 1) general network morphism, and 2) practical network morphism.
+Then we iteratively solve Fl+1 and Fl by ﬁxing the other.
+We claim that if the parameter number of either Fl or Fl+1 is no less than ˜G, Algorithm 1 shall converge to 0.
+Algorithm 2 Practical Network Morphism Input: G of shape (Cl+1, Cl−1, K, K); Cl, K1, K2 Output: Fl of shape (Cl, Cl−1, K1, K1), Fl+1 of shape (Cl+1, Cl, K2, K2) /* For simplicity, we illustrate this algorithm for the case ‘Fl expands G’ */ K r repeat Run Algorithm 1 with maxIter set to 1: l, Fl, F r NETMORPHGENERAL(G; Cl, K1, K r 2 ) K r 2 = K r until l = 0 Expand F r zeros.
+Condition (7) claims that we have more unknowns than constraints, and hence it is an undetermined linear system.
+Next, we propose a variant of Algorithm 1 that can solve Equation (6) with a sacriﬁce in the non-sparse practice.
+Since we focus on network morphism in an expanding mode, we can assume that this condition is self-justiﬁed, namely, either Fl expands G, or Fl+1 expands G.
+Thus, we can claim that this algorithm solves the network morphism equation (6).
+As described in Algorithm 2, for the case that Fl expands G, starting from 2 = K2, we iteratively call Algorithm 1 and shrink the K r size of K r 2 until the loss converges to 0.
+This iteration shall terminate as we are able to guarantee that if K r 2 = 1, the loss is 0.
+We assume Cl+1 = O(Cl) (cid:44) O(C).
+In practice, we shall also have C (cid:29) K, and thus NetMorph can asymptotically ﬁll in all parameters with non-zero elements.
+Then we have ϕ(I (cid:126) ϕ(G (cid:126) Bl−1) = ϕ ◦ ϕ(G (cid:126) Bl+1) = ϕ(G (cid:126) Bl+1).
+To handle arbitrary continuous non-linear activation functions, we propose to deﬁne the concept of P(arametric)activation function family.
+We deﬁne the canonical form for P-activation function family as follows: P -ϕ (cid:44) {ϕa}|a∈[0,1] = {(1 − a) · ϕ + a · ϕid}|a∈[0,1], (9) where a is the parameter to control the shape morphing of the activation function.
+We have ϕ0 = ϕ, and ϕ1 = Figure 3: Non-zero element (indicated as gray) occupations of different algorithms: (a) IdMorph in O(C), (b) NetMorph worst case in O(C 2), and (c) NetMorph best case in O(C 2K 2).
+As shown, it is safe to add the non-linear activations indicated by the green boxes, but we need to make sure that the yellow box is equivalent to a linear activation initially.
+Formally, we need to replace the layer Bl+1 = ϕ(G (cid:126) Bl+1) with two layers Bl+1 = ϕ(Fl+1 (cid:126) ϕa(Fl (cid:126) Bl−1)).
+If we set a = 1, the morphing shall be successful as long as the network morphing equation (6) is satisﬁed: ϕ(Fl+1 (cid:126) ϕa(Fl (cid:126) Bl−1)) = ϕ(Fl+1 (cid:126) Fl (cid:126) Bl−1) The value of a shall be learned when we continue to train the model.
+Therefore, we can conduct width and kernel size morphing by introducing an extra depth morphing via Algorithm 2.
+Sometimes, we need to pay attention to stand-alone network width and kernel size morphing operations.
+In this section, we introduce solutions for these situations.
+For width morphing, we assume Bl−1, Bl, Bl+1 are all parent network layers, and the target is to expand the width (channel size) of Bl from Cl to ˜Cl, ˜Cl ≥ Cl.
+For the parent network, we have Figure 5: Network morphism in kernel size.
+Thus, we only need to satisfy: Bl( ¯cl) ∗ ˜Fl+1(cl+1, ¯cl) Bl−1(cl−1) ∗ ˜Fl( ¯cl, cl−1) ∗ ˜Fl+1(cl+1, ¯cl), ˜Fl( ¯cl, cl−1) ∗ ˜Fl+1(cl+1, ¯cl) = 0.
+is obvious that we can either set ˜Fl( ¯cl, cl−1) or It ˜Fl+1(cl+1, ¯cl) to 0, and the other can be set arbitrarily.
+Following the non-sparse practice, we set the one with less parameters to 0, and the other one to random noises.
+To break this unwanted behavior, we perform a random permutation on ˜cl, which will not change Bl+1.
+For kernel size morphing, we propose a heuristic yet effective solution.
+Suppose that a convolutional layer l has kernel size of Kl, and we want to expand it to ˜Kl.
+We study the problem of subnet morphing in this section, that is, network morphism from a minimal number (typically one) of layers in the parent network to a subnet in the child network.
+We ﬁrst describe the morphing operation for the sequential subnet, based on which its stacked version is then obtained.
+We can also develop a practical version of the algorithm that can solve for Equation (19), which is similar to Algorithm 2.
+For stacked sequential subnet morphing, we can follow the work ﬂow illustrated as Fig.
+6(c), we illustrate an n-way stacked sequential subnet morphing, with the second path morphed into two layers.
+Experimental Results In this section, we conduct experiments on three datasets (MNIST, CIFAR10, and ImageNet) to show the effectiveness of the proposed network morphism scheme, on 1) different morphing operations, 2) both the classic and convolutional neural networks, and 3) both the idempotent activations (ReLU) and non-idempotent activations (TanH).
+In this section, instead of using state-of-the-art DCNN solutions (LeCun et al., 1998; Chang & Chen, 2015), we adopt the simple softmax regression model as the parent network to evaluate the effectiveness of network morphism on classic networks.
+Then, we morphed this model into a multiple layer perception (MLP) model by adding a PReLU or PTanH hidden layer with the number of hidden neurons h = 50.
+We can see that, for the PReLU activation, NetMorph works much better than Net2Net.
+NetMorph continues to 3In the experiments, we use NetMorph to represent the proimprove the performance from 92% to 97%, while Net2Net improves only to 94%.
+We also show the curve of NetMorph with the non-idempotent activation PTanH in Fig.
+The baseline network we adopted is the Caffe (Jia et al., 2014) cifar10_quick model with an accuracy of 78.15%.
+In the following, we use the uniﬁed notation cifar_ddd to represent a network architecture of three subnets, in which each digit d is the number of convolutional The deis described by tailed architecture of each subnet (<kernel_size>:<num_output>,...).
+Additionally, we also use [<subnet>] to indicate the grouping of layers in a subnet, and x<times> to represent layers or subnets.
+8(a) and (b), we can see the superiority of NetMorph over Net2Net.
+We also veriﬁed this by comparing the histograms of the embedded ﬁlters (after morphing) for both methods.
+Finally, we compare NetMorph with the model directly trained from scratch (denoted as Raw) in Fig.
+We interpret this phenomena as the internal regularization ability of NetMorph.
+We only need to explore for a relatively small region rather than the whole parameter space.
+We further double the number of channels (width) for the ﬁrst layer in each subnet (cifar_width).
+We also conducted width morphing directly from the parent network for TanH neurons, which results in about 4% accuracy improvement.
+We also conduct experiments on the ImageNet dataset (Russakovsky et al., 2014) with 1,000 object categories.
+Because the Caffe (Jia et al., 2014) implementation favors single-scale, for a fair comparison, we ﬁrst de-multiscale this model by continuing to train it on the ImageNet dataset with the images resized to 256 × 256.
+In this paper, we adopt the de-multiscaled version of the VGG16 net as the parent network to morph.
+The morphing operation we adopt is to add a convolutional layer at the end of the ﬁrst three subsets for each.
+We continue to train the child network after morphing, and the ﬁnal model is denoted as Table 3: Comparison results on ImageNet.
+We can see that, VGG16(NetMorph) not only outperforms its parent network, i.e, VGG16(baseline), but also outperforms the multi-scale version, i.e, VGG16(multi-scale).
+Since VGG16(NetMorph) is a 19-layer network, we also list the VGG19 net in Table 3 for comparison.
+Further, we are able to add more layers into VGG16(NetMorph), and a better performing model shall be expected.
+We compare the training time cost for the NetMorph learning scheme and the training from scratch.
+Conclusions In this paper, we have introduced the systematic study about network morphism.
+We introduced diverse morphing operations, and developed novel morphing algorithms based on the morphism equations we have derived.
+Weisstein, Eric W

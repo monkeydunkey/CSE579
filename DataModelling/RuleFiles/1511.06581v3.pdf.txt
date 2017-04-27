@@ -1,0 +1,324 @@
+In this paper, we present a new neural network architecture for model-free reinforcement learning.
+0.70 (we; present; a new neural network architecture for model-free reinforcement learning; L:In this paper)
+
+Our dueling network represents two separate estimators: one for the state value function and one for the state-dependent action advantage function.
+0.66 (Our dueling network; represents; two separate estimators)
+
+Our results show that this architecture leads to better policy evaluation in the presence of many similar-valued actions.
+0.52 (Our results; show; that this architecture leads to better policy evaluation in the presence of many similar-valued actions)
+0.92 Context(Our results show):(this architecture; leads; to better policy evaluation in the presence of many similar-valued actions)
+
+Moreover, the dueling architecture enables our RL agent to outperform the state-of-the-art on the Atari 2600 domain.
+0.91 (the dueling architecture; enables; our RL agent; to outperform the state-of-the-art on the Atari 2600 domain)
+0.84 (our RL agent; to outperform; the state-of-the-art on the Atari 2600 domain)
+
+Here, we take an alternative but complementary approach of focusing primarily on innovating a neural network architecture that is better suited for model-free RL.
+0.70 (we; take; an alternative but complementary approach of focusing primarily on innovating a neural network architecture; L:Here)
+0.94 (a neural network architecture; is; better suited for model-free RL)
+
+The proposed network architecture, which we name the dueling architecture, explicitly separates the representation of state values and (state-dependent) action advantages.
+0.91 (The proposed network architecture; name; the dueling architecture)
+0.85 (The proposed network architecture, which we name the dueling architecture; explicitly separates; the representation of state values and (state-dependent) action advantages)
+
+In one time step (leftmost pair of images), we see that the value network stream pays attention to the road and in particular to the horizon, where new cars appear.
+0.93 (new cars; appear; L:the horizon)
+0.40 (we; see; that the value network stream pays attention to the road and in particular to the horizon; L:In one time step (leftmost pair of images)
+0.90 Context(we see):(the value network stream; pays; attention; to the road)
+
+In the experiments, we demonstrate that the dueling architecture can more quickly identify the correct action during policy evaluation as redundant or similar actions are added to the learning problem.
+0.92 (redundant or similar actions; are added; to the learning problem)
+0.40 (we; demonstrate; that the dueling architecture can more quickly identify the correct action during policy evaluation as redundant or similar actions are added to the learning problem; L:In the experiments)
+0.89 Context(we demonstrate):(the dueling architecture; can more quickly identify; the correct action during policy evaluation)
+
+We also evaluate the gains brought in by the dueling architecture on the challenging Atari 2600 testbed.
+0.57 (We; evaluate; the gains brought in by the dueling architecture on the challenging Atari 2600 testbed)
+0.90 (the gains; brought; in; by the dueling architecture)
+
+Background We consider a sequential decision making setup, in which an agent interacts with an environment E over discrete time steps, see Sutton & Barto (1998) for an introduction.
+0.94 (an agent; interacts; with an environment E over discrete time steps; L:a sequential decision making setup)
+
+(cid:80)∞ The agent seeks maximize the expected discounted return, where we deﬁne the discounted return as Rt = τ =t γτ−trτ .
+0.88 (The agent; seeks; maximize the expected discounted return)
+0.87 Context(The agent seeks):(The agent; seeks maximize; the expected discounted return, where we deﬁne the discounted return)
+0.89 (Rt; τ; =t γτ−trτ)
+0.60 (we; deﬁne; the discounted return; L:the expected discounted return)
+
+We deﬁne the optimal Q∗(s, a) = maxπ Qπ(s, a).
+0.50 (We; deﬁne; the optimal Q*(s)
+
+To approximate them, we can use a deep Q-network: Q(s, a; θ) with parameters θ.
+0.77 (parameters; θ; )
+0.60 (To approximate them; can use; a deep Q-network)
+
+To estimate this network, we optimize the following sequence of loss functions at iteration i: = r + γ max (5) where θ− represents the parameters of a ﬁxed and separate target network.
+0.45 (we; optimize; the following sequence of loss functions)
+0.83 (r; γ; max)
+0.45 (θ−; represents; the parameters of a ﬁxed and separate target network)
+
+We could attempt to use standard Qlearning to learn the parameters of the network Q(s, a; θ) online.
+0.55 (We; could attempt; to use standard Qlearning to learn the parameters of the network Q(s, a; θ) online)
+0.55 Context(We could attempt):(We; could attempt to use; standard Qlearning; to learn the parameters of the network Q(s, a; θ) online)
+0.43 Context(We could attempt to use):(We; could attempt to use standard Qlearning to learn; the parameters of the network Q; L:a; θ) online)
+
+The sequence of losses thus takes the form We deﬁne another important quantity, the advantage function, relating the value and Q functions: Aπ(s, a) = Qπ(s, a) − V π(s).
+0.91 (The sequence of losses; takes; the form We deﬁne another important quantity, the advantage function, relating the value and Q functions: Aπ(s, a) = Qπ(s, a) − V π(s))
+0.57 (We; deﬁne; another important quantity, the advantage function, relating the value and Q functions)
+
+In this paper, Dueling Network Architectures for Deep Reinforcement Learning we use the improved Double DQN (DDQN) learning algorithm of van Hasselt et al.
+0.64 (we; use; the improved Double DQN; L:In this paper)
+0.94 (the improved Double DQN; learning; algorithm of van Hasselt et al)
+
+To strengthen the claim that our dueling architecture is complementary to algorithmic innovations, we show that it improves performance for both the uniform and the prioritized replay baselines (for which we picked the easier to implement rank-based variant), with the resulting prioritized dueling variant holding the new state-of-the-art.
+0.18 (we; picked; the easier)
+0.39 Context(we picked):(we; picked the easier to implement; rank-based variant)
+0.91 (the resulting prioritized dueling variant; holding; the new state-of-the-art)
+0.72 (our dueling architecture; is; complementary to algorithmic innovations)
+0.21 (we; show; that it improves performance for both the uniform and the prioritized replay baselines (for which we picked the easier to implement rank-based variant), with the resulting prioritized dueling variant holding the new state-of-the-art)
+0.50 Context(we show):(it; improves; performance for both the uniform and the prioritized replay baselines)
+
+The Dueling Network Architecture The key insight behind our new architecture, as illustrated in Figure 2, is that for many states, it is unnecessary to estimate the value of each action choice.
+0.62 (The Dueling Network Architecture The key insight behind our new architecture; is; that for many states, it is unnecessary to estimate the value of each action choice)
+
+To bring this insight to fruition, we design a single Qnetwork architecture, as illustrated in Figure 1, which we refer to as the dueling network.
+0.45 (we; design; a single Qnetwork architecture)
+0.87 (Figure 1; refer; as the dueling network)
+
+However, instead of following the convolutional layers with a single sequence of fully connected layers, we instead use two sequences (or streams) of fully connected layers.
+0.57 (we; instead use; two sequences (or streams) of fully connected layers)
+
+Let us consider the dueling network shown in Figure 1, where we make one stream of fully-connected layers output a scalar V (s; θ, β), and the other stream output an |A|dimensional vector A(s, a; θ, α).
+0.93 (the dueling network; shown; L:in Figure 1)
+0.19 (we; make; )
+
+Using the deﬁnition of advantage, we might be tempted to construct the aggregating module as follows: Q(s, a; θ, α, β) = V (s; θ, β) + A(s, a; θ, α), (7) Note that this expression applies to all (s, a) instances; that is, to express equation (7) in matrix form we need to replicate the scalar, V (s; θ, β), |A| times.
+0.45 (we; might be tempted; to construct the aggregating module)
+0.41 (we; to construct; the aggregating module)
+0.51 (we; need; to replicate the scalar, V (s; θ, β)
+0.39 Context(we need):(we; need to replicate β; the scalar)
+
+However, we need to keep in mind that Q(s, a; θ, α, β) is only a parameterized estimate of the true Q-function.
+0.31 (we; need; to keep in mind that Q(s, a; θ, α, β) is only a parameterized estimate of the true Q-function)
+0.39 Context(we need):(we; need to keep; in mind)
+0.93 Context(we need to keep):(a; θ, α, β; is; only a parameterized estimate of the true Q-function)
+
+Equation (7) is unidentiﬁable in the sense that given Q we cannot recover V and A uniquely.
+0.78 (Equation; is; unidentiﬁable; L:in the sense that given Q we cannot recover V and A uniquely)
+
+To address this issue of identiﬁability, we can force the advantage function estimator to have zero advantage at the chosen action.
+0.45 (we; can force; the advantage function estimator; to have zero advantage at the chosen action)
+0.92 (the advantage function estimator; to have; zero advantage; L:at the chosen action)
+
+That is, we let the last module of the network implement the forward mapping Q(s, a; θ, α, β) = V (s; θ, β) + A(s, a; θ, α) − max a(cid:48)∈|A| A(s, a(cid:48); θ, α) Dueling Network Architectures for Deep Reinforcement Learning for a∗ = arg maxa(cid:48)∈A Q(s, a(cid:48); θ, α, β) = Now, arg maxa(cid:48)∈A A(s, a(cid:48); θ, α), we obtain Q(s, a∗; θ, α, β) = V (s; θ, β).
+0.50 (we; obtain; Q)
+
+We also experimented with a softmax version of equation (8), but found it to deliver similar results to the simpler module of equation (9).
+0.41 (We; experimented; with a softmax version of equation)
+0.33 (We; found; it to deliver similar results to the simpler module of equation)
+0.40 Context(We found):(it; to deliver; similar results; to the simpler module of equation)
+
+As the dueling architecture shares the same input-output interface with standard Q networks, we can recycle all learning algorithms with Q networks (e.g., DDQN and SARSA) to train the dueling architecture.
+0.74 (we; can recycle; all learning algorithms with Q networks; T:As the dueling architecture shares the same input-output interface with standard Q networks)
+
+Experiments We now show the practical performance of the dueling network.
+0.62 (We; show; the practical performance of the dueling network; T:now)
+
+We start with a simple policy evaluation task and then show larger scale results for learning policies for general Atari game-playing.
+0.52 (We; start; with a simple policy evaluation task)
+0.76 (We; show; larger scale results for learning policies for general Atari game-playing; T:then)
+
+We start by measuring the performance of the dueling architecture on a policy evaluation task.
+0.20 (We; start; )
+0.51 Context(We start):(We; start by measuring; the performance of the dueling architecture on a policy evaluation task)
+
+We choose this particular task because it is very useful for evaluating network architectures, as it is devoid of confounding factors such as the choice of exploration strategy, and the interaction between policy improvement and policy evaluation.
+0.42 (We; choose; this particular task; because it is very useful for evaluating network architectures, as it is devoid of confounding factors such as the choice of exploration strategy, and the interaction between policy improvement and policy evaluation)
+0.52 (it; is; very useful for evaluating network architectures)
+0.64 (it; is; devoid of confounding factors such as the choice of exploration strategy, and the interaction between policy improvement and policy evaluation)
+
+In this experiment, we employ temporal difference learning (without eligibility traces, i.e., λ = 0) to learn Q values.
+0.53 (we; employ; temporal difference learning (without eligibility traces; L:In this experiment)
+0.33 Context(we employ):(we; employ temporal difference learning (without eligibility traces to learn; Q values)
+
+More speciﬁcally, given a behavior policy π, we seek to estimate the state-action value Qπ(·,·) by optimizing the sequence of costs of equation (4), with target yi = r + γEa(cid:48)∼π(s(cid:48)) [Q(s(cid:48), a(cid:48); θi)] .
+
+We, however, do not modify the behavior policy as in Expected SARSA.
+0.41 (We; do not modify; the behavior policy)
+
+To evaluate the learned Q values, we choose a simple environment where the exact Qπ(s, a) values can be computed separately for all (s, a) ∈ S ×A.
+0.61 (we; choose; a simple environment where the exact Qπ(s, a) values can be computed separately for all (s, a) ∈ S ×A.)
+0.71 (values; can be computed separately; )
+
+This environment, which we call the corridor is composed of three connected corridors.
+0.91 (This environment; call; the corridor)
+0.76 (This environment, which we call the corridor; is composed; of three connected corridors)
+
+We also have the freedom of adding an arbitrary number of no-op actions.
+0.53 (We; have; the freedom of adding an arbitrary number of no-op actions)
+
+In our setup, the two vertical sections both have 10 states while the horizontal section has 50.
+0.90 (the two vertical sections; have; 10 states; T:while the horizontal section has 50; L:In our setup)
+0.83 (the horizontal section; has; 50)
+
+We use an -greedy policy as the behavior policy π, which chooses a random action with probability  or an action according to the optimal Q function arg maxa∈A Q∗(s, a) with probability 1 − .
+0.45 (We; use; an -greedy policy; as the behavior policy π)
+0.95 (the behavior policy π; chooses; a random action with probability  or an action according to the optimal Q function arg)
+
+In our experiments,  is chosen to be 0.001.
+
+We compare a single-stream Q architecture with the dueling architecture on three variants of the corridor environment with 5, 10 and 20 actions respectively.
+0.61 (We; compare; a single-stream Q architecture; with the dueling architecture on three variants of the corridor environment with 5, 10 and 20 actions respectively)
+
+We measure performance by Squared Error s∈S,a∈A(Q(s, a; θ) − Qπ(s, a))2.
+0.50 (We; measure; performance by Squared Error s∈S)
+
+The results of the comparison are summarized in  However, when we increase the number of actions, the dueling architecture performs better than the traditional Q-network.
+0.45 (we; increase; the number of actions)
+
+This is a very promising result because many control tasks with large action spaces have this property, and consequently we should expect that the dueling network will often lead to much faster convergence than a traditional single stream network.
+0.21 (This; is; a very promising result; because many control tasks with large action spaces have this property, and consequently we should expect that the dueling network will often lead to much faster convergence than a traditional single stream network)
+0.94 (many control tasks with large action spaces; have; this property)
+
+In the following section, we will indeed see that the dueling network results in substantial gains in performance in a wide-range of Atari games.
+0.55 (we; will indeed see; L:In the following section)
+
+We perform a comprehensive evaluation of our proposed method on the Arcade Learning Environment (Bellemare et al., 2013), which is composed of 57 Atari games.
+0.46 (We; perform; a comprehensive evaluation of our proposed method on the Arcade Learning Environment (Bellemare et al., 2013)
+
+We follow closely the setup of van Hasselt et al.
+0.50 (We; follow closely; the setup of van Hasselt et al)
+
+We train the dueling network with the DDQN algorithm as presented in Appendix A.
+0.61 (We; train; the dueling network with the DDQN algorithm as presented in Appendix A.)
+
+At the end of this section, we incorporate prioritized experience replay (Schaul et al., 2016).
+0.60 (we; incorporate; prioritized experience replay; T:At the end of this section)
+
+Our network architecture has the same low-level convolutional structure of DQN (Mnih et al., 2015; van Hasselt et al., 2015).
+0.83 (Our network architecture; has; the same low-level convolutional structure of DQN (Mnih et al)
+
+We combine the value and advantage streams using the module described by Equation (9).
+0.45 (We; combine; the value and advantage streams using the module)
+0.92 (the module; described; by Equation (9)
+
+We adopt the optimizers and hyper-parameters of van Hasselt et al.
+0.61 (We; adopt; the optimizers and hyper-parameters of van Hasselt et al)
+
+(2015), with the exception of the learning rate which we chose to be slightly lower (we do not do this for double DQN as it can deteriorate its performance).
+0.75 (the learning rate; chose; to be slightly lower)
+0.75 (the learning rate; to be; slightly lower)
+0.35 (we; do not do; this; for double DQN; as it can deteriorate its performance)
+0.31 (it; can deteriorate; its performance)
+
+Since both the advantage and the value stream propagate gradients to the last convolutional layer in the backward pass, we rescale the combined gradient entering the last convolutional layer by 1/ 2.
+
+In addition, we clip the gradients to have their norm less than or equal to 10.
+0.42 (we; clip; the gradients to have their norm less than or equal to 10)
+0.80 Context(we clip):(the gradients; to have; their norm less than or equal to 10)
+
+To isolate the contributions of the dueling architecture, we re-train DDQN with a single stream network using exactly the same procedure as described above.
+0.50 (we; re-train; DDQN)
+0.92 (a single stream network; using; exactly the same procedure)
+
+Speciﬁcally, we apply gradient clipping, and use 1024 hidden units for the ﬁrst fully-connected layer of the network so that both architectures (dueling and single) have roughly the same number of parameters.
+0.45 (we; apply; gradient clipping)
+0.53 (we; use; 1024 hidden units for the ﬁrst fully-connected layer of the network)
+0.70 (both architectures; dueling; )
+
+We refer to this re-trained model as Single Clip, while the original trained model of van Hasselt et al.
+0.45 (We; refer; to this re-trained model as Single Clip)
+
+As in (van Hasselt et al., 2015), we start the game with up to 30 no-op actions to provide random starting positions for the agent.
+0.52 (we; start; the game; with up to 30 no-op actions)
+
+To evaluate our approach, we measure improvement in percentage (positive or negative) in score over the better of human and baseline agent scores: We took the maximum over human and baseline agent scores as it prevents insigniﬁcant changes to appear as 2The number of actions ranges between 3-18 actions in the 103104No.
+0.77 (2The number of actions; ranges; )
+0.26 (We; took; the maximum; over human and baseline agent scores; T:as it prevents insigniﬁcant changes to appear)
+0.39 Context(We took):(we; measure; improvement in percentage)
+0.45 (it; prevents; insigniﬁcant changes)
+0.95 (insigniﬁcant changes; to appear; T:as 2The number of actions ranges between 3-18 actions in the 103104No)
+
+Overall, our agent (Duel Clip) achieves human level performance on 42 out of 57 games.
+
+To obtain a more robust measure, we adopt the methodology of Nair et al.
+0.50 (we; adopt; the methodology of Nair et al)
+
+Speciﬁcally, for each game, we use 100 starting points sampled from a human expert’s trajectory.
+0.93 (for each game; use; 100 starting points sampled from a human expert's trajectory)
+0.75 (100 starting points; sampled; )
+
+We refer to this metric as Human Starts.
+0.50 (We; refer; to this metric; T:as Human Starts)
+0.82 (Human; Starts; )
+
+In particular, our agent does better than the Single baseline on 70.2% (40 out of 57) games and on games of 18 actions, Duel Clip is 83.3% better (25 out of 30).
+0.93 (Duel Clip; is; 83.3% better (25 out of 30)
+0.65 Context(Duel Clip is):(our agent; does better; T:on 70.2% (40 out of 57) games and on games of 18 actions)
+
+So in our ﬁnal experiment, we investigate the integration of the dueling architecture with prioritized experience replay.
+0.56 (we; investigate; the integration of the dueling architecture with prioritized experience replay; L:in our ﬁnal experiment)
+
+We use the prioritized variant of DDQN (Prior.
+0.49 (We; use Prior; the prioritized variant of DDQN)
+
+We also chose not to measure performance in terms of percentage of human performance alone because a tiny difference relative to the baseline on some games can translate into hundreds of percent in human performance difference.
+0.95 (a tiny difference relative to the baseline on some games; can translate; into hundreds of percent in human performance difference)
+0.46 (We; chose; not to measure performance in terms of percentage of human performance alone because a tiny difference relative to the baseline on some games can translate into hundreds of percent in human performance difference)
+0.35 Context(We chose):(We; chose not to measure; performance; in terms of percentage of human performance alone)
+
+For comparison we also show results for the deep Q-network of Mnih et al.
+0.64 (we; show; results for the deep Q-network of Mnih et al)
+
+Again, we seen that the improvements are often very dramatic.
+0.29 (we; seen; that the improvements are often very dramatic; T:Again)
+0.72 Context(we seen):(the improvements; are; T:often; very dramatic)
+
+We veriﬁed that this gain was mostly brought in by gradient clipping.
+0.28 (We; veriﬁed; that this gain was mostly brought in by gradient clipping)
+0.88 Context(We veriﬁed):(this gain; was mostly brought; in; by gradient clipping)
+
+For this reason, we incorporate gradient clipping in all the new approaches.
+0.45 (we; incorporate; gradient clipping; in all the new approaches)
+
+To better understand the roles of the value and the advantage streams, we compute saliency maps (Simonyan et al., 2013).
+0.45 (we; compute; saliency maps)
+
+More speciﬁcally, to visualize the salient part of the image as seen by the value stream, we compute the absolute value of the Jacobian of (cid:98)V with respect to the input frames: |∇s(cid:98)V (s; θ)|.
+0.61 (we; compute; the absolute value of the Jacobian of (cid:98)V)
+
+Similarly, to visutage stream, we compute |∇s(cid:98)A(s, arg maxa(cid:48) (cid:98)A(s, a(cid:48)); θ)|.
+0.41 (we; compute; ∇s)
+
+We keep all the parameters of the prioritized replay as described in (Schaul et al., 2016), namely a priority exponent of 0.7, and an annealing schedule on the importance sampling exponent from 0.5 to 1.
+0.45 (We; keep; all the parameters of the prioritized replay)
+0.73 (the importance; sampling; )
+
+We combine this baseline with our dueling architecture (as above), and again use gradient clipping (Prior.
+0.31 (We; combine; this baseline; with our dueling architecture (as above)
+0.22 (We; use Prior; T:again)
+
+To avoid adverse interactions, we roughly re-tuned the learning rate and the gradient clipping norm on a subset of 9 games.
+0.57 (we; roughly re-tuned; the learning rate and the gradient clipping norm on a subset of 9 games)
+0.89 (gradient; clipping; norm on a subset of 9 games)
+
+As a result of rough tuning, we settled on 6.25× 10−5 for the learning rate and 10 for the gradient clipping norm (the same as in the previous section).
+0.57 (we; settled; on 6.25× 10−5; for the learning rate and 10 for the gradient clipping norm)
+
+When evaluated on all 57 Atari games, our prioritized dueling agent performs signiﬁcantly better than both the prioritized baseline agent and the dueling agent alone.
+0.79 (our prioritized dueling agent; performs signiﬁcantly better; T:When evaluated on all 57 Atari games)
+
+When initializing the games using up to 30 no-ops action, we observe mean and median scores of 591% and 172% respectively.
+0.44 (we; observe respectively; T:When initializing the games)
+
+Here, we place the gray scale input frames in the green and blue channel and the saliency maps in the red channel.
+0.60 (we; place; the gray scale input frames; in the green and blue channel; L:Here)
+
+This more frequent updating of the value stream in our approach allocates more resources to V , and thus allows for better approximation of the state values, which in turn need to be accurate for temporaldifference-based methods like Q-learning to work (Sutton & Barto, 1998).
+0.81 (This more frequent updating of the value stream in our approach; allocates; more resources; to V)
+0.90 (the state values; need; to be accurate for temporaldifference-based methods like)
+0.90 (the state values; to be; accurate for temporaldifference-based methods like)
+
+Conclusions We introduced a new neural network architecture that decouples value and advantage in deep Q-networks, while sharing a common feature learning module
+0.93 (a new neural network architecture; decouples; value and advantage; L:in deep Q-networks)
+0.44 (We; introduced; a new neural network architecture that decouples value and advantage in deep Q-networks; T:Conclusions)
+0.29 Context(We introduced):(We; introduced a new neural network architecture that decouples value and advantage in deep Q-networks sharing; a common feature learning module)
+

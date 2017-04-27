@@ -1,0 +1,63 @@
+The paper  |  uses  | normalization
+The paper  |  uses  | inputs
+The paper  |  uses  | neurons
+The paper  |  uses  | layer
+The paper  |  uses  | single training case
+The paper  |  uses  | normalization from all of the summed inputs to the neurons in a layer on a single training case
+The paper  |  uses  | layer normalization method
+The paper  |  uses  | drawbacks
+The paper  |  uses  | batch normalization
+The paper  |  uses  | layer normalization method which is designed to overcome the drawbacks of batch normalization
+The paper  |  outputs  | drawbacks
+The paper  |  outputs  | batch normalization
+The paper  |  outputs  | drawbacks of batch normalization
+The paper  |  uses  | batch normalization
+The paper  |  uses  | rnn
+The paper  |  uses  | batch normalization to an rnn
+The paper  |  uses  | normalization methods
+The paper  |  uses  | inputs
+The paper  |  uses  | normalization methods to the summed inputs
+The paper  |  uses  | layer normalization
+The paper  |  uses  | order-embeddings model
+The paper  |  uses  | al
+The paper  |  uses  | layer normalization to the recently proposed order-embeddings model of vendrov et al
+The paper  |  outputs  | al
+The paper  |  uses  | cooijmans
+The paper  |  uses  | al
+The paper  |  uses  | cooijmans et al
+The paper  |  uses  | layer normalization
+The paper  |  uses  | lstm
+The paper  |  uses  | layer normalization within the lstm
+The paper  |  uses  | former model
+The paper  |  uses  | l
+The paper  |  uses  | kiros
+The paper  |  uses  | al
+The paper  |  uses  | l : in kiros et al
+The paper  |  uses  | cnmem
+The paper  |  uses  | performance rate
+The paper  |  uses  | ln
+The paper  |  uses  | performance rate can be improved with ln
+The paper  |  uses  | draw
+The paper  |  uses  | ﬁxed binarization
+The paper  |  uses  | larochelle
+The paper  |  uses  | murray [
+The paper  |  uses  | ﬁxed binarization from larochelle and murray [
+The paper  |  uses  | iam online
+The paper  |  uses  | database
+The paper  |  uses  | iam online handwriting database
+The paper  |  uses  | same model architecture
+The paper  |  uses  | section
+The paper  |  uses  | graves
+The paper  |  uses  | same model architecture as in section ( 5.2 ) of graves
+The paper  |  uses  | layer normalization
+The paper  |  uses  | fully-connected hidden layers
+The paper  |  uses  | layer normalization to the fully-connected hidden layers
+The paper  |  outputs  | layer normalization
+The paper  |  outputs  | speed-up
+The paper  |  outputs  | layer normalization to speed-up
+The paper  |  outputs  | theoretical analysis
+The paper  |  outputs  | invariance properties
+The paper  |  outputs  | layer normalization
+The paper  |  outputs  | batch normalization
+The paper  |  outputs  | weight normalization
+The paper  |  outputs  | theoretical analysis that compared the invariance properties of layer normalization with batch normalization and weight normalization

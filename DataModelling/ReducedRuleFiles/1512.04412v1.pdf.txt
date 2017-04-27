@@ -1,0 +1,124 @@
+The paper  |  outputs  | multitask network cascades
+The paper  |  outputs  | instance-aware semantic segmentation
+The paper  |  outputs  | multitask network cascades for instance-aware semantic segmentation
+The paper  |  outputs  | state-of-the-art instance-aware semantic segmentation accuracy
+The paper  |  outputs  | object detection results
+The paper  |  outputs  | competitive fast/faster r-cnn
+The paper  |  outputs  | systems
+The paper  |  outputs  | object detection results which surpass the competitive fast/faster r-cnn systems
+The paper  |  outputs  | l
+The paper  |  outputs  | paper
+The paper  |  outputs  | l : in this paper
+The paper  |  solves  | multi-task network cascades
+The paper  |  solves  | accurate
+The paper  |  solves  | fast instanceaware semantic
+The paper  |  solves  | segmentation
+The paper  |  solves  | multi-task network cascades for accurate and fast instanceaware semantic segmentation
+The paper  |  outputs  | 1st-place result
+The paper  |  outputs  | coco segmentation track
+The paper  |  outputs  | ilsvrc
+The paper  |  outputs  | coco
+The paper  |  outputs  | competitions
+The paper  |  outputs  | 1st-place result in the coco segmentation track in ilsvrc & coco 2015 competitions
+The paper  |  outputs  | excellent accuracy
+The paper  |  outputs  | ms coco segmentation dataset
+The paper  |  outputs  | excellent accuracy on the challenging ms coco segmentation dataset
+The paper  |  outputs  | deep 101-layer residual net
+The paper  |  outputs  | deﬁnition
+The paper  |  outputs  | stage
+The paper  |  outputs  | deﬁnition for each stage
+The paper  |  outputs  | end-to-end training algorithm
+The paper  |  outputs  | causal dependency
+The paper  |  outputs  | end-to-end training algorithm to address the causal dependency
+The paper  |  uses  | rpn loss function
+The paper  |  uses  | box-based pathway
+The paper  |  uses  | roi
+The paper  |  uses  | features
+The paper  |  uses  | box-based pathway , where the roi pooled features
+The paper  |  uses  | terms
+The paper  |  uses  | f
+The paper  |  uses  | full-image convolutional feature map
+The paper  |  uses  | f to denote the full-image convolutional feature map
+The paper  |  uses  | full-image convolutional feature map
+The paper  |  uses  | ∂bi
+The paper  |  uses  | ∂xi
+The paper  |  uses  | ∂yi
+The paper  |  uses  | ∂wi
+The paper  |  uses  | ∂bi to denote ∂xi , ∂yi , ∂wi
+The paper  |  outputs  | ﬁne resolution
+The paper  |  outputs  | w
+The paper  |  outputs  | cid:48
+The paper  |  outputs  | × h
+The paper  |  outputs  | cid:48
+The paper  |  outputs  | ×
+The paper  |  outputs  | paper
+The paper  |  outputs  | ﬁne resolution , which is set as w ( cid:48 ) × h ( cid:48 ) = 28 × 28 in this paper
+The paper  |  uses  | non-maximum suppression
+The paper  |  uses  | redundant candidates
+The paper  |  uses  | non-maximum suppression to reduce redundant candidates
+The paper  |  uses  | redundant candidates
+The paper  |  uses  | same nms strategy
+The paper  |  uses  | proposals
+The paper  |  uses  | stage
+The paper  |  uses  | same nms strategy to produce 300 proposals for stage
+The paper  |  outputs  | proposals
+The paper  |  outputs  | stage
+The paper  |  outputs  | proposals for stage
+The paper  |  uses  | sets
+The paper  |  uses  | positive/negative samples
+The paper  |  uses  | sets of positive/negative samples
+The paper  |  uses  | imagenet
+The paper  |  uses  | models
+The paper  |  uses  | vgg-16 [
+The paper  |  uses  | ]
+The paper  |  uses  | convolutional layers
+The paper  |  uses  | corresponding 4096-d fc layers
+The paper  |  uses  | imagenet pretrained models e.g. , vgg-16 [ 27 ] ) to initialize the shared convolutional layers and the corresponding 4096-d fc layers
+The paper  |  uses  | highest scored category
+The paper  |  uses  | bounding box regressor
+The paper  |  uses  | highest scored category 's bounding box regressor
+The paper  |  outputs  | good trade-off
+The paper  |  outputs  | speed
+The paper  |  outputs  | good trade-off on speed
+The paper  |  uses  | 5-stage inference
+The paper  |  uses  | 5-stage trained structures
+The paper  |  uses  | 5-stage inference for both 3-stage and 5-stage trained structures
+The paper  |  uses  | nms
+The paper  |  uses  | l
+The paper  |  uses  | recent papers
+The paper  |  uses  | l : in recent papers
+The paper  |  uses  | segmentation annotations
+The paper  |  uses  | training
+The paper  |  uses  | evaluation
+The paper  |  uses  | segmentation annotations for training and evaluation
+The paper  |  uses  | iou thresholds
+The paper  |  outputs  | proposals
+The paper  |  outputs  | later stages
+The paper  |  outputs  | proposals that are used by later stages
+The paper  |  uses  | later stages
+The paper  |  uses  | zf
+The paper  |  outputs  | mapr
+The paper  |  uses  | experiments
+The paper  |  uses  | external region proposal
+The paper  |  uses  | region proposal step
+The paper  |  uses  | sds
+The paper  |  uses  | hypercolumn
+The paper  |  uses  | cfm costs
+The paper  |  uses  | external region proposal method whereas the region proposal step in sds , hypercolumn , and cfm costs
+The paper  |  uses  | convolutional features
+The paper  |  uses  | sub-tasks
+The paper  |  uses  | avoids
+The paper  |  uses  | convolutional features for the three sub-tasks and avoids
+The paper  |  outputs  | object detection
+The paper  |  uses  | trainval images
+The paper  |  uses  | results
+The paper  |  uses  | test-dev set
+The paper  |  uses  | trainval images to train , and report the results on the test-dev set
+The paper  |  outputs  | results
+The paper  |  outputs  | test-dev set
+The paper  |  outputs  | results on the test-dev set
+The paper  |  outputs  | %
+The paper  |  outputs  | multi-task network cascades
+The paper  |  outputs  | fast
+The paper  |  outputs  | accurate instance segmentation
+The paper  |  outputs  | multi-task network cascades for fast and accurate instance segmentation

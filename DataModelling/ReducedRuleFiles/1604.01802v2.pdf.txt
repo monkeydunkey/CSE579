@@ -1,0 +1,206 @@
+The paper  |  solves  | method
+The paper  |  solves  | oﬄine training
+The paper  |  solves  | neural networks
+The paper  |  solves  | method for oﬄine training of neural networks
+The paper  |  uses  | neural networks
+The paper  |  uses  | tracking
+The paper  |  uses  | real-time applications
+The paper  |  uses  | neural networks for tracking , which are typically very slow to run and not practical for real-time applications
+The paper  |  uses  | simple feed-forward network
+The paper  |  uses  | online training
+The paper  |  uses  | simple feed-forward network with no online training
+The paper  |  outputs  | tracker
+The paper  |  outputs  | state-of-the-art performance
+The paper  |  outputs  | tracker 's state-of-the-art performance
+The paper  |  outputs  | goturn
+The paper  |  outputs  | regression networks
+The paper  |  uses  | regression-based approach
+The paper  |  uses  | single feed-forward pass
+The paper  |  uses  | network
+The paper  |  uses  | location
+The paper  |  uses  | target object
+The paper  |  uses  | single feed-forward pass through the network to regresses directly to the location of the target object
+The paper  |  uses  | standard tracking benchmark
+The paper  |  uses  | tracker
+The paper  |  uses  | state-of-the-art trackers
+The paper  |  uses  | standard tracking benchmark to demonstrate that our tracker outperforms state-of-the-art trackers
+The paper  |  outputs  | tracker
+The paper  |  outputs  | state-of-the-art trackers
+The paper  |  outputs  | tracker outperforms state-of-the-art trackers
+The paper  |  uses  | class-level labeling
+The paper  |  uses  | information
+The paper  |  uses  | types
+The paper  |  uses  | objects
+The paper  |  uses  | class-level labeling or information about the types of objects
+The paper  |  uses  | l
+The paper  |  uses  | http
+The paper  |  uses  | //davheld.github.io/goturn/goturn.html
+The paper  |  uses  | l : at http : //davheld.github.io/goturn/goturn.html
+The paper  |  uses  | novel objects
+The paper  |  uses  | test time
+The paper  |  uses  | novel objects at test time
+The paper  |  uses  | novel objects
+The paper  |  uses  | test time
+The paper  |  uses  | online training
+The paper  |  uses  | novel objects at test time with no online training
+The paper  |  outputs  | search region
+The paper  |  outputs  | current frame
+The paper  |  outputs  | object
+The paper  |  outputs  | previous location
+The paper  |  outputs  | search region in our current frame based on the object 's previous location
+The paper  |  uses  | k1
+The paper  |  uses  | other tasks
+The paper  |  outputs  | output
+The paper  |  outputs  | box
+The paper  |  outputs  | output bounding box
+The paper  |  uses  | dropout
+The paper  |  uses  | non-linearities
+The paper  |  uses  | caﬀenet
+The paper  |  uses  | dropout and relu non-linearities as in caﬀenet
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  uses  | l
+The paper  |  uses  | training videos
+The paper  |  uses  | l : in our training videos
+The paper  |  uses  | laplace distribution
+The paper  |  uses  | mean
+The paper  |  uses  | details
+The paper  |  uses  | laplace distribution with a mean of 0 ( see appendix for details
+The paper  |  uses  | size changes
+The paper  |  uses  | w
+The paper  |  uses  | cid:48
+The paper  |  uses  | w · γw h
+The paper  |  uses  | cid:48
+The paper  |  uses  | = h · γh
+The paper  |  uses  | w
+The paper  |  uses  | cid:48
+The paper  |  uses  | h
+The paper  |  uses  | cid:48
+The paper  |  uses  | current width
+The paper  |  uses  | height
+The paper  |  uses  | bounding box
+The paper  |  uses  | w
+The paper  |  uses  | h
+The paper  |  uses  | previous width
+The paper  |  uses  | height
+The paper  |  uses  | bounding box
+The paper  |  uses  | size changes by w ( cid:48 ) = w · γw h ( cid:48 ) = h · γh ( 4 ) where w ( cid:48 ) and h ( cid:48 ) are the current width and height of the bounding box and w and h are the previous width and height of the bounding box
+The paper  |  outputs  | l
+The paper  |  outputs  | above
+The paper  |  outputs  | figures
+The paper  |  outputs  | examples
+The paper  |  outputs  | l : above ( see figures 3 and 4 for examples
+The paper  |  uses  | l
+The paper  |  uses  | classiﬁcation tasks
+The paper  |  uses  | l : in classiﬁcation tasks
+The paper  |  uses  | video training example
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  outputs  | l
+The paper  |  outputs  | above
+The paper  |  outputs  | l : above
+The paper  |  outputs  | motions
+The paper  |  outputs  | sections
+The paper  |  outputs  | motions '' ( see sections
+The paper  |  uses  | k3
+The paper  |  uses  | batch size
+The paper  |  uses  | combination
+The paper  |  uses  | videos
+The paper  |  uses  | images
+The paper  |  uses  | combination of videos and still images
+The paper  |  uses  | training
+The paper  |  uses  | entire training set
+The paper  |  uses  | training
+The paper  |  outputs  | tracker
+The paper  |  outputs  | good robustness
+The paper  |  outputs  | performs
+The paper  |  outputs  | top
+The paper  |  outputs  | accuracy
+The paper  |  outputs  | tracker has good robustness and performs near the top in accuracy
+The paper  |  outputs  | value
+The paper  |  outputs  | oﬄine training
+The paper  |  outputs  | performance
+The paper  |  outputs  | value of oﬄine training for improving tracking performance
+The paper  |  uses  | l
+The paper  |  uses  | case
+The paper  |  uses  | l : in each case
+The paper  |  uses  | single feed
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  uses  | l
+The paper  |  uses  | training
+The paper  |  uses  | l : in our training
+The paper  |  uses  | tracker
+The paper  |  outputs  | tracker
+The paper  |  outputs  | novel objects
+The paper  |  outputs  | tracker can track novel objects
+The paper  |  outputs  | generic object tracker oﬄine such
+The paper  |  outputs  | performance improves
+The paper  |  outputs  | more training videos
+The paper  |  outputs  | generic object tracker oﬄine such that its performance improves by watching more training videos
+The paper  |  uses  | crossvalidation
+The paper  |  uses  | online
+The paper  |  uses  | rate
+The paper  |  uses  | crossvalidation to choose the online learning rate
+The paper  |  uses  | online learning rate
+The paper  |  outputs  | same performance demonstrating
+The paper  |  outputs  | oﬄine training procedure
+The paper  |  outputs  | network
+The paper  |  outputs  | variety
+The paper  |  outputs  | objects
+The paper  |  outputs  | same performance demonstrating that our oﬄine training procedure has already taught the network how to track a variety of objects
+The paper  |  outputs  | oﬄine training procedure
+The paper  |  outputs  | network
+The paper  |  outputs  | variety
+The paper  |  outputs  | objects
+The paper  |  outputs  | oﬄine training procedure has already taught the network how to track a variety of objects
+The paper  |  outputs  | performance
+The paper  |  uses  | l
+The paper  |  uses  | training set
+The paper  |  uses  | l : in the training set
+The paper  |  outputs  | tracker
+The paper  |  outputs  | novel objects
+The paper  |  outputs  | tracker can generalize to novel objects
+The paper  |  outputs  | same performance demonstrating
+The paper  |  outputs  | oﬄine training procedure
+The paper  |  outputs  | network
+The paper  |  outputs  | variety
+The paper  |  outputs  | objects
+The paper  |  outputs  | same performance demonstrating that our oﬄine training procedure has already taught the network how to track a variety of objects
+The paper  |  outputs  | oﬄine training procedure
+The paper  |  outputs  | network
+The paper  |  outputs  | variety
+The paper  |  outputs  | objects
+The paper  |  outputs  | oﬄine training procedure has already taught the network how to track a variety of objects
+The paper  |  uses  | tracker
+The paper  |  outputs  | random cropping
+The paper  |  outputs  | idea
+The paper  |  outputs  | small motions
+The paper  |  outputs  | large motions
+The paper  |  outputs  | random cropping to implicitly encode the idea that small motions are more likely than large motions
+The paper  |  uses  | random
+The paper  |  uses  | idea
+The paper  |  uses  | small motions
+The paper  |  uses  | large motions
+The paper  |  uses  | random cropping to implicitly encode the idea that small motions are more likely than large motions
+The paper  |  uses  | idea
+The paper  |  uses  | small motions
+The paper  |  uses  | large motions
+The paper  |  uses  | idea that small motions are more likely than large motions
+The paper  |  uses  | l
+The paper  |  uses  | training set
+The paper  |  uses  | l : in the training set
+The paper  |  uses  | laplace distributions
+The paper  |  uses  | random
+The paper  |  uses  | procedure
+The paper  |  uses  | laplace distributions for our random cropping procedure
+The paper  |  uses  | validation
+The paper  |  uses  | scale parameters
+The paper  |  uses  | distributions
+The paper  |  uses  | validation set to determine the scale parameters for the distributions
+The paper  |  outputs  | batch
+The paper  |  outputs  | training set
+The paper  |  outputs  | batch of the training set

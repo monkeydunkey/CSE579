@@ -1,0 +1,147 @@
+The paper  |  uses  | goal-driven reinforcement
+The paper  |  uses  | problem
+The paper  |  uses  | auxiliary depth prediction
+The paper  |  uses  | loop closure classiﬁcation tasks
+The paper  |  uses  | goal-driven reinforcement learning problem with auxiliary depth prediction and loop closure classiﬁcation tasks
+The paper  |  outputs  | detailed analysis
+The paper  |  outputs  | agent behaviour1
+The paper  |  outputs  | detailed analysis of the agent behaviour1
+The paper  |  solves  | navigational abilities
+The paper  |  solves  | by-product
+The paper  |  solves  | agent
+The paper  |  solves  | navigational abilities could emerge as the by-product of an agent
+The paper  |  outputs  | denser training signals
+The paper  |  outputs  | navigation-relevant representation learning
+The paper  |  outputs  | denser training signals that support navigation-relevant representation learning
+The paper  |  uses  | additional losses
+The paper  |  uses  | ﬁrst
+The paper  |  uses  | reconstruction
+The paper  |  uses  | low-dimensional depth map
+The paper  |  uses  | time
+The paper  |  uses  | additional losses : the ﬁrst one involves reconstruction of a low-dimensional depth map at each time
+The paper  |  outputs  | accelerated learning
+The paper  |  outputs  | performance
+The paper  |  outputs  | agent architecture
+The paper  |  outputs  | accelerated learning and increased performance of the proposed agent architecture
+The paper  |  outputs  | detailed analysis
+The paper  |  outputs  | trained agent
+The paper  |  outputs  | detailed analysis of the trained agent
+The paper  |  outputs  | critical navigation skills
+The paper  |  solves  | ambiguous observations
+The paper  |  uses  | multiple objectives
+The paper  |  uses  | l
+The paper  |  uses  | work
+The paper  |  uses  | l : in this work
+The paper  |  uses  | two-layer stacked lstm
+The paper  |  uses  | convolutional encoder
+The paper  |  uses  | two-layer stacked lstm after the convolutional encoder
+The paper  |  outputs  | context
+The paper  |  outputs  | second layer
+The paper  |  outputs  | context to the second layer
+The paper  |  uses  | depth
+The paper  |  uses  | convolutional layer
+The paper  |  uses  | depth from the convolutional layer
+The paper  |  uses  | depth
+The paper  |  uses  | convolutional layer
+The paper  |  uses  | depth from the convolutional layer
+The paper  |  uses  | input
+The paper  |  uses  | low resolution variant
+The paper  |  uses  | depth map
+The paper  |  uses  | low resolution variant of the depth map
+The paper  |  uses  | classiﬁcation loss
+The paper  |  uses  | depth
+The paper  |  uses  | position
+The paper  |  uses  | different bands
+The paper  |  uses  | classiﬁcation loss , where depth at each position is discretised into 8 different bands
+The paper  |  uses  | large map
+The paper  |  uses  | learning
+The paper  |  uses  | technique
+The paper  |  uses  | learning , technique
+The paper  |  uses  | l
+The paper  |  uses  | work
+The paper  |  uses  | l : in this work
+The paper  |  uses  | asterisk
+The paper  |  uses  | agent name
+The paper  |  uses  | asterisk to the agent name
+The paper  |  uses  | classiﬁcation formulation
+The paper  |  uses  | other results4
+The paper  |  uses  | classiﬁcation formulation in all our other results4
+The paper  |  outputs  | results
+The paper  |  outputs  | loop closure prediction task
+The paper  |  outputs  | results from the loop closure prediction task
+The paper  |  uses  | t
+The paper  |  uses  | ﬁrst
+The paper  |  uses  | t : ﬁrst
+The paper  |  solves  | goal
+The paper  |  solves  | goal
+The paper  |  solves  | efﬁcient route
+The paper  |  solves  | subsequent re-spawns
+The paper  |  solves  | goal , and reliably return the goal via an efﬁcient route after subsequent re-spawns
+The paper  |  uses  | tsne dimension reduction
+The paper  |  uses  | cell activations
+The paper  |  uses  | tsne dimension reduction to the cell activations
+The paper  |  outputs  | al
+The paper  |  outputs  | comparison
+The paper  |  outputs  | reward prediction
+The paper  |  outputs  | depth prediction
+The paper  |  outputs  | comparison of reward prediction against depth prediction
+The paper  |  uses  | replay buffer
+The paper  |  uses  | a3c*+r
+The paper  |  uses  | replay buffer , called nav a3c*+r
+The paper  |  outputs  | auc
+The paper  |  outputs  | area
+The paper  |  outputs  | curve
+The paper  |  outputs  | hyperparameters
+The paper  |  outputs  | auc ( area under learning curve ) , averaged over the best 5 hyperparameters
+The paper  |  solves  | deep rl method
+The paper  |  uses  | behavior
+The paper  |  uses  | trained agents
+The paper  |  uses  | order
+The paper  |  uses  | behavior of trained agents in order
+The paper  |  outputs  | class
+The paper  |  outputs  | neural network-based agents
+The paper  |  outputs  | class of neural network-based agents
+The paper  |  uses  | ﬂag-based system
+The paper  |  uses  | gradient updates
+The paper  |  uses  | a3c reinforcement learning procedure
+The paper  |  uses  | ﬂag-based system to subordinate gradient updates to the a3c reinforcement learning procedure
+The paper  |  uses  | gradient updates
+The paper  |  uses  | a3c reinforcement
+The paper  |  uses  | procedure
+The paper  |  uses  | gradient updates to the a3c reinforcement learning procedure
+The paper  |  uses  | encoder model
+The paper  |  uses  | convolutional layers
+The paper  |  uses  | encoder model with 2 convolutional layers
+The paper  |  uses  | following quantization
+The paper  |  uses  | nav a3c*+d1l agent
+The paper  |  uses  | i-maze
+The paper  |  uses  | following quantization to ensure a uniform 5video of the nav a3c*+d1l agent on the i-maze
+The paper  |  uses  | policy π
+The paper  |  uses  | value function v
+The paper  |  uses  | depth predictions
+The paper  |  uses  | ft
+The paper  |  uses  | g
+The paper  |  uses  | cid:48
+The paper  |  uses  | d
+The paper  |  uses  | ht
+The paper  |  uses  | loop closure detection gl
+The paper  |  uses  | policy π , value function v , depth predictions gd ( ft ) and g ( cid:48 ) d ( ht ) as well as loop closure detection gl
+The paper  |  uses  | asynchronous version
+The paper  |  uses  | rmsprop
+The paper  |  uses  | asynchronous version of rmsprop
+The paper  |  uses  | workers
+The paper  |  uses  | same rmsprop algorithm
+The paper  |  uses  | momentum
+The paper  |  uses  | centering
+The paper  |  uses  | variance
+The paper  |  uses  | workers and the same rmsprop algorithm without momentum or centering of the variance
+The paper  |  outputs  | results
+The paper  |  uses  | chunks
+The paper  |  uses  | steps
+The paper  |  uses  | chunks of 100 steps
+The paper  |  outputs  | l
+The paper  |  outputs  | paper
+The paper  |  outputs  | l : in this paper
+The paper  |  outputs  | t
+The paper  |  outputs  | jaderberg et al.
+The paper  |  outputs  | t : in ( jaderberg et al.

@@ -1,0 +1,229 @@
+In this work, we present a novel method called policy distillation that can be used to extract the policy of a reinforcement learning agent and train a new network that performs at the expert level while being dramatically smaller and more efﬁcient.
+0.60 (we; present; a novel method called policy distillation; L:In this work)
+0.90 (a new network; performs; L:at the expert level)
+0.86 (a novel method; called; policy distillation that can be used to extract the policy of a reinforcement learning agent and train a new network)
+0.93 (policy distillation; can be used; to extract the policy of a reinforcement learning agent and train a new network)
+0.89 (policy distillation; to extract; the policy of a reinforcement learning agent)
+
+We demonstrate these claims using the Atari domain and show that the multi-task distilled agent outperforms the single-task teachers as well as a jointly-trained DQN agent.
+0.50 (We; demonstrate; these claims using the Atari domain)
+0.34 (We; show; that the multi-task distilled agent outperforms the single-task teachers as well as a jointly-trained DQN agent)
+0.95 Context(We show):(the multi-task distilled agent; outperforms; the single-task teachers as well as a jointly-trained DQN agent)
+
+In this paper, we introduce policy distillation for transferring one or more action policies from Q-networks to an untrained network.
+0.69 (we; introduce; policy distillation; for transferring one or more action policies from Q-networks to an untrained network; L:In this paper)
+0.43 Context(we introduce):(we; introduce policy distillation for transferring; one or more action policies; from Q-networks; to an untrained network)
+
+We show that distillation can also be used in the context of reinforcement learning (RL), a signiﬁcant discovery that belies the commonly held belief that supervised learning cannot generalize to sequential prediction tasks (Barto and Dietterich, 2004).
+0.34 (We; show; that distillation can also be used in the context of reinforcement learning)
+0.87 Context(We show):(distillation; can also be used; L:in the context of reinforcement learning)
+0.89 (supervised learning; to sequential; prediction tasks)
+0.84 (a signiﬁcant discovery; belies; the commonly held belief that supervised learning cannot generalize to sequential prediction tasks)
+
+weighing classiﬁcation of actions by the action gap).
+
+We show that model compression and distillation can alleviate such issues.
+0.24 (We; show; that model compression and distillation can alleviate such issues)
+0.90 Context(We show):(model compression and distillation; can alleviate; such issues)
+
+Before describing policy distillation, we will ﬁrst give a brief review of deep Q-learning, since DQN serves as both the baseline for performance comparisons as well as the teacher for the policy distillation.
+0.74 (we; will ﬁrst give; a brief review of deep Q-learning; since DQN serves as both the baseline for performance comparisons as well as the teacher for the policy distillation; T:Before describing policy distillation)
+0.90 (DQN; serves; as both the baseline for performance comparisons as well as the teacher for the policy distillation)
+
+After the DQN summary, we will describe policy distillation for single and multiple tasks.
+0.64 (we; will describe; policy distillation; T:After the DQN summary)
+
+Thus, given an environment E whose interface at timestep i comprises actions ai ∈ A = {1, ..., K}, observations xi ∈ Rd, and rewards ri ∈ R, we deﬁne a sequence t(cid:48)=t γt(cid:48)−trt.
+0.77 (observations; xi; )
+0.41 (i; comprises; actions ai ∈ A = {1, ..., K}, observations xi ∈ Rd, and rewards ri ∈ R, we deﬁne a sequence t(cid:48)=t γt(cid:48)−trt)
+0.39 (we; deﬁne; a sequence t; =t γt(cid:48)−trt)
+0.98 Context(we deﬁne):(Thus, given an environment E whose interface at timestep i comprises actions ai ∈ A = {1, ..., K}, observations xi ∈ Rd, and rewards; ri; ∈ R)
+
+In all cases To test this intuition we consider three methods of policy distillation from T to S.
+0.50 (we; consider; three methods of policy distillation from T to S.)
+
+we assume that the teacher T has been used to generate a dataset DT = {(si, qi)}N i=0, where each sample consists of a short observation sequence si and a vector qi of unnormalized Q-values with one value per action.
+0.90 (the teacher T; to generate; a dataset)
+0.95 (each sample; consists; of a short observation sequence si and a vector qi of unnormalized Q-values with one value per action)
+0.28 (we; assume; that the teacher T has been used to generate a dataset)
+0.89 Context(we assume):(the teacher T; has been used; to generate a dataset)
+
+The ﬁrst method uses only the highest valued action from the teacher, ai,best = argmax(qi), and the student model is trained with a negative log likelihood loss (NLL) to predict the same action: LNLL(DT , θS) = − log P (ai = ai,best|xi, θS) 1.20	1.25	1.30	1.35	Teacher	Q-values	No-op	Up	Down	0.00	0.50	1.00	Dist-KL	Targets	10.00	10.50	11.00	Teacher	Q-values	No-op	Fire	Right	Le9	Right	+	Fire	Le9	+	Fire	0.00	0.50	1.00	Dist-KL	Targets	Under review as a conference paper at ICLR 2016 In the second case, we train using a mean-squared-error loss (MSE).
+0.91 (The ﬁrst method; uses; only the highest valued action from the teacher; best = argmax)
+0.81 (LNLL(DT , θS) = − log P (ai; ai; )
+0.45 (we; train; using a mean-squared-error loss)
+
+LM SE(DT , θS) = In the third case, we adopt the distillation setup of Hinton et al.
+0.63 (LM SE; θS; )
+0.59 Context(LM SE θS):(we; adopt; the distillation setup of Hinton et al; L:In the third case)
+
+Rather than soften these targets, we expect that we may need to make them sharper.
+0.11 (we; expect; that we may need to make them sharper)
+0.26 Context(we expect):(we; may need; to make them sharper)
+0.26 Context(we expect we may need):(we; may need to make; them sharper)
+
+We use n DQN single-game experts, each trained separately.
+0.50 (We; use n; DQN single-game experts)
+0.26 (each; trained separately; )
+
+We also experiment with both the KL and NLL distillation loss functions for multi-task learning.
+0.57 (We; experiment; with both the KL and NLL distillation loss functions for multi-task learning)
+
+We believe this is due to interference between the different policies, different reward scaling, and the inherent instability of learning value functions.
+0.51 (We; believe; this is due to interference between the different policies, different reward scaling, and the inherent instability of learning value functions)
+0.51 Context(We believe):(this; is; due to interference between the different policies, different reward scaling, and the inherent instability of learning value functions)
+
+Since policies are compressed and reﬁned during the distillation process, we surmise that they may also be more effectively combined into a single network.
+0.71 (policies; are compressed; )
+0.88 (policies; reﬁned; T:during the distillation process)
+0.58 (they; more effectively combined; into a single network)
+0.17 (we; surmise; that they may also be more effectively combined into a single network)
+0.55 Context(we surmise):(they; may also be; more effectively combined into a single network)
+
+For each game we trained a separate DQN agent, as reported in Mnih et al.
+0.50 (we; trained; a separate DQN agent)
+
+We employed a similar training procedure for multi-task policy distillation, as shown in Figure 2(b).
+0.45 (We; employed; a similar training procedure for multi-task policy distillation)
+
+To rigorously test the generalization capability of both DQN teachers and distilled agents we followed the evaluation techniques introduced by Nair et al.
+0.50 (we; followed; the evaluation techniques introduced by Nair et al)
+0.93 (the evaluation techniques; introduced; by Nair et al)
+
+Since the agent is not in control of the distribution over starting states, nor do we generate any training data using human trajectories, we assert that high scores imply good levels of generalization.
+0.90 (the agent; is not; in control of the distribution over starting states)
+0.91 (any training data; using; human trajectories)
+0.19 (we; assert; that high scores imply good levels of generalization)
+0.88 Context(we assert):(high scores; imply; good levels of generalization)
+
+4.2 SINGLE-GAME POLICY DISTILLATION RESULTS In this section we show that the Kullback-Leibler (KL) cost function leads to the best-performing student agents, and that these distilled agents outperform their DQN teachers on most games.
+0.87 (these distilled agents; outperform; their DQN teachers)
+0.24 (we; show; that the Kullback-Leibler (KL) cost function leads to the best-performing student agents, and that these distilled agents outperform their DQN teachers on most games)
+0.95 Context(we show):(the Kullback-Leibler (KL) cost function; leads; to the best-performing student agents)
+
+Dist-MSE score %DQN score %DQN score %DQN 102.9 25.7 15.3 5607.3 Students trained with a MSE loss performed worse than KL or NLL, even though we are successfully minimizing the squared error.
+0.86 (DQN score %DQN score %DQN 102.9 25.7 15.3 5607.3 Students; trained; with)
+0.97 (DQN score %DQN score %DQN 102.9 25.7 15.3 5607.3 Students; performed worse; a MSE loss)
+
+We determine empirically that a low temperature τ = 0.01 is best suited for distillation in this domain.
+0.27 (We; determine empirically; that a low temperature τ = 0.01 is best suited for distillation in this domain)
+0.91 Context(We determine empirically):(a low temperature τ; is; best suited for distillation in this domain)
+
+Given the performance of the KL loss, we did not experiment with other possibilities, such as combining the NLL and MSE criteria.
+0.61 (we; did not experiment; with other possibilities, such as combining the NLL and MSE criteria)
+
+4.3 POLICY DISTILLATION WITH MODEL COMPRESSION In the single game setting, we also explore model compression through distillation.
+0.55 (we; explore; model compression; T:In the single game setting)
+
+We evaluate single-game distilled agents and DQN teachers using 10 different Atari games, using student networks that were signiﬁcantly smaller (25%, 7%, and 4% of the DQN network parameters).
+0.50 (We; evaluate; single-game distilled agents and DQN teachers)
+0.93 (single-game distilled agents and DQN teachers; using; student networks that were signiﬁcantly smaller (25%, 7%, and 4% of the DQN network parameters))
+0.94 (student networks; were; signiﬁcantly smaller (25%, 7%, and 4% of the DQN network parameters)
+
+We report the geometric mean over 10 Atari games, with error bars showing the 95% conﬁdence interval.
+0.90 (error bars; showing; the 95% conﬁdence interval)
+0.56 (We; report; the geometric mean over 10 Atari games, with error bars)
+0.56 Context(We report):(the geometric; mean; over 10 Atari games, with error bars)
+
+We speculate that training a larger network accelerates the policy iteration cycle (Sutton and Barto, 1998) of DQN.
+0.32 (We; speculate; that training a larger network accelerates the policy iteration cycle (Sutton and Barto, 1998) of DQN)
+0.95 Context(We speculate):(training a larger network; accelerates; the policy iteration cycle (Sutton and Barto, 1998) of DQN)
+
+A detailed results table is given in Appendix B We train a multi-task DQN agent using the standard DQN algorithm applied to interleaved experience from three games (Multi-DQN), and compare it against distilled agents (Multi-Dist) which were trained using targets from three different single-game DQN teachers (see Figure 4).
+0.93 (A detailed results table; is given; L:in Appendix B)
+0.50 (We; train; a multi-task DQN agent)
+0.89 (distilled agents; were trained; using targets)
+0.95 (a multi-task DQN agent; using; the standard DQN algorithm)
+0.94 (the standard DQN algorithm; applied; to interleaved experience; from three games)
+
+There is a ceiling effect on Freeway and Pong, since the single-task DQN teachers are virtually optimal, but we do see a considerable improvement on Q*bert, with as much as 50% higher scores for Multi-Dist-KL.
+0.87 (the single-task DQN teachers; are; virtually optimal)
+0.61 (we; do see; a considerable improvement on Q*bert, with as much as 50% higher scores for Multi-Dist-KL)
+
+We use the same approach to distill 10 Atari games into a single student network that is four times larger than a single DQN.
+0.50 (We; use; the same approach to distill 10 Atari games; into a single student network)
+0.94 (a single student network; is; four times larger than a single DQN)
+
+We don’t offer a comparison to a jointly trained, 10 game DQN agent, as was done for the three game set, because in our preliminary experiments DQN failed to reach higher-than-chance performance on most of the games.
+0.46 (We; do n't offer; a comparison to a jointly trained, 10 game DQN agent; because in our preliminary experiments DQN failed to reach higher-than-chance performance on most of the games)
+0.90 (DQN; failed; to reach higher-than-chance performance on most of the games; L:in our preliminary experiments)
+0.89 (DQN; to reach; higher-than-chance performance on most of the games)
+
+This highlights the challenges of multi-task reinforcement learning and supports our ﬁndings on the three game set (Figure 4).
+0.38 (This; highlights; the challenges of multi-task reinforcement learning)
+0.22 (This; supports; our ﬁndings)
+
+4.5 ONLINE POLICY DISTILLATION RESULTS As a ﬁnal contribution, we investigated online policy distillation, where the student must track the DQN teacher during Q-learning.
+0.61 (we; investigated; online policy distillation, where the student must track the DQN teacher during Q-learning)
+0.92 (the student; must track; the DQN teacher during Q-learning)
+
+In this work we have applied distillation to policy learnt in deep Q-networks.
+0.64 (we; have applied; distillation; to policy learnt in deep Q-networks; L:In this work)
+
+We have shown that in the RL setting, special care must be taken to chose the correct loss function for distillation and have observed that the best results are obtained by weighing action classiﬁcation by a soft-max of the action-gap, similarly to what is suggested by the CAPI framework Farahmand et al.
+0.32 (We; have shown; that in the RL setting, special care must be taken to chose the correct loss function for distillation and have observed that the best results are obtained by weighing action classiﬁcation by a soft-max of the action-gap, similarly to what is suggested by the CAPI framework Farahmand et al)
+0.90 (the best results; by weighing; action classiﬁcation)
+
+Our results show that distillation can be applied to reinforcement learning, even without using an iterative approach and without allowing the student network to control the data distribution it is trained on.
+0.89 (the data distribution; is trained on; it)
+0.52 (Our results; show; that distillation can be applied to reinforcement learning, even without using an iterative approach and without allowing the student network to control the data distribution)
+0.87 Context(Our results show):(distillation; can be applied; to reinforcement learning)
+
+We recorded the DQN teacher’s outputs (Q-values for all valid actions) and inputs (emulator frames) into a replay memory with a capacity of 10 hours of real-time gameplay (540,000 control steps at 15Hz).
+0.61 (We; recorded; the DQN teacher's outputs (Q-values for all valid actions) and inputs)
+
+At the end of each new hour of teacher gameplay added to the replay memory we performed 10,000 minibatch updates on the student network.
+0.45 (we; performed; 10,000 minibatch updates on the student network)
+
+We used the RmsProp (Tieleman and Hinton, 2012) variation of minibatch stochastic gradient descent to train student networks.
+0.50 (We; used; the RmsProp; to train student networks)
+
+We chose hyper-parameters using preliminary experiments on 4 games.
+0.39 (We; chose; hyper-parameters)
+0.39 Context(We chose):(We; chose hyper-parameters using; preliminary experiments on 4 games)
+
+Using modern GPUs we can refresh the replay memory and train the students much faster than real-time, with typical convergence in a few days.
+0.40 (we; train much faster; the students)
+0.39 (we; can refresh; the replay memory)
+
+With multi-task students we used separate replay memories for each game, with the same capacity of 10 hours, and the respective DQN teachers took turns adding data.
+0.45 (we; used; separate replay memories; for each game)
+0.94 (the respective DQN teachers; took; turns)
+
+Distillation Targets Using DQN outputs we have deﬁned three types of training targets that correspond to the three distillation loss functions discussed in Section3.
+0.45 (we; have deﬁned; three types of training targets)
+0.89 (training targets; correspond; to the three distillation loss functions)
+0.94 (the three distillation loss functions; discussed; L:in Section3)
+0.89 (Distillation; Targets; Using DQN outputs)
+0.89 Context(Distillation Targets):(Distillation; Targets Using; DQN outputs)
+
+Second, we used only the teacher’s highest valued action as a one-hot target.
+0.70 (we; used; only the teacher's highest valued action as a one-hot target; T:Second)
+
+Naturally, we minimized the negative log likelihood (NLL) loss.
+0.45 (we; minimized; the negative log likelihood)
+
+Finally, we passed Q-values through a softmax function whose temperature (τ = 0.01) was selected empirically from [1.0, 0.1, 0.01, 0.001].
+0.64 (we; passed; Q-values; through a softmax function; T:Finally)
+0.75 (a softmax function; was selected empirically; from [1.0)
+
+We went on to use the KL cost function for a majority of reported experiments, with a ﬁxed hyper-parameter value.
+0.16 (We; went on; )
+0.44 Context(We went on):(We; went on to use; the KL cost function; for a majority of reported experiments)
+
+We used one unit for each valid action in the output layer, which was linear.
+0.45 (We; used; one unit; for each valid action in the output layer)
+0.80 (the output layer; was; linear)
+
+3 Output up to 18 up to 18 up to 18 up to 18 For compression experiments we scaled down the number of units in each layer without changing the basic architecture.
+0.45 (we; scaled; down; the number of units in each layer)
+
+We also do not compute a generalization score until the agent’s training process has ended.
+0.41 (We; do not compute; a generalization score; T:until the agent's training process has ended)
+0.79 (the agent's training process; has ended; )
+
+While activations are still game-speciﬁc, we observe higher within-game variance of representations, which probably reﬂect output statistics.
+0.89 (activations; are; T:still; game-speciﬁc)
+0.45 (we; observe; higher within-game variance of representations)
+0.88 (representations; probably reﬂect; output statistics)
+

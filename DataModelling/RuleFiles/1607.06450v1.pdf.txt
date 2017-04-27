@@ -1,0 +1,272 @@
+In this paper, we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case.
+0.95 (the mean and variance; used; for normalization from all of the summed inputs to the neurons in a layer on a single training case)
+0.53 (we; transpose; batch normalization; into layer normalization; L:In this paper)
+0.40 Context(we transpose):(we; transpose batch normalization by computing; the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case)
+
+Like batch normalization, we also give each neuron its own adaptive bias and gain which are applied after the normalization but before the non-linearity.
+0.42 (we; also give; each neuron; its own adaptive bias and gain which are applied after the normalization but before the non-linearity)
+0.69 (its own adaptive bias and gain; are applied; T:after the normalization but before the non-linearity)
+
+Empirically, we show that layer normalization can substantially reduce the training time compared with previously published techniques.
+0.33 (we; show; that layer normalization can substantially reduce the training time compared with previously published techniques)
+0.82 Context(we show):(layer normalization; can reduce; the training time)
+
+We show that layer normalization works well for RNNs and improves both the training time and the generalization performance of several existing RNN models.
+0.94 (layer normalization; improves; both the training time and the generalization performance of several existing RNN models)
+0.38 (We; show; that layer normalization works well for RNNs and improves both the training time and the generalization performance of several existing RNN models)
+0.90 Context(We show):(layer normalization; works well; for RNNs)
+
+We now consider the layer normalization method which is designed to overcome the drawbacks of batch normalization.
+0.67 (We; consider; the layer normalization method which is designed to overcome the drawbacks of batch normalization; T:now)
+0.91 (the layer normalization method; is designed; to overcome the drawbacks of batch normalization)
+0.91 (the layer normalization method; to overcome; the drawbacks of batch normalization)
+
+We, thus, compute the layer normalization statistics over all the hidden units in the same layer as follows: where H denotes the number of hidden units in a layer.
+0.53 (We; compute; the layer normalization statistics over all the hidden units in the same layer)
+
+But when we apply batch normalization to an RNN in the obvious way, we need to to compute and store separate statistics for each time step in a sequence.
+0.50 (we; apply; batch normalization; to an RNN)
+0.54 (we; need; to to compute and store separate statistics for each time step in a sequence; T:when we apply batch normalization to an RNN in the obvious way)
+0.16 Context(we need):(we; need to to compute; )
+0.29 Context(we need):(we; need to to store; separate statistics for each time step in a sequence)
+
+Our work is also related to weight normalization [Salimans and Kingma, 2016].
+0.64 (Our work; is also related; to weight normalization)
+
+Our proposed layer normalization method, however, is not a re-parameterization of the original neural network.
+0.67 (Our proposed layer normalization method; is not; a re-parameterization of the original neural network)
+
+The layer normalized model, thus, has different invariance properties than the other methods, that we will study in the following section.
+0.90 (The layer; normalized; model)
+0.39 (we; will study; L:in the following section)
+0.91 Context(we will study):(The layer normalized model; has; different invariance properties than the other methods)
+
+In this section, we investigate the invariance properties of different normalization schemes.
+0.60 (we; investigate; the invariance properties of different normalization schemes; L:In this section)
+
+Weight matrix Weight matrix Weight vector Table 1: Invariance properties under the normalization methods.
+
+Weight re-scaling and re-centering: First, observe that under batch normalization and weight normalization, any re-scaling to the incoming weights wi of a single neuron has no effect on the normalized summed inputs to a neuron.
+0.71 (Weight; re-scaling; )
+
+Data re-scaling and re-centering: We can show that all the normalization methods are invariant to re-scaling the dataset by verifying that the summed inputs of neurons stays constant under the changes.
+0.74 (Data; re-centering; )
+0.27 (We; can show; that all the normalization methods are invariant to re-scaling the dataset by verifying that the summed inputs of neurons stays constant under the changes)
+0.72 Context(We can show):(Data; re-scaling; )
+0.84 Context(We can show):(all the normalization methods; are; invariant to re-scaling the dataset by verifying that the summed inputs of neurons stays constant under the changes)
+0.91 (all the normalization methods; to re-scaling; the dataset)
+
+Then we have, i x(cid:48) − µ(cid:48)(cid:1) + bi) = f ( (cid:0)w(cid:62) i x − δµ(cid:1) + bi) = hi.
+0.30 (we; have; T:Then)
+0.24 (i; x; )
+0.57 (i; x; −)
+
+Similar to the re-centering of the weight matrix in layer normalization, we can also show that batch normalization is invariant to re-centering of the dataset.
+0.20 (we; can show; that batch normalization is invariant to re-centering of the dataset)
+0.90 Context(we can show):(batch normalization; is; invariant to re-centering of the dataset)
+
+5.2 Geometry of parameter space during learning We have investigated the invariance of the model’s prediction under re-centering and re-scaling of the parameters.
+0.70 (We; have investigated; the invariance of the model's prediction under re-centering and re-scaling of the parameters; T:5.2 Geometry of parameter space during learning)
+
+In this section, we analyze learning behavior through the geometry and the manifold of the parameter space.
+0.60 (we; analyze learning; behavior; L:In this section)
+
+We show that the normalization scalar σ can implicitly reduce learning rate and makes learning more stable.
+0.20 (We; makes; learning more stable)
+0.33 (We; show; that the normalization scalar σ can implicitly reduce learning rate)
+0.72 Context(We show):(the normalization scalar σ; can implicitly reduce; )
+0.90 Context(We show the normalization scalar σ can implicitly reduce):(the normalization scalar σ; can implicitly reduce learning; rate)
+
+5.2.2 The geometry of normalized generalized linear models We focus our geometric analysis on the generalized linear model.
+0.31 (We; focus; our geometric analysis; on the generalized linear model)
+
+The Fisher information matrix for the multi-dimensional GLM with respect to its parameters H , bH ](cid:62) = vec([W, b](cid:62)) is simply the expected Kronecker product of the data θ = [w(cid:62) features and the output covariance matrix: 1 , b1,··· , w(cid:62) We obtain normalized GLMs by applying the normalization methods to the summed inputs a in the original model through µ and σ.
+0.97 (bH ](cid:62) = vec([W; is simply; the expected Kronecker product of the data)
+0.39 (We; obtain; normalized GLMs)
+0.39 Context(We obtain):(We; obtain normalized GLMs by applying; the normalization methods; to the summed inputs)
+
+Without loss of generality, we denote ¯F as the Fisher information matrix under the normalized multi-dimensional GLM with the additional gain parameters θ = vec([W, b, g](cid:62)): ··· ...
+0.50 (we; denote; ¯F)
+0.95 (the Fisher information matrix under the normalized multi-dimensional GLM with the additional gain parameters; θ; =)
+
+We compare how the model output changes between updating the gain parameters in the normalized GLM and updating the magnitude of the equivalent weights under original parameterization during learning.
+0.61 (We; compare; how the model output changes between updating the gain parameters in the normalized GLM and updating the magnitude of the equivalent weights under original parameterization during learning)
+
+We show that Riemannian metric along the magnitude of the incoming weights for the standard GLM is scaled by the norm of its input, whereas learning the gain parameters for the batch normalized and layer normalized models depends only on the magnitude of the prediction error.
+0.44 (We; show; that Riemannian metric along the magnitude of the incoming weights)
+0.88 (the standard GLM; is scaled; by the norm of its input)
+0.96 (learning the gain parameters for the batch normalized and layer normalized models; depends; only on the magnitude of the prediction error)
+
+We perform experiments with layer normalization on 6 tasks, with a focus on recurrent neural networks: image-sentence ranking, question-answering, contextual language modelling, generative modelling, handwriting sequence generation and MNIST classiﬁcation.
+0.45 (We; perform; experiments with layer normalization on 6 tasks)
+
+6.1 Order embeddings of images and language In this experiment, we apply layer normalization to the recently proposed order-embeddings model of Vendrov et al.
+0.61 (we; apply; layer normalization; to the recently proposed order-embeddings model of Vendrov et al)
+
+We follow the same experimental protocol as Vendrov et al.
+0.50 (We; follow; the same experimental protocol as Vendrov et al)
+
+We trained two models: the baseline order-embedding model as well as the same model with layer normalization applied to the GRU.
+0.45 (We; trained; two models)
+0.92 (layer normalization; applied; to the GRU)
+
+After every 300 iterations, we compute Recall@K (R@K) values on a held out validation set and save the model whenever R@K improves.
+0.66 (we; compute; values; on a held out validation set and save the model; T:After every 300 iterations)
+0.15 (R@K; improves; )
+
+We refer the reader to the appendix for a description of how layer normalization is applied to GRU.
+0.45 (We; refer; the reader)
+0.92 (layer normalization; is applied; to GRU)
+
+We plot R@1, R@5 and R@10 for the image retrieval task.
+0.28 (We; plot; R@1)
+
+We observe that layer normalization offers a per-iteration speedup across all metrics and converges to its best validation model in 60% of the time it takes the baseline model to do so.
+0.17 (We; observe; that layer normalization offers a per-iteration speedup across all metrics and converges to its best validation model in 60% of the time)
+0.87 Context(We observe):(layer normalization; offers; a per-iteration speedup across all metrics and converges; to its best validation model in 60% of the time)
+
+In Table 2, the test set results are reported from which we observe that layer normalization also results in improved generalization over the original model.
+
+The results we report are state-of-the-art for RNN embedding models, with only the structure-preserving model of Wang et al.
+0.88 (The results; report; we)
+0.80 (The results we report; are; state-of-the-art for RNN embedding models, with only the structure-preserving model of Wang et al)
+0.86 (RNN; embedding; models)
+
+6.2 Teaching machines to read and comprehend In order to compare layer normalization to the recently proposed recurrent batch normalization [Cooijmans et al., 2016], we train an unidirectional attentive reader model on the CNN corpus both introduced by Hermann et al.
+0.75 (6.2 Teaching machines; to read; )
+0.55 (corpus; introduced; by Hermann et al)
+0.87 (6.2 Teaching machines; to comprehend; In order)
+0.50 (we; train; an unidirectional attentive reader model; on the CNN)
+
+We follow the same experimental protocol as Cooijmans et al.
+0.50 (We; follow; the same experimental protocol as Cooijmans et al)
+0.94 (Cooijmans; et; al)
+
+We obtained the pre-processed dataset used by Cooijmans et al.
+0.50 (We; obtained; the pre-processed dataset used by Cooijmans et al)
+0.93 (the pre-processed dataset; used; by Cooijmans et al)
+
+In our experiment, we only apply layer normalization within the LSTM.
+0.49 (we; only apply; layer normalization; within the LSTM; L:In our experiment)
+
+We experimented with layer normalization for both 1.0 and 0.1 scale initialization and found that the former model performed signiﬁcantly better.
+0.57 (We; experimented; with layer normalization for both 1.0 and 0.1 scale initialization)
+0.17 (We; found; that the former model performed signiﬁcantly better)
+0.71 Context(We found):(the former model; performed signiﬁcantly better; )
+
+Our models were trained for 1M iterations with the exception of (†) which was trained for 1 month (approximately 1.7M iterations) encoded with a encoder RNN and decoder RNNs are used to predict the surrounding sentences.
+0.77 (Our models; were trained; for 1M iterations with the exception of (†)
+0.83 (†; was trained; T:for 1 month)
+0.79 (approximately 1.7M iterations; encoded; )
+0.87 (RNN and decoder RNNs; to predict; the surrounding sentences)
+
+In this experiment we determine to what effect layer normalization can speed up training.
+0.60 (we; determine; to what effect layer normalization can speed up training; L:In this experiment)
+0.90 (layer normalization; can speed up; training)
+
+[2015] 4, we train two models on the BookCorpus dataset [Zhu et al., 2015]: one with and one without layer normalization.
+0.50 (we; train; two models on the BookCorpus dataset)
+
+We adhere to the experimental setup used in Kiros et al.
+0.45 (We; adhere; to the experimental setup)
+0.93 (the experimental setup; used; L:in Kiros et al)
+
+However, we found that provided CNMeM 5 is used, there was no signiﬁcant difference between the two models.
+0.22 (we; found; that provided CNMeM 5 is used)
+0.76 Context(we found):(provided CNMeM 5; is used; )
+
+We checkpoint both models after every 50,000 iterations and evaluate their performance on ﬁve tasks: semantic-relatedness (SICK) [Marelli et al., 2014], movie review sentiment (MR) [Pang and Lee, 2005], customer product reviews (CR) [Hu and Liu, 2004], subjectivity/objectivity classiﬁcation (SUBJ) [Pang and Lee, 2004] and opinion polarity (MPQA) [Wiebe et al., 2005].
+0.45 (We; checkpoint; both models; T:after every 50,000 iterations)
+0.27 (We; evaluate; their performance on ﬁve tasks)
+
+We plot the performance of both models for each checkpoint on all tasks to determine whether the performance rate can be improved with LN.
+0.62 (We; plot; the performance of both models for each checkpoint on all tasks; to determine whether the performance rate can be improved with LN)
+0.43 Context(We plot):(We; plot the performance of both models for each checkpoint on all tasks to determine; whether the performance rate can be improved with LN)
+0.70 Context(We plot to determine):(the performance rate; can be improved; )
+
+The experimental results are illustrated in  We also let the model with layer normalization train for a total of a month, resulting in further performance gains across all but one task.
+
+We note that the performance 5101520iteration x 5000082.082.583.083.584.084.585.085.586.0Pearson x 100Skip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 500002728293031323334MSE x 100Skip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000070727476788082AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000074767880828486AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000090.090.591.091.592.092.593.093.594.094.5AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 50000838485868788899091AccuracySkip-Thoughts + LNSkip-ThoughtsOriginalFigure 5: Handwriting sequence generation model negative log likelihood with and without layer normalization.
+0.32 (We; note; that the performance 5101520iteration x 5000082.082.583.083.584.084.585.085.586.0Pearson x 100Skip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 500002728293031323334MSE x 100Skip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000070727476788082AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000074767880828486AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000090.090.591.091.592.092.593.093.594.094.5AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 50000838485868788899091AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal Figure 5: Handwriting sequence generation model negative log likelihood with and without layer normalization)
+0.99 Context(We note):(5000082.082.583.083.584.084.585.085.586.0Pearson x 100Skip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 500002728293031323334MSE x 100Skip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration; x; 5000070727476788082AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000074767880828486AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 5000090.090.591.091.592.092.593.093.594.094.5AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 50000838485868788899091AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal Figure 5: Handwriting sequence generation model negative log likelihood with and without layer normalization)
+0.95 (LNSkip-ThoughtsOriginal5101520iteration; x; 5000074767880828486AccuracySkip-Thoughts)
+0.97 (LNSkip-ThoughtsOriginal5101520iteration; x; 5000090.090.591.091.592.092.593.093.594.094.5AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal5101520iteration x 50000838485868788899091AccuracySkip-Thoughts + LNSkip-ThoughtsOriginal Figure 5: Handwriting sequence generation model negative log likelihood with and without layer normalization)
+0.95 (LNSkip-ThoughtsOriginal5101520iteration; x; 50000838485868788899091AccuracySkip-Thoughts)
+
+6.4 Modeling binarized MNIST using DRAW We also experimented with the generative modeling on the MNIST dataset.
+0.50 (We; also experimented; with the generative modeling on the MNIST dataset)
+0.92 (6.4 Modeling; binarized; MNIST using DRAW)
+0.85 Context(6.4 Modeling binarized):(MNIST; using; DRAW)
+
+We evaluate the effect of layer normalization on a DRAW model using 64 glimpses and 256 LSTM hidden units.
+0.45 (We; evaluate; the effect of layer normalization on a DRAW model)
+
+In this experiment, we used the ﬁxed binarization from Larochelle and Murray [2011].
+0.64 (we; used; the ﬁxed binarization; from Larochelle and Murray [2011; L:In this experiment)
+
+To show the effectiveness of layer normalization on longer sequences, we performed handwriting generation tasks using the IAM Online Handwriting Database [Liwicki and Bunke, 2005].
+0.61 (we; performed; handwriting generation tasks using the IAM Online Handwriting Database [Liwicki and Bunke, 2005])
+0.93 (handwriting generation tasks; using; the IAM Online Handwriting Database)
+
+We used the same model architecture as in Section (5.2) of Graves [2013].
+0.50 (We; used; the same model architecture; as in Section (5.2) of Graves)
+
+In addition to RNNs, we investigated layer normalization in feed-forward networks.
+0.45 (we; investigated; layer normalization in feed-forward networks)
+
+We show how layer normalization compares with batch normalization on the well-studied permutation invariant MNIST classiﬁcation problem.
+0.63 (We; show; how layer normalization compares with batch normalization on the well-studied permutation invariant MNIST classiﬁcation problem)
+0.94 Context(We show):(layer normalization; compares; with batch normalization on the well-studied permutation invariant MNIST classiﬁcation problem)
+
+We only apply layer normalization to the fully-connected hidden layers that excludes the last softmax layer.
+0.45 (We; only apply; layer normalization; to the fully-connected hidden layers)
+0.92 (the fully-connected hidden layers; excludes; the last softmax layer)
+
+We have also experimented with convolutional neural networks.
+0.45 (We; have also experimented; with convolutional neural networks)
+
+In our preliminary experiments, we observed that layer normalization offers a speedup over the baseline model without normalization, but batch normalization outperforms the other methods.
+0.90 (batch normalization; outperforms; the other methods)
+0.26 (we; observed; that layer normalization offers a speedup over the baseline model without normalization, but batch normalization outperforms the other methods; L:In our preliminary experiments)
+0.88 Context(we observed):(layer normalization; offers; a speedup over the baseline model)
+
+We think further research is needed to make layer normalization work well in ConvNets.
+0.63 (We; think; further research is needed to make layer normalization work well in ConvNets)
+0.90 Context(We think):(further research; is needed; to make layer normalization work well in ConvNets)
+
+In this paper, we introduced layer normalization to speed-up the training of neural networks.
+0.60 (we; introduced; layer normalization to speed-up; L:In this paper)
+
+We provided a theoretical analysis that compared the invariance properties of layer normalization with batch normalization and weight normalization.
+0.33 (We; provided; a theoretical analysis that compared the invariance properties of layer normalization with batch normalization and weight normalization)
+0.93 (a theoretical analysis; compared; the invariance properties of layer normalization with batch normalization and weight normalization)
+
+We showed that layer normalization is invariant to per training-case feature shifting and scaling.
+0.28 (We; showed; that layer normalization is invariant to per training-case feature shifting and scaling)
+0.94 Context(We showed):(layer normalization; is; invariant to per training-case feature shifting and scaling)
+
+Empirically, we showed that recurrent neural networks beneﬁt the most from the proposed method especially for long sequences and small mini-batches.
+0.27 (we; showed; that recurrent neural networks beneﬁt the most from the proposed method especially for long sequences and small mini-batches)
+0.93 Context(we showed):(recurrent neural networks; beneﬁt; the most; from the proposed method especially for long sequences and small mini-batches)
+
+Weight normalization: A simple reparameterization to accelerate training of deep neural networks.
+
+For notation convenience, we deﬁne layer normalization as a function mapping LN : RD → RD with two set of adaptive parameters, gains α and biases β: LN (z; α, β) = where, zi is the ith element of the vector z.
+0.72 (biases; β; )
+0.82 Context(biases β):(zi; is; the ith element of the vector)
+0.72 (gains; α; )
+0.44 Context(gains α):(we; deﬁne; layer normalization as a function mapping LN)
+0.88 Context(gains α):(RD; →; RD)
+
+ct = σ(ft) (cid:12) ct−1 + σ(it) (cid:12) tanh(gt) ht = σ(ot) (cid:12) tanh(LN (ct; α, β)) Learning the magnitude of incoming weights We now compare how gradient descent updates changing magnitude of the equivalent weights between the normalized GLM and original parameterization.
+0.30 (We; compare; T:now)
+0.96 (how gradient descent updates; changing; magnitude of the equivalent weights between the normalized GLM and original parameterization)
+
+We can project the gradient updates to the weight vector for the normal GLM.
+0.50 (We; can project; the gradient updates; to the weight vector for the normal GLM)
+
+We project the gradient updates to the gain parameter δgi of the ith neuron to its weight vector as δgi in the standard GLM model: The batch normalized and layer normalized models are therefore more robust to the scaling of the input and its parameters than the standard model.
+0.90 (layer normalized models; are; therefore more robust to the scaling of the input and its parameters than the standard model)
+0.69 (The batch; normalized; )
+0.40 Context(The batch normalized):(We; project; the gradient updates)
+

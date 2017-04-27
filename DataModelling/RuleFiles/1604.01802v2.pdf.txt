@@ -1,0 +1,744 @@
+We propose a method for oﬄine training of neural networks that can track novel objects at test-time at 100 fps.
+0.45 (We; propose; a method for oﬄine training of neural networks)
+0.89 (neural networks; can track; novel objects; T:at test-time; L:at 100 fps)
+
+Our tracker is signiﬁcantly faster than previous methods that use neural networks for tracking, which are typically very slow to run and not practical for real-time applications.
+0.70 (Our tracker; is; signiﬁcantly faster than previous methods)
+0.93 (previous methods; use; neural networks for tracking, which are typically very slow to run and not practical for real-time applications)
+0.94 (neural networks for tracking; are typically; very slow to run and not practical for real-time applications)
+
+Our tracker uses a simple feed-forward network with no online training required.
+0.74 (Our tracker; uses; a simple feed-forward network with no online training)
+0.75 (no online training; required; )
+
+We test our network on a standard tracking benchmark to demonstrate our tracker’s state-of-the-art performance.
+0.42 (We; test; our network; T:on a standard tracking benchmark; to demonstrate our tracker's state-of-the-art performance)
+0.26 Context(We test):(We; test our network to demonstrate; our tracker's state-of-the-art performance)
+
+Further, our performance improves as we add more videos to our oﬄine training set.
+0.61 (our performance; improves; T:as we add more videos to our oﬄine training set)
+0.37 (we; add; more videos; to our oﬄine training set)
+
+To the best of our knowledge, our tracker1 is the ﬁrst neural-network tracker that learns to track generic objects at 100 fps.
+0.58 (our tracker1; is; the ﬁrst neural-network tracker that learns to track generic objects at 100 fps)
+0.90 (the ﬁrst neural-network tracker; learns; to track generic objects at 100 fps)
+0.90 Context(the ﬁrst neural - network tracker learns):(the ﬁrst neural-network tracker; learns to track; generic objects; T:at 100 fps)
+
+Oﬄine training videos 1 Our tracker is available at http://davheld.github.io/GOTURN/GOTURN.html Fig.
+0.48 (1 Our tracker; is; available at http://davheld.github.io/GOTURN/GOTURN.html)
+
+Using a collection of videos and images with bounding box labels (but no class information), we train a neural network to track generic objects.
+0.91 (a neural network; to track; generic objects)
+0.39 (we; train; a neural network; to track generic objects)
+
+By avoiding ﬁne-tuning, our network is able to track at 100 fps can be used to teach the tracker to handle rotations, changes in viewpoint, lighting changes, and other complex challenges.
+0.94 (the tracker; to handle; rotations, changes in viewpoint, lighting changes, and other complex challenges)
+0.70 (our network; is; able to track at 100 fps)
+0.60 (our network; to track; at 100 fps)
+
+In this work, we show that it is possible to learn to track generic objects in real-time by watching videos oﬄine of objects moving in the world.
+0.32 (we; show; that it is possible to learn to track generic objects in real-time by watching videos oﬄine of objects; L:In this work)
+0.89 (objects; moving; L:in the world)
+
+To achieve this goal, we introduce GOTURN, Generic Object Tracking Using Regression Networks.
+0.43 (we; introduce; GOTURN, Generic Object Tracking)
+0.50 Context(we introduce):(we; introduce GOTURN, Generic Object Tracking Using; Regression Networks)
+
+We train a neural network for tracking in an entirely oﬄine manner.
+0.57 (We; train; a neural network for tracking in an entirely oﬄine manner)
+
+In contrast, our tracker is able to track objects at 100 fps, making it, to the best of our knowledge, the fastest neural-network tracker to-date.
+0.70 (our tracker; is; able to track objects at 100 fps)
+0.60 (our tracker; to track; objects; T:at 100 fps)
+
+Our real-time speed is due to two factors.
+0.76 (Our real-time speed; is; due to two factors)
+
+In contrast, our tracker is trained ofﬂine to learn a generic relationship between appearance and motion, so no online training is required.
+0.64 (our tracker; is trained ofﬂine; to learn a generic relationship between appearance and motion)
+0.71 (our tracker; to learn; a generic relationship between appearance and motion, so no online training is required)
+0.75 (no online training; is required; )
+
+In contrast, our tracker uses a regression-based approach, requiring just a single feed-forward pass through the network to regresses directly to the location of the target object.
+0.58 (our tracker; uses; a regression-based approach)
+0.59 Context(our tracker uses):(our tracker; uses a regression-based approach requiring; just a single feed-forward pass through the network to regresses directly to the location of the target object)
+
+We use a standard tracking benchmark to demonstrate that our tracker outperforms state-of-the-art trackers.
+0.17 (We; use; a standard tracking benchmark; to demonstrate that our tracker outperforms state-of-the-art trackers)
+0.17 Context(We use):(We; use a standard tracking benchmark to demonstrate; that our tracker outperforms state-of-the-art trackers)
+0.58 Context(We use to demonstrate):(our tracker; outperforms; state-of-the-art trackers)
+
+Our tracker trains from a set of labeled training videos and images, but we do not require any class-level labeling or information about the types of objects being tracked.
+0.57 (we; do not require; any class-level labeling or information about the types of objects)
+0.71 (objects; being tracked; )
+
+Our code and additional experiments can be found at http://davheld.github.io/GOTURN/GOTURN.html.
+0.45 (Our code and additional experiments; can be found; L:at http://davheld.github.io/GOTURN/GOTURN.html.)
+
+Because our tracker is trained oﬄine in a generic manner, no online training of our tracker is required, enabling us to track at 100 fps.
+0.34 (our tracker; is trained oﬄine; )
+0.43 (no online training of our tracker; is required; )
+0.45 (us; to track; at 100 fps)
+
+Our tracker is trained oﬄine in a generic fashion and can be used to track novel objects at test time.
+0.34 (Our tracker; is trained oﬄine; )
+0.60 (Our tracker; can be used; to track novel objects at test time)
+
+In contrast, our network only passes two images through the network, and the network regresses directly to the bounding box location of the target Fig.
+0.64 (our network; only passes; two images; through the network)
+0.90 (the network; regresses directly; to the bounding box location of the target)
+
+Our network architecture for tracking.
+
+We input to the network a search region from the current frame and a target from the previous frame.
+0.45 (We; input; to the network)
+
+By avoiding the need to score many candidate patches, we are able to track objects at 100 fps.
+0.45 (we; are; able to track objects at 100 fps)
+0.41 (we; to track; objects; T:at 100 fps)
+
+At a high level, we feed frames of a video into a neural network, and the network successively outputs the location of the tracked object in each frame.
+0.60 (we; feed; frames of a video; L:At a high level)
+0.90 (the network; successively outputs; the location of the tracked object in each frame)
+
+We train the tracker entirely oﬄine with video sequences and images.
+0.45 (We; train; the tracker)
+
+Through our oﬄine training procedure, our tracker learns a generic relationship between appearance and motion that can be used to track novel objects at test time with no online training required.
+0.51 (our tracker; learns; a generic relationship between appearance and motion that can be used to track novel objects at test time with no online training)
+0.95 (a generic relationship between appearance and motion; can be used; to track novel objects at test time with no online training)
+0.93 (a generic relationship between appearance and motion; to track; novel objects; T:at test time with no online training)
+0.75 (no online training; required; )
+
+To achieve this, we input an image of the target object into the network.
+0.39 (we; input; an image of the target object)
+
+We crop and scale the previous frame to be centered on the target object, as shown in  We pad this crop to allow the network to receive some contextual information about the surroundings of the target object.
+0.24 (We; crop; )
+0.53 (We; scale; the previous frame to be centered on the target object)
+0.91 (the previous frame; to be centered; on the target object)
+
+In more detail, suppose that in frame t − 1, our tracker previously predicted that the target was located in a bounding box centered at c = (cx, cy) with a width of w and a height of h.
+0.91 (a bounding box; centered; at c = (cx, cy)
+
+At time t, we take a crop of frame t − 1 centered at (cx, cy) with a width and height of k1 w and k1 h, respectively.
+0.70 (we; take; a crop of frame t − 1 centered at (cx, cy) with a width and height of k1 w and k1 h, respectively; L:At time t)
+0.38 (1; centered; at (cx, cy)
+
+We achieve this by choosing a search region in our current frame based on the object’s previous location.
+0.18 (We; achieve; this)
+0.36 Context(We achieve):(We; achieve this by choosing; a search region; in our current frame based on the object's previous location)
+
+We crop the current frame using the search region and input this crop into our network, as shown in  y), where c(cid:48) is the expected mean location of the target object.
+0.27 (We; input; this crop; into our network)
+
+We set c(cid:48) = c, which is equivalent to a constant position motion model, although more sophisticated motion models can be used as well.
+0.52 (We; set; c)
+0.77 (more sophisticated motion models; can be used as well; )
+
+The crop of the current frame has a width and height of k2 w and k2 h, respectively, where w and h are the width and height of the predicted bounding box in the previous frame, and k2 deﬁnes our search radius for the target object.
+0.96 (The crop of the current frame; has respectively; a width and height of k2 w and k2 h)
+0.89 (w and h; are; the width and height of the predicted bounding box in the previous frame)
+0.25 (k2; deﬁnes; our search radius for the target object)
+
+In practice, we use k1 = k2 = 2.
+0.23 (we; use; k1)
+
+Alternatively, to handle long-term occlusions or large movements, our tracker can be combined with another approach such as an online-trained object detector, as in the TLD framework [19], or a visual attention model [4,29,2]; we leave this for future work.
+0.39 (we; leave; this; for future work)
+0.69 Context(we leave):(our tracker; can be combined; with another approach such as an online-trained object detector)
+
+For single-target tracking, we deﬁne a novel image-comparison tracking architecture, shown in Figure 2 (note that related “two-frame” architectures have also been used for other tasks [20,10]).
+0.57 (we; deﬁne; a novel image-comparison tracking architecture, shown in Figure 2 (note)
+0.94 (a novel image-comparison tracking architecture; shown; L:in Figure 2)
+0.88 (note; related; two-frame" architectures have also been used for other tasks)
+0.91 Context(note related):(two-frame" architectures; have also been used; for other tasks)
+
+In this model, we input the target object as well as the search region each into a sequence of convolutional layers.
+0.60 (we; input; the target object as well as the search region; each into a sequence of convolutional layers; L:In this model)
+
+In more detail, the convolutional layers in our model are taken from the ﬁrst ﬁve convolutional layers of the CaﬀeNet architecture [17,23].
+0.90 (the convolutional layers in our model; are taken; from the ﬁrst ﬁve convolutional layers of the CaﬀeNet architecture; L:In more detail)
+
+We concatenate the output of these convolutional layers (i.e.
+0.45 (We; concatenate; the output of these convolutional layers)
+
+Finally, we connect the last fully connected layer to an output layer that contains 4 nodes which represent the output bounding box.
+0.60 (we; connect; the last fully connected layer to an output layer; T:Finally)
+0.90 (an output layer; contains; 4 nodes which represent the output bounding box)
+0.89 (4 nodes; represent; the output bounding box)
+
+We scale the output by a factor of 10, chosen using our validation set (as with all of our hyperparameters).
+0.45 (We; scale; the output)
+
+Network hyperparameters are taken from the defaults for CaﬀeNet, and between each fully-connected layer we use dropout and ReLU non-linearities as in CaﬀeNet.
+0.94 (Network hyperparameters; are taken; from the defaults for CaﬀeNet)
+0.64 (we; use; dropout and ReLU non-linearities; as in CaﬀeNet; T:between each fully-connected layer)
+
+Our neural network is implemented using Caﬀe [17].
+0.36 (Our neural network; is implemented; )
+
+During test time, we initialize the tracker with a ground-truth bounding box from the ﬁrst frame, as is standard practice for single-target tracking.
+0.60 (we; initialize; the tracker; from the ﬁrst frame; T:During test time)
+
+At each subsequent frame t, we input crops from frame t−1 and frame t into the network (as described in Section 3.2) to predict where the object is located in frame t.
+0.53 (we; input; crops; L:At each subsequent frame t)
+0.29 Context(we input):(we; input crops to predict; where the object is located in frame)
+0.88 Context(we input to predict):(the object; is located; L:in frame)
+
+We continue to re-crop and feed pairs of frames into our network for the remainder of the video, and our network will track the movement of the target object throughout the entire video sequence.
+0.64 (our network; will track; the movement of the target object; T:throughout the entire video sequence)
+0.36 (We; continue; to re-crop and feed pairs of frames into our network for the remainder of the video)
+0.16 Context(We continue):(We; continue to re-crop; )
+0.30 Context(We continue):(We; continue to feed; pairs of frames)
+
+We train our network with a combination of videos and still images.
+0.31 (We; train; our network; with a combination of videos and still images)
+
+In both cases, we train the network with an L1 loss between the predicted bounding box and the ground-truth bounding box.
+0.70 (we; train; the network with an L1 loss between the predicted bounding box and the ground-truth bounding box; L:In both cases)
+
+4.1 Training from Videos and Images Our training set consists of a collection of videos in which a subset of frames in each video are labeled with the location of some object.
+0.66 (Our training set; consists; of a collection of videos)
+0.96 (a subset of frames in each video; are labeled; with the location of some object; L:videos)
+
+For each successive pair of frames in the training set, we crop the frames as described in Section 3.2.
+0.89 (the frames; described; L:in Section 3.2)
+
+During training time, we feed this pair of frames into the network and attempt to predict how the object has moved from the ﬁrst frame to the second frame (shown in Figure 3).
+0.55 (we; feed; into the network; T:During training time)
+0.92 (the second frame; shown; L:in Figure 3)
+
+We also augment these training examples using our motion model, as described in Section 4.2.
+0.41 (We; augment; these training examples)
+
+Our training procedure can also take advantage of a set of still images that are each labeled with the location of an object.
+0.56 (Our training procedure; can take; advantage; of a set of still images)
+0.84 (still images; are labeled; with the location of an object)
+
+This training set of images teaches our network to track a more diverse set of objects and prevents overﬁtting to the objects in our training videos.
+0.92 (This training set of images; teaches; our network; to track a more diverse set of objects and prevents)
+0.64 (our network; to track; a more diverse set of objects and prevents)
+0.85 (objects and prevents; overﬁtting; to the objects in our training videos)
+
+To train our tracker from an image, we take random crops of the image according to our motion model (see Section 4.2).
+0.45 (we; take; random crops of the image)
+
+Between these two crops, the target object has undergone an apparent translation and scale change, as shown in  Although the “motions” in these crops are less varied than the types of motions found in our training videos, these images are still useful to train our network to track a variety of diﬀerent objects.
+0.81 (these images; to train; our network; to track a variety of diﬀerent objects)
+0.64 (our network; to track; a variety of diﬀerent objects)
+0.94 (the "motions" in these crops; are; less varied than the types of motions)
+0.82 (motions; found; L:in our training videos)
+0.86 (these images; are; T:still; useful to train our network to track a variety of diﬀerent objects)
+0.93 Context(these images are):(the target object; has undergone; an apparent translation and scale change; T:Between these two crops)
+
+Thus we wish to teach our network that, all else being equal, small motions are preferred to large motions.
+0.21 (we; wish; to teach our network that, all else being equal, small motions are preferred to large motions)
+0.25 Context(we wish):(we; wish to teach else; our network)
+0.88 Context(we wish to teach else):(small motions; are preferred; to large motions)
+
+bounding box in the current frame (c(cid:48) box in the previous frame (cx, cy) as To concretize the idea of motion smoothness, we model the center of the y) relative to the center of the bounding x = cx + w · ∆x c(cid:48) y = cy + h · ∆y c(cid:48) where w and h are the width and height, respectively, of the bounding box of the previous frame.
+
+In our training set, we ﬁnd that objects change their position such that ∆x and ∆y can each be modeled with a Laplace distribution with a mean of 0 (see Appendix for details).
+0.93 (∆x and ∆y; can be modeled; with a Laplace distribution with a mean of 0 (see Appendix for details)
+0.37 (we; ﬁnd; that objects change their position such that ∆x and ∆y can each be modeled with a Laplace distribution with a mean of 0 (see Appendix for details); L:In our training set)
+0.78 Context(we ﬁnd):(objects; change; their position)
+
+Similarly, we model size changes by w(cid:48) = w · γw h(cid:48) = h · γh (4) where w(cid:48) and h(cid:48) are the current width and height of the bounding box and w and h are the previous width and height of the bounding box.
+0.57 (we; model; size changes by w(cid:48) = w · γw h(cid:48) = h · γh (4) where w(cid:48) and h(cid:48) are the current width and height of the bounding box and w and h are the previous width and height of the bounding box.)
+0.92 (w(cid:48) and h; are; the current width and height of the bounding box)
+
+We ﬁnd in our training set that γw and γh are modeled by a Laplace distribution with a mean of 1.
+0.37 (We; ﬁnd; L:in our training)
+
+To teach our network to prefer small motions to large motions, we augment our training set with random crops drawn from the Laplace distributions described above (see Figures 3 and 4 for examples).
+0.93 (the Laplace distributions; described; L:above (see Figures 3 and 4 for examples)
+0.64 (our network; to prefer; small motions; to large motions)
+0.26 (we; augment; our training set with random crops)
+0.64 Context(we augment):(our training; set; with random crops)
+0.94 (random crops; drawn; from the Laplace distributions)
+
+Because these training examples are sampled from a Laplace distribution, small motions will be sampled more than large motions, and thus our network will learn to prefer small motions to large motions, all else being equal.
+0.75 (these training examples; are sampled; )
+0.73 (small motions; will be sampled more; )
+0.57 (our network; will learn else; to prefer small motions to large motions)
+0.57 Context(our network will learn else):(our network; will learn else to prefer; small motions; to large motions)
+
+We will show that this Laplace cropping procedure improves the performance of our tracker compared to the standard uniform cropping procedure used in classiﬁcation tasks [23].
+0.93 (the standard uniform cropping procedure; used; L:in classiﬁcation tasks)
+0.20 (We; will show; that this Laplace cropping procedure improves the performance of our tracker compared to the standard uniform cropping procedure)
+0.86 Context(We will show):(this Laplace cropping procedure; improves; the performance of our tracker)
+
+We constrain the random crop such that it must contain at least half of the target object in each dimension.
+0.45 (We; constrain; the random crop)
+0.45 (it; must contain; at least half of the target object)
+
+We also limit the size changes such that γw, γh ∈ (0.6, 1.4), to avoid overly stretching or shrinking the bounding box in a way that would be diﬃcult for the network to learn.
+0.45 (We; also limit; the size changes)
+0.82 (γw, γh; to avoid; overly stretching or shrinking the bounding box)
+
+To train our network, each training example is alternately taken from a video or from an image.
+0.92 (each training example; is taken; from a video or from an image; T:alternately)
+
+When we use a video training example, we randomly choose a video, and we randomly choose a pair of successive frames in this video.
+0.45 (we; use; a video training example)
+0.44 (we; randomly choose; a video; T:When we use a video training example)
+0.45 (we; randomly choose; a pair of successive frames in this video)
+
+We then crop the video according to the procedure described in Section 3.2.
+0.92 (the procedure; described; L:in Section 3.2)
+
+We additionally take k3 random crops of the current frame, as described in Section 4.2, to augment the dataset with k3 additional examples.
+0.45 (We; additionally take; k3 random crops of the current frame)
+
+Next, we randomly sample an image, and we repeat the procedure described above, where the random cropping creates artiﬁcial “motions” (see Sections 4.1 and 4.2).
+0.60 (we; randomly sample; an image; T:Next)
+0.45 (we; repeat; the procedure described above,)
+0.77 (the procedure; described; L:above)
+0.94 (the random cropping; creates; artiﬁcial "motions" (see Sections 4.1 and 4.2)
+
+Each time a video or image gets sampled, new random crops are produced on-the-ﬂy, to create additional diversity in our training procedure.
+0.96 (a video or image; gets; sampled; T:Each time)
+0.94 (a video or image; gets sampled; T:Each time)
+
+In our experiments, we use k3 = 10, and we use a batch size of 50.
+0.49 (we; use; k3 = 10; L:In our experiments)
+0.45 (we; use; a batch size of 50)
+
+The convolutional layers in our network are pre-trained on ImageNet [31,8].
+0.76 (The convolutional layers in our network; are pre-trained; L:on ImageNet)
+
+Because of our limited training set size, we do not ﬁne-tune these layers to prevent overﬁtting.
+
+We train this network with a learning rate of 1e-5, and other hyperparameters are taken from the defaults for CaﬀeNet [17].
+0.45 (We; train; this network)
+0.92 (other hyperparameters; are taken; from the defaults for CaﬀeNet [17)
+
+As described in Section 4, we train our network using a combination of videos and still images.
+0.42 (we; train; our network using a combination of videos and still images)
+0.64 (our network; using; a combination of videos and still images)
+
+Our training videos come from ALOV300++ [32], a collection of 314 video sequences.
+0.70 (Our training videos; come; from ALOV300++ [32)
+
+We remove 7 of these videos that overlap with our test set (see Appendix for details), leaving us with 307 videos to be used for training.
+0.39 (We; remove; 7 of these videos)
+0.18 Context(We remove):(We; remove 7 of these videos leaving; us; with 307 videos)
+0.90 (307 videos; to be used; for training)
+0.81 (these videos; overlap; with our test)
+0.41 (our test; set; )
+
+We split these videos into 251 for training and 56 for validation / hyper-parameter tuning.
+0.64 (We; split; these videos; into 251; for training and 56 for validation / hyper-parameter tuning)
+
+After choosing our hyperparameters, we retrain our model using our entire training set (training + validation).
+0.38 (we; retrain; our model; T:After choosing our hyperparameters)
+0.26 Context(we retrain):(we; retrain our model using; our entire training set)
+
+Our training procedure also leveraged a set of still images that were used for training, as described in Section 4.1.
+0.89 (still images; were used; for training)
+
+We randomly crop these images during training time, as described in Section 4.2, to create an apparent translation or scale change between two random crops.
+
+The random cropping procedure is only useful if the labeled object does not ﬁll the entire image; thus, we ﬁlter those images for which the bounding box ﬁlls at least 66% of the size of the image in either dimension (chosen using our validation set).
+0.84 (The random cropping procedure; is; only useful)
+0.91 (the labeled object; does not ﬁll; the entire image)
+0.39 (we; ﬁlter; those images for which the bounding box ﬁlls at least 66% of the size of the image in either dimension)
+0.94 (those images; ﬁlls; at least 66% of the size of the image in either dimension)
+
+These images help prevent overﬁtting by teaching our network to track objects that do not appear in the training videos.
+0.39 (our network; to track; objects that do not appear in the training videos)
+0.88 (objects; do not appear; L:in the training videos)
+0.84 (These images; help; prevent overﬁtting by teaching our network to track objects)
+0.72 Context(These images help):(These images; help prevent; overﬁtting)
+
+Our test set consists of the 25 videos from the VOT 2014 Tracking Challenge [22].
+0.79 (Our test set; consists; of the 25 videos from the VOT 2014 Tracking Challenge [22)
+
+We could not test our method on the VOT 2015 challenge [21] because there would be too much overlap between the test set and our training set.
+0.46 (We; could not test; our method on the VOT 2015 challenge; because there would be too much overlap between the test set and our training set)
+
+However, we expect the general trends of our method to still hold.
+0.26 (we; expect; the general trends of our method to still hold)
+0.41 Context(we expect):(the general trends of our method; to hold; T:still)
+
+The VOT 2014 Tracking Challenge [22] is a standard tracking benchmark that allows us to compare our tracker to a wide variety of state-of-the-art trackers.
+0.79 (The VOT 2014 Tracking Challenge [22; is; a standard tracking benchmark that allows us to compare our tracker to a wide variety of state-of-the-art trackers)
+0.86 (a standard tracking benchmark; allows; us to compare our tracker to a wide variety of state-of-the-art trackers)
+0.36 Context(a standard tracking benchmark allows):(us; to compare; our tracker; to a wide variety of state-of-the-art trackers)
+
+We also compute accuracy errors (1 − A), robustness errors (1 − R), and overall errors 1 − (A + R)/2.
+0.41 (We; compute; accuracy errors)
+
+The performance of our tracker is shown in Figure 5, which demonstrates that our tracker has good robustness and performs near the top in accuracy.
+0.70 (The performance of our tracker; is shown; L:in Figure 5)
+0.60 (our tracker; performs; L:near the top; L:in accuracy)
+0.66 (Figure 5; demonstrates; that our tracker has good robustness and performs near the top in accuracy)
+0.64 Context(Figure 5 demonstrates):(our tracker; has; good robustness)
+
+Further, our overall ranking (computed as the average of accuracy and robustness) outperforms all previous trackers on this benchmark.
+0.62 (our overall ranking; computed; as the average of accuracy and robustness)
+0.84 (our overall ranking (computed as the average of accuracy and robustness); outperforms; all previous trackers on this benchmark)
+
+We have thus demonstrated the value of oﬄine training for improving tracking performance.
+0.35 (We; have demonstrated; the value of oﬄine training for improving tracking performance)
+
+Our tracker’s performance is indicated with a blue circle, outperforming all previous methods on the overall rank (average of accuracy and robustness ranks).
+0.68 (Our tracker's performance; is indicated; with a blue circle; outperforming all previous methods on the overall rank)
+
+The points shown along the black line represent training from 14, 37, 157, and 307 videos, with the same number of training images used in each case On an Nvidia GeForce GTX Titan X GPU with cuDNN acceleration, our tracker runs at 6.05 ms per frame (not including the 1 ms to load each image in OpenCV), or 165 fps.
+0.93 (The points; shown; L:along the black line)
+0.82 (The points shown along the black line; represent; )
+0.95 (training images; used; L:in each case; L:On an Nvidia GeForce GTX Titan X GPU with cuDNN acceleration)
+0.38 (X GPU; [is] Titan [of]; Nvidia GeForce GTX)
+
+On a GTX 680 GPU, our tracker runs at an average of 9.98 ms per frame, or 100 fps.
+0.81 (our tracker; runs; L:On a GTX 680 GPU)
+
+Because our tracker is able to perform all of its training oﬄine, during test time the tracker requires only a single feed-forward pass through the network, and thus the tracker is able to run at real-time speeds.
+0.56 (our tracker; is; able to perform all of its training oﬄine)
+0.70 (the tracker; to run; )
+0.45 (our tracker; to perform; all of its training oﬄine)
+0.94 (the tracker; requires; only a single feed; T:test time)
+0.93 (the tracker; is; able to run at real-time speeds)
+
+We compare the speed and rank of our tracker compared to the 38 other trackers submitted to the VOT 2014 Tracking Challenge [22] in Figure 6, using the overall rank score described in Section 5.2.
+0.31 (We; compare; the speed and rank of our tracker)
+0.96 (the 38 other trackers; submitted; to the VOT 2014 Tracking Challenge [22] in Figure 6, using the overall rank score)
+0.92 (the overall rank score; described; L:in Section 5.2)
+
+We show the runtime of the tracker in EFO units (Equivalent Filter Operations), which normalizes for the type of hardware that the tracker was tested on [22].
+0.57 (We; show; the runtime of the tracker in EFO units)
+0.95 (the runtime of the tracker in EFO units; normalizes; for the type of hardware)
+0.77 (the tracker; was tested; T:on [22)
+
+Rank vs runtime of our tracker (red) compared to the 38 baseline methods from the VOT 2014 Tracking Challenge (blue).
+
+Accuracy and robustness metrics are shown in the appendix Our tracker is able to track objects in real-time due to two aspects of our model: First, we learn a generic tracking model oﬄine, so no online training is required.
+0.60 (Our tracker; to track; objects; T:in real-time)
+0.75 (no online training; is required; )
+0.53 (we; learn; a generic tracking model oﬄine; T:First)
+0.61 Context(we learn):(Our tracker; is; able to track objects in real-time due to two aspects of our model)
+0.90 Context(Our tracker is we learn):(Accuracy and robustness metrics; are shown; L:in the appendix)
+
+On the other hand, our tracker regresses directly to the output bounding box, so GOTURN achieves accurate tracking with no extra computational cost, enabling it to track objects at 100 fps.
+0.45 (it; to track; objects; T:at 100 fps)
+
+6.2 How does it work? How does our neural-network tracker work? There are two hypotheses that one might propose: 00.20.40.60.81Runtime (EFO / frame)05101520253035Overall Rank12 1.
+0.32 (one; might propose; )
+
+The network acts as a local generic “object detector” and simply locates the We diﬀerentiate between these hypotheses by comparing the performance of our network (shown in Figure 2) to the performance of a network which does not receive the previous frame as input (i.e.
+0.93 (The network; acts; as a local generic "object detector)
+0.89 (a network; does not receive; the previous frame)
+0.84 (The network; simply locates; the We diﬀerentiate between these hypotheses by comparing the performance of our network)
+0.39 Context(The network simply locates):(We; diﬀerentiate; L:between these hypotheses)
+0.66 (our network; shown; L:in Figure 2; to the performance of a network)
+
+For this experiment, we train each of these networks separately.
+0.44 (we; train separately; each of these networks)
+
+Overall tracking errors for our network which receives as input both the current and previous frame, compared to a network which receives as input only the current frame (lower is better).
+0.71 (our network; receives; as input both the current and previous frame, compared to a network)
+0.89 (a network; receives; as input)
+0.26 (lower; is better; )
+
+This comparison allows us to disambiguate between two hypotheses that can explain how our neural-network tracker works (see Section 6.2).
+0.70 (two hypotheses; can explain; )
+0.80 (This comparison; allows; us to disambiguate between two hypotheses)
+0.16 Context(This comparison allows):(us; to disambiguate; )
+
+Under a large size change, the corresponding appearance change is too drastic for our network to perform an accurate comparison between the previous frame and the current frame.
+0.96 (the corresponding appearance change; is; too drastic; L:Under a large size change)
+0.74 (our network; to perform; an accurate comparison between the previous frame and the current frame)
+
+NoneIllumination changeCamera motionMotion changeSize changeOcclusion00.050.10.150.20.250.30.350.40.45Overall ErrorsCurrent frame onlyCurrent + previous frameNone	Illumina,on	Change	Camera	Mo,on	Mo,on	Change	Occlusion	Size	Change	Learning to Track How well can our tracker generalize to novel objects not found in our training set? For this analysis, we separate our test set into objects for which at least 25 videos of the same class appear in our training set and objects for which fewer than 25 videos of that class appear in our training set.
+0.94 (at least 25 videos of the same class; appear; L:in our training set and objects; T:objects)
+0.83 (novel objects; not found; L:in our training)
+0.94 (fewer than 25 videos of that class; appear; L:in our training set; T:objects)
+0.41 (our training; set; )
+0.26 (we; separate; our test set into objects)
+0.70 (our test; set; into objects)
+
+Figure 8 shows that, even for test objects that do not have any (or very few) similar objects in our training set, our tracker performs well.
+0.87 (test objects; do not have; any (or very few) similar objects in our training set)
+0.76 (Figure 8; shows; that, even for test objects that do not have any (or very few) similar objects in our training set, our tracker performs well)
+0.29 Context(Figure 8 shows):(our tracker; performs well; )
+
+The performance continues to improve even as videos of unrelated objects are added to our training set, since our tracker is able to learn a generic relationship between an object’s appearance change and its motion that can generalize to novel objects.
+0.73 (The performance; continues; )
+0.73 (an object's appearance change and its motion; can generalize; to novel objects)
+0.70 (The performance; to improve; )
+0.67 (our tracker; is; able to learn a generic relationship between an object's appearance change and its motion)
+0.56 (our tracker; to learn; a generic relationship between an object's appearance change and its motion)
+
+Overall tracking errors for diﬀerent types of objects in our test set as a function of the number of videos in our training set (lower is better).
+0.77 (diﬀerent types of objects in our test; set; as a function of the number of videos in our training set)
+0.36 (lower; is; better)
+
+Class labels are not used by our tracker; these labels were obtained only for the purpose of this analysis.
+0.88 (these labels; were obtained; only for the purpose of this analysis)
+0.80 Context(these labels were obtained):(Class labels; are not used; by our tracker)
+
+Accuracy and robustness metrics are shown in the appendix Additionally, our tracker can also be specialized to track certain objects particularly well.
+0.59 (our tracker; to track particularly well; certain objects)
+0.90 (Accuracy and robustness metrics; are shown; L:in the appendix)
+0.59 Context(Accuracy and robustness metrics are shown):(our tracker; can also be; specialized to track certain objects particularly well)
+
+Figure 8 shows that, for test objects for which at least 25 videos of the same class appear in the training set, we obtain a large improvement as more training videos of those types of objects are added.
+0.97 (at least 25 videos of the same class; appear; L:in the training set; T:test objects)
+0.76 (Figure 8; shows; that, for test objects for which at least 25 videos of the same class appear in the training set, we obtain a large improvement as more training videos of those types of objects)
+0.28 Context(Figure 8 shows):(we; obtain; a large improvement as more training videos of those types of objects)
+
+At the same time, Figure 8 also demonstrates that our tracker can track novel objects that do not appear in our training set, which is important when tracking objects in uncontrolled environments.
+0.81 (novel objects; do not appear; L:in our training set)
+0.69 (our training set; is; important; T:when tracking objects in uncontrolled environments)
+0.68 (Figure 8; demonstrates; that our tracker can track novel objects; T:At the same time)
+0.30 Context(Figure 8 demonstrates):(our tracker; can track; novel objects that do not appear in our training set,)
+
+In Table 1, we show which components of our system contribute the most to our performance.
+0.61 (we; show; which components of our system contribute the most to our performance; L:In Table 1)
+0.50 Context(we show):(which components of our system; contribute; the most; to our performance)
+
+We train our network with random cropping from a Laplace distribution to teach our tracker to prefer small motions to large motions (e.g.
+0.31 (We; train; our network; with random cropping)
+0.63 (our tracker; to prefer e.g.; small motions; to large motions)
+
+As shown, we reduce errors by 20% by drawing our random crops from a Laplace distribution.
+0.45 (we; reduce; errors; by 20%)
+
+Comparing our full GOTURN tracking method to various modiﬁed versions of our method to analyze the eﬀect of diﬀerent components of the system GOTURN Variant L2 loss No motion smoothness Image training only Video training only Full method (Ours) Overall errors Accuracy errors Robustness errors We train our tracker using a combination of images and videos.
+0.93 (only Video; training; only Full method)
+0.89 (Robustness; errors; We train our tracker using a combination of images and videos)
+0.26 Context(Robustness errors):(We; train; our tracker)
+
+Table 1 shows that, given the choice between images and videos, training on only videos gives a much bigger improvement to our tracker performance.
+0.31 (Table 1; shows; that, given the choice between images and videos, training on only videos gives a much bigger improvement to our tracker performance)
+0.83 Context(Table 1 shows):(training on only videos; gives; a much bigger improvement to our tracker performance)
+
+At the same time, training on both videos and images gives the maximum performance for our tracker.
+0.93 (training on both videos and images; gives; the maximum performance for our tracker; T:At the same time)
+
+Training on a small number of labeled videos has taught our tracker to be invariant to background motion, out-of-plane rotations, deformations, lighting changes, and minor occlusions.
+0.90 (Training on a small number of labeled videos; has taught; our tracker; to be invariant to background motion)
+0.64 (our tracker; to be; invariant to background motion)
+
+Training from a large number of labeled images has taught our network how to track a wide variety of diﬀerent types of objects.
+0.94 (Training from a large number of labeled images; has taught; our network; how to track a wide variety of diﬀerent types of objects)
+
+By training on both videos and images, our tracker learns to track a variety of object types under diﬀerent conditions, achieving maximum performance.
+0.69 (our tracker; learns; to track a variety of object types under diﬀerent conditions, achieving maximum performance)
+0.58 Context(our tracker learns):(our tracker; learns to track; a variety of object types)
+
+We have demonstrated that we can train a generic object tracker oﬄine such that its performance improves by watching more training videos.
+0.34 (its performance; improves; )
+0.17 (We; have demonstrated; that we can train a generic object tracker oﬄine such that its performance improves by watching more training videos)
+0.40 Context(We have demonstrated):(we; can train; a generic object tracker oﬄine)
+
+During test time, we run the network in a purely feed-forward manner with no online ﬁnetuning required, allowing the tracker to run at 100 fps.
+0.76 (we; run; the network in a purely feed-forward manner with no online ﬁnetuning required; T:During test time)
+0.30 (no online ﬁnetuning; required; )
+
+Our tracker learns oﬄine a generic relationship between an object’s appearance and its motion, allowing our network to track novel objects at real-time speeds.
+0.50 (Our tracker; learns; a generic relationship between an object's appearance and its motion)
+0.44 Context(Our tracker learns):(Our tracker; learns allowing; our network to track novel objects at real-time speeds)
+0.58 Context(Our tracker learns allowing):(our network; to track; novel objects)
+
+We acknowledge the support of Toyota grant 1186781-31UDARO and ONR grant 1165419-10-TDAUZ.
+0.50 (We; acknowledge; the support of Toyota grant)
+0.90 (ONR; grant; 1165419-10-TDAUZ)
+
+Our tracker is able to improve its performance as it trains on more oﬄine data.
+0.56 (Our tracker; is; able to improve its performance)
+0.45 (Our tracker; to improve; its performance; T:as it trains on more oﬄine data)
+0.45 (it; trains; on more oﬄine data)
+
+We further analyze the eﬀect of the amount of training data on our tracker’s performance in  Our state-ofthe-art results demonstrated in Section 6.1 of the main text were obtained after training on only 307 short videos, ranging from a few seconds to a few minutes in length, with an average of 52 annotations per video.
+0.91 (only 307 short videos; ranging; from a few seconds; to a few minutes in length)
+0.36 (We; further analyze; the eﬀect of the amount of training data on our tracker's performance in  Our state-ofthe-art results demonstrated in Section 6.1 of the main text were obtained after training on only 307 short videos, ranging from a few seconds to a few minutes in length, with an average of 52 annotations per video)
+0.92 Context(We further analyze):(the eﬀect of the amount of training data on our tracker's performance in  Our state-ofthe-art results; were obtained; T:after training on only 307 short videos, ranging from a few seconds to a few minutes in length, with an average of 52 annotations per video)
+
+Our tracker is trained oﬄine in a generic manner, so no online training of our tracker is required.
+0.34 (Our tracker; is trained oﬄine; )
+0.43 (no online training of our tracker; is required; )
+
+As a result, our tracker is able to track novel objects at 100 fps.
+0.70 (our tracker; is; able to track novel objects at 100 fps)
+0.60 (our tracker; to track; novel objects; T:at 100 fps)
+
+In Figures 10 and 11, we explore the beneﬁts of online training.
+0.60 (we; explore; the beneﬁts of online training; L:In Figures 10 and 11)
+
+We use crossvalidation to choose the online learning rate to be 1e-9.
+0.80 (the online learning rate; to be; 1e-9)
+0.50 (We; use; crossvalidation; to choose the online learning rate to be 1e-9)
+0.39 Context(We use):(We; use crossvalidation to choose; the online learning rate; to be 1e-9)
+
+Figure 10 shows that online training does not signiﬁcantly improve performance beyond our oﬄine training procedure.
+0.76 (Figure 10; shows; that online training does not signiﬁcantly improve performance beyond our oﬄine training procedure)
+0.80 Context(Figure 10 shows):(online training; does not signiﬁcantly improve; performance beyond our oﬄine training procedure)
+
+Our tracker’s performance is indicated with a blue circle, outperforming all previous methods on the overall rank (average of accuracy and robustness ranks).
+0.68 (Our tracker's performance; is indicated; with a blue circle; outperforming all previous methods on the overall rank)
+
+A version of our tracker with online training is shown with a green X.
+0.48 (A version of our tracker with online training; is shown; )
+
+Both versions achieve approximately the same performance, demonstrating that our oﬄine training procedure has already taught the network how to track a variety of objects.
+0.70 (Both versions; achieve; approximately the same performance; demonstrating that our oﬄine training procedure has already taught the network how to track a variety of objects)
+0.60 Context(Both versions achieve):(Both versions; achieve approximately the same performance demonstrating; that our oﬄine training procedure has already taught the network how to track a variety of objects)
+0.66 Context(Both versions achieve demonstrating):(our oﬄine training procedure; has taught; the network; how to track a variety of objects; T:already)
+
+Our oﬄine training procedure has seen many training videos with deformations, viewpoint changes, and other variations, and thus our tracker has already learned to handle such changes in a generic manner that generalizes to new objects.
+0.68 (Our oﬄine training procedure; has seen; many training videos)
+0.90 (a generic manner; generalizes; to new objects)
+0.61 (our tracker; has learned; to handle such changes in a generic manner; T:already)
+0.47 Context(our tracker has learned):(our tracker; has learned to handle; such changes in a generic manner)
+
+Although there might be other ways to combine online and oﬄine training, our network has already learned generic target tracking from its oﬄine training procedure and achieves state-of-the-art tracking performance without any online training required.
+0.75 (any online training; required; )
+0.53 (our network; has learned; generic target tracking from its oﬄine training procedure; T:already)
+0.60 (our network; achieves; state-of-the-art tracking performance)
+
+In the main text, we analyze the generality of our tracker.
+0.44 (we; analyze; the generality of our tracker; L:In the main text)
+
+We demonstrate that our tracker can generalize to novel objects not found in the training set.
+0.90 (novel objects; not found; L:in the training set)
+0.12 (We; demonstrate; that our tracker can generalize to novel objects)
+0.59 Context(We demonstrate):(our tracker; can generalize; to novel objects)
+
+At the same time, a user can train our tracker to track a particular class of objects Fig.
+0.92 (a user; can train; our tracker; to track a particular class of objects Fig; T:At the same time)
+0.68 (our tracker; to track; a particular class of objects Fig)
+
+Comparison of our tracker with and without online training (lower is better).
+
+Both versions achieve approximately the same performance, demonstrating that our oﬄine training procedure has already taught the network how to track a variety of objects.
+0.70 (Both versions; achieve; approximately the same performance; demonstrating that our oﬄine training procedure has already taught the network how to track a variety of objects)
+0.60 Context(Both versions achieve):(Both versions; achieve approximately the same performance demonstrating; that our oﬄine training procedure has already taught the network how to track a variety of objects)
+0.66 Context(Both versions achieve demonstrating):(our oﬄine training procedure; has taught; the network; how to track a variety of objects; T:already)
+
+We show more detailed results of this experiment in  As the number of training videos increases, the accuracy errors decreases equally both for object classes that appear in our training set and classes that do not appear in our training set.
+0.52 (We; show; more detailed results of this experiment)
+0.91 (the accuracy errors; decreases equally; both for object classes)
+0.81 (object classes; appear; L:in our training set and classes)
+0.80 (classes; do not appear; L:in our training set)
+
+On the other hand, the decrease in robustness errors is much more signiﬁcant for object classes that appear in our training set compared to classes that do not.
+0.84 (the decrease in robustness errors; is; much more signiﬁcant for object classes that appear in our training set compared to classes)
+0.81 (object classes; appear; L:in our training set)
+0.68 (classes; do not; )
+
+Overall tracking errors for diﬀerent types of objects in our test set as a function of the number of videos in our training set (lower is better).
+0.77 (diﬀerent types of objects in our test; set; as a function of the number of videos in our training set)
+0.36 (lower; is; better)
+
+Class labels are not used by our tracker; these labels were obtained only for the purpose of this analysis.
+0.88 (these labels; were obtained; only for the purpose of this analysis)
+0.80 Context(these labels were obtained):(Class labels; are not used; by our tracker)
+
+Thus our tracker is able to learn generic properties about objects that enable it to accurately track objects, i.e.
+0.43 (our tracker; is; able to learn generic properties about objects that enable it to accurately track objects, i.e.)
+0.59 (our tracker; to learn i.e.; generic properties)
+0.80 (objects; enable; it; to accurately track objects)
+0.45 (it; to accurately track; objects)
+
+In the main text, we showed the speed of our tracker as a function of the overall rank (computed as the average of accuracy and robustness ranks) and showed that we have the lowest overall rank while being one of the fastest trackers.
+0.44 (we; showed; the speed of our tracker; L:In the main text)
+0.90 (the overall rank; computed; as the average of accuracy and robustness ranks)
+0.16 (we; showed; that we have the lowest overall rank; L:In the main text)
+0.50 Context(we showed):(we; have; the lowest overall rank while being one of the fastest trackers)
+
+In Figure 13 we show more detailed results, demonstrating our tracker’s speed as a function of the accuracy rank and the robustness ranks.
+0.57 (we; show; more detailed results; demonstrating our tracker's speed as a function of the accuracy rank and the robustness ranks; L:In Figure 13)
+0.26 Context(we show):(we; show more detailed results demonstrating; our tracker's speed; as a function of the accuracy rank and the robustness ranks)
+
+Our tracker has the second-highest accuracy rank, one of the top robustness ranks, and the top overall rank, while running at 100 fps.
+0.79 (Our tracker; has; the second-highest accuracy rank, one of the top robustness ranks, and the top overall rank)
+
+Thus, by performing all of our training oﬄine, we are able to make our neural network tracker run in real-time.
+0.42 (we; are; able to make our neural network tracker run in real-time)
+0.27 (we; to make; our neural network tracker run in real-time)
+
+Rank vs runtime of our tracker (red) compared to the 38 baseline methods from the VOT 2014 Tracking Challenge (blue).
+
+E How does it work? In the main text, we explored how our tracker works as a combination of two hypotheses: 1.
+0.36 (we; explored; how our tracker works as a combination of two hypotheses: 1)
+0.65 Context(we explored):(our tracker; works; as a combination of two hypotheses)
+
+The network acts as a local generic “object detector” and simply locates the 00.51Runtime (EFO / frame)05101520253035Overall RankOverall00.51Runtime (EFO / frame)05101520253035Accuracy RankAccuracy00.51Runtime (EFO / frame)010203040Robustness RankRobustness22 We distinguished between these hypotheses by comparing the performance of our network to the performance of a network which does not receive the previous frame as input.
+0.93 (The network; acts; as a local generic "object detector)
+0.89 (The network; simply locates; the 00.51Runtime (EFO / frame)05101520253035Overall RankOverall00.51Runtime (EFO / frame)05101520253035Accuracy RankAccuracy00.51Runtime (EFO / frame)010203040Robustness RankRobustness 22 We distinguished between these hypotheses by comparing the performance of our network to the performance of a network)
+0.45 (We; distinguished; between these hypotheses)
+0.89 (a network; does not receive; the previous frame)
+
+In Figure 14 we show more details of this experiment, showing also accuracy and robustness rankings.
+0.60 (we; show; more details of this experiment; showing also accuracy and robustness rankings; L:In Figure 14)
+0.29 Context(we show):(we; show more details of this experiment showing also; accuracy and robustness rankings)
+
+Tracking errors for our network which receives as input both the current and previous frame, compared to a network which receives as input only the current frame (lower is better).
+0.71 (our network; receives; as input both the current and previous frame, compared to a network)
+0.89 (a network; receives; as input)
+0.26 (lower; is better; )
+
+This comparison allows us to disambiguate between two hypotheses that can explain how our neural-network tracker works (see Section 6.2 of the main text).
+0.70 (two hypotheses; can explain; )
+0.80 (This comparison; allows; us to disambiguate between two hypotheses)
+0.16 Context(This comparison allows):(us; to disambiguate; )
+
+In Section 4.2 of the main text, we describe how we use random cropping to implicitly encode the idea that small motions are more likely than large motions.
+0.90 (small motions; are; more likely than large motions)
+0.26 (we; describe; how we use random cropping to implicitly encode the idea that small motions are more likely than large motions; L:In Section 4.2 of the main text)
+0.27 Context(we describe):(we; use; random cropping; to implicitly encode the idea that small motions are more likely than large motions)
+0.27 Context(we describe we use):(we; use random cropping to implicitly encode; the idea that small motions are more likely than large motions)
+
+To determine which distribution to use to encode this idea, we analyze the distribution of object motion found in the training set.
+0.90 (object motion; found; L:in the training set)
+0.39 (we; analyze; the distribution of object motion)
+
+This motion distribution can be seen in  Accordingly, we use Laplace distributions for our random cropping procedure.
+0.29 (we; use; Laplace distributions; for our random cropping procedure)
+0.74 Context(we use):(This motion distribution; can be seen; L:in  Accordingly)
+
+Laplace); we use our validation set to determine the scale parameters for the distributions.
+0.42 (we; use; our validation set to determine the scale parameters for the distributions)
+
+Statistics for the change in bounding box size and location across two consecutive frames in our training set.
+
+In terms of the random variables, we can rewrite these expressions as x − cx)/w y − cy)/h ∆x = (c(cid:48) ∆y = (c(cid:48) γw = w(cid:48)/w γh = h(cid:48)/h The empirical distributions of these random variables over the training set are shown in Figure 15.
+0.45 (we; can rewrite; these expressions)
+
+In Figure 16 we explore the eﬀect of varying the number of fully-connected layers on top of the neural network on the tracking performance.
+0.70 (we; explore; the eﬀect of varying the number of fully-connected layers on top of the neural network on the tracking performance; L:In Figure 16)
+
+In Figure 17 we explore the eﬀect of varying the number of augmented images created for each batch of the training set.
+0.60 (we; explore; the eﬀect of varying the number of augmented images; L:In Figure 17)
+0.90 (augmented images; created; for each batch of the training set)
+
+Our batch size is 50, so we can vary the number of augmented images in each batch from 0 to 49 (to leave room for at least 1 real image).
+0.48 (Our batch size; is; 50)
+0.45 (we; can vary; the number of augmented images)
+
+In our case (with a batch size of 50), this indicates that performance is similar as long as at least 40% of the images in the batch are augmented.
+0.86 (at least 40% of the images in the batch; are augmented; )
+0.21 (this; indicates; that performance is similar as long; L:In our case (with a batch size of 50)
+0.93 Context(this indicates):(performance; is; similar; T:as long as at least 40% of the images in the batch are augmented)
+
+234# fully-connected layers00.050.10.150.20.25Overall ErrorsOverall234# fully-connected layers00.10.20.30.4Accuracy ErrorsAccuracy234# fully-connected layers00.050.1Robustness ErrorsRobustness02040Augmented images/batch00.10.20.30.4Overall ErrorsOverall02040Augmented images/batch00.10.20.30.40.50.6Accuracy ErrorsAccuracy02040Augmented images/batch00.050.10.150.2Robustness ErrorsRobustnessLearning to Track Our training set was taken from ALOV300++ [32].
+0.93 (batch00.10.20.30.4Overall; ErrorsOverall02040Augmented; 234# fully-connected layers00.050.10.150.20.25Overall ErrorsOverall234# fully-connected layers00.10.20.30.4Accuracy ErrorsAccuracy234# fully-connected layers00.050.1Robustness ErrorsRobustness02040Augmented images/batch00.10.20.30.4Overall ErrorsOverall02040Augmented images/batch00.10.20.30.40.50.6Accuracy ErrorsAccuracy02040Augmented images/batch00.050.10.150.2Robustness ErrorsRobustness Learning to Track Our training set was taken from ALOV300++ [32])
+0.89 (batch00.10.20.30.40.50.6Accuracy; ErrorsAccuracy02040Augmented; images)
+0.70 (Our training set; was taken; from ALOV300++)
+
+To ensure that there was no overlap with our test set, we removed 7 videos from our training set.
+0.26 (we; removed; 7 videos; from our training set)
+
+The detailed results of our method compared to the 38 other methods that were submitted to the VOT 2014 Tracking Challenge [22] are shown in Table 2.
+0.72 (The detailed results of our method; compared; to the 38 other methods)
+0.94 (the VOT 2014 Tracking Challenge; are shown; L:in Table 2)
+
+Full results from the VOT 2014 tracking challenge, comparing our method (GOTURN) to the 38 other methods submitted to the competition.
+0.92 (the 38 other methods; submitted; to the competition)
+
+We initialize the trackers in two diﬀerent ways: with the exact ground-truth bounding box (“Exact”) and with a noisy bounding box (“Noisy”).
+0.45 (We; initialize; the trackers)
+

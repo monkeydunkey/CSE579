@@ -1,0 +1,141 @@
+We show that convolutional networks by themselves, trained end-to-end, pixels-to-pixels, improve on the previous best result in semantic segmentation.
+Our key insight is to build “fully convolutional” networks that take input of arbitrary size and produce correspondingly-sized output with efﬁcient inference and learning.
+We deﬁne and detail the space of fully convolutional networks, explain their application to spatially dense prediction tasks, and draw connections to prior models.
+We adapt contemporary classiﬁcation networks (AlexNet, the VGG net, and GoogLeNet) into fully convolutional networks and transfer their learned representations by ﬁne-tuning to the segmentation task.
+We then deﬁne a skip architecture that combines semantic information from a deep, coarse layer with appearance information from a shallow, ﬁne layer to produce accurate and detailed segmentations.
+Our fully convolutional network achieves improved segmentation of PASCAL VOC (30% relative improvement to 67.2% mean IU on 2012), NYUDv2, SIFT Flow, and PASCAL-Context, while inference takes one tenth of a second for a typical image.
+To our knowledge, this is the ﬁrst work to train FCNs end-to-end (1) for pixelwise prediction and (2) from supervised pre-training.
+Our approach does not make use of preand postprocessing complications, including superpixels [12], [14], proposals [14], [15], or post-hoc reﬁnement by random ﬁelds ∗Authors contributed equally • E.
+Our model transfers recent success in classiﬁcation [1], [2], [3] to dense prediction by reinterpreting classiﬁcation nets as fully convolutional and ﬁne-tuning from their learned representations.
+In the conference version of this paper [17], we cast pre-trained networks into fully convolutional form, and augment them with a skip architecture that takes advantage of the full feature spectrum.
+This journal paper extends our earlier work [17] through further tuning, analysis, and more results.
+In the next section, we review related work on deep classiﬁcation nets, FCNs, recent approaches to semantic segmentation using convnets, and extensions to FCNs.
+Common elements of these approaches include • small models restricting capacity and receptive ﬁelds; • patchwise training [10], [11], [12], [13], [16]; • reﬁnement by superpixel projection, random ﬁeld regulowing sections explain FCN design, introduce our architecture with in-network upsampling and skip layers, and describe our experimental framework.
+Next, we demonstrate improved accuracy on PASCAL VOC 2011-2, NYUDv2, SIFT Flow, and PASCAL-Context.
+Finally, we analyze design choices, examine what cues can be learned by an FCN, and calculate recognition bounds for semantic segmentation.
+• “interlacing” to obtain dense output [4], [13], [16]; • multi-scale pyramid processing [12], [13], [16]; • saturating tanh nonlinearities [12], [13], [23]; and • ensembles [11], [16], whereas our method does without this machinery.
+However, we do study patchwise training (Section 3.4) and “shift-andstitch” dense output (Section 3.2) from the perspective of FCNs.
+We also discuss in-network upsampling (Section 3.3), of which the fully connected prediction by Eigen et al.
+Unlike these existing methods, we adapt and extend deep classiﬁcation architectures, using image classiﬁcation as supervised pre-training, and ﬁne-tune fully convolutionally to learn simply and efﬁciently from whole image inputs and whole image ground thruths.
+They achieve the previous best segmentation results on PASCAL VOC and NYUDv2 respectively, so we directly compare our standalone, end-to-end FCN to their semantic segmentation results in Section 5.
+Combining feature hierarchies We fuse features across layers to deﬁne a nonlinear local-to-global representation that we tune end-to-end.
+2 RELATED WORK Our approach draws on recent successes of deep nets for image classiﬁcation [1], [2], [3] and transfer learning [18], [19].
+We now re-architect and ﬁne-tune classiﬁcation nets to direct, dense prediction of semantic segmentation.
+We chart the space of FCNs and relate prior models both historical and recent.
+Fully convolutional networks To our knowledge, the idea of extending a convnet to arbitrary-sized inputs ﬁrst appeared in Matan et al.
+While a general net computes a general nonlinear function, a net with only layers of this form computes a nonlinear ﬁlter, which we call a deep ﬁlter or fully convolutional network.
+We next explain how to convert classiﬁcation nets into fully convolutional nets that produce coarse output maps.
+For pixelwise prediction, we need to connect these coarse outputs back to the pixels.
+We explain this trick in terms of network modiﬁcation.
+As an efﬁcient, effective alternative, we upsample in Section 3.3, reusing our implementation of convolution.
+In Section 3.4 we consider training by patchwise sampling, and give evidence in Section 4.4 that our whole image training is faster and equally effective.
+While our reinterpretation of classiﬁcation nets as fully convolutional yields output maps for inputs of any size, the output dimensions are typically reduced by subsampling.
+Although we have done preliminary experiments with dilation, we do not use it in our model.
+We ﬁnd learning through upsampling, as described in the next section, to be effective and efﬁcient, especially when combined with the skip layer fusion described later on.
+In our experiments, we ﬁnd that in-network upsampling is fast and effective for learning dense prediction.
+We explore training with sampling in Section 4.4, and do not ﬁnd that it yields faster or better convergence for dense prediction.
+4 SEGMENTATION ARCHITECTURE We cast ILSVRC classiﬁers into FCNs and augment them for dense prediction with in-network upsampling and a pixelwise loss.
+We train for segmentation by ﬁne-tuning.
+Next, we add skips between layers to fuse coarse, semantic and local, appearance information.
+For this investigation, we train and validate on the PASCAL VOC 2011 segmentation challenge [50].
+We train with a per-pixel softmax loss and validate with the standard metric of mean pixel intersection over union, with the mean taken over all classes, including background.
+We adapt and extend three classiﬁcation convnets.
+We compare performance by mean intersection over union on the validation set of PASCAL VOC 2011 and by inference time (averaged over 20 trials for a 500 × 500 input on an NVIDIA Titan X).
+We detail the architecture of the adapted nets with regard to dense prediction: number of parameter layers, receptive ﬁeld size of output units, and the coarsest stride within the net.
+layers parameters rf size max stride 4.1 From classiﬁer to dense FCN We begin by convolutionalizing proven classiﬁcation architectures as in Section 3.
+We consider the AlexNet2 architecture [1] that won ILSVRC12, as well as the VGG nets [2] and the GoogLeNet3 [3] which did exceptionally well in ILSVRC14.
+We pick the VGG 16-layer net4, which we found to be equivalent to the 19-layer net on this task.
+For GoogLeNet, we use only the ﬁnal loss layer, and improve performance by discarding the ﬁnal average pooling layer.
+We decapitate each net by discarding the ﬁnal classiﬁer layer, and convert all fully connected layers to convolutions.
+We append a 1 × 1 convolution with channel dimension 21 to predict scores for each of the PASCAL classes (including background) at each of the coarse output locations, followed by a (backward) convolution layer to bilinearly upsample the coarse outputs to pixelwise outputs as described in Section 3.3.
+We report the best results achieved after convergence at a ﬁxed learning rate (at least 175 epochs).
+Our training for this comparison follows the practices for classiﬁcation networks.
+We train by SGD with momentum.
+We set ﬁxed learning rates of 10−3, 10−4, and 5−5 for FCN-AlexNet, FCN-VGG16, and FCN-GoogLeNet, respectively, chosen by line search.
+We use momentum 0.9, weight decay of 5−4 or 2−4, and doubled learning rate for biases.
+We zero-initialize the class scoring layer, as random initialization yielded neither better performance nor faster convergence.
+Although VGG and GoogLeNet are similarly accurate as classiﬁers, our FCN-GoogLeNet did not match FCN-VGG16.
+We select FCN-VGG16 as our base network.
+We use our own reimplementation of GoogLeNet.
+Ours is trained with less extensive data augmentation, and gets 68.5% top-1 and 88.4% top-5 ILSVRC accuracy.
+We begin with the loss.
+We do not normalize the loss, so that every pixel has the same weight regardless of the batch and image dimensions.
+Thus we use a small learning rate since the loss is summed spatially over all pixels.
+We consider two regimes for batch size.
+We picked this batch size empirically to result in reasonable convergence.
+Additionally, we try a higher momentum of 0.99, which increases the weight on recent gradients in a similar way to batching.
+4.3 Combining what and where We deﬁne a new fully convolutional net for segmentation that combines layers of the feature hierarchy and reﬁnes the spatial precision of the output.
+We address this by adding skips [51] that fuse layer outputs, in particular to include shallower layers with ﬁner strides in prediction.
+Our DAG nets learn to combine coarse, high layer information with ﬁne, low layer information.
+First row (FCN-32s): Our single-stream net, described in Section 4.1, upsamples stride 32 predictions back to pixels in a single step.
+Second row (FCN-16s): Combining predictions from both the ﬁnal layer and the pool4 layer, at stride 16, lets our net predict ﬁner details, while retaining high-level semantic information.
+By analogy to the jet of Koenderick and van Doorn [27], we call our feature hierarchy the deep jet.
+We bring two layers into scale agreement by upsampling the lower-resolution layer, doing so in-network as explained in Section 3.3.
+Determining the crop that results in exact correspondence can be intricate, but it follows automatically from the network deﬁnition (and we include code for it in Caffe).
+Having spatially aligned the layers, we next pick a fusion operation.
+We fuse features by concatenation, and immediately follow with classiﬁcation by a “score layer” consisting of a 1 × 1 convolution.
+Rather than storing concatenated features in memory, we commute the concatenation and subsequent classiﬁcation (as both are linear).
+Thus, our skips are implemented by ﬁrst scoring each layer to be fused by 1 × 1 convolution, carrying out any necessary interpolation and alignment, and then summing the scores.
+We also considered max fusion, but found learning to be difﬁcult due to gradient switching.
+Skip Architectures for Segmentation We deﬁne a skip architecture to extend FCN-VGG16 to a three-stream net with eight pixel stride shown in  The 2× interpolation layer of the skip is initialized to bilinear interpolation, but is not ﬁxed so that it can be learned as described in Section 3.3.
+We call this twostream net FCN-16s, and likewise deﬁne FCN-8s by adding a further skip from pool3 to make stride eight predictions.
+(Note that predicting at stride eight does not signiﬁcantly limit the maximum achievable mean IU; see Section 6.3.) We experiment with both staged training and all-at-once training.
+In the staged version, we learn the single-stream FCN-32s, then upgrade to the two-stream FCN-16s and continue learning, and ﬁnally upgrade to the three-stream FCN-8s and ﬁnish learning.
+The learning rate is dropped 100× from FCN-32s to FCN16s and 100× more from FCN-16s to FCN-8s, which we found to be necessary for continued improvements.
+To remedy this we scale each stream by a ﬁxed constant, for a similar in-network effect to the staged learning rate adjustments.
+At this point our fusion improvements have met diminishing returns, so we do not continue fusing even shallower layers.
+The ﬁrst three images show the output from our 32, 16, and 8 pixel stride nets (see Figure 3).
+To identify the contribution of the skips we compare scoring from the intermediate layers in isolation, which results in poor performance, or dropping the learning rate without adding skips, which gives negligible improvement in score without reﬁning the visual quality of output.
+4.4 Experimental framework Fine-tuning We ﬁne-tune all layers by backpropagation through the whole net.
+Loss The per-pixel, unnormalized softmax loss is a natural choice for segmenting images of any size into disjoint classes, so we train our nets with it.
+There are training images from [52] included in the PASCAL VOC 2011 val set, so we validate on the non-intersecting set of 736 images.
+For comparison, we train with the sigmoid crossentropy loss and ﬁnd that it gives similar results, even though it normalizes each class prediction independently.
+Patch sampling As explained in Section 3.4, our whole image training effectively batches each image into a regular grid of large, overlapping patches.
+We study this tradeoff by spatially sampling the loss in the manner described earlier, making an independent choice to ignore each ﬁnal layer cell with some probability 1−p.
+To avoid changing the effective batch size, we simultaneously increase the number of images per batch by a factor 1/p.
+We ﬁnd that sampling does not have a signiﬁcant effect on convergence rate compared to whole image training, but takes signiﬁcantly more time due to the larger number of images that need to be considered per batch.
+We therefore choose unsampled, whole image training in our other experiments.
+Although our labels are mildly unbalanced (about 3/4 are background), we ﬁnd class balancing unnecessary.
+Augmentation We tried augmenting the training data by randomly mirroring and “jittering” the images by translating them up to 32 pixels (the coarsest scale of prediction) in each direction.
+Our models and code are publicly available at http://fcn.berkeleyvision.org.
+images processed)0.40.60.81.01.2loss5 RESULTS We test our FCN on semantic segmentation and scene parsing, exploring PASCAL VOC, NYUDv2, SIFT Flow, and PASCAL-Context.
+Although these tasks have historically distinguished between objects and regions, we treat both uniformly as pixel prediction.
+We evaluate our FCN skip architecture on each of these datasets, and then extend it to multi-modal input for NYUDv2 and multi-task prediction for the semantic and geometric labels of SIFT Flow.
+Metrics We report metrics from common semantic segmentation and scene parsing evaluations that are variations on pixel accuracy and region intersection over union (IU): i nii/(cid:80) • pixel accuracy:(cid:80) • mean accuraccy: (1/ncl)(cid:80) (cid:16) • mean IU: (1/ncl)(cid:80) ti +(cid:80) • frequency weighted IU: ((cid:80) (cid:80) −1(cid:80) j nji − nii k tk) where nij is the number of pixels of class i predicted to belong to class j, there are ncl different classes, and ti = j nij is the total number of pixels of class i.
+PASCAL VOC Table 4 gives the performance of our FCN-8s on the test sets of PASCAL VOC 2011 and 2012, and compares it to the previous best, SDS [14], and the wellknown R-CNN [5].
+We achieve the best results on mean IU by 30% relative.
+We report results on the standard split of 795 training images and 654 testing images.
+First we train our unmodiﬁed coarse model (FCN-32s) on RGB images.
+To add depth information, we train on a model upgraded to take four-channel RGB-D input (early fusion).
+[15], we try the three-dimensional HHA encoding of depth and train a net on just this information.
+To effectively combine color and depth, we deﬁne a “late fusion” of RGB and HHA that averages the ﬁnal layer scores from both nets and learn the resulting two-stream net endto-end.
+We learn a two-headed version of FCN-32/16/8s with semantic and geometric prediction layers and losses.
+We made predictions across all 33 classes, but only included classes actually present in the test set in our evaluation.
+Our FCN gives a 30% relative improvement on the previous best PASCAL VOC 11/12 test results with faster inference and learning.
+While there are 400+ classes, we follow the 59 class task deﬁned by [62] that picks the most frequent classes.
+We train and evaluate on the training and val sets respectively.
+In Table 7 we compare to the previous best result on this task.
+The left column shows the output of our most accurate net, FCN-8s.
+We examine the learning and inference of fully convolutional networks.
+We detail an approximation between momentum and batch size to further tune whole image learning.
+Finally, we measure bounds on task accuracy for given output resolutions to show there is still much to improve.
+Is foreground appearance sufﬁcient for inference, or does the context inﬂuence the output? Conversely, can a network learn to recognize a class by its shape and context alone? Masking To explore these issues we experiment with masked versions of the standard PASCAL VOC segmentation challenge.
+We both mask input to networks trained on normal PASCAL, and learn new networks on the masked PASCAL.
+To separate the contribution of shape, we learn a net restricted to the simple input of foreground/background masks.
+In our experiments we have followed the same approach, learning parameters to score all classes including background.
+Is this actually necessary, or do class models sufﬁce? To investigate, we deﬁne a net with a “null” background model that gives a constant score of zero.
+Instead of training with the softmax loss, which induces competition by normalizing across classes, we train with the sigmoid crossentropy loss, which independently normalizes each score.
+In all other respects the experiment is identical to our FCN32s on PASCAL VOC.
+6.2 Momentum and batch size In comparing optimization schemes for FCNs, we ﬁnd that “heavy” online learning with high momentum trains more accurate models in less wall clock time (see Section 4.2).
+Here we detail a relationship between momentum and batch size that motivates heavy learning.
+In practice, we ﬁnd that online learning works well and yields better FCN models in less wall clock time.
+To better understand this metric and the limits of this approach with respect to it, we compute approximate upper bounds on performance with prediction at various resolutions.
+We do this by downsampling ground truth images and then upsampling back to simulate the best results obtainable with a particular downsampling factor.
+By writing the updates computed by gradient accumulation as a non-recursive sum, we will see that momentum and batch size can be approximately traded off, which suggests alternative training parameters.
+Expanding this recurrence as an inﬁnite sum with geometric coefﬁcients, we have In other words, each example is included in the sum with coefﬁcient p(cid:98)j/k(cid:99), where the index j orders the examples from most recently considered to least recently considered.
+Approximating this expression by dropping the ﬂoor, we see that learning with momentum p and batch size k appears to be similar to learning with momentum p(cid:48) and batch size k(cid:48) if p(1/k) = p(cid:48)(1/k(cid:48)).
+We gratefully acknowledge NVIDIA for GPU donation.
+We thank Bharath Hariharan and Saurabh Gupta for their advice and dataset tools.
+We thank Sergio Guadarrama for reproducing GoogLeNet in Caffe.
+We thank Jitendra Malik for his helpful comments.
+Thanks to Wei Liu for pointing out an issue wth our SIFT Flow mean IU computation and an error in our frequency weighted mean IU formula

@@ -1,0 +1,36 @@
+Here, we demonstrate the ability of a memory-augmented neural network to rapidly assimilate new data, and leverage this data to make accurate predictions after only a few samples.
+We also introduce a new method for accessing an external memory that focuses on memory content, unlike previous methods that additionally use memory locationbased focusing mechanisms.
+And so, in this paper we revisit the meta-learning problem and setup from the perspective of a highly capable memory-augmented neural network (MANN) (note: here on, the term MANN will refer to the class of external-memory equipped networks, and not other “internal” memory-based architectures, such as LSTMs).
+We demonstrate that MANNs are capable of meta-learning in tasks that carry signiﬁcant shortand long-term memory demands.
+Additionally, we outline a memory access module that emphasizes memory access by content, and not additionally on memory location, as in original implementations of the NTM (Graves et al., 2014).
+Our approach combines the best of two worlds: the ability to slowly learn an abstract method for obtaining useful representations of raw data, via gradient descent, and the ability to rapidly bind never-beforeseen information after a single presentation, via an external memory module.
+Meta-Learning Task Methodology Usually, we try to choose parameters θ to minimize a learning cost L across some dataset D.
+However, for metalearning, we choose parameters to reduce the expected learning cost across a distribution of datasets p(D): To accomplish this, proper task setup is critical (Hochreiter et al., 2001).
+In our setup, a task, or episode, involves the presentation of some dataset D = {dt}T t=1 = {(xt, yt)}T t=1.
+The controllers employed in our model are are either LSTMs, or feed-forward networks.
+As such, writing to memory in our model involves the use of a newly designed access module called the Least Recently Used Access (LRUA) module.
+First, we introduce the notation m(v, n) to denote the nth smallest element of the vector v.
+To reduce the risk of overﬁtting, we performed data augmentation by randomly translating and rotating character images.
+We also created new classes through 90◦, 180◦ and 270◦ rotations of existing data.
+In order to reduce the computational time of our experiments we downscaled the images to 20 × 20.
+We performed a number of iterations of the basic task described in Section 2.
+First, our MANN was trained using one-hot vector representations as class labels (Figure 2).
+We were unable to accumulate an appreciable amount of data from participants on the ﬁfteen class case, as it proved much too difﬁcult and highly demotivating.
+We considered a set of baselines, such as a feed-forward RNN, LSTM, and a nonparametric nearest neighbours classiﬁer that used either raw-pixel input or features extracted by an autoencoder.
+The highest accuracies from our experiments are reported, which were achieved using a single nearest neighbour for prediction and features from the output bottleneck layer of the autoencoder.
+To test the effects of memory interference, we performed the classiﬁcation task without wiping the external memory between episodes.
+Given the successful one-shot classiﬁcation in episodes with ﬁfteen classes, we employed a curriculum training regime to further scale the classiﬁcation capabilities of the model.
+(a) Five classes per episode (b) Ten classes per episode  To test the effects of interference, we did not wipe the external memory store from episode-toepisode.
+Since our MANN architecture generated a broad strategy for meta-learning, we reasoned that it would be able to adequately perform regression tasks on never-before-seen functions.
+To test this, we generated functions using from a GP prior with a ﬁxed set of hyper-parameters and trained our network using unique functions in each episode.
+In our experiments, the GP was initiated with the correct hyper-parameters for the sampled function, giving it an advantage in function prediction.
+We investigated an approach to this problem based on the idea of meta-learning.
+Our central contribution is to demonstrate the special utility of a particular class of MANNs for meta-learning.
+The work we presented leaves several clear openings for next-stage development.
+First, our experiments employed a new procedure for writing to memory that was prima facie well suited to the tasks studied.
+Second, although we tested MANNs in settings where task parameters changed across episodes, the tasks studied contained a high degree of shared high-level structure.
+Weston, Jason, Chopra, Sumit, and Bordes, Antoine.
+Additional model details Our model is a variant of a Neural Turing Machine (NTM) from Graves et al.
+The controllers in our experiments are feed-forward networks or Long Short-Term Memories (LSTMs).
+To write to memory, we implemented a new content-based access module called Least Recently Used Access (LRUA).
+First, we introduce the notation m(v, n) to denote the nth smallest element of the vector v

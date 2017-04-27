@@ -1,0 +1,83 @@
+In this paper we show how the design of an optimization algorithm can be cast as a learning problem, allowing the algorithm to learn to exploit structure in the problems of interest in an automatic way.
+Our learned algorithms, implemented by LSTMs, outperform generic, hand-designed competitors on the tasks for which they are trained, and also generalize well to new tasks with similar structure.
+We demonstrate this on a number of tasks, including simple convex problems, training neural networks, and styling images with neural art.
+For example, in the deep learning community we have seen a proliferation of optimization methods specialized for high-dimensional, non-convex optimization problems.
+In this work we take a different tack and instead propose to replace hand-designed update rules with a learned update rule, which we call the optimizer g, speciﬁed by its own set of parameters φ.
+Casting algorithm design as a learning problem allows us to specify the class of problems we are interested in through example problem instances.
+In ordinary statistical learning we have a particular function of interest, whose behavior is constrained through a data set of example function evaluations.
+In choosing a model we specify a set of inductive biases about how we think the function of interest should behave at points we have not observed, and generalization corresponds to the capacity to make predictions about the behavior of the target function at novel points.
+In our setting the examples are themselves problem instances, which means generalization corresponds to the ability to transfer knowledge between different problems.
+However, by taking a meta-learning perspective, we can cast the problem of transfer learning as one of generalization, which is much better studied in the machine learning community.
+One of the great success stories of deep-learning is that we can rely on the ability of deep networks to generalize to new examples by learning interesting sub-structures.
+In this work we aim to leverage this generalization power, but also to lift it from simple supervised learning to the more general setting of optimization.
+[2016] frame multi-task learning as generalization, however unlike our approach they directly train a base learner rather than a training algorithm.
+Our approach to meta-learning builds on this work by modifying the network architecture of the optimizer in order to scale this approach to larger neural-network optimization problems.
+2 Learning to learn with recurrent neural networks In this work we consider directly parameterizing the optimizer.
+As a result, in a slight abuse of notation we will write the ﬁnal optimizee parameters θ∗(f, φ) as a function of the optimizer parameters φ and the function in question.
+We can then ask the question: What does it mean for an optimizer to be good? Given a distribution of functions f we will write the expected loss as As noted earlier, we will take the update steps gt to be the output of a recurrent neural network m, parameterized by φ, whose state we will denote explicitly with ht.
+Here wt ∈ R≥0 are arbitrary weights associated with each time-step and we will also use the notation ∇t = ∇θf (θt).
+This formulation is equivalent to (2) when wt = 1[t = T ], but later we will describe why using different weights can prove useful.
+We can minimize the value of L(φ) using gradient descent on φ.
+∂∇t Examining the objective in (3) we see that the gradient is non-zero only for terms where wt (cid:54)= 0.
+If we use wt = 1[t = T ] to match the original problem, then gradients of trajectory preﬁxes are zero and only the ﬁnal optimization step provides information for training the optimizer.
+We solve this problem by relaxing the objective such that wt > 0 at intermediate points along the trajectory.
+For simplicity, in all our experiments we use wt = 1 for every t.
+One challenge in applying RNNs in our setting is that we want to be able to optimize at least tens of thousands of parameters.
+To avoid this difﬁculty we will use an optimizer m which operates coordinatewise on the parameters of the objective function, similar to other common update rules like RMSprop and ADAM.
+We implement the update rule for each coordinate using a two-layer Long Short Term Memory (LSTM) network [Hochreiter and Schmidhuber, 1997], using the now-standard forget gate architecture.
+We will refer to this architecture, illustrated in Figure 3, as an LSTM optimizer.
+In Appendix A we propose a different method of preprocessing inputs to the optimizer inputs which is more robust and gives slightly better performance.
+We use early stopping when training the optimizer in order to avoid overﬁtting the optimizer.
+After each epoch (some ﬁxed number of learning steps) we freeze the optimizer parameters and evaluate its performance.
+We pick the best optimizer (according to the ﬁnal validation loss) and report its average performance on a number of freshly sampled test problems.
+We compare our trained optimizers with standard optimizers used in Deep Learning: SGD, RMSprop, ADAM, and Nesterov’s accelerated gradient (NAG).
+For each of these optimizer and each problem we tuned the learning rate, and report results with the rate that gives the best ﬁnal error for each problem.
+decay coefﬁcients for ADAM) we use the default values from the optim package in Torch7.
+In this experiment we consider training an optimizer on a simple class of synthetic 10-dimensional quadratic functions.
+In particular we consider minimizing functions of the form f (θ) = (cid:107)W θ − y(cid:107)2 for different 10x10 matrices W and 10-dimensional vectors y whose elements are drawn from an IID Gaussian distribution.
+We have not used any preprocessing, nor postprocessing.
+3.2 Training a small neural network on MNIST In this experiment we test whether trainable optimizers can learn to optimize a small neural network on MNIST, and also explore how the trained optimizers generalize to functions beyond those they were trained on.
+To this end, we train the optimizer to optimize a base network and explore a series of modiﬁcations to the network architecture and training procedure at test time.
+We used input preprocessing described in Appendix A and rescaled the outputs of the LSTM by the factor 0.1.
+In this comparison we re-used the LSTM optimizer from the previous experiment, and here we see that the LSTM optimizer continues to outperform the baseline optimizers on this task.
+Finally, in Figure 6 we show the results of systematically varying the tested architecture; for the LSTM results we again used the optimizer trained using 1 layer of 20 units and sigmoid non-linearities.
+test-set problems are similar enough to those in the training set we see even better generalization than the baseline optimizers.
+3.3 Training a convolutional network on CIFAR-10 Next we test the performance of the trained neural optimizers on optimizing classiﬁcation performance for the CIFAR-10 dataset [Krizhevsky, 2009].
+In these experiments we used a model with both convolutional and feed-forward layers.
+We found that this decomposition was not sufﬁcient for the model architecture introduced in this section due to the differences between the fully connected and convolutional layers.
+Instead we modify the optimizer by introducing two LSTMs: one proposes parameter updates for the fully connected layers and the other updates the convolutional layer parameters.
+Like the previous LSTM optimizer we still utilize a coordinatewise decomposition with shared weights and individual hidden states, however LSTM weights are now shared only between parameters of the same type (i.e.
+Additionally we include an optimizer LSTM-sub which was only trained on the held-out labels.
+In all these examples we can see that the LSTM optimizer learns much more quickly than the baseline optimizers, with signiﬁcant boosts in performance for the CIFAR-5 and especially CIFAR-2 datsets.
+We also see that the optimizers trained only on a disjoint subset of the data is hardly effected by this difference and transfers well to the additional dataset.
+The recent work on artistic style transfer using convolutional networks, or Neural Art [Gatys et al., 2015], gives a natural testbed for our method, since each content and style image pair gives rise to a different optimization problem.
+Note: the y-axis is in log scale and we zoom in on the interesting portion of this plot.
+We train optimizers using only 1 style and 1800 content images taken from ImageNet [Deng et al., 2009].
+We randomly select 100 content images for testing and 20 content images for validation of trained optimizers.
+We train the optimizer on 64x64 content images from ImageNet and one ﬁxed style image.
+We then test how well it generalizes to a different style image and higher resolution (128x128).
+Finally, in Appendix B we qualitatively examine the behavior of the step directions generated by the learned optimizer.
+We have shown how to cast the design of optimization algorithms as a learning problem, which enables us to train optimizers that are specialized to particular classes of functions.
+Our experiments have conﬁrmed that learned neural optimizers compare favorably against state-of-the-art optimization methods used in deep learning.
+We witnessed a remarkable degree of transfer, with for example the LSTM optimizer trained on 12,288 parameter neural art tasks being able to generalize to tasks with 49,152 parameters, different styles, and different content images all at the same time.
+We observed similar impressive results when transferring to different architectures in the MNIST task.
+To this aim we propose to preprocess the optimizer’s inputs.
+Therefore, we use the following preprocessing formula where p > 0 is a parameter controlling how small gradients are disregarded (we use p = 10 in all our experiments).
+We noticed that just rescaling all inputs by an appropriate constant instead also works ﬁne, but the proposed preprocessing seems to be more robust and gives slightly better results on some problems.
+In this section we try to peek into the decisions made by the LSTM optimizer, trained on the neural art task.
+Histories of updates We select a single optimizee parameter (one color channel of one pixel in the styled image) and trace the updates proposed to this coordinate by the LSTM optimizer over a single trajectory of optimization.
+We also record the updates that would have been proposed by both SGD and ADAM if they followed the same trajectory of iterates.
+We follow the same procedure as in the previous experiment, and visualize the proposed updates for a few selected time steps.
+D Information sharing between coordinates In previous sections we considered a coordinatewise architecture, which corresponds by analogy to a learned version of RMSprop or ADAM.
+Although diagonal methods are quite effective in practice, we can also consider learning more sophisticated optimizers that take the correlations between coordinates into effect.
+To this end, we introduce a mechanism allowing different LSTMs to communicate with each other.
+We also consider augmenting the LSTM+GAC architecture with an external memory that is shared between coordinates.
+We designed a memory architecture that, in theory, allows the Figure 11: The proposed update direction for a single coordinate over 32 steps.
+We call this architecture an NTM-BFGS optimizer, because its use of external memory is similar to the Neural Turing Machine [Graves et al., 2014].
+The pivotal differences between our construction and the NTM are (1) our memory allows only low-rank updates; (2) the controller (including read/write heads) operates coordinatewise.
+We can write a skeletonized version of the BFGS algorithm, using Mt to represent the inverse Hessian approximation at iteration t, as follows θt+1 = θt + gt Mt+1 = write(Mt, θt, gt) .
+Here we have packed up all of the details of the BFGS algorithm into the suggestively named read and write operations, which operate on the inverse Hessian approximation Mt.
+In this work we preserve the structure of the BFGS updates, but discard their particular form.
+Our NTM-BFGS optimizer uses an LSTM+GAC as a controller; however, instead of producing the update directly we attach one or more read and write heads to the controller.
+The read and write operation for a single head is diagrammed in Figure 14 and the way read and write heads are attached to the controller is depicted in  In cases where memory is constrained we can follow the example of L-BFGS and maintain a low rank approximation of the full memory (vis.
+Note that here we have dropped the time index t to simplify notation

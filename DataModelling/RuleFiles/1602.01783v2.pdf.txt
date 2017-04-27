@@ -1,0 +1,390 @@
+Lillicrap1 David Silver1 Koray Kavukcuoglu 1 1 Google DeepMind 2 Montreal Institute for Learning Algorithms (MILA), University of Montreal and We lightweight framework for deep reinforcement learning that uses asynchronous gradient descent for optimization of deep neural network controllers.
+0.93 (deep reinforcement learning; uses; asynchronous gradient descent for optimization of deep neural network controllers)
+
+We present asynchronous variants of four standard reinforcement learning algorithms and show that parallel actor-learners have a stabilizing effect on training allowing all four methods to successfully train neural network controllers.
+0.30 (We; show; that parallel actor-learners have a stabilizing effect on training)
+0.90 Context(We show):(parallel actor-learners; have; a stabilizing effect on training)
+
+Furthermore, we show that asynchronous actor-critic succeeds on a wide variety of continuous motor control problems as well as on a new task of navigating random 3D mazes using a visual input.
+0.33 (we; show; that asynchronous actor-critic succeeds on a wide variety of continuous motor control problems as well as on a new task of navigating random 3D mazes)
+0.93 Context(we show):(asynchronous actor-critic; succeeds; on a wide variety of continuous motor control problems as well as on a new task of navigating random 3D mazes)
+
+In this paper we provide a very different paradigm for deep reinforcement learning.
+0.60 (we; provide; a very different paradigm for deep reinforcement learning; L:In this paper)
+
+Instead of experience replay, we asynchronously execute multiple agents in parallel, on multiple instances of the environment.
+0.45 (we; asynchronously execute; multiple agents)
+
+Our parallel reinforcement learning paradigm also offers practical beneﬁts.
+0.67 (Our parallel reinforcement learning paradigm; offers; practical beneﬁts)
+
+Whereas previous approaches to deep reinforcement learning rely heavily on specialized hardware such as GPUs (Mnih et al., 2015; Van Hasselt et al., 2015; Schaul et al., 2015) or massively distributed architectures (Nair et al., 2015), our experiments run on a single machine with a standard multi-core CPU.
+0.94 (previous approaches to deep reinforcement; learning rely heavily; on specialized hardware such as GPUs)
+0.41 (our experiments; run; )
+
+We believe that the success of A3C on both 2D and 3D games, discrete and continuous action spaces, as well as its ability to train feedforward and recurrent agents makes it the most general and successful reinforcement learning agent to date.
+0.20 (We; believe; that the success of A3C on both 2D and 3D games, discrete and continuous action spaces, as well as its ability to train feedforward and recurrent agents makes it the most general and successful reinforcement learning agent to date)
+0.96 Context(We believe):(the success of A3C on both 2D and 3D games, discrete and continuous action spaces, as well as its ability to train feedforward and recurrent agents; makes; it the most general and successful reinforcement learning agent to date)
+
+We also note that a similar way of parallelizing DQN was proposed by (Chavez et al., 2015).
+0.27 (We; note; that a similar way of parallelizing DQN was proposed by (Chavez et al)
+0.95 Context(We note):(a similar way of parallelizing DQN; was proposed; by (Chavez et al)
+
+Reinforcement Learning Background We consider the standard reinforcement learning setting where an agent interacts with an environment E over a number of discrete time steps.
+0.90 (Reinforcement Learning; Background; We consider the standard reinforcement learning setting where an agent interacts with an environment)
+0.51 Context(Reinforcement Learning Background):(We; consider; the standard reinforcement learning setting where an agent interacts with an environment)
+0.89 Context(Reinforcement Learning Background We consider):(the standard reinforcement; learning; setting where an agent interacts with an environment)
+0.89 Context(Reinforcement Learning Background We consider the standard reinforcement learning):(the standard reinforcement; learning setting; where an agent interacts with an environment)
+0.88 Context(Reinforcement Learning Background We consider the standard reinforcement learning setting):(an agent; interacts; with an environment)
+
+We refer to the above method as one-step Q-learning because it updates the action value Q(s, a) toward the onestep return r + γ maxa(cid:48) Q(s(cid:48), a(cid:48); θ).
+0.46 (We; refer; to the above method as one-step Q-learning; because it updates the action value Q(s)
+0.50 (it; updates; the action value Q(s)
+
+Asynchronous RL Framework We now present multi-threaded asynchronous variants of one-step Sarsa, one-step Q-learning, n-step Q-learning, and advantage actor-critic.
+0.60 (We; present; multi-threaded asynchronous variants of one-step Sarsa; T:now)
+
+While the underlying RL methods are quite different, with actor-critic being an on-policy policy search method and Q-learning being an off-policy value-based method, we use two main ideas to make all four algorithms practical given our design goal.
+0.84 (the underlying RL methods; are; quite different)
+0.39 (we; use; two main ideas; to make all four algorithms practical)
+0.39 Context(we use):(we; use two main ideas to make; all four algorithms practical)
+
+First, we use asynchronous actor-learners, similarly to the Gorila framework (Nair et al., 2015), but instead of using separate machines and a parameter server, we use multiple CPU threads on a single machine.
+0.64 (we; use; asynchronous actor-learners; similarly to the Gorila framework; T:First)
+0.45 (we; use; multiple CPU threads; L:on a single machine)
+
+Second, we make the observation that multiple actorsend if if t mod IAsyncU pdate == 0 or s is terminal then Algorithm 1 Asynchronous one-step Q-learning pseudocode for each actor-learner thread.
+0.45 (we; make; the observation)
+0.86 (t mod IAsyncU pdate; ==; )
+0.83 (0 or s; is; terminal; T:then)
+
+Hence, we do not use a replay memory and rely on parallel actors employing different exploration policies to perform the stabilizing role undertaken by experience replay in the DQN training algorithm.
+0.45 (we; do not use; a replay memory)
+0.93 (the stabilizing role; undertaken; by experience replay in the DQN training algorithm)
+0.41 (we; rely; on parallel actors)
+0.90 (parallel actors; employing; different exploration policies)
+
+First, we obtain a reduction in training time that is roughly linear in the number of parallel actor-learners.
+0.45 (we; obtain; a reduction in training time)
+0.94 (training time; is; roughly linear in the number of parallel actor-learners)
+
+Second, since we no longer rely on experience replay for stabilizing learning we are able to use on-policy reinforcement learning methods such as Sarsa and actor-critic to train neural networks in a stable way.
+0.55 (we; rely; on experience replay; for stabilizing learning; T:no longer)
+0.45 (we; are; able to use on-policy reinforcement)
+0.57 (we; to use; on-policy reinforcement learning methods such as Sarsa and actor-critic to train neural networks in a stable way)
+
+We now describe our variants of one-step Qlearning, one-step Sarsa, n-step Q-learning and advantage actor-critic.
+0.40 (We; describe; our variants of one-step Qlearning; T:now)
+
+Asynchronous one-step Q-learning: Pseudocode for our variant of Q-learning, which we call Asynchronous onestep Q-learning, is shown in Algorithm 1.
+0.95 (Q-learning; call; Asynchronous onestep Q-learning)
+
+We use a shared and slowly changing target network in computing the Q-learning loss, as was proposed in the DQN training method.
+0.61 (We; use; a shared and slowly changing target network in computing the Q-learning loss)
+
+We also accumulate gradients over multiple timesteps before they are applied, which is similar to using minibatches.
+0.27 (We; accumulate; gradients over multiple timesteps; T:before they are applied)
+0.32 (they; are applied; )
+
+Finally, we found that giving each thread a different exploration policy helps improve robustness.
+0.40 (we; found; that giving each thread a different exploration policy helps improve robustness; T:Finally)
+0.94 Context(we found):(giving each thread a different exploration policy; helps; improve robustness)
+
+While there are many possible ways of making the exploration policies differ we experiment with using -greedy exploration with  periodically sampled from some distribution by each thread.
+
+We again use a target network and updates accumulated over multiple timesteps to stabilize learning.
+0.55 (We; use; a target network and updates accumulated over multiple timesteps; T:again)
+0.93 (a target network and updates; accumulated; L:over multiple timesteps)
+0.16 (We; to stabilize; learning)
+0.14 Context(We to stabilize):(We; to stabilize learning learning; )
+
+Asynchronous n-step Q-learning: Pseudocode for our variant of multi-step Q-learning is shown in Supplementary Algorithm S2.
+0.95 (Asynchronous n-step Q-learning; is shown; L:in Supplementary Algorithm S2)
+
+We found that using the forward view is easier when training neural networks with momentum-based methods and backpropagation through time.
+0.19 (We; found; that using the forward view is easier)
+0.95 Context(We found):(using the forward view; is; easier when training neural networks with momentum-based methods and backpropagation through time)
+
+Asynchronous advantage actor-critic: The algorithm, which we call asynchronous advantage actor-critic (A3C), maintains a policy π(at|st; θ) and an estimate of the value function V (st; θv).
+0.91 (The algorithm; call; asynchronous advantage actor-critic)
+
+Like our variant of n-step Q-learning, our variant of actor-critic also operates in the forward view and uses the same mix of n-step returns to update both the policy and the value-function.
+0.69 (our variant of actor-critic; operates; L:in the forward view)
+0.78 (our variant of actor-critic; uses; the same mix of n-step returns; to update both the policy and the value-function)
+
+As with the value-based methods we rely on parallel actorlearners and accumulated updates for improving training stability.
+0.57 (we; rely; on parallel actorlearners and accumulated updates for improving training stability)
+
+Note that while the parameters θ of the policy and θv of the value function are shown as being separate for generality, we always share some of the parameters in practice.
+0.93 (the parameters; θ; of the policy and θv of the value function)
+0.55 (we; share; some of the parameters in practice; T:always)
+
+We typically use a convolutional neural network that has one softmax output for the policy π(at|st; θ) and one linear output for the value function V (st; θv), with all non-output layers shared.
+0.96 (a convolutional neural network; has; one softmax output for the policy π(at|st)
+0.84 (θ) and one linear output for the value function V (st; shared; )
+0.32 Context(θ ) and one linear output for the value function V ( st shared):(We; typically use; a convolutional neural network that has one softmax output for the policy π(at|st)
+
+We also found that adding the entropy of the policy π to the objective function improved exploration by discouraging premature convergence to suboptimal deterministic policies.
+0.24 (We; found; that adding the entropy of the policy π to the objective function improved exploration by discouraging premature convergence to suboptimal deterministic policies)
+
+Optimization: We investigated three different optimization algorithms in our asynchronous framework – SGD with momentum, RMSProp (Tieleman & Hinton, 2012) without shared statistics, and RMSProp with shared statistics.
+0.42 (We; investigated; three different optimization algorithms in our asynchronous framework - SGD with momentum)
+
+We used the standard non-centered RMSProp update given by g = αg + (1 − α)∆θ2 and θ ← θ − η where all operations are performed elementwise.
+0.50 (We; used; the standard non-centered RMSProp update)
+0.94 (the standard non-centered RMSProp update; given; by g)
+0.21 (We; θ; )
+0.73 (all operations; are performed elementwise; )
+
+Experiments We use four different platforms for assessing the properties of the proposed framework.
+0.92 (Experiments; use; four different platforms for assessing the properties of the proposed framework)
+
+We perform most of our experiments using the Arcade Learning Environment (Bellemare et al., 2012), which provides a simulator for Atari 2600 games.
+0.31 (We; perform; most of our experiments)
+
+We use the Atari domain to compare against state of the art results (Van Hasselt et al., 2015; Wang et al., 2015; Schaul et al., 2015; Nair et al., 2015; Mnih et al., 2015), as well as to carry out a detailed stability and scalability analysis of the proposed methods.
+0.50 (We; use; the Atari domain; to compare against state of the art results)
+0.93 (the Atari domain; to compare; against state of the art results)
+0.99 (Wang et al., 2015; Schaul et al., 2015; Nair et al., 2015; Mnih et al; to carry out; a detailed stability and scalability analysis of the proposed methods)
+
+We performed further comparisons using the TORCS 3D car racing simulator (Wymann et al., 2013).
+0.39 (We; performed; further comparisons)
+0.43 Context(We performed):(We; performed further comparisons using; the TORCS 3D car racing simulator)
+
+We also use Asynchronous Methods for Deep Reinforcement Learning  DQN was trained on a single Nvidia K40 GPU while the asynchronous methods were trained using 16 CPU cores.
+0.50 (We; also use; Asynchronous Methods for Deep Reinforcement Learning  DQN)
+0.91 (the asynchronous methods; were trained; using 16 CPU cores)
+0.90 (the asynchronous methods; using; 16 CPU cores)
+
+For asynchronous methods we average over the best 5 models from 50 experiments with learning rates sampled from LogU nif orm(10−4, 10−2) and all other hyperparameters ﬁxed.
+0.93 (asynchronous methods; average; over the best 5 models from 50 experiments with learning rates)
+0.73 (learning rates; sampled; )
+0.80 (all other hyperparameters; ﬁxed; )
+
+The precise details of our experimental setup can be found in Supplementary Section 8.
+0.77 (The precise details of our experimental setup; can be found; L:in Supplementary Section 8)
+
+Method DQN Gorila D-DQN Dueling D-DQN Prioritized DQN A3C, FF A3C, FF A3C, LSTM Training Time 8 days on GPU 8 days on GPU 8 days on GPU 8 days on GPU 1 day on CPU 4 days on CPU 4 days on CPU Mean Median 121.9% 47.5% 215.2% 71.3% 332.9% 110.9% 343.8% 117.1% 463.6% 127.6% 344.1% 68.2% 496.8% 116.6% 623.0% 112.6% We ﬁrst present results on a subset of Atari 2600 games to demonstrate the training speed of the new methods.
+0.57 (We; ﬁrst; present results; on a subset of Atari)
+0.89 (121.9%; to demonstrate; the training speed of the new methods)
+
+The results show that all four asynchronous methods we presented can successfully train neural network controllers on the Atari domain.
+0.90 (all four asynchronous methods; presented; we)
+0.79 (The results; show; that all four asynchronous methods we presented can successfully train neural network controllers on the Atari domain)
+0.71 Context(The results show):(all four asynchronous methods we presented; can successfully train; neural network controllers; on the Atari domain)
+
+We then evaluated asynchronous advantage actor-critic on 57 Atari games.
+0.60 (We; evaluated; asynchronous advantage actor-critic on 57 Atari games; T:then)
+
+In order to compare with the state of the art in Atari game playing, we largely followed the training and evaluation protocol of (Van Hasselt et al., 2015).
+0.61 (we; largely followed; the training and evaluation protocol of (Van Hasselt et al)
+
+Speciﬁcally, we tuned hyperparameters (learning rate and amount of gradient norm clipping) using a search on six Atari games (Beamrider, Breakout, Pong, Q*bert, Seaquest and Space Invaders) and then ﬁxed all hyperparameters for all 57 games.
+0.62 (we; ﬁxed; all hyperparameters for all 57 games; T:then)
+0.39 (we; tuned; hyperparameters)
+
+We trained both a feedforward agent with the same architecture as (Mnih et al., 2015; Nair et al., 2015; Van Hasselt et al., 2015) as well as a recurrent agent with an additional 256 LSTM cells after the ﬁnal hidden layer.
+0.45 (We; trained; both a feedforward agent; with the same architecture)
+
+We additionally used the ﬁnal network weights for evaluation to make the results more comparable to the original results Table 1.
+0.39 (We; additionally used; the ﬁnal network weights; for evaluation)
+0.40 Context(We additionally used):(We; additionally used the ﬁnal network weights to make; the results more comparable to the original results Table 1)
+
+We trained our agents for four days using 16 CPU cores, while the other agents were trained for 8 to 10 days on Nvidia K40 GPUs.
+0.31 (We; trained; our agents; T:for four days)
+0.93 (the other agents; were trained; T:for 8 to 10 days on Nvidia K40 GPUs)
+
+Table 1 shows the average and median human-normalized scores obtained by our agents trained by asynchronous advantage actor-critic (A3C) as well as the current state-of-the art.
+0.65 (Table 1; shows; the average and median human-normalized scores obtained by our agents trained by asynchronous advantage actor-critic (A3C) as well as the current state-of-the art)
+0.90 (the average and median human-normalized scores obtained by our agents; trained; by asynchronous advantage actor-critic (A3C) as well as the current state-of-the art)
+
+We note that many of the improvements that are presented in Double DQN (Van Hasselt et al., 2015) and Dueling Double DQN (Wang et al., 2015) can be incorporated to 1-step Q and n-step Q methods presented in this work with similar potential improvements.
+0.32 (We; note; that many of the improvements that are presented in Double DQN (Van Hasselt et al., 2015) and Dueling Double DQN (Wang et al., 2015) can be incorporated to 1-step Q and n-step Q methods)
+0.59 Context(We note):(2015; can be incorporated; T:Dueling Double DQN (Wang et al)
+1.00 (many of the improvements that are presented in Double DQN (Van Hasselt et al., 2015) and Dueling Double DQN (Wang et al., 2015) can be incorporated to 1-step Q and n-step Q methods; presented; L:in this work with similar potential improvements)
+0.90 (the improvements; are presented; L:in Double DQN (Van Hasselt et al)
+
+TORCS Car Racing Simulator We also compared the four asynchronous methods on the TORCS 3D car racing game (Wymann et al., 2013).
+0.61 (We; also compared; the four asynchronous methods on the TORCS 3D car racing game)
+
+We used the same neural network architecture as the one used in the Atari experiments speciﬁed in Supplementary Section 8.
+0.45 (We; used; the same neural network architecture; as the one)
+0.92 (the one; used; L:in the Atari experiments)
+0.94 (the Atari experiments; speciﬁed; L:in Supplementary Section 8)
+
+We performed experiments using four different settings – the agent controlling a slow car with and without opponent bots, and the agent controlling a fast car with and without opponent bots.
+0.90 (the agent; controlling; a slow car)
+0.90 (the agent; controlling; a fast car)
+0.39 (We; performed; experiments)
+0.39 Context(We performed):(We; performed experiments using; four different settings)
+
+Continuous Action Control Using the MuJoCo We also examined a set of tasks where the action space is continuous.
+0.94 (Continuous Action Control; Using; the MuJoCo)
+0.45 (We; also examined; a set of tasks)
+0.83 (the action space; is; continuous)
+
+In particular, we looked at a set of rigid body physics domains with contact dynamics where the tasks include many examples of manipulation and locomotion.
+0.57 (we; looked; at a set of rigid body physics domains with contact dynamics)
+0.94 (the tasks; include; many examples of manipulation and locomotion; L:contact dynamics)
+
+We evaluated only the asynchronous advantage actor-critic algorithm since, unlike the value-based methods, it is easily extended to continuous actions.
+0.42 (We; evaluated; only the asynchronous advantage actor-critic algorithm; since, unlike the value-based methods, it is easily extended to continuous actions)
+0.45 (it; is easily extended; to continuous actions)
+
+Some successful policies learned by our agent can be seen in the following video https://youtu.be/ Ajjc08-iPx8.
+0.85 (Some successful policies; learned; by our agent)
+0.74 (Some successful policies learned by our agent; can be seen; L:in the following video)
+
+We performed an additional set of experiments with A3C on a new 3D environment called Labyrinth.
+0.50 (We; performed; an additional set of experiments with A3C; L:on a new 3D environment)
+0.94 (a new 3D environment; called; Labyrinth)
+
+The speciﬁc task we considered involved the agent learning to ﬁnd rewards in randomly generated mazes.
+0.19 (we; considered; )
+0.79 (The speciﬁc task we considered; involved; the agent learning to ﬁnd rewards in randomly generated mazes)
+0.90 (the agent; learning; to ﬁnd rewards in randomly generated mazes)
+
+To compute the training speed-up on a single game we measured the time to required reach a ﬁxed reference score using each method and number of threads.
+0.92 (a ﬁxed reference score; using; each method and number of threads)
+0.39 (we; measured; the time; to required reach a ﬁxed reference score)
+0.39 Context(we measured):(we; measured the time to required; reach a ﬁxed reference score)
+
+We trained an A3C LSTM agent on this task using only 84 × 84 RGB images as input.
+0.50 (We; trained; an A3C LSTM agent; on this task)
+0.92 (this task; using; only 84 × 84 RGB images; as input)
+
+Scalability and Data Efﬁciency We analyzed the effectiveness of our proposed framework by looking at how the training time and data efﬁciency changes with the number of parallel actor-learners.
+0.43 (We; analyzed; the effectiveness of our proposed framework; T:Scalability and Data Efﬁciency)
+0.50 Context(We analyzed):(We; analyzed the effectiveness of our proposed framework by looking; at how the training time and data efﬁciency changes with the number of parallel actor-learners)
+
+This conﬁrms that our proposed framework scales well with the number of parallel workers, making efﬁcient use of resources.
+0.37 (This; conﬁrms; our proposed framework scales well with the number of parallel workers)
+
+We observe that one-step methods (one-step Q and one-step Sarsa) often require less data to achieve a particular score when using more parallel actor-learners.
+0.90 (less data; to achieve; a particular score; T:when using more parallel actor-learners)
+0.32 (We; observe; that one-step methods (one-step Q and one-step Sarsa) often require less data to achieve a particular score)
+0.96 Context(We observe):(one-step methods; require; to achieve a particular score when using more parallel actor-learners; T:often)
+
+We believe this is due to positive effect of multiple threads to reduce the bias in one-step methods.
+0.51 (We; believe; this is due to positive effect of multiple threads to reduce the bias in one-step methods)
+0.51 Context(We believe):(this; is; due to positive effect of multiple threads to reduce the bias in one-step methods)
+
+Finally, we analyzed the stability and robustness of the four proposed asynchronous algorithms.
+0.70 (we; analyzed; the stability and robustness of the four proposed asynchronous algorithms; T:Finally)
+
+For each of the four algorithms we trained models on ﬁve games (Breakout, Beamrider, Pong, Q*bert, Space Invaders) using 50 different learning rates and random initializations.
+0.45 (we; trained; models on ﬁve games)
+
+Conclusions and Discussion We have presented asynchronous versions of four standard reinforcement learning algorithms and showed that they are able to train neural network controllers on a variety of domains in a stable manner.
+0.45 (We; have presented; asynchronous versions of four standard reinforcement learning algorithms)
+0.58 (they; to train; neural network controllers; on a variety of domains in a stable manner)
+0.15 (We; showed; that they are able to train neural network controllers on a variety of domains in a stable manner)
+0.67 Context(We showed):(they; are; able to train neural network controllers on a variety of domains in a stable manner)
+
+Our results show that in our proposed framework stable training of neural networks through reinforcement learning is possible with both valuebased and policy-based methods, off-policy as well as onpolicy methods, and in discrete as well as continuous domains.
+0.37 (Our results; show; that in our proposed framework stable training of neural networks through reinforcement learning is possible with both valuebased and policy-based methods)
+0.94 Context(Our results show):(stable training of neural networks through reinforcement learning; is; possible; L:in our proposed framework)
+
+One of our main ﬁndings is that using parallel actorlearners to update a shared model had a stabilizing effect on the learning process of the three value-based methods we considered.
+0.59 (One of our main ﬁndings; is; that using parallel actorlearners to update a shared model had a stabilizing effect on the learning process of the three value-based methods)
+0.92 (the three value-based methods; considered; we)
+
+This could in turn lead to much faster training times in domains like TORCS where interacting with the environment is more expensive than updating the model for the architecture we used.
+0.33 (This; could lead; to much faster training times in domains like TORCS)
+
+Combining other existing reinforcement learning methods or recent advances in deep reinforcement learning with our asynchronous framework presents many possibilities for immediate improvements to the methods we presented.
+0.95 (Combining other existing reinforcement learning methods or recent advances in deep reinforcement; presents; many possibilities for immediate improvements to the methods)
+0.88 (the methods; presented; we)
+
+While our n-step methods operate in the forward view (Sutton & Barto, 1998) by using corrected n-step returns directly as targets, it has been more common to use the backward view to implicitly combine different returns through eligibility traces (Watkins, 1989; Sutton & Barto, 1998; Peng & Williams, 1996).
+0.70 (our n-step methods; operate; L:in the forward view)
+0.57 (it; has been; more common; to use the backward view to implicitly combine different returns through eligibility traces)
+
+All of the value-based methods we investigated could beneﬁt from different ways of reducing overestimation bias of Q-values (Van Hasselt et al., 2015; Bellemare et al., 2016).
+0.91 (the value-based methods; investigated; we)
+0.96 (All of the value-based methods; could beneﬁt; from different ways of reducing overestimation bias of Q-values (Van Hasselt et al., 2015)
+
+We thank Thomas Degris, Remi Munos, Marc Lanctot, Sasha Vezhnevets and Joseph Modayil for many helpful discussions, suggestions and comments on the paper.
+0.68 (We; thank; Thomas Degris, Remi Munos, Marc Lanctot, Sasha Vezhnevets and Joseph Modayil; for many helpful discussions, suggestions and comments on the paper)
+
+We also thank the DeepMind evaluation team for setting up the environments used to evaluate the agents in the paper.
+0.53 (We; thank; the DeepMind evaluation team for setting up the environments)
+0.90 (the environments; used; to evaluate the agents in the paper)
+
+Optimization Details We investigated two different optimization algorithms with our asynchronous framework – stochastic gradient descent and RMSProp.
+0.61 (We; investigated; two different optimization algorithms with our asynchronous framework - stochastic gradient descent and RMSProp; T:Optimization Details)
+
+Our implementations of these algorithms do not use any locking in order to maximize throughput when using a large number of threads.
+0.70 (Our implementations of these algorithms; do not use; any locking)
+
+We experimented with two versions of the algorithm.
+0.45 (We; experimented; with two versions of the algorithm)
+
+In one version, which we refer to as RMSProp, each thread maintains its own g shown in Equation S2.
+0.89 (one version; refer; as RMSProp)
+0.92 (each thread; maintains; its own g shown in Equation S2; L:In one version)
+0.76 (its own g; shown; L:in Equation S2)
+
+In the other version, which we call Shared RMSProp, the vector g is shared among threads and is updated asynchronously and without locking.
+0.93 (the other version; call; Shared RMSProp)
+0.95 (the vector g; is shared; among threads; L:In the other version)
+0.72 (the vector g; is updated; )
+
+We compared these three asynchronous optimization algorithms in terms of their sensitivity to different learning rates and random network initializations.
+0.42 (We; compared; these three asynchronous optimization algorithms; in terms of their sensitivity to different learning rates and random network initializations)
+
+We performed a set of 50 experiments for ﬁve Atari games and every TORCS level, each using a different random initialization and initial learning rate.
+0.61 (We; performed; a set of 50 experiments for ﬁve Atari games and every TORCS level)
+0.54 (each; using; a different random initialization and initial learning rate)
+
+Note that in comparisons to prior work (Tables 1 and S3) we followed standard evaluation protocol and used ﬁxed hyperparameters.
+
+Continuous Action Control Using the MuJoCo Physics Simulator To apply the asynchronous advantage actor-critic algorithm to the Mujoco tasks the necessary setup is nearly identical to that used in the discrete action domains, so here we enumerate only the differences required for the continuous action domains.
+0.96 (Continuous Action Control; Using; the MuJoCo Physics Simulator; To apply the asynchronous advantage actor-critic algorithm to the Mujoco)
+0.60 (we; enumerate; only the differences required for the continuous action domains; L:here)
+0.91 (only the differences; required; for the continuous action domains)
+0.14 (that; used; L:in the discrete action domains)
+
+For all the domains we attempted to learn the task using the physical state as input.
+0.40 (we; attempted; to learn the task)
+0.40 Context(we attempted):(we; attempted to learn; the task using the physical state as input)
+
+In addition, for three of the tasks (pendulum, pointmass2D, and gripper) we also examined training directly from RGB pixel inputs.
+0.46 (we; examined training directly; from RGB pixel inputs)
+
+In the cases where we used pixels, the input was passed through two layers of spatial convolutions without any non-linearity or pooling.
+0.60 (we; used; pixels; L:the cases)
+0.96 (the input; was passed; through two layers of spatial convolutions without any non-linearity or pooling; L:In the cases)
+
+Unlike the discrete action domain where the action output is a Softmax, here the two outputs of the policy network are two real number vectors which we treat as the mean vector µ and scalar variance σ2 of a multidimensional normal distribution with a spherical covariance.
+0.97 (the action output; is; a Softmax; L:the discrete action domain)
+0.96 (the two outputs of the policy network; are; two real number vectors which we treat as the mean vector µ and scalar variance σ2 of a multidimensional normal distribution with a spherical covariance; L:here)
+0.94 (two real number vectors; treat; as the mean vector µ and scalar variance σ2 of a multidimensional normal distribution with a spherical covariance)
+
+To act, the input is passed through the model to the output layer where we sample from the normal distribution determined by µ and σ2.
+0.90 (the input; is passed; through the model to the output layer)
+0.55 (we; sample; L:the output layer)
+0.91 (the normal distribution; determined; by µ and σ2)
+
+In our experiments with continuous control problems the networks for policy network and value network do not share any parameters, though this detail is unlikely to be crucial.
+0.94 (the networks for policy network and value network; do not share; any parameters; L:In our experiments with continuous control problems)
+0.81 (this detail; is; unlikely to be crucial)
+0.74 (this detail; to be; crucial)
+
+Finally, since the episodes were typically at most several hundred time steps long, we did not use any bootstrapping in the policy or value function updates and batched each episode into a single update.
+0.90 (the episodes; were typically; at most several hundred time steps long)
+0.60 (we; did not use; any bootstrapping; L:in the policy or value function updates; T:Finally)
+0.41 (we; batched; each episode; into a single update)
+
+As in the discrete action case, we included an entropy cost which encouraged exploration.
+0.45 (we; included; an entropy cost which encouraged exploration)
+0.90 (an entropy cost; encouraged; exploration)
+
+In the continuous Asynchronous Methods for Deep Reinforcement Learning case the we used a cost on the differential entropy of the normal distribution deﬁned by the output of the actor network, − 1 2 (log(2πσ2) + 1), we used a constant multiplier of 10−4 for this cost across all of the tasks examined.
+0.91 (the normal distribution; deﬁned; by the output of the actor network)
+0.84 (the output of the actor network; −; 1 2)
+0.57 (we; used; a constant multiplier of 10−4 for this cost across all of the tasks)
+
+Even in the case of solving the domains directly from pixel inputs we found that it was possible to reliably discover solutions within 24 hours
+0.26 (we; found; that it was possible to reliably discover solutions within 24 hours; L:Even in the case of solving the domains directly from pixel inputs)
+

@@ -1,0 +1,112 @@
+We demonstrate the effectiveness of both approaches on the WMT translation tasks between English and German in both directions.
+With local attention, we achieve a signiﬁcant gain of 5.0 BLEU points over non-attentional systems that already incorporate known techniques such as dropout.
+Our ensemble model using different attention architectures yields a new state-of-the-art result in the WMT’15 English to German translation task with 25.9 BLEU points, an improvement of 1.0 BLEU points over the existing best system backed by NMT and an n-gram reranker.1 Neural Machine Translation (NMT) achieved state-of-the-art performances in large-scale translation tasks such as from English to French (Luong et al., 2015) and English to German (Jean et al., 2015).
+It then starts 1All our code and models are publicly available at Figure 1: Neural machine translation – a stacking recurrent architecture for translating a source sequence A B C D into a target sequence X Y Z.
+To the best of our knowledge, there has not been any other work exploring the use of attention-based architectures for NMT.
+In this work, we design, with simplicity and efarchitecrecurrent the recent NMT work ture, which most of (Kalchbrenner and Blunsom, 2013; such Cho et al., 2014; Sutskever et al., 2014; Luong et al., 2015; Bahdanau et al., 2015; Jean et al., 2015) have in common.
+The latter can be viewed as an interesting blend between the hard and soft attention models proposed in (Xu et al., 2015): it is computationally less expensive than the global model or the soft attention; at the same time, unlike the hard attention, the local attention is differentiable almost everywhere, making it easier to implement and train.2 Besides, we also examine various alignment functions for our attention-based models.
+Experimentally, we demonstrate that both of our approaches are effective in the WMT translation tasks between English and German in both directions.
+Our attentional models yield a boost of up to 5.0 BLEU over non-attentional systems which already incorporate known techniques such as dropout.
+For English to German translation, we achieve new state-of-the-art (SOTA) results for both WMT’14 and WMT’15, outperforming previous SOTA systems, backed by NMT models and n-gram LM rerankers, by more than 1.0 BLEU.
+We conduct extensive analysis to evaluate our models in terms of learning, the ability to handle long sentences, choices of attentional architectures, alignment quality, and translation outputs.
+(2015), which is very similar to our local attention and applied to the image generation task.
+However, as we detail later, our model is much simpler and can achieve good performance for NMT.
+Such an approach is referred to as an attention mechanism, which we will discuss next.
+In this work, following (Sutskever et al., 2014; Luong et al., 2015), we use the stacking LSTM architecture for our NMT systems, as illustrated 4They all used a single RNN layer except for the latter two works which utilized a bidirectional RNN for the encoder.
+Our training objective is formulated as follows: with D being our parallel training corpus.
+Our various attention-based models are classifed into two broad categories, global and local.
+We illustrate these two model types in Figure 2 and 3 respectively.
+Speciﬁcally, given the target hidden state ht and the source-side context vector ct, we employ a simple concatenation layer to combine the information from both vectors to produce an attentional hidden state as follows: The attentional vector ˜ht is then fed through the softmax layer to produce the predictive distribution formulated as: We now detail how each model type computes the source-side context vector ct.
+Here, score is referred as a content-based function for which we consider three different alternatives: Besides, in our early attempts to build attentionbased models, we use a location-based function in which the alignment scores are computed from solely the target hidden state ht as follows: Given the alignment vector as weights, the context vector ct is computed as the weighted average over all the source hidden states.6 Comparison to (Bahdanau et al., 2015) – While our global attention approach is similar in spirit to the model proposed by Bahdanau et al.
+(2015), there are several key differences which reﬂect how we have both simpliﬁed and generalized from the original model.
+First, we simply use hidden states at the top LSTM layers in both the encoder and decoder as illustrated in  (2015), on the other hand, use the concatenation of the forward and backward source hidden states in the bi-directional encoder 6Eq.
+For short sentences, we only use the top part of at and for long sentences, we ignore words near the end.
+Second, our computation path is simpler; we go from ht → at → ct → ˜ht then make a prediction as detailed in Eq.
+(2015) only experimented with one alignment function, the concat product; whereas we show later that the other alternatives are better.
+To address this deﬁciency, we propose a local attentional mechanism that chooses to focus only on a small subset of the source positions per target word.
+Our local attention mechanism selectively focuses on a small window of context and is differentiable.
+We consider two variants of the model as below.
+Monotonic alignment (local-m) – we simply set pt = t assuming that source and target sequences are roughly monotonically aligned.
+(7).9 Predictive alignment (local-p) – instead of assuming monotonic alignments, our model predicts an aligned position as follows: pt = S · sigmoid(v⊤ Wp and vp are the model parameters which will be learned to predict positions.
+To favor alignment points near pt, we place a Gaussian distribution centered around pt .
+Specifically, our alignment weights are now deﬁned as: at(s) = align(ht, ¯hs) exp(cid:18)− (s − pt)2 2σ2 (cid:19) (10) We use the same align function as in Eq.
+the standard deviation is empirically set as σ = D Note that pt is a real nummber; whereas s is an integer within the window centered at pt.10 8If the window crosses the sentence boundaries, we simply ignore the outside part and consider words in the window.
+10local-p is similar to the local-m model except that we dynamically compute pt and use a truncated Gaussian distribution to modify the original alignment weights align(ht, ¯hs) as shown in Eq.
+By utilizing pt to derive at, we can compute backprop gradients for W p and vp.
+Comparison to (Gregor et al., 2015) – have proposed a selective attention mechanism, very similar to our local attention, for the image generation task.
+We, instead, use the same “zoom” for all target positions, which greatly simpliﬁes the formulation and still achieves good performance.
+3.3 In our proposed global and local approaches, the attentional decisions are made independently, which is suboptimal.
+To address that, we propose an inputfeeding approach in which attentional vectors ˜ht are concatenated with inputs at the next time steps as illustrated in  – to vectors, Bahdanau et al.
+(2015) similar to our ct, in building subsequent hidden states, which can also achieve the “coverage” effect.
+Also, our approach is more general; as illustrated in Figure 4, it can be applied to general stacking recurrent architectures, including non-attentional models.
+Such a constraint can also be useful to capture the coverage set effect in NMT that we mentioned earlier.
+However, we chose to use the input-feeding approach since it provides ﬂexibility for the model to decide on any attentional constraints it deems suitable.
+We evaluate the effectiveness of our models on the WMT translation tasks between English and German in both directions.
+newstest2013 (3000 sentences) is used as a development set to select our hyperparameters.
+Following (Luong et al., 2015), we report translation quality using two types of BLEU: (a) tokenized12 BLEU to be comparable with existing NMT work and (b) NIST13 BLEU to be comparable with WMT results.
+All our models are trained on the WMT’14 training data consisting of 4.5M sentences pairs (116M English words, 110M German words).
+Similar to (Jean et al., 2015), we limit our vocabularies to be the top 50K most frequent words for both languages.
+When training our NMT systems, following (Bahdanau et al., 2015; Jean et al., 2015), we ﬁlter out sentence pairs whose lengths exceed 50 words and shufﬂe mini-batches as we proceed.
+Our stacking LSTM models have 4 layers, each with 1000 cells, and 1000-dimensional embeddings.
+We follow (Sutskever et al., 2014; Luong et al., 2015) in training NMT with similar settings: (a) our parameters are uniformly initialized in [−0.1, 0.1], (b) we train for 10 epochs using plain SGD, (c) a simple learning rate schedule is employed – we start with a learning rate of 1; after 5 epochs, we begin to halve the learning rate every epoch, (d) our mini-batch size is 128, and (e) the normalized gradient is rescaled whenever its norm exceeds 5.
+Additionally, we also use dropout with probability 0.2 for our LSTMs as suggested by (Zaremba et al., 2015).
+For dropout models, we train for 12 epochs and start halving the learning rate after 8 epochs.
+For local attention models, we empirically set the window size D = 10.
+System Winning WMT’14 system – phrase-based + large LM (Buck et al., 2014) Existing NMT systems RNNsearch (Jean et al., 2015) RNNsearch + unk replace (Jean et al., 2015) RNNsearch + unk replace + large vocab + ensemble 8 models (Jean et al., 2015) Our NMT systems Base Base + reverse Base + reverse + dropout Base + reverse + dropout + global attention (location) Base + reverse + dropout + global attention (location) + feed input Base + reverse + dropout + local-p attention (general) + feed input Base + reverse + dropout + local-p attention (general) + feed input + unk replace Ensemble 8 models + unk replace 12.6 (+1.3) 14.0 (+1.4) 16.8 (+2.8) 18.1 (+1.3) 19.0 (+0.9) 20.9 (+1.9) 23.0 (+2.1) Table 1: WMT’14 English-German results – shown are the perplexities (ppl) and the tokenized BLEU scores of various systems on newstest2014.
+We highlight the best system in bold and give progressive improvements in italic between consecutive systems.
+We indicate for each attention model the alignment score function used in pararentheses.
+Our code is implemented in MATLAB.
+When running on a single GPU device Tesla K40, we achieve a speed of 1K target words per second.
+4.2 English-German Results We compare our NMT systems in the EnglishGerman task with various other systems.
+monolingual For end-to-end NMT systems, to the best of our knowledge, (Jean et al., 2015) is the only work experimenting with this language pair and currently the SOTA system.
+We only present results for some of our attention models and will later analyze the rest in Section 5.
+shown in Table 1, we achieve progressive improvements when (a) reversing the source sentence, +1.3 BLEU, as proposed in (Sutskever et al., 2014) and (b) using dropout, +1.4 BLEU.
+On top of that, (c) the global attention approach gives a signiﬁcant boost of +2.8 BLEU, making our model slightly better than the base attentional system of Bahdanau et al.
+When (d) using the inputfeeding approach, we seize another notable gain of +1.3 BLEU and outperform their system.
+In total, we achieve a signiﬁcant gain of 5.0 BLEU points over the non-attentional baseline, which already includes known techniques such as source reversing and dropout.
+The unknown replacement technique proposed in (Luong et al., 2015; Jean et al., 2015) yields another nice gain of +1.9 BLEU, demonstrating that our attentional models do learn useful alignments for unknown works.
+Finally, by ensembling 8 different models of various settings, e.g., using different attention approaches, with and without dropout etc., we were able to achieve a new SOTA result of 23.0 BLEU, outperforming the existing best system (Jean et al., 2015) by +1.4 BLEU.
+System Top – NMT + 5-gram rerank (Montreal) Our ensemble 8 models + unk replace Table 2: WMT’15 English-German results – NIST BLEU scores of the winning entry in WMT’15 and our best one on newstest2015.
+Latest results in WMT’15 – despite the fact that our models were trained on WMT’14 with slightly less data, we test them on newstest2015 to demonstrate that they can generalize well to different test sets.
+As shown in Table 2, our best system establishes a new SOTA performance of 25.9 BLEU, outperforming the existing best system backed by NMT and a 5-gram LM reranker by +1.0 BLEU.
+4.3 German-English Results We carry out a similar set of experiments for the WMT’15 translation task from German to English.
+While our systems have not yet matched the performance of the SOTA system, we nevertheless show the effectiveness of our approaches with large and progressive gains in terms of BLEU as illustrated in Table 3.
+The attentional mechanism gives us +2.2 BLEU gain and on top of that, we obtain another boost of up to +1.0 BLEU from the input-feeding approach.
+Lastly, when applying the unknown word replacement technique, we seize an additional +2.1 BLEU, demonstrating the usefulness of attention in aligning rare words.
+We conduct extensive analysis to better understand our models in terms of learning, the ability to handle long sentences, choices of attentional architectures, and alignment quality.
+System WMT’15 systems SOTA – phrase-based (Edinburgh) NMT + 5-gram rerank (MILA) Our NMT systems Base (reverse) + global (location) + global (location) + feed + global (dot) + drop + feed + global (dot) + drop + feed + unk 19.1 (+2.2) 20.1 (+1.0) 22.8 (+2.7) 24.9 (+2.1) Table 3: WMT’15 German-English results – performances of various systems (similar to Table 1).
+The base system already includes source reversing on which we add global attention, dropout, input feeding, and unk replacement.
+5.2 Effects of Translating Long Sentences We follow (Bahdanau et al., 2015) to group sentences of similar lengths together and compute a BLEU score per group.
+Figure 6 shows that our attentional models are more effective than the non-attentional one in handling long sentences: the quality does not degrade as sentences become longer.
+Our best model (the blue + curve) outperforms all other systems in all length buckets.
+5.1 Learning curves We compare models built on top of one another as listed in Table 1.
+The non-attentional model with dropout (the blue 5.3 Choices of Attentional Architectures We examine different attention models (global, local-p) and different alignment funclocal-m, tions (location, dot, general, concat) as described in Section 3.
+Due to limited resources, we cannot run all the possible combinations.
+We trained two local-m (dot) models; both have ppl > 7.0.
+not learn good alignments: the global (location) model can only obtain a small gain when performing unknown word replacement compared to using other alignment functions.14 For contentbased functions, our implementation concat does not yield good performances and more analysis should be done to understand the reason.15 It is interesting to observe that dot works well for the global attention and general is better for the local attention.
+While (Bahdanau et al., 2015) visualized 14There is a subtle difference in how we retrieve alignments for the different alignment functions.
+At time step t in which we receive yt−1 as input and then compute ht, at, ct, and ˜ht before predicting yt, the alignment vector at is used as alignment weights for (a) the predicted word yt in the location-based alignment functions and (b) the input word yt−1 in the content-based functions.
+Such high perplexities could be due to the fact that we simplify the a to set the part that corresponds to ¯hs to identity.
+In contrast, we set out to evaluate the alignment quality using the alignment error rate (AER) metric.
+Given the gold alignment data provided by RWTH for 508 English-German Europarl sentences, we “force” decode our attentional models to produce translations that match the references.
+We extract only one-to-one alignments by selecting the source word with the highest alignment weight per target word.
+Nevertheless, as shown in Table 6, we were able to achieve AER scores comparable to the one-to-many alignments obtained by the Berkeley aligner (Liang et al., 2006).16 We also found that the alignments produced by local attention models achieve lower AERs than those of the global one.
+We show some alignment visualizations in Appendix A.
+5.5 Sample Translations We show in Table 5 sample translations in both directions.
+We also observed an interesting case in the second example, which requires translating the doubly-negated phrase, “not incompatible”.
+src ′′ We ′ re pleased the FAA recognizes that an enjoyable passenger experience is not incompatible with safety and security , ′′ said Roger Dow , CEO of the U.S.
+Table 5: Sample translations – for each example, we show the source (src), the human translation (ref), the translation from our best model (best), and the translation of a non-attentional model (base).
+We italicize some correct translation segments and highlight a few wrong ones in bold.
+In this paper, we propose two simple and effective attentional mechanisms for neural machine translation: the global approach which always looks at all source positions and the local one that only attends to a subset of source positions at a time.
+We test the effectiveness of our models in the WMT translation tasks between English and German in both directions.
+Our local attention yields large gains of up to 5.0 BLEU over non-attentional models which already incorporate known techniques such as dropout.
+For the English to German translation direction, our ensemble model has established new state-of-the-art results for both WMT’14 and WMT’15, outperforming existing best systems, backed by NMT models and n-gram LM rerankers, by more than 1.0 BLEU.
+We have compared various alignment functions and shed light on which functions are best for which attentional models.
+Our analysis shows that attention-based NMT models are superior to nonattentional ones in many cases, for example in translating names and handling long sentences.
+We gratefully acknowledge support from a gift from Bloomberg L.P.
+We thank Andrew Ng and his group as well as the Stanford Research Computing for letting us use their computing resources.
+We thank Russell Stewart for helpful discussions on the models.
+Lastly, we thank Quoc Le, Ilya Sutskever, Oriol Vinyals, Richard Socher, Michael Kayser, Jiwei Li, Panupong Pasupat, Kelvin Guu, members of the Stanford NLP Group and the annonymous reviewers for their valuable comments and feedback.
+We visualize the alignment weights produced by our different attention models in  This contrast matches our expectation that local attention is designed to only focus on a subset of words each time.
+Also, since we translate from English to German and reverse the source English sentence, the white strides at the words “reality” and “.” in the global attention model reveals an interesting access pattern: it tends to refer back to the beginning of the source sequence.
+Compared to the alignment visualizations in (Bahdanau et al., 2015), our alignment patterns are not as sharp as theirs

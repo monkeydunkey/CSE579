@@ -1,0 +1,335 @@
+Controlling Perceptual Factors in Neural Style Transfer Figure 1: Overview of our control methods.
+
+Here we extend the existing method beyond the paradigm of transferring global style information between pairs of images.
+0.70 (we; extend; the existing method beyond the paradigm of transferring global style information between pairs of images; L:Here)
+
+In particular, we introduce control over spatial location, colour information and across spatial scale.
+0.45 (we; introduce; control over spatial location)
+
+We demonstrate how this enhances the method by allowing high-resolution controlled stylisation and helps to alleviate common failure cases such as applying ground textures to sky regions.
+0.51 (We; demonstrate; how this enhances the method by allowing high-resolution controlled stylisation and helps to alleviate common failure cases such as applying ground textures to sky regions)
+0.33 Context(We demonstrate):(this; enhances; the method)
+0.91 (high-resolution; controlled; stylisation)
+
+Furthermore, by decomposing style into these perceptual factors we enable the combination of style information from multiple sources to generate new, perceptually appealing styles from existing ones.
+0.57 (we; enable; the combination of style information from multiple sources; to generate new, perceptually appealing styles from existing ones)
+0.94 (the combination of style information from multiple sources; to generate; new, perceptually appealing styles; from existing ones)
+
+Finally we show how the introduced control measures can be applied in recent methods for Fast Neural Style Transfer.
+0.74 (we; show; how the introduced control measures can be applied in recent methods for Fast Neural Style Transfer; T:Finally)
+0.91 Context(we show):(the introduced control measures; can be applied; T:in recent methods for Fast Neural Style Transfer)
+
+In order to identify these factors, we observe some of the different ways that one might describe an artwork such as Vincent van Gogh’s A Wheatﬁeld with Cypresses (Fig.
+0.45 (we; observe; some of the different ways)
+0.76 (one; might describe; an artwork such as Vincent van Gogh's A Wheatﬁeld with Cypresses)
+
+These observation motivates our hypothesis: image style can be perceptually factorised into style in different spatial regions, colour and luminance information, and across spatial scales, making them meaningful control dimensions for image stylisation.
+0.88 (image style; can be perceptually factorised; into style; L:in different spatial regions)
+0.80 Context(image style can be perceptually factorised):(These observation; motivates; our hypothesis)
+
+Here we build on this hypothesis to introduce meaningful control to a recent image stylisation method known as Neural Style Transfer [8] in which the image statistics that capture content and style are deﬁned on feature responses in a Convolutional Neural Network (CNN) [22].
+0.95 (a recent image stylisation method; known; as Neural Style Transfer)
+0.90 (the image statistics; capture; content and style)
+0.98 (the image statistics that capture content and style; are deﬁned; on feature responses in a Convolutional Neural Network (CNN) [22; L:Neural Style Transfer)
+0.64 (we; build; L:on this hypothesis; to introduce meaningful control to a recent image stylisation method; L:Here)
+0.29 Context(we build):(we; build to introduce; meaningful control; to a recent image stylisation method)
+
+Namely, we (a) Content(b) Spatial Control(c) Colour Control(d) Scale Controlintroduce methods for controlling image stylisation independently in different spatial regions (Fig.
+0.20 (we; (a); )
+0.94 Context(we (a)):(Scale Control; introduce; methods for controlling image stylisation independently in different spatial regions (Fig)
+
+We show how they can be applied to improve Neural Style Transfer and to alleviate some of its common failure cases.
+0.62 (they; to improve; Neural Style Transfer)
+0.32 (they; to to alleviate; some of its common failure cases)
+0.48 (We; show; how they can be applied to improve Neural Style Transfer and to alleviate some of its common failure cases)
+0.57 Context(We show):(they; can be applied; to improve Neural Style Transfer and to alleviate some of its common failure cases)
+
+Moreover, we demonstrate how the factorisation of style into these aspects can gracefully combine style information from multiple images and thus enable the creation of new, perceptually interesting styles.
+0.93 (the factorisation of style into these aspects; thus enable; the creation of new, perceptually interesting styles)
+0.50 (we; demonstrate; how the factorisation of style into these aspects can gracefully combine style information from multiple images and thus enable the creation of new, perceptually interesting styles)
+0.92 Context(we demonstrate):(the factorisation of style into these aspects; can gracefully combine; style information; from multiple images)
+
+We also show a method for creating high-resolution stylisation while transferring coarse-scale structure.
+0.48 (We; show; a method for creating high-resolution stylisation)
+
+Finally, we show that in addition to the original optimisation-based style transfer, these control methods can also be applied to recent fast approximations of Neural Style Transfer [13, 23] There is a large body of work on image stylisation techniques.
+0.51 (we; show; that in addition to the original optimisation-based style transfer, these control methods can also be applied to recent fast approximations of Neural Style Transfer; T:Finally)
+0.90 Context(we show):(these control methods; can also be applied; to recent fast approximations of Neural Style Transfer)
+
+Our main goal in this work is to introduce intuitive ways to control Neural Style Transfer to combine the advantages of that method with the more ﬁnegrained user control of earlier stylisation methods.
+0.77 (Our main goal in this work; is; to introduce intuitive ways)
+
+We deﬁne a content image xC and a style image xS with corresponding feature representations F(cid:96)(xC) and F(cid:96)(xS) in layer (cid:96) of a Convolutional Neural Network (CNN).
+0.45 (We; deﬁne; a content image xC and a style image)
+
+As in the original work [8], we use the VGG-19 Network and include “conv4 2” as the layer (cid:96)C for the image content and Gram Matrices from layers “conv1 1”,“conv2 1”,“conv3 1”,“conv4 1”,“conv5 1” as the image statistics that model style.
+0.64 (we; use; the VGG-19 Network; T:As in the original work [8)
+0.53 (we; include; conv4 2; as the layer (cid:96)C for the image content and Gram Matrices from layers)
+0.90 (the image statistics; model; style)
+
+We ﬁrst introduce means to spatially control Neural Style Transfer.
+0.50 (We; ﬁrst introduce; means; to spatially control Neural Style Transfer)
+
+Our goal is to control which region of the style image is used to stylise each region in the content image.
+0.79 (Our goal; is; to control which region of the style image is used to stylise each region in the content image)
+
+For example, we would like to apply one style to the sky region and another to the ground region of an image to either avoid artefacts (Fig.
+0.50 (we; would like; to apply one style to the sky region and another to the ground region of an image to either avoid artefacts (Fig)
+0.39 Context(we would like):(we; would like to apply; one style; to the sky region and another)
+
+We take as input R spatial guidance channels Tr for both the content and style image (small insets in (Fig.
+0.61 (We; take; as input R spatial guidance channels Tr for both the content and style image)
+
+This can be done by simple re-sampling or more involved methods as we explain later in this section.
+0.38 (This; can be done; by simple re-sampling or more involved methods)
+0.45 (we; explain; T:later in this section)
+
+We ﬁrst discuss algorithms for synthesis given the guidance maps.
+0.47 (We; ﬁrst; discuss algorithms for synthesis given the guidance maps)
+0.40 Context(We ﬁrst):(We; ﬁrst discuss; algorithms; for synthesis)
+
+Guided Gram Matrices In the ﬁrst method we propose, we multiply the feature maps of each layer included in the style features with R guidance channels Tr (cid:96) and compute one spatially guided Gram Matrix for each of the R regions in the style image.
+0.70 (one; spatially guided; Gram Matrix; for each of the R regions in the style image)
+0.89 (the ﬁrst method; propose; we)
+0.45 (we; multiply; the feature maps of each layer)
+0.90 (each layer; included; in the style features with R guidance channels)
+0.57 (we; compute; one spatially guided Gram Matrix for each of the R regions in the style image)
+
+Formally we deﬁne a spatially guided feature map as (cid:96) ◦ F(cid:96)(x)[:,i] (cid:96) (x)[:,i] is the ith column vector of Fr (5) (cid:96) (x), r ∈ R and ◦ Here Fr denotes element-wise multiplication.
+0.47 (i; is; the ith column vector of Fr)
+
+We normalise Tr (cid:96) i = 1.
+0.35 (We; normalise; Tr; i = 1)
+
+We address this by dividing both images into a sky and a ground region (Fig.
+0.18 (We; address; this)
+0.39 Context(We address):(We; address this by dividing; both images; into a sky and a ground region)
+
+Given the input guidance channels Tr, we need to ﬁrst propagate this channel to produce guidance channels Tr (cid:96) for each layer.
+0.90 (this channel; to produce; guidance channels; for each layer)
+0.55 (we; need; to ﬁrst propagate this channel to produce guidance channels Tr (cid:96) for each layer)
+0.55 Context(we need):(we; need to ﬁrst propagate; this channel; to produce guidance channels Tr (cid:96) for each layer)
+
+However, we often ﬁnd that doing so fails to keep the desired separation of styles by region, e.g., ground texture Figure 2: Spatial guidance in Neural Style Transfer.
+0.14 (we; ﬁnd; that; T:often)
+0.50 Context(we ﬁnd):(doing so; fails; to keep the desired separation of styles by region)
+
+Instead we use an eroded version of the spatial guiding channels.
+0.45 (we; use; an eroded version of the spatial guiding channels)
+
+We deﬁne spatial guidance channels only on the neurons whose receptive ﬁeld is entirely inside the guidance region and add another global guidance channel that is constant over the entire image.
+0.45 (We; deﬁne; spatial guidance channels only on the neurons)
+0.91 (the neurons; is; entirely; L:inside the guidance region)
+0.35 (We; add; another global guidance channel that is constant over the entire image)
+0.93 (another global guidance channel; is; constant over the entire image)
+
+In that way we only enforce spatial guidance for neurons that have a clear assignment to a region and use the unguided style loss for neurons whose receptive ﬁeld overlaps with the boundary.
+0.45 (we; only enforce; spatial guidance for neurons)
+0.88 (neurons; have; a clear assignment to a region)
+0.88 (neurons; use; the unguided style loss for neurons)
+
+Guided Sums Alternatively, instead of computing a Gram Matrix for each guidance channel, we can also just stack the guidance channels with the feature maps as it is done in [2] to spatially guide neural patches [16].
+0.45 (we; can also just stack; the guidance channels with the feature maps)
+0.23 (it; is done; T:in [2)
+
+In practice we ﬁnd that this method can often give decent results but also does not quite capture the texture of the style image — as would be expected from the inferior texture model.
+0.41 (we; also does not quite capture; the texture of the style image)
+0.24 (we; ﬁnd; that this method can often give decent results)
+0.89 Context(we ﬁnd):(this method; can give; decent results; T:often)
+
+Here we present two simple methods to preserve the colours of the source image during Neural Style Transfer—in other words, to transfer the style without transferring the colours.
+0.69 (we; present; two simple methods to preserve the colours of the source image during Neural Style Transfer-in other words, to transfer the style without transferring the colours; L:Here)
+0.33 Context(we present):(we; present to preserve; the colours of the source image; T:during Neural Style Transfer-in other words)
+
+We compare two different approaches to colour preservation: colour histogram matching and luminance-only transfer (Fig.
+0.45 (We; compare; two different approaches to colour preservation)
+0.73 (colour histogram; matching; )
+
+Luminance-only transfer The ﬁrst method we consider is to perform style transfer only in the luminance channel, as used in Image Analogies [12].
+0.89 (The ﬁrst method; consider; we)
+0.76 (The ﬁrst method we consider; is; to perform style transfer only in the luminance channel)
+
+For that we simply match mean and variance of the content luminance.
+0.14 (we; simply match mean; T:For that)
+
+Here we use linear methods, which are simple and effective for colour style transfer.
+0.70 (we; use; linear methods, which are simple and effective for colour style transfer; L:Here)
+0.89 (linear methods; are; simple and effective for colour style transfer)
+
+In general, we ﬁnd that the colour matching method works reasonably well with Neural Style Transfer (Fig.
+0.37 (we; ﬁnd; that the colour matching method works reasonably well with Neural Style Transfer)
+0.91 Context(we ﬁnd):(the colour matching method; works reasonably well; with Neural Style Transfer)
+
+While we found that this is usually very difﬁcult to spot, it can be a problem for styles with prominent brushstrokes since a single brushstroke can change colour in an unnatural way.
+0.45 (it; can be; a problem)
+0.91 (a single brushstroke; can change; colour)
+0.08 (we; found; that this is usually very difﬁcult to spot)
+0.19 Context(we found):(this; is; T:usually; very difﬁcult to spot)
+
+For a more detailed discussion of colour preservation in Neural Style Transfer we refer the reader to a technical report in the Supplementary Material, section 2.1.
+0.50 (we; refer; the reader; to a technical report in the Supplementary Material)
+
+(LS − µS) + µC The second method we present works as follows.
+
+Given the style image xS, and the content image xC, the style image’s colours are transformed to match the colours of the In this section, we describe methods for mixing different styles at different scales, and generating high-resolution output with style at desired scales.
+0.93 (the style image's colours; are transformed; to match the colours of the)
+0.70 (we; describe; methods for mixing different styles at different scales, and generating high-resolution output with style at desired scales; L:In this section)
+
+Scale control for style mixing First we introduce a method to control the stylisation independently on different spatial scales.
+0.75 (style; mixing; T:First)
+0.57 (we; introduce; a method to control the stylisation independently on different spatial scales)
+0.90 (a method; to control independently; the stylisation)
+
+Our goal is to pick separate styles for different scales.
+0.70 (Our goal; is; to pick separate styles for different scales)
+
+For example, we want to combine the ﬁne-scale brushstrokes of one painting (Fig.
+0.57 (we; want; to combine the ﬁne-scale brushstrokes of one painting (Fig)
+0.50 Context(we want):(we; want to combine; the ﬁne-scale brushstrokes of one painting (Fig)
+
+We deﬁne the style of an image at a certain scale as the distribution of image structures in image neighbourhoods of a certain size f.
+0.45 (We; deﬁne; the style of an image)
+
+To model image style on larger scales, we propose to use the Gram Matrices from different layers in the CNN.
+0.56 (we; propose; to use the Gram Matrices from different layers in the CNN)
+0.44 Context(we propose):(we; propose to use; the Gram Matrices; from different layers in the CNN)
+
+Here we show a way to combine scales that avoids this problem.
+0.42 (we; show; a way to combine scales that avoids this problem; L:Here)
+0.91 (a way to combine scales; avoids; this problem)
+
+We ﬁrst create a new style image that combines ﬁne-scale information from one image with coarse scale information from another (Fig.
+0.33 (We; ﬁrst create; a new style image that combines ﬁne-scale information from one image with coarse scale information from another ()
+0.91 (a new style image; combines; ﬁne-scale information; from one image with coarse scale information from another)
+
+We then use the new style image in the original Neural Style Transfer.
+0.60 (We; use; the new style image; L:in the original Neural Style Transfer; T:then)
+
+We do this by applying Neural Style Transfer from the ﬁne-scale style image to the coarse-scale style image, using only the Gram Matrices from lower layers in the CNN (e.g., only layer “conv1 1” and “conv2 1” in Fig.
+0.23 (We; do; this)
+0.55 Context(We do):(We; do this by applying; Neural Style Transfer from the ﬁne-scale style image to the coarse-scale style image)
+
+We initialise the optimisation procedure with the coarse-scale image and omit the content loss entirely, so that the ﬁne-scale texture from the coarse-style image will be fully replaced.
+0.45 (We; initialise; the optimisation procedure with the coarse-scale image)
+0.18 (We; omit entirely; so that the ﬁne-scale texture from the coarse-style image will be fully replaced)
+0.81 (the ﬁne-scale texture from the coarse-style image; will be replaced; )
+
+While this is not guaranteed, as it depends on the optimiser, we empirically ﬁnd it to be effective for the L-BFGS method typically used in Neural Style Transfer.
+0.15 (this; is not guaranteed; )
+0.45 (it; depends; on the optimiser)
+0.97 (the L-BFGS method; used; L:in Neural Style Transfer; T:typically)
+0.40 (we; empirically ﬁnd; it to be effective for the L-BFGS method)
+0.43 Context(we empirically ﬁnd):(it; to be; effective for the L-BFGS method)
+
+For example, we combine the ﬁne scale of Style I with the coarse scale of Style II to re-paint the angular cubistic shapes in Fig.
+0.50 (we; combine; the ﬁne scale of Style)
+
+Or we combine the ﬁne scale of Style II with the coarse scale of Style III to replace the angular shapes by round structures, giving the image a completely different “feel” (compare Fig.
+0.50 (we; combine; the ﬁne scale of Style II; with the coarse scale of Style III; to replace the angular shapes by round structures)
+
+We also noticed that this technique effectively removes low-level noise that is typical for neural image synthesis.
+0.93 (low-level noise; is; typical for neural image synthesis)
+0.19 (We; also noticed; that this technique effectively removes low-level noise)
+0.81 Context(We also noticed):(this technique; effectively removes; low-level noise that is typical for neural image synthesis)
+
+We now show how to apply the spatial and colour control described above to these Fast Neural Style Transfer methods.
+0.94 (the spatial and colour control; described; L:above; to these Fast Neural Style Transfer methods)
+0.56 (We; show; how to apply the spatial and colour control; T:now)
+0.40 Context(We show):(We; show to apply; the spatial and colour control described above to these Fast Neural Style Transfer methods)
+
+We use Johnson’s excellent publicly-available implementation of Fast Neural Style Transfer [13]2.
+0.61 (We; use; Johnson's excellent publicly-available implementation of Fast Neural Style Transfer [13)
+
+The networks we train all use the well-tuned default parameters in that implementation including Instance Normalization [24] (for details see Supplementary Material, section 4).
+0.19 (we; train all; )
+0.62 (The networks we train all; use; the well-tuned default parameters in that implementation including Instance Normalization [24] (for details)
+
+For comparability and to stay in the domain of styles that give good results with Fast Neural Style Transfer, we use the styles published with that implementation.
+0.90 (styles; give; good results; with Fast Neural Style Transfer)
+0.23 (we; use; the styles published with that implementation)
+0.73 (the styles; published; )
+
+For both methods we match the mean luminance of the output image to that of the content image.
+0.62 (we; match; T:For both methods)
+
+In general, we ﬁnd that colour preservation with the luminance network better combines stylisation with structures in the content image (Fig.
+0.21 (we; ﬁnd; that colour preservation with the luminance network better combines stylisation with structures in the content image)
+0.67 Context(we ﬁnd):(colour preservation with the luminance network; better combines; stylisation; with structures in the content image)
+
+For more examples of new styles and results of interpolating between styles, we refer the reader to the Supplementary Material, sections 3.2 and 3.3.
+0.50 (we; refer; the reader; to the Supplementary Material, sections 3.2 and 3.3)
+
+In practice, we ﬁnd that for the VGG-19 network, there is a sweet spot around 5002 pixels for the size of the input images, such that the stylisation is appealing but the content is well-preserved (Fig.
+0.87 (the VGG-19 network; is; appealing)
+0.76 (the content; is Fig; well-preserved)
+0.24 (we; ﬁnd; that for the VGG-19 network, there is a sweet spot around 5002 pixels for the size of the input images)
+
+Here we show that the same scale separation principle from the previous section can be used in order to produce high-resolution outputs with large-scale stylisation.
+0.47 (we; show; that the same scale separation principle from the previous section can be used in order; L:Here)
+0.93 Context(we show):(the same scale separation principle from the previous section; can be used; in order)
+
+We are given high-resolution content and style images xC and xS, both having the same size with N 2 pixels in total.
+0.45 (We; are given; high-resolution content and style)
+0.38 (both; having; the same size)
+
+We downsample each image by a factor k such that N/k corresponds to the desired stylisation resolution, e.g., 5002 for VGG, and then perform stylisation.
+0.45 (We; downsample; each image)
+0.98 (such that N/k corresponds to the desired stylisation resolution, e.g.; perform; stylisation; T:then)
+
+We can then produce high-resolution output from this image by up-sampling the low-resolution output to N 2 pixels, and use this as initialisation for Neural Style (a) Content/Style(b) Low-res(c) High-res (ctf)(d) High-res7.2.
+0.65 (We; can produce; high-resolution output; T:from this image; T:by up-sampling the low-resolution output to N 2 pixels; T:then)
+0.46 (We; use; this; as initialisation for Neural Style (a) Content/Style)
+
+Spatial control We now describe training a feed-forward network to apply different styles to different regions.
+0.93 (a feed-forward network; to apply; different styles; to different regions)
+0.61 (We; describe; training a feed-forward network to apply different styles to different regions; T:Spatial control; T:now)
+0.35 Context(We describe):(We; describe training; a feed-forward network; to apply different styles to different regions)
+
+We show that this can be done with a surprisingly small modiﬁcation to Johnson’s training procedure [13], which we illustrate with the following example.
+0.93 (Johnson's training procedure; illustrate; we)
+0.38 (We; show; that this can be done with a surprisingly small modiﬁcation to Johnson's training procedure)
+0.13 Context(We show):(this; can be done; )
+
+We create the style image by vertically concatenating the Candy and Feathers images shown in Fig.
+0.96 (the Candy and Feathers images; shown; L:in Fig)
+0.39 (We; create; the style image)
+0.43 Context(We create):(We; create the style image by vertically concatenating; the Candy and Feathers images)
+
+Surprisingly, we ﬁnd that the guidance channels can be kept constant during training: during training we required the feed-forward network to always stylise the lower half of the image with one style and the upper half with another.
+0.96 (the feed-forward network; to stylise; the lower half of the image with one style and the upper half with another; T:always)
+0.53 (we; required; the feed-forward network; T:during training)
+0.33 Context(we required):(we; ﬁnd; that the guidance channels can be kept constant during training)
+0.87 Context(we ﬁnd we required):(the guidance channels; can be kept; T:during training)
+
+Nevertheless the network robustly learns the correspondence between guidance channels and styles, so that at test time we can pass arbitrary masks to the feed-forward network to spatially guide the stylisation (Fig.
+0.78 (the network; robustly learns; the correspondence between guidance channels and styles; so that at test time we can pass arbitrary masks to the feed-forward network to spatially guide the stylisation (Fig)
+0.53 (we; can pass; arbitrary masks; to the feed-forward network; T:at test time)
+0.29 Context(we can pass):(we; can pass arbitrary masks to spatially guide; the stylisation)
+
+By providing an automaticallygenerated ﬁgure-ground segmentation [21] we can create an algorithm that performs fast spatially-varying stylisation automatically.
+0.33 (we; can create; an algorithm that performs fast spatially-varying stylisation automatically)
+0.88 (an algorithm; performs automatically; fast spatially-varying stylisation)
+
+6(g),(h)) In this work, we introduce intuitive ways to control Neural Style Transfer.
+0.44 (we; introduce; intuitive ways to control Neural Style Transfer)
+0.34 Context(we introduce):(we; introduce to control; Neural Style Transfer)
+
+We hypothesise that image style includes factors of space, colour, and scale, and presented ways to access these factors during style transfer, in both fast and slow versions.
+0.53 (We; presented; ways to access these factors during style transfer, in both fast and slow versions)
+0.28 (We; hypothesise; that image style includes factors of space, colour, and scale)
+0.89 Context(We hypothesise):(that image style; includes; factors of space, colour, and scale)
+
+Even though we have found ways to control some aspects of style, it may be necessary to enforce further factorisation during network training.
+0.45 (it; may be; necessary to enforce further factorisation during network training)
+0.41 (it; to enforce; further factorisation; T:during network training)
+
+Wei and M.
+
+Nevertheless, we managed to ﬁnd practical ways to intuitively control Neural Style Transfer that substantially improve both the quality and ﬂexibility of the existing method.
+0.39 (we; managed; to ﬁnd practical ways)
+0.22 Context(we managed):(we; managed to ﬁnd; practical ways to intuitively control Neural Style Transfer that)
+
+Welling, editors, Computer Vision – ECCV 2016, number 9906 in Lecture Notes in Computer Science, pages 694–711.
+
+Webb, J
+

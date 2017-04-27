@@ -1,0 +1,61 @@
+We propose here an alternative approach that moves the computational burden to a learning stage.
+Given a single example of a texture, our approach trains compact feed-forward convolutional networks to generate multiple samples of the same texture of arbitrary size and to transfer artistic style from a given image to any other image.
+More generally, our approach highlights the power and ﬂexibility of generative feed-forward models trained with complex and expressive loss functions.
+In this paper we look at the problem of achieving the synthesis and stylization capability of descriptive networks using feed-forward generation networks.
+Our contribution is threefold.
+First, we show for the ﬁrst time that a generative approach can produce textures of the quality and diversity comparable to the descriptive method.
+Second, we propose a generative method that is two orders of magnitude faster and one order of magnitude more memory efﬁcient than the  The perceptual quality of the feed-forwardly generated textures is similar to the results of the closely related method suggested in (Gatys et al., 2015a), which use slow optimization process.
+Using a single forward pass in networks that are remarkably compact make our approach suitable for video-related and possibly mobile applications.
+Third, we devise a new type of multi-scale generative architecture that is particularly suitable for the tasks we consider.
+The resulting fully-convolutional networks (that we call texture networks) can generate textures and process images of arbitrary size.
+Our approach also represents an interesting showcase of training conceptually-simple feedforward architectures while using complex and expressive loss functions.
+We believe that other interesting results can be obtained using this principle.
+2), describes our approach (Sect.
+a polka dots image), such that we can write x ∼ p(x|x0).
+Our approach reuses in particular the statistics based on correlations of convolutional maps proposed by (Gatys et al., 2015a;b).
+Our networks are similar to moment matching networks, but use very speciﬁc statistics and applications quite different from the considered in (Li et al., 2015; Dziugaite et al., 2015).
+Texture networks We now describe the proposed method in detail.
+At a highlevel (see Figure 2), our approach is to train a feed-forward generator network g which takes a noise sample z as input and produces a texture sample g(z) as output.
+For style transfer, we extend this texture network to take both a noise sample z and a content image y and then output a new image g(y, z) where the texture has been applied to y as a visual style.
+We show in Sect.
+Given the loss, we then discuss the architecture of the generator network for texture synthesis (Sect.
+ We train a generator network (left) using a powerful loss based on the correlation statistics inside a ﬁxed pre-trained descriptor network (right).
+Texture and content loss functions Our loss function is derived from (Gatys et al., 2015a;b) and compares image statistics extracted from a ﬁxed pretrained descriptor CNN (usually one of the VGG CNN (Simonyan & Zisserman, 2014; Chatﬁeld et al., 2014) which are pre-trained for image classiﬁcation on the ImageNet ILSVRC 2012 data).
+Analogously to (Gatys et al., 2015a), we use the texture loss (5) alone when training a generator network for texture synthesis, and we use a weighted combination of the texture loss (5) and the content loss (6) when training a generator network for stylization.
+Generator network for texture synthesis We now discuss the architecture and the training procedure for the generator network g for the task of texture synthesis.
+We denote the parameters of the generator network as θ.
+The network is trained to transform a noise vector z sampled from a certain distribution Z (which we set to be uniform i.i.d.) into texture samples that match, according to the texture loss (5), a certain prototype texture x0: Ez∼Z [LT (g(z; θ), x0) ] .
+We experimented with several architectures for the generator network g.
+For some styles (bottom row), the perceptual quality of the result of our feed-forward transfer is comparable with the optimization-based method (Gatys et al., 2015b), though for others the results are not as impressive (top row and (Supp.Material)).
+While models of this type produce reasonable results, we found that multi-scale architectures result in images with smaller texture loss and better perceptual quality while using fewer parameters and training faster.
+Figure 2 contains a high-level representation of our reference multi-scale architecture, which we describe next.
+We found that training beneﬁted significantly from inserting batch normalization layers (Ioffe & Szegedy, 2015) right after each convolutional layer and, most importantly, right before the concatenation layers, since this balances gradients travelling along different branches of the network.
+Note that LAPGAN (Denton et al., 2015) also performs multi-scale processing, but uses layer-wise training, whereas our generator is trained end-to-end.
+In order to extend the method to the task of image stylization, we make several changes.
+Overall, our method and (Gatys et al., 2015a) provide better results, our method being hundreds times faster.
+For this application, we found beneﬁcial to increased the number of scales from K = 5 to K = 6.
+In practice, we found that learning is surprisingly resilient to overﬁtting and that it sufﬁces to approximate the distribution on natural images Y with a very small pool of images (e.g.
+In fact, our qualitative results degraded using too many example images.
+We impute this to the fact that stylization by a convolutional architecture uses local operations; since the same local structures exist in different combinations and proportions in different natural images y, it is difﬁcult for local operators to match in all cases the overall statistics of the reference texture x0, where structures exist in a ﬁxed arbitrary proportion.
+Despite this limitation, the perceptual quality of the generated stylized images is usually very good, although for some styles we could not match the quality of the original stylization by optimization of (Gatys et al., 2015b).
+We compare our method to (Gatys et al., 2015a;b) using the popular implementation of (Johnson, 2015), which produces comparable if not better results  By scaling the input noise by different factors k we can affect the balance of style and content in the output image without retraining the network.
+We also compare to the DCGAN (Radford et al., 2015) version of adversarial networks (Goodfellow et al., 2014).
+Since DCGAN training requires multiple example images for training, we extract those as sliding 64 × 64 patches from the 256 × 256 reference texture x0; then, since DCGAN is fully convolutional, we use it to generate larger 256× 256 images simply by inputting a larger noise tensor.
+Finally, we compare to (Portilla & Simoncelli, 2000).
+Qualitatively, our generator CNN and (Gatys et al., 2015a)’s results are comparable and superior to the other methods; however, the generator CNN is much more efﬁcient (see Sect.
+As for the original method of (Gatys et al., 2015b), we found that style transfer is sensitive to the tradeoff parameter α between texture and content loss in (6).
+At test time this parameter is not available in our method, but we found that the trade-off can still be adjusted by changing the magnitude of the input noise z (see Figure 5).
+We compared our method to the one of (Gatys et al., 2015b; Johnson, 2015) using numerous style and content images, including the ones in (Gatys et al., 2015b), and found that results are qualitatively comparable.
+We compare quantitatively the speed of our method and of the iterative optimization of (Gatys et al., 2015a) by measuring how much time it takes for the latter and for our genthe , 2015a) three randomly chosen textures are plotted as functions of time.
+Horizontal lines show the style loss achieved by our feedforward algorithm (mean over several samples) for the same textures.
+Figure 6 shows that iterative optimization requires about 10 seconds to generate a sample x that has a loss comparable to the output x = g(z) of our generator network.
+Since an evaluation of the latter requires ∼20ms, we achieve a 500× speed-up, which is sufﬁcient for real-time applications such as video processing.
+There are two reasons for this signiﬁcant difference: the generator network is much smaller than the VGG-19 model evaluated at each iteration of (Gatys et al., 2015a), and our method requires a single network evaluation.
+By avoiding backpropagation, our method also uses signiﬁcantly less memory (170 MB to generate a 256 × 256 sample, vs 1100 MB of (Gatys et al., 2015a)).
+Discussion We have presented a new deep learning approach for texture synthesis and image stylization.
+While our method generally obtains very good result for texture synthesis, going forward we plan to investigate better stylization losses to achieve a stylization quality comparable to (Gatys et al., 2015b) even for those cases (e.g.
+  Our approach can handle a variety of styles.
+Supplementary material Below, we provide several additional qualitative results demonstrating the performance of texture networks and comparing them to Gatys et al.
+  While training was done for 256x256 samples, in the right column we show the generated textures for a different resolution.
+For peppers image we observe that depth K = 4 is enough for generator to perform well.
+ For the styles above, the results of our approach are inferior to Gatys et al

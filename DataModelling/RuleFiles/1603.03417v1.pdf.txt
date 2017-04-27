@@ -1,0 +1,250 @@
+We propose here an alternative approach that moves the computational burden to a learning stage.
+0.33 (We; propose; L:here; an alternative approach that moves the computational burden to a learning stage)
+0.90 (an alternative approach; moves; the computational burden; to a learning stage)
+
+Given a single example of a texture, our approach trains compact feed-forward convolutional networks to generate multiple samples of the same texture of arbitrary size and to transfer artistic style from a given image to any other image.
+0.62 (our approach trains; to generate; multiple samples of the same texture of arbitrary size)
+
+More generally, our approach highlights the power and ﬂexibility of generative feed-forward models trained with complex and expressive loss functions.
+0.93 (generative feed-forward models; trained; with complex and expressive loss functions)
+
+In this paper we look at the problem of achieving the synthesis and stylization capability of descriptive networks using feed-forward generation networks.
+0.70 (we; look; at the problem of achieving the synthesis and stylization capability of descriptive networks; L:In this paper)
+
+Our contribution is threefold.
+0.45 (Our contribution; is; threefold)
+
+First, we show for the ﬁrst time that a generative approach can produce textures of the quality and diversity comparable to the descriptive method.
+0.33 (we; show; T:for the ﬁrst time; that a generative approach can produce textures of the quality and diversity comparable to the descriptive method)
+0.93 Context(we show):(a generative approach; can produce; textures of the quality and diversity comparable to the descriptive method)
+
+Second, we propose a generative method that is two orders of magnitude faster and one order of magnitude more memory efﬁcient than the  The perceptual quality of the feed-forwardly generated textures is similar to the results of the closely related method suggested in (Gatys et al., 2015a), which use slow optimization process.
+0.37 (we; propose; a generative method that is two orders of magnitude faster and one order of magnitude more memory efﬁcient than the  The perceptual quality of the feed-forwardly generated textures is similar to the results of the closely related method suggested in (Gatys et al., 2015a),)
+0.97 (the closely related method suggested in (Gatys et al., 2015a); use; slow optimization process)
+0.97 (the  The perceptual quality of the feed-forwardly generated textures; is; similar to the results of the closely related method)
+
+Using a single forward pass in networks that are remarkably compact make our approach suitable for video-related and possibly mobile applications.
+0.86 (networks; are; remarkably compact make our approach suitable for video-related and possibly mobile applications)
+
+Third, we devise a new type of multi-scale generative architecture that is particularly suitable for the tasks we consider.
+0.33 (we; devise; a new type of multi-scale generative architecture that is particularly suitable for the tasks)
+0.94 (a new type of multi-scale generative architecture; is; particularly suitable for the tasks)
+0.88 (the tasks; consider; we)
+
+The resulting fully-convolutional networks (that we call texture networks) can generate textures and process images of arbitrary size.
+0.52 (we; call; texture networks)
+0.80 (The resulting fully-convolutional networks (that we call texture networks; can generate; textures and process images of arbitrary size)
+
+Our approach also represents an interesting showcase of training conceptually-simple feedforward architectures while using complex and expressive loss functions.
+0.71 (Our approach; represents; an interesting showcase of training conceptually-simple feedforward architectures; T:while using complex and expressive loss functions)
+
+We believe that other interesting results can be obtained using this principle.
+0.28 (We; believe; that other interesting results can be obtained using this principle)
+0.71 Context(We believe):(other interesting results; can be obtained; )
+
+2), describes our approach (Sect.
+
+a polka dots image), such that we can write x ∼ p(x|x0).
+0.19 (we; can write; )
+
+Our approach reuses in particular the statistics based on correlations of convolutional maps proposed by (Gatys et al., 2015a;b).
+0.64 (Our approach; reuses; L:in particular the statistics)
+0.90 (the statistics; based; on correlations of convolutional maps)
+0.92 (convolutional maps; proposed; by (Gatys et al., 2015a)
+
+Our networks are similar to moment matching networks, but use very speciﬁc statistics and applications quite different from the considered in (Li et al., 2015; Dziugaite et al., 2015).
+0.64 (Our networks; are; similar to moment matching networks)
+0.74 (Our networks; use; very speciﬁc statistics and applications quite different from the considered in (Li et al)
+
+Texture networks We now describe the proposed method in detail.
+0.55 (We; describe; the proposed method in detail; T:now)
+
+At a highlevel (see Figure 2), our approach is to train a feed-forward generator network g which takes a noise sample z as input and produces a texture sample g(z) as output.
+0.83 (our approach; is; to train a feed-forward generator network g; L:At a highlevel (see Figure 2)
+0.93 (a feed-forward generator network g; takes; a noise sample z; as input)
+0.93 (a feed-forward generator network g; produces; a texture sample g)
+
+For style transfer, we extend this texture network to take both a noise sample z and a content image y and then output a new image g(y, z) where the texture has been applied to y as a visual style.
+0.94 (this texture network; to take; both a noise sample z and a content image y)
+0.90 (the texture; has been applied; to y)
+0.50 (we; extend; this texture network; to take both a noise sample z and a content image y and then output a new image g)
+0.54 Context(we extend):(we; extend this texture network to output; a new image g(y, z) where the texture has been applied to y as a visual style; T:then)
+
+We show in Sect.
+0.57 (We; show; L:in Sect)
+
+Given the loss, we then discuss the architecture of the generator network for texture synthesis (Sect.
+0.55 (we; discuss; the architecture of the generator network for texture synthesis; T:then)
+
+ We train a generator network (left) using a powerful loss based on the correlation statistics inside a ﬁxed pre-trained descriptor network (right).
+0.44 (We; train left; a generator network)
+0.94 (a powerful loss; based; on the correlation statistics inside a ﬁxed pre-trained descriptor network (right)
+
+Texture and content loss functions Our loss function is derived from (Gatys et al., 2015a;b) and compares image statistics extracted from a ﬁxed pretrained descriptor CNN (usually one of the VGG CNN (Simonyan & Zisserman, 2014; Chatﬁeld et al., 2014) which are pre-trained for image classiﬁcation on the ImageNet ILSVRC 2012 data).
+0.79 (Texture and content loss functions Our loss function; is derived; from (Gatys et al., 2015a)
+0.96 (a ﬁxed pretrained descriptor CNN; are; pre-trained for image classiﬁcation on the ImageNet ILSVRC 2012 data)
+0.92 (image statistics; extracted; from a ﬁxed pretrained descriptor CNN)
+
+Analogously to (Gatys et al., 2015a), we use the texture loss (5) alone when training a generator network for texture synthesis, and we use a weighted combination of the texture loss (5) and the content loss (6) when training a generator network for stylization.
+0.57 (we; use; a weighted combination of the texture loss (5) and the content loss; T:when training a generator network for stylization)
+0.29 (we; use alone; T:when training a generator network for texture synthesis)
+0.29 Context(we use alone):(we; use alone training; a generator network for texture synthesis)
+
+Generator network for texture synthesis We now discuss the architecture and the training procedure for the generator network g for the task of texture synthesis.
+0.67 (We; discuss; the architecture and the training procedure for the generator network g for the task of texture synthesis; T:now)
+
+We denote the parameters of the generator network as θ.
+0.45 (We; denote; the parameters of the generator network as θ)
+
+The network is trained to transform a noise vector z sampled from a certain distribution Z (which we set to be uniform i.i.d.) into texture samples that match, according to the texture loss (5), a certain prototype texture x0: Ez∼Z [LT (g(z; θ), x0) ] .
+0.90 (The network; is trained; to transform a noise vector z)
+0.75 (texture samples; match; )
+0.89 (The network; to transform; a noise vector z sampled from a certain distribution Z (which we set to be uniform i.i.d.) into texture samples)
+0.77 (a noise vector z; sampled; )
+0.52 (we; set; to be uniform i.i.d.)
+0.93 (a certain distribution Z; to be; uniform i.i.d.)
+
+We experimented with several architectures for the generator network g.
+0.45 (We; experimented; with several architectures; T:for the generator network)
+
+For some styles (bottom row), the perceptual quality of the result of our feed-forward transfer is comparable with the optimization-based method (Gatys et al., 2015b), though for others the results are not as impressive (top row and (Supp.Material)).
+0.86 (the perceptual quality of the result of our feed-forward transfer; is; comparable with the optimization-based method)
+0.92 (the results; are not; as impressive (top row and (Supp.Material)
+
+While models of this type produce reasonable results, we found that multi-scale architectures result in images with smaller texture loss and better perceptual quality while using fewer parameters and training faster.
+0.92 (models of this type; produce; reasonable results)
+0.27 (we; found; that multi-scale architectures result in images with smaller texture loss and better perceptual quality)
+0.92 Context(we found):(multi-scale architectures; result; in images with smaller texture loss and better perceptual quality)
+
+Figure 2 contains a high-level representation of our reference multi-scale architecture, which we describe next.
+0.89 (Figure 2; contains; a high-level representation of our reference multi-scale architecture, which we describe next)
+0.23 (we; describe; next)
+
+We found that training beneﬁted significantly from inserting batch normalization layers (Ioffe & Szegedy, 2015) right after each convolutional layer and, most importantly, right before the concatenation layers, since this balances gradients travelling along different branches of the network.
+0.92 (since this balances gradients; travelling; along different branches of the network)
+0.19 (We; found; that training beneﬁted significantly from inserting batch normalization layers)
+0.87 Context(We found):(training; beneﬁted significantly; from inserting batch normalization layers)
+
+Note that LAPGAN (Denton et al., 2015) also performs multi-scale processing, but uses layer-wise training, whereas our generator is trained end-to-end.
+0.88 (LAPGAN (Denton et al; uses; layer-wise training)
+0.64 (our generator; is trained; end-to-end)
+
+In order to extend the method to the task of image stylization, we make several changes.
+0.45 (we; make; several changes)
+
+Overall, our method and (Gatys et al., 2015a) provide better results, our method being hundreds times faster.
+0.64 (our method; being; hundreds times faster)
+
+For this application, we found beneﬁcial to increased the number of scales from K = 5 to K = 6.
+0.23 (we; found; beneﬁcial)
+
+In practice, we found that learning is surprisingly resilient to overﬁtting and that it sufﬁces to approximate the distribution on natural images Y with a very small pool of images (e.g.
+0.30 (we; found; that learning is surprisingly resilient to overﬁtting and that it sufﬁces to approximate the distribution on natural images Y with a very small pool of images (e.g.; L:In practice)
+0.90 Context(we found):(learning; is; surprisingly resilient to overﬁtting)
+0.56 (it; sufﬁces; to approximate the distribution on natural images Y with a very small pool of images (e.g.)
+0.40 Context(it sufﬁces):(it; sufﬁces to approximate; the distribution on natural images)
+
+In fact, our qualitative results degraded using too many example images.
+0.62 (our qualitative results; using; too many example images)
+
+We impute this to the fact that stylization by a convolutional architecture uses local operations; since the same local structures exist in different combinations and proportions in different natural images y, it is difﬁcult for local operators to match in all cases the overall statistics of the reference texture x0, where structures exist in a ﬁxed arbitrary proportion.
+0.89 (structures; exist; L:in a ﬁxed arbitrary proportion)
+0.93 (stylization by a convolutional architecture; uses; local operations)
+0.92 (the same local structures; exist; L:in different combinations and proportions; L:in different natural images y)
+0.90 (local operators; to match; L:in all cases)
+
+Despite this limitation, the perceptual quality of the generated stylized images is usually very good, although for some styles we could not match the quality of the original stylization by optimization of (Gatys et al., 2015b).
+0.89 (the perceptual quality of the generated stylized images; is; T:usually; very good)
+0.19 (we; could not match; )
+
+We compare our method to (Gatys et al., 2015a;b) using the popular implementation of (Johnson, 2015), which produces comparable if not better results  By scaling the input noise by different factors k we can affect the balance of style and content in the output image without retraining the network.
+0.35 (We; compare; our method; to (Gatys et al., 2015a)
+0.92 (Johnson, 2015; produces; comparable if not better results)
+0.70 (we; can affect; the balance of style and content in the output image; T:k)
+
+We also compare to the DCGAN (Radford et al., 2015) version of adversarial networks (Goodfellow et al., 2014).
+0.50 (We; also compare; to the DCGAN (Radford et al; 2015) version of adversarial networks)
+
+Since DCGAN training requires multiple example images for training, we extract those as sliding 64 × 64 patches from the 256 × 256 reference texture x0; then, since DCGAN is fully convolutional, we use it to generate larger 256× 256 images simply by inputting a larger noise tensor.
+0.93 (DCGAN training; requires; multiple example images for training)
+0.73 (DCGAN; is; fully convolutional)
+0.50 (we; use; it; to generate larger 256× 256 images simply by inputting a larger noise tensor; T:then)
+0.08 Context(we use):(we; extract; those)
+0.39 Context(we use):(we; use it to generate; larger 256× 256 images)
+
+Finally, we compare to (Portilla & Simoncelli, 2000).
+0.64 (we; compare; to (Portilla & Simoncelli, 2000; T:Finally)
+
+Qualitatively, our generator CNN and (Gatys et al., 2015a)’s results are comparable and superior to the other methods; however, the generator CNN is much more efﬁcient (see Sect.
+0.50 (CNN; [is] generator [of]; ours)
+
+As for the original method of (Gatys et al., 2015b), we found that style transfer is sensitive to the tradeoff parameter α between texture and content loss in (6).
+0.27 (we; found; that style transfer is sensitive to the tradeoff parameter α between texture and content loss in (6)
+0.94 Context(we found):(that style transfer; is; sensitive to the tradeoff parameter α between texture and content loss in (6)
+0.39 (style transfer; is sensitive to; the tradeoff parameter α)
+
+At test time this parameter is not available in our method, but we found that the trade-off can still be adjusted by changing the magnitude of the input noise z (see Figure 5).
+0.90 (this parameter; is not; available in our method; T:At test time)
+0.32 (we; found; that the trade-off can still be adjusted by changing the magnitude of the input noise z (see Figure 5)
+0.72 Context(we found):(the trade-off; can be adjusted; T:still)
+
+We compared our method to the one of (Gatys et al., 2015b; Johnson, 2015) using numerous style and content images, including the ones in (Gatys et al., 2015b), and found that results are qualitatively comparable.
+0.29 (We; compared; our method; to the one of (Gatys et al)
+0.92 Context(We compared):(Johnson; using; numerous style and content images, including the ones in)
+0.77 (Gatys et al; found; that results are qualitatively comparable)
+0.70 Context(Gatys et al found):(results; are; qualitatively comparable)
+
+We compare quantitatively the speed of our method and of the iterative optimization of (Gatys et al., 2015a) by measuring how much time it takes for the latter and for our genthe , 2015a) three randomly chosen textures are plotted as functions of time.
+0.46 (We; compare quantitatively; the speed of our method and of the iterative optimization of (Gatys et al., 2015a; by measuring how much time it takes for the latter and for our genthe)
+0.92 (three randomly chosen textures; are plotted; as functions of time)
+
+Horizontal lines show the style loss achieved by our feedforward algorithm (mean over several samples) for the same textures.
+0.87 (Horizontal lines; show; the style loss achieved by our feedforward algorithm)
+0.85 (the style loss; achieved; by our feedforward algorithm)
+
+Figure 6 shows that iterative optimization requires about 10 seconds to generate a sample x that has a loss comparable to the output x = g(z) of our generator network.
+0.86 (about 10 seconds; to generate; a sample x that has a loss comparable to the output)
+0.92 (a sample x; has; a loss comparable to the output)
+0.85 (Figure 6; shows; that iterative optimization requires about 10 seconds to generate a sample x)
+0.88 Context(Figure 6 shows):(iterative optimization; requires; about 10 seconds; to generate a sample x)
+
+Since an evaluation of the latter requires ∼20ms, we achieve a 500× speed-up, which is sufﬁcient for real-time applications such as video processing.
+0.93 (an evaluation of the latter; requires; ~20ms)
+0.57 (we; achieve; a 500× speed-up, which is sufﬁcient for real-time applications such as video processing)
+0.91 (a 500× speed-up; is sufﬁcient; for real-time applications such as video processing)
+
+There are two reasons for this signiﬁcant difference: the generator network is much smaller than the VGG-19 model evaluated at each iteration of (Gatys et al., 2015a), and our method requires a single network evaluation.
+0.94 (the generator network; is; much smaller than the VGG-19 model)
+0.95 (the VGG-19 model; evaluated; L:at each iteration of (Gatys et al)
+0.64 (our method; requires; a single network evaluation)
+
+By avoiding backpropagation, our method also uses signiﬁcantly less memory (170 MB to generate a 256 × 256 sample, vs 1100 MB of (Gatys et al., 2015a)).
+0.60 (our method; uses; signiﬁcantly less memory; to generate a 256 × 256 sample)
+
+Discussion We have presented a new deep learning approach for texture synthesis and image stylization.
+0.57 (We; have presented; a new deep learning approach for texture synthesis and image stylization)
+
+While our method generally obtains very good result for texture synthesis, going forward we plan to investigate better stylization losses to achieve a stylization quality comparable to (Gatys et al., 2015b) even for those cases (e.g.
+0.64 (our method; generally obtains; very good result for texture synthesis)
+0.37 (we; plan; to investigate better stylization losses to achieve a stylization quality comparable to (Gatys et al., 2015b) even for those cases (e.g.)
+0.39 Context(we plan):(we; plan to investigate; better stylization losses)
+0.43 Context(we plan to investigate):(we; plan to investigate better stylization losses to achieve; a stylization quality comparable to (Gatys et al)
+
+  Our approach can handle a variety of styles.
+0.64 (Our approach; can handle; a variety of styles)
+
+Supplementary material Below, we provide several additional qualitative results demonstrating the performance of texture networks and comparing them to Gatys et al.
+0.92 (several additional qualitative results; demonstrating; the performance of texture networks)
+
+  While training was done for 256x256 samples, in the right column we show the generated textures for a different resolution.
+0.89 (training; was done; for 256x256 samples)
+0.52 (we; show; the generated textures for a different resolution)
+
+For peppers image we observe that depth K = 4 is enough for generator to perform well.
+0.71 (generator; to perform well; )
+0.19 (we; observe; that depth)
+0.72 Context(we observe):(K = 4; is; enough)
+
+ For the styles above, the results of our approach are inferior to Gatys et al
+0.74 (the results of our approach; are; inferior to Gatys et al)
+

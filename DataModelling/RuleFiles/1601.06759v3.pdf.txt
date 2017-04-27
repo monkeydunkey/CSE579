@@ -1,0 +1,359 @@
+We present a deep neural network that sequentially predicts the pixels in an image along the two spatial dimensions.
+0.33 (We; present; a deep neural network that sequentially predicts the pixels in an image along the two spatial dimensions)
+0.94 (a deep neural network; sequentially predicts; the pixels in an image along the two spatial dimensions)
+
+Our method models the discrete probability of the raw pixel values and encodes the complete set of dependencies in the image.
+0.64 (Our method; models; the discrete probability of the raw pixel values)
+0.60 (Our method; encodes; the complete set of dependencies in the image)
+
+We achieve log-likelihood scores on natural images that are considerably better than the previous state of the art.
+0.45 (We; achieve; log-likelihood scores; L:on natural images)
+0.89 (natural images; are; considerably better than the previous state of the art)
+
+Our main results also provide benchmarks on the diverse ImageNet dataset.
+0.66 (Our main results; provide; benchmarks on the diverse ImageNet dataset)
+
+In this paper we advance two-dimensional RNNs and apply them to large-scale modeling of natural images.
+0.64 (we; advance; two-dimensional RNNs; L:In this paper)
+0.40 (we; apply; them; to large-scale modeling of natural images; T:In this paper)
+
+We design two types of these layers.
+0.45 (We; design; two types of these layers)
+
+The networks also incorporate residual connections (He et al., 2015) around LSTM layers; we observe that this helps with training of the PixelRNN for up to twelve layers of depth.
+0.32 (we; observe; that this helps with training of the PixelRNN for up to twelve layers of depth)
+0.83 Context(we observe):(The networks; also incorporate; residual connections (He et al)
+0.56 Context(we observe):(this; helps; with training of the PixelRNN for up to twelve layers of depth)
+
+We also consider a second, simpliﬁed architecture which shares the same core components as the PixelRNN.
+0.61 (We; also consider; a second, simpliﬁed architecture which shares the same core components as the PixelRNN)
+0.93 (a second, simpliﬁed architecture; shares; the same core components as the PixelRNN)
+
+We observe that Convolutional Neural Networks (CNN) can also be used as sequence model with a ﬁxed dependency range, by using Masked convolutions.
+0.32 (We; observe; that Convolutional Neural Networks (CNN) can also be used as sequence model with a ﬁxed dependency range, by using Masked convolutions)
+0.94 Context(We observe):(Convolutional Neural Networks; can also be used; as sequence model with a ﬁxed dependency range, by using Masked convolutions)
+
+(2014)), we model the pixels as discrete values using a multinomial distribution implemented with a simple softmax layer.
+0.45 (we; model; the pixels as discrete values)
+0.90 (discrete values; using; a multinomial distribution implemented with a simple softmax layer)
+0.91 (a multinomial distribution; implemented; with a simple softmax layer)
+
+We observe that this approach gives both representational and training advantages for our models.
+0.17 (We; observe; that this approach gives both representational and training advantages for our models)
+0.80 Context(We observe):(this approach; gives; both representational and training advantages for our models)
+
+In Section 3 we design two types of PixelRNNs corresponding to the two types of LSTM layers; we describe the purely convolutional PixelCNN that is our fastest architecture; and we design a Multi-Scale version of the PixelRNN.
+0.91 (PixelRNNs; corresponding; to the two types of LSTM layers)
+0.90 (the purely convolutional PixelCNN; is; our fastest architecture)
+0.50 (we; design; a Multi-Scale version of the PixelRNN)
+0.44 (we; describe; the purely convolutional PixelCNN)
+0.54 Context(we describe):(we; design; two types of PixelRNNs; L:In Section 3)
+
+In Section 5 we show the relative beneﬁts of using the discrete softmax distribution in our models and of adopting residual connections for the LSTM layers.
+0.67 (we; show; the relative beneﬁts of using the discrete softmax distribution in our models and of adopting residual connections for the LSTM layers; L:In Section 5)
+
+Next we test the models on MNIST and on CIFAR-10 and show that they obtain loglikelihood scores that are considerably better than previous results.
+0.70 (we; test; the models on MNIST and on CIFAR-10; L:Next)
+0.89 (loglikelihood scores; are; considerably better than previous results)
+0.20 (we; show; that they obtain loglikelihood scores; L:Next)
+0.31 Context(we show):(they; obtain; loglikelihood scores that are considerably better than previous results)
+
+We also provide results for the large-scale ImageNet dataset resized to both 32 × 32 and 64 × 64 pixels; to our knowledge likelihood values from generative models have not previously been reported on this dataset.
+0.96 (the large-scale ImageNet; dataset resized; to both 32 × 32 and 64 × 64 pixels)
+
+Finally, we give a qualitative evaluation of the samples generated from the PixelRNNs.
+0.60 (we; give; a qualitative evaluation of the samples; T:Finally)
+0.92 (the samples; generated; from the PixelRNNs)
+
+Model Our aim is to estimate a distribution over natural images that can be used to tractably compute the likelihood of images and to generate new ones.
+0.70 (Our aim; is; to estimate a distribution over natural images)
+0.93 (natural images; can be used; to tractably compute the likelihood of images and to generate new ones)
+
+In this section we ﬁrst focus on the form of the distribution, whereas the next section will be devoted to describing the architectural innovations inside PixelRNN.
+0.60 (we; ﬁrst focus; on the form of the distribution; L:In this section)
+0.93 (the next section; will be devoted; to describing the architectural innovations inside PixelRNN)
+
+We can write the image x as a onedimensional sequence x1, ..., xn2 where pixels are taken from the image row by row.
+0.44 (We; can write x; the image)
+0.89 (pixels; are taken; from the image row; by row)
+
+To estimate the joint distribution p(x) we write it as the product of the conditional distributions over the pixels:  Center: To generate a pixel in the multi-scale case we can also condition on the subsampled image pixels (in light blue).
+0.42 (we; write; it; as the product of the conditional distributions over the pixels)
+0.41 (it; To generate; a pixel in the multi-scale case)
+0.45 (we; can also condition; on the subsampled image pixels)
+
+We rewrite the distribution p(xi|x<i) as the following product: p(xi,R|x<i)p(xi,G|x<i, xi,R)p(xi,B|x<i, xi,R, xi,G) (2) Each of the colors is thus conditioned on the other channels as well as on all the previously generated pixels.
+0.45 (We; rewrite; the distribution p)
+0.52 (xi; x; p)
+0.47 Context(xi x):(|x<i) as the following product; p; )
+0.97 (R, xi,G) (2) Each of the colors; is conditioned; on the other channels as well as on all the previously generated pixels)
+
+By contrast we model p(x) as a discrete distribution, with every conditional distribution in Equation 2 being a multinomial that is modeled with a softmax layer.
+0.45 (we; model; p; as a discrete distribution)
+0.87 (every conditional distribution in Equation 2; being; a multinomial that is modeled with a softmax layer)
+0.89 (a multinomial; is modeled; with a softmax layer)
+
+Experimentally we also ﬁnd the discrete distribution to be easy to learn and to produce better performance compared to a continuous distribution (Section 5).
+0.73 (we; ﬁnd; the discrete distribution; to be easy to learn and to produce better performance compared to a continuous distribution; T:Experimentally)
+0.53 (we; to be; easy to learn and to produce better performance compared to a continuous distribution)
+
+Pixel Recurrent Neural Networks In this section we describe the architectural components that compose the PixelRNN.
+0.39 (we; describe; the architectural components that compose the PixelRNN; L:In this section)
+0.91 (the architectural components; compose; the PixelRNN)
+
+In Sections 3.1 and 3.2, we describe the two types of LSTM layers that use convolutions to compute at once the states along one of the spatial dimensions.
+0.64 (we; describe; the two types of LSTM layers; L:In Sections 3.1 and 3.2)
+0.94 (LSTM layers; use; convolutions; to compute at once the states along one of the spatial dimensions)
+
+In Section 3.3 we describe how to incorporate residual connections to improve the training of a PixelRNN with many LSTM layers.
+0.69 (we; describe; how to incorporate residual connections to improve the training of a PixelRNN with many LSTM layers; L:In Section 3.3)
+0.44 Context(we describe):(we; describe to incorporate; residual connections; to improve the training of a PixelRNN with many LSTM layers)
+0.33 Context(we describe to incorporate):(we; describe to incorporate residual connections to improve; the training of a PixelRNN with many LSTM layers)
+
+In Section 3.4 we describe the softmax layer that computes the discrete joint distribution of the colors and the masking technique that ensures the proper conditioning scheme.
+0.46 (we; describe; the softmax layer that computes the discrete joint distribution of the colors and the masking technique; L:In Section 3.4)
+0.93 (the softmax layer; computes; the discrete joint distribution of the colors and the masking technique)
+0.90 (the masking technique; ensures; the proper conditioning scheme)
+
+In Section 3.5 we describe the PixelCNN architecture.
+0.64 (we; describe; the PixelCNN architecture; L:In Section 3.5)
+
+Finally in Section 3.6 we describe the multi-scale architecture.
+0.60 (we; describe; the multi-scale architecture; T:Finally; L:in Section 3.6)
+
+We train PixelRNNs of up to twelve layers of depth.
+0.45 (We; train; PixelRNNs of up to twelve layers of depth)
+
+As a means to both increase convergence speed and propagate signals more directly through the network, we deploy residual connections (He et al., 2015) from one LSTM layer to the next.
+0.46 (we; deploy; residual connections (He et al., 2015) from one LSTM layer to the next)
+
+In the experiments we evaluate the relative effectiveness of residual and layer-to-output skip connections.
+0.70 (we; evaluate; the relative effectiveness of residual and layer-to-output skip connections; L:In the experiments)
+
+To restrict connections in the network to these dependencies, we apply a mask to the inputto-state convolutions and to other purely convolutional layers in a PixelRNN.
+0.61 (we; apply; a mask; to the inputto-state convolutions and to other purely convolutional layers in a PixelRNN)
+
+We use two types of masks that we indicate with mask A and mask B, as shown in Figure 2 (Right).
+0.24 (We; use; two types of masks that we indicate with mask A and mask B,)
+0.92 (two types of masks; indicate; with mask A and mask B)
+
+We ﬁrst skew the input map into a space that makes it easy to apply convolutions along diagonals.
+0.52 (We; ﬁrst skew; the input map; into a space)
+0.81 (a space; makes; it easy to apply convolutions along diagonals)
+
+At this point we can compute the input-to-state and state-to-state components of the Diagonal BiLSTM.
+0.74 (we; can compute; the input-to-state and state-to-state components of the Diagonal BiLSTM; T:At this point)
+
+We can use standard convolutional layers to capture a bounded receptive ﬁeld and compute features for all pixel positions at once.
+0.50 (We; can use; standard convolutional layers; to capture a bounded receptive ﬁeld and compute features for all pixel positions at once)
+0.39 Context(We can use):(We; can use standard convolutional layers to capture; a bounded receptive ﬁeld)
+0.29 Context(We can use):(We; can use standard convolutional layers to compute; features for all pixel positions at once)
+
+Speciﬁcations of Models In this section we give the speciﬁcations of the PixelRNNs used in the experiments.
+0.50 (we; give; the speciﬁcations of the PixelRNNs)
+0.93 (the PixelRNNs; used; L:in the experiments)
+
+We have four types of networks: the PixelRNN based on Row LSTM, the one based on Diagonal BiLSTM, the fully convolutional one and the MultiScale one.
+0.45 (We; have; four types of networks)
+0.94 (the PixelRNN; based; L:on Row LSTM)
+0.92 (the one; based; L:on Diagonal BiLSTM)
+
+For MNIST we use a Diagonal BiLSTM with 7 layers and a value of h = 16 (Section 3.3 and Figure 5 right).
+0.61 (we; use; a Diagonal BiLSTM; with 7 layers and a value of h = 16 (Section 3.3 and Figure 5 right)
+
+For 32 × 32 ImageNet we adopt a 12 layer Row LSTM with h = 384 units and for 64 × 64 ImageNet we use a 4 layer Row LSTM with h = 512 units; the latter model does not use residual connections.
+0.60 (we; adopt; a 12 layer Row; with h = 384 units; T:For 32 × 32)
+0.89 (the latter model; does not use; residual connections)
+0.53 Context(the latter model does not use):(we; use; a 4 layer Row; with h = 512 units; T:for 64 × 64)
+
+Experiments In this section we describe our experiments and results.
+0.31 (we; describe; our experiments and results)
+
+We begin by describing the way we evaluate and compare our results.
+0.19 (we; evaluate; )
+0.27 (we; compare; our results)
+0.40 (We; begin; by describing the way)
+0.26 Context(We begin):(We; begin by describing; the way we evaluate and compare our results)
+
+In Section 5.2 we give details about the training.
+0.60 (we; give; details about the training; L:In Section 5.2)
+
+Then we give results on the relative effectiveness of architectural components and our best results on the MNIST, CIFAR-10 and ImageNet datasets.
+0.61 (we; give; results on the relative effectiveness of architectural components and our best results on the MNIST, CIFAR-10 and ImageNet datasets; T:Then)
+
+All our models are trained and evaluated on the loglikelihood loss function coming from a discrete distribution.
+0.36 (All our models; are trained; )
+0.62 (All our models; evaluated; L:on the loglikelihood loss function)
+0.92 (the loglikelihood loss function; coming; from a discrete distribution)
+
+Although natural image data is usually modeled with continuous distributions using density functions, we can compare our results with previous art in the following way.
+0.92 (natural image data; is modeled; with continuous distributions; T:usually)
+0.90 (continuous distributions; using; density functions)
+0.31 (we; can compare; our results; with previous art in the following way)
+
+In our case, we can use the values from the discrete distribution as a piecewiseuniform continuous function that has a constant value for every interval [i, i + 1], i = 1, 2, .
+0.93 (a piecewiseuniform continuous function; has; a constant value for every interval)
+0.32 (i; +; 1], i = 1)
+0.39 Context(i +):(we; can use; the values; from the discrete distribution as a piecewiseuniform continuous function; L:In our case)
+
+For MNIST we report the negative log-likelihood in nats as it is common practice in literature.
+0.49 (we; report; the negative log-likelihood in nats; T:as it is common practice in literature; T:For MNIST)
+0.52 (it; is; common practice in literature)
+
+For CIFAR-10 and ImageNet we report negative log-likelihoods in bits per dimension.
+0.64 (we; report; negative log-likelihoods in bits per dimension; T:For CIFAR-10 and ImageNet)
+
+Our models are trained on GPUs using the Torch toolbox.
+0.68 (Our models; are trained; L:on GPUs)
+
+For smaller datasets such as MNIST and CIFAR-10 we use smaller batch sizes of 16 images as this seems to regularize the models.
+0.45 (we; use; smaller batch sizes of 16 images; T:as this seems to regularize the models)
+0.15 (this; seems; )
+
+For ImageNet we use as large a batch size as allowed by the GPU memory; this corresponds to 64 images/batch for 32 × 32 ImageNet, and 32 images/batch for 64 × 64 ImageNet.
+0.49 (this; corresponds; to 64 images/batch for 32 × 32 ImageNet, and 32 images/batch)
+0.40 Context(this corresponds):(we; use; as large a batch size)
+
+Apart from scaling and centering the images at the input of the network, we don’t use any other preprocessing or augmentation.
+
+For the multinomial loss function we use the raw pixel color values as categories.
+0.45 (we; use; the raw pixel color values; as categories)
+
+For all the PixelRNN models, we learn the initial recurrent state of the network.
+0.45 (we; learn; the initial recurrent state of the network)
+
+Apart from being intuitive and easy to implement, we ﬁnd that using a softmax on discrete pixel values instead of a mixture density approach on continuous pixel values gives better results.
+
+For the Row LSTM model with a softmax output distribution we obtain 3.06 bits/dim on the CIFAR10 validation set.
+0.69 (we; obtain; 3.06 bits; on the CIFAR10 validation set; T:For the Row LSTM model with a softmax output distribution)
+0.11 Context(we obtain):(we; obtain 3.06 bits dim; )
+
+For the same model with a Mixture of Conditional Gaussian Scale Mixtures (MCGSM) (Theis & Bethge, 2015) we obtain 3.22 bits/dim.
+0.45 (we; obtain; 3.22 bits)
+
+In Figure 6 we show a few softmax activations from the model.
+0.66 (we; show; a few softmax activations from the model; L:In Figure 6)
+
+Although we don’t embed prior information about the meaning or relations of the 256 color categories, e.g.
+0.56 (we; do n't embed e.g.; prior information about the meaning or relations of the 256 color categories)
+
+Another advantage of the discrete distribution is that we do not worry about parts of the distribution mass lying outside the interval [0, 255], which is something that typically happens with continuous distributions.
+0.93 (parts of the distribution mass; lying; outside the interval)
+0.79 (the interval; is; something that typically happens with continuous distributions)
+0.88 (something; typically happens; with continuous distributions)
+0.82 (Another advantage of the discrete distribution; is; that we do not worry about parts of the distribution mass)
+0.40 Context(Another advantage of the discrete distribution is):(we; do not worry; about parts of the distribution mass)
+
+In Table 2 we show the results of having residual connections, having standard skip connections or having both, in the 12-layer CIFAR-10 Row LSTM model.
+0.79 (we; show; the results of having residual connections, having standard skip connections or having both, in the 12-layer CIFAR-10 Row LSTM model; L:In Table 2)
+
+We see that using residual connections is as effective as using skip connections; using both is also effective and preserves the advantage.
+0.26 (using both; is also; effective)
+0.27 Context(using both is also):(We; see; that using residual connections is as effective as using skip connections)
+0.91 Context(We see using both is also):(using residual connections; is; as effective as using skip connections)
+0.53 (using both; preserves; the advantage)
+
+When using both the residual and skip connections, we see in Table 3 that performance of the Row LSTM improves with increased depth.
+0.39 (we; see; L:in Table 3; that performance of the Row; T:When using both the residual and skip connections)
+0.70 (the Row; improves; )
+
+This holds for up to the 12 LSTM layers that we tried.
+0.50 (This; holds; for up to the 12 LSTM layers)
+0.93 (the 12 LSTM layers; tried; we)
+
+ 0 50 100 150 200 250 0 50 100 150 200 250 0 50 100 150 200 250 0 50 100 150 200 250 0                                                                               2550                                                                            255 0                                                                               255 0                                                                               255 0                                                                               255Pixel Recurrent Neural Networks  In general we can see that the models capture local spatial dependencies relatively well.
+0.19 (we; can see; that the models capture local spatial dependencies relatively well)
+0.87 Context(we can see):(the models; capture relatively well; local spatial dependencies)
+
+Although the goal of our work was to model natural images on a large scale, we also tried our model on the binary version (Salakhutdinov & Murray, 2008) of MNIST (LeCun et al., 1998) as it is a good sanity check and there is a lot of previous art on this dataset to compare with.
+0.76 (the goal of our work; was; to model natural images on a large scale)
+0.27 (we; tried; our model)
+0.52 (it; is; a good sanity check)
+
+In Table 4 we report the performance of the Diagonal BiLSTM model and that of previous published results.
+0.51 (we; report; the performance of the Diagonal BiLSTM model and that of previous published results; T:In Table 4)
+
+To our knowledge this is the best reported result on MNIST so far.
+0.42 (this; is so far; the best reported result on MNIST)
+
+Next we test our models on the CIFAR-10 dataset (Krizhevsky, 2009).
+0.56 (we; test; our models on the CIFAR-10 dataset; L:Next)
+
+Table 5 lists the results of our models and that of previously published approaches.
+
+All our results were obtained without data augmentation.
+0.36 (All our results; were obtained; )
+
+Although to our knowledge the are no published results on the ILSVRC ImageNet dataset (Russakovsky et al., 2015) that we can compare our models with, we give our ImageNet log-likelihood performance in Table 6 (without data augmentation).
+0.46 (we; can compare; our models; with, we give our ImageNet log-likelihood performance in Table 6 (without data augmentation)
+0.46 (we; give; our ImageNet log-likelihood performance in Table 6 (without data augmentation)
+
+On ImageNet the current PixelRNNs do not appear to overﬁt, as we saw that their validation performance improved with size and depth.
+0.97 (the current PixelRNNs; do not appear; to overﬁt; T:On ImageNet)
+0.15 (we; saw; that their validation performance improved with size and depth)
+0.31 Context(we saw):(their validation performance; improved; )
+
+For our models we give training performance in brackets.
+0.44 (we; give; training performance in brackets; T:For our models)
+
+As these are sampled from the model, we can easily generate millions of different completions.
+0.26 (these; are sampled; )
+0.45 (we; can easily generate; millions of different completions)
+
+likely resized with a different algorithm than the one we used for ImageNet images.
+
+Because the downsampling method can inﬂuence the compression performance, we have made the used downsampled images available1.
+0.91 (the downsampling method; can inﬂuence; the compression performance)
+0.45 (we; have made; the used downsampled images)
+
+Figure 7 (right) shows 32 × 32 samples drawn from our model trained on ImageNet.
+0.87 (Figure 7 (right; shows; 32 × 32 samples drawn from our model)
+0.89 (32 × 32 samples; drawn; from our model)
+0.68 (our model; trained; on ImageNet)
+
+Finally, we also show image completions sampled from the model in Figure 9.
+0.48 (we; show; image completions sampled from the model in Figure 9)
+0.90 (image completions; sampled; from the model in Figure 9)
+
+Conclusion In this paper we signiﬁcantly improve and build upon deep recurrent neural networks as generative models for natural images.
+0.55 (we; signiﬁcantly improve; T:Conclusion In this paper)
+0.53 (we; build; L:upon deep recurrent neural networks as generative models for natural images)
+
+We have described novel two-dimensional LSTM layers: the Row LSTM and the Diagonal BiLSTM, that scale more easily to larger datasets.
+0.50 (We; have described; novel two-dimensional LSTM layers)
+0.72 (the Row LSTM and the Diagonal BiLSTM; scale more easily; )
+
+We treated the pixel values as discrete random variables by using a softmax layer in the conditional distributions.
+0.39 (We; treated; the pixel values; as discrete random variables)
+0.29 Context(We treated):(We; treated the pixel values by using; a softmax layer in the conditional distributions)
+
+We employed masked convolutions to allow PixelRNNs to model full dependencies between the color channels.
+0.50 (We; employed; masked convolutions; to allow PixelRNNs to model full dependencies between the color channels)
+0.39 Context(We employed):(We; employed masked convolutions to allow; PixelRNNs to model full dependencies between the color channels)
+0.87 Context(We employed to allow):(PixelRNNs; to model; full dependencies between the color channels)
+
+We proposed and evaluated architectural improvements in these models resulting in PixelRNNs with up to 12 LSTM layers.
+0.19 (We; proposed; )
+0.41 (We; evaluated; architectural improvements in these models)
+
+We have shown that the PixelRNNs signiﬁcantly improve the state of the art on the MNIST and CIFAR-10 datasets.
+0.32 (We; have shown; that the PixelRNNs signiﬁcantly improve the state of the art on the MNIST and CIFAR-10 datasets)
+0.95 Context(We have shown):(the PixelRNNs; signiﬁcantly improve; the state of the art on the MNIST and CIFAR-10 datasets)
+
+We also provide new benchmarks for generative image modeling on the ImageNet dataset.
+0.61 (We; also provide; new benchmarks for generative image modeling on the ImageNet dataset)
+
+Based on the samples and completions drawn from the models we can conclude that the PixelRNNs are able to model both spatially local and long-range correlations and are able to produce images that are sharp and coherent.
+0.91 (the PixelRNNs; are; able to produce images)
+0.94 (the samples and completions; drawn; from the models)
+0.31 (we; can conclude; that the PixelRNNs are able to model both spatially local and long-range correlations and are able to produce images)
+0.94 Context(we can conclude):(the PixelRNNs; are; able to model both spatially local and long-range correlations)
+0.72 (images; are; sharp and coherent)
+0.91 (the PixelRNNs; to model; both spatially local and long-range correlations)
+
+Given that these models improve as we make them larger and that there is practically unlimited data available to train on, more computation and larger models are likely to further improve the results
+0.75 (these models; improve; T:as we make them larger and that there is practically unlimited data available to train on)
+0.31 (we; make; them larger)
+0.93 (more computation and larger models; are; likely to further improve the results)
+0.87 (more computation and larger models; to improve; the results)
+

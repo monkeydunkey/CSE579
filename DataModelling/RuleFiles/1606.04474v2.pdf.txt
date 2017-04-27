@@ -1,0 +1,364 @@
+In this paper we show how the design of an optimization algorithm can be cast as a learning problem, allowing the algorithm to learn to exploit structure in the problems of interest in an automatic way.
+0.71 (we; show; how the design of an optimization algorithm can be cast as a learning problem, allowing the algorithm to learn to exploit structure in the problems of interest in an automatic way; L:In this paper)
+0.91 Context(we show):(the design of an optimization algorithm; can be cast; as a learning problem)
+
+Our learned algorithms, implemented by LSTMs, outperform generic, hand-designed competitors on the tasks for which they are trained, and also generalize well to new tasks with similar structure.
+0.76 (Our learned algorithms; implemented; by LSTMs, outperform generic, hand-designed competitors on the tasks)
+0.32 (they; are trained; )
+
+We demonstrate this on a number of tasks, including simple convex problems, training neural networks, and styling images with neural art.
+0.23 (We; demonstrate; this)
+0.90 (simple convex problems; training; neural networks)
+
+For example, in the deep learning community we have seen a proliferation of optimization methods specialized for high-dimensional, non-convex optimization problems.
+0.60 (we; have seen; a proliferation of optimization methods; L:in the deep learning community)
+0.90 (optimization methods; specialized; for high-dimensional, non-convex optimization problems)
+
+In this work we take a different tack and instead propose to replace hand-designed update rules with a learned update rule, which we call the optimizer g, speciﬁed by its own set of parameters φ.
+0.60 (we; take; a different tack; L:In this work)
+0.66 (a learned update rule, which we call the optimizer g; speciﬁed; by its own set of parameters)
+0.38 (we; instead propose; to replace hand-designed update rules with a learned update rule, which we call the optimizer g, speciﬁed by its own set of parameters φ)
+0.52 (we; call; the optimizer g)
+
+Casting algorithm design as a learning problem allows us to specify the class of problems we are interested in through example problem instances.
+0.45 (we; are; interested in through example problem instances)
+0.87 (Casting algorithm design as a learning problem; allows; us to specify the class of problems)
+0.36 Context(Casting algorithm design as a learning problem allows):(us; to specify; the class of problems we are interested in through example problem instances)
+
+In ordinary statistical learning we have a particular function of interest, whose behavior is constrained through a data set of example function evaluations.
+0.70 (we; have; a particular function of interest, whose behavior is constrained through a data set of example; L:In ordinary statistical learning)
+0.76 (a particular function of interest; is constrained; )
+
+In choosing a model we specify a set of inductive biases about how we think the function of interest should behave at points we have not observed, and generalization corresponds to the capacity to make predictions about the behavior of the target function at novel points.
+0.89 (generalization; corresponds; to the capacity)
+0.56 (we; specify; a set of inductive biases about how we think the function of interest should behave at points; L:In choosing a model)
+0.46 (we; think; the function of interest should behave at points)
+0.90 Context(we think):(the function of interest; should behave; at points)
+0.87 (points; have not observed; we)
+
+In our setting the examples are themselves problem instances, which means generalization corresponds to the ability to transfer knowledge between different problems.
+0.62 (our; setting; the examples)
+
+However, by taking a meta-learning perspective, we can cast the problem of transfer learning as one of generalization, which is much better studied in the machine learning community.
+0.57 (we; can cast; the problem of transfer learning as one of generalization,)
+0.92 (one of generalization; is; much better studied in the machine learning community)
+
+One of the great success stories of deep-learning is that we can rely on the ability of deep networks to generalize to new examples by learning interesting sub-structures.
+0.87 (One of the great success stories of deep-learning; is; that we can rely on the ability of deep networks)
+0.40 Context(One of the great success stories of deep - learning is):(we; can rely; on the ability of deep networks)
+
+In this work we aim to leverage this generalization power, but also to lift it from simple supervised learning to the more general setting of optimization.
+0.60 (we; aim; to leverage this generalization power; L:In this work)
+0.38 (we; to lift; it; from simple supervised learning to the more general setting of optimization)
+
+[2016] frame multi-task learning as generalization, however unlike our approach they directly train a base learner rather than a training algorithm.
+0.62 (they; directly train; a base learner rather than a training algorithm)
+
+Our approach to meta-learning builds on this work by modifying the network architecture of the optimizer in order to scale this approach to larger neural-network optimization problems.
+0.72 (Our approach to meta-learning; builds; L:on this work)
+
+2 Learning to learn with recurrent neural networks In this work we consider directly parameterizing the optimizer.
+0.79 (2 Learning; to learn; )
+0.45 (we; consider directly parameterizing; the optimizer)
+
+As a result, in a slight abuse of notation we will write the ﬁnal optimizee parameters θ∗(f, φ) as a function of the optimizer parameters φ and the function in question.
+0.44 (we; will write φ; L:in a slight abuse of notation)
+
+We can then ask the question: What does it mean for an optimizer to be good? Given a distribution of functions f we will write the expected loss as As noted earlier, we will take the update steps gt to be the output of a recurrent neural network m, parameterized by φ, whose state we will denote explicitly with ht.
+0.91 (a recurrent neural network m; parameterized; by φ)
+0.79 (steps; to be; the output of a recurrent neural network m)
+0.77 (an optimizer; to be; good)
+0.39 (we; will take; the update)
+0.43 Context(we will take):(We; can ask; the question; T:then)
+0.39 Context(We can ask we will take):(we; will write; the expected loss; T:as As noted earlier)
+0.19 (we; will denote; )
+
+Here wt ∈ R≥0 are arbitrary weights associated with each time-step and we will also use the notation ∇t = ∇θf (θt).
+0.45 (we; will also use; the notation ∇t = ∇θf (θt))
+
+This formulation is equivalent to (2) when wt = 1[t = T ], but later we will describe why using different weights can prove useful.
+0.81 (This formulation; is; equivalent to (2)
+0.60 (we; will describe; why using different weights; T:later)
+
+We can minimize the value of L(φ) using gradient descent on φ.
+0.61 (We; can minimize; the value of L(φ) using gradient descent on φ)
+
+∂∇t Examining the objective in (3) we see that the gradient is non-zero only for terms where wt (cid:54)= 0.
+0.19 (we; see; that the gradient is non-zero only for terms)
+0.78 Context(we see):(the gradient; is; non-zero)
+
+If we use wt = 1[t = T ] to match the original problem, then gradients of trajectory preﬁxes are zero and only the ﬁnal optimization step provides information for training the optimizer.
+0.39 (we; use; wt = 1[t = T; to match the original problem)
+0.29 Context(we use):(we; use wt = 1[t = T to match; the original problem)
+
+We solve this problem by relaxing the objective such that wt > 0 at intermediate points along the trajectory.
+0.39 (We; solve; this problem; by relaxing the objective)
+0.39 Context(We solve):(We; solve this problem by relaxing; the objective)
+
+For simplicity, in all our experiments we use wt = 1 for every t.
+0.45 (we; use; wt = 1; for every t.)
+
+One challenge in applying RNNs in our setting is that we want to be able to optimize at least tens of thousands of parameters.
+0.53 (we; to be; able to optimize at least tens of thousands of parameters)
+0.59 (One challenge in applying RNNs in our setting; is; that we want to be able to optimize at least tens of thousands of parameters)
+0.58 Context(One challenge in applying RNNs in our setting is):(we; want; to be able to optimize at least tens of thousands of parameters)
+0.30 Context(One challenge in applying RNNs in our setting is we want):(we; want to optimize; at least tens of thousands of parameters)
+
+To avoid this difﬁculty we will use an optimizer m which operates coordinatewise on the parameters of the objective function, similar to other common update rules like RMSprop and ADAM.
+0.94 (an optimizer m; operates coordinatewise; L:on the parameters of the objective function, similar to other common update rules like RMSprop and ADAM)
+0.93 (To avoid this difﬁculty; will use; an optimizer m which operates coordinatewise on the parameters of the objective function, similar to other common update rules like RMSprop and ADAM)
+
+We implement the update rule for each coordinate using a two-layer Long Short Term Memory (LSTM) network [Hochreiter and Schmidhuber, 1997], using the now-standard forget gate architecture.
+0.39 (We; implement; the update rule for each coordinate)
+0.55 Context(We implement):(We; implement the update rule for each coordinate using; a two-layer Long Short Term Memory (LSTM) network)
+0.29 Context(We implement):(We; implement the update rule for each coordinate using; the now-standard forget gate architecture)
+
+We will refer to this architecture, illustrated in Figure 3, as an LSTM optimizer.
+0.45 (We; will refer; to this architecture)
+
+In Appendix A we propose a different method of preprocessing inputs to the optimizer inputs which is more robust and gives slightly better performance.
+0.74 (we; propose; a different method of preprocessing inputs to the optimizer inputs; L:In Appendix)
+0.80 (the optimizer inputs; is; more robust)
+0.90 (the optimizer inputs; gives; slightly better performance)
+
+We use early stopping when training the optimizer in order to avoid overﬁtting the optimizer.
+0.43 (We; use stopping; T:when training the optimizer in order; T:early)
+0.29 Context(We use stopping):(We; use stopping training; the optimizer; in order)
+
+After each epoch (some ﬁxed number of learning steps) we freeze the optimizer parameters and evaluate its performance.
+0.60 (we; freeze; the optimizer parameters; T:After each epoch)
+0.40 (we; evaluate; its performance; T:After each epoch)
+
+We pick the best optimizer (according to the ﬁnal validation loss) and report its average performance on a number of freshly sampled test problems.
+0.64 (We; pick; the best optimizer (according to the ﬁnal validation loss)
+0.38 (We; report; its average performance on a number of freshly sampled test problems)
+
+We compare our trained optimizers with standard optimizers used in Deep Learning: SGD, RMSprop, ADAM, and Nesterov’s accelerated gradient (NAG).
+0.31 (We; compare; our trained optimizers; with standard optimizers)
+0.92 (standard optimizers; used; L:in Deep Learning)
+
+For each of these optimizer and each problem we tuned the learning rate, and report results with the rate that gives the best ﬁnal error for each problem.
+0.60 (we; tuned; the learning rate; T:For each of these optimizer and each problem)
+0.89 (the rate; gives; the best ﬁnal error for each problem)
+
+decay coefﬁcients for ADAM) we use the default values from the optim package in Torch7.
+0.50 (we; use; the default values; from the optim package in Torch7)
+
+In this experiment we consider training an optimizer on a simple class of synthetic 10-dimensional quadratic functions.
+0.51 (we; consider; training an optimizer on a simple class of synthetic 10-dimensional quadratic functions)
+0.51 Context(we consider):(we; consider training; an optimizer; on a simple class of synthetic 10-dimensional quadratic functions)
+
+In particular we consider minimizing functions of the form f (θ) = (cid:107)W θ − y(cid:107)2 for different 10x10 matrices W and 10-dimensional vectors y whose elements are drawn from an IID Gaussian distribution.
+0.39 (we; consider; minimizing functions of the form)
+0.39 Context(we consider):(we; consider minimizing; functions of the form)
+0.88 Context(we consider):(W; θ; − y(cid:107; 2)
+0.96 Context(we consider W θ):(W and 10-dimensional vectors; y; whose elements are drawn from an IID Gaussian distribution)
+
+We have not used any preprocessing, nor postprocessing.
+0.45 (We; have not used; any preprocessing)
+0.17 (We; postprocessing; )
+
+3.2 Training a small neural network on MNIST In this experiment we test whether trainable optimizers can learn to optimize a small neural network on MNIST, and also explore how the trained optimizers generalize to functions beyond those they were trained on.
+0.59 (3.2; Training; a small neural network on MNIST; In this experiment)
+0.91 (this experiment; test; we)
+0.92 (trainable optimizers; can learn; to optimize a small neural network on MNIST)
+0.08 (those; were trained; L:on)
+0.69 (trainable optimizers; explore; how the trained optimizers generalize to functions beyond those)
+0.74 Context(trainable optimizers explore):(the trained optimizers; generalize; to functions beyond those)
+
+To this end, we train the optimizer to optimize a base network and explore a series of modiﬁcations to the network architecture and training procedure at test time.
+0.64 (we; train; the optimizer; to optimize a base network and explore a series of modiﬁcations to the network architecture and training procedure at test time; T:To this end)
+0.40 Context(we train):(we; train the optimizer to explore; a series of modiﬁcations to the network architecture and training procedure at test time)
+
+We used input preprocessing described in Appendix A and rescaled the outputs of the LSTM by the factor 0.1.
+0.50 (We; used; input preprocessing described in Appendix A)
+0.46 (We; rescaled; the outputs of the LSTM)
+
+In this comparison we re-used the LSTM optimizer from the previous experiment, and here we see that the LSTM optimizer continues to outperform the baseline optimizers on this task.
+0.64 (we; re-used; the LSTM optimizer; from the previous experiment; L:In this comparison)
+0.92 (the LSTM optimizer; to outperform; the baseline optimizers on this task)
+0.44 (we; see; that the LSTM optimizer continues to outperform the baseline optimizers on this task; L:here)
+0.76 Context(we see):(the LSTM optimizer; continues; )
+
+Finally, in Figure 6 we show the results of systematically varying the tested architecture; for the LSTM results we again used the optimizer trained using 1 layer of 20 units and sigmoid non-linearities.
+0.54 (we; used; the optimizer trained; T:for the LSTM results; T:again)
+0.60 Context(we used):(we; show; the results of systematically varying the tested architecture; T:Finally)
+0.35 Context(we used):(we; used the optimizer trained using; 1 layer of 20 units and sigmoid non-linearities)
+0.26 Context(we used using):(we; used the optimizer trained using sigmoid; non-linearities)
+0.73 (the optimizer; trained; )
+
+test-set problems are similar enough to those in the training set we see even better generalization than the baseline optimizers.
+
+3.3 Training a convolutional network on CIFAR-10 Next we test the performance of the trained neural optimizers on optimizing classiﬁcation performance for the CIFAR-10 dataset [Krizhevsky, 2009].
+0.79 (we; test; the performance of the trained neural optimizers on optimizing classiﬁcation performance for the CIFAR-10 dataset; L:Next)
+
+In these experiments we used a model with both convolutional and feed-forward layers.
+0.60 (we; used; a model; with both convolutional and feed-forward layers; L:In these experiments)
+
+We found that this decomposition was not sufﬁcient for the model architecture introduced in this section due to the differences between the fully connected and convolutional layers.
+0.94 (the model architecture; introduced; in this section; due to the differences between the fully connected and convolutional layers)
+0.28 (We; found; that this decomposition was not sufﬁcient for the model architecture)
+0.88 Context(We found):(this decomposition; was not; sufﬁcient for the model architecture)
+
+Instead we modify the optimizer by introducing two LSTMs: one proposes parameter updates for the fully connected layers and the other updates the convolutional layer parameters.
+0.60 (one; proposes; parameter updates for the fully connected layers and the other updates)
+0.39 Context(one proposes):(we; modify; the optimizer)
+0.39 Context(we modify one proposes):(we; modify the optimizer by introducing; two LSTMs)
+
+Like the previous LSTM optimizer we still utilize a coordinatewise decomposition with shared weights and individual hidden states, however LSTM weights are now shared only between parameters of the same type (i.e.
+0.71 (we; utilize; a coordinatewise decomposition with shared weights and individual hidden states; T:the previous LSTM optimizer; T:still)
+0.94 (LSTM weights; are shared; only between parameters of the same type (i.e.; T:now)
+
+Additionally we include an optimizer LSTM-sub which was only trained on the held-out labels.
+0.50 (we; include; an optimizer LSTM-sub)
+0.93 (an optimizer LSTM-sub; was only trained; on the held-out labels)
+
+In all these examples we can see that the LSTM optimizer learns much more quickly than the baseline optimizers, with signiﬁcant boosts in performance for the CIFAR-5 and especially CIFAR-2 datsets.
+0.44 (we; can see; that the LSTM optimizer learns much more quickly than the baseline optimizers, with signiﬁcant boosts in performance for the CIFAR-5 and especially CIFAR-2 datsets; L:In all these examples)
+0.76 Context(we can see):(the LSTM optimizer; learns much more quickly; )
+
+We also see that the optimizers trained only on a disjoint subset of the data is hardly effected by this difference and transfers well to the additional dataset.
+0.90 (the optimizers; trained; only on a disjoint subset of the data)
+0.27 (We; also see; that the optimizers trained only on a disjoint subset of the data is hardly effected by this difference and transfers well to the additional dataset)
+0.96 Context(We also see):(the optimizers trained only on a disjoint subset of the data; is hardly effected; by this difference and transfers well to the additional dataset)
+
+The recent work on artistic style transfer using convolutional networks, or Neural Art [Gatys et al., 2015], gives a natural testbed for our method, since each content and style image pair gives rise to a different optimization problem.
+0.97 (The recent work on artistic style transfer; using; convolutional networks, or Neural Art [Gatys et al., 2015)
+0.93 (each content and style image pair; gives; rise; to a different optimization problem)
+
+Note: the y-axis is in log scale and we zoom in on the interesting portion of this plot.
+
+We train optimizers using only 1 style and 1800 content images taken from ImageNet [Deng et al., 2009].
+0.45 (We; train; optimizers using only 1 style and 1800 content images)
+0.89 (optimizers; using; only 1 style and 1800 content images)
+0.93 (1800 content images; taken; from ImageNet [Deng et al)
+
+We randomly select 100 content images for testing and 20 content images for validation of trained optimizers.
+0.57 (We; randomly select; 100 content images for testing and 20 content images for validation of trained optimizers)
+
+We train the optimizer on 64x64 content images from ImageNet and one ﬁxed style image.
+0.61 (We; train; the optimizer on 64x64 content images from ImageNet and one ﬁxed style image)
+
+We then test how well it generalizes to a different style image and higher resolution (128x128).
+0.53 (We; test; how well it generalizes to a different style image and higher resolution; T:then)
+0.39 Context(We test):(it; generalizes; to a different style image and higher resolution)
+
+Finally, in Appendix B we qualitatively examine the behavior of the step directions generated by the learned optimizer.
+0.64 (we; qualitatively examine; the behavior of the step directions; T:Finally; L:in Appendix B)
+0.91 (the step directions; generated; by the learned optimizer)
+
+We have shown how to cast the design of optimization algorithms as a learning problem, which enables us to train optimizers that are specialized to particular classes of functions.
+0.82 (a learning problem; enables; us; to train optimizers)
+0.23 (us; to train; optimizers that are specialized to particular classes of functions)
+0.88 (optimizers; are specialized; to particular classes of functions)
+0.51 (We; have shown; how to cast the design of optimization algorithms as a learning problem)
+0.30 Context(We have shown):(We; have shown to cast; the design of optimization algorithms as a learning problem)
+
+Our experiments have conﬁrmed that learned neural optimizers compare favorably against state-of-the-art optimization methods used in deep learning.
+0.95 (state-of-the-art optimization methods; used; L:in deep learning)
+0.45 (Our experiments; have conﬁrmed; that learned neural optimizers compare favorably against state-of-the-art optimization methods)
+
+We witnessed a remarkable degree of transfer, with for example the LSTM optimizer trained on 12,288 parameter neural art tasks being able to generalize to tasks with 49,152 parameters, different styles, and different content images all at the same time.
+0.45 (We; witnessed; a remarkable degree of transfer)
+0.94 (neural art tasks; being; able to generalize to tasks with 49,152 parameters, different styles, and different content images all at the same time)
+
+We observed similar impressive results when transferring to different architectures in the MNIST task.
+0.43 (We; observed; similar impressive results; T:when transferring to different architectures in the MNIST task)
+0.33 Context(We observed):(We; observed similar impressive results transferring; to different architectures in the MNIST task)
+
+To this aim we propose to preprocess the optimizer’s inputs.
+0.40 (we; propose; to preprocess the optimizer's inputs)
+0.40 Context(we propose):(we; propose to preprocess; the optimizer's inputs)
+
+Therefore, we use the following preprocessing formula where p > 0 is a parameter controlling how small gradients are disregarded (we use p = 10 in all our experiments).
+0.45 (we; use; the following preprocessing formula where p; is a parameter controlling)
+0.81 (small gradients; are disregarded; L:in all our experiments)
+0.45 (we; use; p)
+0.79 (the following preprocessing formula; p; )
+
+We noticed that just rescaling all inputs by an appropriate constant instead also works ﬁne, but the proposed preprocessing seems to be more robust and gives slightly better results on some problems.
+0.28 (We; noticed; that just rescaling all inputs by an appropriate constant instead also works ﬁne, but the proposed preprocessing seems to be more robust and gives slightly better results on some problems)
+0.90 Context(We noticed):(just rescaling all inputs by an appropriate constant; instead works; ﬁne)
+0.75 (the proposed preprocessing; to be; more robust)
+0.90 (the proposed preprocessing; gives; slightly better results on some problems)
+0.75 (the proposed preprocessing; seems; )
+
+In this section we try to peek into the decisions made by the LSTM optimizer, trained on the neural art task.
+0.92 (the LSTM optimizer; trained; on the neural art task)
+0.60 (we; try; to peek into the decisions; L:In this section)
+0.39 Context(we try):(we; try to peek; into the decisions)
+
+Histories of updates We select a single optimizee parameter (one color channel of one pixel in the styled image) and trace the updates proposed to this coordinate by the LSTM optimizer over a single trajectory of optimization.
+0.45 (We; select; a single optimizee parameter)
+0.57 (We; trace; the updates proposed to this coordinate by the LSTM optimizer over a single trajectory of optimization)
+0.95 (the updates; proposed; to this coordinate; by the LSTM optimizer over a single trajectory of optimization)
+
+We also record the updates that would have been proposed by both SGD and ADAM if they followed the same trajectory of iterates.
+0.33 (We; record; the updates that would have been proposed by both SGD and ADAM)
+0.90 (the updates; would have been proposed; by both SGD and ADAM)
+0.62 (they; followed; the same trajectory of iterates)
+
+We follow the same procedure as in the previous experiment, and visualize the proposed updates for a few selected time steps.
+0.45 (We; follow; the same procedure)
+0.41 (We; visualize; the proposed updates for a few selected time steps)
+
+D Information sharing between coordinates In previous sections we considered a coordinatewise architecture, which corresponds by analogy to a learned version of RMSprop or ADAM.
+0.61 (we; considered; a coordinatewise architecture, which corresponds by analogy to a learned version of RMSprop or ADAM)
+0.90 (a coordinatewise architecture; corresponds; to a learned version of RMSprop or ADAM)
+
+Although diagonal methods are quite effective in practice, we can also consider learning more sophisticated optimizers that take the correlations between coordinates into effect.
+0.90 (diagonal methods; are; quite effective in practice)
+0.90 (more sophisticated optimizers; take; the correlations between coordinates; into effect)
+0.39 (we; can also consider; learning more sophisticated optimizers)
+0.27 Context(we can also consider):(we; can also consider learning; more sophisticated optimizers that take the correlations between coordinates into effect)
+
+To this end, we introduce a mechanism allowing different LSTMs to communicate with each other.
+0.70 (we; introduce; a mechanism allowing different LSTMs to communicate with each other; T:To this end)
+0.88 (a mechanism; allowing; different LSTMs to communicate with each other)
+0.72 Context(a mechanism allowing):(different LSTMs; to communicate; with each other)
+
+We also consider augmenting the LSTM+GAC architecture with an external memory that is shared between coordinates.
+0.90 (an external memory; is shared; between coordinates)
+0.43 (We; also consider; augmenting the LSTM+GAC architecture with an external memory)
+0.43 Context(We also consider):(We; also consider augmenting; the LSTM+GAC architecture; with an external memory)
+
+We designed a memory architecture that, in theory, allows the Figure 11: The proposed update direction for a single coordinate over 32 steps.
+0.40 (We; designed; a memory architecture)
+0.87 Context(We designed):(a memory architecture; allows; the  Figure 11)
+
+We call this architecture an NTM-BFGS optimizer, because its use of external memory is similar to the Neural Turing Machine [Graves et al., 2014].
+0.53 (We; call; this architecture; an NTM-BFGS optimizer; because its use of external memory is similar to the Neural Turing Machine [Graves et al)
+0.86 (its use of external memory; is; similar to the Neural Turing Machine [Graves et al)
+
+The pivotal differences between our construction and the NTM are (1) our memory allows only low-rank updates; (2) the controller (including read/write heads) operates coordinatewise.
+0.58 (The pivotal differences between our construction and the NTM; are; )
+0.29 (our memory; allows; )
+0.92 Context(our memory allows):(the controller (including read/write heads; operates; coordinatewise)
+0.89 Context(our memory allows the controller ( including read / write heads operates):(the controller (including read; write; heads)
+
+We can write a skeletonized version of the BFGS algorithm, using Mt to represent the inverse Hessian approximation at iteration t, as follows θt+1 = θt + gt Mt+1 = write(Mt, θt, gt) .
+0.43 (We; can write; a skeletonized version of the BFGS algorithm)
+0.33 Context(We can write):(We; can write a skeletonized version of the BFGS algorithm using; Mt; to represent the inverse Hessian approximation at iteration t)
+0.85 (gt Mt+1; write; Mt)
+0.88 (Mt; to represent; the inverse Hessian approximation at iteration t)
+
+Here we have packed up all of the details of the BFGS algorithm into the suggestively named read and write operations, which operate on the inverse Hessian approximation Mt.
+0.64 (we; have packed up; all of the details of the BFGS algorithm; into the suggestively named read; L:Here)
+0.71 (we; write; operations, which operate on the inverse Hessian approximation Mt; L:Here)
+0.90 (operations; operate; L:on the inverse Hessian approximation Mt)
+
+In this work we preserve the structure of the BFGS updates, but discard their particular form.
+0.64 (we; preserve; the structure of the BFGS updates; L:In this work)
+0.40 (we; discard; their particular form; L:In this work)
+
+Our NTM-BFGS optimizer uses an LSTM+GAC as a controller; however, instead of producing the update directly we attach one or more read and write heads to the controller.
+
+The read and write operation for a single head is diagrammed in Figure 14 and the way read and write heads are attached to the controller is depicted in  In cases where memory is constrained we can follow the example of L-BFGS and maintain a low rank approximation of the full memory (vis.
+0.95 (The read and write operation for a single head; is diagrammed; L:in Figure 14)
+0.93 (memory; is constrained; L:cases)
+0.73 (the way; read; )
+0.50 (we; can follow; the example of L-BFGS)
+0.53 (we; maintain; a low rank approximation of the full memory (vis)
+
+Note that here we have dropped the time index t to simplify notation
+

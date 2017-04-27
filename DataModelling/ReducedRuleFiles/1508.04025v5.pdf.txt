@@ -1,0 +1,176 @@
+The paper  |  outputs  | effectiveness
+The paper  |  outputs  | approaches
+The paper  |  outputs  | wmt translation tasks
+The paper  |  outputs  | directions
+The paper  |  outputs  | effectiveness of both approaches on the wmt translation tasks between english and german in both directions
+The paper  |  outputs  | signiﬁcant gain
+The paper  |  outputs  | bleu points
+The paper  |  outputs  | non-attentional systems
+The paper  |  outputs  | signiﬁcant gain of 5.0 bleu points over non-attentional systems
+The paper  |  uses  | techniques such
+The paper  |  uses  | dropout
+The paper  |  uses  | techniques such as dropout
+The paper  |  uses  | different attention
+The paper  |  uses  | yields
+The paper  |  uses  | new state-of-the-art result
+The paper  |  uses  | wmt'15 english
+The paper  |  uses  | different attention architectures yields a new state-of-the-art result in the wmt'15 english
+The paper  |  outputs  | state-of-the-art performances
+The paper  |  outputs  | l
+The paper  |  outputs  | work
+The paper  |  outputs  | l : in this work
+The paper  |  solves  | l
+The paper  |  solves  | al
+The paper  |  solves  | l : in ( xu et al
+The paper  |  uses  | various alignment functions
+The paper  |  uses  | attention-based models
+The paper  |  uses  | various alignment functions for our attention-based models
+The paper  |  outputs  | approaches
+The paper  |  outputs  | wmt translation tasks
+The paper  |  outputs  | directions
+The paper  |  outputs  | approaches are effective in the wmt translation tasks between english and german in both directions
+The paper  |  uses  | techniques such
+The paper  |  uses  | dropout
+The paper  |  uses  | techniques such as dropout
+The paper  |  outputs  | new state-of-the-art
+The paper  |  outputs  | sota
+The paper  |  outputs  | results
+The paper  |  outputs  | wmt'14
+The paper  |  outputs  | wmt'15
+The paper  |  outputs  | new state-of-the-art ( sota ) results for both wmt'14 and wmt'15
+The paper  |  uses  | bidirectional rnn
+The paper  |  uses  | encoder
+The paper  |  uses  | bidirectional rnn for the encoder
+The paper  |  uses  | lstm architecture
+The paper  |  uses  | nmt systems
+The paper  |  uses  | lstm architecture for our nmt systems
+The paper  |  uses  | simple concatenation layer
+The paper  |  uses  | information
+The paper  |  uses  | vectors
+The paper  |  uses  | simple concatenation layer to combine the information from both vectors
+The paper  |  outputs  | attentional hidden state
+The paper  |  outputs  | predictive distribution
+The paper  |  outputs  | model type
+The paper  |  outputs  | source-side context vector ct
+The paper  |  outputs  | predictive distribution formulated as : we now detail how each model type computes the source-side context vector ct
+The paper  |  uses  | different alternatives
+The paper  |  uses  | besides
+The paper  |  uses  | early attempts
+The paper  |  uses  | different alternatives : besides , in our early attempts
+The paper  |  solves  | al
+The paper  |  uses  | location-based function
+The paper  |  uses  | alignment scores
+The paper  |  uses  | target hidden
+The paper  |  uses  | state ht
+The paper  |  uses  | location-based function in which the alignment scores are computed from solely the target hidden state ht
+The paper  |  uses  | top part
+The paper  |  solves  | local attentional mechanism
+The paper  |  solves  | small subset
+The paper  |  solves  | source positions
+The paper  |  solves  | target word
+The paper  |  solves  | local attentional mechanism that chooses to focus only on a small subset of the source positions per target word
+The paper  |  uses  | small window
+The paper  |  uses  | context
+The paper  |  uses  | small window of context
+The paper  |  uses  | variants
+The paper  |  uses  | model
+The paper  |  uses  | below
+The paper  |  uses  | variants of the model as below
+The paper  |  uses  | same align function
+The paper  |  uses  | eq
+The paper  |  uses  | same align function as in eq
+The paper  |  uses  | words
+The paper  |  uses  | window
+The paper  |  uses  | words in the window
+The paper  |  uses  | truncated gaussian distribution
+The paper  |  uses  | original alignment weights align
+The paper  |  uses  | ht
+The paper  |  uses  | ¯hs
+The paper  |  uses  | eq
+The paper  |  uses  | truncated gaussian distribution to modify the original alignment weights align ( ht , ¯hs ) as shown in eq
+The paper  |  solves  | selective attention mechanism
+The paper  |  solves  | local attention
+The paper  |  solves  | image generation task
+The paper  |  solves  | selective attention mechanism , very similar to our local attention , for the image generation task
+The paper  |  uses  | zoom
+The paper  |  uses  | target positions
+The paper  |  uses  | zoom '' for all target positions
+The paper  |  outputs  | good performance
+The paper  |  solves  | inputfeeding approach
+The paper  |  solves  | attentional vectors
+The paper  |  solves  | inputs
+The paper  |  solves  | next time steps
+The paper  |  solves  | inputfeeding approach in which attentional vectors ~ht are concatenated with inputs at the next time steps
+The paper  |  outputs  | coverage
+The paper  |  outputs  | effect
+The paper  |  outputs  | coverage '' effect
+The paper  |  outputs  | ﬂexibility
+The paper  |  outputs  | model
+The paper  |  outputs  | ﬂexibility for the model
+The paper  |  uses  | input-feeding approach
+The paper  |  uses  | development
+The paper  |  outputs  | translation quality
+The paper  |  outputs  | types
+The paper  |  outputs  | bleu
+The paper  |  outputs  | tokenized12 bleu
+The paper  |  outputs  | nmt work
+The paper  |  outputs  | translation quality using two types of bleu : ( a ) tokenized12 bleu to be comparable with existing nmt work
+The paper  |  uses  | types
+The paper  |  uses  | bleu
+The paper  |  uses  | nmt work
+The paper  |  uses  | types of bleu to be comparable with existing nmt work
+The paper  |  uses  | dropout
+The paper  |  uses  | lstms
+The paper  |  uses  | dropout for our lstms
+The paper  |  uses  | l
+The paper  |  uses  | pararentheses
+The paper  |  uses  | l : in pararentheses
+The paper  |  outputs  | speed
+The paper  |  outputs  | target words
+The paper  |  outputs  | second
+The paper  |  outputs  | speed of 1k target words per second
+The paper  |  outputs  | progressive improvements
+The paper  |  uses  | inputfeeding approach
+The paper  |  outputs  | signiﬁcant gain
+The paper  |  outputs  | bleu points
+The paper  |  outputs  | non-attentional baseline
+The paper  |  outputs  | signiﬁcant gain of 5.0 bleu points over the non-attentional baseline
+The paper  |  solves  | l
+The paper  |  solves  | al
+The paper  |  solves  | l : in ( luong et al
+The paper  |  outputs  | new sota result
+The paper  |  outputs  | bleu
+The paper  |  outputs  | new sota result of 23.0 bleu
+The paper  |  outputs  | different test sets
+The paper  |  uses  | different attention models
+The paper  |  uses  | alignment weights
+The paper  |  outputs  | rwth
+The paper  |  outputs  | english-german europarl sentences
+The paper  |  outputs  | rwth for 508 english-german europarl sentences
+The paper  |  outputs  | local attention models
+The paper  |  outputs  | aer scores comparable
+The paper  |  outputs  | one-to-many alignments
+The paper  |  outputs  | aer scores comparable to the one-to-many alignments
+The paper  |  uses  | alignments
+The paper  |  uses  | local attention models
+The paper  |  uses  | lower aers
+The paper  |  uses  | global one
+The paper  |  uses  | alignments produced by local attention models achieve lower aers than those of the global one
+The paper  |  outputs  | lower aers
+The paper  |  outputs  | global one
+The paper  |  outputs  | lower aers than those of the global one
+The paper  |  uses  | doubly-negated phrase
+The paper  |  uses  | doubly-negated phrase
+The paper  |  solves  | effective attentional mechanisms
+The paper  |  solves  | neural machine translation
+The paper  |  solves  | effective attentional mechanisms for neural machine translation
+The paper  |  uses  | techniques such
+The paper  |  uses  | dropout
+The paper  |  uses  | techniques such as dropout
+The paper  |  outputs  | different attention models
+The paper  |  outputs  | contrast
+The paper  |  outputs  | different attention models in this contrast
+The paper  |  outputs  | subset
+The paper  |  outputs  | words
+The paper  |  outputs  | time
+The paper  |  outputs  | subset of words each time

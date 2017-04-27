@@ -1,0 +1,446 @@
+We consider image transformation problems, where an input image is transformed into an output image.
+0.57 (We; consider; image transformation problems, where an input image is transformed into an output image)
+0.91 (an input image; is transformed; into an output image)
+
+We combine the beneﬁts of both approaches, and propose the use of perceptual loss functions for training feed-forward networks for image transformation tasks.
+0.45 (We; combine; the beneﬁts of both approaches)
+0.53 (We; propose; the use of perceptual loss functions for training feed-forward networks for image transformation tasks)
+
+We show results on image style transfer, where a feed-forward network is trained to solve the optimization problem proposed by Gatys et al in real-time.
+0.52 (We; show; results on image style transfer)
+0.96 (a feed-forward network; is trained; to solve the optimization problem; L:image style transfer)
+0.95 (a feed-forward network; to solve; the optimization problem proposed by Gatys et al in real-time)
+0.93 (the optimization problem; proposed; by Gatys et al; T:in real-time)
+
+Compared to the optimization-based method, our network gives similar qualitative results but is three orders of magnitude faster.
+0.64 (our network; gives; similar qualitative results)
+
+We also experiment with single-image super-resolution, where replacing a per-pixel loss with a perceptual loss gives visually pleasing results.
+0.41 (We; experiment; with single-image super-resolution)
+0.95 (replacing a per-pixel loss with a perceptual loss; gives; visually pleasing results)
+
+For style transfer, we achieve similar results as Gatys et al [10] but are three orders of magnitude faster.
+0.50 (we; achieve; similar results as Gatys et al)
+
+For super-resolution our method trained with a perceptual loss is able to better reconstruct ﬁne details compared to methods trained with per-pixel loss.
+0.64 (our method; trained; with a perceptual loss)
+0.79 (our method trained with a perceptual loss; is; able to better reconstruct ﬁne details)
+0.71 (our method trained with a perceptual loss; to better reconstruct; ﬁne details)
+0.89 (methods; trained; with per-pixel loss)
+
+In this paper we combine the beneﬁts of these two approaches.
+0.60 (we; combine; the beneﬁts of these two approaches; L:In this paper)
+
+We train feedforward transformation networks for image transformation tasks, but rather than using per-pixel loss functions depending only on low-level pixel information, we train our networks using perceptual loss functions that depend on high-level features from a pretrained loss network.
+0.45 (We; train; feedforward transformation networks; for image transformation tasks)
+0.93 (perceptual loss functions; depend; on high-level features from a pretrained loss network)
+0.31 (we; train; our networks)
+
+We experiment on two tasks: style transfer and single-image super-resolution.
+0.45 (We; experiment; on two tasks)
+
+In principle a high-capacity neural network trained for either task could implicitly learn to reason about the relevant semantics; however in practice we Perceptual Losses for Real-Time Style Transfer and Super-Resolution need not learn from scratch: the use of perceptual loss functions allows the transfer of semantic knowledge from the loss network to the transformation network.
+0.93 (a high-capacity neural network; trained; for either task)
+0.94 (the use of perceptual loss functions; allows; the transfer of semantic knowledge from the loss network to the transformation network)
+0.55 Context(the use of perceptual loss functions allows):(we; Perceptual; Losses for Real-Time Style Transfer and Super-Resolution need not learn from scratch)
+0.94 Context(we Perceptual the use of perceptual loss functions allows):(a high-capacity neural network trained for either task; could implicitly learn; to reason about the relevant semantics)
+0.94 Context(a high - capacity neural network trained for either task could implicitly learn we Perceptual the use of perceptual loss functions allows):(a high-capacity neural network trained for either task; could implicitly learn to reason; about the relevant semantics)
+0.91 Context(we Perceptual the use of perceptual loss functions allows):(Losses for Real-Time Style Transfer and Super-Resolution; need not learn; from scratch)
+
+For style transfer our feed-forward networks are trained to solve the optimization problem from [10]; our results are similar to [10] both qualitatively and as measured by objective function value, but are three orders of magnitude faster to generate.
+0.67 (our feed-forward networks; to solve; the optimization problem; from [10)
+0.33 (our results; are; similar to [10)
+0.87 Context(our results are):(For style; transfer; our feed-forward networks are trained to solve the optimization problem from [10)
+0.65 Context(For style transfer our results are):(our feed-forward networks; are trained; to solve the optimization problem from [10)
+
+For super-resolution we show that replacing the per-pixel loss with a perceptual loss gives visually pleasing results for ×4 and ×8 super-resolution.
+0.33 (we; show; that replacing the per-pixel loss with a perceptual loss gives visually pleasing results for ×4 and ×8 super-resolution)
+0.94 Context(we show):(replacing the per-pixel loss with a perceptual loss; gives; visually pleasing results for ×4 and ×8 super-resolution)
+
+The architecture of our transformation networks are inspired by [3] and [14], which use in-network downsampling to reduce the spatial extent of feature maps followed by in-network upsampling to produce the ﬁnal output image.
+0.48 (The architecture of our transformation networks; are inspired; by [3] and [14)
+0.44 (14; use; in-network downsampling; to reduce the spatial extent of feature maps)
+0.44 Context(14 use):(14; use in-network downsampling to reduce; the spatial extent of feature maps followed by in-network)
+
+However, their feed-forward network is trained with a per-pixel reconstruction loss, while our networks directly optimize the feature reconstruction loss of [6].
+0.70 (their feed-forward network; is trained; with a per-pixel reconstruction loss)
+0.64 (our networks; directly optimize; the feature reconstruction loss of [6)
+
+We train an image transformation network to transform input images into output images.
+0.57 (We; train; an image transformation network to transform input images into output images)
+0.92 (an image transformation network; to transform; input images; into output images)
+
+We use a loss network pretrained for image classiﬁcation to deﬁne perceptual loss functions that measure perceptual diﬀerences in content and style between images.
+0.45 (We; use; a loss network pretrained)
+0.75 (a loss network; pretrained; )
+0.85 (image classiﬁcation; to deﬁne; perceptual loss functions that measure perceptual diﬀerences in content and style between images)
+0.90 (perceptual loss functions; measure; perceptual diﬀerences)
+
+To overcome this computational burden, we train a feed-forward network to quickly approximate solutions to their optimization problem.
+0.87 (a feed-forward network; to quickly approximate; solutions to their optimization problem)
+0.26 (we; train; a feed-forward network; to quickly approximate solutions to their optimization problem)
+
+As shown in Figure 2, our system consists of two components: an image transformation network fW and a loss network φ that is used to deﬁne several loss functions (cid:96)1, .
+0.64 (our system; consists; of two components)
+0.91 (a loss network φ; is used; to deﬁne several loss functions)
+0.91 (a loss network φ; to deﬁne; several loss functions)
+
+The image transformation network is trained using stochastic gradient descent to minimize a weighted combination of loss functions: W ∗ = arg min Input ImageImage Transform NetStyle TargetContent TargetLoss Network (VGG-16)Perceptual Losses for Real-Time Style Transfer and Super-Resolution To address the shortcomings of per-pixel losses and allow our loss functions to better measure perceptual and semantic diﬀerences between images, we draw inspiration from recent work that generates images via optimization [6,7,8,9,10].
+0.46 (we; draw; inspiration; from recent work)
+0.72 Context(we draw):(The image transformation network; is trained; )
+0.89 (recent work; generates; images)
+
+The key insight of these methods is that convolutional neural networks pretrained for image classiﬁcation have already learned to encode the perceptual and semantic information we would like to measure in our loss functions.
+0.92 (that convolutional neural networks; pretrained; for image classiﬁcation)
+0.26 (we; would like; to measure in our loss functions)
+0.77 Context(we would like):(semantic information; to measure; in our loss functions)
+0.89 (The key insight of these methods; is; that convolutional neural networks pretrained for image classiﬁcation have already learned to encode the perceptual and semantic information)
+0.94 Context(The key insight of these methods is):(that convolutional neural networks pretrained for image classiﬁcation; have learned; to encode the perceptual and semantic information; T:already)
+0.89 Context(The key insight of these methods is that convolutional neural networks pretrained for image classiﬁcation have learned):(that convolutional neural networks pretrained for image classiﬁcation; have learned to encode; the perceptual and semantic information)
+
+We therefore make use of a network φ which as been pretrained for image classiﬁcation as a ﬁxed loss network in order to deﬁne our loss functions.
+0.45 (We; therefore make; use of a network φ)
+0.88 (a network φ; as been pretrained; as a ﬁxed loss network in order)
+
+Our deep convolutional transformation network is then trained using loss functions that are also deep convolutional networks.
+0.73 (Our deep convolutional transformation network; is trained; using loss functions; T:then)
+0.89 (loss functions; are also; deep convolutional networks)
+
+For each input image x we have a content target yc and a style target ys.
+0.60 (we; have; a content target yc and a style target ys; T:For each input image)
+
+For style transfer, the content target yc is the input image x and the output image ˆy should combine the content of x = yc with the style of ys; we train one network per style target.
+0.94 (the content target yc; is; the input image)
+0.40 (we; train; one network per style target)
+0.90 Context(we train):(the output image ^y; should combine; the content of x = yc; with the style of ys)
+
+For single-image super-resolution, the input image x is a low-resolution input, the content target yc is the ground-truth highresolution image, and the style reconstruction loss is not used; we train one network per super-resolution factor.
+0.77 (the style reconstruction loss; is not used; )
+0.40 (we; train; one network per super-resolution factor)
+0.92 Context(we train):(the content target yc; is; the ground-truth highresolution image)
+0.92 Context(the content target yc is we train):(the input image x; is; a low-resolution input)
+
+Our image transformation networks roughly follow the architectural guidelines set forth by Radford et al [42].
+0.72 (Our image transformation networks; roughly follow; the architectural guidelines set forth by Radford et al)
+0.93 (the architectural guidelines; set forth; by Radford et al)
+
+We do not use any pooling layers, instead using strided and fractionally strided convolutions for in-network downsampling and upsampling.
+0.39 (We; do not use; any pooling layers)
+0.11 Context(We do not use):(We; do not use any pooling layers instead using; )
+
+Our network body consists of ﬁve residual blocks [43] using the architecture of [44].
+0.66 (Our network body; consists; of ﬁve residual blocks; using the architecture of [44)
+
+The exact architectures of all our networks can be found in the supplementary material.
+0.74 (The exact architectures of all our networks; can be found; L:in the supplementary material)
+
+For super-resolution with an upsampling factor of f , we use several residual blocks followed by log2 f convolutional layers with stride 1/2.
+0.45 (we; use; several residual blocks followed by log2)
+0.75 (several residual blocks; followed; )
+
+Similar to [6], we use optimization to ﬁnd an image ˆy that minimizes the feature reconstruction loss (cid:96)φ,j f eat(ˆy, y) for several layers j from the pretrained VGG-16 loss network φ.
+0.90 (an image ^y; minimizes; the feature reconstruction loss)
+0.94 (several layers; j; from the pretrained VGG-16 loss network φ)
+0.39 (we; use; optimization; to ﬁnd an image ^y)
+0.27 Context(we use):(we; use optimization to ﬁnd; an image ^y that minimizes the feature reconstruction loss (cid:96)φ,j f eat(^y, y) for several layers)
+
+As we reconstruct from higher layers, image content and overall spatial structure are preserved, but color, texture, and exact shape are not.
+0.45 (we; reconstruct; from higher layers)
+0.80 (image content and overall spatial structure; are preserved; )
+0.82 (color, texture, and exact shape; are not; )
+
+For style transfer our networks use two stride-2 convolutions to downsample the input followed by several residual blocks and then two convolutional layers with stride 1/2 to upsample.
+0.83 (For style; transfer; our networks)
+0.73 (the input; followed; )
+
+After downsampling, we can therefore use a larger network for the same computational cost.
+0.49 (we; can use; a larger network for the same computational cost; T:After downsampling)
+
+The body of our network thus consists of several residual blocks, each of which contains two 3 × 3 convolutional layers.
+0.67 (The body of our network; consists; of several residual blocks)
+0.90 (several residual blocks; contains; two 3 × 3 convolutional layers)
+
+We use the residual block design of [44], shown in the supplementary material.
+0.45 (We; use; the residual block design of [44)
+0.57 (44; shown; L:in the supplementary material)
+
+We deﬁne two perceptual loss functions that measure high-level perceptual and semantic diﬀerences between images.
+0.33 (We; deﬁne; two perceptual loss functions that measure high-level perceptual and semantic diﬀerences between images)
+0.91 (two perceptual loss functions; measure; high-level perceptual and semantic diﬀerences between images)
+
+In all our experiments φ is the 16-layer VGG network [46] pretrained on the ImageNet dataset [47].
+0.79 (In all our experiments φ; is; the 16-layer VGG network)
+0.95 (the 16-layer VGG network; pretrained; L:on the ImageNet dataset)
+
+Similar to [10], we use optimization to ﬁnd an image ˆy that minimizes the style reconstruction loss (cid:96)φ,j style(ˆy, y) for several layers j from the pretrained VGG-16 loss network φ.
+0.90 (an image ^y; minimizes; the style reconstruction loss)
+0.94 (several layers; j; from the pretrained VGG-16 loss network φ)
+0.39 (we; use; optimization; to ﬁnd an image ^y)
+0.31 Context(we use):(we; use optimization to ﬁnd; an image ^y that minimizes the style reconstruction loss (cid:96)φ,j style(^y, y) for several layers)
+
+Rather than encouraging the pixels of the output image ˆy = fW (x) to exactly match the pixels of the target image y, we instead encourage them to have similar feature representations as computed by the loss network φ.
+0.94 (the output image ^y; (x); to exactly match the pixels of the target image y)
+0.88 Context(the output image ^y (x)):(the output image ^y; (x) to exactly match; the pixels of the target image y)
+0.42 (we; instead encourage; them; to have similar feature representations as computed by the loss network φ)
+0.45 (them; to have; similar feature representations)
+
+As we reconstruct from higher layers, image content and overall spatial structure are preserved but color, texture, and exact shape are not.
+0.45 (we; reconstruct; from higher layers)
+0.80 (image content and overall spatial structure; are preserved; )
+0.82 (color, texture, and exact shape; are not; )
+
+Using a feature reconstruction loss for training our image transformation networks encourages the output image ˆy to be perceptually similar to the target image y, but does not force them to match exactly.
+0.19 (them; to match exactly; )
+0.81 (Using a feature reconstruction loss for training our image transformation networks; encourages; the output image; to be perceptually similar to the target image y)
+0.90 (the output image; to be perceptually; similar to the target image y)
+
+We also wish to penalize diﬀerences in style: colors, textures, common patterns, etc.
+0.39 (We; also wish; to penalize diﬀerences in style)
+0.39 Context(We also wish):(We; also wish to penalize; diﬀerences in style)
+
+Deﬁne the Gram matrix Gφ j (x) to be the Cj × Cj matrix whose elements are given by Hj × Wj grid, then Gφ If we interpret φj(x) as giving Cj-dimensional features for each point on a j (x) is proportional to the uncentered covariance of the Cj-dimensional features, treating each grid location as an independent sample.
+0.45 (we; interpret; φj)
+0.97 (the Gram matrix; j; Gφ)
+0.94 (the Cj × Cj matrix; are given; by Hj × Wj grid)
+
+layer j, we deﬁne (cid:96)φ,J In addition to the perceptual losses deﬁned above, we also deﬁne two simple loss functions that depend only on low-level pixel information.
+0.45 (we; deﬁne; φ,J)
+0.78 (the perceptual losses; deﬁned; L:above)
+0.33 (we; also deﬁne; two simple loss functions that depend only on low-level pixel information)
+0.91 (two simple loss functions; depend; only on low-level pixel information)
+
+This can only be used when when we have a ground-truth target y that the network is expected to match.
+0.35 (This; can only be used; T:when when we have a ground-truth target y)
+0.33 (we; have; a ground-truth target y that the network is expected to match)
+0.77 (a ground-truth target y; to match; )
+
+To encourage spatial smoothness in the output image ˆy, we follow prior work on feature inversion [6,20] and superresolution [48,49] and make use of total variation regularizer (cid:96)T V (ˆy).
+0.57 (we; follow; prior work on feature inversion [6,20] and superresolution)
+0.53 (we; make; use of total variation regularizer (cid:96)T V (^y)
+
+We perform experiments on two image transformation tasks: style transfer and single-image super-resolution.
+0.45 (We; perform; experiments; L:on two image transformation tasks)
+
+Prior work on style transfer has used optimization to generate images; our feed-forward networks give similar qualitative results but are up to three orders of magnitude faster.
+0.65 (our feed-forward networks; give; similar qualitative results)
+0.91 Context(our feed - forward networks give):(Prior work on style transfer; has used; optimization; to generate images)
+
+Prior work on single-image superresolution with convolutional neural networks has used a per-pixel loss; we show encouraging qualitative results by using a perceptual loss instead.
+0.47 (we; show; encouraging qualitative results by using a perceptual loss instead)
+0.40 Context(we show):(we; show encouraging; qualitative results)
+
+We train one image transformation network per style target for several hand-picked style targets and compare our results with the baseline approach of Gatys et al [10].
+0.45 (We; train; one image transformation network per style target; for several hand-picked style targets)
+0.31 (We; compare; our results; with the baseline approach of Gatys et al)
+
+Our style transfer networks and [10] minimize the same objective.
+0.71 (Our style transfer networks and [10; minimize; the same objective)
+
+We compare their objective values on 50 images; dashed lines and error bars show standard deviations.
+0.93 (dashed lines and error bars; show; standard deviations)
+0.26 Context(dashed lines and error bars show):(We; compare; their objective values; on 50 images)
+
+Our networks are trained on 256 × 256 images but generalize to larger images.
+0.64 (Our networks; are trained; on 256 × 256 images)
+0.60 (Our networks; generalize; to larger images)
+
+As a baseline, we reimplement the method of Gatys et al [10].
+0.50 (we; reimplement; the method of Gatys et al)
+
+We ﬁnd that unconstrained optimization of Equation 5 typically results in images whose pixels fall outside the range [0, 255].
+0.44 (We; ﬁnd; that unconstrained optimization of Equation 5 typically results in images)
+0.90 (images; fall; L:outside the range)
+
+For a more fair comparison with our method whose output is constrained to this range, for the baseline we minimize Equation 5 using projected L-BFGS by clipping the image y to the range [0, 255] at each iteration.
+
+Our style transfer networks are trained on the Microsoft COCO dataset [50].
+0.72 (Our style transfer networks; are trained; on the Microsoft COCO dataset)
+
+We resize each of the 80k training images to 256 × 256 and train our networks with a batch size of 4 for 40,000 iterations, giving roughly two epochs over the training data.
+0.45 (We; resize; each of the 80k training images; to 256 × 256)
+0.27 (We; train; our networks; with a batch size of 4)
+
+We use Adam [51] with a learning rate of 1 × 10−3.
+0.50 (We; use; Adam)
+
+We do not use weight decay or dropout, as the model does not overﬁt within two epochs.
+0.45 (We; do not use; weight decay or dropout)
+0.90 (the model; does not overﬁt; L:within two epochs)
+
+For all style transfer experiments we compute feature reconstruction loss at layer relu2_2 and style reconstruction loss at layers relu1_2, relu2_2, relu3_3, and relu4_3 of the VGG-16 loss network φ.
+0.45 (we; compute; feature reconstruction loss)
+
+Our implementation uses Torch [52] and cuDNN [53]; training takes roughly 4 hours on a single GTX Titan X GPU.
+0.68 (Our implementation; uses; Torch)
+0.91 (training; takes; roughly 4 hours; on a single GTX Titan X GPU)
+0.38 (X GPU; [is] single Titan [of]; GTX)
+
+In Figure 6 we show qualitative examples comparing our results with those of the baseline method for a variety of style and content images.
+0.60 (we; show; qualitative examples; L:In Figure 6)
+0.17 Context(we show):(we; show qualitative examples comparing; our results; with those of the baseline method for a variety of style and content images)
+
+Overall our results are qualitatively similar to the baseline.
+
+Although our models are trained with 256× 256 images, they can be applied in a fully-convolutional manner to images of any size at test-time.
+0.34 (our models; are trained; )
+0.57 (they; can be applied; to images of any size at test-time)
+
+In Figure 7 we show examples of style transfer using our models on 512 × 512 images.
+0.66 (we; show; examples of style transfer; L:In Figure 7)
+
+Example results of style transfer using our image transformation networks.
+0.87 (Example results of style transfer; using; our image transformation networks)
+
+Our results are qualitatively similar to Gatys et al [10] but are much faster to generate (see Table 1).
+0.68 (Our results; are; qualitatively similar to Gatys)
+0.64 (Our results; are; much faster to generate (see Table 1)
+
+Our style transfer networks are trained to preserve VGG-16 features, and in doing so they learn to preserve people and animals more than background objects.
+0.72 (Our style transfer networks; are trained; to preserve VGG-16 features)
+0.69 (Our style transfer networks; to preserve; VGG-16 features)
+0.69 (they; learn; to preserve people and animals more than background objects; L:in doing so)
+0.55 Context(they learn):(they; learn to preserve; people and animals; more than background objects)
+
+The baseline and our method both minimize Equation 5.
+0.71 (The baseline and our method; minimize; Equation 5)
+
+The baseline performs explicit optimization over the output image, while our method is trained to ﬁnd a solution for any content image yc in a single forward pass.
+0.90 (The baseline; performs; explicit optimization over the output image)
+0.74 (our method; is trained; to ﬁnd a solution for any content image yc in a single forward pass)
+0.66 (our method; to ﬁnd; a solution for any content image yc)
+
+We may therefore quantitatively compare the two methods by measuring the degree to which they successfully minimize Equation 5.
+0.35 (We; may quantitatively compare; the two methods; by measuring the degree)
+0.66 (they; successfully minimize; Equation 5)
+
+We run our method and the baseline on 50 images from the MS-COCO validation set, using The Muse by Pablo Picasso as a style image.
+0.37 (We; run; our method and the baseline)
+
+For the baseline we record the value of the objective function at each iteration of optimization, and for our method we record the value of Equation 5 for each image; we also compute the value of Equation 5 when y is equal to the content image yc.
+0.50 (we; record; the value of Equation 5; for each image)
+0.85 (y; is; equal to the content image yc)
+0.43 (we; also compute; the value of Equation 5)
+0.50 Context(we also compute):(we; record; the value of the objective function at each iteration of optimization)
+0.39 (y; is equal to; the content image yc)
+
+Results are shown in  Although our networks are trained to minimize Equation 5 for 256 × 256 images, they are also successful at minimizing the objective when applied to larger images.
+0.68 (our networks; are trained; to minimize Equation 5 for 256 × 256 images)
+0.64 (our networks; to minimize; Equation 5)
+0.55 (they; are also; successful at minimizing the objective)
+0.87 Context(they are also):(Results; are shown; L:in  Although our networks are trained to minimize Equation 5 for 256 × 256 images)
+
+We repeat the same quantitative evaluation for 50 images at 512 × 512 and 1024 × 1024; results are shown in  Image Size 100 256 × 256 3.17 512 × 512 10.97 32.91s 54.85s 0.05s 1024 × 1024 42.89 128.66s 214.44s 0.21s Gatys et al [10] 500 15.86s 0.015s 212x 636x 1060x 205x 615x 1026x 208x 625x 1042x Table 1.
+0.89 (results; are shown; L:in  Image; T:Size 100 256; T:× 256 3.17 512)
+0.39 Context(results are shown):(We; repeat; the same quantitative evaluation; T:at 512 × 512 and 1024 × 1024)
+
+Speed (in seconds) for our style transfer network vs the optimization-based baseline for varying numbers of iterations and image resolutions.
+
+Our method gives similar qualitative results (see Figure 6) but is faster than a single optimization step of the baseline method.
+0.64 (Our method; gives; similar qualitative results)
+0.76 (Our method; is; faster than a single optimization step of the baseline method)
+
+In Table 1 we compare the runtime of our method and the baseline for several image sizes; for the baseline we report times for varying numbers of optimization iterations.
+0.53 (we; report; times for varying numbers of optimization iterations; T:for the baseline)
+0.50 Context(we report):(we; compare; the runtime of our method and the baseline for several image sizes; T:In Table 1)
+
+Across all image sizes, we see that the runtime of our method is approximately twice the speed of a single iteration of the baseline method.
+0.26 (we; see; that the runtime of our method is approximately twice the speed of a single iteration of the baseline method; L:Across all image sizes)
+0.79 Context(we see):(the runtime of our method; is; approximately twice the speed of a single iteration of the baseline method)
+
+Compared to 500 iterations of the baseline method, our method is three orders of magnitude faster.
+0.63 (our method; is faster; three orders of magnitude)
+
+Our method processes images of size 512× 512 at 20 FPS, making it feasible to run style transfer in real-time or on video.
+0.76 (Our method processes images of size 512× 512 at 20 FPS; making; it feasible to run style transfer in real-time or on video)
+
+To overcome this problem, we train super-resolution networks not with the per-pixel loss typically used [1] but instead with a feature reconstruction loss (see Section 3) to allow transfer of semantic knowledge from the pretrained loss network to the super-resolution network.
+0.87 (the per-pixel loss; used; T:typically)
+0.39 (we; train; super-resolution networks; with the per-pixel loss)
+
+We focus on ×4 and ×8 superresolution since larger factors require more semantic reasoning about the input.
+0.57 (We; focus; on ×4 and ×8 superresolution; since larger factors require more semantic reasoning about the input)
+0.90 (larger factors; require; more semantic reasoning about the input)
+
+We therefore emphasize that the goal of these experiments is not to achieve state-of-the-art PSNR or SSIM results, but instead to showcase the qualitative diﬀerence between models trained with per-pixel and feature reconstruction losses.
+0.89 (models; trained; with per-pixel and feature reconstruction losses)
+0.27 (We; emphasize; that the goal of these experiments is not to achieve state-of-the-art PSNR or SSIM results, but instead to showcase the qualitative diﬀerence between models)
+0.95 Context(We emphasize):(the goal of these experiments; is not; to achieve state-of-the-art PSNR or SSIM results)
+
+We train models to perform ×4 and ×8 super-resolution by minimizing feature reconstruction loss at layer relu2_2 from the VGG-16 loss network φ.
+0.61 (We; train; models; to perform ×4 and ×8 super-resolution by minimizing feature reconstruction loss at layer relu2_2 from the VGG-16 loss network φ)
+0.89 (models; to perform; ×4 and ×8 super-resolution)
+
+We train with 288×288 patches from 10k images from the MS-COCO training set, and prepare low-resolution inputs by blurring with a Gaussian kernel of width σ = 1.0 and downsampling with bicubic interpolation.
+0.61 (We; train; with 288×288 patches; from 10k images from the MS-COCO training set)
+
+We train with Perceptual Losses for Real-Time Style Transfer and Super-Resolution 31.78 / 0.8577 28.43 / 0.8114 Ours ((cid:96)pixel) 31.47 / 0.8573 28.40 / 0.8205 SRCNN [11] 32.99 / 0.8784 30.48 / 0.8628 Ours ((cid:96)f eat) 29.24 / 0.7841 27.09 / 0.7680 Ours ((cid:96)pixel) 21.66 / 0.5881 25.75 / 0.6994 25.91 / 0.6680 SRCNN [11] 22.53 / 0.6524 27.49 / 0.7503 26.90 / 0.7101 Ours ((cid:96)f eat) 21.04 / 0.6116 24.99 / 0.6731 24.95 / 63.17 21.69 / 0.5840 25.99 / 0.7301 25.96 / 0.682 Fig.
+0.61 (We; train; with  Perceptual Losses for Real-Time Style Transfer and Super-Resolution 31.78 / 0.8577 28.43 / 0.8114 Ours ((cid:96)pixel)
+0.79 (Ours ((cid:96; f eat; )
+
+We report PSNR / SSIM for each example and the mean for each dataset.
+0.50 (We; report; PSNR / SSIM)
+
+As a post-processing step, we perform histogram matching between our network output and the low-resolution input.
+0.42 (we; perform; histogram matching between our network output and the low-resolution input)
+0.71 (histogram; matching; )
+
+As a baseline model we use SRCNN [1] for its state-of-the-art performance.
+0.46 (we; use; SRCNN; for its state-of-the-art performance)
+
+SRCNN is not trained for ×8 super-resolution, so we can only evaluate it on ×4.
+0.26 (we; can only evaluate; it; L:on ×4)
+0.82 Context(we can only evaluate):(SRCNN; is not trained; T:for ×8 super-resolution)
+
+SRCNN is trained for more than 109 iterations, which is not computationally feasible for our models.
+0.86 (SRCNN; is trained; for more than 109 iterations)
+0.77 (more than 109 iterations; is not computationally; feasible)
+
+To account for diﬀerences between SRCNN and our model in data, training, and architecture, we train image transformation networks for ×4 and ×8 super-resolution using (cid:96)pixel; these networks use identical data, architecture, and training as the networks trained to minimize (cid:96)f eat.
+0.70 (the networks; to minimize; )
+0.92 (these networks; use; identical data, architecture, and training as the networks)
+0.40 Context(these networks use):(we; train; image transformation networks; for ×4 and ×8 super-resolution)
+0.77 (the networks; trained; to minimize (cid:96)f eat)
+
+We evaluate all models on the standard Set5 [60], Set14 [61], and BSD100 [41] datasets.
+0.61 (We; evaluate; all models on the standard Set5 [60], Set14 [61], and BSD100 [41] datasets)
+
+We report PSNR and SSIM [54], computing both only on the Y channel after converting to the YCbCr colorspace, following [1,39].
+0.44 (We; report; PSNR and SSIM)
+0.52 Context(We report):(We; report PSNR and SSIM computing; L:both only on the Y channel; T:after converting to the YCbCr colorspace, following [1,39)
+
+We show results for ×4 super-resolution in Figure 8.
+0.52 (We; show; results for ×4 super-resolution in Figure 8)
+
+Compared to the other methods, our model trained for feature reconstruction does a very good job at reconstructing sharp edges and ﬁne details, such as the eyelashes in the 22.75 / 0.5946 23.80 / 0.6455 22.37 / 0.5518 22.11 / 0.5322 Ours ((cid:96)pixel) 23.42 / 0.6168 24.77 / 0.6864 23.02 / 0.5787 22.54 / 0.5526 Ours ((cid:96)f eat) 21.90 / 0.6083 23.26 / 0.7058 21.64 / 0.5837 21.35 / 0.5474 Fig.
+
+We report PSNR / SSIM for the example image and the mean for each dataset.
+0.61 (We; report; PSNR / SSIM; for the example image and the mean for each dataset)
+
+Since our (cid:96)pixel and our (cid:96)f eat models share the same architecture, data, and training procedure, all diﬀerences between them are due to the diﬀerence between the (cid:96)pixel and (cid:96)f eat losses.
+0.33 (our (cid:96; f eat; )
+0.89 (models; share; the same architecture, data, and training procedure)
+0.68 (all diﬀerences between them; are; due to the diﬀerence between the (cid:96)
+
+In this paper we have combined the beneﬁts of feed-forward image transformation tasks and optimization-based methods for image generation by training feed-forward transformation networks with perceptual loss functions.
+0.70 (we; have combined; the beneﬁts of feed-forward image transformation tasks and optimization-based methods for image generation by training feed-forward transformation networks with perceptual loss functions; L:In this paper)
+
+We have applied this method to style transfer where we achieve comparable performance and drastically improved speed compared to existing methods, and to singleimage super-resolution where we show that training with a perceptual loss allows the model to better reconstruct ﬁne details and edges.
+0.45 (We; have applied; this method to style transfer)
+0.18 (We; to singleimage; super-resolution where we show that training with a perceptual loss allows the model to better reconstruct ﬁne details and edges)
+0.47 (we; show; that training with a perceptual loss allows the model to better reconstruct ﬁne details and edges; L:super-resolution)
+0.91 Context(we show):(training with a perceptual loss; allows; the model to better reconstruct ﬁne details and edges)
+0.88 Context(we show training with a perceptual loss allows):(the model; to better reconstruct; ﬁne details and edges)
+0.45 (we; achieve; comparable performance)
+0.41 (we; drastically improved; speed)
+
+In future work we hope to explore the use of perceptual loss functions for other image transformation tasks, such as colorization and semantic segmentation.
+0.64 (we; hope; to explore the use of perceptual loss functions for other image transformation tasks, such as colorization and semantic segmentation; L:In future work)
+0.50 Context(we hope):(we; hope to explore; the use of perceptual loss functions for other image transformation tasks, such as colorization and semantic segmentation)
+
+We also plan to investigate the use of diﬀerent loss networks to see whether for example loss networks trained on diﬀerent tasks or datasets can impart image transformation networks with diﬀerent types of semantic knowledge
+0.90 (loss networks; trained; on diﬀerent tasks or datasets)
+0.53 (We; plan; to investigate the use of diﬀerent loss networks to see whether for example loss networks trained on diﬀerent tasks or datasets can impart image transformation networks with diﬀerent types of semantic knowledge)
+0.35 Context(We plan):(We; plan to investigate; the use of diﬀerent loss networks)
+0.46 Context(We plan to investigate):(We; plan to investigate the use of diﬀerent loss networks to see; whether for example loss networks trained on diﬀerent tasks or datasets can impart image transformation networks with diﬀerent types of semantic knowledge)
+0.93 Context(We plan to investigate to see):(loss networks trained on diﬀerent tasks or datasets; can impart; image transformation networks)
+

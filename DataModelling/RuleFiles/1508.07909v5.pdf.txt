@@ -1,0 +1,457 @@
+In this paper, we introduce a simpler and more effective approach, making the NMT model capable of open-vocabulary translation by encoding rare and unknown words as sequences of subword units.
+0.53 (we; introduce; a simpler and more effective approach; L:In this paper)
+0.44 Context(we introduce):(we; introduce a simpler and more effective approach making; the NMT model capable of open-vocabulary translation by encoding rare and unknown words as sequences of subword units)
+
+We discuss the suitability of different word segmentation techniques, including simple character ngram models and a segmentation based on the byte pair encoding compression algorithm, and empirically show that subword models improve over a back-off dictionary baseline for the WMT 15 translation tasks English→German and English→Russian by up to 1.1 and 1.3 BLEU, respectively.
+0.57 (We; discuss; the suitability of different word segmentation techniques, including simple character ngram models and a segmentation)
+0.90 (a segmentation; based; on the byte pair encoding compression algorithm)
+0.27 (We; empirically show; that subword models improve over a back-off dictionary baseline for the WMT 15 translation tasks English→German and English→Russian by up to 1.1 and 1.3 BLEU, respectively)
+0.68 Context(We empirically show):(subword models; improve; )
+
+We note that such techniques make assumptions that often do not hold true in practice.
+0.93 (assumptions; do not hold; true; L:in practice; T:often)
+0.19 (We; note; that such techniques make assumptions)
+0.73 Context(We note):(such techniques; make; assumptions that often do not hold true in practice)
+
+For instance, there is not always a 1-to-1 correspondence between source and target words because of variance in the degree of morphological synthesis between languages, like in our introductory compounding example.
+
+We investigate NMT models that operate on the level of subword units.
+0.50 (We; investigate; NMT models)
+0.91 (NMT models; operate; L:on the level of subword units)
+
+Our main goal is to model open-vocabulary translation in the NMT network itself, without requiring a back-off model for rare words.
+0.73 (Our main goal; is; to model open-vocabulary translation in the NMT network itself, without requiring a back-off model for rare words)
+
+In addition to making the translation process simpler, we also ﬁnd that the subword models achieve better accuracy for the translation of rare words than large-vocabulary models and back-off dictionaries, and are able to productively generate new words that were not seen at training time.
+0.89 (new words; were not seen; T:at training time)
+0.29 (we; ﬁnd; that the subword models achieve better accuracy for the translation of rare words than large-vocabulary models and back-off dictionaries, and are able to productively generate new words)
+0.93 Context(we ﬁnd):(the subword models; achieve; better accuracy; for the translation of rare words than large-vocabulary models and back-off dictionaries)
+0.90 (the subword models; are; able to productively generate new words)
+
+Our analysis shows that the neural networks are able to learn compounding and transliteration from subword representations.
+0.90 (the neural networks; to learn; compounding and transliteration; from subword representations)
+0.52 (Our analysis; shows; that the neural networks are able to learn compounding and transliteration from subword representations)
+0.89 Context(Our analysis shows):(the neural networks; are; able to learn compounding and transliteration from subword representations)
+
+This paper has two main contributions: • We show that open-vocabulary neural mathat they are translatable by a competent translator even if they are novel to him or her, based on a translation of known subword units such as morphemes or phonemes.
+0.22 (We; show; that open-vocabulary neural mathat they are translatable by a competent translator even if they are novel to him or her,)
+0.91 Context(We show):(This paper; has; two main contributions)
+0.31 Context(We show):(they; are; translatable)
+
+We ﬁnd our architecture simpler and more effective than using large vocabularies and back-off dictionaries (Jean et al., 2015; Luong et al., 2015b).
+0.49 (We; ﬁnd; our architecture simpler and more effective than using large vocabularies and back-off dictionaries)
+
+• We adapt byte pair encoding (BPE) (Gage, 1994), a compression algorithm, to the task of word segmentation.
+0.45 (We; adapt; byte pair encoding)
+
+We follow the neural machine translation architecture by Bahdanau et al.
+0.45 (We; follow; the neural machine translation architecture)
+
+(2015), which we will brieﬂy summarize here.
+0.23 (we; will brieﬂy summarize; L:here)
+
+However, we note that our approach is not speciﬁc to this architecture.
+0.11 (we; note; that our approach is not speciﬁc to this architecture)
+0.58 Context(we note):(our approach; is not speciﬁc; to this architecture)
+
+Example: solar system (English) Sonnensystem (Sonne + System) (German) Naprendszer (Nap + Rendszer) (Hungarian) In an analysis of 100 rare tokens (not among the 50 000 most frequent types) in our German training data1, the majority of tokens are potentially translatable from English through smaller units.
+0.93 (the majority of tokens; are; potentially translatable from English)
+
+We ﬁnd 56 compounds, 21 names, 6 loanwords with a common origin (emancipate→emanzipieren), 5 cases of transparent afﬁxation (sweetish ‘sweet’ + ‘-ish’ → süßlich ‘süß’ + ‘-lich’), 1 number and 1 computer language identiﬁer.
+0.68 (We; ﬁnd; 56 compounds, 21 names, 6 loanwords with a common origin (emancipate→emanzipieren), 5 cases of transparent afﬁxation (sweetish 'sweet' + '-ish' → süßlich 'süß')
+0.80 (5 cases of transparent afﬁxation; süß; )
+
+Our hypothesis is that a segmentation of rare words into appropriate subword units is sufﬁcient to allow for the neural translation network to learn transparent translations, and to generalize this knowledge to translate and produce unseen words.2 We provide empirical support for this hytion on different subword units at each step.
+0.52 (Our hypothesis; is; that a segmentation of rare words into appropriate subword units is sufﬁcient to allow for the neural translation network to learn transparent translations, and to generalize this knowledge)
+0.97 Context(Our hypothesis is):(a segmentation of rare words into appropriate subword units; is; sufﬁcient to allow for the neural translation network to learn transparent translations, and to generalize this knowledge)
+0.84 (the neural translation network; to produce; unseen words.2 We provide empirical support for this hytion on different subword units at each step)
+0.95 (a segmentation of rare words into appropriate subword units; to allow; for the neural translation network to learn transparent translations, and to generalize this knowledge)
+0.90 Context(a segmentation of rare words into appropriate subword units to allow):(the neural translation network; to learn; transparent translations)
+0.45 (We; provide; empirical support for this hytion)
+
+Recall our introductory example Abwasserbehandlungsanlange, for which a subword segmentation avoids the information bottleneck of a ﬁxed-length representation.
+0.91 (a subword segmentation; avoids; the information bottleneck of a ﬁxed-length representation)
+
+2Not every segmentation we produce is transparent.
+0.88 (every segmentation; produce; we)
+0.50 (every segmentation we produce; is; transparent)
+
+While we expect no performance beneﬁt from opaque segmentations, i.e.
+0.45 (we; expect; no performance beneﬁt from opaque segmentations)
+
+segmentations where the units cannot be translated independently, our NMT models show robustness towards oversplitting.
+0.93 (the units; can not be translated independently; L:segmentations)
+0.78 (our NMT models; show; robustness; towards oversplitting)
+
+First, we discuss different subword representations.
+0.45 (we; discuss; different subword representations)
+
+Segmentation algorithms commonly used for phrase-based SMT tend to be conservative in their splitting decisions, whereas we aim for an aggressive segmentation that allows for open-vocabulary translation with a compact network vocabulary, and without having to resort to back-off dictionaries.
+0.92 (Segmentation algorithms; commonly used; for phrase-based SMT)
+0.95 (Segmentation algorithms commonly used for phrase-based SMT; tend; to be conservative in their splitting decisions)
+0.92 (Segmentation algorithms commonly used for phrase-based SMT; to be; conservative; L:in their splitting decisions)
+0.45 (we; aim; for an aggressive segmentation)
+0.93 (an aggressive segmentation; allows; for open-vocabulary translation with a compact network vocabulary, and without having to resort to back-off dictionaries)
+
+We ﬁnd these intriguing, but inapplicable at test time.
+0.28 (We; ﬁnd; these intriguing)
+
+One technical difference from our work is that the attention mechanism still operates on the level of words in the model by Ling et al.
+0.66 (One technical difference from our work; is; that the attention mechanism still operates on the level of words in the model by Ling et al)
+0.96 Context(One technical difference from our work is):(the attention mechanism; operates; on the level of words in the model by Ling et al; T:still)
+
+We expect that the attention mechanism beneﬁts from our variable-length representation: the network can learn to place attenpairs = collections.defaultdict(int) for word, freq in vocab.items(): Neural machine translation differs from phrasebased methods in that there are strong incentives to minimize the vocabulary size of neural models to increase time and space efﬁciency, and to allow for translation without back-off models.
+0.90 (strong incentives; to minimize; the vocabulary size of neural models)
+0.85 (word; freq; L:in vocab.items)
+0.70 (Neural machine translation; differs; )
+0.17 Context(Neural machine translation differs):(We; expect; that the attention mechanism beneﬁts from our variable-length representation: the network can learn to place attenpairs = collections.defaultdict(int) for word)
+0.92 Context(We expect Neural machine translation differs):(the network; can learn; to place attenpairs = collections.defaultdict(int) for word)
+0.88 Context(We expect the network can learn Neural machine translation differs):(the network; can learn to place; attenpairs; for word)
+
+At the same time, we also want a compact representation of the text itself, since an increase in text length reduces efﬁciency and increases the distances over which neural models need to pass information.
+0.62 (we; want; a compact representation of the text; T:At the same time)
+0.93 (an increase in text length; reduces; efﬁciency)
+0.94 (an increase in text length; increases; the distances over which neural models need to pass information)
+0.88 (neural models; need; to pass information)
+0.88 Context(neural models need):(neural models; need to pass; information)
+
+As an alternative, we propose a segmentation algorithm based on byte pair encoding (BPE), which lets us learn a vocabulary that provides a good compression rate of the text.
+0.61 (we; propose; a segmentation algorithm based on byte pair encoding (BPE),)
+0.91 (a segmentation algorithm; based; on byte pair encoding)
+0.89 (a vocabulary; provides; a good compression rate of the text)
+0.83 (byte pair encoding; let; s us learn a vocabulary)
+0.27 Context(byte pair encoding let):(us; learn; a vocabulary that provides a good compression rate of the text)
+
+We adapt this algorithm for word segmentation.
+0.45 (We; adapt; this algorithm for word segmentation)
+
+Instead of merging frequent pairs of bytes, we merge characters or character sequences.
+0.45 (we; merge; characters or character sequences)
+
+Firstly, we initialize the symbol vocabulary with the character vocabulary, and represent each word as a sequence of characters, plus a special end-ofword symbol ‘·’, which allows us to restore the original tokenization after translation.
+0.45 (we; initialize; the symbol vocabulary with the character vocabulary)
+0.41 (we; represent; each word as a sequence of characters)
+0.83 (a special end-ofword symbol; allows; us to restore the original tokenization after translation)
+0.39 Context(a special end - ofword symbol allows):(us; to restore; the original tokenization)
+
+We iteratively count all symbol pairs and replace each occurrence of the most frequent pair (‘A’, ‘B’) with a new symbol ‘AB’.
+0.45 (We; iteratively count; all symbol pairs)
+0.41 (We; replace; each occurrence of the most frequent pair)
+
+For efﬁciency, we do not consider pairs that cross word boundaries.
+0.35 (we; do not consider; pairs that cross word boundaries; T:For efﬁciency)
+0.90 (pairs; cross; word boundaries)
+
+In practice, we increase efﬁciency by indexing all pairs, and updating data structures incrementally.
+0.50 (we; increase; efﬁciency; by indexing all pairs, and updating data structures incrementally)
+0.39 Context(we increase):(we; increase efﬁciency by indexing; all pairs)
+
+The main difference to other compression algorithms, such as Huffman encoding, which have been proposed to produce a variable-length encoding of words for NMT (Chitnis and DeNero, 2015), is that our symbol sequences are still interpretable as subword units, and that the network can generalize to translate and produce new words (unseen at training time) on the basis of these subword units.
+0.97 (other compression algorithms, such as Huffman encoding; have been proposed; to produce a variable-length encoding of words for NMT)
+0.96 (other compression algorithms, such as Huffman encoding; to produce; a variable-length encoding of words for NMT)
+0.90 (The main difference to other compression algorithms, such as Huffman encoding; is; that our symbol sequences are still interpretable as subword units, and that the network can generalize to translate and produce new words)
+0.61 Context(The main difference to other compression algorithms , such as Huffman encoding is):(our symbol sequences; are; T:still; interpretable as subword units)
+0.88 (the network; can generalize; to translate and produce new words)
+0.68 Context(the network can generalize):(the network; can generalize to translate; )
+0.82 Context(the network can generalize):(the network; can generalize to produce; new words)
+
+At test time, we ﬁrst split words into sequences of characters, then apply the learned operations to merge the characters into larger, known symbols.
+
+This is applicable to any word, and allows for open-vocabulary networks with ﬁxed symbol vocabularies.3 In our example, the OOV ‘lower’ would be segmented into ‘low er·’.
+0.45 (This; is; applicable to any word)
+0.29 (This; allows; for open-vocabulary networks with ﬁxed symbol)
+0.89 Context(This allows):(the OOV; would be segmented; into 'low er·)
+
+3The only symbols that will be unknown at test time are unknown characters, or symbols of which all occurrences in the training text have been merged into larger symbols, like ‘safeguar’, which has all occurrences in our training text merged into ‘safeguard’.
+0.89 (only symbols; will be; unknown; T:at test time)
+0.95 (only symbols that will be unknown at test time; are; unknown characters, or symbols of which)
+0.93 (all occurrences in the training text; have been merged; into larger symbols)
+
+We observed no such symbols at test time, but the issue could be easily solved by recursively reversing speciﬁc merges until all symbols are known.
+0.45 (We; observed; no such symbols; T:at test time)
+0.90 (the issue; could be easily solved; by recursively reversing speciﬁc merges)
+0.73 (all symbols; are known; )
+
+We evaluate two methods of applying BPE: learning two independent encodings, one for the source, one for the target vocabulary, or learning the encoding on the union of the two vocabularies (which we call joint BPE).4 The former has the advantage of being more compact in terms of text and vocabulary size, and having stronger guarantees that each subword unit has been seen in the training text of the respective language, whereas the latter improves consistency between the source and the target segmentation.
+0.50 (We; evaluate; two methods of applying BPE)
+0.74 (The former; has; the advantage of being more compact in terms of text and vocabulary size, and having stronger guarantees)
+0.57 (the latter; improves; consistency between the source and the target segmentation)
+0.93 (two methods of applying BPE; learning; two independent encodings)
+0.91 (each subword unit; has been seen; L:in the training text of the respective language)
+0.93 (the two vocabularies; call; joint BPE)
+
+If we apply BPE independently, the same name may be segmented differently in the two languages, which makes it harder for the neural models to learn a mapping between the subword units.
+0.49 (we; apply independently; BPE)
+0.91 (the same name; may be segmented differently; in the two languages)
+0.91 (the neural models; to learn; a mapping between the subword units)
+
+To increase the consistency between English and Russian segmentation despite the differing alphabets, we transliterate the Russian vocabulary into Latin characters with ISO-9 to learn the joint BPE encoding, then transliterate the BPE merge operations back into Cyrillic to apply them to the Russian training text.5 We aim to answer the following empirical questions: • Can we improve the translation of rare and unseen words in neural machine translation by representing them via subword units? • Which segmentation into subword units performs best in terms of vocabulary size, text size, and translation quality? We perform experiments on data from the shared translation task of WMT 2015.
+0.55 (We; perform; experiments on data from the shared translation task of WMT 2015)
+
+For English→German, our training set consists of 4.2 million sentence pairs, or approximately 100 million tokens.
+0.87 (our training set; consists; of 4.2 million sentence pairs, or approximately 100 million tokens; T:For English→German)
+
+We tokenize and truecase the data with the scripts provided in Moses (Koehn et al., 2007).
+0.19 (We; tokenize; )
+0.41 (We; truecase; the data with the scripts)
+0.92 (the scripts; provided; L:in Moses (Koehn et al)
+
+We use newstest2013 as development set, and report results on newstest2014 and newstest2015.
+0.57 (We; use; newstest2013; as development set, and report results on newstest2014 and newstest2015)
+
+We report results with BLEU (mteval-v13a.pl), and CHRF3 (Popovi´c, 2015), a character n-gram F3 score which was found to correlate well with 4In practice, we simply concatenate the source and target side of the training set to learn joint BPE.
+0.50 (We; report; results with BLEU (mteval-v13a.pl)
+0.84 (a character n-gram F3 score; was found; )
+0.45 (we; simply concatenate; the source and target side of the training)
+0.94 (the training; set; to learn joint BPE)
+
+5Since the Russian training text also contains words that use the Latin alphabet, we also apply the Latin BPE operations.
+0.82 (words; use; the Latin alphabet)
+0.39 (we; apply; the Latin BPE operations)
+0.87 Context(we apply):(the Russian training text; also contains; words that use the Latin alphabet; L:5Since)
+
+Since our main claim is concerned with the translation of rare and unseen words, we report separate statistics for these.
+0.66 (our main claim; is concerned; with the translation of rare and unseen words)
+0.45 (we; report; separate statistics for these)
+
+We measure these through unigram F1, which we calculate as the harmonic mean of clipped unigram precision and recall.6 We perform all experiments with Groundhog7 (Bahdanau et al., 2015).
+0.94 (unigram F1; calculate; as the harmonic mean of clipped unigram precision and recall.6)
+0.44 (We; perform; all experiments with Groundhog7 (Bahdanau et al)
+0.44 Context(We perform):(We; measure; these; through unigram F1)
+
+We generally follow settings by previous work (Bahdanau et al., 2015; Jean et al., 2015).
+0.45 (We; generally follow; settings by previous work)
+
+(2015), we only keep a shortlist of τ = 30000 words in memory.
+0.45 (we; only keep; a shortlist of τ = 30000 words in memory)
+
+During training, we use Adadelta (Zeiler, 2012), a minibatch size of 80, and reshufﬂe the training set between epochs.
+0.64 (we; use; Adadelta; T:During training)
+0.55 (we; reshufﬂe; the training set between epochs; T:During training)
+0.93 (the training; set; between epochs)
+
+We train a network for approximately 7 days, then take the last 4 saved models (models being saved every 12 hours), and continue training each with a ﬁxed embedding layer (as suggested by (Jean et al., 2015)) for 12 hours.
+0.92 (a ﬁxed embedding layer; suggested; by (Jean et al., 2015; T:for 12 hours)
+0.89 (models; being saved; T:every 12 hours)
+
+We perform two independent training runs for each models, once with cut-off for gradient clipping (Pascanu et al., 2013) of 5.0, once with a cut-off of 1.0 – the latter produced better single models for most settings.
+0.45 (We; perform; two independent training)
+0.57 (the latter; produced; better single models for most settings)
+
+We report results of the system that performed best on our development set (newstest2013), and of an ensemble of all 8 models.
+0.45 (We; report; results of the system)
+0.87 (the system; performed; L:on our development set (newstest2013), and of an ensemble of all 8 models)
+
+We use a beam size of 12 for beam search, with probabilities normalized by sentence length.
+0.45 (We; use; a beam size of 12; for beam search)
+0.89 (probabilities; normalized; by sentence length)
+
+We use a bilingual dictionary based on fast-align (Dyer et al., 2013).
+0.57 (We; use; a bilingual dictionary based on fast-align (Dyer et al)
+0.91 (a bilingual dictionary; based; on fast-align (Dyer et al)
+
+For our baseline, this serves as back-off dictionary for rare words.
+0.38 (this; serves; as back-off dictionary for rare words)
+
+We also use the dictionary to speed up translation for all experiments, only performing the softmax over a ﬁltered list of candidate translations (like Jean et al.
+0.39 (We; also use; the dictionary; to speed up translation for all experiments)
+0.39 Context(We also use):(We; also use the dictionary to speed up; translation for all experiments)
+0.44 Context(We also use):(We; also use the dictionary only performing; the softmax; over a ﬁltered list of candidate translations (like Jean et al)
+
+(2015), we use K = 30000; K ′ = 10).
+0.50 (we; use; K = 30000)
+
+Apart from translation quality, which we will verify empirically, our main objective is to represent an open vocabulary through a compact ﬁxed-size subword vocabulary, and allow for efﬁcient training and decoding.8 Statistics for different segmentations of the German side of the parallel data are shown in Table 1.
+0.88 (translation quality; will verify empirically; we)
+0.97 (Statistics for different segmentations of the German side of the parallel data; are shown; L:in Table 1)
+
+However, the unigram representation performed poorly in preliminary experiments, and we report translation results with a bigram representation, which is empirically better, but unable to produce some tokens in the test set with the training set vocabulary.
+0.91 (the unigram representation; performed poorly; L:in preliminary experiments)
+0.92 (training; set; vocabulary)
+0.45 (we; report; translation results)
+0.80 (a bigram representation; is; empirically better)
+0.90 (the unigram representation; to produce; some tokens; L:in the test)
+0.93 (the test; set; with the training set vocabulary)
+
+We report statistics for several word segmentation techniques that have proven useful in previous SMT research, including frequency-based compound splitting (Koehn and Knight, 2003), rulebased hyphenation (Liang, 1983), and Morfessor (Creutz and Lagus, 2002).
+0.45 (We; report; statistics for several word segmentation techniques)
+0.95 (several word segmentation techniques; have proven; useful; L:in previous SMT research, including frequency-based compound splitting (Koehn and Knight, 2003), rulebased hyphenation (Liang, 1983), and Morfessor)
+
+We ﬁnd that they only moderately reduce vocabulary size, and do not solve the unknown word problem, and we thus ﬁnd them unsuitable for our goal of open-vocabulary translation without back-off dictionary.
+0.58 (they; do not solve; the unknown word problem)
+0.49 (we; thus ﬁnd; them unsuitable for our goal of open-vocabulary translation without back-off dictionary)
+0.22 (We; ﬁnd; that they only moderately reduce vocabulary size, and do not solve the unknown word problem)
+0.46 Context(We ﬁnd):(they; only reduce; vocabulary size)
+
+BPE meets our goal of being open-vocabulary, and the learned merge operations can be applied to the test set to obtain a segmentation with no unknown symbols.10 Its main difference from the character-level model is that the more compact representation of BPE allows for shorter sequences, and that the attention model operates on variable-length units.11 Table 1 shows BPE with 59 500 merge operations, and joint BPE with 89 500 operations.
+0.76 (BPE; meets; our goal of being open-vocabulary)
+0.89 (the test; to obtain; a segmentation with no unknown symbols.10)
+0.72 (Its main difference from the character-level model; is; that the more compact representation of BPE allows for shorter sequences, and that the attention model operates on variable-length units.11)
+0.94 Context(Its main difference from the character - level model is):(the more compact representation of BPE; allows; for shorter sequences)
+0.95 (Table 1; shows; BPE)
+0.92 (the learned merge operations; can be applied; to the test)
+0.75 (the attention model; operates; )
+0.93 (the test; set; to obtain a segmentation with no unknown symbols.10)
+
+In practice, we did not include infrequent subword units in the NMT network vocabulary, since there is noise in the subword symbol sets, e.g.
+0.46 (we; did not include; infrequent subword units in the NMT network vocabulary; since there is noise in the subword symbol sets, e.g.)
+
+Hence, our network vocabularies in Table 2 are typically slightly smaller than the number of types in Table 1.
+0.87 (our network vocabularies in Table 2; are typically; slightly smaller than the number of types in Table 1)
+
+We mark whether a subword is word-ﬁnal or not with a special character, which allows us to restore the original tokenization.
+0.64 (We; mark; whether a subword is word-ﬁnal or not with a special character)
+0.93 (a subword; is; word-ﬁnal or not)
+0.78 (a special character; allows; us to restore the original tokenization)
+0.39 Context(a special character allows):(us; to restore; the original tokenization)
+
+Our baseline WDict is a word-level model with a back-off dictionary.
+0.76 (Our baseline; is; a word-level model with a back-off dictionary)
+
+We ﬁrst focus on unigram F1, where all systems improve over the baseline, especially for rare words (36.8%→41.8% for EN→DE; 26.5%→29.7% for EN→RU).
+0.94 (all systems; improve; L:unigram F1)
+0.51 (We; ﬁrst; focus on unigram F1)
+0.44 Context(We ﬁrst):(We; ﬁrst focus; on unigram F1)
+
+Our subword representations cause big improvements in the translation of rare and unseen words, but these only constitute 9-11% of the test sets.
+0.76 (Our subword representations; cause; big improvements in the translation of rare and unseen words)
+0.54 (these; only constitute; 9-11% of the test sets)
+
+Since rare words tend to carry central information in a sentence, we suspect that BLEU and CHRF3 underestimate their effect on translation quality.
+0.93 (rare words; tend; to carry central information in a sentence)
+0.89 (rare words; to carry; central information)
+0.20 (we; suspect; that BLEU and CHRF3 underestimate their effect on translation quality)
+0.75 Context(we suspect):(BLEU and CHRF3; underestimate; their effect on translation quality)
+
+Still, we also see improvements over the baseline in total unigram F1, as well as BLEU and CHRF3, and the subword ensembles outperform the WDict baseline by 0.3–1.3 BLEU and 0.6–2 CHRF3.
+0.61 (we; also see; improvements over the baseline in total unigram F1, as well as BLEU and CHRF3)
+0.93 (the subword ensembles; outperform; the WDict baseline)
+
+There is some inconsistency between BLEU and CHRF3, which we attribute to the fact that BLEU has a precision bias, and CHRF3 a recall bias.
+0.81 (BLEU and CHRF3; attribute; to the fact that BLEU has a precision bias, and CHRF3 a recall bias)
+0.94 (BLEU; has; a precision bias)
+
+For English→German, we observe the best BLEU score of 25.3 with C2-50k, but the best CHRF3 score of 54.1 with BPE-J90k.
+0.50 (we; observe; the best BLEU score of 25.3 with C2-50k)
+
+For comparison to the (to our knowledge) best non-neural MT system on this data set, we report syntaxbased SMT results (Sennrich and Haddow, 2015).
+0.50 (we; report; syntaxbased SMT results)
+
+We observe that our best systems outperform the syntax-based system in terms of BLEU, but not in terms of CHRF3.
+0.20 (We; observe; that our best systems outperform the syntax-based system in terms of BLEU, but not in terms of CHRF3)
+0.61 Context(We observe):(our best systems; outperform; the syntax-based system)
+
+(2015a) report a BLEU score of 25.9 on newstest2015, but we note that they use an ensemble of 8 independently trained models, and also report strong improvements from applying dropout, which we did not use.
+0.17 (we; note; that they use an ensemble of 8 independently trained models, and also report strong improvements from applying dropout)
+0.56 Context(we note):(they; use; an ensemble of 8 independently trained models)
+0.87 (dropout; did not use; we)
+0.58 (they; also report; strong improvements from applying dropout)
+
+We are conﬁdent that our improvements to the translation of rare words are orthogonal to improvements achievable through other improvements in the network archithe state of the art is the phrase-based system by Haddow et al.
+0.21 (We; are; conﬁdent that our improvements to the translation of rare words are orthogonal to improvements achievable through other improvements in the network)
+0.83 (our improvements to the translation of rare words; are; orthogonal to improvements achievable through other improvements in the network)
+0.95 (archithe state of the art; is; the phrase-based system by Haddow et al)
+
+It outperforms our WDict baseline by 1.5 BLEU.
+0.35 (It; outperforms; our WDict baseline)
+
+As a further comment on our translation results, we want to emphasize that performance variability is still an open problem with NMT.
+0.37 (we; want; to emphasize that performance variability is still an open problem with NMT)
+0.31 Context(we want):(we; want to emphasize; that performance variability is still an open problem with NMT)
+0.93 Context(we want to emphasize):(that performance variability; is; T:still; an open problem with NMT)
+
+On our development set, we observe differences of up to 1 BLEU between different models.
+0.44 (we; observe; differences of up to 1 BLEU between different models; L:On our development set)
+
+For single systems, we report the results of the model that performs best on dev (out of 8), which has a stabilizing effect, but how to control for randomness deserves further attention in future research.
+0.33 (we; report; the results of the model that performs best on dev (out of 8)
+0.93 (how to control for randomness; deserves; further attention; in future research)
+0.96 (the model that performs best on dev (out of 8; has; a stabilizing effect)
+
+Our main claims are that the translation of rare and unknown words is poor in word-level NMT models, and that subword models improve the translation of these word types.
+0.90 (subword models; improve; the translation of these word types)
+0.52 (Our main claims; are; that the translation of rare and unknown words is poor in word-level NMT models, and that subword models improve the translation of these word types)
+0.95 Context(Our main claims are):(the translation of rare and unknown words; is; poor in word-level NMT models)
+
+To further illustrate the effect of different subword segmentations on the translation of rare and unseen words, we plot target-side words sorted by their frequency in the training set.13 To analyze the effect of vocabulary size, we also include the system C2-3/500k, which is a system with the same vocabulary size as the WDict baseline, and character bigrams to represent unseen words.
+0.95 (the system; is; a system with the same vocabulary size as the WDict baseline, and character bigrams)
+0.86 (target-side words; sorted; by their frequency; L:in the training set.13)
+0.55 (we; also include; the system C2-3/500k, which is a system with the same vocabulary size as the WDict baseline, and character bigrams)
+0.42 Context(we also include):(we; plot; target-side words sorted by their frequency in the training set.13)
+0.39 Context(we plot we also include):(we; plot target-side words sorted by their frequency in the training set.13 To analyze; the effect of vocabulary size)
+
+We ﬁnd that the performance of C2-3/500k degrades heavily up to frequency rank 500 000, at which point the model switches to a subword representation and performance recovers.
+0.64 (We; ﬁnd; the performance of C2-3/500k degrades heavily up to frequency rank 500 000)
+0.94 (the model; switches; to a subword representation and performance; T:at which point)
+
+We attribute this to the fact that subword units are less sparse than words.
+0.33 (We; attribute; this; to the fact that subword units are less sparse than words)
+0.90 (subword units; are; less sparse than words)
+
+In our training set, the frequency rank 50 000 corresponds to a frequency of 60 in the training data; the frequency rank 500 000 to a frequency of 2.
+0.89 (the frequency rank; corresponds; to a frequency of 60 in the training data; L:In our training set)
+
+We note that the character bigram model C2-50k produces the most OOV words, and achieves relatively low precision of 29.1% for this category.
+0.91 (the character bigram model; achieves; relatively low precision of 29.1%)
+0.32 (We; note; that the character bigram model C2-50k produces the most OOV words, and achieves relatively low precision of 29.1% for this category)
+0.88 Context(We note):(the character bigram model; produces; the most OOV words)
+
+If the systems have failed to learn a translation due to data sparseness, like for asinine, which should be translated as dumm, we see translations that are wrong, but could be plausible for (partial) loanwords (asinine Situation→Asinin-Situation).
+0.90 (the systems; have failed; to learn a translation due to data sparseness)
+0.20 (we; could be; plausible)
+0.89 (the systems; to learn; a translation)
+0.88 (asinine; should be translated; as dumm)
+0.23 (we; see; translations that are wrong)
+0.72 (translations; are; wrong)
+
+This example is still translated correctly, but we observe spurious insertions and deletions of characters in the BPE-60k system.
+0.76 (This example; is translated correctly; T:still)
+0.61 (we; observe; spurious insertions and deletions of characters in the BPE-60k system)
+
+We trace this error back to translation pairs in the training data with inconsistent segmentations, such as (p|rak|ri|ti→пра|крит|и sentence system health research institutes source reference Gesundheitsforschungsinstitute Forschungsinstitute WDict C2-50k Fo|rs|ch|un|gs|in|st|it|ut|io|ne|n Gesundheits|forsch|ungsinstitu|ten BPE-60k Gesundheits|forsch|ungsin|stitute BPE-J90k asinine situation source reference dumme Situation asinine situation → UNK → asinine WDict as|in|in|e situation → As|in|en|si|tu|at|io|n C2-50k BPE-60k as|in|ine situation → A|in|line-|Situation BPE-J90K as|in|ine situation → As|in|in-|Situation Table 4: English→German translation example.
+0.44 (We; trace back; this error)
+0.97 (ungsin|stitute BPE-J90k asinine situation source reference; dumme; Situation asinine situation)
+
+In this work, our choice of vocabulary size is somewhat arbitrary, and mainly motivated by comparison to prior work.
+0.85 (our choice of vocabulary size; is; somewhat arbitrary; L:In this work)
+
+One avenue of future research is to learn the optimal vocabulary size for a translation task, which we expect to depend on the language pair and amount of training data, automatically.
+0.96 (One avenue of future research; is; to learn the optimal vocabulary size for a translation task)
+0.51 (we; expect; to depend on the language pair and amount of training data, automatically)
+0.79 Context(we expect):(a translation task; to depend automatically; we; on the language pair and amount of training data)
+
+We also believe there is further potential in bilingually informed segmentation algorithms to create more alignable subword units, although the segmentation algorithm cannot rely on the target text at runtime.
+0.91 (the segmentation algorithm; can not rely; on the target text at runtime)
+0.36 (We; also believe; there is further potential in bilingually informed segmentation algorithms to create more alignable subword units, although the segmentation algorithm cannot rely on the target text at runtime)
+
+While the relative effectiveness will depend on language-speciﬁc factors such as vocabulary size, we believe that subword segmentations are suitable for most language pairs, eliminating the need for large NMT vocabularies or back-off models.
+0.91 (the relative effectiveness; will depend; on language-speciﬁc factors such as vocabulary size)
+0.31 (we; believe; that subword segmentations are suitable for most language pairs; eliminating the need for large NMT vocabularies or back-off models)
+0.88 Context(we believe):(subword segmentations; are; suitable for most language pairs)
+0.44 Context(we believe):(we; believe eliminating; the need for large NMT vocabularies or back-off models)
+
+We thank Maja Popovi´c for her implementation of CHRF, with which we veriﬁed our reimplementation.
+0.42 (We; thank; Maja Popovi'c; for her implementation of CHRF)
+0.31 (we; veriﬁed; our reimplementation)
+
+The main contribution of this paper is that we show that neural machine translation systems are capable of open-vocabulary translation by representing rare and unseen words as a sequence of subword units.14 This is both simpler and more effective than using a back-off translation model.
+0.82 (The main contribution of this paper; is; that we show that neural machine translation systems are capable of open-vocabulary translation by representing rare and unseen words as a sequence of subword units.14)
+0.34 Context(The main contribution of this paper is):(we; show; that neural machine translation systems are capable of open-vocabulary translation by representing rare and unseen words as a sequence of subword units.14)
+0.90 Context(The main contribution of this paper is we show):(neural machine translation systems; are; capable of open-vocabulary translation)
+0.51 Context(The main contribution of this paper is):(This; is; both simpler and more effective than using a back-off translation model)
+
+We introduce a variant of byte pair encoding for word segmentation, which is capable of encoding open vocabularies with a compact symbol vocabulary of variable-length subword units.
+0.45 (We; introduce; a variant of byte pair encoding for word segmentation)
+0.94 (word segmentation; is; capable of encoding open vocabularies with a compact symbol vocabulary of variable-length subword units)
+
+We show performance gains over the baseline with both BPE segmentation, and a simple character bigram segmentation.
+0.57 (We; show; performance gains over the baseline with both BPE segmentation)
+
+Our analysis shows that not only out-ofvocabulary words, but also rare in-vocabulary words are translated poorly by our baseline NMT the segmentation algorithms is available at https://github.com/rsennrich/ subword-nmt.
+0.85 (rare in-vocabulary words; are translated poorly; by our baseline)
+0.90 (NMT; algorithms; the segmentation)
+0.42 (Our analysis; shows; that not only out-ofvocabulary words, but also rare in-vocabulary words are translated poorly by our baseline NMT the segmentation algorithms is available at https://github.com/rsennrich/ subword-nmt)
+0.88 Context(Our analysis shows):(not only out-ofvocabulary words, but also rare in-vocabulary words are translated poorly by our baseline; is; available at https://github.com/rsennrich/ subword-nmt)
+
+Can We Translate Letters? In Second Workshop on Statistical Machine Translation, pages 33– 39, Prague, Czech Republic
+

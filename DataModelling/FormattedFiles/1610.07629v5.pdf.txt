@@ -1,0 +1,40 @@
+The degree to which one may learn and parsimoniously capture this visual vocabulary measures our understanding of the higher level features of paintings, if not images in general.
+In this work we investigate the construction of a single, scalable deep network that can parsimoniously capture the artistic style of a diversity of paintings.
+We demonstrate that such a network generalizes across a diversity of artistic styles by reducing a painting to a point in an embedding space.
+We hope that this work provides a useful step towards building rich models of paintings and offers a window on to the structure of the learned representation of artistic style.
+with respect to color preservation (Gatys et al., 2016a) or style transfer quality (Ulyanov et al., 2016b), but to our knowledge the problem of the single-purpose nature of style transfer networks remains untackled.
+We think this is an important problem that, if solved, would have both scientiﬁc and practical importance.
+Furthermore, the degree to which an artistic styling model might generalize across painting styles would directly measure our ability to build systems that parsimoniously capture the higher level features and statistics of photographs and images (Simoncelli & Olshausen, 2001).
+In this work, we show that a simple modiﬁcation of the style transfer network, namely the introduction of conditional instance normalization, allows it to learn multiple styles (Figure 1a).We demonstrate that this approach is ﬂexible yet comparable to single-purpose style transfer networks, both qualitatively and in terms of convergence properties.
+Finally, we show that the embeddding space representation permits one to arbitrarily combine artistic styles in novel ways not previously observed (Figure 1b).
+In practice, we set λc = 1.0 and and leave λs as a free hyper-parameter.
+2.1 N-STYLES FEEDFORWARD STYLE TRANSFER NETWORKS Our work stems from the intuition that many styles probably share some degree of computation, and that this sharing is thrown away by training N networks from scratch when building an Nstyles style transfer system.
+To take this into account, we propose to train a single conditional style transfer network T (c, s) for N styles.
+In exploring this question, we found a very surprising fact about the role of normalization in style transfer networks: to model a style, it is sufﬁcient to specialize scaling and shifting parameters after normalization to each speciﬁc style.
+We call this approach conditional instance normalization.
+(2016b), we augment the γ and β parameters so that they’re N × C matrices, where N is the number of styles being modeled and C is the number of output feature maps.
+We used the same network architecture as in Johnson et al.
+We ﬁnd that with these two improvements training the network no longer requires a total variation loss that was previously employed to remove high frequency noise as proposed in Johnson et al.
+Our training procedure follows Johnson et al.
+Brieﬂy, we employ the ImageNet dataset (Deng et al., 2009) as a corpus of training content images.
+We train the N-style network with stochastic gradient descent using the Adam optimizer (Kingma & Ba, 2014).
+3.2 TRAINING A SINGLE NETWORK ON N STYLES PRODUCES STYLIZATIONS COMPARABLE As a ﬁrst test, we trained a 10-styles model on stylistically similar images, namely 10 impressionist paintings from Claude Monet.
+We emphasize that 99.8% of the parameters are shared across all styles in contrast to 0.2% of the parameters which are unique to each painting style.
+To get a sense of what is being traded off by folding 10 styles into a single network, we trained a separate, single-style network on each style and compared them to the 10-styles network in terms of style transfer quality and training speed (Figure 5).
+By visual inspection, we observe that the 10-styles network converges as quickly as the single-style networks in terms of style loss, but lags slightly behind in terms of content loss.
+In order to quantify this observation, we compare the ﬁnal losses for 10-styles and single-style models (center column).
+We see that both results are qualitatively similar.
+3.3 THE N-STYLES MODEL IS FLEXIBLE ENOUGH TO CAPTURE VERY DIFFERENT STYLES We evaluated the ﬂexibility of the N-styles model by training a style transfer network on 32 works of art chosen for their diversity.
+To test the efﬁciency of this approach, we used it to incrementally incorporate Monet’s Plum Trees in Blossom painting to the network trained on 32 varied styles.
+In learning a different set of γ and β parameters for every style, we are in some sense learning an embedding of styles.
+To probe the utility of this embedding, we tried convex combinations of the 0500010000150002000025000300003500040000Parameter updates105Total content loss30000350004000045000Final content loss (1 style)30000350004000045000Final content loss (N styles)0500010000150002000025000300003500040000Parameter updates104105Total style loss500010000150002000025000Final style loss (1 style)500010000150002000025000Final style loss (N styles)5,000 steps40,000 stepsﬁne-tunedfrom scratchPublished as a conference paper at ICLR 2017 Figure 7: The N-styles network can arbitrarily combine artistic styles.
+(Right) As we transition from one style to another (Bicentennial Print and Head of a Clown in this case), the style losses vary monotonically.
+We use γ = α × γ1 + (1 − α) × γ2 and β = α × β1 + (1 − α) × β2 to stylize an image.
+Figure 7 (right column) shows the style loss from the transformer network for a given source image, with respect to the Bicentennial Print and Head of a Clown paintings, as we vary α from 0 to 1.
+We see evidence for this behavior in that pruning the architecture leads to qualitatively similar results.
+While this work does not attempt to verify this hypothesis, we think that this would constitute a very promising direction of research in understanding the computation behind style transfer networks as well as the representation of images in general.
+In summary, we demonstrated that conditional instance normalization constitutes a simple, efﬁcient and scalable modiﬁcation of style transfer networks that allows them to model multiple styles at the same time.
+We showed that despite its simplicity, the method is ﬂexible enough to capture very different styles while having very little impact on training time and ﬁnal performance of the trained network.
+Finally, we showed that the learned representation of style is useful in arbitrarily combining artistic styles.
+We would like to thank Fred Bertsch, Douglas Eck, Cinjon Resnick and the rest of the Google Magenta team for their feedback; Peyman Milanfar, Michael Elad, Feng Yang, Jon Barron, Bhavik Singh, Jennifer Daniel as well as the the Google Brain team for their crucial suggestions and advice; an anonymous reviewer for helpful suggestions about applying this model in a mobile domain.
+Finally, we would like to thank the Google Cultural Institute, whose curated collection of art photographs was very helpful in ﬁnding exciting style images to train on

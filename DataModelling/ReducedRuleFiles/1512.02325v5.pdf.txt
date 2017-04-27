@@ -1,0 +1,152 @@
+The paper  |  outputs  | method
+The paper  |  outputs  | objects
+The paper  |  outputs  | images
+The paper  |  outputs  | method for detecting objects in images
+The paper  |  outputs  | better results
+The paper  |  outputs  | data augmentation scheme
+The paper  |  outputs  | ssd
+The paper  |  outputs  | predictions
+The paper  |  outputs  | different scales
+The paper  |  outputs  | predictions of different scales
+The paper  |  outputs  | ssd framework
+The paper  |  outputs  | detection
+The paper  |  outputs  | ssd framework for detection
+The paper  |  uses  | high quality image classiﬁcation
+The paper  |  outputs  | detections
+The paper  |  outputs  | good results
+The paper  |  uses  | l
+The paper  |  uses  | r-cnn
+The paper  |  uses  | l : in faster r-cnn
+The paper  |  uses  | l
+The paper  |  uses  | several feature maps
+The paper  |  uses  | different resolutions
+The paper  |  uses  | l to several feature maps of different resolutions
+The paper  |  uses  | upper feature maps
+The paper  |  uses  | detection
+The paper  |  uses  | upper feature maps for detection
+The paper  |  outputs  | tiling
+The paper  |  outputs  | default boxes
+The paper  |  outputs  | tiling of default boxes
+The paper  |  uses  | highest conﬁdence loss
+The paper  |  uses  | default box
+The paper  |  uses  | highest conﬁdence loss for each default box
+The paper  |  uses  | optimization
+The paper  |  uses  | stable training
+The paper  |  uses  | optimization and a more stable training
+The paper  |  uses  | `a trous
+The paper  |  uses  | algorithm
+The paper  |  uses  | ]
+The paper  |  uses  | holes
+The paper  |  uses  | `a trous algorithm [ 18 ] to ﬁll the `` holes
+The paper  |  outputs  | details
+The paper  |  uses  | conv4
+The paper  |  uses  | conv7
+The paper  |  uses  | fc7
+The paper  |  uses  | conv4 3 , conv7 ( fc7
+The paper  |  uses  | l2 normalization technique
+The paper  |  uses  | scale
+The paper  |  outputs  | t
+The paper  |  outputs  | feature norm
+The paper  |  outputs  | location
+The paper  |  outputs  | feature map
+The paper  |  outputs  | scale
+The paper  |  outputs  | back propagation
+The paper  |  outputs  | t : in [ 12 to scale the feature norm at each location in the feature map to 20 and learn the scale during back propagation
+The paper  |  outputs  | best results
+The paper  |  uses  | detection analysis tool
+The paper  |  uses  | default boxes
+The paper  |  uses  | various aspect ratios
+The paper  |  uses  | feature map location
+The paper  |  uses  | default boxes of various aspect ratios per feature map location
+The paper  |  uses  | component
+The paper  |  uses  | performance
+The paper  |  uses  | component affects performance
+The paper  |  uses  | same settings
+The paper  |  uses  | input size
+The paper  |  uses  | same settings and input size
+The paper  |  uses  | extensive sampling strategy
+The paper  |  uses  | [
+The paper  |  uses  | extensive sampling strategy , similar to yolo [
+The paper  |  uses  | feature
+The paper  |  uses  | step
+The paper  |  uses  | classiﬁcation
+The paper  |  uses  | translation
+The paper  |  uses  | design
+The paper  |  uses  | feature pooling step during classiﬁcation that is relatively robust to object translation by design
+The paper  |  uses  | aspect ratios
+The paper  |  uses  | atrous version
+The paper  |  uses  | subsampled vgg16
+The paper  |  uses  | deeplab-largefov [
+The paper  |  uses  | atrous version of a subsampled vgg16 , following deeplab-largefov [
+The paper  |  uses  | full vgg16
+The paper  |  uses  | pool5
+The paper  |  uses  | s2
+The paper  |  uses  | pool5 with 2× 2− s2
+The paper  |  uses  | parameters
+The paper  |  uses  | fc6
+The paper  |  uses  | fc7
+The paper  |  uses  | parameters from fc6 and fc7
+The paper  |  uses  | l
+The paper  |  uses  | r-cnn
+The paper  |  uses  | l : in faster r-cnn
+The paper  |  uses  | boxes
+The paper  |  uses  | boundary
+The paper  |  uses  | boxes which are on the boundary
+The paper  |  uses  | feature maps
+The paper  |  uses  | ﬁner resolution maps
+The paper  |  uses  | conv7
+The paper  |  uses  | prediction
+The paper  |  uses  | conv7 for prediction
+The paper  |  uses  | same settings
+The paper  |  uses  | basic voc2007 experiments
+The paper  |  uses  | voc2012 trainval
+The paper  |  uses  | voc2007 trainval
+The paper  |  uses  | test
+The paper  |  uses  | voc2012 trainval and voc2007 trainval and test
+The paper  |  outputs  | % map
+The paper  |  outputs  | % higher
+The paper  |  outputs  | faster r-cnn
+The paper  |  outputs  | % map , which is 4.1 % higher than faster r-cnn
+The paper  |  uses  | smaller default boxes
+The paper  |  uses  | layers
+The paper  |  uses  | smaller default boxes for all layers
+The paper  |  uses  | trainval35k
+The paper  |  uses  | training
+The paper  |  uses  | trainval35k for training
+The paper  |  outputs  | map
+The paper  |  outputs  | small training examples
+The paper  |  uses  | nms
+The paper  |  uses  | jaccard overlap
+The paper  |  uses  | class
+The paper  |  uses  | nms with jaccard overlap of 0.45 per class
+The paper  |  outputs  | l
+The paper  |  outputs  | % map
+The paper  |  outputs  | l : above 70 % map
+The paper  |  uses  | ﬁxed set
+The paper  |  uses  | default
+The paper  |  uses  | boxes
+The paper  |  uses  | prediction
+The paper  |  uses  | anchor boxes
+The paper  |  uses  | rpn
+The paper  |  uses  | ﬁxed set of ( default ) boxes for prediction , similar to the anchor boxes in the rpn
+The paper  |  outputs  | score
+The paper  |  outputs  | object category
+The paper  |  outputs  | box
+The paper  |  outputs  | score for each object category in each box
+The paper  |  uses  | default boxes
+The paper  |  uses  | default boxes
+The paper  |  uses  | different aspect ratios
+The paper  |  uses  | default boxes of different aspect ratios
+The paper  |  uses  | default box
+The paper  |  uses  | location
+The paper  |  uses  | default box per location
+The paper  |  uses  | multiple aspect ratios
+The paper  |  uses  | whole topmost feature map
+The paper  |  solves  | ssd models
+The paper  |  outputs  | same vgg-16 base architecture
+The paper  |  outputs  | state-of-the-art object detector counterparts
+The paper  |  outputs  | terms
+The paper  |  outputs  | accuracy
+The paper  |  outputs  | speed
+The paper  |  outputs  | same vgg-16 base architecture , ssd compares favorably to its state-of-the-art object detector counterparts in terms of both accuracy and speed
+The paper  |  uses  | object detection component

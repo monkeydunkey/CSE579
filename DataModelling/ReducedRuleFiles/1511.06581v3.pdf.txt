@@ -1,0 +1,70 @@
+The paper  |  outputs  | new neural network architecture
+The paper  |  outputs  | model-free reinforcement learning
+The paper  |  outputs  | new neural network architecture for model-free reinforcement learning
+The paper  |  outputs  | separate estimators
+The paper  |  outputs  | dueling architecture
+The paper  |  outputs  | correct action
+The paper  |  outputs  | policy evaluation
+The paper  |  outputs  | redundant
+The paper  |  outputs  | similar actions
+The paper  |  outputs  | learning problem
+The paper  |  outputs  | dueling architecture can more quickly identify the correct action during policy evaluation as redundant or similar actions are added to the learning problem
+The paper  |  uses  | deep q-network
+The paper  |  outputs  | parameters
+The paper  |  outputs  | separate target network
+The paper  |  outputs  | parameters of a ﬁxed and separate target network
+The paper  |  uses  | parameters
+The paper  |  uses  | network q
+The paper  |  uses  | θ
+The paper  |  uses  | online
+The paper  |  uses  | parameters of the network q ( s , a θ ) online
+The paper  |  uses  | parameters
+The paper  |  uses  | network
+The paper  |  uses  | θ
+The paper  |  uses  | online
+The paper  |  uses  | parameters of the network q θ ) online
+The paper  |  uses  | improved double dqn
+The paper  |  outputs  | single qnetwork architecture
+The paper  |  uses  | sequences
+The paper  |  uses  | streams
+The paper  |  uses  | layers
+The paper  |  uses  | sequences ( or streams ) of fully connected layers
+The paper  |  outputs  | module
+The paper  |  uses  | similar results
+The paper  |  uses  | simpler module
+The paper  |  uses  | equation
+The paper  |  uses  | similar results to the simpler module of equation
+The paper  |  uses  | temporal difference learning
+The paper  |  uses  | eligibility traces
+The paper  |  uses  | temporal difference learning ( without eligibility traces
+The paper  |  uses  | q values
+The paper  |  uses  | -greedy policy
+The paper  |  uses  | behavior policy π
+The paper  |  uses  | -greedy policy as the behavior policy π
+The paper  |  uses  | prioritized experience replay
+The paper  |  outputs  | equation
+The paper  |  uses  | same procedure
+The paper  |  uses  | gradient clipping
+The paper  |  uses  | hidden units
+The paper  |  uses  | ﬁrst fully-connected layer
+The paper  |  uses  | network
+The paper  |  uses  | hidden units for the ﬁrst fully-connected layer of the network
+The paper  |  uses  | points
+The paper  |  uses  | human expert
+The paper  |  uses  | trajectory
+The paper  |  uses  | points sampled from a human expert 's trajectory
+The paper  |  uses  | prioritized variant
+The paper  |  uses  | ddqn
+The paper  |  uses  | prioritized variant of ddqn
+The paper  |  uses  | gradient
+The paper  |  uses  | new approaches
+The paper  |  uses  | gradient clipping in all the new approaches
+The paper  |  uses  | t
+The paper  |  outputs  | new neural network architecture
+The paper  |  outputs  | value
+The paper  |  outputs  | advantage
+The paper  |  outputs  | deep q-networks
+The paper  |  outputs  | new neural network architecture that decouples value and advantage in deep q-networks
+The paper  |  outputs  | common feature
+The paper  |  outputs  | module
+The paper  |  outputs  | common feature learning module

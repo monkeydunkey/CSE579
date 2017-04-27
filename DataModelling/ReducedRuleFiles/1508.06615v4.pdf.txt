@@ -1,0 +1,126 @@
+The paper  |  outputs  | simple neural language model
+The paper  |  outputs  | character-level inputs
+The paper  |  outputs  | simple neural language model that relies only on character-level inputs
+The paper  |  uses  | convolutional neural network
+The paper  |  solves  | language model
+The paper  |  solves  | subword information
+The paper  |  solves  | character-level convolutional neural network
+The paper  |  solves  | cnn
+The paper  |  solves  | language model that leverages subword information through a character-level convolutional neural network ( cnn
+The paper  |  uses  | input
+The paper  |  uses  | recurrent neural network language model
+The paper  |  uses  | input to a recurrent neural network language model
+The paper  |  uses  | subword information
+The paper  |  uses  | morphological tagging
+The paper  |  uses  | pre-processing step
+The paper  |  uses  | morphological tagging as a pre-processing step
+The paper  |  uses  | word embeddings
+The paper  |  outputs  | results
+The paper  |  outputs  | par
+The paper  |  outputs  | state-of-the-art
+The paper  |  outputs  | penn treebank
+The paper  |  outputs  | results on par with the existing state-of-the-art on the penn treebank
+The paper  |  outputs  | l
+The paper  |  outputs  | paper.1
+The paper  |  outputs  | l : in this paper.1
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in this section
+The paper  |  uses  | narrow convolution
+The paper  |  uses  | ck
+The paper  |  uses  | ﬁlter
+The paper  |  uses  | h ∈
+The paper  |  uses  | rd×w
+The paper  |  uses  | width w
+The paper  |  uses  | narrow convolution between ck and a ﬁlter ( or kernel ) h ∈ rd×w of width w
+The paper  |  uses  | nonlinearity
+The paper  |  uses  | lower dimensional representations
+The paper  |  uses  | characters
+The paper  |  uses  | lower dimensional representations of characters
+The paper  |  outputs  | process
+The paper  |  outputs  | feature
+The paper  |  outputs  | ﬁlter matrix
+The paper  |  outputs  | process by which one feature is obtained from one ﬁlter matrix
+The paper  |  uses  | multiple ﬁlters
+The paper  |  uses  | widths
+The paper  |  uses  | feature vector
+The paper  |  uses  | multiple ﬁlters of varying widths to obtain the feature vector
+The paper  |  uses  | feature vector
+The paper  |  uses  | worse performance
+The paper  |  uses  | perplexity
+The paper  |  uses  | performance
+The paper  |  uses  | models
+The paper  |  uses  | perplexity to evaluate the performance of our models
+The paper  |  uses  | performance
+The paper  |  uses  | models
+The paper  |  uses  | performance of our models
+The paper  |  uses  | al
+The paper  |  uses  | model
+The paper  |  uses  | rich languages
+The paper  |  uses  | model to various morphologically rich languages
+The paper  |  uses  | language
+The paper  |  uses  | community
+The paper  |  uses  | language modeling community
+The paper  |  uses  | same train/validation/test
+The paper  |  uses  | stochastic gradient descent
+The paper  |  uses  | learning rate
+The paper  |  uses  | stochastic gradient descent where the learning rate
+The paper  |  uses  | batch size
+The paper  |  uses  | batch size
+The paper  |  uses  | d w
+The paper  |  uses  | batch size of 100 ( for d w
+The paper  |  uses  | dropout
+The paper  |  uses  | hierarchical softmax
+The paper  |  uses  | random clusters
+The paper  |  uses  | random
+The paper  |  uses  | hierarchical softmax
+The paper  |  uses  | models
+The paper  |  uses  | hierarchical softmax was not necessary for models
+The paper  |  uses  | word embeddings
+The paper  |  outputs  | model ensembles
+The paper  |  uses  | languages
+The paper  |  uses  | richer morphology
+The paper  |  uses  | languages with richer morphology
+The paper  |  uses  | use
+The paper  |  uses  | lstms
+The paper  |  uses  | use of lstms
+The paper  |  uses  | same architecture
+The paper  |  uses  | languages
+The paper  |  uses  | same architecture for all languages
+The paper  |  solves  | semantic representations
+The paper  |  solves  | words
+The paper  |  solves  | identiﬁed morphemes
+The paper  |  solves  | semantic representations of words from the identiﬁed morphemes
+The paper  |  uses  | general
+The paper  |  uses  | correspond
+The paper  |  uses  | morphemes
+The paper  |  uses  | general ) correspond to valid morphemes
+The paper  |  uses  | charcnn
+The paper  |  uses  | output
+The paper  |  uses  | ﬁxed dimensional
+The paper  |  uses  | representation
+The paper  |  uses  | corresponding character
+The paper  |  uses  | charcnn 's output as the ﬁxed dimensional representation for the corresponding character
+The paper  |  uses  | highway layers
+The paper  |  uses  | top
+The paper  |  uses  | cnn architectures
+The paper  |  uses  | highway layers on top of existing cnn architectures
+The paper  |  uses  | word embeddings
+The paper  |  uses  | inputs
+The paper  |  uses  | word embeddings as inputs
+The paper  |  outputs  | further experiments
+The paper  |  outputs  | observations
+The paper  |  outputs  | further experiments and observations
+The paper  |  uses  | additional convolution operations
+The paper  |  uses  | characters
+The paper  |  uses  | additional convolution operations over characters
+The paper  |  uses  | difference
+The paper  |  uses  | optimized gpu implementations-for
+The paper  |  uses  | example
+The paper  |  uses  | ptb
+The paper  |  uses  | difference was manageable with optimized gpu implementations-for example on ptb
+The paper  |  outputs  | neural language model
+The paper  |  outputs  | character-level inputs
+The paper  |  outputs  | neural language model that utilizes only character-level inputs
+The paper  |  uses  | character-level inputs
+The paper  |  uses  | word/morpheme embeddings

@@ -1,0 +1,169 @@
+s c [     This paper explores a simple and efﬁcient Our exbaseline for text classiﬁcation.
+0.83 (This paper; explores; a simple and efﬁcient Our exbaseline for text classiﬁcation)
+
+periments show that our fast text classiﬁer fastText is often on par with deep learning classiﬁers in terms of accuracy, and many orders of magnitude faster for training and evaluation.
+0.77 (periments; show; that our fast text classiﬁer fastText is often on par with deep learning classiﬁers in terms of accuracy, and many orders of magnitude faster for training and evaluation)
+0.66 Context(periments show):(our fast text classiﬁer; is; T:often; on par with deep learning classiﬁers)
+
+We can train fastText on more than one billion words in less than ten minutes using a standard multicore CPU, and classify half a million sentences among 312K classes in less than a minute.
+0.19 (We; can train fastText; )
+
+In this work, we explore ways to scale these baselines to very large corpus with a large output space, in the context of text classiﬁcation.
+0.64 (we; explore; ways to scale these baselines to very large corpus with a large output space, in the context of text classiﬁcation; L:In this work)
+0.29 Context(we explore):(we; explore to scale; these baselines; to very large corpus)
+
+Inspired by the recent work in efﬁcient word representation learning (Mikolov et al., 2013; Levy et al., 2015), we show that linear models with a rank constraint and a fast loss approximation can train on a billion words within ten minutes, while achieving performance on par with the state-of-the-art.
+0.75 (efﬁcient word representation; learning; )
+0.33 (we; show; that linear models with a rank constraint and a fast loss approximation can train on a billion words within ten minutes, while achieving performance on par with the state-of-the-art)
+0.96 Context(we show):(linear models with a rank constraint and a fast loss approximation; can train; on a billion words within ten minutes; T:while achieving performance on par with the state-of-the-art)
+
+We evaluate the quality of our approach fastText1 on two different tasks, namely tag prediction and sentiment analysis.
+0.31 (We; evaluate; the quality of our approach)
+
+We use the softmax function f to compute the probability distribution over the predeﬁned classes.
+0.39 (We; use; the softmax function f; to compute the probability distribution over the predeﬁned classes)
+0.39 Context(We use):(We; use the softmax function f to compute; the probability distribution over the predeﬁned classes)
+
+In order to improve our running time, we use a hierarchical softmax (Goodman, 2001) based on the Huffman coding tree (Mikolov et al., 2013).
+0.61 (we; use; a hierarchical softmax (Goodman, 2001) based on the Huffman coding tree (Mikolov et al., 2013))
+0.91 (a hierarchical softmax; based; on the Huffman coding tree)
+
+In practice, we observe a reduction of the complexity to O(h log2(k)) at test time.
+0.74 (we; observe; a reduction of the complexity to O(h log2(k; T:at test time; L:In practice)
+
+Instead, we use a bag of n-grams as additional features to capture some partial information about the local word order.
+0.39 (we; use; a bag of n-grams; as additional features)
+0.29 Context(we use):(we; use a bag of n-grams to capture; some partial information about the local word order)
+
+We maintain a fast and memory efﬁcient mapping of the n-grams by using the hashing trick (Weinberger et al., 2009) with the same hashing function as in Mikolov et al.
+0.57 (We; maintain; a fast and memory efﬁcient mapping of the n-grams)
+
+(2011) and 10M bins if we only used bigrams, and 100M otherwise.
+0.45 (we; only used; bigrams)
+
+We evaluate fastText on two different tasks.
+0.19 (We; evaluate fastText; )
+
+First, we compare it to existing text classifers on the problem of sentiment analysis.
+0.56 (we; compare; it; to existing text classifers on the problem of sentiment analysis; T:First)
+
+Then, we evaluate its capacity to scale to large output space on a tag prediction dataset.
+0.56 (we; evaluate; its capacity to scale to large output space on a tag prediction dataset; T:Then)
+
+Note that our model could be implemented with the Vowpal Wabbit library,2 but we observe in practice, that our tailored implementation is at least 2-5× faster.
+0.11 (we; observe; L:in practice; that our tailored implementation is at least 2-5× faster)
+0.41 Context(we observe):(our tailored implementation; is; at least 2-5× faster)
+
+We report from Zhang et al.
+0.50 (We; report; from Zhang et al)
+
+(2015), and TFIDF baselines level convolutional as well as model (char-CNN) of Zhang and LeCun (2015), the character based convolution recurrent network (char-CRNN) of (Xiao and Cho, 2016) and the very deep convolutional network (VDCNN) We also compare of Conneau et al.
+0.86 (TFIDF; baselines; level)
+0.50 (We; also compare; of Conneau et al)
+
+It has 10 hidden units and we evaluate it with and without bigrams.
+0.52 (It; has; 10 hidden units)
+0.31 (we; evaluate; it)
+
+For char-CNN, we show the best reported numbers without data augmentation.
+0.52 (we; show; the best reported numbers without data augmentation)
+
+We report their main baselines as well as their two approaches based on recurrent networks (Conv-GRNN and LSTM-GRNN).
+0.31 (We; report; their main baselines as well as their two approaches)
+0.66 (their two approaches; based; on recurrent networks)
+
+We present the results in 05, 0.1, 0.25, 0.5}.
+0.45 (We; present; the results; T:in 05)
+
+Overall our accuracy is slightly better than char-CNN and char-CRNN and, a bit worse than VDCNN.
+
+Note that we can increase the accuracy slightly by using more n-grams, for example with trigrams, the performance on Sogou goes up to 97.1%.
+0.94 (the performance on Sogou; goes; up to 97.1%)
+
+Finally, Figure 3 shows that our method is competitive with the methods presented in Tang et al.
+0.92 (the methods; presented; L:in Tang et al)
+0.77 (Figure 3; shows; that our method is competitive with the methods; T:Finally)
+0.64 Context(Figure 3 shows):(our method; is; competitive with the methods)
+
+We tune the hyperparameters on the validation set and observe that using n-grams up to 5 leads to the best performance.
+0.45 (We; tune; the hyperparameters; on the validation set)
+0.08 (We; observe; that)
+
+We report the test accuracy.
+0.45 (We; report; the test accuracy)
+
+Both char-CNN and VDCNN are trained on a NVIDIA Tesla K40 GPU, while our models are trained on a CPU using 20 threads.
+0.92 (Both char-CNN and VDCNN; are trained; L:on a NVIDIA Tesla K40 GPU)
+0.64 (our models; are trained; L:on a CPU)
+0.90 (a CPU; using; 20 threads)
+
+Our speedtaiyoucon 2011 digitals: individuals digital photos from the anime convention taiyoucon 2011 in mesa, arizona.
+
+We show a few correct and incorrect tag predictions.
+0.52 (We; show; a few correct and incorrect tag predictions)
+
+To test scalability of our approach, further evaluation is carried on the YFCC100M dataset (Thomee et al., 2016) which consists of almost 100M images with captions, titles and tags.
+0.92 (further evaluation; is carried; L:on the YFCC100M dataset)
+
+We focus on predicting the tags according to the title and caption (we do not use the images).
+0.45 (we; do not use; the images)
+0.36 (We; focus; on predicting the tags according to the title and caption (we do not use the images)
+0.40 Context(We focus):(We; focus on predicting; the tags)
+
+We remove the words and tags occurring less than 100 times and split the data into a train, validation and test set.
+0.45 (We; remove; the words and tags occurring)
+0.77 (the words and tags; occurring; )
+0.48 (We; split; the data; into a train, validation and test set)
+
+We will release a script that recreates this dataset so that our numbers could be reproduced.
+0.23 (We; will release; a script that recreates this dataset)
+0.61 (a script; recreates; this dataset; so that our numbers could be reproduced)
+0.34 (our numbers; could be reproduced; )
+
+We report precision at 1.
+0.45 (We; report; precision; T:at 1)
+
+We consider a frequency-based baseline which tag.
+0.45 (We; consider; a frequency-based baseline which tag)
+
+We also compredicts the most frequent pare with Tagspace (Weston et al., 2014), which is a tag prediction model similar to ours, but based on the Wsabie model of Weston et al.
+0.57 (We; compredicts; the most frequent pare with Tagspace (Weston et al)
+
+While the Tagspace model is described using convolutions, we consider the linear version, which achieves comparable performance but is much faster.
+0.75 (the Tagspace model; is described; )
+0.90 (the linear version; achieves; comparable performance)
+0.80 (the linear version; is; much faster)
+0.50 (we; consider; the linear version, which achieves comparable performance but is much faster)
+
+We run fastText for 5 epochs and compare it to Tagspace for two sizes of the hidden layer, i.e., 50 Freq.
+0.45 (We; run fastText; for 5 epochs)
+0.31 (We; compare; it; to Tagspace; for two sizes of the hidden layer)
+
+We also report the training time and test time.
+0.41 (We; report; the training time and test time)
+
+At test time, Tagspace needs to compute the scores for all the classes which makes it relatively slow, while our fast inference gives a signiﬁcant speed-up when the number of classes is large (more than 300K here).
+0.36 (our fast inference; gives; )
+0.79 (the number of classes; is more; large)
+0.94 (Tagspace; needs; to compute the scores for all the classes; T:At test time)
+0.90 Context(Tagspace needs):(Tagspace; needs to compute; the scores for all the classes)
+
+Overall, we are more than an order of magnitude faster to obtain model with a better quality.
+
+In this work, we propose a simple baseline method for text classiﬁcation.
+0.60 (we; propose; a simple baseline method for text classiﬁcation; L:In this work)
+
+Unlike unsupervisedly trained word vectors from word2vec, our word features can be averaged together to form good sentence representations.
+0.66 (our word features; can be averaged; together; to form good sentence representations)
+
+We will publish our code so that the research community can easily build on top of our work.
+0.21 (We; will publish; our code; so that the research community can easily build on top of our work)
+0.85 (the research community; can easily build; L:on top of our work)
+
+We thank Gabriel Synnaeve, Herv´e G´egou, Jason Weston and L´eon Bottou for their help and comments.
+0.53 (We; thank; Gabriel Synnaeve, Herv'e G'egou, Jason Weston and L'eon Bottou; for their help and comments)
+
+We also thank Alexis Conneau, Duyu Tang and Zichao Zhang for providing us with information about their methods
+0.38 (We; thank; Alexis Conneau, Duyu Tang and Zichao Zhang; for providing us with information about their methods)
+0.86 (Alexis Conneau, Duyu Tang and Zichao Zhang; for providing; us; with information about their methods)
+

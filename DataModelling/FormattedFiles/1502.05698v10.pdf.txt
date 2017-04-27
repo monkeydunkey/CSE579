@@ -1,0 +1,95 @@
+To measure progress towards that goal, we argue for the usefulness of a set of proxy tasks that evaluate reading comprehension via question answering.
+Our tasks measure understanding in several ways: whether a system is able to answer questions via chaining facts, simple induction, deduction and many more.
+We believe many existing learning systems can currently not solve them, and hence our aim is to classify these tasks into skill sets, so that researchers can identify (and then rectify) the failings of their systems.
+We also extend and improve the recently introduced Memory Networks model, and show it is able to solve some, but not all, of the tasks.
+As researchers we can become stuck in local minima in algorithm space; development of synthetic data is one way to try and break out of that.
+In this work we propose a framework and a set of synthetic tasks for the goal of helping to develop learning algorithms for text understanding and reasoning.
+Our tasks are built with a uniﬁed underlying simulation of a physical world, akin to a classic text adventure game (Montfort, 2005) whereby actors move around manipulating objects and interacting Under review as a conference paper at ICLR 2016 with each other.
+Our goal is to categorize different kinds of questions into skill sets, which become our tasks.
+Our hope is that the analysis of performance on these tasks will help expose weaknesses of current models and help motivate new algorithm designs that alleviate these weaknesses.
+We further envision this as a feedback loop where new tasks can then be designed in response, perhaps in an adversarial fashion, in order to break the new models.
+The tasks we design are detailed in Section 3, and the simulation used to generate them in Section 4.
+In Section 5 we give benchmark results of standard methods on our tasks, and analyse their successes and failures.
+In order to exemplify the kind of feedback loop between algorithm development and task development we envision, in Section A we propose a set of improvements to the recent Memory Network method, which has shown to give promising performance in QA.
+We show our proposed approach does indeed give improved performance on some tasks, but is still unable to solve some of them, which we consider as open problems.
+Based on these observations, we chose to conceive a collection of much simpler QA tasks, with the main objective that failure or success of a system on any of them can unequivocally provide feedback on its capabilities.
+In that, we are close to the Winograd Schema Challenge Levesque et al.
+In this challenge, and our tasks, it is straightforward to interpret results.
+Yet, where the Winograd Challenge is mostly centered around evaluating if systems can acquire and make use of background knowledge that is not expressed in the words of the statement, our tasks are self-contained and are more diverse.
+By self-contained we mean our tasks come with both training data and evaluation data, rather than just the latter as in the case of ARISTO and the Winograd Challenge.
+In our setup one can assess the amount of training examples needed to perform well (which can be increased as desired) and commonsense knowledge and reasoning required for the test set should be contained in the training set.
+In terms of diversity, some of our tasks are related to existing setups but we also propose many additional ones; tasks 8 and 9 are inspired by previous work on lambda dependency-based compositional semantics (Liang et al., 2013; Liang, 2013) for instance.
+For us, each task checks one skill that the system must Under review as a conference paper at ICLR 2016 have and we postulate that performing well on all of them is a prerequisite for any system aiming at full text understanding and reasoning.
+Principles Our main idea is to provide a set of tasks, in a similar way to how software testing is built in computer science.
+We set up the tasks so that correct answers are limited to a single word (Q: Where is Mark? A: bathroom), or else a list of words (Q: What is Mark holding?) as evaluation is then clear-cut, and is measured simply as right or wrong.
+We tried to choose tasks that are natural to a human: they are based on simple usual situations and no background in areas such as formal semantics, machine learning, logic or knowledge representation is required for an adult to solve them.
+For each task, we describe it by giving a small sample of the dataset including statements, questions and the true labels (in red) in Tables 1 and 2.
+We ﬁrst test one of the simplest cases of this, by asking for the location of a person, e.g.
+In task 4 we consider the extreme case where sentences feature reordered words, i.e.
+(In this case, task 6 (yes/no questions) is a prerequisite to the task.) Task 10 tests if we can model statements that describe possibilities rather than certainties, e.g.
+Real-world data typically addresses this as a labeling problem and studies more sophisticated phenomena (Soon et al., 2001), whereas we evaluate it as in all our other tasks as a question answering problem.
+Time Reasoning While our tasks so far have included time implicitly in the order of the statements, task 14 tests understanding the use of time expressions within the statements, e.g.
+In our data release, in addition to providing the above 20 tasks in English, we also provide them (i) in Hindi; and (ii) with shufﬂed English words so they are no longer readable by humans.
+Under review as a conference paper at ICLR 2016 All our tasks are generated with a simulation which behaves like a classic text adventure game.
+Our simulation follows those of Bordes et al.
+For each task we limit the actions needed for that task, e.g.
+If we write the commands down this gives us a very simple “story” which is executable by the simulation, e.g., joe go playground; bob go ofﬁce; joe get football.
+It is easy to calculate the true answers for these questions as we have access to the underlying world.
+To produce more natural looking text with lexical variety from statements and questions we employ a simple automated grammar.
+We compared the following methods on our tasks (on the English dataset): (i) an N gram classiﬁer baseline, (ii) LSTMs (long short term memory Recurrent Neural Networks) (Hochreiter & Schmidhuber, 1997), (iii) Memory Networks (MemNNs) (Weston et al., 2014), (iv) some extensions of Memory Networks we will detail; and (v) a structured SVM that incorporates external labeled data from existing NLP tasks.
+Weakly supervised models are only given question answer pairs at training time, whereas strong supervision provides the set of supporting facts at training time (but not testing time) as well.
+For each task we use 1000 questions for training, and 1000 for testing, and report the test accuracy.
+We consider a task successfully passed if ≥ 95% accuracy is obtained3.
+Under review as a conference paper at ICLR 2016 Table 3: Test accuracy (%) on our 20 Tasks for various methods (1000 training examples each).
+Our proposed extensions to MemNNs are in columns 5-9: with adaptive memory (AM), N-grams (NG), nonlinear matching function (NL), and combinations thereof.
+Bold numbers indicate tasks where our extensions achieve ≥ 95% accuracy but the original MemNN model of Weston et al.
+(2013) but applied to the case of producing a 1-word answer rather than a multiple choice question: we construct a bag-of-N -grams for all sentences in the story that share at least one word with the question, and then learn a linear classiﬁer to predict the answer using those features4.
+We also consider some extensions to this model: • Adaptive memories performing a variable number of hops rather than 2, the model is trained to predict a hop or the special “STOP” class.
+Under review as a conference paper at ICLR 2016 • N-grams We tried using a bag of 3-grams rather than a bag-of-words to represent the text.
+• Nonlinearity We apply a classical 2-layer neural network with tanh nonlinearity in the More details of these variants is given in Sec A of the appendix.
+Finally, we built a classical cascade NLP system baseline using a structured support vector machine (SVM), which incorporates coreference resolution and semantic role labeling (SRL) preprocessing steps, which are themselves trained on large amounts of costly labeled data.
+After ﬁnding the supporting facts, we build a similar structured SVM for the response stage, with features tuned for that goal as well.
+The summary of our experimental results on the tasks is given in Table 3.
+We give results for each of the 20 tasks separately, as well as mean performance and number of failed tasks in the ﬁnal two rows.
+However, there were also failures on tasks we did not at ﬁrst expect, for example yes/no questions (6) and indeﬁnite knowledge (10).
+Given hindsight, we realize that the linear scoring function of standard MemNNs cannot model the match between query, supporting fact and a yes/no answer as this requires three-way interactions.
+Columns 5-9 of Table 3 give the results for our MemNN extensions: adaptive memories (AM), N -grams (NG) and nonlinearities (NL), plus combinations thereof.
+We hence use the AM model in combination with all our other extensions in the subsequent experiments.
+Two tasks, positional reasoning 17 and path ﬁnding 19 cannot be solved even with 10000 examples, it seems those (and indeed more advanced forms of induction and deduction, which we plan to build) require a general search algorithm to be built into the inference procedure, which MemNN (and the other approaches tried) are lacking.
+A prerequisite set We developed a set of tasks that we believe are a prerequisite to full language understanding and reasoning.
+While any learner that can solve these tasks is not necessarily close to full reasoning, if a learner fails on any of our tasks then there are likely real-world tasks that it will fail on too (i.e., real-world tasks that require the same kind of reasoning).
+Even if the situations and the language of the tasks are artiﬁcial, we believe that the mechanisms required to learn how to solve them are part of the key towards text understanding and reasoning.
+We grounded the tasks into language because it is then easier to understand the usefulness of the tasks and to interpret their results.
+However, our primary goal is to ﬁnd models able to learn to detect and combine patterns in symbolic sequences.
+We chose them because they offer a variety of skills that we would like a text reasoning model to have, but we hope researchers from the community will develop more tasks of varying complexity in order to develop and analyze models that try to solve them.
+We have thus made the simulator and code for the tasks publicly available for those purposes.
+Testing learning methods Our tasks are designed as a test-bed for learning methods: we provide training and test sets because we intend to evaluate the capability of models to discover how to reason from patterns hidden within them.
+They might succeed at solving them, even if our structured SVM results (a cascaded NLP system with hand-built features) show that this is not straightforward; however this is not the tasks’ purpose since those approaches would not be learning to solve them.
+Our experiments show that some existing machine learning methods are successful on some of the tasks, in particular Memory Networks, for which we introduced some useful extensions (in Sec.
+Further, importantly, our hope is that a feedback loop of developing more challenging tasks, and then algorithms that can solve them, leads us to fruitful research directions.
+That is, even if a method works well on our 20 tasks, it should be shown to be useful on real data as well.
+Weston, Jason, Chopra, Sumit, and Bordes, Antoine.
+(2014) are a promising class of models, shown to perform well at QA, that we can apply to our tasks.
+Here we only discuss the former which we also use.
+Under review as a conference paper at ICLR 2016 A.1 SHORTCOMINGS OF THE EXISTING MEMNNS The Memory Networks models deﬁned in (Weston et al., 2014) are one possible technique to try on our tasks, however there are several tasks which they are likely to fail on: • They model sentences with a bag of words so are likely to fail on tasks such as the 2argument (task 4) and 3-argument (task 5) relation problems.
+We therefore propose improvements to their model in the following section.
+A.2.1 ADAPTIVE MEMORIES (AND RESPONSES) We consider a variable number of supporting facts that is automatically adapted dependent on the question being asked.
+To do this we consider scoring a special fact m∅.
+, moi−1 ], m) That is, we keep predicting supporting facts i, conditioning at each step on the previously found facts, until m∅ is predicted at which point we stop.
+In practice we still impose a hard maximum number of loops in our experiments to avoid fail cases where the computation never stops (in our experiments we use a limit of 10).
+Multiple Answers We use a similar trick for the response module as well in order to output multiple words.
+That is, we add a special word w∅ to the dictionary and predict word wi on each iteration i conditional on the previous words, i.e., wi = R([x, mo1 , .
+, wi−1], w), until we predict w∅.
+There are several ways of modeling sentences that go beyond a bag-of-words, and we explore three variants here.
+The simplest is a bag-of-N-grams, we consider N = 1, 2 and 3 in the bag.
+We therefore consider an alternative neural network approach, which we call a multilinear map.
+Each word in a sentence is binned into one of Psz positions with p(i, l) = ⌈(iPsz)/l)⌉ where i is the position of the word in a sentence of length l, and for each position we employ a n × n matrix Pp(i,l).
+We then model the matching score with: s(q, d) = E(q) · E(d); E(x) = tanh( X whereby we apply a linear map for each word dependent on its position, followed by a tanh nonlinearity on the sum of mappings.
+Under review as a conference paper at ICLR 2016 Finally, to assess the performance of nonlinear maps that do not model word position at all we also consider the following nonlinear embedding: (6) where W is a n × n matrix.
+We also consider the straight-forward combination of bag-of-N -grams followed by this nonlinearity.
+B BASELINE USING EXTERNAL RESOURCES We also built a classical cascade NLP system baseline using a structured SVM, which incorporates coreference resolution and semantic role labeling preprocessing steps, which are themselves trained on large amounts of costly labeled data.
+We ﬁrst run the Stanford coreference system (Raghunathan et al., 2010) on the stories and each mention is then replaced with the ﬁrst mention of its entity class.
+Second, the SENNA semantic role labeling system (SRL) (Collobert et al., 2011) is run, and we collect the set of arguments for each verb.
+We then deﬁne a ranking task for ﬁnding the supporting facts (trained using strong supervision): o1, o2, o3 = arg max SO(x, fo1, fo2, fo3; Θ) where given the question x we ﬁnd at most three supporting facts with indices oi from the set of facts f in the story (we also consider selecting an “empty fact” for the case of less than three), and SO is a linear scoring function with parameters Θ.
+For scalability, we thus prune the set of possible matches by requiring that facts share one common non-determiner word with each other match or with x.
+After ﬁnding the supporting facts, we build a similar structured SVM for the response stage, also with features tuned for that goal: Words – indicator for each word in x, Word Pairs – indicator for each pair of words in x and supporting facts, and similar SRL Verb and SRL Verb-Arg Pair features as before

@@ -1,0 +1,468 @@
+In this paper, we explore algorithms and representations to reduce the sample complexity of deep reinforcement learning for continuous control tasks.
+0.53 (we; explore; algorithms and representations; to reduce the sample complexity of deep reinforcement; L:In this paper)
+0.39 Context(we explore):(we; explore algorithms and representations to reduce; the sample complexity of deep reinforcement)
+
+We propose two complementary techniques for improving the efﬁciency of such algorithms.
+0.57 (We; propose; two complementary techniques for improving the efﬁciency of such algorithms)
+
+First, we derive a continuous variant of the Q-learning algorithm, which we call normalized adantage functions (NAF), as an alternative to the more commonly used policy gradient and actor-critic methods.
+0.50 (we; derive; a continuous variant of the Q-learning algorithm)
+0.97 (the Q-learning algorithm; call; normalized adantage functions; as an alternative to the more commonly used policy gradient and actor-critic methods)
+
+To further improve the efﬁciency of our approach, we explore the use of learned models for accelerating model-free reinforcement learning.
+0.57 (we; explore; the use of learned models for accelerating model-free reinforcement learning)
+
+We show that iteratively reﬁtted local linear models are especially effective for this, and demonstrate substantially faster learning on domains where such models are applicable.
+0.34 (We; show; that iteratively reﬁtted local linear models are especially effective for this)
+0.78 Context(We show):(iteratively reﬁtted local linear models; are; especially effective for this)
+0.94 (such models; are; applicable; L:domains)
+0.41 (We; demonstrate substantially faster; learning on domains)
+
+In this paper, we propose two complementary techniques for improving the efﬁciency of deep reinforcement learning in continuous control domains: we derive a variant of Q-learning that can be used in continuous domains, and we propose a method for combining this continuous Qlearning algorithm with learned models so as to accelerate learning while preserving the beneﬁts of model-free RL.
+0.61 (we; propose; a method for combining this continuous Qlearning algorithm with learned models)
+0.90 (deep reinforcement; learning; L:in continuous control domains)
+0.44 (we; derive; a variant of Q-learning)
+0.65 Context(we derive):(we; propose; two complementary techniques for improving the efﬁciency of deep reinforcement; L:In this paper)
+0.94 (a variant of Q-learning; can be used; L:in continuous domains)
+
+Our proposed Q-learning algorithm for continuous domains, which we call normalized advantage functions (NAF), avoids the need for a second actor or policy function, resulting in a simpler algorithm.
+0.93 (continuous domains; call; normalized advantage functions; NAF)
+0.75 (Our proposed Q-learning algorithm for continuous domains; avoids; the need for a second actor or policy function)
+
+Beyond deriving an improved model-free deep reinforcement learning algorithm, we also seek to incorporate elements of model-based RL to accelerate learning, without giving up the strengths of model-free methods.
+0.39 (we; seek; to incorporate elements of model-based RL)
+0.39 Context(we seek):(we; seek to incorporate; elements of model-based RL)
+0.16 Context(we seek to incorporate):(we; seek to incorporate elements of model-based RL to accelerate; learning)
+
+However, while this solution is a natural one, our empirical evaluation shows that it is ineffective at accelerating learning.
+0.93 (this solution; is; a natural one)
+0.28 (our empirical evaluation; shows; that it is ineffective at accelerating learning)
+0.46 Context(our empirical evaluation shows):(it; is; ineffective at accelerating learning)
+
+As we discuss in our evaluation, this is due in part to the nature of value function estimation algorithms, which must experience both good and bad state transitions to accurately model the value function landscape.
+0.31 (we; discuss; L:in our evaluation)
+0.22 (this; is; due)
+0.89 (estimation algorithms; must experience; both good and bad state transitions)
+
+We propose an alternative approach to incorporating learned models into our continuous-action Q-learning algorithm based on imagination rollouts: on-policy samples generated under the learned model, analogous to the Dyna-Q method (Sutton, 1990).
+0.46 (We; propose; an alternative approach to incorporating learned models into our continuous-action Q-learning algorithm)
+0.89 (our continuous-action Q-learning algorithm; based; on imagination rollouts: on-policy samples generated under the learned model, analogous to the Dyna-Q method)
+0.92 (on-policy samples; generated; L:under the learned model)
+
+We show that this is extremely effective when the learned dynamics model perfectly matches the true one, but degrades dramatically with imperfect learned models.
+0.34 (We; show; that this is extremely effective when the learned dynamics model perfectly matches the true one, but degrades dramatically with imperfect learned models)
+0.51 Context(We show):(this; is; extremely effective; T:when the learned dynamics model perfectly matches the true one)
+0.77 (the learned dynamics model; perfectly matches; )
+
+However, we demonstrate that iteratively ﬁtting local linear models to the latest batch of on-policy or offpolicy rollouts provides sufﬁcient local accuracy to achieve substantial improvement using short imagination rollouts in the vicinity of the real-world samples.
+0.27 (we; demonstrate; that iteratively ﬁtting local linear models to the latest batch of on-policy or offpolicy rollouts provides sufﬁcient local accuracy to achieve substantial improvement)
+0.97 Context(we demonstrate):(iteratively ﬁtting local linear models to the latest batch of on-policy or offpolicy rollouts; provides; sufﬁcient local accuracy)
+
+Our paper provides three main contributions: ﬁrst, we derive and evaluate a Q-function representation that allows for effective Q-learning in continuous domains.
+0.60 (we; evaluate; a Q-function representation; T:ﬁrst)
+0.94 (a Q-function representation; allows; for effective Q-learning in continuous domains)
+0.26 (we; derive; T:ﬁrst)
+0.59 Context(we derive):(Our paper; provides; three main contributions)
+
+Second, we evaluate several na¨ıve options for incorporating learned models into model-free Q-learning, and we show that they are minimally effective on our continuous control tasks.
+0.61 (we; evaluate; several na¨ıve options for incorporating learned models into model-free Q-learning)
+0.22 (we; show; that they are minimally effective on our continuous control tasks)
+0.41 Context(we show):(they; are; minimally effective on our continuous control tasks)
+
+Third, we propose to combine locally linear models with local on-policy imagination rollouts to accelerate modelfree continuous Q-learning, and show that this produces a large improvement in sample complexity.
+
+We evaluate our method on a series of simulated robotic tasks and compare to prior methods.
+0.31 (We; evaluate; our method on a series of simulated robotic tasks)
+0.41 (We; compare; to prior methods)
+
+If we wish to incorporate the beneﬁts of value function estimation into continuous deep reinforcement learning, we must typically use two networks: one to represent the policy, and one to represent the value function (Schulman et al., 2015; Lillicrap et al., 2016).
+0.62 (one; to represent; the value function)
+0.58 (we; wish; to incorporate the beneﬁts of value function estimation into continuous deep reinforcement learning)
+0.40 Context(we wish):(we; wish to incorporate; the beneﬁts of value function estimation; into continuous deep reinforcement learning)
+0.39 (we; must typically use; two networks; to represent the policy)
+0.29 Context(we must typically use):(we; must typically use two networks to represent; the policy)
+
+In this paper, we instead describe how the simplicity and elegance of Q-learning can be ported into continuous domains, by learning a single network that outputs both the value function and policy.
+0.90 (a single network; outputs; both the value function and policy)
+0.69 (we; instead describe; how the simplicity and elegance of Q-learning can be ported into continuous domains, by learning a single network; L:In this paper)
+0.94 Context(we instead describe):(the simplicity and elegance of Q-learning; can be ported; by learning a single network)
+
+Our Q-function representation is related to dueling networks (Wang et al., 2015), though our approach applies to continuous action domains.
+0.70 (Our Q-function representation; is related; to dueling networks)
+0.64 (our approach; applies; to continuous action domains)
+
+Our empirical evaluation demonstrates that our continuous Q-learning algorithm achieves faster and more effective learning on a set of benchmark tasks compared to continuous actor-critic methods, and we believe that the simplicity of this approach will make it easier to adopt in practice.
+0.37 (Our empirical evaluation; demonstrates; that our continuous Q-learning algorithm achieves faster and more effective learning on a set of benchmark tasks compared to continuous actor-critic methods, and we believe that the simplicity of this approach will make it easier)
+0.74 Context(Our empirical evaluation demonstrates):(our continuous Q-learning algorithm; achieves; faster and more effective learning)
+0.17 (we; believe; that the simplicity of this approach will make it easier)
+0.84 Context(we believe):(the simplicity of this approach; will make; it easier to adopt in practice)
+
+Our Q-learning method is also related to the work of Rawlik et al.
+0.79 (Our Q-learning method; is also related; to the work of Rawlik et al)
+
+(2013), but the form of our Q-function update is more standard.
+0.68 (2013), but the form of our Q-function update; is; more standard)
+
+The method closest to our imagination rollouts approach is Dyna-Q (Sutton, 1990), which uses simulated experience in a learned model to supplement real-world on-policy rollouts.
+0.83 (The method closest to our imagination rollouts approach; is; Dyna-Q)
+0.92 (Dyna-Q; uses; simulated experience; to supplement real-world on-policy rollouts)
+
+As we show in our evaluation, using Dyna-Q style methods to accelerate model-free RL is very effective when the learned model perfectly matches the true model, but degrades rapidly as the model becomes worse.
+0.37 (we; show; L:in our evaluation)
+0.75 (the learned model; perfectly matches; )
+0.98 (using Dyna-Q style methods to accelerate model-free RL; degrades rapidly; T:when the learned model perfectly matches the true model)
+0.77 (the model; becomes; worse)
+0.98 (using Dyna-Q style methods to accelerate model-free RL; is; very effective; T:when the learned model perfectly matches the true model)
+
+We demonstrate that using iteratively reﬁtted local linear models achieves substantially better results with imagination rollouts than more complex neural network models.
+0.28 (We; demonstrate; that using iteratively reﬁtted local linear models achieves substantially better results with imagination rollouts than more complex neural network models)
+0.95 Context(We demonstrate):(using iteratively reﬁtted local linear models; achieves; substantially better results with imagination rollouts than more complex neural network models)
+
+We hypothesize that this is likely due to the fact that the more Continuous Deep Q-Learning with Model-based Acceleration expressive models themselves require substantially more data, and that otherwise efﬁcient algorithms like Dyna-Q are vulnerable to poor model approximations.
+0.95 (the more  Continuous Deep Q-Learning with Model-based Acceleration expressive models; require; substantially more data)
+0.20 (We; hypothesize; that this is likely due to the fact that the more  Continuous Deep Q-Learning with Model-based Acceleration expressive models themselves require substantially more data, and that otherwise efﬁcient algorithms like Dyna-Q are vulnerable to poor model approximations)
+0.19 Context(We hypothesize):(this; is; likely)
+
+error, where we ﬁx the target yt: L(θQ) = Ext∼ρβ ,ut∼β,rt∼E[(Q(xt, ut|θQ) − yt)2] yt = r(xt, ut) + γQ(xt+1, µ(xt+1)) 3.
+0.66 (we; ﬁx; the target yt; L:error)
+
+The agent then experiences a transition to a new state sampled from the dynamics distribution, and we can express the resulting state visitation frequency of the i=t γ(i−t)r(xi, ui), the goal is to maximize the expected sum of returns, given by R = Eri≥1,xi≥1∼E,ui≥1∼π[R1], where γ is a discount factor that prioritizes earlier rewards over later ones.
+0.75 (a new state; sampled; )
+0.90 (a discount factor; prioritizes; earlier rewards over later ones)
+0.50 (we; can express; the resulting state visitation frequency of the i=t γ)
+0.91 (the expected sum of returns; given; by R)
+0.77 (γ; is; a discount factor that prioritizes earlier rewards over later ones)
+0.95 (the goal; is; to maximize the expected sum of returns, given by R = Eri>=1,xi>)
+0.71 Context(the goal is):(The agent; experiences =1 =1~E; T:then)
+
+With γ < 1, we can also set T = ∞, though we use a ﬁnite horizon for all of the tasks in our experiments.
+0.44 (we; can set ∞; T)
+0.31 (we; use; a ﬁnite horizon; for all of the tasks in our experiments)
+
+In this section, we review several of these methods that we build on in our work.
+0.60 (we; review; several of these methods; T:In this section)
+0.81 (these methods; build; L:on; L:in our work)
+
+We instead build on standard Q-learning, which has a single objective.
+0.50 (We; instead build; L:on standard Q-learning)
+0.94 (standard Q-learning; has; a single objective)
+
+We summarize Q-learning in this section.
+0.50 (We; summarize; Q-learning in this section)
+
+In order to describe our method in the following sections, it will be useful to also deﬁne the value function V π(xt, ut) and advantage function Aπ(xt, ut) of a given policy π: V π(xt) = Eri≥t,xi>t∼E,ui≥t∼π[Rt|xt, ut] Aπ(xt, ut) = Qπ(xt, ut) − V π(xt).
+
+If we know the dynamics p(xt+1|xt, ut), or if we can approximate them with some learned model ˆp(xt+1|xt, ut), we can use model-based RL and optimal control.
+0.31 (we; can approximate; them)
+0.50 (we; can use; model-based RL and optimal control)
+0.48 (we; know; the dynamics p(xt+1|xt, ut), or if we can approximate them with some learned model ^p(xt+1|xt, ut), we can use model-based RL and optimal control)
+0.89 Context(we know):(the dynamics; p; xt+1|xt, ut)
+
+Employing the maximum entropy objective (Levine & Koltun, 2013), we can also construct a linear-Gaussian controller, where c is a scalar to adjust for arbitrary scaling of the reward magnitudes: (ut|xt) = N ( ˆut + kt + Kt(xt − ˆxt),−cQ−1 When the dynamics are not known, a particularly effective way to use iLQG is to combine it with learned time-varying Continuous Deep Q-Learning with Model-based Acceleration linear models ˆp(xt+1|xt, ut).
+0.46 (we; can also construct; a linear-Gaussian controller, where c is a scalar to adjust for arbitrary scaling of the reward magnitudes: (ut|xt) = N ( ^ut + kt + Kt(xt − ^xt),−cQ−1 When the dynamics are not known, a particularly effective way to use iLQG is to combine it with learned time-varying  Continuous Deep Q-Learning with Model-based Acceleration linear models ^p(xt+1|xt, ut))
+0.97 (a particularly effective way to use iLQG; is; to combine it with learned time-varying  Continuous Deep Q-Learning with Model-based Acceleration linear models)
+0.90 (c; is; a scalar to adjust for arbitrary scaling of the reward magnitudes)
+0.73 (the dynamics; are not known; )
+
+In Section 5, we describe how our method can be extended into a variant of Dyna-Q to achieve substantially faster learning on a range of continuous control tasks with complex neural network policies, and in Section 6, we empirically analyze the sensitivity of this method to imperfect learned dynamics models.
+0.54 (we; describe; how our method can be extended into a variant of Dyna-Q to achieve substantially faster learning on a range of continuous control tasks with complex neural network policies, and in Section 6, we empirically analyze the sensitivity of this method; L:In Section 5)
+0.72 Context(we describe):(our method; can be extended; into a variant of Dyna-Q; to achieve substantially faster learning on a range of continuous control tasks with complex neural network policies)
+0.60 (we; empirically analyze; the sensitivity of this method; L:in Section 6)
+
+Continuous Q-Learning with Normalized We ﬁrst propose a simple method to enable Q-learning in continuous action spaces with deep neural networks, which we refer to as normalized advantage functions (NAF).
+0.98 (Continuous Q-Learning with Normalized We; ﬁrst propose; a simple method to enable Q-learning in continuous action spaces with deep neural networks,)
+0.93 (a simple method; to enable; Q-learning; L:in continuous action spaces with deep neural networks)
+0.88 (deep neural networks; refer; as normalized advantage functions)
+
+While a number of representations are possible that allow for analytic maximization, the one we use in our implementation is based on a neural network that separately outputs a value function term V (x) and an advantage term A(x, u), which is parameterized as a quadratic function of nonlinear features of the state: Q(x, u|θQ) = A(x, u|θA) + V (x|θV ) A(x, u|θA) = − 1 2 (u − µ(x|θµ))T P (x|θP )(u − µ(x|θµ)) P (x|θP ) positive-deﬁnite square matrix, which is parametrized by P (x|θP ) = L(x|θP )L(x|θP )T , where L(x|θP ) is a lower-triangular matrix whose entries come from a linear output layer of a neural network, with the diagonal terms exponentiated.
+0.80 (a number of representations; are; possible)
+0.96 (an advantage term A(x, u; is parameterized; as a quadratic function of nonlinear features of the state)
+0.98 (µ(x|θµ)) P (x|θP ) positive-deﬁnite square matrix; is parametrized; by P)
+0.91 (a lower-triangular matrix; come; from a linear output layer of a neural network)
+0.81 (the one; use; L:in our implementation)
+0.74 (the one we use in our implementation; is based; on a neural network)
+0.90 (a neural network; separately outputs; a value function term V)
+
+We use this representation with a deep Q-learning algorithm analogous to Mnih et al.
+0.61 (We; use; this representation with a deep Q-learning algorithm analogous to Mnih et al)
+
+However, our method is the ﬁrst to combine such representations with deep neural networks into an algorithm that can be used to learn policies for a range of challenging continuous control tasks.
+0.79 (our method; is; the ﬁrst to combine such representations with deep neural networks into an algorithm)
+0.40 (the ﬁrst; to combine; such representations with deep neural networks; into an algorithm)
+0.93 (an algorithm; can be used; to learn policies for a range of challenging continuous control tasks)
+
+Accelerating Learning with Imagination While NAF provides some advantages over actor-critic model-free RL methods in continuous domains, we can improve their data efﬁciency substantially under some additional assumptions by exploiting learned models.
+0.92 (NAF; provides; some advantages over actor-critic model-free RL methods in continuous domains)
+0.30 (we; can improve substantially; their data efﬁciency)
+
+We will show that incorporating a particular type of learned model into Q-learning with NAFs signiﬁcantly improves Continuous Deep Q-Learning with Model-based Acceleration sample efﬁciency, while still allowing the ﬁnal policy to be ﬁnetuned with model-free learning to achieve good performance without the limitations of imperfect models.
+0.31 (We; will show; that incorporating a particular type of learned model into Q-learning with NAFs signiﬁcantly improves  Continuous Deep Q-Learning with Model-based Acceleration sample efﬁciency)
+0.98 Context(We will show):(incorporating a particular type of learned model into Q-learning with NAFs; signiﬁcantly improves; Continuous Deep Q-Learning with Model-based Acceleration sample efﬁciency)
+
+To evalaute this idea, we utilize the iLQG algorithm to generate good trajectories under the model, and then mix these trajectories together with on-policy experience by appending them to the replay buffer.
+0.62 (we; mix; these trajectories; together with on-policy experience; T:then)
+0.43 (we; utilize; the iLQG algorithm; to generate good trajectories under the model)
+0.39 Context(we utilize):(we; utilize the iLQG algorithm to generate; good trajectories under the model)
+
+Interestingly, we show in our evaluation that, even when planning under the true model, the improvement obtained from this approach is often quite small, and varies signiﬁcantly across domains and choices of exploration noise.
+0.90 (the improvement; obtained; from this approach)
+0.95 (the improvement obtained from this approach; varies signiﬁcantly; L:across domains and choices of exploration noise; T:often)
+
+Adding these synthetic samples, which we refer to as imagination rollouts, to the replay buffer effectively augments the amount of experience available for Q-learning.
+0.88 (these synthetic samples; refer; as imagination rollouts)
+0.90 (Adding these synthetic samples, which we refer to as imagination rollouts, to the replay buffer; effectively augments; the amount of experience available for Q-learning)
+
+The particular approach we use is to perform rollouts in the real world using a mixture of planned iLQG trajectories and onpolicy trajectories, with various mixing coefﬁcients evaluated in our experiments, and then generate additional synthetic on-policy rollouts using the learned model from each state visited along the real-world rollouts.
+0.89 (The particular approach; use; we)
+0.85 (various mixing coefﬁcients; evaluated; L:in our experiments)
+0.77 (The particular approach we use; is; to perform rollouts in the real world using a mixture of planned iLQG trajectories and onpolicy trajectories, with various mixing coefﬁcients evaluated in our experiments, and then generate additional synthetic on-policy rollouts using the learned model from each state visited along the real-world rollouts)
+
+However, while Dyna-Q has primarily been used with small and discrete systems, we show that using iteratively reﬁtted linear models allows us to extend the approach to deep reinforcement learning on a range of continuous control domains.
+0.93 (Dyna-Q; has primarily been used; with small and discrete systems)
+0.21 (we; show; that using iteratively reﬁtted linear models allows us to extend the approach to deep reinforcement)
+0.84 Context(we show):(using iteratively reﬁtted linear models; allows; us to extend the approach to deep reinforcement)
+0.39 Context(we show using iteratively reﬁtted linear models allows):(us; to extend; the approach to deep reinforcement)
+0.90 (deep reinforcement; learning; on a range of continuous control domains)
+
+In some scenarios, we can even generate all or most of the real rollouts using off-policy iLQG controllers, which is desirable in safety-critic domains where poorly trained policies might take dangerous actions.
+0.60 (we; can even generate; all or most of the real rollouts; L:In some scenarios)
+0.93 (off-policy iLQG controllers; is; desirable; L:in safety-critic domains)
+0.95 (poorly trained policies; might take; dangerous actions; L:safety-critic domains)
+
+For example, we found it very difﬁcult to train nonlinear neural network models for the dynamics that would actually improve the efﬁciency of Qlearning when used for imagination rollouts.
+0.42 (we; found; it very difﬁcult to train nonlinear neural network models for the dynamics)
+0.90 (the dynamics; would actually improve; the efﬁciency of Qlearning; T:when used for imagination rollouts)
+
+As discussed in the following section, we found that using iteratively reﬁtted time-varying linear dynamics produced substantially better results.
+0.27 (we; found; that using iteratively reﬁtted time-varying linear dynamics produced substantially better results)
+0.93 Context(we found):(using iteratively reﬁtted time-varying linear dynamics; produced; substantially better results)
+
+In either case, we would still like to preserve the generality and optimality of model-free RL while deriving the beneﬁts of model-based learning.
+0.59 (we; would like; to preserve the generality and optimality of model-free RL; L:In either case; T:still)
+0.33 Context(we would like):(we; would like to preserve; the generality and optimality of model-free RL; T:while deriving the beneﬁts of model-based learning)
+
+To that end, we observe that most of the beneﬁt of model-based learning is derived in the early stages of the learning process, when the policy induced by the neural network Q-function is poor.
+0.92 (the policy; induced; by the neural network Q-function)
+0.93 (the policy induced by the neural network Q-function; is; poor)
+0.44 (we; observe; that most of the beneﬁt of model-based learning is derived in the early stages of the learning process, when the policy induced by the neural network Q-function is poor; T:To that end)
+0.93 Context(we observe):(most of the beneﬁt of model-based learning; is derived; in the early stages of the learning process)
+
+We therefore propose to switch off imagination rollouts after a given number of iterations.1 In this framework, the imagination rollouts can be thought of as an inexpensive way to pretrain the Q-function, such that ﬁne-tuning using real world experience can quickly converge to an optimal solution.
+0.91 (ﬁne-tuning; using; real world experience)
+0.94 (ﬁne-tuning using real world experience; can quickly converge; to an optimal solution)
+0.87 (the imagination rollouts; can be thought; as an inexpensive way)
+0.50 Context(the imagination rollouts can be thought):(We; therefore propose; to switch off imagination rollouts after a given number of iterations.1 In this framework)
+0.39 Context(We therefore propose the imagination rollouts can be thought):(We; therefore propose to switch off; imagination rollouts; T:after a given number of iterations.1 In this framework)
+
+Fitting the Dynamics Model In order to obtain good imagination rollouts and improve the efﬁciency of Q-learning, we needed to use an effective and data-efﬁcient model learning algorithm.
+0.40 (we; needed; to use an effective and data-efﬁcient model)
+0.40 Context(we needed):(we; needed to use; an effective and data-efﬁcient model learning algorithm)
+
+While prior methods propose a variety of model classes, including neural networks (Heess et al., 2015), Gaussian processes (Deisenroth & Rasmussen, 2011), and locally-weighted regression (Atkeson et al., 1997), we found that we could obtain good results by using iteratively reﬁtted time-varying linear models, as proposed by Levine & Abbeel (2014).
+0.90 (prior methods; propose; a variety of model classes, including neural networks)
+0.20 (we; found; that we could obtain good results by using iteratively reﬁtted time-varying linear models, as proposed by Levine & Abbeel (2014))
+0.39 Context(we found):(we; could obtain; good results; by using iteratively reﬁtted time-varying linear models)
+
+In this approach, instead of learning a good global model for all states and actions, we aim only to obtain a good local model around the latest set of samples.
+0.64 (we; aim only; to obtain a good local model around the latest set of samples; L:In this approach)
+0.39 Context(we aim only):(we; aim only to obtain; a good local model)
+
+To handle domains with more varied initial states, we can use a mixture of Gaussian initial states with separate time-varying linear models for each one.
+0.96 (To handle domains with more varied initial states; can use; a mixture of Gaussian initial states with separate time-varying linear models for each one)
+
+Every n episodes, we reﬁt the parameters Ft, ft, and Nt by ﬁtting a Gaussian distribution at each time step to the vect+1], where i indicates the sample index, and tors [xi conditioning this Gaussian on [xt; ut] to obtain the parameters of the linear-Gaussian dynamics at that step.
+0.45 (i; indicates; the sample index)
+0.95 (tors [xi conditioning this Gaussian on; to obtain; the parameters of the linear-Gaussian dynamics)
+0.46 (we; reﬁt; the parameters)
+0.33 Context(we reﬁt):(we; reﬁt the parameters by ﬁtting; a Gaussian distribution; T:at each time step to the vect+1)
+
+We use n = 5 in our experiments.
+0.31 (We; use; n = 5; L:in our experiments)
+
+Although this approach introduces additional assumptions beyond the standard modelfree RL setting, we show in our evaluation that it produces impressive gains in sample efﬁciency on tasks where it can be applied.
+0.92 (this approach; introduces; additional assumptions beyond the standard modelfree RL setting)
+0.82 (the standard modelfree RL; setting; )
+0.55 (it; can be applied; L:impressive gains in sample efﬁciency on tasks)
+0.21 (we; show; L:in our evaluation; that it produces impressive gains in sample efﬁciency on tasks)
+0.36 Context(we show):(it; produces; impressive gains in sample efﬁciency on tasks where it can be applied)
+
+Experiments We evaluated our approach on a set of simulated robotic tasks using the MuJoCo simulator (Todorov et al., 2012).
+0.31 (We; evaluated; our approach on a set of simulated robotic tasks)
+0.93 (simulated robotic tasks; using; the MuJoCo simulator)
+
+Although we attempted to replicate the tasks in previous work as closely as possible, discrepancies in the simulator parameters and the contact model produced results that deviate slightly from those reported in prior work.
+0.87 (discrepancies in the simulator parameters and the contact model; produced; results that deviate slightly from those)
+0.48 (results; deviate slightly; from those)
+0.23 (those; reported; L:in prior work)
+0.40 (we; attempted; to replicate the tasks in previous work as closely)
+0.39 Context(we attempted):(we; attempted to replicate as closely; the tasks in previous work)
+
+For both our method and the prior DDPG (Lillicrap et al., 2016) algorithm in the comparisons, we used neural networks with two layers of 200 rectiﬁed linear units (ReLU) to produce each of the output parameters – the Q-function and policy in DDPG, and the value function V , the advantage matrix L, and the mean µ for NAF.
+0.54 (we; used; neural networks; with two layers of 200 rectiﬁed linear units; T:For both our method and the prior DDPG (Lillicrap et al., 2016) algorithm in the comparisons)
+0.29 Context(we used):(we; used neural networks to produce; each of the output parameters)
+
+Since Q-learning was done with a replay buffer, we applied the Q-learning update 5 times per each step of experience to accelerate learning (I = 5).
+0.93 (Q-learning; was done; with a replay buffer)
+0.50 (we; applied; the Q-learning update; T:5 times per each step of experience)
+
+In this section, we compare NAF and DDPG on 10 representative domains from Lillicrap et al.
+0.64 (we; compare; NAF and DDPG; on 10 representative domains from Lillicrap et al; L:In this section)
+
+We found the most sensitive hyperparameters to be presence or absence of batch normalization, base learning rate for ADAM (Kingma & Ba, 2014) ∈ {1e−4, 1e−3, 1e−2}, and exploration noise scale ∈ {0.1, 0.3, 1.0}.
+0.56 (We; found; the most sensitive hyperparameters to be presence or absence of batch normalization, base learning rate for ADAM (Kingma & Ba, 2014) ∈ {1e−4, 1e−3, 1e−2}, and exploration noise scale ∈ {0.1, 0.3, 1.0)
+0.90 Context(We found):(the most sensitive hyperparameters; to be; presence or absence of batch normalization)
+
+We report the best performance for each domain.
+0.45 (We; report; the best performance for each domain)
+
+We were unable to achieve good results with the method of Rawlik et al.
+0.61 (We; were; unable to achieve good results with the method of Rawlik et al)
+0.46 (We; to achieve; good results; with the method of Rawlik et al)
+
+(2013) on our domains, likely due to the complexity of high-dimensional neural network function approximators.
+
+Evaluating Best-Case Model-Based Improvement In order to determine how best to incorporate model-based components to accelerate model-free Q-learning, we tested several approaches using the ground truth dynamics, to control for challenges due to model ﬁtting.
+0.39 (we; tested; several approaches using the ground truth dynamics; to control for challenges due to model ﬁtting)
+0.29 Context(we tested):(we; tested several approaches using the ground truth dynamics to control; for challenges due to model ﬁtting)
+
+We evaluated both of the methods discussed in Section 5: the use of model-based planning to generate good off-policy rollouts in the real world, and the use of the model to generate onpolicy synthetic rollouts.
+0.45 (We; evaluated; both of the methods)
+0.90 (the methods; discussed; L:in Section 5)
+
+In general, we did not ﬁnd that off-policy rollouts were consistently better than on-policy rollouts across all tasks, but they did consistently produce good results.
+0.62 (they; did consistently produce; good results)
+0.27 (we; did not ﬁnd; that off-policy rollouts were consistently better than on-policy rollouts across all tasks)
+0.93 Context(we did not ﬁnd):(off-policy rollouts; were; consistently better than on-policy rollouts across all tasks)
+
+Guided Imagination Rollouts with Fitted In this section, we evaluated the performance of imagination rollouts with learned dynamics.
+0.45 (we; evaluated; the performance of imagination rollouts with learned dynamics)
+
+As seen in Figure 2b, we found that ﬁtting time-varying linear models following the imagination rollout algorithm is substantially better than ﬁtting neural network dynamics models for the tasks we considered.
+0.88 (the tasks; considered; we)
+0.27 (we; found; that ﬁtting time-varying linear models following the imagination rollout algorithm is substantially better than ﬁtting neural network dynamics models for the tasks)
+0.97 Context(we found):(ﬁtting time-varying linear models following the imagination rollout algorithm; is; substantially better than ﬁtting neural network dynamics models for the tasks)
+
+We cannot hope to learn useful neural network models with a small number of samples for complex tasks, which makes it difﬁcult to acquire a good model with fewer samples than are necessary to acquire a good policy.
+0.50 (We; can not hope; to learn useful neural network models with a small number of samples for complex tasks)
+0.50 Context(We can not hope):(We; can not hope to learn; useful neural network models with a small number of samples for complex tasks)
+0.92 (a small number of samples for complex tasks; makes; it difﬁcult to acquire a good model with fewer samples)
+0.41 (it; to acquire; a good model with fewer samples)
+
+However, having such expressive models is more crucial as we move to improve model accuracy.
+0.89 (having such expressive models; is; more crucial; T:as we move to improve model accuracy)
+0.45 (we; move; to improve model accuracy)
+0.41 (we; to improve; model accuracy)
+
+These results indicate that the learned neural network models negate the beneﬁts of imagination rollouts on our domains.
+0.70 (These results; indicate; that the learned neural network models negate the beneﬁts of imagination rollouts on our domains)
+0.84 Context(These results indicate):(the learned neural network models; negate; the beneﬁts of imagination rollouts on our domains)
+
+To evaluate imagination rollouts with ﬁtted time-varying linear dynamics, we chose single-target variants of two of the manipulation tasks: the reacher and the gripper task.
+0.57 (we; chose; single-target variants of two of the manipulation tasks)
+
+We found that imagination rollouts of length 5 to 10 were sufﬁcient for these tasks to achieve signiﬁcant improvement over the fully model-free variant of NAF.
+0.95 (these tasks; to achieve; signiﬁcant improvement over the fully model-free variant of NAF)
+0.32 (We; found; that imagination rollouts of length 5 to 10 were sufﬁcient for these tasks to achieve signiﬁcant improvement over the fully model-free variant of NAF)
+0.96 Context(We found):(imagination rollouts of length 5 to 10; were sufﬁcient; for these tasks to achieve signiﬁcant improvement over the fully model-free variant of NAF)
+
+In order to retain the beneﬁt of model-free learning and allow the policy to continue improving once it exceeds the quality possible under the learned model, we switch off the imagination rollouts after 130 episodes (20,000 steps) on the gripper domain.
+0.57 (we; switch off; the imagination rollouts; T:after 130 episodes (20,000 steps) on the gripper domain)
+0.70 (the policy; improving; )
+0.45 (it; exceeds; the quality possible; under the learned model)
+
+With more complex initial state distributions, we might cluster the trajectories and ﬁt multiple models to account for different modes.
+0.45 (we; might cluster; the trajectories)
+0.48 (we; ﬁt; multiple models to account for different modes)
+
+That said, our results show that imagination rollouts are a very promising approach to accelerating model-free learning when combined with the right kind of dynamics model.
+0.12 (That; said; our results show that imagination rollouts are a very promising approach to accelerating model-free learning)
+0.52 Context(That said):(our results; show; that imagination rollouts are a very promising approach to accelerating model-free learning)
+0.92 Context(That said our results show):(imagination rollouts; are; a very promising approach to accelerating model-free learning)
+
+Discussion In this paper, we explored several methods for improving the sample efﬁciency of model-free deep reinforcement learning.
+0.57 (we; explored; several methods for improving the sample efﬁciency of model-free deep reinforcement learning)
+
+We ﬁrst propose a method for applying standard Q-learning methods to high-dimensional, continuous domains, using the normalized advantage function (NAF) representation.
+0.61 (We; ﬁrst propose; a method for applying standard Q-learning methods to high-dimensional, continuous domains)
+
+We show that, in comparison to recently proposed deep actor-critic algorithms, our method tends to learn faster and acquires more accurate policies.
+0.30 (our method; to learn faster; )
+0.60 (our method; acquires; more accurate policies)
+0.22 (We; show; that, in comparison to recently proposed deep actor-critic algorithms, our method tends to learn faster and acquires more accurate policies)
+0.40 Context(We show):(our method; tends; to learn faster)
+
+We further explore how model-free RL can be accelerated by incorporating learned models, without sacriﬁcing the optimality of the policy in the face of imperfect model learning.
+0.91 (how model-free RL; by incorporating; learned models)
+0.46 (We; explore; how model-free RL can be accelerated by incorporating learned models, without sacriﬁcing the optimality of the policy in the face of imperfect model learning)
+0.74 Context(We explore):(how model-free RL; can be accelerated; )
+
+We show that, although Q-learning can incorporate off-policy experience, learning primarily from off-policy exploration (via modelbased planning) only rarely improves the overall sample efﬁciency of the algorithm.
+0.93 (Q-learning; can incorporate; off-policy experience)
+0.38 (We; show; that, although Q-learning can incorporate off-policy experience, learning primarily from off-policy exploration (via modelbased planning) only rarely improves the overall sample efﬁciency of the algorithm)
+
+We postulate that this caused by the need to observe both successful and unsuccessful actions, in order to obtain an accurate estimate of the Qfunction.
+0.19 (We; postulate; that this caused by the need)
+0.33 Context(We postulate):(this; caused; by the need)
+
+We demonstrate that an alternative method based on synthetic on-policy rollouts achieves substantially improved sample complexity, but only when the model learning algorithm is chosen carefully.
+0.91 (an alternative method; based; on synthetic on-policy rollouts)
+0.77 (the model learning algorithm; is chosen carefully; )
+0.28 (We; demonstrate; that an alternative method based on synthetic on-policy rollouts achieves substantially improved sample complexity, but only when the model learning algorithm is chosen carefully)
+0.94 Context(We demonstrate):(an alternative method based on synthetic on-policy rollouts; achieves; substantially improved sample complexity)
+
+We demonstrate that training neural network models does not provide substantive improvement in our domains, but simple iteratively reﬁtted time-varying linear models do provide substantial improvement on domains where they can be applied.
+0.94 (simple iteratively reﬁtted time-varying linear models; do provide; substantial improvement; on domains)
+0.70 (they; can be applied; L:domains)
+0.17 (We; demonstrate; that training neural network models does not provide substantive improvement in our domains)
+0.83 Context(We demonstrate):(training neural network models; does not provide; substantive improvement in our domains)
+
+Continuous Deep Q-Learning with Model-based Acceleration Acknowledgement We thank Nicholas Heess for helpful discussion and Tom Erez, Yuval Tassa, Vincent Vanhoucke, and the Google Brain and DeepMind teams for their support.
+0.53 (We; thank; Nicholas Heess; for helpful discussion and Tom Erez, Yuval Tassa, Vincent Vanhoucke, and the Google Brain and DeepMind teams for their support)
+
+Employing the maximum entropy objective (Levine & Koltun, 2013), we can also construct a linear-Gaussian controller, where c is a scalar to adjust for arbitrary scaling of the reward magnitudes, (ut|xt) = N ( ˆut + kt + Kt(xt − ˆxt),−cQ−1 When the dynamics are not known, a particularly effective way to use iLQG is to combine it with learned time-varying linear models ˆp(xt+1|xt, ut).
+0.73 (the dynamics; are not known; )
+0.46 (we; can also construct; a linear-Gaussian controller, where c is a scalar to adjust for arbitrary scaling of the reward magnitudes, (ut|xt) = N ( ^ut + kt + Kt(xt − ^xt),−cQ−1 When the dynamics are not known, a particularly effective way to use iLQG is to combine it with learned time-varying linear models ^p(xt+1|xt, ut)
+0.90 (c; is; a scalar to adjust for arbitrary scaling of the reward magnitudes)
+0.96 (a particularly effective way to use iLQG; is; to combine it with learned time-varying linear models)
+
+The simplest and most common type of exploration involves randomizing the actions according to some distribution, either by taking random actions with some probability (Mnih et al., 2015), or adding Gaussian noise in continuous action spaces (Schulman et al., 2While standard iLQG notation denotes Q, V as discounted sum of costs, we denote them as sum of rewards to make them consistent with the rest of the paper 2015).
+0.36 (we; denote; them; as sum of rewards; to make them consistent with the rest of the paper 2015)
+0.95 Context(we denote):(The simplest and most common type of exploration; involves; randomizing the actions according to some distribution, either by taking random actions with some probability)
+0.18 Context(we denote):(we; denote them to make; them consistent with the rest of the paper 2015)
+0.95 (2While standard iLQG notation; denotes; Q)
+
+Furthermore, independent (spherical) Gaussian noise may be inappropriate for tasks where the optimal behavior requires correlation between action dimensions, as for example in the case of the swimming snake described in our experiments, which must coordinate the motion of different body joints to produce a synchronized undulating gait.
+0.83 (independent (spherical) Gaussian noise; may be; inappropriate)
+0.91 (the optimal behavior; requires; correlation between action dimensions)
+0.71 (the swimming snake described in our experiments; must coordinate; the motion of different body joints; to produce a synchronized undulating gait)
+
+We adopt the same approach in our work, but sample the innovations for the OU process from the Gaussian distribution in Equation 7.
+0.31 (We; adopt; the same approach in our work)
+0.57 (We; sample; the innovations; for the OU process from the Gaussian distribution in Equation 7)
+
+Lastly, we note that the overall scale of P (x|θP ) could vary signiﬁcantly through the learning, and depends on the magnitude of the cost, which introduces an undesirable additional degree of freedom.
+0.89 (the cost; introduces; an undesirable additional degree of freedom)
+0.31 (we; note; that the overall scale of P (x|θP ) could vary signiﬁcantly through the learning, and depends on the magnitude of the cost)
+0.74 Context(we note):(the overall scale of P; could vary; signiﬁcantly)
+
+We therefore use a heuristic adaptive-scaling trick to stabilize the noise magnitudes.
+0.45 (We; therefore use; a heuristic adaptive-scaling trick; to stabilize the noise magnitudes)
+
+Q-Learning as Variational Inference NAF, with our choice of parametrization, can only ﬁt a locally quadratic Q-function.
+0.75 (Q-Learning as Variational Inference NAF, with our choice of parametrization; can only ﬁt; a locally quadratic Q-function)
+
+We speculate such behaviors come from the mode-seeking behavior that is explained in Section 8.3, and thus exploring other parametric forms of NAF, such as multi-modal variants, is a promising avenue for future work.
+0.90 (the mode-seeking behavior; is explained; L:in Section 8.3)
+0.57 (We; exploring; other parametric forms of NAF, such as multi-modal variants)
+
+We therefore run iLQG in model-predictive control (MPC) mode for the experiments reported in Figures 5c, 5b, and 5a, and Table 2.
+0.90 (the experiments; reported; L:in Figures)
+0.55 (We; therefore run; iLQG in model-predictive control (MPC) mode for the experiments reported in Figures 5c, 5b, and 5a, and Table 2)
+0.43 Context(We therefore run):(We; therefore run iLQG; L:in model-predictive control (MPC) mode; T:for the experiments)
+
+Speciﬁcally, let π and ˆπ be corresponding policies of Q and ˆQ respectively, an alternative form of Q-learning could be optimizing the following objective: Le( ˆQ) = Ext∼ρˆπ [ ˜KL(ˆπ||π)] = Ext∼ρˆπ,ut∼ˆπ[ ˆQ − Q] (8) We can thus intuitively interpret NAF as doing variational inference to ﬁt a Gaussian to a distribution, and it has mode-seeking behavior
+0.50 (We; can thus intuitively interpret; NAF; as doing variational inference)
+0.12 (π; ^π respectively; )
+0.98 (be corresponding policies of Q and ^Q respectively, an alternative form of Q-learning; could be optimizing; the following objective)
+0.52 (it; has; mode-seeking behavior)
+

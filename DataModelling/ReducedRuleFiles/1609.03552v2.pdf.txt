@@ -1,0 +1,169 @@
+The paper  |  uses  | generative adversarial neural network
+The paper  |  solves  | natural image
+The paper  |  solves  | data
+The paper  |  solves  | natural image manifold directly from data
+The paper  |  solves  | natural image
+The paper  |  solves  | data
+The paper  |  solves  | natural image manifold directly from data
+The paper  |  uses  | generative adversarial networks
+The paper  |  uses  | image
+The paper  |  uses  | natural image manifold
+The paper  |  uses  | generative adversarial networks to perform image editing on the natural image manifold
+The paper  |  uses  | same amount
+The paper  |  uses  | geometric
+The paper  |  uses  | color changes
+The paper  |  uses  | original photo
+The paper  |  uses  | same amount of geometric and color changes to the original photo
+The paper  |  outputs  | ﬁnal result
+The paper  |  uses  | ﬁnal result
+The paper  |  uses  | image generation
+The paper  |  uses  | ﬁnal result for image generation
+The paper  |  uses  | generative adversarial neural network
+The paper  |  uses  | manifold
+The paper  |  uses  | natural images
+The paper  |  uses  | generative adversarial neural network to learn the manifold of natural images
+The paper  |  uses  | manifold
+The paper  |  uses  | natural images
+The paper  |  uses  | manifold of natural images
+The paper  |  uses  | constraint
+The paper  |  uses  | output
+The paper  |  uses  | various image manipulation operations
+The paper  |  uses  | constraint on the output of various image manipulation operations
+The paper  |  uses  | results
+The paper  |  uses  | manifold
+The paper  |  uses  | times
+The paper  |  uses  | results lie on the learned manifold at all times
+The paper  |  outputs  | diﬀerent look
+The paper  |  outputs  | morph
+The paper  |  outputs  | sources
+The paper  |  outputs  | stays
+The paper  |  outputs  | natural image manifold
+The paper  |  outputs  | morph that is both close to the two sources and stays on , or close to , the natural image manifold
+The paper  |  uses  | morph
+The paper  |  uses  | approximation
+The paper  |  uses  | ideal manifold
+The paper  |  uses  | m
+The paper  |  uses  | morph as an approximation to the ideal manifold m
+The paper  |  outputs  | high-quality samples
+The paper  |  outputs  | figure
+The paper  |  outputs  | example
+The paper  |  outputs  | high-quality samples ( see figure 2 ( a ) for example
+The paper  |  uses  | gan
+The paper  |  uses  | ideal manifold
+The paper  |  uses  | reasons
+The paper  |  uses  | gan to approximate an ideal manifold for two reasons
+The paper  |  uses  | ideal manifold
+The paper  |  uses  | reasons
+The paper  |  uses  | ideal manifold for two reasons
+The paper  |  uses  | approximation
+The paper  |  uses  | manifold
+The paper  |  uses  | natural images
+The paper  |  uses  | realistic photo
+The paper  |  uses  | approximation of the manifold of natural images for realistic photo
+The paper  |  outputs  | realtime method
+The paper  |  outputs  | latent vector z
+The paper  |  outputs  | realtime method for gradually and smoothly updating the latent vector z
+The paper  |  solves  | dense correspondence method
+The paper  |  solves  | per-pixel color
+The paper  |  solves  | shape changes
+The paper  |  solves  | edits
+The paper  |  solves  | dense correspondence method that estimates both per-pixel color and shape changes from the edits
+The paper  |  outputs  | ﬁnal
+The paper  |  outputs  | result
+The paper  |  outputs  | ﬁnal manipulated result
+The paper  |  uses  | generative model g
+The paper  |  uses  | reconstruction error
+The paper  |  uses  | weighted combination
+The paper  |  uses  | raw pixels
+The paper  |  uses  | conv4 features
+The paper  |  uses  | ×0.002
+The paper  |  uses  | alexnet [
+The paper  |  uses  | ]
+The paper  |  uses  | imagenet
+The paper  |  uses  | weighted combination of raw pixels and conv4 features ( ×0.002 ) extracted from alexnet [ 27 ] trained on imagenet
+The paper  |  uses  | l-bfgs-b
+The paper  |  uses  | l-bfgs-b
+The paper  |  uses  | initialization
+The paper  |  uses  | optimization objective
+The paper  |  uses  | l-bfgs-b as the initialization for the optimization objective
+The paper  |  outputs  | user
+The paper  |  outputs  | photo-realistic result
+The paper  |  outputs  | changes
+The paper  |  outputs  | generated image
+The paper  |  outputs  | photo-realistic result xr 1 that exhibits the changes in the generated image
+The paper  |  solves  | objective
+The paper  |  solves  | ﬂow
+The paper  |  solves  | v
+The paper  |  solves  | traditional optical ﬂow algorithm
+The paper  |  solves  | color change
+The paper  |  solves  | system
+The paper  |  solves  | linear equations
+The paper  |  solves  | objective by iteratively estimating the ﬂow ( u , v ) using a traditional optical ﬂow algorithm , and computing the color change a by solving a system of linear equations
+The paper  |  solves  | ﬂow
+The paper  |  solves  | v
+The paper  |  solves  | traditional optical ﬂow algorithm
+The paper  |  solves  | color change
+The paper  |  solves  | system
+The paper  |  solves  | linear equations
+The paper  |  solves  | ﬂow ( u , v ) using a traditional optical ﬂow algorithm , and computing the color change a by solving a system of linear equations
+The paper  |  outputs  | intermediate frames
+The paper  |  uses  | ﬂow
+The paper  |  uses  | initial projection g
+The paper  |  uses  | ﬂow to the initial projection g
+The paper  |  uses  | ﬂow
+The paper  |  uses  | original photo
+The paper  |  uses  | ﬂow to the original photo
+The paper  |  outputs  | interesting transition sequence
+The paper  |  outputs  | photo-realistic images
+The paper  |  outputs  | interesting transition sequence of photo-realistic images
+The paper  |  uses  | guided image ﬁlter
+The paper  |  outputs  | constraints
+The paper  |  outputs  | photo
+The paper  |  outputs  | diﬀerent aspects
+The paper  |  outputs  | coloring
+The paper  |  outputs  | constraints to edit the photo in diﬀerent aspects : coloring
+The paper  |  outputs  | ×
+The paper  |  outputs  | ×
+The paper  |  outputs  | image
+The paper  |  outputs  | 100-dimensional random vector
+The paper  |  outputs  | × 64 × 3 image given a 100-dimensional random vector
+The paper  |  outputs  | statistics
+The paper  |  outputs  | dataset
+The paper  |  outputs  | statistics of our dataset
+The paper  |  uses  | brush interactions
+The paper  |  uses  | section
+The paper  |  uses  | brush interactions described in section
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  uses  | sequence
+The paper  |  uses  | shape
+The paper  |  uses  | color
+The paper  |  uses  | image
+The paper  |  uses  | image
+The paper  |  uses  | user edits
+The paper  |  uses  | sequence to transform the shape and color of one image to look like another image automatically , i.e. , without any user edits
+The paper  |  uses  | shape
+The paper  |  uses  | color
+The paper  |  uses  | image
+The paper  |  uses  | shape and color of one image
+The paper  |  uses  | image
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  uses  | class-speciﬁc model
+The paper  |  uses  | images
+The paper  |  uses  | diﬀerent class
+The paper  |  uses  | class-speciﬁc model to reconstruct images from a diﬀerent class
+The paper  |  outputs  | gan
+The paper  |  outputs  | photo-realistic images
+The paper  |  outputs  | large displacement
+The paper  |  outputs  | images
+The paper  |  outputs  | large displacement between two images
+The paper  |  outputs  | step
+The paper  |  outputs  | image
+The paper  |  outputs  | direct constraint
+The paper  |  outputs  | step towards image editing with a direct constraint
+The paper  |  uses  | state-ofthe-art
+The paper  |  uses  | deep generative models
+The paper  |  uses  | state-ofthe-art in deep generative models

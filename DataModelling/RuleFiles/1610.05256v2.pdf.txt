@@ -1,0 +1,459 @@
+In this paper, we measure the human error rate on the widely used NIST 2000 test set, and ﬁnd that our latest automated system has reached human parity.
+0.74 (we; measure; the human error rate on the widely used NIST 2000 test set; L:In this paper)
+0.20 (we; ﬁnd; that our latest automated system has reached human parity; L:In this paper)
+0.62 Context(we ﬁnd):(our latest automated system; has reached; human parity)
+
+In both cases, our automated system establishes a new state of the art, and edges past the human benchmark, achieving error rates of 5.8% and 11.0%, respectively.
+0.78 (our automated system; establishes; a new state of the art; L:In both cases)
+0.75 (our automated system; edges; past the human benchmark; L:In both cases)
+
+The key to our system’s performance is the use of various convolutional and LSTM acoustic model architectures, combined with a novel spatial smoothing method and lattice-free MMI acoustic training, multiple recurrent neural network language modeling approaches, and a systematic use of system combination.
+0.88 (The key to our system's performance; is; the use of various convolutional and LSTM acoustic model architectures)
+0.97 (various convolutional and LSTM acoustic model architectures; combined; with a novel spatial smoothing method and lattice-free MMI acoustic training, multiple recurrent neural network language modeling approaches, and a systematic use of system combination)
+
+To better understand human performance, we have used professional transcribers to transcribe the actual test sets that we are working with, speciﬁcally the CallHome and Switchboard portions of the NIST eval 2000 test set.
+0.45 (we; have used; professional transcribers; to transcribe the actual test sets)
+0.90 (the actual test sets; are working; we)
+
+We ﬁnd that the human error rates on these two parts are different almost by a factor of two, so a single number is inappropriate to cite.
+0.72 (a single number; to cite; )
+
+We improve on our recently reported conversational speech recognition system [20] by about 0.4%, and now exceed human performance by a small margin.
+0.31 (We; improve; on our recently reported conversational speech recognition system)
+
+Our progress is a result of the careful engineering and optimization of convolutional and recurrent neural networks.
+0.70 (Our progress; is; a result of)
+
+The description of a novel spatial regularization method which signiﬁcantly boosts our LSTM acoustic model performance 3.
+0.87 (a novel spatial regularization method; signiﬁcantly boosts; our LSTM acoustic model performance 3)
+
+Expanded coverage of the Microsoft Cognitive Toolkit (CNTK) used to build our models 6.
+0.90 (Expanded coverage of the Microsoft Cognitive Toolkit; to build; our models 6)
+
+The remainder of this paper describes our system in detail.
+0.87 (The remainder of this paper; describes; our system)
+
+Section 2 describes our measurement of human performance.
+0.83 (Section 2; describes; our measurement of human performance)
+
+Section 4 describes our implementation of i-vector adaptation.
+0.83 (Section 4; describes; our implementation of i-vector adaptation)
+
+Language model rescoring is a signiﬁcant part of our system, and described in Section 6.
+0.88 (Language model rescoring; is; a signiﬁcant part of our system)
+0.90 (Language model rescoring; described; L:in Section 6)
+
+We describe the CNTK toolkit that forms the basis of our neural network models in Section 7.
+0.20 (We; describe; the CNTK toolkit that forms the basis of our neural network models in Section 7)
+0.62 Context(We describe):(the CNTK; toolkit; that forms the basis of our neural network models in Section 7)
+
+To measure human performance, we leveraged an existing pipeline in which Microsoft data is transcribed on a weekly basis.
+0.95 (Microsoft data; is transcribed; L:an existing pipeline)
+
+One week, we added the NIST 2000 CTS evaluation data to the work-list, without further comment.
+0.64 (we; added; the NIST 2000 CTS evaluation data; to the work-list; T:One week)
+
+Aside from the standard twopass checking in place, we did not do a complex multi-party transcription and adjudication process.
+0.91 (the standard twopass; checking; in place)
+
+Thus, it is the same condition as reported for our automated systems.
+0.37 (it; is; the same condition as reported for our automated systems)
+
+Error rates of 4.1 to 4.5% are reported for extremely careful multiple transcriptions, and 9.6% for “quick transcriptions.” While this is a different test set, the numbers are in line with our ﬁndings.
+0.96 (Error rates of 4.1 to 4.5%; are reported; for extremely careful multiple transcriptions, and 9.6% for "quick transcriptions)
+0.45 (this; is; a different test set)
+0.83 (the numbers; are; in line with our ﬁndings)
+
+We note that the bulk of the Fisher training data, and the bulk of the data overall, was transcribed with the “quick transcription” guidelines.
+0.32 (We; note; that the bulk of the Fisher training data, and the bulk of the data overall, was transcribed with the "quick transcription" guidelines)
+0.97 Context(We note):(the bulk of the Fisher training data, and the bulk of the data overall; was transcribed; with the "quick transcription" guidelines)
+
+Notably, the performance of our artiﬁcial system aligns almost exactly with the performance of people on both sets.
+0.81 (the performance of our artiﬁcial system; aligns; almost exactly with the performance of people on both sets)
+
+CONVOLUTIONAL AND LSTM NEURAL We use three CNN variants.
+0.50 (We; use; three CNN variants)
+
+The only difference is that we apply Batch Normalization before computing ReLU activations.
+0.71 (The only difference; is; that we apply Batch Normalization before computing ReLU activations)
+0.43 Context(The only difference is):(we; apply; Batch Normalization; T:before computing ReLU activations)
+0.43 Context(The only difference is we apply):(we; apply Batch Normalization before computing; ReLU activations)
+
+We have found empirically that a suitable scale for this energy is 0.1 with respect to the existing cross entropy objective function.
+0.27 (We; have found; T:empirically; that a suitable scale for this energy is 0.1 with respect to the existing cross entropy objective function)
+0.96 Context(We have found):(a suitable scale for this energy; is; 0.1 with respect to the existing cross entropy objective function)
+
+Table 2 shows the beneﬁt in error rate for some of our early systems.
+0.60 (Table 2; shows; the beneﬁt in error rate for some of our early systems)
+
+We observed error reductions of between 5 and 10% relative from spatial smoothing.
+0.57 (We; observed; error reductions of between 5 and 10% relative from spatial smoothing)
+
+We also trained a fused model by combining a ResNet model and a VGG model at the senone posterior level.
+0.41 (We; trained; a fused model)
+
+The fused system is our best single system.
+0.88 (The fused system; is; our best single system)
+
+While our best performing models are convolutional, the use of long short-term memory networks (LSTMs) is a close second.
+0.43 (our best performing models; are; convolutional)
+0.95 (the use of long short-term memory networks; is; a close second)
+
+We use a bidirectional architecture [48] without frameskipping [29].
+0.39 (We; use; a bidirectional architecture)
+0.11 Context(We use):(We; use a bidirectional architecture without frameskipping; 29)
+
+We found that using networks with more than six layers did not improve the word error rate on the development set, and chose 512 hidden units, per direction, per layer, as that provided a reasonable trade-off between training time and ﬁnal model accuracy.
+0.28 (We; found; that using networks with more than six layers did not improve the word error rate on the development set, and chose 512 hidden units, per direction, per layer)
+0.92 Context(We found):(using networks with more than six layers; did not improve; the word error rate on the development set)
+0.20 (that; provided; a reasonable trade-off between training time and ﬁnal model accuracy)
+
+Inspired by the human auditory cortex, where neighboring neurons tend to simultaneously activate, we employ a spatial smoothing technique to improve the accuracy of our LSTM models.
+0.91 (neighboring neurons; tend; to simultaneously activate, we employ a spatial smoothing technique)
+0.68 (neighboring neurons; to activate; T:simultaneously)
+0.41 Context(neighboring neurons to activate):(we; employ; a spatial smoothing technique to improve the accuracy of our LSTM models)
+0.22 Context(neighboring neurons to activate we employ):(we; employ to improve; the accuracy of our LSTM models)
+
+The smoothing is implemented as a regularization term on the activations between layers of the acoustic Speaker adaptive modeling in our system is based on conditioning the network on an i-vector [49] characterization of each speaker [50, 51].
+0.91 (The smoothing; is implemented; as a regularization term on the activations between layers of the acoustic Speaker adaptive modeling in our system)
+0.86 (the activations between layers of the acoustic Speaker adaptive modeling in our system; is based; on conditioning the network on an i-vector [49] characterization of each speaker)
+
+For convolutional networks, this approach is inappropriate because we do not expect to see spatially contiguous patterns in the input.
+0.91 (this approach; is; inappropriate; because we do not expect to see spatially contiguous patterns in the input)
+0.39 (we; do not expect; to see spatially contiguous patterns in the input)
+0.39 Context(we do not expect):(we; do not expect to see; spatially contiguous patterns; L:in the input)
+
+Instead, for the CNNs, we add a learnable weight matrix W l to each layer, and add W lvs to the activation of the layer before the nonlinearity.
+0.57 (we; add; a learnable weight matrix W l to each layer)
+0.93 (a learnable weight matrix; l; to each layer)
+0.53 (we; add; W lvs; to the activation of the layer before the nonlinearity)
+
+Note that the i-vectors are estimated using MFCC features; by using them subsequently in systems based on log-ﬁlterbank features, we may beneﬁt from a form of feature combination.
+0.44 (we; may beneﬁt; from a form of feature combination; T:by using them subsequently in systems)
+0.89 (systems; based; on log-ﬁlterbank features)
+
+After standard cross-entropy training, we optimize the model parameters using the maximum mutual information (MMI) objective function.
+0.74 (we; optimize; the model parameters using the maximum mutual information (MMI) objective function; T:After standard cross-entropy training)
+0.91 (the model parameters; using; the maximum mutual information)
+
+We construct the denominator graph from this language model, and HMM transition probabilities as determined by transition-counting in the senone sequences found in the training data.
+0.45 (We; construct; the denominator graph; from this language model)
+0.91 (the senone sequences; found; L:in the training data)
+
+Our approach not only largely reduces the complexity of building up the language model but also provides very reliable training performance.
+0.60 (Our approach; largely reduces; the complexity of building up the language model)
+0.60 (Our approach; provides; very reliable training performance)
+
+We have found it convenient to do the full computation, without pruning, in a series of matrix-vector operations on the GPU.
+0.31 (We; have found; it convenient to do the full computation)
+
+The underlying acceptor is represented with a sparse matrix, and we maintain a dense likelihood vector for each time frame.
+0.75 (The underlying acceptor; is represented; )
+0.45 (we; maintain; a dense likelihood vector for each time frame)
+
+As in [54], we use cross-entropy regularization.
+0.45 (we; use; cross-entropy regularization)
+
+In all the lattice-free MMI (LFMMI) experiments mentioned below we use a trigram language model.
+0.88 (all the lattice-free MMI (LFMMI) experiments; mentioned; L:below we)
+
+In our implementation, we use a mixed-history acoustic unit language model.
+0.44 (we; use; a mixed-history acoustic unit language model; L:In our implementation)
+
+We found this model to perform better than either purely word-based or phone-based models.
+0.51 (We; found; this model to perform better than either purely word-based or phone-based models)
+0.69 Context(We found):(this model; to perform better; )
+
+Based on a set of initial experiments, we developed the following procedure: An initial decoding is done with a WFST decoder, using the architecture described in [55].
+0.77 (the architecture; described; L:in [55)
+0.90 (An initial decoding; is done; with a WFST decoder)
+0.39 Context(An initial decoding is done):(we; developed; the following procedure)
+
+We use an N-gram language model trained and pruned with the SRILM toolkit [56].
+0.50 (We; use; an N-gram language model)
+0.85 (an N-gram language model; trained; )
+
+We have experimented with both RNN LMs and LSTM LMs, and describe the details in the following two sections.
+0.50 (We; have experimented; with both RNN LMs and LSTM LMs)
+0.41 (We; describe; the details)
+
+Our RNN-LMs are trained and evaluated using the CUEDRNNLM toolkit [58].
+0.30 (Our RNN-LMs; are trained; )
+0.27 (Our RNN-LMs; evaluated; )
+
+Our RNN-LM conﬁguration has several distinctive features, as described below.
+0.69 (Our RNN-LM conﬁguration; has; several distinctive features)
+
+We trained both standard, forward-predicting RNNLMs and backward RNN-LMs that predict words in Table 3.
+0.45 (We; trained; both standard)
+0.93 (forward-predicting RNNLMs and backward RNN-LMs; predict; words in  Table 3)
+
+In addition, we trained a second RNN-LM for each direction, obtained by starting with different random initial weights.
+0.50 (we; trained; a second RNN-LM for each direction)
+0.85 (a second RNN-LM for each direction; obtained; )
+
+In order to make use of LM training data that is not fully matched to the target conversational speech domain, we start RNN-LM training with the union of in-domain (here, CTS) and out-of-domain (e.g., Web) data.
+0.92 (LM training data; is not fully matched; to the target conversational speech domain)
+0.68 (we; start; RNN-LM training with the union of in-domain (here, CTS) and out-of-domain (e.g., Web) data)
+
+We found best results with an RNN-LM conﬁguration that had a second, non-recurrent hidden layer.
+0.45 (We; found; best results)
+0.95 (an RNN-LM conﬁguration; had; a second, non-recurrent hidden layer)
+
+While the RNN-LM estimates a probability for unknown words, we take a different approach in rescoring: The number of out-of-set words is recorded for each hypothesis and a penalty for them is estimated for them when optimizing the relative weights for all model scores (acoustic, LM, pronunciation), using the SRILM nbest-optimize tool.
+0.89 (the RNN-LM; estimates; a probability for unknown words)
+0.94 (The number of out-of-set words; is recorded; T:for each hypothesis)
+0.40 Context(The number of out - of - set words is recorded):(we; take; a different approach in rescoring)
+0.54 (a penalty for them; is estimated; for them; T:when optimizing the relative weights for all model scores)
+
+After obtaining good results with RNN-LMs we also explored the LSTM recurrent network architecture for language modeling, inspired by recent work showing gains over RNN-LMs for conversational speech recognition [37].
+0.60 (we; explored; the LSTM recurrent network architecture; T:After obtaining good results with RNN-LMs)
+0.89 (language modeling; inspired; by recent work)
+0.92 (recent work; showing; gains over RNN-LMs)
+
+In addition to applying the lessons learned from our RNN-LM experiments, we explored additional alternatives, as described below.
+0.86 (the lessons; learned; from our RNN-LM experiments)
+0.45 (we; explored; additional alternatives)
+
+There are two types of input vectors our LSTM LMs take, word based one-hot vector input and letter trigram vector [60] input.
+0.92 (two types of input vectors; take; our LSTM LMs)
+
+Including both forward and backward models, we trained four different LSTM LMs in total.
+0.50 (we; trained; four different LSTM LMs; in total)
+
+For the word based input, we leveraged the approach from [61] to tie the input embedding and output embedding together.
+
+Here we also used a two-phase training schedule to train the LSTM LMs.
+0.58 (we; also used; a two-phase training schedule; to train the LSTM LMs; L:Here)
+0.43 Context(we also used):(we; also used a two-phase training schedule to train; the LSTM LMs)
+
+First we train the model on the combination of in-domain and out-domain data for four data passes without any learning rate adjustment.
+0.64 (we; train; the model on the combination of in-domain and out-domain data for four data; T:First)
+
+We then start from the resulting model and train on in-domain data until convergence.
+0.73 (We; start; from the resulting model and train on in-domain data until convergence; T:then)
+
+We tried applying dropout on both types of language models but didn’t see an improvement.
+0.41 (We; did n't see; an improvement)
+0.40 (We; tried; applying dropout on both types of language models)
+0.40 Context(We tried):(We; tried applying dropout; on both types of language models)
+
+Based on this, we proceeded with three hidden layers, with 1000 hidden units each.
+0.57 (we; proceeded; with three hidden layers, with 1000 hidden units each)
+
+The perplexities of each LSTM-LM we used in the ﬁnal combination (before interpolating with the N-gram model) can be found in Table 5.
+0.95 (The perplexities of each LSTM-LM; can be found; L:in Table 5; T:before interpolating with the N-gram model)
+
+For the ﬁnal system, we interpolated two LSTM-LMs with an N-gram LM for the forward-direction LM, and similarly for the backward-direction LM.
+0.74 (we; interpolated; two LSTM-LMs; with an N-gram LM for the forward-direction LM; T:For the ﬁnal system)
+
+To this we added 62M words of UW Web data as out-of-domain data, for use in the two-phase training procedure described above.
+0.68 (To this; added; 62M words of UW Web data as out-of-domain data, for use in the two-phase training procedure)
+0.83 (the two-phase training procedure; described; L:above)
+
+Instead, we perform a greedy search, starting with the single best system, and successively adding additional systems, to ﬁnd a small set of systems that are maximally complementary.
+0.41 (we; successively adding; additional systems; to ﬁnd a small set of systems)
+0.72 (systems; are; maximally complementary)
+0.39 (we; perform; a greedy search)
+0.29 Context(we perform):(we; perform a greedy search starting; with the single best system)
+
+We experimented with two search algorithms to ﬁnd good subsets of systems.
+0.39 (We; experimented; with two search algorithms; to ﬁnd good subsets of systems)
+0.39 Context(We experimented):(We; experimented with two search algorithms to ﬁnd; good subsets of systems)
+
+We always start with the system giving the best individual accuracy on the development set.
+0.62 (We; start; with the system; T:always)
+0.90 (the system; giving; the best individual accuracy on the development set)
+
+If no improvement is found with any of the unused systems, we try adding each with successively lower relative weights of 0.5, 0.2, and 0.1, and stop if none of these give an improvement.
+0.73 (no improvement; is found; )
+0.21 (we; stop; )
+0.91 (none of these; give; an improvement)
+0.57 (we; try; adding each with successively lower relative weights of 0.5, 0.2, and 0.1)
+0.39 Context(we try):(we; try adding; each; with successively lower relative weights of 0.5)
+
+To avoid overﬁtting, the weights for an N-way combination are smoothed hilattices and post-processing them, we consider LFMMI to be a signiﬁcant advance in technology.
+0.44 (we; consider; LFMMI to be a signiﬁcant advance in technology)
+0.83 Context(we consider):(LFMMI; to be; a signiﬁcant advance in technology)
+
+The ﬁnal system incorporated a variety of BLSTM models with roughly similar performance, but differing in various metaparameters (number of senones, use of spatial smoothing, and choice of pronunciation dictionaries).2 To further limit the number of free parameters to be estimated in system combination, we performed system selection in two stages.
+0.94 (number of senones, use of spatial smoothing, and choice of pronunciation dictionaries; To limit; the number of free parameters)
+0.90 (free parameters; to be estimated; in system combination)
+0.45 (we; performed; system selection)
+
+First, we selected the four best BLSTM systems.
+0.64 (we; selected; the four best BLSTM systems; T:First)
+
+We then combined these with equal weights and treated them as a single subsystem in searching for a larger combination including other acoustic models.
+0.55 (We; combined; these; with equal weights; T:then)
+0.52 (We; treated; them; as a single subsystem in searching for a larger combination including other acoustic models; T:then)
+
+This yielded our best overall combined system, as reported in Section 8.3.
+0.25 (This; yielded; our best overall combined system)
+
+The resulting fast experimental turnaround using the full 2000hour corpus was critical for our work.
+0.93 (fast experimental turnaround; using; the full 2000hour corpus)
+
+CNTK made training times feasible by parallelizing the SGD training with our 1-bit SGD parallelization technique [66].
+0.82 (CNTK; made; training times feasible)
+0.75 Context(CNTK made):(CNTK; made training times feasible by parallelizing; the SGD training; with our 1-bit SGD parallelization technique)
+
+In [66], we showed that gradient values can be quantized to just a single bit, if one carries over the quantization error from one minibatch to the next.
+0.62 (one; carries; over the quantization error; from one minibatch to the next)
+0.26 (we; showed; that gradient values can be quantized to just a single bit, if one carries over the quantization error from one minibatch to the next; T:In [66)
+0.88 Context(we showed):(gradient values; can be quantized; to just a single bit)
+
+Table 7 compares the runtimes, as multiples of speech duration, of various processing steps associated with the different acoustic model architectures (ﬁgures for DNNs are given only as a reference point, since they are not used in our system).
+0.57 (Table 7; compares; the runtimes)
+0.91 (various processing steps; associated; with the different acoustic model architectures)
+0.94 (multiples of speech duration, of various processing steps; are given; only as a reference point)
+0.46 (they; are not used; L:in our system)
+
+We observe that the GPU gives a 10 to 100-fold speedup for AM evaluation over the CPU implementation.
+0.22 (We; observe; that the GPU gives a 10)
+0.78 Context(We observe):(the GPU; gives; a 10)
+
+We train with the commonly used English CTS (Switchboard and Fisher) corpora.
+0.61 (We; train; with the commonly used English CTS (Switchboard and Fisher) corpora)
+
+The bulk of our models use three state left-to-right triphone models with 9000 tied states.
+0.79 (The bulk of our models; use; three state left-to-right triphone models with 9000 tied states)
+
+Additionally, we have trained several models with 27k tied states.
+0.45 (we; have trained; several models with 27k tied states)
+
+We use a 30k-vocabulary derived from the most common words in the Switchboard and Fisher corpora.
+0.61 (We; use; a 30k-vocabulary derived from the most common words in the Switchboard and Fisher corpora)
+0.96 (a 30k-vocabulary; derived; from the most common words in the Switchboard and Fisher corpora)
+
+Table 3 shows the result of i-vector adaptation and LFMMI training on several of our early systems.
+0.65 (Table 3; shows; the result of i-vector adaptation and LFMMI training on several of our early systems)
+
+We achieve a 5–8% relative improvement from i-vectors, including on CNN systems.
+0.46 (We; achieve; a 5-8% relative improvement from i-vectors, including on CNN systems)
+
+We see a consistent 7–10% further relative reduction in error rate for all models.
+0.57 (We; see; a consistent 7-10% further relative reduction in error rate for all models)
+
+Overall Results and Discussion The performance of all our component models is shown in Table 8, along with the BLSTM combination and full system combination results.
+0.84 (Overall Results and Discussion The performance of all our component models; is shown; L:in Table 8)
+
+(Recall that the four best BLSTM systems are combined with equal weights ﬁrst, as described in Section 6.5.) Key benchmarks from the literature, our own best results, and the measured human error rates are compared in Table 9.4 All models listed in Table 8 are selected for the combined systems for one or more of the three rescoring LMs.
+0.94 (the four best BLSTM systems; are combined ﬁrst; with equal weights)
+0.92 (All models; listed; in Table 8)
+0.85 (All models listed in Table 8; are selected; )
+0.86 (Key; benchmarks; from the literature, our own best results)
+0.94 (the measured human error rates; are compared; in Table 9.4)
+
+While this yields our single best acoustic model, only the individual VGG and ResNet models are used in the overall system combination.
+0.25 (this; yields; our single best acoustic model)
+0.95 (only the individual VGG and ResNet models; are used; L:in the overall system combination)
+
+We also observe that the four model variants chosen for the combined BLSTM subsystem differ incrementally by one hyperparameter (smooththe word “hmm.” The scoring guidelines treat “hmm” as a word distinct from backchannels and hesitations, so this is not a scoring mistake.
+0.38 (this; is not; a scoring mistake)
+0.93 (the four model variants; chosen; for the combined BLSTM subsystem)
+0.87 (The scoring guidelines; treat; hmm; as a word distinct from backchannels and hesitations)
+0.31 Context(The scoring guidelines treat):(We; also observe; that the four model variants chosen for the combined BLSTM subsystem differ incrementally by one hyperparameter)
+0.86 Context(We also observe The scoring guidelines treat):(the four model variants chosen for the combined BLSTM subsystem; differ incrementally; )
+
+For both people and our automated system, the insertion and deletion patterns are similar: short function words are by far the most frequent errors.
+0.89 (short function words; are; by far the most frequent errors)
+0.78 Context(short function words are):(the insertion and deletion patterns; are; similar)
+
+In particular, the single most common error made by the transcribers was to omit the word “I.” While we believe further improvement in function and content words is possible, the signiﬁcance of the remaining backchannel/hesitation confusions is unclear.
+0.93 (the single most common error; made; by the transcribers)
+0.87 (the signiﬁcance of the remaining backchannel/hesitation confusions; is; unclear)
+0.94 Context(the signiﬁcance of the remaining backchannel / hesitation confusions is):(the single most common error made by the transcribers; was; to omit the word "I." While we believe further improvement in function and content words is possible)
+0.40 (we; believe; further improvement in function and content words is possible)
+0.85 Context(we believe):(further improvement in function and content words; is; possible)
+
+We see that the human transcribers have a somewhat lower substitution rate, and a higher deletion rate.
+0.28 (We; see; that the human transcribers have a somewhat lower substitution rate, and a higher deletion rate)
+0.89 Context(We see):(the human transcribers; have; a somewhat lower substitution rate)
+
+We also assessed the lower bound of performance for our lattice/Nbest rescoring paradigm.
+0.19 (We; also assessed; )
+
+With oracle error rates less than half the currently achieved actual error rates, we conclude that search errors are not a major limiting factor to even better accuracy.
+0.27 (we; conclude; that search errors are not a major limiting factor to even better accuracy)
+0.88 Context(we conclude):(search errors; are not; a major limiting factor to even better accuracy)
+
+In this section, we compare the errors made by our artiﬁcial recognizer with those made by human transcribers.
+0.23 (we; compare; the errors made by our artiﬁcial recognizer with those; L:In this section)
+0.65 (the errors; made; by our artiﬁcial recognizer with those)
+0.23 (those; made; by human transcribers)
+
+We ﬁnd that the machine errors are substantially the same as human ones, with one large exception: confusions between backchannel words and hesitations.
+0.34 (We; ﬁnd; that the machine errors are substantially the same as human ones, with one large exception)
+0.74 Context(We ﬁnd):(the machine errors; are; substantially)
+
+Focusing on the substitutions, we see that by far the most common error in the ASR system is the confusion of a hesitation in the reference for a backchannel in the hypothesis.
+0.31 (we; see; that by far the most common error in the ASR system is the confusion of a hesitation in the reference for a backchannel in the hypothesis)
+
+We speculate that this is due to the nature of the Fisher training corpus, where the “quick transcription” guidelines were predominately used [41].
+0.80 (the "quick transcription" guidelines; were predominately used; )
+0.32 (We; speculate; that this is due to the nature of the Fisher training corpus)
+0.44 Context(We speculate):(this; is; due to the nature of the Fisher training corpus)
+
+We ﬁnd that there is inconsistent treatment of backchannel and hesitation in the resulting data; the relatively poor performance of the automatic system here might simply be due to confusions in the training data annotations.
+0.93 (the relatively poor performance of the automatic system here; might simply be; due to confusions in the training data annotations)
+0.21 Context(the relatively poor performance of the automatic system here might simply be):(We; ﬁnd; that there is inconsistent treatment of backchannel and hesitation in the resulting data)
+
+The most frequent substitution for people on the Switchboard corpus was mistaking a hesitation in the reference for 5The NIST scoring protocol treats hesitation words as optional, and we therefore delete them from our recognizer output prior to scoring.
+0.93 (the Switchboard; was mistaking; a hesitation; in the reference for 5The NIST scoring protocol)
+0.98 (The most frequent substitution for people on the Switchboard corpus was mistaking a hesitation in the reference for 5The NIST scoring protocol; treats; hesitation words; as optional)
+0.27 (we; delete; them; from our recognizer output; T:prior to scoring)
+
+This explains why we see many substitutions of backchannels for hesitations, but not vice-versa.
+0.30 (This; explains; why we see many substitutions of backchannels for hesitations, but not vice-versa)
+0.51 Context(This explains):(we; see; many substitutions of backchannels for hesitations, but not vice-versa)
+
+RELATION TO PRIOR WORK Compared to earlier applications of CNNs to speech recognition [67, 68], our networks are much deeper, and use linear bypass connections across convolutional layers.
+0.90 (RELATION TO PRIOR WORK; Compared; to earlier applications of CNNs)
+0.38 (our networks; are; much deeper)
+
+We improve on these architectures with the LACE model [46], which iteratively expands the effective window size, layer-by-layer, and adds an attention mask to differentially weight distant context.
+0.19 (We; improve; )
+0.95 (the LACE model; iteratively expands; the effective window size, layer-by-layer)
+
+Our spatial regularization technique is similar in spirit to stimulated deep neural networks [69].
+0.74 (Our spatial regularization technique; is; similar in spirit to stimulated deep neural networks)
+
+Whereas stimulated networks use a supervision signal to encourage locality of activations in the model, our technique is automatic.
+0.90 (stimulated networks; use; a supervision signal; to encourage locality of activations in the model)
+0.45 (our technique; is; automatic)
+
+Our use of lattice-free MMI is distinctive, and extends previous work [12, 54] by proposing the use of a mixed triphone/phoneme history in the language model.
+0.64 (Our use of lattice-free MMI; is; distinctive)
+0.77 (Our use of lattice-free MMI; extends; previous work)
+
+On the language modeling side, we achieve a performance boost by combining multiple LSTM-LMs in both forward and backward directions, and by using a two-phase training regimen to get best results from out-of-domain data.
+0.53 (we; achieve; a performance boost; L:On the language modeling side)
+0.43 Context(we achieve):(we; achieve a performance boost by combining; multiple LSTM-LMs; in both forward and backward directions)
+
+For our best CNN system, LSTM-LM rescoring yields a relative word error reduction of 23%, and a 20% relative gain for the combined recognition system, considerably larger than previously reported for conversational speech recognition [37].
+0.93 (LSTM-LM rescoring; yields; a relative word error reduction of 23%, and a 20% relative gain for the combined recognition system, considerably larger)
+
+We have measured the human error rate on NIST’s 2000 conversational telephone speech recognition task.
+0.61 (We; have measured; the human error rate on NIST's 2000 conversational telephone speech recognition task)
+
+We ﬁnd that there is a great deal of variability between the Switchboard and CallHome subsets, with 5.8% and 11.0% error rates respectively.
+0.25 (We; ﬁnd; that there is a great deal of variability between the Switchboard and CallHome subsets, with 5.8% and 11.0% error rates respectively)
+
+For the ﬁrst time, we report automatic recognition performance on par with human performance on this task.
+0.70 (we; report; automatic recognition performance on par with human performance on this task; T:For the ﬁrst time)
+
+ASR 44: i 33: it 29: a 29: and 25: is 19: he 18: are 17: oh 17: that 17: the CH Human 73: i 59: and 48: it 47: is 45: the 41: %bcack 37: a 33: you 31: oh 30: that ASR 31: it 26: i 19: a 17: that 15: you 13: and 12: have 12: oh 11: are 11: is Human 34: i 30: and 29: it 22: a 22: that 22: you 17: the 17: to 15: oh 15: yeah ASR 15: a 15: is 11: i 11: the 11: you 9: it 7: oh 6: and 6: in 6: know 4: they Human 10: i 9: and 8: a 8: that 8: the 7: have 5: you 4: are 4: is ASR 19: i 9: and 7: of 6: do 6: is 5: but 5: yeah 4: air 4: in 4: you Human 12: i 11: and 9: you 8: is 6: they 5: do 5: have 5: it 5: yeah 4: a Our system’s performance can be attributed to the systematic use of LSTMs for both acoustic and language modeling, as well as CNNs in the acoustic model, and extensive combination of complementary system for both acoustic and language modeling.
+0.30 (he 18; are; 17)
+0.50 Context(he 18 are):(it 29: a 29: and 25; is; 19)
+0.74 (a Our system's performance; can be attributed; to the systematic use of LSTMs for both acoustic and language)
+0.29 Context(a Our system 's performance can be attributed):(that 22; is; 6)
+
+We thank Arul Menezes for access to the Microsoft transcription pipeline; Chris Basoglu, Amit Agarwal and Marko Radmilac for their invaluable assistance with CNTK; Jinyu Li and Partha Parthasarathy for many helpful conversations.
+0.57 (We; thank; Arul Menezes; for access to the Microsoft transcription pipeline)
+
+We also thank X.
+0.53 (We; thank; X.)
+
+Weng, D
+

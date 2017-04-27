@@ -1,0 +1,84 @@
+Hunt∗, Alexander Pritzel, Nicolas Heess, Tom Erez, Yuval Tassa, David Silver & Daan Wierstra Google Deepmind London, UK {countzero, jjhunt, apritzel, heess, etom, tassa, davidsilver, wierstra} @ google.com We adapt the ideas underlying the success of Deep Q-Learning to the continuous action domain.
+We present an actor-critic, model-free algorithm based on the deterministic policy gradient that can operate over continuous action spaces.
+Using the same learning algorithm, network architecture and hyper-parameters, our algorithm robustly solves more than 20 simulated physics tasks, including classic problems such as cartpole swing-up, dexterous manipulation, legged locomotion and car driving.
+Our algorithm is able to ﬁnd policies whose performance is competitive with those found by a planning algorithm with full access to the dynamics of the domain and its derivatives.
+We further demonstrate that for many of the tasks the algorithm can learn policies “end-to-end”: directly from raw pixel inputs.
+In this work we present a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces.
+Our work is based Published as a conference paper at ICLR 2016 on the deterministic policy gradient (DPG) algorithm (Silver et al., 2014) (itself similar to NFQCA (Hafner & Riedmiller, 2011), and similar ideas can be found in (Prokhorov et al., 1997)).
+However, as we show below, a naive application of this actor-critic method with neural function approximators is unstable for challenging problems.
+Here we combine the actor-critic approach with insights from the recent success of Deep Q Network (DQN) (Mnih et al., 2013; 2015).
+In this work we make use of the same ideas, along with batch normalization (Ioffe & Szegedy, 2015), a recent advance in deep learning.
+In order to evaluate our method we constructed a variety of challenging physical control problems that involve complex multi-joint movements, unstable and rich contact dynamics, and gait behavior.
+Accordingly, we place a ﬁxed viewpoint camera in the simulator and attempted all tasks using both low-dimensional observations (e.g.
+Our model-free approach which we call Deep DPG (DDPG) can learn competitive policies for all of our tasks using low-dimensional observations (e.g.
+In many cases, we are also able to learn good policies directly from pixels, again keeping hyperparameters and network structure constant 1.
+For the physical control problems we compare our results to a baseline computed by a planner (Tassa et al., 2012) that has full access to the underlying simulated dynamics and its derivatives (see supplementary information).
+We consider a standard reinforcement learning setup consisting of an agent interacting with an environment E in discrete timesteps.
+Here, we assumed the environment is fully-observed so st = xt.
+We model it as a Markov decision process with a state space S, action space A = IRN , an initial state distribution p(s1), transition dynamics p(st+1|st, at), and reward function r(st, at).
+We denote the discounted state visitation distribution for a policy π as ρπ.
+It describes the expected return after taking an action at in state st and thereafter following policy π: Qπ(st, at) = Eri≥t,si>t∼E,ai>t∼π [Rt|st, at] 1You can view a movie of some of the learned policies at https://goo.gl/J4PIAz Published as a conference paper at ICLR 2016 Many approaches in reinforcement learning make use of the recursive relationship known as the Bellman equation: (cid:2)r(st, at) + γ Eat+1∼π [Qπ(st+1, at+1)](cid:3) (2) If the target policy is deterministic we can describe it as a function µ : S ← A and avoid the inner expectation: Qµ(st, at) = Ert,st+1∼E [r(st, at) + γQµ(st+1, µ(st+1))] The expectation depends only on the environment.
+We consider function approximators parameterized by θQ, which we optimize by minimizing the loss: yt = r(st, at) + γQ(st+1, µ(st+1)|θQ).
+We employ these in the context of DDPG and explain their implementation in the next section.
+Instead, here we used an actor-critic approach based on the DPG algorithm (Silver et al., 2014).
+A minibatch version of NFQCA which does not reset the policy at each update, as would be required to scale to large networks, is equivalent to the original DPG, which we compare to here.
+Our contribution here is to provide modiﬁcations to DPG, inspired by the success of DQN, which allow it to use neural network function approximators to learn in large state and action spaces online.
+We refer to our algorithm as Deep DPG (DDPG, Algorithm 1).
+2In practice, as in commonly done in policy gradient implementations, we ignored the discount in the statehigh dimensional tasks such as gripper, tasks involving contacts such as puck striking (canada) and locomotion tasks such as cheetah (Wawrzy´nski, 2009).
+In all tasks, we ran experiments using both a low-dimensional state description (such as joint angles and positions) and high-dimensional renderings of the environment.
+As in DQN (Mnih et al., 2013; 2015), in order to make the problems approximately fully observable in the high dimensional environment we used action repeats.
+For each timestep of the agent, we step the simulation 3 timesteps, repeating the agent’s action and rendering each time.
+See supplementary information for details of our network structure and hyperparameters.
+We evaluated the policy periodically during training by testing it without exploration noise.
+We also report results with components of our algorithm (i.e.
+We normalized the scores using two baselines.
+As in DQN, we used a replay buffer to address these issues.
+Our solution is similar to the target network used in (Mnih et al., 2013) but modiﬁed for actor-critic and using “soft” target updates, rather than directly copying the weights.
+We create a copy of the actor and critic networks, Q(cid:48)(s, a|θQ(cid:48) ) and µ(cid:48)(s|θµ(cid:48) ) respectively, that are used for calculating the target values.
+We found that having both a target µ(cid:48) and Q(cid:48) was required to have stable targets yi in order to consistently train the critic without divergence.
+However, in practice we found this was greatly outweighed by the stability of learning.
+We address this issue by adapting a recent technique from deep learning called batch normalization (Ioffe & Szegedy, 2015).
+In addition, it maintains a running average of the mean and variance to use for normalization during testing (in our case, during exploration or evaluation).
+In the low-dimensional case, we used batch normalization on the state input and all layers of the µ network and all layers of the Q network prior to the action input (details of the networks are given in the supplementary material).
+With batch normalization, we were able to learn effectively across many different tasks with differing types of units, without needing to manually ensure the units were within a set range.
+An advantage of offpolicies algorithms such as DDPG is that we can treat the problem of exploration independently from the learning algorithm.
+We constructed an exploration policy µ(cid:48) by adding noise sampled from a noise process N to our actor policy (7) N can be chosen to chosen to suit the environment.
+As detailed in the supplementary materials we used an Ornstein-Uhlenbeck process (Uhlenbeck & Ornstein, 1930) to generate temporally correlated exploration for exploration efﬁciency in physical control problems with inertia (similar use of autocorrelated noise was introduced in (Wawrzy´nski, 2015)).
+We constructed simulated physical environments of varying levels of difﬁculty to test our algorithm.
+We normalize scores so that the naive policy has a mean score of 0 and iLQG has a mean score of 1.
+We examined DDPG’s estimates empirically by comparing the values estimated by Q after training with the true returns seen on test episodes.
+To demonstrate the generality of our approach we also include Torcs, a racing game where the actions are acceleration, braking and steering.
+We used an identical network architecture and learning algorithm hyper-parameters to the physics tasks but altered the noise process for exploration because of the very different time scales involved.
+Figure 1: Example screenshots of a sample of environments we attempt to solve with DDPG.
+We tackle all tasks using both low-dimensional feature vector and high-dimensional pixel inputs.
+However, that paper did not demonstrate scaling the approach to large, high-dimensional observation spaces as we have here.
+We report both the average and best observed (across 5 runs).
+All scores, except Torcs, are normalized so that a random agent receives 0 and a planning algorithm 1; for Torcs we present the raw reward score.
+We include results from the DDPG algorithn in the low-dimensional (lowd) version of the environment and high-dimensional (pix).
+For comparision we also include results from the original DPG algorithm with a replay buffer and batch normalization (cntrl).
+Concurrent with our work, Balduzzi & Ghifary (2015) extended the DPG algorithm with a “deviator” network which explicitly learns ∂Q/∂a.
+The techniques we described here for scaling DPG are also applicable to stochastic policies by using the reparametrization trick (Heess et al., 2015; Schulman et al., 2015a).
+As with most reinforcement learning algorithms, the use of non-linear function approximators nulliﬁes any convergence guarantees; however, our experimental results demonstrate that stable learning without the need for any modiﬁcations between environments.
+Interestingly, all of our experiments used substantially fewer steps of experience than was used by DQN learning to ﬁnd solutions in the Atari domain.
+Nearly all of the problems we looked at were solved within 2.5 million steps of experience (and usually far fewer), a factor of 20 fewer steps than Published as a conference paper at ICLR 2016 DQN requires for good Atari solutions.
+A few limitations to our approach remain.
+However, we believe that a robust model-free approach may be an important component of larger systems which may attack these limitations (Gl¨ascher et al., 2010).
+Published as a conference paper at ICLR 2016 Supplementary Information: Continuous control with We used Adam (Kingma & Ba, 2014) for learning the neural network parameters with a learning rate of 10−4 and 10−3 for the actor and critic respectively.
+For Q we included L2 weight decay of 10−2 and used a discount factor of γ = 0.99.
+For the soft target updates we used τ = 0.001.
+When learning from pixels we used 3 convolutional layers (no pooling) with 32 ﬁlters at each layer.
+We trained with minibatch sizes of 64 for the low dimensional problems and 16 on pixels.
+We used a replay buffer size of 106.
+For the exploration noise process we used temporally correlated noise in order to explore well in physical environments that have momentum.
+We used an Ornstein-Uhlenbeck process (Uhlenbeck & Ornstein, 1930) with θ = 0.15 and σ = 0.2.
+Our planner is implemented as a model-predictive controller (Tassa et al., 2012): at every time step we run a single iteration of trajectory optimization (using iLQG, (Todorov & Li, 2005)), starting from the true state of the system.
+We use repeated samples of simulated dynamics to approximate a linear expansion of the dynamics around every step of the trajectory, as well as a quadratic expansion of the cost function.
+We use this sequence of locally-linear-quadratic models to integrate the value function backwards in time along the nominal trajectory.
+We perform a derivative-free line-search over this direction in the space of action sequences by integrating the dynamics forward (the forwardpass), and choose the best trajectory.
+We store this action sequence in order to warm-start the next iLQG iteration, and execute the ﬁrst action in the simulator.
+For the Torcs environment we used a reward function which provides a positive reward at each step for the velocity of the car projected along the track direction and a penalty of −1 for collisions.
+Published as a conference paper at ICLR 2016 For physical control tasks we used reward functions which provide feedback at every step.
+pendulum swingup and reaching) we provide a smoothly varying reward based on distance to a goal state, and in some cases an additional positive reward when within a small radius of the target state.
+For grasping and manipulation tasks we used a reward with a term which encourages movement towards the payload and a second component which encourages moving the payload to the target.
+In locomotion tasks we reward forward action and penalize hard impacts to encourage smooth rather than hopping gaits (Schulman et al., 2015b).
+In addition, we used a negative reward and early termination for falls which were determined by simple threshholds on the height and torso angle (in the case of walker2d)

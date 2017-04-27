@@ -1,0 +1,244 @@
+Modeling and Propagating CNNs in a Tree Structure for Visual Tracking Department of Computer Science and Engineering, POSTECH, Korea We present an online visual tracking algorithm by managing multiple target appearance models in a tree structure.
+0.91 (Korea We; present; an online visual tracking algorithm)
+0.91 Context(Korea We present):(Korea We; present an online visual tracking algorithm by managing; multiple target appearance models)
+
+Our algorithm illustrates outstanding performance compared to the state-of-the-art techniques in challenging datasets such as online tracking benchmark and visual object tracking challenge.
+0.64 (Our algorithm; illustrates; outstanding performance)
+
+We propose an online visual tracking algorithm, which estimates target state using the likelihoods obtained from multiple CNNs.
+0.57 (We; propose; an online visual tracking algorithm, which estimates target state using the likelihoods)
+0.92 (the likelihoods; obtained; from multiple CNNs)
+0.89 (an online visual tracking algorithm; estimates; target state using the likelihoods)
+0.90 Context(an online visual tracking algorithm estimates):(target state; using; the likelihoods obtained from multiple CNNs)
+
+The main contributions of our paper are summarized beformulate visual tracking as a discriminative object classiﬁcation problem in a sequence of video frames.
+
+All of these techniques are successful in learning reasonable target representations by adopting online discriminative learning procedures, but still rely on simple shallow features; we believe that tracking performance may be improved further by using deep features.
+0.28 (we; believe; that tracking performance may be improved further by using deep features)
+0.90 Context(we believe):(All of these techniques; are; successful; L:in learning reasonable target representations)
+0.69 Context(we believe):(tracking performance; may be improved further; )
+
+• We propose a visual tracking algorithm to manage tarproblems, tracking algorithms based on hand-crafted features [15, 38] often outperform CNN-based approaches.
+0.89 (algorithms; based; on hand-crafted features)
+0.40 (We; propose; a visual tracking algorithm to manage tarproblems)
+0.45 Context(We propose):(We; propose a visual tracking algorithm to manage tarproblems tracking; algorithms based on hand-crafted features [15, 38] often outperform CNN-based approaches)
+
+• Our tracking algorithm employs multiple models to capture diverse target appearances and performs more robust tracking even with challenges such as appearance changes, occlusions, and temporary tracking failures.
+0.37 (Our tracking algorithm; performs; more robust tracking)
+0.73 (Our tracking algorithm; employs; multiple models; to capture diverse target appearances; T:•)
+0.60 Context(Our tracking algorithm employs):(Our tracking algorithm; employs multiple models to capture; diverse target appearances)
+
+We ﬁrst review various techniques in visual tracking in Section 2, and then describe the overview of the proposed approach in Section 3.
+0.52 (We; ﬁrst; review various techniques in visual tracking; L:in Section 2)
+0.55 (We; describe; the overview of the proposed approach in Section 3; T:then)
+
+In this section, we focus on several discriminative tracking algorithms based on tracking-by-detection ﬁrst, and then discuss more speciﬁc topics such as visual tracking with multiple target appearance models and representation learning based on CNNs for visual tracking.
+0.60 (we; focus; on several discriminative tracking algorithms; L:In this section)
+0.92 (several discriminative tracking algorithms; based; on tracking-by-detection ﬁrst)
+0.71 (we; discuss; more speciﬁc topics such as visual tracking; with multiple target appearance models and representation learning based on CNNs for visual tracking; T:then)
+
+Our algorithm maintains multiple target appearance models based on CNNs in a tree structure to preserve model consistency and handle appearance multi-modality effectively.
+0.77 (Our algorithm; maintains; multiple target appearance models based on CNNs in a tree structure)
+0.93 (multiple target appearance models; based; on CNNs; L:in a tree structure)
+0.97 (multiple target appearance models based on CNNs in a tree structure; to handle effectively; appearance multi-modality)
+
+The proposed approach consists of two main components as in ordinary tracking algorithms—state estimation and model update—whose procedures are illustrated in  When a new frame is given, we draw candidate samples around the target state estimated in the previous frame, and compute the likelihood of each sample based on the weighted average of the scores from multiple CNNs.
+0.66 (we; draw; candidate samples around the target state; T:update)
+0.94 (The proposed approach; consists; of two main components as in ordinary tracking algorithms-state estimation and model)
+0.91 (the target state; estimated; in the previous frame)
+0.57 (we; compute; the likelihood of each sample based on the weighted average of the scores from multiple CNNs)
+0.75 (a new frame; is given; )
+
+Our approach has something in common with [22], which employs a candidate pool of multiple CNNs.
+0.70 (Our approach; has; something in common with [22)
+0.55 (22; employs; a candidate pool of multiple CNNs)
+
+Our algorithm is differentiated from this approach since it is more interested in how to keep multimodality of multiple CNNs and maximize their reliability by introducing a novel model maintenance technique using a tree structure.
+0.65 (Our algorithm; is differentiated; from this approach; since it is more interested in how to keep multimodality of multiple CNNs and maximize their reliability by introducing a novel model maintenance technique)
+0.93 (a novel model maintenance technique; using; a tree structure)
+0.53 (it; is; more interested in how to keep multimodality of multiple CNNs and maximize their reliability by introducing a novel model maintenance technique)
+
+This section describes the architecture of our CNN employed to learn discriminative target appearance models.
+0.86 (This section; describes; the architecture of our CNN)
+0.76 (the architecture of our CNN; employed; to learn discriminative target appearance models)
+
+Then, we discuss the detailed procedure of our tracking algorithm, which includes the method to maintain multiple CNNs in a tree structure for robust appearance modeling.
+0.44 (we; discuss; the detailed procedure of our tracking algorithm; T:Then)
+0.72 (our tracking algorithm; includes; the method to maintain multiple CNNs in a tree structure for robust appearance modeling)
+
+CNN Architecture Our network consists of three convolutional layers and three fully connected layers.
+0.91 (CNN Architecture; consists; of three convolutional layers and three fully connected layers)
+
+The input to our network is a 75 × 75 RGB image and its size is equivalent to the receptive ﬁeld size of the only single unit (per channel) in the last convolutional layer.
+0.79 (The input to our network; is; a 75 × 75 RGB image)
+0.79 (its size; is; equivalent to the receptive ﬁeld size of the only single unit (per channel)
+
+Note that, although we borrow the convolution ﬁlters from VGG-M network, the size of our network is smaller than the original VGG-M network.
+0.50 (we; borrow; the convolution ﬁlters from VGG-M network)
+
+The overall architecture of our CNN is illustrated in 2.
+0.55 (The overall architecture of our CNN; is illustrated; T:in 2)
+
+Tree Construction We maintain a tree structure to manage hierarchical multiple target appearance models based on CNNs.
+0.94 (hierarchical multiple target appearance models; based; L:on CNNs)
+0.39 (We; maintain; a tree structure; to manage hierarchical multiple target appearance models)
+0.43 Context(We maintain):(We; maintain a tree structure to manage; hierarchical multiple target appearance models based on CNNs)
+
+The weight is identiﬁed by the following two factors: afﬁnity to the current frame and reliability of CNN2CNN6CNN1CNN3CNN4CNN5CNN2CNN6CNN1CNN3CNN4CNN5CNN7Figure 2: The architecture of our network.
+0.90 (The weight; is identiﬁed; by the following two factors)
+
+We transfer VGG-M network pretrained on ImageNet for convolutional layers while all the fully connected layers are initialized randomly.
+0.79 (all the fully connected layers; are initialized randomly; )
+0.56 (We; transfer; VGG-M network pretrained on ImageNet for convolutional layers)
+0.94 Context(We transfer):(VGG-M network; pretrained; on ImageNet; T:while all the fully connected layers are initialized randomly)
+
+For example, if a CNN is ﬁne-tuned on the frames with complete failures or nontrivial errors, the CNN is likely to produce high scores for background objects and should be penalized despite the existence of samples with high afﬁnities.1 To address this issue, we also employ the reliability of each CNN for target state estimation using the path in the tree structure along which the CNN has been updated.
+0.93 (a CNN; is; ﬁne-tuned on the frames with complete failures or nontrivial errors)
+0.43 (we; also employ; the reliability of each CNN)
+0.87 Context(we also employ):(the CNN; is; likely to produce high scores for background objects)
+0.85 (the CNN; to produce; high scores for background objects)
+0.66 (the CNN; has been updated; )
+0.62 (the CNN; should be penalized; )
+
+Note that we may have an unreliable CNN in the path, which may has been updated using the frames with tracking errors.
+0.70 (the path; may has been updated; )
+
+We estimate the reliability of CNN associated with vertex v, which is denoted by βv, using the score in the bottleneck edge.
+0.50 (We; estimate; the reliability of CNN)
+0.95 (the reliability of CNN; associated; with vertex)
+0.93 (the reliability of CNN; is denoted; by βv)
+
+Based on these two criteria, the combined weight of the CNN corresponding to vertex v, wv→t, is given by Note that both αv→t and βv are the scores evaluated on CNNs, and taking the minimum value out of two bottleneck 1We still need to maintain such CNNs since we sometimes need to follow background objects to estimate target state in case of severe occlusion.
+0.99 (both αv→t and βv are the scores evaluated on CNNs, and taking the minimum value out of two bottleneck 1We; need; to maintain such CNNs; since we sometimes need to follow background objects to estimate target state in case of severe occlusion; T:still)
+0.91 Context(both αv→t and βv are the scores evaluated on CNNs , and taking the minimum value out of two bottleneck 1We need):(both αv→t and βv; taking; the minimum value; out of two bottleneck 1We)
+0.82 (wv→t; is given; by Note)
+0.49 (we; need; to follow background objects; T:sometimes)
+0.35 Context(we need):(we; need to follow; background objects)
+0.26 Context(we need):(we; need to estimate; target state; in case of severe occlusion)
+
+Therefore, we employ the bounding box regression technique, which is frequently used in object detection [9], to enhance target localization quality.
+0.92 (the bounding box regression technique; is used; L:in object detection; T:frequently)
+0.50 (we; employ; the bounding box regression technique, which is frequently used in object detection; to enhance target localization quality)
+0.29 Context(we employ):(we; employ the bounding box regression technique, which is frequently used in object detection to enhance; target localization quality)
+
+We learn a simple regression function at the ﬁrst frame, and adjust target bounding boxes using the model in the subsequent frames.
+0.45 (We; learn; a simple regression function; T:at the ﬁrst frame)
+0.41 (We; adjust; target bounding boxes)
+
+Model Update We maintain multiple CNNs in a tree structure, where a CNN is stored in each node.
+0.45 (We; maintain; multiple CNNs; L:in a tree structure)
+0.92 (a CNN; is stored; L:in each node; L:a tree structure)
+
+We create a node z for the new CNN after ﬁnishing tracking ∆(= 10) consecutive frames without model updates, which are elements in Fz.
+0.90 (model updates; are; elements in Fz)
+0.43 (We; create; a node z for the new CNN; T:after ﬁnishing tracking ∆)
+0.39 Context(We create):(We; create a node z for the new CNN after ﬁnishing; tracking ∆)
+
+Implementation Details To estimate the target state in each frame, we draw 256 samples in (x, y, s) space from an independent multivariate normal distribution centered at the previous target state.
+0.90 (Implementation Details; To estimate; the target state; in each frame)
+0.64 (we; draw; 256 samples in (x, y, s) space from an independent multivariate normal distribution)
+0.93 (an independent multivariate normal distribution; centered; at the previous target state)
+
+We only update the fully connected layers while all the convolutional layers are identical to the original pretrained network on ImageNet.
+0.45 (We; only update; the fully connected layers)
+0.93 (all the convolutional layers; are; identical to the original pretrained network on ImageNet)
+
+Although we store multiple CNNs in the tree structure, the parameters of all convolutional layers are shared and the outputs from the shared layers can be reused.
+0.45 (we; store; multiple CNNs; L:in the tree structure)
+0.80 (the parameters of all convolutional layers; are shared; )
+0.80 (the outputs from the shared layers; can be reused; )
+
+The training data are collected whenever tracking is completed in each frame, where we draw 50 positive and 200 negative examples that have larger than 0.7 IoU and less than 0.5 IoU with the estimated target bounding boxes, respectively.
+0.80 (The training data; are collected; T:whenever tracking is completed in each frame, where we draw 50 positive and 200 negative examples that have larger than 0.7 IoU and less than 0.5 IoU with the estimated target bounding boxes, respectively)
+0.89 (tracking; is completed; T:in each frame)
+0.44 (we; draw larger; 50 positive and 200 negative examples)
+0.72 (200 negative examples; have; )
+
+In practice, we do not store image patches as training examples but save their conv3 features since the features in the layer do not change and it is not necessary to perform convolution operations more than once.
+0.45 (we; do not store; image patches)
+0.27 (we; save; their conv3 features; since the features in the layer do not change)
+0.79 (the features in the layer; do not change; )
+
+Our CNNs are trained by the standard Stochastic Gradient Descent (SGD) method with softmax cross-entropy loss.
+0.77 (Our CNNs; are trained; by the standard Stochastic Gradient Descent (SGD) method with softmax cross-entropy loss)
+
+All parameters are ﬁxed throughout our experiment.
+0.83 (All parameters; are ﬁxed; L:throughout our experiment)
+
+Experiment Our algorithm is implemented in MATLAB using MatConvNet library [33].
+0.70 (Experiment Our algorithm; is implemented; L:in MATLAB)
+
+Evaluation on OTB dataset We ﬁrst describe the evaluation results of our algorithm on online tracking benchmark [37, 36].
+0.91 (Evaluation on OTB; dataset; We ﬁrst describe the evaluation results of our algorithm on online tracking benchmark)
+0.36 Context(Evaluation on OTB dataset):(We; ﬁrst describe; the evaluation results of our algorithm on online tracking benchmark)
+
+We follow the evaluation protocol provided by the benchmark [37, 36], where the performance of trackers is evaluated based on two criteria: bounding box overlap ratio and center location error.
+0.57 (We; follow; the evaluation protocol provided by the benchmark [37, 36], where the performance of trackers is evaluated based on two criteria:)
+0.91 (the evaluation protocol; provided; by the benchmark)
+0.77 (the performance of trackers; is evaluated; )
+
+The better accuracy of our algorithm implies that our model update and state estimation strategy using multiple CNNs based on a tree structure is helpful to deal with various challenges.
+0.74 (our model update and state estimation strategy; using; multiple CNNs based on a tree structure)
+0.90 (multiple CNNs; based; on a tree structure)
+0.40 (The better accuracy of our algorithm; implies; that our model update and state estimation strategy using multiple CNNs based on a tree structure is helpful to deal with various challenges)
+0.77 Context(The better accuracy of our algorithm implies):(our model update and state estimation strategy using multiple CNNs; is; helpful to deal with various challenges)
+
+On the other hand, we believe that this is because the high-level features obtained from CNNs may contain insufﬁcient spatial information and this is aggravated as the network goes deeper.
+0.31 (we; believe; that this is because the high-level features obtained from CNNs may contain insufﬁcient spatial information and this is aggravated)
+0.55 Context(we believe):(this; is; because the high-level features obtained from CNNs may contain insufﬁcient spatial information and this is aggravated)
+0.77 (the network; goes; deeper)
+0.94 (the high-level features; obtained; from CNNs)
+0.96 (the high-level features obtained from CNNs; may contain; insufﬁcient spatial information)
+0.38 (this; is aggravated; T:as the network goes deeper)
+
+CNN-based representations are often not as effective as low-level features for the purpose of tight localization; our algorithm is slightly less accurate in the range for strict thresholds compared with MUSTer and SRDCF, which are based on correlation ﬁlters.
+0.86 (MUSTer and SRDCF; are based; on correlation ﬁlters)
+0.64 (our algorithm; is; slightly less accurate in the range for strict thresholds)
+0.96 Context(our algorithm is):(CNN-based representations; are not; as effective as low-level features for the purpose of tight localization; T:often)
+
+Linear single Linear mean Tree mean Tree max TCNN To analyze the effectiveness of our algorithm, we evaluate the variations of our tracker.
+0.26 (we; evaluate; the variations of our tracker)
+0.92 Context(we evaluate):(Linear single Linear; mean; Tree mean Tree max TCNN To analyze the effectiveness of our algorithm)
+0.91 Context(Linear single Linear mean we evaluate):(Tree; mean; Tree max TCNN To analyze the effectiveness of our algorithm)
+0.86 Context(Linear single Linear mean Tree mean we evaluate):(Tree max TCNN; To analyze; the effectiveness of our algorithm)
+
+We implemented the following four additional versions: a single CNN with sequential updates (Linear single), multiple CNNs with state estimation by simple averaging and sequential updates (Linear mean), multiple CNNs with state estimation by simple averaging and tree updates (Tree mean), and multiple CNNs with state estimation by maximum weight and tree 00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE in-plane rotation (31)TCNN [0.663]MUSTer [0.582]HCF [0.582]CNN-SVM [0.571]DSST [0.567]FCNT [0.548]SRDCF [0.547]MEEM [0.535]Struck [0.444]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE deformation (19)TCNN [0.676]MUSTer [0.649]CNN-SVM [0.640]SRDCF [0.634]HCF [0.626]FCNT [0.622]MEEM [0.582]DSST [0.515]Struck [0.393]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE motion blur (12)TCNN [0.666]HCF [0.616]SRDCF [0.567]CNN-SVM [0.565]MEEM [0.565]MUSTer [0.558]FCNT [0.499]DSST [0.479]Struck [0.433]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE low resolution (4)TCNN [0.626]HCF [0.557]FCNT [0.524]MUSTer [0.482]CNN-SVM [0.461]SRDCF [0.423]DSST [0.408]Struck [0.372]MEEM [0.367]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE illumination variation (25)TCNN [0.660]MUSTer [0.607]DSST [0.572]SRDCF [0.564]HCF [0.560]FCNT [0.557]CNN-SVM [0.556]MEEM [0.548]Struck [0.428]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE fast motion (17)TCNN [0.648]HCF [0.578]MEEM [0.568]MUSTer [0.552]SRDCF [0.552]CNN-SVM [0.545]FCNT [0.511]Struck [0.462]DSST [0.449]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE occlusion (29)TCNN [0.669]MUSTer [0.629]SRDCF [0.620]HCF [0.606]MEEM [0.563]CNN-SVM [0.563]FCNT [0.549]DSST [0.540]Struck [0.413]00.20.40.60.81Overlap threshold00.20.40.60.81Success rateSuccess plots of OPE out of view (6)TCNN [0.644]MEEM [0.597]MUSTer [0.590]HCF [0.575]CNN-SVM [0.571]SRDCF [0.567]FCNT [0.496]Struck [0.459]DSST [0.457]Figure 5: Qualitative results in several challenging sequences of OTB100 dataset (Dog1, Bolt2, Car24, Diving, Freeman4, Girl2, Human9, Soccer, and Trans).
+0.61 (We; implemented; the following four additional versions: a single CNN with sequential updates (Linear single), multiple CNNs with state estimation by simple averaging and sequential updates (Linear mean), multiple CNNs with state estimation by simple averaging and tree updates (Tree mean), and multiple CNNs with state estimation by maximum weight and tree)
+0.77 (Linear; mean; )
+
+TCNN (Ours)SRDCFMUSTerHCFCNN-SVMFCNTFigure 6: The example of identiﬁed tree structure by our algorithm in Soccer sequence.
+
+Our algorithm maintains multiple paths, through which target appearance changes smoothly to improve the reliability of each model and the diversity of overall models.
+0.64 (Our algorithm; maintains; multiple paths)
+0.95 (target appearance changes smoothly; to improve; the reliability of each model and the diversity of overall models)
+
+Finally, the proposed algorithm (TCNN) is more effective than all the other variations, which veriﬁes that both our model update and state estimation strategies are useful to improve performance.
+0.95 (the proposed algorithm; is; more effective than all the other variations; T:Finally)
+0.73 (both our model update and state estimation strategies; to improve; performance)
+0.70 (all the other variations; veriﬁes; that both our model update and state estimation strategies are useful to improve performance)
+0.71 Context(all the other variations veriﬁes):(both our model update and state estimation strategies; are; useful to improve performance)
+
+We tested the impact of bounding box regression on the quality of our tracking algorithm.
+0.42 (We; tested; the impact of bounding box regression on the quality of our tracking algorithm)
+
+To visualize the advantage of our tree-based model maintenance technique, we present an example of identiﬁed tree structure in Figure 6, where vertices correspond to estimated target bounding boxes.
+0.45 (we; present; an example of identiﬁed tree structure in Figure 6)
+0.89 (vertices; correspond; to estimated target bounding boxes)
+
+Evaluation on VOT2015 Dataset We also tested the proposed algorithm in the recent dataset for visual object tracking 2015 challenge (VOT2015) [18], which is composed of 60 challenging video sequences with sufﬁcient variations.
+0.57 (We; also tested; the proposed algorithm in the recent dataset for visual object)
+0.74 (2015 challenge; is composed; of 60)
+
+EBT [41] and DeepSRDCF [6], are included for comparison.2 In addition, we include all algorithms that are tested on OTB but do not rely on CNNs, e.g.
+0.90 (all algorithms; are tested; L:on OTB)
+0.32 (we; include; all algorithms that are tested on OTB but do not rely on CNNs, e.g.)
+
+We presented a novel tracking algorithm based on multiple CNNs maintained in a tree structure, which are helpful to achieve multi-modality and reliability of target appearances.
+0.50 (We; presented; a novel tracking algorithm based on multiple CNNs)
+0.93 (a novel tracking algorithm; based; on multiple CNNs)
+0.93 (multiple CNNs; maintained; L:in a tree structure)
+0.90 (a tree structure; are; helpful to achieve multi-modality and reliability of target appearances)
+
+Our tracking algorithm outperforms the state-of-theart techniques in both OTB and VOT2015 benchmarks
+0.79 (Our tracking algorithm; outperforms; the state-of-theart techniques in both OTB and VOT2015)
+

@@ -1,0 +1,444 @@
+In this paper, we propose to learn the natural image manifold directly from data using a generative adversarial neural network.
+0.89 (data; using; a generative adversarial neural network)
+0.53 (we; propose; to learn the natural image manifold directly from data; L:In this paper)
+0.39 Context(we propose):(we; propose to learn; the natural image manifold directly from data)
+
+We then deﬁne a class of image editing operations, and constrain their output to lie on that learned manifold at all times.
+0.55 (We; deﬁne; a class of image editing operations; T:then)
+0.18 (We; constrain; their output to lie on that learned manifold at all times)
+0.39 (their output; to lie; on that learned manifold; T:at all times)
+
+All our manipulations are expressed in terms of constrained optimization and are applied in near-real time.
+0.36 (All our manipulations; are expressed; )
+0.62 (All our manipulations; are applied; T:in near-real time)
+
+We evaluate our algorithm on the task of realistic photo manipulation of shape and color.
+0.42 (We; evaluate; our algorithm on the task of realistic photo manipulation of shape and color)
+
+We all perceive information in the visual form (through photographs, paintings, sculpture, etc), but only a chosen few are talented enough to eﬀectively express themselves visually.
+0.41 (We; perceive; information)
+0.46 (only a chosen few; are; talented enough to eﬀectively express themselves visually)
+0.42 (only a chosen few; to eﬀectively express visually; themselves)
+
+We use generative adversarial networks (GAN) [1,2] to perform image editing on the natural image manifold.
+0.45 (We; use; generative adversarial networks; to perform image editing on the natural image manifold)
+
+We ﬁrst project an original photo (a) onto a lowdimensional latent vector representation (b) by regenerating it using GAN.
+0.52 (We; ﬁrst; project; T:an original photo; onto a lowdimensional latent vector representation)
+
+We then modify the color and shape of the generated image (d) using various brush tools (c) (for example, dragging the top of the shoe).
+0.55 (We; modify; the color and shape of the generated image (d); T:then)
+
+Finally, we apply the same amount of geometric and color changes to the original photo to achieve the ﬁnal result (e).
+0.64 (we; apply; the same amount of geometric and color changes to the original photo; T:Finally)
+0.39 Context(we apply):(we; apply the same amount of geometric and color changes to the original photo to achieve; the ﬁnal result)
+
+See our interactive image editing demo on Youtube.
+
+In this paper, we use the generative adversarial neural network to learn the manifold of natural images, but we do not actually employ it for image generation.
+0.31 (we; do not actually employ; it; for image generation)
+0.53 (we; use; the generative adversarial neural network; to learn the manifold of natural images; L:In this paper)
+0.39 Context(we use):(we; use the generative adversarial neural network to learn; the manifold of natural images)
+
+Instead, we use it as a constraint on the output of various image manipulation operations, to make sure the results lie on the learned manifold at all times.
+0.90 (the results; lie; on the learned manifold; T:at all times)
+0.36 (we; use; it; as a constraint on the output of various image manipulation operations)
+0.40 Context(we use):(we; use it to make; sure the results lie on the learned manifold at all times)
+
+We show three applications based on our system: (1) Manipulating an existing photo based on an underlying generative model to achieve a diﬀerent look (shape and color); (2) “Generative transformation” of one image to look more like another; (3) Generate a new image from scratch based on user’s scribbles and warping UI.
+0.37 (We; show; three applications based on our system)
+0.95 (an existing photo based on an underlying generative model; to achieve; a diﬀerent look)
+0.91 (an existing photo; based; on an underlying generative model)
+0.93 (a new image from scratch; based; on user's scribbles)
+
+We hope (a) original photo (b) projection on manifoldProjectEdit Transfer(d) smooth transition between the original and edited projection(e) different degree of image manipulation(c) Editing UIGenerative Visual Manipulation on the Natural Image Manifold that this work inspires further research in data-driven generative image editing, and thus release the code and data at our website.
+0.40 (We; hope; (a) original photo)
+0.40 Context(We hope):(We; hope (a); original photo)
+
+Here we extend this idea and produce a morph that is both close to the two sources and stays on, or close to, the natural image manifold.
+0.60 (we; extend; this idea; L:Here)
+0.42 (we; produce; a morph that is both close to the two sources and stays on, or close to, the natural image manifold; L:Here)
+0.91 (a morph; is; both close to the two sources)
+0.70 (a morph; stays on; )
+
+In this paper we try to remedy this by learning a generative model that can be easily controlled via a few intuitive user edits.
+0.72 (a generative model; can be easily controlled; )
+0.60 (we; try; to remedy this by learning a generative model; L:In this paper)
+0.18 Context(we try):(we; try to remedy; this)
+0.27 Context(we try to remedy):(we; try to remedy this by learning; a generative model that can be easily controlled via a few intuitive user edits)
+
+Following the recent success of deep generative networks in generating natural looking images, we approximate the image manifold by learning a model using generative adversarial networks (GAN) [1,2] from a large-scale image collection.
+0.64 (we; approximate; the image manifold; T:Following the recent success of deep generative networks in generating natural looking images)
+0.39 Context(we approximate):(we; approximate the image manifold by learning; a model)
+
+Beside the high quality results, GAN has a few other useful properties for our task we will discuss next.
+0.92 (GAN; has; a few other useful properties for our task we will discuss next; L:Beside the high quality results)
+0.23 (we; will discuss; T:next)
+
+For simplicity, we denote G(z; θG) and D(x; θD) as G(z) and D(x) in later sections.
+0.50 (we; denote; G)
+
+We formally deﬁne ˜M = {G(z)|z ∈ Z} and use it as an approximation to the ideal manifold M (i.e ˜M ≈ M).
+0.50 (We; formally deﬁne; ~M = {G(z)
+0.75 (∈ Z; use; it; as an approximation to the ideal manifold M)
+
+We also approximate the distance function (a) random samples(b) random jittering(c) linear interpolationGenerative Visual Manipulation on the Natural Image Manifold of two generated images as an Euclidean distance between their corresponding latent vectors, i.e., S(G(z1), G(z2)) ≈ (cid:107)z1 − z2(cid:107)2.
+0.35 (We; approximate; the distance function (a) random samples)
+0.91 Context(We approximate):(the distance function; (a); random samples)
+
+GAN as a manifold approximation: We use GAN to approximate an ideal manifold for two reasons: ﬁrst, it produces high-quality samples (see Figure 2 (a) for example).
+0.64 (it; produces; high-quality samples (see Figure 2 (a) for example; T:ﬁrst)
+0.43 Context(it produces):(We; use; GAN; to approximate an ideal manifold for two reasons)
+0.39 Context(We use it produces):(We; use GAN to approximate; an ideal manifold; for two reasons)
+
+We therefore argue that GAN is a powerful generative model for modeling the image manifold.
+0.27 (We; argue; that GAN is a powerful generative model for modeling the image manifold)
+0.86 Context(We argue):(GAN; is; a powerful generative model for modeling the image manifold)
+
+In our case, we t=0 S(G(zt), G(zt+1)) where S is the distance function.
+0.88 (S; is; the distance function; L:In our case)
+
+In our case N )· z0 + t N · zN t=0 is the shortest path.
+0.89 (zN t=0; is; the shortest path; L:In our case)
+0.50 (N; [is] case [of]; ours)
+
+We will now use this approximation of the manifold of natural images for realistic photo editing.
+0.61 (We; will use; this approximation of the manifold of natural images for realistic photo editing; T:now)
+
+Figure 1 illustrates the overview of our approach.
+0.83 (Figure 1; illustrates; the overview of our approach)
+
+Given a real photo, we ﬁrst project it onto our approximation of the image manifold by ﬁnding the closest latent feature vector z of the GAN to the original image.
+0.31 (we; ﬁrst project; it; onto our approximation of the image manifold)
+
+Then, we present a realtime method for gradually and smoothly updating the latent vector z so that it generates a desired image that both satisﬁes the user’s edits (e.g.
+0.57 (we; present; a realtime method for gradually and smoothly updating the latent vector z)
+0.33 (it; generates; a desired image that both satisﬁes the user's edits (e.g.)
+0.37 (both; satisﬁes e.g.; the user's edits)
+
+We therefore propose a dense correspondence method that estimates both per-pixel color and shape changes from the edits applied to the generative model.
+0.29 (We; propose; a dense correspondence method that estimates both per-pixel color and shape changes from the edits)
+0.94 (a dense correspondence method; estimates; both per-pixel color and shape changes from the edits)
+0.90 (the edits; applied; to the generative model)
+
+We then transfer these changes to the original photo using an edge-aware interpolation technique and produce the ﬁnal manipulated result.
+0.55 (We; transfer; these changes; to the original photo; T:then)
+0.41 (We; produce; the ﬁnal manipulated result)
+
+However for an approximate manifold ˜M, our goal here is to ﬁnd a generated image x∗ ∈ ˜M close to xR in some distance metric L(x1, x2) as x∗ = arg min x∈ ˜M Jun-Yan Zhu, Philipp Kr¨ahenb¨uhl, Eli Shechtman, Alexei A.
+0.72 (our goal here; is; to ﬁnd a generated image x*)
+0.45 (∈; ~M; L:close to xR; L:in some distance)
+0.90 (x*; arg; min x∈ ~M Jun-Yan Zhu, Philipp Kr¨ahenb¨uhl, Eli Shechtman, Alexei A.)
+
+Efros For the GAN manifold ˜M we can rewrite the above equation as follows: Our goal is to reconstruct the original photo xR using the generative model G by minimizing the reconstruction error, where L(x1, x2) = (cid:107)C(x1) − C(x2)(cid:107)2 in some diﬀerentiable feature space C.
+0.64 (we; can rewrite; the above equation; T:as follows; T:For the GAN manifold ~M)
+0.82 (Our goal; is; to reconstruct the original photo xR using the generative model G by minimizing the reconstruction error,)
+0.82 (xR; using; the generative model G)
+0.82 Context(xR using):(xR; using the generative model G by minimizing; the reconstruction error)
+
+We found that a weighted combination of raw pixels and conv4 features (×0.002) extracted from AlexNet [27] trained on ImageNet [28] to perform best.
+0.32 (We; found; that a weighted combination of raw pixels and conv4 features (×0.002) extracted from AlexNet [27] trained on ImageNet [28)
+
+Projection via optimization: As both the feature extractor C and the generative model G are diﬀerentiable, we can directly optimize the above objective using L-BFGS-B [29].
+0.88 (both the feature extractor C and the generative model G; are; diﬀerentiable)
+0.39 (we; can directly optimize; the above objective)
+0.39 Context(we can directly optimize):(we; can directly optimize the above objective using; L-BFGS-B)
+
+We can start from multiple random initializations and output the solution with the minimal cost.
+0.45 (We; can start; from multiple random initializations)
+0.41 (We; output; the solution with the minimal cost)
+
+We instead train a deep neural network to minimize equation 2 directly.
+0.45 (We; instead train; a deep neural network to minimize equation 2 directly)
+0.92 (a deep neural network; to minimize directly; equation 2)
+
+Projection via a feedforward network: We train a feedforward neural network P (x; θP ) that directly predicts the latent vector z from a x.
+
+We attribute this behavior to the regularity in the projection problem and the limited capacity of the network P .
+0.57 (We; attribute; this behavior; to the regularity in the projection problem and the limited capacity of the network P)
+
+Given a real photo xR, we ﬁrst predict P (xR; θP ) and then use it as the initialization for the optimization objective (Equation 2).
+0.45 (we; ﬁrst predict; P)
+0.40 (we; use; it; as the initialization for the optimization objective; T:then)
+
+So the predictive model we have trained serves as a fast bottom-up initialization method for a non-convex optimization problem.
+0.89 (the predictive model; have trained; we)
+0.81 (the predictive model we have trained; serves; as a fast bottom-up initialization method for a non-convex optimization problem)
+
+We show the reconstruction loss below each image.
+0.52 (We; show; the reconstruction loss below each image)
+
+4.2 Manipulating the Latent Vector 0 projected onto the manifold ˜M as x0 = G(z0) via the projecWith the image xR tion methods just described, we can start modifying the image on that manifold.
+0.59 (4.2; Manipulating; the Latent Vector 0)
+0.70 (the image; just described; )
+0.23 (we; can start; modifying the image on that manifold)
+0.95 (the image xR tion methods just described; modifying; the image)
+
+We update the initial projection x0 by simultaneously matching the user intentions while staying on the manifold, close to the original image x0.
+0.39 (We; update; the initial projection x0)
+0.18 Context(We update):(We; update the initial projection x0 matching; T:while staying on; T:simultaneously)
+
+Given an initial projection x0, we ﬁnd a new image x ∈ M close to x0 trying to satisfy as many constraints as possible + λs · S(x, x0) where the data term measures deviation from the constraint and the smoothness term enforces moving in small steps on the manifold, so that the image content is not altered too much.
+0.52 (we; ﬁnd; a new image)
+0.92 (the smoothness term enforces; moving; in small steps on the manifold)
+0.96 (M close to x0; trying; to satisfy as many constraints as possible + λs · S(x, x0) where the data term measures deviation from the constraint and the smoothness term enforces)
+0.95 Context(M close to x0 trying):(M close to x0; trying to satisfy; as many constraints as possible + λs; the data term measures deviation from the constraint and the smoothness term enforces)
+
+We set λs = 5 in our experiments.
+0.37 (We; set; λs; 5; L:in our experiments)
+
+By default, we turn oﬀ this term to increase frame rates.
+0.45 (we; turn oﬀ; this term to increase frame rates)
+
+We solve it using gradient descent, which allows us to provide the user with a real-time feedback as she manipulates the image.
+0.45 (she; manipulates; the image)
+0.84 (gradient descent; allows; us to provide the user with a real-time feedback)
+0.39 Context(gradient descent allows):(us; to provide; the user)
+
+For computational reasons, we only perform a few gradient descent updates after changing the constraints vg.
+0.45 (we; only perform; a few gradient descent updates; T:after changing the constraints vg)
+
+Then our update method smoothly changes the image appearance (Figure 4 b) by adding more and more of the user constraints.
+0.78 (our update method; smoothly changes; the image appearance; T:Then)
+
+In the next section we show how edits on the approximate manifold can be transferred to the original image.
+0.71 (we; show; how edits on the approximate manifold can be transferred to the original image; L:In the next section)
+0.91 Context(we show):(edits on the approximate manifold; can be transferred; to the original image)
+
+a black shoe) and its projection on the manifold G(z0), and a user modiﬁcation G(z1) by our method (e.g.
+
+Following user edits on the left shoe G(z0) we obtain an interpolation sequence in the generated latent space G(z) (top right).
+0.74 (we; obtain; an interpolation sequence in the generated latent space G(z) (top right; T:Following user edits on the left shoe)
+
+We then compute the motion and color ﬂows (right middle and bottom) between neighboring images in G(z).
+0.71 (We; compute; the motion and color ﬂows (right middle and bottom) between neighboring images in G; T:then)
+
+The generated image G(z1) captures the roughly change we want, albeit the quality is degraded w.r.t the original image.
+0.72 (The generated image; captures; )
+
+Can we instead adjust the original photo and produce a more photo-realistic result xR 1 that exhibits the changes in the generated image? A straightforward 0 + (G(z1)− G(z0)).
+0.29 (we; produce; a more photo-realistic result xR 1 that exhibits the changes in the generated image)
+0.93 (a more photo-realistic result xR 1; exhibits; the changes in the generated image)
+
+We way is to transfer directly the pixel changes (i.e.
+0.19 (We; way; )
+0.70 (We way; is; to transfer directly the pixel changes)
+
+To address this issue, we develop a dense correspondence algorithm to estimate both the geometric and color changes induced by the editing process.
+0.57 (we; develop; a dense correspondence algorithm to estimate both the geometric and color changes)
+0.95 (a dense correspondence algorithm; to estimate; both the geometric and color changes induced by the editing process)
+0.93 (both the geometric and color changes; induced; by the editing process)
+
+any number of intermediate frames(cid:2)G((1− t Speciﬁcally, given two generated images G(z0) and G(z1), we can generate t=0, where consecutive frames only exhibit minor visual variations.
+0.91 (any number of intermediate frames; given; two generated images)
+0.50 (we; can generate; t=0)
+0.95 (consecutive frames; only exhibit; minor visual variations; L:t=0)
+
+Motion+Color ﬂow algorithm: We then estimate the color and geometric changes by generalizing the brightness constancy assumption in traditional optical ﬂow methods [31,32].
+0.61 (We; estimate; the color and geometric changes by generalizing the brightness constancy assumption in traditional optical ﬂow methods; T:then)
+0.92 Context(We estimate):(Motion+Color; ﬂow; algorithm)
+
+We solve the objective by iteratively estimating the ﬂow (u, v) using a traditional optical ﬂow algorithm, and computing the color change A by solving a system of linear equations [33].
+0.50 (We; solve; the objective; by iteratively estimating the ﬂow (u, v) using a traditional optical ﬂow algorithm, and computing the color change A by solving a system of linear equations [33)
+0.50 Context(We solve):(We; solve the objective by iteratively estimating; the ﬂow (u, v) using a traditional optical ﬂow algorithm, and computing the color change A by solving a system of linear equations [33)
+
+We iterate 3 times.
+0.45 (We; iterate; T:3 times)
+
+We produce 8 intermediate frames (i.e.
+0.45 (We; produce; 8 intermediate frames)
+
+For simplicity, we omit the pixel subscript (x, y) for all the variables.
+0.45 (we; omit; the pixel subscript; for all the variables)
+
+Efros We estimate the changes between nearby frames, and concatenate these changes frame by frame to obtain long-range changes between any two frames along the interpolation sequence z0 → z1.
+0.45 (We; estimate; the changes between nearby frames)
+0.53 (We; concatenate; these changes; to obtain long-range changes between any two frames along the interpolation sequence z0 → z1)
+
+Figure 5 shows a warping sequence after we apply the ﬂow to the initial projection G(z0).
+0.93 (Figure 5; shows; a warping sequence; T:after we apply the ﬂow to the initial projection G)
+0.50 (we; apply; the ﬂow; to the initial projection G)
+
+Transfer edits to the original photo: After estimating the color and shape changes in the generated image sequence, we apply them to the original photo and produce an interesting transition sequence of photo-realistic images as shown in e.
+0.56 (we; apply; them; to the original photo; T:After estimating the color and shape changes in the generated image sequence)
+0.67 (we; produce; an interesting transition sequence of photo-realistic images; T:After estimating the color and shape changes in the generated image sequence)
+
+64 × 64), we upsample those edits using a guided image ﬁlter [34].
+0.19 (we; upsample; those edits)
+0.39 Context(we upsample):(we; upsample those edits using; a guided image ﬁlter)
+
+Please see our supplemental video for more details.
+
+Candidate results: Given the objective (Equation 5) derived with the user guidance, we generate multiple diﬀerent results by initializing z as random perturbations of z0.
+0.89 (the objective; derived; with the user guidance)
+0.39 (we; generate; multiple diﬀerent results)
+0.39 Context(we generate):(we; generate multiple diﬀerent results by initializing; z; as random perturbations of z0)
+
+We generate 64 examples and show the best 9 results sorted by the objective cost (Equation 5).
+0.45 (We; generate; 64 examples)
+0.64 (We; show; the best 9 results sorted by the objective cost (Equation 5))
+0.92 (the best 9 results; sorted; by the objective cost)
+
+We call this “relative edits” as it allows a user to explore more alternatives with a single edit.
+0.49 (We; call; this; relative edits; as it allows a user to explore more alternatives with a single edit)
+0.51 (it; allows; a user to explore more alternatives with a single edit)
+0.88 Context(it allows):(a user; to explore; more alternatives with a single edit)
+
+Our system provides three constraints to edit the photo in diﬀerent aspects: coloring, sketching and warping.
+0.74 (Our system; provides; three constraints to edit the photo in diﬀerent aspects: coloring, sketching and warping)
+
+In the following, we explain the usage of each brush, and the corresponding constraints.
+0.60 (we; explain; the usage of each brush; L:In the following)
+
+For each pixel marked with this brush we constrain the color fg(I) = Ip = vg of a pixel p to the selected values vg.
+0.90 (each pixel; marked; with this brush)
+
+We constrain fg(I) = HOG(I)p a diﬀerentiable HOG descriptor [37] at a certain location p in the image to be close to the user stroke (i.e.
+0.30 (We; constrain; fg(I) = HOG)
+0.40 Context(We constrain):(We; constrain fg; HOG)
+
+We chose the HOG feature extractor because it is binned, which makes it robust to sketching inaccuracies.
+0.46 (We; chose; the HOG feature extractor; because it is binned, which makes it robust to sketching inaccuracies)
+0.19 (it; is binned; )
+
+We then place both a color and sketching constraint on the displaced pixels encouraging the target patch to mimic the appearance of the dragged region.
+0.67 (We; place; both a color and sketching constraint on the displaced pixels; T:then)
+0.91 (the displaced pixels; encouraging; the target patch; to mimic the appearance of the dragged region)
+0.91 (the target patch; to mimic; the appearance of the dragged region)
+
+Network architecture: We follow the same architecture of deep convolutional generative adversarial networks (DCGAN) [2].
+0.45 (We; follow; the same architecture of deep convolutional generative adversarial networks)
+
+We train the generator G to produce a 64 × 64 × 3 image given a 100-dimensional random vector.
+0.45 (We; train; the generator G; to produce a 64 × 64 × 3 image)
+0.94 (the generator G; to produce; a 64 × 64 × 3 image given a 100-dimensional random vector)
+0.94 (a 64 × 64 × 3 image; given; a 100-dimensional random vector)
+
+Notice that our method can also use other generative models (e.g.
+
+Computational time: We run our system on a Titan X GPU.
+0.37 (We; run; our system)
+
+Once an edit is ﬁnished, it takes 5 ∼ 10 seconds for our edit transfer method to produce high-resolution ﬁnal result.
+0.73 (an edit; is ﬁnished; )
+0.44 (it; takes; 5 ~ 10 seconds; for our edit transfer method; T:Once an edit is ﬁnished)
+
+We ﬁrst introduce the statistics of our dataset.
+0.31 (We; ﬁrst introduce; the statistics of our dataset)
+
+We then show three main applications: realistic image manipulation, generative image transformation, and generating a photo from scratch using our brush tools.
+0.62 (We; show; three main applications; T:then)
+
+Finally, we evaluate our image reconstruction methods, and perform a human perception study to understand the realism of generated results.
+0.44 (we; evaluate; our image reconstruction methods; T:Finally)
+0.67 (we; perform; a human perception study to understand the realism of generated results; T:Finally)
+
+Datasets: We experiment with multiple photo collections from various sources as follows: “shoes” dataset [39], which has 50K shoes collected from Zappos.com (the shoes are roughly centered but not well aligned, and roughly facing left, with frontal to side view); “church outdoor” dataset (126K images) from the LSUN challenge [40]; “outdoor natural” images (150K) from the MIT Places dataset [41]; and two query-based product collections downloaded from Amazon, including “handbags” (138K) and “shirts” (137K).
+0.45 (We; experiment; with multiple photo collections from various sources)
+0.75 (the shoes; left; )
+0.94 (shoes" dataset; has 50K; shoes collected from Zappos.com (the shoes are roughly centered but not well aligned, and roughly facing left, with frontal to side view); "church outdoor" dataset (126K images) from the LSUN challenge [40];)
+0.94 (shoes; collected; from Zappos.com (the shoes are roughly centered but not well aligned, and roughly facing left, with frontal to side view); "church outdoor" dataset (126K images) from the LSUN challenge)
+0.94 (two query-based product collections; downloaded; from Amazon)
+0.73 (the shoes; are roughly centered; )
+
+Our main application is photo-realistic image manipulation using the brush interactions described in Section 5.1.
+0.72 (Our main application; is; photo-realistic image manipulation using the brush interactions)
+0.93 (photo-realistic image manipulation; using; the brush interactions described in Section 5.1)
+0.91 (the brush interactions; described; L:in Section 5.1)
+
+Image manipulation examples: for each example, we show the original photo and user edits on the left.
+0.52 (we; show; the original photo and user edits on the left)
+
+We call it “generative transformation”.
+0.37 (We; call; it; generative transformation)
+
+We use this sequence to transform the shape and color of one image to look like another image automatically, i.e., without any user edits.
+0.50 (We; use; this sequence; to transform the shape and color of one image to look like another image automatically, i.e., without any user edits)
+0.39 Context(We use):(We; use this sequence to transform; the shape and color of one image)
+0.39 Context(We use to transform):(We; use this sequence to transform the shape and color of one image to look; like another image automatically)
+
+Another byproduct of our method is that if there is no image to begin with and all we have are the user brush strokes, the method would generate a natural image that best satisﬁes the user constraints.
+0.44 (Another byproduct of our method; is; that if there is no image to begin with and all we have are the user brush strokes, the method would generate a natural image)
+0.73 Context(Another byproduct of our method is):(the method; would generate; a natural image that best satisﬁes the user constraints)
+0.90 (a natural image; best satisﬁes; the user constraints)
+0.34 (all; have; we)
+0.66 (all we have; are; the user brush strokes)
+
+Image reconstruction evaluation: We evaluate three image reconstruction methods described in Section 4.1: optimization-based, network-based and our hybrid approach that combines the last two.
+0.45 (We; evaluate; three image reconstruction methods described in Section 4.1)
+0.92 (three image reconstruction methods; described; L:in Section 4.1)
+0.56 (optimization-based, network-based and our hybrid approach; combines; the last two)
+
+We run these on 500 test images Generative Visual Manipulation on the Natural Image Manifold Fig.
+0.68 (We; run; these; T:on 500 test images  Generative Visual Manipulation on the Natural Image)
+
+In the last row, we show the most similar real images to the generated images.
+0.66 (we; show; the most similar real images; to the generated images; L:In the last row)
+
+We can see the optimization-based and neural network-based methods perform comparably, where their combination yields better results.
+0.36 (We; can see; the optimization-based and neural network-based methods perform comparably, where their combination yields better results)
+0.82 Context(We can see):(the optimization-based and neural network-based methods; perform comparably; )
+0.58 Context(We can see the optimization - based and neural network - based methods perform comparably):(their combination; yields; better results)
+
+We include PSNR (in dB) results in the supplementary material.
+0.44 (We; include; PSNR (in dB)
+
+Class-speciﬁc model: So far, we have trained the generative model on a particular class of images.
+0.60 (we; have trained; the generative model; on a particular class of images; T:So far)
+
+As a comparison, we train a cross-class model on three datasets altogether (i.e.
+0.45 (we; train; a cross-class model on three datasets altogether)
+
+We also have tried to use a class-speciﬁc model to reconstruct images from a diﬀerent class.
+0.46 (We; have tried; to use a class-speciﬁc model to reconstruct images from a diﬀerent class)
+0.35 Context(We have tried):(We; have tried to use; a class-speciﬁc model; to reconstruct images from a diﬀerent class)
+
+However, we expect a model trained on many categories (e.g.
+0.45 (we; expect; a model trained on many categories (e.g.)
+0.90 (a model; trained; on many categories (e.g.)
+
+Perception study: We perform a small perception study to compare the photo realism of four types of images: real photos, generated samples produced by GAN, our method (shape only), and our method (shape+color).
+0.57 (We; perform; a small perception study to compare the photo realism of four types of images: real photos,)
+0.90 (real photos; generated; samples produced by GAN)
+0.91 (samples; produced; by GAN)
+
+We collect 20 annotations for 400 images by asking Amazon Mechanical Turk workers if the image look realistic or not.
+0.39 (We; collect; 20 annotations for 400 images)
+0.43 Context(We collect):(We; collect 20 annotations for 400 images by asking; Amazon Mechanical Turk workers; if the image look realistic or not)
+0.72 Context(We collect by asking):(the image; look; realistic)
+
+DCGAN model alone produces less photo-realistic images, but when combined with our edit transfer, the realism signiﬁcantly improves.
+0.93 (DCGAN model; alone produces; less photo-realistic images)
+0.88 (the realism; signiﬁcantly improves; T:when combined with our edit transfer)
+
+Additional evaluation: In the supplemental material, we evaluate our motion+color ﬂow method, and compare our results against popular alignment methods that are designed to handle large displacement between two images [46,47].
+0.44 (we; evaluate; our motion+color ﬂow method; L:In the supplemental material)
+0.40 (we; compare; our results; against popular alignment methods; L:In the supplemental material)
+0.90 (popular alignment methods; are designed; to handle large displacement between two images)
+0.90 (popular alignment methods; to handle; large displacement between two images)
+
+We presented a step towards image editing with a direct constraint to stay close to the manifold of real images.
+0.45 (We; presented; a step towards image editing with a direct constraint)
+
+We approximate this manifold using the state-ofthe-art in deep generative models (DCGAN).
+0.18 (We; approximate; this manifold)
+0.50 Context(We approximate):(We; approximate this manifold using; the state-ofthe-art in deep generative models)
+
+We show how to make interactive edits to the generated images and transfer the resulting changes in shape and color back to the original image.
+0.58 (We; show; how to make interactive edits to the generated images and transfer the resulting changes in shape and color back to the original image)
+0.30 Context(We show):(We; show to make; interactive edits; to the generated images)
+0.39 Context(We show):(We; show to transfer back; the resulting changes in shape and color)
+
+Thus, the quality of the generated results (low resolution, missing texture and details) and the types of data DCGAN is applicable to (works well on structured datasets such as product images and worse on more general imagery), limits how far we can get with this editing approach.
+0.99 (the quality of the generated results (low resolution, missing texture and details) and the types of data DCGAN; is; applicable to (works well on structured datasets such as product images and worse on more general imagery)
+
+However our method is not tied to a particular generative method and will improve with the advancement of this ﬁeld.
+0.34 (our method; is not tied; )
+0.30 (our method; will improve; )
+
+Our current editing brush tools allow rough changes in color and shape but not texture and more complex structure changes.
+0.79 (Our current editing brush tools; allow; rough changes in color and shape but not texture and more complex structure changes)
+
+We leave these for future work
+0.45 (We; leave; these; for future work)
+

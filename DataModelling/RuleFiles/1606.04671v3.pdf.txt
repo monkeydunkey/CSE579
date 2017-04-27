@@ -1,0 +1,300 @@
+We evaluate this architecture extensively on a wide variety of reinforcement learning tasks (Atari and 3D maze games), and show that it outperforms common baselines based on pretraining and ﬁnetuning.
+0.44 (We; evaluate extensively; this architecture)
+0.19 (We; show; that it outperforms common baselines based on pretraining and ﬁnetuning)
+0.40 Context(We show):(it; outperforms; common baselines)
+
+Using a novel sensitivity measure, we demonstrate that transfer occurs at both low-level sensory and high-level control layers of the learned policy.
+0.27 (we; demonstrate; that transfer occurs at both low-level sensory and high-level control layers of the learned policy)
+0.92 Context(we demonstrate):(that transfer; occurs; L:at both low-level sensory and high-level control layers of the learned policy)
+
+Unfortunately, the approach has drawbacks which make it unsuitable for transferring across multiple tasks: if we wish to leverage knowledge acquired over a sequence of experiences, which model should we use to initialize subsequent models? This seems to require not only a learning method that can support transfer learning without catastrophic forgetting, but also foreknowledge of task similarity.
+0.80 (drawbacks; make; it unsuitable for transferring across multiple tasks)
+0.91 (not only a learning method; can support; transfer learning without catastrophic forgetting)
+0.15 (This; seems; )
+0.52 (we; wish; to leverage knowledge)
+0.23 (This; to require; not only a learning method that can support transfer learning without catastrophic forgetting, but also foreknowledge of task similarity)
+0.89 (knowledge; acquired; T:over a sequence of experiences)
+
+As we will show, progressive networks naturally accumulate experiences and are immune to catastrophic forgetting by design, making them an ideal springboard for tackling long-standing problems of continual or lifelong learning.
+0.19 (we; will show; )
+0.90 (progressive networks; naturally accumulate; experiences)
+0.89 (progressive networks; are; immune to catastrophic forgetting by design)
+
+Second, we extensively evaluate the model in complex reinforcement learning domains.
+0.45 (we; extensively evaluate; the model in complex reinforcement learning domains)
+
+In the process, we also evaluate alternative approaches to transfer (such as ﬁnetuning) within the RL domain.
+0.71 (we; evaluate; alternative approaches to transfer (such as ﬁnetuning) within the RL domain; L:In the process)
+0.90 (alternative approaches; to transfer; within the RL domain)
+
+In particular, we show that progressive networks provide comparable (if not slightly better) transfer performance to traditional ﬁnetuning, but without the destructive consequences.
+0.33 (we; show; that progressive networks provide comparable (if not slightly better) transfer performance to traditional ﬁnetuning, but without the destructive consequences)
+0.88 Context(we show):(progressive networks; provide; comparable (if not slightly better) transfer performance; to traditional ﬁnetuning)
+
+Finally, we develop a novel analysis based on Fisher Information and perturbation which allows us to analyse in detail how and where transfer occurs across tasks.
+0.93 (a novel analysis; based; on Fisher Information and perturbation)
+0.83 (perturbation; allows; us to analyse in detail how and where transfer occurs across tasks)
+0.35 Context(perturbation allows):(us; to analyse; how and where transfer occurs across tasks)
+
+f is an element-wise non-linearity: we use f (x) = max(0, x) for all intermediate layers.
+0.45 (f; is; an element-wise non-linearity)
+0.23 (we; use; f)
+0.21 (we; f; )
+
+These modelling decisions are informed by our desire to: (1) solve K independent tasks at the end of training; (2) accelerate learning via transfer when possible; and (3) avoid catastrophic forgetting.
+0.85 (These modelling decisions; are informed; by our desire)
+
+In contrast, we make no assumptions about the relationship between tasks, which may in practice be orthogonal or even adversarial.
+0.45 (we; make; no assumptions about the relationship between tasks)
+0.46 (tasks; may be; orthogonal or even adversarial)
+
+In practice, we augment the progressive network layer of Equation 2 with non-linear lateral connections which we call adapters.
+0.61 (we; augment; the progressive network layer of Equation 2 with non-linear lateral connections)
+0.92 (non-linear lateral connections; call; adapters)
+
+Deﬁning the vector of anterior features h(<k) i−1 ] of dimensionality n(<k) i−1 , in the case of dense layers, we replace the linear lateral connection with a single hidden layer MLP.
+0.60 (we; replace; the linear lateral connection with a single hidden layer; L:in the case of dense layers)
+
+Before feeding the lateral activations into the MLP, we multiply them by a learned scalar, initialized by a random small value.
+0.49 (we; multiply; them; T:Before feeding the lateral activations into the MLP)
+0.90 (a learned scalar; initialized; by a random small value)
+
+Omitting bias terms, we get: where V (k:j) reduction is performed via 1 × 1 convolutions [10].
+0.53 (we; get; where V (k:j) reduction is performed via 1 × 1 convolutions)
+0.77 Context(we get):(V (k:j) reduction; is performed; )
+
+We explored two related methods: an intuitive, but slow method based on a perturbation analysis, and a faster analytical method derived from the Fisher Information [2].
+0.57 (We; explored; two related methods: an intuitive, but slow method based on a perturbation analysis)
+0.95 (two related methods: an intuitive, but slow method; based; on a perturbation analysis)
+0.93 (a faster analytical method; derived; from the Fisher Information [2)
+
+To evaluate the degree to which source columns contribute to the target task, we can inject Gaussian noise at isolated points in the architecture (e.g.
+0.89 (the degree; contribute; to the target task)
+0.49 (we; can inject e.g.; Gaussian noise; at isolated points in the architecture)
+
+We ﬁnd that this method yields similar results to the faster Fisher-based method presented below.
+0.87 (the faster Fisher-based method; presented; L:below)
+0.38 (We; ﬁnd; that this method yields similar results to the faster Fisher-based method)
+0.88 Context(We ﬁnd):(this method; yields; similar results)
+
+We thus relegate details and results of the perturbation analysis to the appendix.
+0.53 (We; relegate; details and results of the perturbation analysis to the appendix)
+
+We can get a local approximation to the perturbation sensitivity by using the Fisher Information matrix [2].
+0.45 (We; can get; a local approximation; to the perturbation sensitivity)
+
+While the Fisher matrix is typically computed with respect to the model parameters, we compute a modiﬁed diagonal Fisher ˆF of the network policy π with respect to the normalized activations 2 at each layer ˆh(k) .
+0.83 (the Fisher matrix; is computed; T:typically)
+0.61 (we; compute; a modiﬁed diagonal Fisher ^F of the network policy π)
+
+For convolutional layers, we deﬁne ˆF to implicitly perform a summation over pixel locations.
+0.43 (we; deﬁne; ^F to implicitly perform a summation over pixel locations)
+0.82 Context(we deﬁne):(^F; to implicitly perform; a summation over pixel locations)
+
+We deﬁne the diagonal matrix ˆF , having elements ˆF (m, m), and the derived Average Fisher Sensitivity (AFS) of feature m in layer i of column k as: where the expectation is over the joint state-action distribution ρ(s, a) induced by the progressive network trained on the target task.
+0.91 (the progressive network; trained; on the target task)
+0.93 (the expectation; is; over the joint state-action distribution ρ)
+0.40 (We; deﬁne; the diagonal matrix ^F)
+0.30 Context(We deﬁne):(We; deﬁne the diagonal matrix ^F having; elements ^F (m, m)
+0.59 Context(We deﬁne having):(i of column k; induced; by the progressive network)
+
+In this work we present an architecture for deep reinforcement learning that in sequential task regimes that enables learning without forgetting while supporting individual feature transfer from previous learned tasks.
+0.60 (we; present; an architecture; L:In this work)
+0.55 (deep reinforcement; learning; that)
+0.74 (this work; enables; learning without forgetting)
+
+The block-modular architecture of [21] has many similarities to our approach but focuses on a visual discrimination task.
+0.91 (The block-modular architecture of [21; has; many similarities to our approach)
+0.93 (The block-modular architecture of [21; focuses; on a visual discrimination task)
+
+We evaluate progressive networks across three different RL domains.
+0.50 (We; evaluate; progressive networks across three different RL domains)
+
+First, we consider synthetic versions of Pong, altered to have visual or control-level similarities.
+0.64 (we; consider; synthetic versions of Pong; T:First)
+
+Next, we experiment broadly with random sequences of Atari games and perform a feature-level transfer analysis.
+0.64 (we; experiment broadly; with random sequences of Atari games; L:Next)
+0.41 (we; perform; a feature-level transfer analysis)
+
+Lastly, we demonstrate performance on a set of 3D maze games.
+0.45 (we; demonstrate; performance)
+
+We rely on the Async Advantage Actor-Critic (A3C) framework introduced in [13].
+0.61 (We; rely; on the Async Advantage Actor-Critic (A3C) framework)
+0.83 (the Async Advantage Actor-Critic (A3C) framework; introduced; T:in [13)
+
+We report results by averaging the top 3 out of 25 jobs, each having different seeds and random hyper-parameter sampling.
+0.45 (We; report; results)
+0.54 (each; having; different seeds and random hyper-parameter sampling)
+
+We present transfer score curves for selected source-target games, and summarize all such pairs in transfer matrices.
+0.41 (We; summarize; all such pairs in transfer matrices)
+
+Models and baselines we consider are illustrated in  Figure 3: Illustration of different baselines and architectures.
+0.89 (Models and baselines; consider; we)
+0.70 (Models and baselines we consider; are illustrated; L:in  Figure 3)
+
+The ﬁrst evaluation domain is a set of synthetic variants of the Atari game of Pong ("Pong Soup") where the visuals and gameplay have been altered, thus providing a setting where we can be conﬁdent that there are transferable aspects of the tasks.
+0.97 (The ﬁrst evaluation domain; is; a set of synthetic variants of the Atari game of Pong)
+0.77 (the visuals and gameplay; have been altered; )
+0.23 (we; can be; conﬁdent that there are transferable aspects of the tasks; L:a setting)
+
+As expected, we observe high positive transfer with baseline 3 (single column, full ﬁnetuning), a well established paradigm for transfer.
+0.57 (we; observe; high positive transfer with baseline 3 (single column, full ﬁnetuning), a well established paradigm for transfer)
+
+We use the metric derived in Sec.
+0.50 (We; use; the metric derived in Sec)
+0.61 (the metric; derived; L:in Sec)
+
+We see that when switching from Pong to H-Flip, the network reuses the same components of low and mid-level vision (the outputs of the two convolutional layers; Figure 5a).
+0.32 (We; see; that when switching from Pong to H-Flip, the network reuses the same components of low and mid-level vision)
+0.94 Context(We see):(the network; reuses; the same components of low and mid-level vision; T:when switching from Pong to H-Flip)
+
+We next investigate feature transfer between randomly selected Atari games [3].
+0.60 (We; investigate; feature transfer between randomly selected Atari games; T:next)
+
+To this end we start by training single columns on three source games (Pong, River Raid, and Seaquest) 3 and assess if the learned features transfer to a different subset of randomly selected target games (Alien, Asterix, Boxing, Centipede, Gopher, Hero, James Bond, Krull, Robotank, Road Runner, Star Gunner, and Wizard of Wor).
+0.51 (we; assess; T:To this end)
+0.68 (the learned; features; transfer to a different subset of randomly selected target games (Alien)
+0.56 (we; start; T:To this end)
+0.39 Context(we start):(we; start by training; single columns; on three source games)
+0.38 (Gopher; [is]; Hero)
+0.38 (Robotank; [is]; Road Runner)
+
+We evaluate progressive networks with 2, 3 and 4 columns, 3Progressive columns having more than one “source” column are trained sequentially on these source games, i.e.
+0.87 (columns; are trained sequentially i.e.; on these source games)
+0.40 (We; evaluate; progressive networks)
+0.88 Context(We evaluate):(3Progressive columns; having; more than one "source" column)
+
+Across all games, we observe from Fig.
+0.64 (we; observe; from Fig; L:Across all games)
+
+This is especially promising as we show in the Appendix that progressive network use a diminishing amount of capacity with each added column, pointing a clear path to online compression or pruning as a means to mitigate the growth in model size.
+0.24 (This; is; especially promising; T:as we show in the Appendix that progressive network use a diminishing amount of capacity with each added column)
+0.57 (we; show; L:in the Appendix)
+0.90 (each added column; pointing; a clear path to online compression or pruning; as a means)
+
+To differentiate these cases, we consider the Average Fisher Sensitivity for the 3 column case (e.g., see Fig.
+0.55 (we; consider; the Average Fisher Sensitivity for the 3 column case (e.g., see Fig)
+0.95 Context(we consider):(the Average Fisher Sensitivity for the 3 column case; see; Fig)
+
+At ﬁrst glance, this result appears unintuitive: if a progressive net ﬁnds a valuable feature set from a source task, shouldn’t we expect a high degree of transfer? We offer two hypotheses.
+0.93 (a progressive net; ﬁnds; a valuable feature set from a source task)
+0.93 (a valuable feature; set; from a source task)
+0.45 (We; offer; two hypotheses)
+
+We observe less transfer on the Seek Track levels, which have dense reward items throughout the maze and are easily learned.
+0.50 (We; observe; less transfer on the Seek Track levels)
+0.93 (the Seek Track levels; have; dense reward items throughout the maze)
+0.79 (the Seek Track levels; are easily learned; )
+
+We believe that we are the ﬁrst to show positive transfer in deep RL agents within a continual learning framework.
+0.45 (the ﬁrst; to show; positive transfer in deep RL agents)
+0.12 (We; believe; that we are the ﬁrst)
+0.56 Context(We believe):(we; are; the ﬁrst to show positive transfer in deep RL agents within a continual learning framework)
+
+Moreover, we have shown that the progressive approach is able to effectively exploit transfer for compatible source and task domains; that the approach is robust to harmful features learned in incompatible tasks; and that positive transfer increases with the number of columns, thus corroborating the constructive, rather than destructive, nature of the progressive architecture.
+0.27 (we; have shown; that the progressive approach is able to effectively exploit transfer for compatible source and task domains)
+0.94 Context(we have shown):(the progressive approach; is; able to effectively exploit transfer for compatible source and task domains)
+0.91 (that positive transfer; increases; with the number of columns)
+0.90 (the progressive approach; to effectively exploit; transfer for compatible source and task domains)
+0.93 (the approach; is; robust to harmful features)
+0.90 (harmful features; learned; L:in incompatible tasks)
+
+We explored two related methods for analysing transfer in progressive networks.
+0.45 (We; explored; two related methods for analysing transfer in progressive networks)
+
+We describe the second method based on perturbation analysis in this appendix, as it proved too slow to use at scale.
+0.57 (We; describe; the second method based on perturbation analysis in this appendix)
+0.91 (the second method; based; on perturbation analysis; L:in this appendix)
+
+Given its intuitive appeal however, we provide details of the method along with results on Pong Variants (see Section 5.2), as a means to corroborate the AFS score.
+0.45 (we; provide; details of the method)
+
+Our perturbation analysis aims to estimate which components of the source columns materially contribute to the performance of the ﬁnal column on the target tasks.
+0.71 (Our perturbation analysis; aims; to estimate which components of the source columns materially contribute to the performance of the ﬁnal column on the target tasks)
+0.71 Context(Our perturbation analysis aims):(Our perturbation analysis; aims to estimate; which components of the source columns materially contribute to the performance of the ﬁnal column on the target tasks)
+
+To this end, we injected Gaussian noise into each of the (post-ReLU) hidden representations, with a new sample on every forward pass, and calculated the average effect of these perturbations on the game score over 10 episodes.
+0.64 (we; injected; Gaussian noise; into each of the (post-ReLU) hidden representations; T:To this end)
+0.53 (we; calculated; the average effect of these perturbations on the game score over 10 episodes)
+
+We did this at a coarse scale, by adding noise across all features of a given layer, though a ﬁne scale analysis is also possible per feature (map).
+0.92 (a ﬁne scale analysis; is also; possible per feature)
+0.23 (We; did; this)
+0.29 Context(We did):(We; did this by adding; noise; across all features of a given layer)
+
+In order to be invariant to any arbitrary scale factors in the network weights, we scale the noise variance proportional to the variance of the activations in each feature map and fully-connected neuron.
+0.57 (we; scale; the noise variance proportional to the variance of the activations in each feature map and fully-connected neuron)
+
+In the basic approach we pursue in the main text, the number of hidden units and feature maps grows linearly with the number of columns, and the number of parameters grows quadratically.
+0.90 (the basic approach; pursue; L:in the main text)
+0.96 (the number of hidden units and feature maps; grows linearly; L:In the basic approach)
+0.84 (the number of parameters; grows; quadratically)
+
+Here, we sought to determine the degree to which this full capacity is actually used by the network.
+0.91 (this full capacity; is actually used; by the network)
+0.53 (we; sought; to determine the degree; L:Here)
+0.50 Context(we sought):(we; sought to determine; the degree to which this full capacity is actually used by the network)
+
+We leveraged the Average Fisher Sensitivity measure to study how increasing the number of columns in the Atari task set changes the need for additional resources.
+0.83 (the Average Fisher Sensitivity measure; to study; )
+
+In Figure 10a, we measure the average fractional use of existing feature maps in a given layer (here, layer 2).
+0.70 (we; measure; the average fractional use of existing  feature maps in a given layer; L:In Figure 10a)
+
+We do this for each network by concatenating the per-feature-map AFS values from all source columns in this layer, sorting the values to produce a spectrum, and then averaging across networks.
+0.52 (We; do; this; for each network)
+
+We ﬁnd that as the number of columns increases, the average spectrum becomes sparser: the network relies on a smaller proportion of features from the source columns.
+0.92 (the network; relies; on a smaller proportion of features from the source columns)
+0.34 Context(the network relies):(We; ﬁnd; that as the number of columns increases, the average spectrum becomes sparser)
+0.89 Context(We ﬁnd the network relies):(the average spectrum; becomes; sparser)
+
+Similarly, in Figure 10b, we measure the capacity required in the ﬁnal added column as a function of the total number of columns.
+0.90 (the capacity; required; L:in the ﬁnal)
+0.64 (we; measure; the capacity required in the ﬁnal added column as a function of the total number of columns; L:in Figure 10b)
+0.91 Context(we measure):(the capacity required in the ﬁnal; added; column; as a function of the total number of columns)
+
+Again, we measure the spectrum of AFS values in an example layer, but here from only the ﬁnal column.
+0.64 (we; measure; the spectrum of AFS values in an example layer; T:Again)
+
+In our grid we sample hyper-parameters from categorical distributions: • Learning rate was sampled from {10−3, 5 · 10−4, 10−4}.
+0.38 (we; sample; hyper-parameters; L:In our grid)
+0.77 Context(we sample):(Learning rate; was sampled; from {10−3, 5 · 10−4)
+
+• Strength of the entropy regularization from {10−2, 10−3, 10−4} • Gradient clipping cut-off from {20, 40} • scalar multiplier on the lateral feature is initialized randomly to one from {1, 10−1, 10−2} For the Atari experiments we used a model with 3 convolutional layers followed by a fully connected layer and from which we predict the policy and value function.
+0.45 (we; predict; the policy and value function)
+0.58 (we; used; a model; T:For the Atari experiments)
+0.72 Context(we used):(Gradient; is initialized randomly; to one from)
+0.75 (3 convolutional layers; followed; )
+
+We use 16 workers and the same RMSProp algorithm without momentum or centring of the variance.
+0.61 (We; use; 16 workers and the same RMSProp algorithm without momentum or centring of the variance)
+
+For this reason through out the paper we actually report results in terms of agent perceived steps rather than environment steps.
+0.45 (we; actually report; results)
+
+That is, the maximal number of agent perceived step that we do for any particular run is 4e7.
+0.92 (agent perceived step; do; for any particular run)
+0.86 (the maximal number of agent perceived step; is; 4e7)
+
+We plot learning curves for two column, three column and four column progressive networks alongside Baseline 3 (gray dashed line), a model pretrained on Seaquest and then ﬁnetuned on the particular target game and Baseline 1 (gray dotted line), where a single column is trained on the source game Seaquest.
+0.47 (We; plot; learning curves for two column)
+0.40 Context(We plot):(We; plot learning; curves)
+0.91 (a single column; is trained; on the source game)
+0.92 (a model; pretrained; L:on Seaquest)
+
+We can see that overall baseline 3 performs well.
+0.19 (We; can see; that overall baseline 3 performs well)
+0.70 Context(We can see):(overall baseline 3; performs well; )
+
+The levels we employed can be characterized as follows: • Seek Track 1: simple corridor with many apples • Seek Track 2: U-shaped corridor with many strawberries • Seek Track 3: Ω-shaped, with 90o turns, with few apples • Seek Track 4: Ω-shaped, with 45o turns, with few apples • Seek Avoid 1: large square room with apples and lemons • Seek Avoid 2: large square room with apples and mushrooms • Seek Maze M : M-shaped maze, with apples at dead-ends • Seek Maze Y : Y-shaped maze, with apples at dead-ends 0.04.0steps1e75001000150020002500scoreTarget game: alien0.04.0steps1e7200040006000800010000scoreTarget game: asterix0.04.0steps1e7020406080100scoreTarget game: boxing0.04.0steps1e720003000400050006000scoreTarget game: centipede0.04.0steps1e7100020003000400050006000scoreTarget game: gopher0.04.0steps1e750001000015000200002500030000scoreTarget game: hero0.04.0steps1e75001000150020002500scoreTarget game: jamesbond0.04.0steps1e7200040006000800010000scoreTarget game: krull0.04.0steps1e70500010000150002000025000300003500040000scoreTarget game: road runner0.04.0steps1e751015202530scoreTarget game: robotank0.04.0steps1e7500010000150002000025000300003500040000scoreTarget game: star gunner0.04.0steps1e71000200030004000500060007000scoreTarget game: wizard of worBaseline 1Baseline 3seaquest Prog
+0.88 (The levels; employed; we)
+0.79 (Track 1; • Seek Avoid; 1)
+0.80 (The levels we employed; can be characterized; T:as follows: • Seek Track 1: simple corridor with many apples • Seek Track 2: U-shaped corridor with many strawberries • Seek Track 3: Ω-shaped, with 90o turns, with few apples • Seek Track 4: Ω-shaped, with 45o turns, with few apples • Seek Avoid 1: large square room with apples and lemons • Seek Avoid 2: large square room with apples and mushrooms)
+0.94 (apples at dead-ends; • Seek; Maze Y)
+0.91 (apples and mushrooms; Seek; Maze M)
+0.82 (Seek Track 4; turns; )
+

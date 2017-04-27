@@ -1,0 +1,106 @@
+The paper  |  uses  | problem
+The paper  |  uses  | arbitrary object
+The paper  |  uses  | video
+The paper  |  uses  | problem of tracking an arbitrary object in video
+The paper  |  uses  | initial appearance
+The paper  |  uses  | object
+The paper  |  uses  | exemplar
+The paper  |  uses  | initial appearance of the object as the exemplar
+The paper  |  uses  | deep conv-net
+The paper  |  uses  | function f
+The paper  |  uses  | deep conv-net as the function f
+The paper  |  solves  | siamese architecture
+The paper  |  solves  | respect
+The paper  |  solves  | candidate image
+The paper  |  solves  | siamese architecture which is fully-convolutional with respect to the candidate image
+The paper  |  uses  | crosscorrelation layer f
+The paper  |  uses  | convolutional embedding function ϕ
+The paper  |  uses  | search image
+The paper  |  uses  | previous position
+The paper  |  uses  | target
+The paper  |  uses  | search image centred at the previous position of the target
+The paper  |  uses  | discriminative approach
+The paper  |  uses  | network
+The paper  |  uses  | negative pairs
+The paper  |  uses  | network on positive and negative pairs
+The paper  |  uses  | logistic loss
+The paper  |  uses  | diﬀerent size exemplar
+The paper  |  uses  | images
+The paper  |  uses  | diﬀerent objects
+The paper  |  uses  | theory
+The paper  |  uses  | diﬀerent size exemplar images for diﬀerent objects in theory
+The paper  |  uses  | l
+The paper  |  uses  | canonical tracking benchmarks
+The paper  |  uses  | l : in the canonical tracking benchmarks
+The paper  |  uses  | area
+The paper  |  uses  | exemplar images
+The paper  |  uses  | area of the exemplar images
+The paper  |  uses  | videos
+The paper  |  uses  | imagenet video
+The paper  |  uses  | videos of imagenet video
+The paper  |  uses  | simplistic algorithm
+The paper  |  uses  | tracking
+The paper  |  uses  | simplistic algorithm to perform tracking
+The paper  |  uses  | additional cues such
+The paper  |  uses  | optical ﬂow
+The paper  |  uses  | colour histograms
+The paper  |  uses  | additional cues such as optical ﬂow or colour histograms
+The paper  |  outputs  | good results
+The paper  |  uses  | elementary temporal constraints
+The paper  |  solves  | conv-nets
+The paper  |  solves  | object tracking
+The paper  |  solves  | function
+The paper  |  solves  | pairs
+The paper  |  solves  | images
+The paper  |  solves  | conv-nets for object tracking by learning a function of pairs of images
+The paper  |  uses  | conv-nets
+The paper  |  uses  | object tracking
+The paper  |  uses  | function
+The paper  |  uses  | pairs
+The paper  |  uses  | images
+The paper  |  uses  | conv-nets for object tracking by learning a function of pairs of images
+The paper  |  uses  | feature representation
+The paper  |  uses  | exemplar online
+The paper  |  uses  | simple strategies
+The paper  |  uses  | linear interpolation
+The paper  |  uses  | much performance
+The paper  |  uses  | feature representation of ) the exemplar online through simple strategies , such as linear interpolation , does not gain much performance
+The paper  |  uses  | score map
+The paper  |  uses  | bicubic interpolation
+The paper  |  uses  | ×
+The paper  |  uses  | results
+The paper  |  uses  | more accurate localization
+The paper  |  uses  | original map
+The paper  |  uses  | score map using bicubic interpolation , from 17 × 17 to 272 × 272 , results in more accurate localization since the original map
+The paper  |  outputs  | [
+The paper  |  outputs  | l
+The paper  |  outputs  | major computer vision conferences
+The paper  |  outputs  | l : in the major computer vision conferences
+The paper  |  uses  | latest stable version
+The paper  |  uses  | visual object tracking
+The paper  |  uses  | vot
+The paper  |  uses  | toolkit
+The paper  |  uses  | latest stable version of the visual object tracking ( vot ) toolkit
+The paper  |  outputs  | l
+The paper  |  outputs  | cvpr
+The paper  |  outputs  | l : at cvpr
+The paper  |  outputs  | scores
+The paper  |  outputs  | expressiveness
+The paper  |  outputs  | similarity metric
+The paper  |  outputs  | learnt
+The paper  |  outputs  | fully-convolutional siamese network
+The paper  |  outputs  | imagenet video
+The paper  |  outputs  | strong results
+The paper  |  outputs  | recent state-of-the-art methods
+The paper  |  outputs  | expressiveness of the similarity metric learnt by our fully-convolutional siamese network on imagenet video alone is enough to achieve very strong results , comparable or superior to recent state-of-the-art methods
+The paper  |  uses  | l
+The paper  |  uses  | strong embeddings
+The paper  |  uses  | oﬄine phase
+The paper  |  uses  | strong embeddings in an oﬄine phase
+The paper  |  outputs  | authors
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  uses  | ﬁrst frame
+The paper  |  uses  | ϕ
+The paper  |  uses  | ﬁrst frame to compute ϕ

@@ -1,0 +1,86 @@
+In this paper, we conjecture that the use of a ﬁxed-length vector is a bottleneck in improving the performance of this basic encoder–decoder architecture, and propose to extend this by allowing a model to automatically (soft-)search for parts of a source sentence that are relevant to predicting a target word, without having to form these parts as a hard segment explicitly.
+With this new approach, we achieve a translation performance comparable to the existing state-of-the-art phrase-based system on the task of English-to-French translation.
+Furthermore, qualitative analysis reveals that the (soft-)alignments found by the model agree well with our intuition.
+In order to address this issue, we introduce an extension to the encoder–decoder model which learns to align and translate jointly.
+We show this allows a model to cope better with long sentences.
+In this paper, we show that the proposed approach of jointly learning to align and translate achieves signiﬁcantly improved translation performance over the basic encoder–decoder approach.
+In neural machine translation, we ﬁt a parameterized model to maximize the conditional probability of sentence pairs using a parallel training corpus.
+Here, we describe brieﬂy the underlying framework, called RNN Encoder–Decoder, proposed by Cho et al.
+(2014) upon which we build a novel architecture that learns to align and translate simultaneously.
+c = q ({h1,··· , hTx}) , 1 We mean by the state-of-the-art performance, the performance of the conventional phrase-based system without using any neural network-based component.
+2 Although most of the previous works (see, e.g., Cho et al., 2014a; Sutskever et al., 2014; Kalchbrenner and Blunsom, 2013) used to encode a variable-length input sentence into a ﬁxed-length vector, it is not necessary, and even it may be beneﬁcial to have a variable-length vector, as we will show later.
+3 LEARNING TO ALIGN AND TRANSLATE In this section, we propose a novel architecture for neural machine translation.
+In a new model architecture, we deﬁne each conditional probability in Eq.
+We explain in detail how the annotations are computed in the next section.
+We parametrize the alignment model a as a feedforward neural network which is jointly trained with all the other components of the proposed system.
+We can understand the approach of taking a weighted sum of all the annotations as computing an expected annotation, where the expectation is over possible alignments.
+By letting the decoder have an attention mechanism, we relieve the encoder from the burden of having to encode all information in the source sentence into a ﬁxedlength vector.
+However, in the proposed scheme, we would like the annotation of each word to summarize not only the preceding words, but also the following words.
+Hence, we propose to use a bidirectional RNN (BiRNN, Schuster and Paliwal, 1997), which has been successfully used recently in speech recognition (see, e.g., Graves et al., 2013).
+←− f reads the sequence in the reverse order (from xTx to x1), resulting in a ←− h j, i.e., hj = −→ We obtain an annotation for each word xj by concatenating the forward hidden state h j and the backward one .
+We evaluate the proposed approach on the task of English-to-French translation.
+We use the bilingual, parallel corpora provided by ACL WMT ’14.3 As a comparison, we also report the performance of an RNN Encoder–Decoder which was proposed recently by Cho et al.
+We use the same training procedures and the same dataset for both models.4 WMT ’14 contains the following English-French parallel corpora: Europarl (61M words), news commentary (5.5M), UN (421M) and two crawled corpora of 90M and 272.5M words respectively, totaling 850M words.
+(2014a), we reduce the size of the combined corpus to have 348M words using the data selection method by Axelrod et al.
+(2011).5 We do not use any monolingual data other than the mentioned parallel corpora, although it may be possible to use a much larger monolingual corpus to pretrain an encoder.
+We concatenate news-testdescent is difﬁcult.
+After a usual tokenization6, we use a shortlist of 30,000 most frequent words in each language to train our models.
+We do not apply any other special preprocessing, such as lowercasing or stemming, to the data.
+We train two types of models.
+The ﬁrst one is an RNN Encoder–Decoder (RNNencdec, Cho et al., 2014a), and the other is the proposed model, to which we refer as RNNsearch.
+We train each model twice: ﬁrst with the sentences of length up to 30 words (RNNencdec-30, RNNsearch-30) and then with the sentences of length up to 50 word (RNNencdec-50, RNNsearch-50).
+In both cases, we use a multilayer network with a single maxout (Goodfellow et al., 2013) hidden layer to compute the conditional probability of each target word (Pascanu et al., 2014).
+We use a minibatch stochastic gradient descent (SGD) algorithm together with Adadelta (Zeiler, 2012) to train each model.
+We trained each model for approximately 5 days.
+Once a model is trained, we use a beam search to ﬁnd a translation that approximately maximizes the conditional probability (see, e.g., Graves, 2012; Boulanger-Lewandowski et al., 2013).
+In Table 1, we list the translation performances measured in BLEU score.
+This is a signiﬁcant achievement, considering that Moses uses a separate monolingual corpus (418M words) in addition to the parallel corpora we used to train the RNNsearch and RNNencdec.
+6 We used the tokenization script from the open-source machine translation package, Moses.
+7 In this paper, by a ’hidden unit’, we always mean the gated hidden unit (see Appendix A.1.1).
+We conjectured that this limitation may make the basic encoder–decoder approach to underperform with long sentences.
+2, we see that the performance of RNNencdec dramatically drops as the length of the sentences increases.
+(◦) We disallowed the models to generate [UNK] tokens when only the sentences having no unknown words were evaluated (last column).
+From this we see which positions in the source sentence were considered more important when generating the target word.
+We can see from the alignments in Fig.
+We see strong weights along the diagonal of each matrix.
+However, we also observe a number of non-trivial, non-monotonic alignments.
+Adjectives and nouns are typically ordered differently between French and English, and we see an example in Fig.
+From this ﬁgure, we see that the model correctly translates a phrase [European Economic Area] into [zone ´economique europ´een].
+Our soft-alignment solves this issue naturally by letting the model look at both [the] and [man], and in this example, we see that the model was able to correctly translate [the] into [l’].
+We observe similar behaviors in all the presented cases in Fig.
+In conjunction with the quantitative results presented already, these qualitative observations conﬁrm our hypotheses that the RNNsearch architecture enables far more reliable translation of long sentences than the standard RNNencdec model.
+In Appendix C, we provide a few more sample translations of long source sentences generated by the RNNencdec-50, RNNsearch-50 and Google Translate along with the reference translations.
+The main difference from our approach is that, in (Graves, 2013), the modes of the weights of the annotations only move in one direction.
+Our approach, on the other hand, requires computing the annotation weight of every word in the source sentence for each word in the translation.
+Although the above approaches were shown to improve the translation performance over the stateof-the-art machine translation systems, we are more interested in a more ambitious objective of designing a completely new translation system based on neural networks.
+The neural machine translation approach we consider in this paper is therefore a radical departure from these earlier works.
+Rather than using a neural network as a part of the existing system, our model works on its own and generates a translation from a source sentence directly.
+We conjectured that the use of a ﬁxed-length context vector is problematic for translating long sentences, based on a recent empirical study reported by Cho et al.
+In this paper, we proposed a novel architecture that addresses this issue.
+We extended the basic encoder–decoder by letting a model (soft-)search for a set of input words, or their annotations computed by an encoder, when generating each target word.
+We tested the proposed model, called RNNsearch, on the task of English-to-French translation.
+From the qualitative analysis where we investigated the (soft-)alignment generated by the RNNsearch, we were able to conclude that the model can correctly align each target word with the relevant words, or their annotations, in the source sentence as it generated a correct translation.
+We believe the architecture proposed here is a promising step toward better machine translation and a better understanding of natural languages in general.
+We acknowledge the support of the following agencies for research funding and computing support: NSERC, Calcul Qu´ebec, Compute Canada, the Canada Research Chairs and CIFAR.
+We also thank Felix Hill, Bart van Merri´enboer, Jean Pouget-Abadie, Coline Devin and Tae-Ho Kim.
+Here, we describe the choices we made for the experiments in this paper.
+For the activation function f of an RNN, we use the gated hidden unit recently proposed by Cho et al.
+Whenever possible, we omit bias terms to make the equations less cluttered.
+We compute them by zi = σ (Wze(yi−1) + Uzsi−1 + Czci) , ri = σ (Wre(yi−1) + Ursi−1 + Crci) , where σ (·) is a logistic sigmoid function.
+At each step of the decoder, we compute the output probability (Eq.
+We use a single hidden layer of maxout units (Goodfellow et al., 2013) and normalize the output probabilities (one for each word) with a softmax function (see Eq.
+In order to reduce computation, we use a singlelayer multilayer perceptron such that a tanh (Wasi−1 + Uahj) , where Wa ∈ Rn×n, Ua ∈ Rn×2n and va ∈ Rn are the weight matrices.
+Since Uahj does not depend on i, we can pre-compute it in advance to minimize the computational cost.
+8 Here, we show the formula of the decoder.
+Published as a conference paper at ICLR 2015 A.2 DETAILED DESCRIPTION OF THE MODEL In this section, we describe in detail the architecture of the proposed model (RNNsearch) used in the experiments (see Sec.
+From here on, we omit all bias terms in order to increase readability.
+We concatenate the forward and backward states to to obtain the annotations (h1, h2,··· , hTx ), where ←− h Tx ) are computed similarly.
+We share the word embedding matrix The hidden state si of the decoder given the annotations from the encoder is computed by si =(1 − zi) ◦ si−1 + zi ◦ ˜si, ˜si = tanh (W Eyi−1 + U [ri ◦ si−1] + Cci) zi =σ (WzEyi−1 + Uzsi−1 + Czci) ri =σ (WrEyi−1 + Ursi−1 + Crci) E is the word embedding matrix for the target language.
+Note that the model becomes RNN Encoder–Decoder (Cho et al., 2014a), if we ﬁx ci to With the decoder state si−1, the context ci and the last generated word yi−1, we deﬁne the probability of a target word yi as p(yi|si, yi−1, ci) ∝ exp(cid:0)y(cid:62) ti =(cid:2)max(cid:8)˜ti,2j−1, ˜ti,2j (cid:9)(cid:3)(cid:62) and ˜ti,k is the k-th element of a vector ˜ti which is computed by ˜ti =Uosi−1 + VoEyi−1 + Coci.
+For Wa and Ua, we initialized them by sampling each element from the Gaussian distribution of mean 0 and variance 0.0012.
+We used the stochastic gradient descent (SGD) algorithm.
+We explicitly Published as a conference paper at ICLR 2015 normalized the L2-norm of the gradient of the cost function each time to be at most a predeﬁned threshold of 1, when the norm was larger than the threshold (Pascanu et al., 2013b).
+At each update our implementation requires time proportional to the length of the longest sentence in a minibatch.
+Hence, to minimize the waste of computation, before every 20-th update, we retrieved 1600 sentence pairs, sorted them according to the lengths and split them into 20 minibatches.
+In Tables 2 we present the statistics related to training all the models used in the experiments.
+For each source sentence, we also show the goldstandard translation

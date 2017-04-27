@@ -1,0 +1,97 @@
+Lillicrap1 David Silver1 Koray Kavukcuoglu 1 1 Google DeepMind 2 Montreal Institute for Learning Algorithms (MILA), University of Montreal and We lightweight framework for deep reinforcement learning that uses asynchronous gradient descent for optimization of deep neural network controllers.
+We present asynchronous variants of four standard reinforcement learning algorithms and show that parallel actor-learners have a stabilizing effect on training allowing all four methods to successfully train neural network controllers.
+Furthermore, we show that asynchronous actor-critic succeeds on a wide variety of continuous motor control problems as well as on a new task of navigating random 3D mazes using a visual input.
+In this paper we provide a very different paradigm for deep reinforcement learning.
+Instead of experience replay, we asynchronously execute multiple agents in parallel, on multiple instances of the environment.
+Our parallel reinforcement learning paradigm also offers practical beneﬁts.
+Whereas previous approaches to deep reinforcement learning rely heavily on specialized hardware such as GPUs (Mnih et al., 2015; Van Hasselt et al., 2015; Schaul et al., 2015) or massively distributed architectures (Nair et al., 2015), our experiments run on a single machine with a standard multi-core CPU.
+We believe that the success of A3C on both 2D and 3D games, discrete and continuous action spaces, as well as its ability to train feedforward and recurrent agents makes it the most general and successful reinforcement learning agent to date.
+We also note that a similar way of parallelizing DQN was proposed by (Chavez et al., 2015).
+Reinforcement Learning Background We consider the standard reinforcement learning setting where an agent interacts with an environment E over a number of discrete time steps.
+We refer to the above method as one-step Q-learning because it updates the action value Q(s, a) toward the onestep return r + γ maxa(cid:48) Q(s(cid:48), a(cid:48); θ).
+Asynchronous RL Framework We now present multi-threaded asynchronous variants of one-step Sarsa, one-step Q-learning, n-step Q-learning, and advantage actor-critic.
+While the underlying RL methods are quite different, with actor-critic being an on-policy policy search method and Q-learning being an off-policy value-based method, we use two main ideas to make all four algorithms practical given our design goal.
+First, we use asynchronous actor-learners, similarly to the Gorila framework (Nair et al., 2015), but instead of using separate machines and a parameter server, we use multiple CPU threads on a single machine.
+Second, we make the observation that multiple actorsend if if t mod IAsyncU pdate == 0 or s is terminal then Algorithm 1 Asynchronous one-step Q-learning pseudocode for each actor-learner thread.
+Hence, we do not use a replay memory and rely on parallel actors employing different exploration policies to perform the stabilizing role undertaken by experience replay in the DQN training algorithm.
+First, we obtain a reduction in training time that is roughly linear in the number of parallel actor-learners.
+Second, since we no longer rely on experience replay for stabilizing learning we are able to use on-policy reinforcement learning methods such as Sarsa and actor-critic to train neural networks in a stable way.
+We now describe our variants of one-step Qlearning, one-step Sarsa, n-step Q-learning and advantage actor-critic.
+Asynchronous one-step Q-learning: Pseudocode for our variant of Q-learning, which we call Asynchronous onestep Q-learning, is shown in Algorithm 1.
+We use a shared and slowly changing target network in computing the Q-learning loss, as was proposed in the DQN training method.
+We also accumulate gradients over multiple timesteps before they are applied, which is similar to using minibatches.
+Finally, we found that giving each thread a different exploration policy helps improve robustness.
+While there are many possible ways of making the exploration policies differ we experiment with using -greedy exploration with  periodically sampled from some distribution by each thread.
+We again use a target network and updates accumulated over multiple timesteps to stabilize learning.
+Asynchronous n-step Q-learning: Pseudocode for our variant of multi-step Q-learning is shown in Supplementary Algorithm S2.
+We found that using the forward view is easier when training neural networks with momentum-based methods and backpropagation through time.
+Asynchronous advantage actor-critic: The algorithm, which we call asynchronous advantage actor-critic (A3C), maintains a policy π(at|st; θ) and an estimate of the value function V (st; θv).
+Like our variant of n-step Q-learning, our variant of actor-critic also operates in the forward view and uses the same mix of n-step returns to update both the policy and the value-function.
+As with the value-based methods we rely on parallel actorlearners and accumulated updates for improving training stability.
+Note that while the parameters θ of the policy and θv of the value function are shown as being separate for generality, we always share some of the parameters in practice.
+We typically use a convolutional neural network that has one softmax output for the policy π(at|st; θ) and one linear output for the value function V (st; θv), with all non-output layers shared.
+We also found that adding the entropy of the policy π to the objective function improved exploration by discouraging premature convergence to suboptimal deterministic policies.
+Optimization: We investigated three different optimization algorithms in our asynchronous framework – SGD with momentum, RMSProp (Tieleman & Hinton, 2012) without shared statistics, and RMSProp with shared statistics.
+We used the standard non-centered RMSProp update given by g = αg + (1 − α)∆θ2 and θ ← θ − η where all operations are performed elementwise.
+Experiments We use four different platforms for assessing the properties of the proposed framework.
+We perform most of our experiments using the Arcade Learning Environment (Bellemare et al., 2012), which provides a simulator for Atari 2600 games.
+We use the Atari domain to compare against state of the art results (Van Hasselt et al., 2015; Wang et al., 2015; Schaul et al., 2015; Nair et al., 2015; Mnih et al., 2015), as well as to carry out a detailed stability and scalability analysis of the proposed methods.
+We performed further comparisons using the TORCS 3D car racing simulator (Wymann et al., 2013).
+We also use Asynchronous Methods for Deep Reinforcement Learning  DQN was trained on a single Nvidia K40 GPU while the asynchronous methods were trained using 16 CPU cores.
+For asynchronous methods we average over the best 5 models from 50 experiments with learning rates sampled from LogU nif orm(10−4, 10−2) and all other hyperparameters ﬁxed.
+The precise details of our experimental setup can be found in Supplementary Section 8.
+Method DQN Gorila D-DQN Dueling D-DQN Prioritized DQN A3C, FF A3C, FF A3C, LSTM Training Time 8 days on GPU 8 days on GPU 8 days on GPU 8 days on GPU 1 day on CPU 4 days on CPU 4 days on CPU Mean Median 121.9% 47.5% 215.2% 71.3% 332.9% 110.9% 343.8% 117.1% 463.6% 127.6% 344.1% 68.2% 496.8% 116.6% 623.0% 112.6% We ﬁrst present results on a subset of Atari 2600 games to demonstrate the training speed of the new methods.
+The results show that all four asynchronous methods we presented can successfully train neural network controllers on the Atari domain.
+We then evaluated asynchronous advantage actor-critic on 57 Atari games.
+In order to compare with the state of the art in Atari game playing, we largely followed the training and evaluation protocol of (Van Hasselt et al., 2015).
+Speciﬁcally, we tuned hyperparameters (learning rate and amount of gradient norm clipping) using a search on six Atari games (Beamrider, Breakout, Pong, Q*bert, Seaquest and Space Invaders) and then ﬁxed all hyperparameters for all 57 games.
+We trained both a feedforward agent with the same architecture as (Mnih et al., 2015; Nair et al., 2015; Van Hasselt et al., 2015) as well as a recurrent agent with an additional 256 LSTM cells after the ﬁnal hidden layer.
+We additionally used the ﬁnal network weights for evaluation to make the results more comparable to the original results Table 1.
+We trained our agents for four days using 16 CPU cores, while the other agents were trained for 8 to 10 days on Nvidia K40 GPUs.
+Table 1 shows the average and median human-normalized scores obtained by our agents trained by asynchronous advantage actor-critic (A3C) as well as the current state-of-the art.
+We note that many of the improvements that are presented in Double DQN (Van Hasselt et al., 2015) and Dueling Double DQN (Wang et al., 2015) can be incorporated to 1-step Q and n-step Q methods presented in this work with similar potential improvements.
+TORCS Car Racing Simulator We also compared the four asynchronous methods on the TORCS 3D car racing game (Wymann et al., 2013).
+We used the same neural network architecture as the one used in the Atari experiments speciﬁed in Supplementary Section 8.
+We performed experiments using four different settings – the agent controlling a slow car with and without opponent bots, and the agent controlling a fast car with and without opponent bots.
+Continuous Action Control Using the MuJoCo We also examined a set of tasks where the action space is continuous.
+In particular, we looked at a set of rigid body physics domains with contact dynamics where the tasks include many examples of manipulation and locomotion.
+We evaluated only the asynchronous advantage actor-critic algorithm since, unlike the value-based methods, it is easily extended to continuous actions.
+Some successful policies learned by our agent can be seen in the following video https://youtu.be/ Ajjc08-iPx8.
+We performed an additional set of experiments with A3C on a new 3D environment called Labyrinth.
+The speciﬁc task we considered involved the agent learning to ﬁnd rewards in randomly generated mazes.
+To compute the training speed-up on a single game we measured the time to required reach a ﬁxed reference score using each method and number of threads.
+We trained an A3C LSTM agent on this task using only 84 × 84 RGB images as input.
+Scalability and Data Efﬁciency We analyzed the effectiveness of our proposed framework by looking at how the training time and data efﬁciency changes with the number of parallel actor-learners.
+This conﬁrms that our proposed framework scales well with the number of parallel workers, making efﬁcient use of resources.
+We observe that one-step methods (one-step Q and one-step Sarsa) often require less data to achieve a particular score when using more parallel actor-learners.
+We believe this is due to positive effect of multiple threads to reduce the bias in one-step methods.
+Finally, we analyzed the stability and robustness of the four proposed asynchronous algorithms.
+For each of the four algorithms we trained models on ﬁve games (Breakout, Beamrider, Pong, Q*bert, Space Invaders) using 50 different learning rates and random initializations.
+Conclusions and Discussion We have presented asynchronous versions of four standard reinforcement learning algorithms and showed that they are able to train neural network controllers on a variety of domains in a stable manner.
+Our results show that in our proposed framework stable training of neural networks through reinforcement learning is possible with both valuebased and policy-based methods, off-policy as well as onpolicy methods, and in discrete as well as continuous domains.
+One of our main ﬁndings is that using parallel actorlearners to update a shared model had a stabilizing effect on the learning process of the three value-based methods we considered.
+This could in turn lead to much faster training times in domains like TORCS where interacting with the environment is more expensive than updating the model for the architecture we used.
+Combining other existing reinforcement learning methods or recent advances in deep reinforcement learning with our asynchronous framework presents many possibilities for immediate improvements to the methods we presented.
+While our n-step methods operate in the forward view (Sutton & Barto, 1998) by using corrected n-step returns directly as targets, it has been more common to use the backward view to implicitly combine different returns through eligibility traces (Watkins, 1989; Sutton & Barto, 1998; Peng & Williams, 1996).
+All of the value-based methods we investigated could beneﬁt from different ways of reducing overestimation bias of Q-values (Van Hasselt et al., 2015; Bellemare et al., 2016).
+We thank Thomas Degris, Remi Munos, Marc Lanctot, Sasha Vezhnevets and Joseph Modayil for many helpful discussions, suggestions and comments on the paper.
+We also thank the DeepMind evaluation team for setting up the environments used to evaluate the agents in the paper.
+Optimization Details We investigated two different optimization algorithms with our asynchronous framework – stochastic gradient descent and RMSProp.
+Our implementations of these algorithms do not use any locking in order to maximize throughput when using a large number of threads.
+We experimented with two versions of the algorithm.
+In one version, which we refer to as RMSProp, each thread maintains its own g shown in Equation S2.
+In the other version, which we call Shared RMSProp, the vector g is shared among threads and is updated asynchronously and without locking.
+We compared these three asynchronous optimization algorithms in terms of their sensitivity to different learning rates and random network initializations.
+We performed a set of 50 experiments for ﬁve Atari games and every TORCS level, each using a different random initialization and initial learning rate.
+Note that in comparisons to prior work (Tables 1 and S3) we followed standard evaluation protocol and used ﬁxed hyperparameters.
+Continuous Action Control Using the MuJoCo Physics Simulator To apply the asynchronous advantage actor-critic algorithm to the Mujoco tasks the necessary setup is nearly identical to that used in the discrete action domains, so here we enumerate only the differences required for the continuous action domains.
+For all the domains we attempted to learn the task using the physical state as input.
+In addition, for three of the tasks (pendulum, pointmass2D, and gripper) we also examined training directly from RGB pixel inputs.
+In the cases where we used pixels, the input was passed through two layers of spatial convolutions without any non-linearity or pooling.
+Unlike the discrete action domain where the action output is a Softmax, here the two outputs of the policy network are two real number vectors which we treat as the mean vector µ and scalar variance σ2 of a multidimensional normal distribution with a spherical covariance.
+To act, the input is passed through the model to the output layer where we sample from the normal distribution determined by µ and σ2.
+In our experiments with continuous control problems the networks for policy network and value network do not share any parameters, though this detail is unlikely to be crucial.
+Finally, since the episodes were typically at most several hundred time steps long, we did not use any bootstrapping in the policy or value function updates and batched each episode into a single update.
+As in the discrete action case, we included an entropy cost which encouraged exploration.
+In the continuous Asynchronous Methods for Deep Reinforcement Learning case the we used a cost on the differential entropy of the normal distribution deﬁned by the output of the actor network, − 1 2 (log(2πσ2) + 1), we used a constant multiplier of 10−4 for this cost across all of the tasks examined.
+Even in the case of solving the domains directly from pixel inputs we found that it was possible to reliably discover solutions within 24 hours

@@ -1,0 +1,79 @@
+In this work we deﬁne a new methodology that resolves this bottleneck and provides large scale supervised reading comprehension data.
+Work on such data has shown that neural network based models hold promise for modelling reading comprehension, something that we will build upon here.
+In this work we seek to directly address the lack of real natural language training data by introducing a novel approach to building a supervised reading comprehension data set.
+We observe that summary and paraphrase sentences, with their associated documents, can be readily converted to context–query–answer triples using simple entity detection and anonymisation algorithms.
+Using this approach we have collected two new corpora of roughly a million news stories with associated queries from the CNN and Daily Mail websites.
+We demonstrate the efﬁcacy of our new corpora by building novel deep learning models for reading comprehension.
+We compare these neural models to a range of baselines and heuristic benchmarks based upon a traditional frame semantic analysis provided by a state-of-the-art natural language processing test 1 90,266 1,220 1,093 196,961 12,148 10,397 380,298 3,924 3,198 879,450 64,835 53,182 245 26.0 780 # months # documents # queries Max # entities Avg # entities Avg # tokens Vocab size Table 1: Corpus statistics.
+Our results indicate that the neural models achieve a higher accuracy, and do so without any speciﬁc encoding of the document or query structure.
+Speciﬁcally we seek to estimate the conditional probability p(a|c, q), where c is a context document, q a query relating to that document, and a the answer to that query.
+For a focused evaluation we wish to be able to exclude additional information, such as world knowledge gained from co-occurrence statistics, in order to test a model’s core capability to detect and understand the linguistic relationships between entities in the context document.
+Here we propose a methodology for creating real-world, large scale supervised training data for learning reading comprehension models.
+Inspired by work in summarisation [10, 11], we create two machine reading corpora by exploiting online newspaper articles and their matching summaries.
+We have collected 93k articles from the CNN1 and 220k articles from the Daily Mail2 websites.
+We construct a corpus of document–query– answer triples by turning these bullet points into Cloze [12] style questions by replacing one entity at a time with a placeholder.
+Code to replicate our datasets—and to apply this method to other sources—is available online3.
+To prevent such degenerate solutions and create a focused task we anonymise and randomise our corpora with the following procedure, a) use a coreference system to establish coreferents in each data point; b) replace all entities with abstract entity markers according to coreference; c) randomly permute these entity markers whenever a data point is loaded.
+Thus performance on our two corpora truly measures reading comprehension capability.
+Note that our models don’t distinguish between entity markers and regular words.
+So far we have motivated the need for better datasets and tasks to evaluate the capabilities of machine reading models.
+We proceed by describing a number of baselines, benchmarks and new models to evaluate against this paradigm.
+We deﬁne two simple baselines, the majority baseline (maximum frequency) picks the entity most frequently observed in the context document, whereas the exclusive majority (exclusive frequency) chooses the entity most frequently observed in the context but not observed in the query.
+Building on these approaches, we deﬁne a number of NLP-centric models for our machine reading task.
+We develop a benchmark that makes use of frame-semantic annotations which we obtained by parsing our model with a state-ofthe-art frame-semantic parser [13, 14].
+As the parser makes extensive use of linguistic information we run these benchmarks on the unanonymised version of our corpora.
+Extracting entity-predicate triples— denoted as (e1, V, e2)—from both the query q and context document d, we attempt to resolve queries using a number of rules with an increasing recall/precision trade-off as follows (Table 4).
+For reasons of clarity, we pretend that all PropBank triples are of the form (e1, V, e2).
+In practice, we take the argument numberings of the parser into account and only compare like with like, except in cases such as the permuted frame rule, where ordering is relaxed.
+In the case of multiple possible answers from a single rule, we randomly choose one.
+Word Distance Benchmark We consider another baseline that relies on word distance measurements.
+Here, we align the placeholder of the Cloze form question with each possible entity in the context document and calculate a distance measure between the question and the context around the aligned entity.
+We tune the maximum penalty per word (m = 8) on the validation data.
+We propose three neural models for estimating the probability of word type a from document d answering query q: p(a|d, q) ∝ exp (W (a)g(d, q)) , where V is the vocabulary4, and W (a) indexes row a of weight matrix W and through a slight abuse of notation word types double as indexes.
+Note that we do not privilege entities or variables, the model must learn to differentiate these in the input sequence.
+Our ﬁrst neural model for reading comprehension tests the ability of Deep LSTM encoders to handle signiﬁcantly longer sequences.
+We feed our documents one word at a time into a Deep LSTM encoder, after a delimiter we then also feed the query into the encoder.
+Alternatively we also experiment with processing the query then the document.
+We employ a Deep LSTM cell with skip connections from each input x(t) to every hidden layer, and from every hidden layer to the output y(t): x(cid:48)(t, k) = x(t)||y(cid:48)(t, k − 1), i(t, k) = σ (Wkxix(cid:48)(t, k) + Wkhih(t − 1, k) + Wkcic(t − 1, k) + bki) f (t, k) = σ (Wkxf x(t) + Wkhf h(t − 1, k) + Wkcf c(t − 1, k) + bkf ) c(t, k) = f (t, k)c(t − 1, k) + i(t, k) tanh (Wkxcx(cid:48)(t, k) + Wkhch(t − 1, k) + bkc) o(t, k) = σ (Wkxox(cid:48)(t, k) + Wkhoh(t − 1, k) + Wkcoc(t, k) + bko) h(t, k) = o(t, k) tanh (c(t, k)) y(cid:48)(t, k) = Wkyh(t, k) + bky where || indicates vector concatenation h(t, k) is the hidden state for layer k at time t, and i, f, o are the input, forget, and output gates respectively.
+Thus our Deep LSTM Reader is deﬁned by gLSTM(d, q) = y(|d| +|q|) with input x(t) the concatenation of d and q separated by the delimiter |||.
+The ﬁxed width hidden vector forms a bottleneck for this information ﬂow that we propose to circumvent using an attention mechanism inspired by recent results in translation and image recognition [6, 7].
+We denote the outputs of the forward and backward LSTMs as −→y (t) and ←−y (t) respectively.
+These weights are interpreted as the degree to which the network attends to a particular token in the document when answering the query: m(t) = tanh (Wymyd(t) + Wumu) , s(t) ∝ exp (w where we are interpreting yd as a matrix with each column being the composite representation yd(t) of document token t.
+We can go further by equipping the model with the ability to reread from the document as each query token is read.
+Having described a number of models in the previous section, we next evaluate these models on our reading comprehension corpora.
+Our hypothesis is that neural models should in principle be well suited for this task.
+However, we argued that simple recurrent models such as the LSTM probably have insufﬁcient expressive power for solving tasks that require complex inference.
+We expect that the attention-based models would therefore outperform the pure LSTM-based approaches.
+Considering the second dimension of our investigation, the comparison of traditional versus neural approaches to NLP, we do not have a strong prior favouring one approach over the other.
+First, we want to establish the difﬁculty of our machine reading task by applying a wide range of models to it.
+Second, we compare the performance of parse-based methods versus that of neural models.
+Third, within the group of neural models examined, we want to determine what each component contributes to the end performance; that is, we want to analyse the extent to which an LSTM can solve this task, and to what extent various attention mechanisms impact performance.
+All model hyperparameters were tuned on the respective validation sets of the two corpora.5 Our experimental results are in Table 5, with the Attentive and Impatient Readers performing best across both datasets.
+5For the Deep LSTM Reader, we consider hidden layer sizes [64, 128, 256], depths [1, 2, 4], initial learning rates [1E−3, 5E−4, 1E−4, 5E−5], batch sizes [16, 32] and dropout [0.0, 0.1, 0.2].
+We evaluate two types of feeds.
+In the cqa setup we feed ﬁrst the context document and subsequently the question into the encoder, while the qca model starts by feeding in the question followed by the context document.
+We report results on the best model (underlined hyperparameters, qca setup).
+For the attention models we consider hidden layer sizes [64, 128, 256], single layer, initial learning rates [1E−4, 5E−5, 2.5E−5, 1E−5], batch sizes [8, 16, 32] and dropout [0, 0.1, 0.2, 0.5].
+For all models we used asynchronous RmsProp [20] with a momentum of 0.9 and a decay of 0.95.
+First, the frame-semantic pipeline has a poor degree of coverage with many relations not being picked up by our PropBank parser as they do not adhere to the default predicate-argument structure.
+This effect is exacerbated by the type of language used in the highlights that form the basis of our datasets.
+Word distance benchmark More surprising perhaps is the relatively strong performance of the word distance benchmark, particularly relative to the frame-semantic benchmark, which we had expected to perform better.
+We expect that on other types of machine reading data where questions rather than Cloze queries are used this particular model would perform signiﬁcantly worse.
+This is consistent with our hypothesis that attention is a key ingredient for machine reading and question answering due to the need to propagate information over long distances.
+However this model does fail to match the performance of the attention based models, even though these only use single layer LSTMs.6 The poor results of the Uniform Reader support our hypothesis of the signiﬁcance of the attention mechanism in the Attentive model’s performance as the only difference between these models is that the attention variables are ignored in the Uniform Reader.
+We can visualise the attention mechanism as a heatmap over a context document to gain further insight into the models’ performance.
+In addition we must also take into account that the vectors at each 6Memory constraints prevented us from experimenting with deeper Attentive Readers.
+We have demonstrated a methodology for obtaining a large number of document-queryanswer triples and shown that recurrent and attention based neural networks provide an effective modelling framework for this task.
+Our analysis indicates that the Attentive and Impatient Readers are able to propagate and integrate semantic information over long distances.
+In particular we believe that the incorporation of an attention mechanism is the key contributor to these results.
+The attention mechanism that we have employed is just one instantiation of a very general idea which can be further exploited.
+There are still many queries requiring complex inference and long range reference resolution that our models are not yet able to answer.
+As such our data provides a scalable challenge that should support NLP research into the future.
+Further, signiﬁcantly bigger training data sets can be acquired using the techniques we have described, undoubtedly allowing us to train more expressive and accurate models.
+Model Uniform, CNN Attentive, CNN Impatient, CNN Uniform, Daily Mail Attentive, Daily Mail Impatient, Daily Mail Hidden Size Learning Rate Batch Size Dropout 0.2 0.2 0.3 0.2 0.1 0.1 B Performance across document length To understand how the model performance depends on the size of the context, we plot performance versus document lengths in Figures 4 and 5.
+We expand on the analysis of the attention mechanism presented in the paper by including visualisations for additional queries from the CNN validation dataset below.
+We consider examples from the Attentive Reader as well as the Impatient Reader in this appendix.
+The ﬁnal positive example (also in Figure 7) demonstrates the fearlessness of our model.
+To give a better intuition for the behaviour of the Impatient Reader, we use a similar visualisation technique as before.
+However, this time around we highlight the attention at every time step as the model updates its focus while moving through a given query.
+The right hand side shows our model is not afraid of Chuck Norris (ent164)

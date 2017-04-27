@@ -1,0 +1,105 @@
+Published as a conference paper at ICLR 2016 Net2Net: ACCELERATING LEARNING VIA KNOWLEDGE TRANSFER Tianqi Chen∗, Ian Goodfellow, and Jonathon Shlens Google Inc., Mountain View, CA tqchen@cs.washington.edu, {goodfellow,shlens}@google.com We introduce techniques for rapidly transferring the information stored in one neural net into another neural net.
+Our Net2Net technique accelerates the experimentation process by instantaneously transferring the knowledge from a previous network to each new deeper or wider network.
+Our techniques are based on the concept of functionpreserving transformations between neural network speciﬁcations.
+Using our knowledge transfer mechanism to add depth to Inception modules, we demonstrate a new state of the art accuracy rating on the ImageNet dataset.
+1 We propose a new kind of operation to perform on large neural networks: rapidly transfering knowledge contained in one neural network to another neural network.
+We call this the Net2Net family of operations.
+We use Net2Net as a general term describing any process of training a student network signiﬁcantly faster than would otherwise be possible by leveraging knowledge from a teacher network that was already trained on the same task.
+In this article, we propose two speciﬁc Net2Net methodologies.
+Speciﬁcally, we initialize the student to be a neural network that represents the same function as the teacher, but using a different parameterization.
+We advocate Net2Net operations as a useful tool for accelerating real-world workﬂows.
+We can think of a lifelong learning system as experiencing a continually growing training set.
+Net2Net operations allow us to smoothly instantiate a signiﬁcantly larger model and immediately begin using it in our lifelong learning system, rather than needing to spend weeks or months re-train a larger model from scratch on the latest, largest version of the training set.
+2 METHODOLOGY In this section, we describe our new Net2Net operations and how we applied them on real deep neural nets.
+2.1 FEATURE PREDICTION We brieﬂy experimented with a method that proved not to offer a signiﬁcant advantage: training a large student network beginning from a random initialization, and introducing a set of extra “teacher prediction” layers into the student network.
+Unfortunately, we did not ﬁnd that this method offered any compelling speedup or other advantage relative to the baseline approach.
+This may be because our baseline was very strong, based on training with batch normalization (Ioffe & Szegedy, 2015).
+Though we were not able to make this general approach work, we encourage other researchers to attempt to design fully general Net2Net strategies in the future.
+We instead turned to different Net2Net strategies that were limited in scope but more effective.
+2.2 FUNCTION-PRESERVING INITIALIZATIONS We introduce two effective Net2Net strategies.
+In our experiments, f is deﬁned by a convolutional network, x is an input image, and y is a vector of probabilities representing the conditional distribution over object categories given x.
+Our strategy is to choose a new set of parameters θ(cid:48) for a student network g(x; θ(cid:48)) such that ∀x, f (x; θ) = g(x; θ(cid:48)).
+In our description of the method, we assume for simplicity that both the teacher and student networks contain compositions of standard linear neural network layers of the form h(i) = φ(W (i)(cid:62)h(i−1)) where h(i) is the activations of hidden layer i, W (i) is the matrix of incoming weights for this layer, and φ is an activation function, such as as the rectiﬁed linear activation function (Jarrett et al., 2009; Glorot et al., 2011) or the maxout activation function (Goodfellow et al., 2013).
+We use this layer formalization for clarity, but our method generalizes to arbitrary composition structure of these layers, such as Inception (Szegedy et al., 2014).
+All of our experiments are in fact performed using Inception networks.
+Though we describe the method in terms of matrix multiplication for simplicity, it readily extends to convolution (by observing that convolution is multiplication by a doubly block circulant matrix) and to the addition of biases (by treating biases as a row of W that are multiplied by a constant input of 1).
+We will also give a speciﬁc description for the convolutional case in subsequent discussions of the details of the method.
+2.3 NET2WIDERNET Our ﬁrst proposed transformation is Net2WiderNet transformation.
+To widen layer i, we replace W (i) and W (i+1).
+We use the Net2WiderNet operator to create a student network that represents the same function as the teacher network.
+The student network is larger because we replicate the h[2] unit of the teacher.
+To replicate the h[2] unit, we copy its weights c and d to the new h[3] unit.
+For a practical application, we would simultaneously replicate many randomly chosen units, and we would add a small amount of noise to break symmetry after the replication.
+We also typically widen many layers rather than just one layer, by recursively applying the Net2WiderNet operator.
+We will introduce a random mapping function g : {1, 2,··· , q} → {1, 2,··· , n}, that satisﬁes random sample from {1, 2,··· n} j ≤ n j > n We introduce a new weight matrix U (i) and U (i+1) representing the weights for these layers in the new student network.
+For weights in U (i+1), we must account for the replication by dividing the weight by replication factor given by |{x|g(x)=g(j)}|, so all the units have the exactly the same value as the unit in the original net.
+So far we have only discussed the use of a single random mapping function to expand one layer.
+We can in fact introduce a random mapping function g(i) for every non-output layer.
+To explain, we provide examples of two computational graph structures that impose speciﬁc constraints on the random remapping functions.
+Otherwise we could generate a new unit that uses the weight vector for pre-existing unit i but is scaled by the multiplication parameter for unit j.
+If we concatenate the output of layer 1 and layer 2, then pass this concatenated output to layer 3, the remapping function for layer 3 needs to take the concatenation into account.
+To make Net2WiderNet a fully general algorithm, we would need a remapping inference algorithm that makes a forward pass through the graph, querying each operation in the graph about how to make the remapping functions consistent.
+For our experiments, we manually designed all of the inference necessary rules for the Inception network, which also works for most feed forward network.
+After we get the random mapping, we can copy the weight over and divide by the replication factor, which is formally given by the following equation.
+This operator can be applied arbitrarily many times; we can expand only one layer of the network, or we can expand all non-output layers.
+We can add such constraint to the random mapping generation, such that source of weight is consistent.
+When training with certain forms of randomization on the widened layer, such as dropout (Srivastava et al., 2014), it is acceptable to use perfectly transformation preserving Net2WiderNet, as we have described so far.
+2.4 NET2DEEPERNET We also introduce a second function-preserving transformation, Net2DeeperNet.
+When we apply it to convolution networks, we can simply set the convolution kernels to be identity ﬁlters.
+For example, when using batch normalization, we must set the output scale and output bias of the normalization layer to undo the normalization of the layer’s statistics.
+The approach we take is a speciﬁc case of a more general approach, that is to build a multiple layer network that factorizes the original layer.
+Restricting to adding identity transformation allows us to handle such non-linear transformations, and apply the methodology to the network architectures that we care about.
+We think support for general factorization of layers is an interesting future direction that is worth exploring.
+We can begin training with a student network that represents exactly the same function as the teacher network.
+However, Net2WiderNet may be composed with Net2DeeperNet, so we may in fact add any hidden layer that is at least as wide as the layer below it.
+3 EXPERIMENTS 3.1 EXPERIMENTAL SETUP We evaluated our Net2Net operators in three different settings.
+In all cases we used an InceptionBN network (Ioffe & Szegedy, 2015) trained on ImageNet.
+In the ﬁrst setting, we demonstrate that Net2WiderNet can be used to accelerate the training of a standard Inception network by initializing it with a smaller network.
+In the second setting, we demonstrate that Net2DeeperNet allows us to increase the depth of the Inception modules.
+Finally, we use our Net2Net operators in a realistic setting, where we make more dramatic changes to the model size and explore the model space for better performance.
+In this setting, we demonstrate an improved result on ImageNet.
+We will be comparing our method to some baseline methods: • “Random pad”: This is a baseline for Net2WiderNet.
+We widen the network by adding new units with random weights, rather than by replicating units to perform functionpreserving initialization.
+We compare the training of a deep network accelerated by initialization from a shallow one against the training of an identical deep network initialized randomly.
+3.2 NET2WIDERNET We start by evaluating the method of Net2WiderNet.
+We began by constructing a teacher network that was narrower than the standard Inception.
+We reduced the number of convolution channels at each layer within all Inception modules by a factor of 0.3.
+To simplify the software for our experiments, we did not modify any component of the network other than the Inception modules.
+After training this small teacher network, we used it to accelerated the training of a standard-sized student network.
+We can ﬁnd that the proposed approach gives faster convergence than the baseline approaches.
+3.3 NET2DEEPERNET We conducted experiments with using Net2DeeperNet to make the network deeper.
+For these experiments, we used a standard Inception model as the teacher network, and increased the depth of each inception module.
+Everywhere that a pair of vertical-horizontal convolution layers appears, we added two more pairs of such layers, conﬁgured to result in an identity transformation.
+We ﬁnd that Net2DeeperNet obtains good accuracy much faster than training from random initialization, both in terms of training and validation accuracy.
+In this experiment, we made an ambitious exploration of model design space in both wider and deeper directions.
+Speciﬁcally, we enlarged the 2 times of the original one.
+We also built another deeper net by width of an Inception model to adding four vertical-horizontal convolutional layer pairs on top of every inception modules in the original Inception model.
+This last approach paid off, yielding a model that sets a new state of the art of 78.5% on our ImageNet validation set.
+We did not train these larger models from scratch, due to resource and time constraints.
+However, we reported the convergence curve of the original 0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.800.850.900.95Accuracy on Training SetNet2WiderNet learning-rate=0.002Net2WiderNet learning-rate=0.005Net2WiderNet learning-rate=0.01random pad learning-rate=0.002random pad learning-rate=0.005random pad learning-rate=0.01Training from random initializationAccuracy of Teacher Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2WiderNet learning-rate=0.002Net2WiderNet learning-rate=0.005Net2WiderNet learning-rate=0.01random pad learning-rate=0.002random pad learning-rate=0.005random pad learning-rate=0.01Training from random initializationAccuracy of Teacher ModelPublished as a conference paper at ICLR 2016 (a) Training Accuracy of Different Methods (b) Validation Accuracy of Different Methods Figure 5: Comparison of methods of training a deeper model inception model for reference, which should be easier to train than these larger models.
+We can ﬁnd that the models initialized with Net2Net operations converge even faster than the standard model.
+4 DISCUSSION Our Net2Net operators have demonstrated that it is possible to rapidly transfer knowledge from a small neural network to a signiﬁcantly larger neural network under some architectural constraints.
+We have demonstrated that we can train larger neural networks to improve performance on ImageNet recognition using this approach.
+We hope that future research will uncover new ways of transferring knowledge between neural networks.
+In particular, we hope future research will reveal more general knowledge transfer methods 0.00.20.40.60.81.0Number of Mini-batches passed1e70.50.60.70.80.91.0Accuracy on Training SetNet2DeeperNetTraining from random initializationPrecision of Teacher Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2DeeperNetTraining from random initializationPrecision of Teacher ModelPublished as a conference paper at ICLR 2016 (a) Training Accuracy of Different Methods (b) Validation Accuracy of Different Methods Figure 6: Using Net2Net to quickly explore designs of larger nets.
+By adding eight layers to each Inception module, we obtained a new state of the art test error on ImageNet.
+ACKNOWLEDGMENTS We would like to thank Jeff Dean and George Dahl for helpful discussions.
+We also thank the developers of TensorFlow (Abadi et al., 2015), which we used for all of our experiments.
+We would like to thank Conrado Miranda for helpful feedback that we used to improve the clarity and comprehensiveness of this manuscript.
+We found that, fortunately, nearly all of the hyperparameters that are typically used to train a network from scratch may be used to train a network with Net2Net.
+In our experience, the student network needs only one modiﬁcation, which is to use a smaller learning rate than usual.
+We ﬁnd that the initial learning rate for the student network should be approximately 1 10 the initial learning rate for the teacher network.
+This makes sense because we can think of the student network as continuing the training process begun by the teacher network, and typically the teacher network training process involves shrinking the learning rate to a smaller value than the initial learning rate.
+Our function-preserving initializations avoid that period of low performance.
+(In principle we could avoid this period entirely, but in practice we usually add some noise to the student model in order to break symmetry more rapidly—this results in a brief period of reduced performance, but it is a shorter period and the performance is less impaired than in previous approaches) Also, these approaches do not allow pre-existing portions of the model to co-adapt with new portions of the model to attain greater performance, while our method does.
+Somewhat perplexingly, we were able to train models of considerably greater depth without needing to use knowledge transfer, suggesting that deep models do not pose nearly as much difﬁculty as previous authors have believed.
+This may be due to our use of a very strong baseline: Inception (Szegedy et al., 2014) networks with batch normalization (Ioffe & Szegedy, 2015) trained using RMSProp (Tieleman & Hinton, 2012).
+The models we refer to as “standard size” have 25 weight layers on the shortest path from input to output, and 47 weight layers on the longest path (3 convolution layers + 11 Inception modules, each Inception module featuring a convolution layer followed by three forked paths, the shortest of which involves only one more convolution and the longest of which involves three more).
+Rather than using knowledge transfer to make greater depth possible, our goal is merely to accelerate the training of a new model when a pre-existing one is available.
+It serves a different purpose than our Net2Net technique.
+Our Net2DeeperNet operator involves inserting layers initialized to represent identity functions into deep networks.
+(2013), but to our knowledge that have not previously been used to design function-preserving transformations of pre-existing neural networks.
+The speciﬁc operators we propose are both based on the idea of transformations of a neural network that preserve the function it represents.
+Our function-preserving transformations are similar in spirit.
+However, our transformations preserve the function represented by a feed-forward network.
+Our function-preserving transformations are more general in the Published as a conference paper at ICLR 2016 sense that they allow adding a layer with any width greater than the layer below it, while DBN growth is only known to be distribution-preserving for one speciﬁc size of new layer.

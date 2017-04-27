@@ -1,0 +1,71 @@
+The paper  |  solves  | left
+The paper  |  outputs  | conditional variant
+The paper  |  outputs  | gated pixelcnn
+The paper  |  outputs  | conditional variant of the gated pixelcnn
+The paper  |  uses  | complex conditional distributions
+The paper  |  uses  | natural images
+The paper  |  uses  | latent vector
+The paper  |  uses  | complex conditional distributions of natural images given a latent vector
+The paper  |  uses  | images
+The paper  |  uses  | diverse classes such
+The paper  |  uses  | dogs
+The paper  |  uses  | lawn mowers
+The paper  |  uses  | coral reefs
+The paper  |  uses  | images from diverse classes such as dogs , lawn mowers and coral reefs
+The paper  |  uses  | l
+The paper  |  uses  | embeddings
+The paper  |  uses  | e.g
+The paper  |  uses  | l : in the embeddings - e.g
+The paper  |  uses  | information
+The paper  |  uses  | pixels
+The paper  |  uses  | information about pixels
+The paper  |  uses  | residual connection
+The paper  |  uses  | ]
+The paper  |  uses  | horizontal stack
+The paper  |  uses  | residual connection [ 11 ] in the horizontal stack
+The paper  |  outputs  | latent vector h
+The paper  |  uses  | conditional distribution p
+The paper  |  uses  | x|h
+The paper  |  uses  | images
+The paper  |  uses  | conditional distribution p ( x|h ) of images
+The paper  |  uses  | conditional distribution
+The paper  |  uses  | terms
+The paper  |  uses  | h
+The paper  |  uses  | activations
+The paper  |  uses  | nonlinearities
+The paper  |  uses  | equation
+The paper  |  uses  | terms that depend on h to the activations before the nonlinearities in equation
+The paper  |  outputs  | similar performance
+The paper  |  uses  | synchronous updates
+The paper  |  uses  | total batch size
+The paper  |  uses  | pixelcnns
+The paper  |  uses  | p
+The paper  |  uses  | x|hi
+The paper  |  uses  | p ( x|hi
+The paper  |  uses  | face detector
+The paper  |  uses  | p
+The paper  |  uses  | x|h
+The paper  |  uses  | p ( x|h
+The paper  |  uses  | l
+The paper  |  uses  | bottleneck representation h
+The paper  |  uses  | l : in the bottleneck representation h
+The paper  |  uses  | stacks
+The paper  |  uses  | cnns
+The paper  |  uses  | blind spots
+The paper  |  uses  | receptive ﬁeld
+The paper  |  uses  | stacks of cnns to deal with `` blind spots '' in the receptive ﬁeld
+The paper  |  uses  | blind spots
+The paper  |  uses  | receptive ﬁeld
+The paper  |  uses  | blind spots '' in the receptive ﬁeld
+The paper  |  uses  | gating mechanism
+The paper  |  uses  | performance
+The paper  |  uses  | convergence speed
+The paper  |  uses  | gating mechanism which improves performance and convergence speed
+The paper  |  outputs  | pixelcnn
+The paper  |  outputs  | powerful image decoder
+The paper  |  outputs  | autoencoder
+The paper  |  outputs  | pixelcnn can be used as a powerful image decoder in an autoencoder
+The paper  |  uses  | powerful image decoder
+The paper  |  uses  | autoencoder
+The paper  |  uses  | powerful image decoder in an autoencoder
+The paper  |  solves  | authors

@@ -1,0 +1,93 @@
+s c [     We describe a simple neural language model that relies only on character-level inputs.
+Our model employs a convolutional neural network (CNN) and a highway network over characters, whose output is given to a long short-term memory (LSTM) recurrent neural network language model (RNN-LM).
+In this work, we propose a language model that leverages subword information through a character-level convolutional neural network (CNN), whose output is used as an input to a recurrent neural network language model (RNN-LM).
+Unlike previous works that utilize subword information via morphemes (Botha and Blunsom 2014; Luong, Socher, and Manning 2013), our model does not require morphological tagging as a pre-processing step.
+And, unlike the recent line of work which combines input word embeddings with features from a character-level model (dos Santos and Zadrozny 2014; dos Santos and Guimaraes 2015), our model does not utilize word embeddings at all in the input layer.
+To summarize, our contributions are as follows: • on English, we achieve results on par with the existing state-of-the-art on the Penn Treebank (PTB), despite having approximately 60% fewer parameters, and • on morphologically rich languages (Arabic, Czech, French, German, Spanish, and Russian), our model outperforms various baselines (Kneser-Ney, wordlevel/morpheme-level LSTM), again with fewer parameters.
+We have released all the code for the models described in this paper.1 The architecture of our model, shown in Figure 1, is straightforward.
+Whereas a conventional NLM takes word embeddings as inputs, our model instead takes the output from a single-layer character-level convolutional neural network with max-over-time pooling.
+For notation, we denote vectors with bold lower-case (e.g.
+For notational convenience we assume that words and characters have already been converted into indices.
+It is easy to extend the RNN/LSTM to two (or more) layers by having another network whose Figure 1: Architecture of our language model applied to an example sentence.
+Note that in the above example we have twelve ﬁlters—three ﬁlters of width two (blue), four ﬁlters of width three (yellow), and ﬁve ﬁlters of width four (red).
+Our model simply replaces the input embeddings X with the output from a character-level convolutional neural network, to be described below.
+If we denote w1:T = [w1,··· , wT ] to be the sequence of words in the training corpus, training involves minimizing the negative log-likelihood (N LL) of the sequence which is typically done by truncated backpropagation through time (Werbos 1990; Graves 2013).
+Character-level Convolutional Neural Network In our model, the input at time t is an output from a character-level convolutional neural network (CharCNN), which we describe in this section.
+the cj-th column of Q).4 We apply a narrow convolution between Ck and a ﬁlter (or kernel) H ∈ Rd×w of width w, after which we add a bias and apply a nonlinearity to obtain a feature map f k ∈ Rl−w+1.
+2In our work, predictions are at the word-level, and hence we 3Given that |C| is usually small, some authors work with onehot representations of characters.
+However we found that using lower dimensional representations of characters (i.e.
+4Two technical details warrant mention here: (1) we append start-of-word and end-of-word characters to each word to better represent preﬁxes and sufﬁxes and hence Ck actually has l + 2 columns; (2) for batch processing, we zero-pad Ck so that the number of columns is constant (equal to the max word length) for all words in V.
+Finally, we take the max-over-time as the feature corresponding to the ﬁlter H (when applied to word k).
+, yk We have described the process by which one feature is obtained from one ﬁlter matrix.
+Our CharCNN uses multiple ﬁlters of varying widths to obtain the feature vector for k.
+So if we have a total of h ﬁlters H1, .
+Highway Network We could simply replace xk (the word embedding) with yk at each t in the RNN-LM, and as we show later, this simple model performs well on its own (Table 7).
+One could also have a multilayer perceptron (MLP) over yk to model interactions between the character n-grams picked up by the ﬁlters, but we found that this resulted in worse performance.
+Instead we obtained improvements by running yk through a highway network, recently proposed by Srivastava et al.
+As is standard in language modeling, we use perplexity (P P L) to evaluate the performance of our models.
+We test the model on corpora of varying languages and sizes (statistics available in Table 1).
+We conduct hyperparameter search, model introspection, and ablation studies on the English Penn Treebank (PTB) (Marcus, Santorini, and Marcinkiewicz 1993), utilizing the 5Srivastava et al.
+We initialized bT to a small interval around −2.
+With approximately 1m tokens and |V| = 10k, this version has been extensively used by the language modeling community and is publicly available.6 With the optimal hyperparameters tuned on PTB, we apply the model to various morphologically rich languages: Czech, German, French, Spanish, Russian, and Arabic.
+NonArabic data comes from the 2013 ACL Workshop on Machine Translation,7 and we use the same train/validation/test splits as in Botha and Blunsom (2014).
+While the raw data are publicly available, we obtained the preprocessed versions from the authors,8 whose morphological NLM serves as a baseline for our work.
+We train on both the small datasets (DATA-S) with 1m tokens per language, and the large datasets (DATA-L) including the large English data which has a much bigger |V| than the PTB.
+Arabic data comes from the News-Commentary corpus,9 and we perform our own preprocessing and train/validation/test splits.
+In these datasets only singleton words were replaced with <unk> and hence we effectively use the full vocabulary.
+It is worth noting that the character model can utilize surface forms of OOV tokens (which were replaced with <unk>), but we do not do this and stick to the preprocessed versions (despite disadvantaging the character models) for exact comparison against prior work.
+We backpropagate for 35 time steps using stochastic gradient descent where the learning rate is initially set to 1.0 and halved if the perplexity does not decrease by more than 1.0 on the validation set after an epoch.
+On DATA-S we use a batch size of 20 and on DATA-L we use a batch size of 100 (for d w [1, 2, 3, 4, 5, 6] h f 15 [1, 2, 3, 4, 5, 6, 7] [min{200, 50 · w}] tanh 2 ReLU 2 650 Table 2: Architecture of the small and large models.
+We train for 25 epochs on non-Arabic and 30 epochs on Arabic data (which was sufﬁcient for convergence), picking the best performing model on the validation set.
+For regularization we use dropout (Hinton et al.
+We further constrain the norm of the gradients to be below 5, so that if the L2 norm of the gradient exceeds 5 then we renormalize it to have || · || = 5 before updating.
+of clusters c = (cid:100)(cid:112)|V|(cid:101) and randomly split V into mutually Finally, in order to speed up training on DATA-L we employ a hierarchical softmax (Morin and Bengio 2005)—a common strategy for training language models with very large |V|—instead of the usual softmax.
+We pick the number exclusive and collectively exhaustive subsets V1, .
+Botha and Blunsom (2014) use Brown clusering), we used random clusters as our implementation enjoys the best speed-up when the number of words in each cluster is approximately equal.
+We found random clustering to work surprisingly well.
+2014) Size 5 m 5 m 20 m 19 m 2 m 6 m 7 m 8 m 6 m 6 m 5 m 20 m 52 m Table 3: Performance of our model versus other neural language models on the English Penn Treebank test set.
+†For these models the authors did not explicitly state the number of parameters, and hence sizes shown here are estimates based on our understanding of their papers or private correspondence with the respective authors.
+We found that hierarchical softmax was not necessary for models trained on DATA-S.
+English Penn Treebank We train two versions of our model to assess the trade-off between performance and size.
+As another baseline, we also train two comparable LSTM models that use word embeddings only (LSTM-Word-Small, LSTM-Word-Large).
+As can be seen from Table 3, our large model is on par with the existing state-of-the-art (Zaremba et al.
+Our small model signiﬁcantly outperforms other NLMs of similar size, even though it is penalized by the fact that the dataset already has OOV words replaced with <unk> (other models are purely word-level models).
+While lower perplexities have been reported with model ensembles (Mikolov and Zweig 2012), we do not include them here as they are not comparable to the current work.
+First two rows are from Botha (2014) (except on Arabic where we trained our own KN-4 model) while the last six are from this paper.
+from a morphological standpoint, and thus our next set of results (and arguably the main contribution of this paper) is focused on languages with richer morphology (Table 4, Table 5).
+We compare our results against the morphological logbilinear (MLBL) model from Botha and Blunsom (2014), whose model also takes into account subword information through morpheme embeddings that are summed at the input and output layers.
+As comparison against the MLBL models is confounded by our use of LSTMs—widely known to outperform their feed-forward/log-bilinear cousins—we also train an LSTM version of the morphological NLM, where the input representation of a word given to the LSTM is a summation of the word’s morpheme embeddings.
+Given the input word k, we feed the following representation to the LSTM: where xk is the word embedding (as in a word-level model) and Mk ⊂ M is the set of morphemes for word k.
+The morphemes are obtained by running an unsupervised morphological tagger as a preprocessing step.11 We emphasize that the word embedding itself (i.e.
+We further train wordlevel LSTM models as another baseline.
+Due to memory constraints13 we only train the small models on DATA-L (Table 5).
+Interestingly we do not observe signiﬁcant differences going from word to morpheme LSTMs on Spanish, French, and English.
+We also observe signiﬁcant perplexity reductions even on English when V is large.
+We conclude this section by noting that we used the same architecture for all languages and did not perform any language-speciﬁc tuning of hyperparameters.
+Discussion Learned Word Representations We explore the word representations learned by the models on the PTB.
+For the character models we compare the representations obtained before and after highway layers.
+his and hhs), highlighting the limits of our approach, although this could be due to the small dataset.
+Our initial expectation was that each ﬁlter would learn to activate on different morphemes and then build up semantic representations of words from the identiﬁed morphemes.
+those that maximized the value of the ﬁlter), we found that they did not (in general) correspond to valid morphemes.
+To get a better intuition for what the character composition model is learning, we plot the learned representations of all character n-grams (that occurred as part of at least two words in V) via principal components analysis (Figure 2).
+We feed each character n-gram into the CharCNN and use the CharCNN’s output as the ﬁxed dimensional representation for the corresponding character n-gram.
+We also ﬁnd that the representations are particularly sensitive to character n-grams containing hyphens (orange), presumably because this is a strong signal of a word’s part-of-speech.
+Highway Layers We quantitatively investigate the effect of highway network layers via ablation studies (Table 7).
+We train a model without any highway layers, and ﬁnd that performance decreases signiﬁcantly.
+As the difference in performance could be due to the decrease in model size, we also train a model that feeds yk (i.e.
+We ﬁnd that the MLP does poorly, although this could be due to optimization issues.
+We hypothesize that highway networks are especially well-suited to work with CNNs, adaptively combining local features detected by the individual ﬁlters.
+2014; Kalchbrenner, Grefenstette, and Blunsom 2014; Kim 2014; Zhang, Zhao, and LeCun 2015; Lei, Barzilay, and Jaakola 2015), and we posit that further gains could be achieved by employing highway layers on top of existing CNN architectures.
+We also anecdotally note that (1) having one to two highway layers was important, but more highway layers generally resulted in similar performance (though this may depend on the size of the datasets), (2) having more convolutional layers before max-pooling did not help, and (3) highway layers did not improve models that only used word embeddings as inputs.
+Effect of Corpus/Vocab Sizes We next study the effect of training corpus/vocabulary sizes on the relative performance between the different models.
+We take the German (DE) dataset from DATA-L and vary the training corpus/vocabulary sizes, calculating the perplexity reductions as a result of going from a small word-level model to a small character-level model.
+To vary the vocabulary size we take the most frequent k words and replace the rest with <unk>.
+Although Table 8 suggests that the perplexity reductions become less pronounced as the corpus size increases, we nonetheless ﬁnd that the character-level model outperforms the word-level model in all scenarios.
+Further Observations We report on some further experiments and observations: • Combining word embeddings with the CharCNN’s output to form a combined representation of a word (to be used as input to the LSTM) resulted in slightly worse performance (81 on PTB with a large model).
+While this could be due to insufﬁcient experimentation on our part,14 it suggests that for some tasks, word embeddings are superﬂuous— character inputs are good enough.
+• While our model requires additional convolution operations over characters and is thus slower than a comparable word-level model which can perform a simple lookup at the input layer, we found that the difference was manageable with optimized GPU implementations—for example on PTB the large character-level model trained at 1500 tokens/sec compared to the word-level model which trained at 3000 tokens/sec.
+For scoring, our model can have the same running time as a pure word-level model, as the CharCNN’s outputs can be pre-computed for all words in V.
+We have introduced a neural language model that utilizes only character-level inputs.
+Despite having fewer parameters, our model outperforms baseline models that utilize word/morpheme embeddings in the input layer.
+Our work questions the necessity of word embeddings (as inputs) for neural language modeling.
+We are especially grateful to Jan Botha for providing the preprocessed datasets and the model results.
+Werbos, P

@@ -1,0 +1,140 @@
+The paper  |  uses  | t
+The paper  |  uses  | time
+The paper  |  uses  | t : the time
+The paper  |  outputs  | addition
+The paper  |  outputs  | gradients
+The paper  |  outputs  | same framework
+The paper  |  outputs  | inputs
+The paper  |  outputs  | models
+The paper  |  outputs  | addition to predicting gradients , the same framework can be used to predict inputs , resulting in models
+The paper  |  uses  | inputs
+The paper  |  uses  | greater time horizons
+The paper  |  uses  | limit
+The paper  |  uses  | greater time horizons than the limit
+The paper  |  uses  | gradient ascent
+The paper  |  uses  | agents
+The paper  |  uses  | protocol
+The paper  |  uses  | neural networks
+The paper  |  uses  | protocol to neural networks
+The paper  |  uses  | above process
+The paper  |  uses  | case
+The paper  |  uses  | feed-forward neural net
+The paper  |  uses  | above process to the case of a feed-forward neural net
+The paper  |  uses  | communication protocol
+The paper  |  outputs  | t
+The paper  |  uses  | l2 distance
+The paper  |  uses  | loss
+The paper  |  uses  | l2 distance as a loss
+The paper  |  uses  | l2 distance
+The paper  |  uses  | synthetic gradients
+The paper  |  uses  | communication feedback
+The paper  |  uses  | synthetic gradients as communication feedback
+The paper  |  outputs  | l
+The paper  |  outputs  | fig
+The paper  |  outputs  | l : in fig
+The paper  |  solves  | extension
+The paper  |  solves  | learning
+The paper  |  solves  | synthetic gradient models
+The paper  |  solves  | rnns
+The paper  |  solves  | extension to aid learning of synthetic gradient models for rnns
+The paper  |  outputs  | auxiliary task
+The paper  |  outputs  | rnn
+The paper  |  outputs  | auxiliary task from the rnn
+The paper  |  outputs  | l
+The paper  |  outputs  | fig
+The paper  |  outputs  | l : in fig
+The paper  |  outputs  | application
+The paper  |  outputs  | dni
+The paper  |  outputs  | communication
+The paper  |  outputs  | layers
+The paper  |  outputs  | feed-forward networks
+The paper  |  outputs  | recurrent cores
+The paper  |  outputs  | recurrent networks
+The paper  |  outputs  | application of dni for communication between layers in feed-forward networks , and between recurrent cores in recurrent networks
+The paper  |  uses  | dnis
+The paper  |  uses  | feed-forward networks
+The paper  |  uses  | dnis to feed-forward networks
+The paper  |  uses  | networks
+The paper  |  uses  | dni
+The paper  |  uses  | scenario
+The paper  |  uses  | dni as in the scenario
+The paper  |  uses  | stale gradients
+The paper  |  uses  | parametric approximation
+The paper  |  uses  | gradient
+The paper  |  uses  | respect
+The paper  |  uses  | activations
+The paper  |  uses  | parametric approximation to the gradient with respect to activations
+The paper  |  uses  | synthetic gradient models
+The paper  |  outputs  | gains
+The paper  |  uses  | synthetic input model
+The paper  |  uses  | lstm [
+The paper  |  uses  | ]
+The paper  |  uses  | form
+The paper  |  uses  | input
+The paper  |  uses  | synthetic gradient model
+The paper  |  uses  | lstm [ 9 ] of the form in [ 7 additionally as input to the synthetic gradient model
+The paper  |  uses  | dni
+The paper  |  uses  | bptt limit
+The paper  |  uses  | dni bridging the bptt limit
+The paper  |  uses  | additional recurrent core
+The paper  |  uses  | memory
+The paper  |  uses  | additional recurrent core to be stored in memory
+The paper  |  uses  | larger time dependencies
+The paper  |  outputs  | t steps
+The paper  |  outputs  | future
+The paper  |  outputs  | t steps in the future
+The paper  |  uses  | larger time dependencies
+The paper  |  uses  | lstm
+The paper  |  uses  | units
+The paper  |  uses  | lstm with 1024 units
+The paper  |  uses  | l
+The paper  |  uses  | fig
+The paper  |  uses  | l : in fig
+The paper  |  outputs  | results
+The paper  |  outputs  | lstms
+The paper  |  outputs  | results only with lstms
+The paper  |  uses  | dni
+The paper  |  uses  | vanilla rnns
+The paper  |  uses  | dni to work similarly for vanilla rnns
+The paper  |  uses  | communication
+The paper  |  uses  | network
+The paper  |  uses  | task
+The paper  |  uses  | communication from network a to complete its task
+The paper  |  uses  | joint network a-network b system
+The paper  |  uses  | t
+The paper  |  uses  | timesteps
+The paper  |  uses  | single weight update
+The paper  |  uses  | network
+The paper  |  uses  | network b
+The paper  |  uses  | communication
+The paper  |  uses  | network
+The paper  |  uses  | network b
+The paper  |  uses  | network
+The paper  |  uses  | network b
+The paper  |  uses  | joint network a-network b system to be unrolled for t 2 timesteps before a single weight update to both network a and network b , as the communication between network a to network b causes network a to be update locked to network b
+The paper  |  outputs  | method
+The paper  |  uses  | synthetic gradients
+The paper  |  uses  | communication
+The paper  |  uses  | components
+The paper  |  uses  | synthetic gradients , which allows decoupled communication between components
+The paper  |  outputs  | application
+The paper  |  uses  | l
+The paper  |  uses  | experiments
+The paper  |  uses  | sect
+The paper  |  uses  | l : in the experiments from sect
+The paper  |  uses  | linear model
+The paper  |  uses  | cross entropy loss
+The paper  |  uses  | classiﬁcation
+The paper  |  uses  | l2 loss
+The paper  |  uses  | synthetic gradient regression
+The paper  |  uses  | cross entropy loss for classiﬁcation and l2 loss for synthetic gradient regression
+The paper  |  uses  | identical architecture
+The paper  |  uses  | synthetic gradient model
+The paper  |  uses  | identical architecture used for the synthetic gradient model
+The paper  |  outputs  | synthetic inputs
+The paper  |  uses  | synthetic gradient model
+The paper  |  uses  | single hidden layer
+The paper  |  uses  | dni
+The paper  |  uses  | cdni
+The paper  |  uses  | single hidden layer ( for both dni and cdni
+The paper  |  uses  | lstm units

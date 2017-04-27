@@ -1,0 +1,127 @@
+The paper  |  uses  | professional transcribers
+The paper  |  uses  | actual test sets
+The paper  |  uses  | professional transcribers to transcribe the actual test sets
+The paper  |  solves  | models
+The paper  |  outputs  | system
+The paper  |  outputs  | measurement
+The paper  |  outputs  | human performance
+The paper  |  outputs  | measurement of human performance
+The paper  |  outputs  | implementation
+The paper  |  outputs  | i-vector adaptation
+The paper  |  outputs  | implementation of i-vector adaptation
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  outputs  | cntk toolkit
+The paper  |  outputs  | basis
+The paper  |  outputs  | neural network models
+The paper  |  outputs  | section
+The paper  |  outputs  | cntk toolkit that forms the basis of our neural network models in section
+The paper  |  outputs  | careful multiple transcriptions
+The paper  |  outputs  | %
+The paper  |  outputs  | quick transcriptions
+The paper  |  outputs  | careful multiple transcriptions , and 9.6 % for `` quick transcriptions
+The paper  |  uses  | cnn variants
+The paper  |  uses  | batch normalization
+The paper  |  uses  | relu activations
+The paper  |  uses  | suitable scale
+The paper  |  uses  | energy
+The paper  |  uses  | respect
+The paper  |  uses  | cross entropy objective
+The paper  |  uses  | function
+The paper  |  uses  | suitable scale for this energy is 0.1 with respect to the existing cross entropy objective function
+The paper  |  uses  | bidirectional architecture
+The paper  |  uses  | networks
+The paper  |  uses  | layers
+The paper  |  uses  | word error rate
+The paper  |  uses  | development set
+The paper  |  uses  | hidden units
+The paper  |  uses  | direction
+The paper  |  uses  | layer
+The paper  |  uses  | networks with more than six layers did not improve the word error rate on the development set , and chose 512 hidden units , per direction , per layer
+The paper  |  outputs  | reasonable trade-off
+The paper  |  outputs  | training time
+The paper  |  outputs  | ﬁnal model accuracy
+The paper  |  outputs  | reasonable trade-off between training time and ﬁnal model accuracy
+The paper  |  uses  | spatial smoothing technique
+The paper  |  uses  | accuracy
+The paper  |  uses  | lstm models
+The paper  |  uses  | spatial smoothing technique to improve the accuracy of our lstm models
+The paper  |  uses  | accuracy
+The paper  |  uses  | lstm models
+The paper  |  uses  | accuracy of our lstm models
+The paper  |  uses  | maximum mutual information
+The paper  |  outputs  | denominator graph
+The paper  |  outputs  | language model
+The paper  |  outputs  | denominator graph from this language model
+The paper  |  uses  | l
+The paper  |  uses  | training data
+The paper  |  uses  | l : in the training data
+The paper  |  outputs  | reliable training performance
+The paper  |  uses  | convenient
+The paper  |  uses  | full computation
+The paper  |  uses  | convenient to do the full computation
+The paper  |  uses  | cross-entropy regularization
+The paper  |  uses  | mixed-history acoustic unit language model
+The paper  |  uses  | model
+The paper  |  uses  | phone-based models
+The paper  |  uses  | model to perform better than either purely word-based or phone-based models
+The paper  |  outputs  | l
+The paper  |  outputs  | [
+The paper  |  outputs  | l : in [
+The paper  |  uses  | n-gram language model
+The paper  |  outputs  | details
+The paper  |  uses  | best results
+The paper  |  uses  | two-phase training schedule
+The paper  |  uses  | lstm lms
+The paper  |  uses  | two-phase training schedule to train the lstm lms
+The paper  |  uses  | lstm lms
+The paper  |  uses  | types
+The paper  |  uses  | language models
+The paper  |  uses  | types of language models
+The paper  |  uses  | l
+The paper  |  uses  | table
+The paper  |  uses  | l : in table
+The paper  |  outputs  | l
+The paper  |  outputs  | above
+The paper  |  outputs  | l : above
+The paper  |  uses  | lfmmi
+The paper  |  uses  | signiﬁcant advance
+The paper  |  uses  | technology
+The paper  |  uses  | lfmmi to be a signiﬁcant advance in technology
+The paper  |  uses  | corpus
+The paper  |  uses  | l
+The paper  |  uses  | system
+The paper  |  uses  | l : in our system
+The paper  |  uses  | state left-to-right
+The paper  |  uses  | triphone models
+The paper  |  uses  | tied states
+The paper  |  uses  | state left-to-right triphone models with 9000 tied states
+The paper  |  uses  | 30k-vocabulary derived
+The paper  |  uses  | common words
+The paper  |  uses  | switchboard
+The paper  |  uses  | corpora
+The paper  |  uses  | 30k-vocabulary derived from the most common words in the switchboard and fisher corpora
+The paper  |  outputs  | 5-8 % relative
+The paper  |  outputs  | improvement
+The paper  |  outputs  | i-vectors
+The paper  |  outputs  | cnn systems
+The paper  |  outputs  | 5-8 % relative improvement from i-vectors , including on cnn systems
+The paper  |  uses  | l
+The paper  |  uses  | overall system combination
+The paper  |  uses  | l : in the overall system combination
+The paper  |  uses  | supervision signal
+The paper  |  uses  | locality
+The paper  |  uses  | activations
+The paper  |  uses  | model
+The paper  |  uses  | supervision signal to encourage locality of activations in the model
+The paper  |  outputs  | performance boost
+The paper  |  outputs  | multiple lstm-lms
+The paper  |  outputs  | forward
+The paper  |  outputs  | backward directions
+The paper  |  outputs  | multiple lstm-lms in both forward and backward directions
+The paper  |  outputs  | automatic recognition performance
+The paper  |  outputs  | par
+The paper  |  outputs  | human performance
+The paper  |  outputs  | task
+The paper  |  outputs  | automatic recognition performance on par with human performance on this task

@@ -1,0 +1,126 @@
+The paper  |  outputs  | network morphism equations
+The paper  |  solves  | family
+The paper  |  solves  | parametric-activation functions
+The paper  |  solves  | morphing
+The paper  |  solves  | continuous non-linear activation neurons
+The paper  |  solves  | family of parametric-activation functions to facilitate the morphing of any continuous non-linear activation neurons
+The paper  |  solves  | deconvolution-based algorithm
+The paper  |  solves  | network depth morphing
+The paper  |  solves  | deconvolution-based algorithm for network depth morphing
+The paper  |  outputs  | several practices
+The paper  |  outputs  | morphism operation
+The paper  |  outputs  | several practices for the morphism operation
+The paper  |  outputs  | concept
+The paper  |  outputs  | parametric-activation function family
+The paper  |  outputs  | concept of parametric-activation function family
+The paper  |  outputs  | idmorph
+The paper  |  outputs  | recent work
+The paper  |  outputs  | network morphism
+The paper  |  outputs  | recent work related to network morphism
+The paper  |  outputs  | non-linearities
+The paper  |  outputs  | neural networks
+The paper  |  outputs  | non-linearities in the neural networks
+The paper  |  outputs  | non-linearities
+The paper  |  outputs  | neural networks
+The paper  |  outputs  | non-linearities in the neural networks
+The paper  |  outputs  | stand-alone versions
+The paper  |  outputs  | width morphing
+The paper  |  outputs  | size morphing
+The paper  |  outputs  | subnet morphing
+The paper  |  outputs  | stand-alone versions for width morphing and kernel size morphing , followed by the subnet morphing
+The paper  |  uses  | neural network
+The paper  |  uses  | layers
+The paper  |  uses  | neural network only connected with fully connected layers
+The paper  |  outputs  | algorithms
+The paper  |  outputs  | network morphism equation
+The paper  |  outputs  | algorithms to solve for the network morphism equation
+The paper  |  outputs  | network morphism equation
+The paper  |  outputs  | algorithms
+The paper  |  outputs  | deconvolution
+The paper  |  outputs  | network morphism equation
+The paper  |  outputs  | general network morphism
+The paper  |  outputs  | practical network morphism
+The paper  |  outputs  | algorithms based on deconvolution to solve the network morphism equation ( 6 ) , i.e. , 1 ) general network morphism , and 2 ) practical network morphism
+The paper  |  outputs  | network morphism equation
+The paper  |  outputs  | general network morphism
+The paper  |  outputs  | practical network morphism
+The paper  |  outputs  | network morphism equation ( 6 ) , i.e. , 1 ) general network morphism , and 2 ) practical network morphism
+The paper  |  solves  | fl+1
+The paper  |  solves  | fl
+The paper  |  solves  | fl+1 and fl
+The paper  |  solves  | parameter number
+The paper  |  solves  | fl
+The paper  |  solves  | fl+1
+The paper  |  solves  | ~g
+The paper  |  solves  | parameter number of either fl or fl+1 is no less than ~g
+The paper  |  solves  | more unknowns
+The paper  |  solves  | constraints
+The paper  |  solves  | hence
+The paper  |  solves  | undetermined linear system
+The paper  |  solves  | more unknowns than constraints , and hence it is an undetermined linear system
+The paper  |  solves  | variant
+The paper  |  solves  | algorithm
+The paper  |  solves  | variant of algorithm
+The paper  |  solves  | equation
+The paper  |  solves  | sacriﬁce
+The paper  |  solves  | non-sparse practice
+The paper  |  solves  | equation with a sacriﬁce in the non-sparse practice
+The paper  |  solves  | algorithm
+The paper  |  solves  | network morphism equation
+The paper  |  solves  | algorithm solves the network morphism equation
+The paper  |  solves  | network morphism equation
+The paper  |  solves  | concept
+The paper  |  solves  | p
+The paper  |  solves  | activation function family
+The paper  |  solves  | concept of p ( arametric ) activation function family
+The paper  |  solves  | concept
+The paper  |  solves  | p
+The paper  |  solves  | activation function family
+The paper  |  solves  | concept of p ( arametric ) activation function family
+The paper  |  outputs  | solutions
+The paper  |  outputs  | situations
+The paper  |  outputs  | solutions for these situations
+The paper  |  outputs  | morphing operation
+The paper  |  solves  | equation
+The paper  |  uses  | netmorph
+The paper  |  uses  | proimprove
+The paper  |  uses  | performance
+The paper  |  uses  | %
+The paper  |  uses  | %
+The paper  |  uses  | netmorph to represent the proimprove the performance from 92 % to 97 %
+The paper  |  outputs  | performance
+The paper  |  outputs  | %
+The paper  |  outputs  | %
+The paper  |  outputs  | performance from 92 % to 97 %
+The paper  |  uses  | uniﬁed notation cifar_ddd
+The paper  |  uses  | network architecture
+The paper  |  uses  | subnets
+The paper  |  uses  | uniﬁed notation cifar_ddd to represent a network architecture of three subnets
+The paper  |  outputs  | network architecture
+The paper  |  outputs  | subnets
+The paper  |  outputs  | network architecture of three subnets
+The paper  |  outputs  | tailed architecture
+The paper  |  outputs  | subnet
+The paper  |  outputs  | >
+The paper  |  outputs  | <
+The paper  |  outputs  | >
+The paper  |  outputs  | tailed architecture of each subnet ( < kernel_size > : < num_output >
+The paper  |  uses  | subnet
+The paper  |  uses  | grouping
+The paper  |  uses  | layers
+The paper  |  uses  | subnet
+The paper  |  uses  | x < times >
+The paper  |  uses  | subnet to indicate the grouping of layers in a subnet , and x < times >
+The paper  |  uses  | grouping
+The paper  |  uses  | layers
+The paper  |  uses  | subnet
+The paper  |  uses  | grouping of layers in a subnet
+The paper  |  outputs  | layers
+The paper  |  outputs  | subnets
+The paper  |  outputs  | layers or subnets
+The paper  |  outputs  | systematic study
+The paper  |  outputs  | network morphism
+The paper  |  outputs  | systematic study about network morphism
+The paper  |  outputs  | diverse
+The paper  |  outputs  | operations
+The paper  |  outputs  | diverse morphing operations

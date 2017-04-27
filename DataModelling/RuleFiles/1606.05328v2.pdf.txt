@@ -1,0 +1,233 @@
+We also show that conditional PixelCNN can serve as a powerful decoder in an image autoencoder.
+0.33 (We; show; that conditional PixelCNN can serve as a powerful decoder in an image autoencoder)
+0.91 Context(We show):(conditional PixelCNN; can serve; as a powerful decoder in an image autoencoder)
+
+We aim to Figure 1: Left: A visualization of the PixelCNN that maps a neighborhood of pixels to prediction for the next pixel.
+0.95 (A visualization of the PixelCNN; maps; a neighborhood of pixels)
+0.19 (We; aim; to  Figure 1: Left)
+0.18 Context(We aim):(We; aim to Figure Left; 1)
+
+We also introduce a conditional variant of the Gated PixelCNN (Conditional PixelCNN) that allows us to model the complex conditional distributions of natural images given a latent vector embedding.
+0.46 (We; introduce; a conditional variant of the Gated PixelCNN)
+0.92 (a conditional variant of the Gated PixelCNN; allows; us to model the complex conditional distributions of natural images)
+0.50 Context(a conditional variant of the Gated PixelCNN allows):(us; to model; the complex conditional distributions of natural images given a latent vector embedding)
+
+We show that a single Conditional PixelCNN model can be used to generate images from diverse classes such as dogs, lawn mowers and coral reefs, by simply conditioning on a one-hot encoding of the class.
+0.34 (We; show; that a single Conditional PixelCNN model can be used to generate images from diverse classes such as dogs, lawn mowers and coral reefs, by simply conditioning on a one-hot encoding of the class)
+0.94 Context(We show):(a single Conditional PixelCNN model; can be used; to generate images from diverse classes such as dogs, lawn mowers and coral reefs)
+
+This gives us insight into the invariances encoded in the embeddings — e.g., we can generate different poses of the same person based on a single image.
+0.90 (the invariances; encoded; L:in the embeddings - e.g.)
+0.91 (the same person; based; on a single image)
+0.39 (we; can generate; different poses of the same person)
+0.20 Context(we can generate):(This; gives; us; insight into the invariances)
+
+To amend this we replaced the rectiﬁed linear units between the masked convolutions in the original pixelCNN with the following gated activation unit: y = tanh(Wk,f ∗ x) (cid:12) σ(Wk,g ∗ x), (2) where σ is the sigmoid non-linearity, k is the number of the layer, (cid:12) is the element-wise product and ∗ is the convolution operator.
+0.85 (σ; is; the sigmoid non-linearity)
+0.61 (we; replaced; the rectiﬁed linear units between the masked convolutions in the original pixelCNN; with the following gated activation unit)
+0.85 (k; is; the number of the layer)
+0.94 (k is the number of the layer; is; the element-wise product)
+
+We call the resulting model the Gated PixelCNN.
+0.57 (We; call; the resulting model; the Gated PixelCNN)
+
+2.2 Blind spot in the receptive ﬁeld In Figure 1 (top right), we show the progressive growth of the effective receptive ﬁeld of a 3 × 3 masked ﬁlter over the input image.
+0.64 (we; show; the progressive growth of the effective receptive ﬁeld of a 3 × 3 masked ﬁlter over the input image)
+
+In this work, we remove the blind spot by combining two convolutional network stacks: one that conditions on the current row so far (horizontal stack) and one that conditions on all rows above (vertical stack).
+0.40 (we; remove; the blind spot by combining two convolutional network stacks: one that conditions on the current row so far (horizontal stack) and one; L:In this work)
+0.29 Context(we remove):(we; remove by combining; two convolutional network stacks)
+
+The vertical stack, which does not have any masking, allows the receptive ﬁeld to grow in a rectangular fashion without any blind spot, and we combine the outputs of the two stacks after each layer.
+0.45 (we; combine; the outputs of the two stacks after each layer)
+0.96 (The vertical stack, which does not have any masking; allows; the receptive ﬁeld to grow in a rectangular fashion without any blind spot)
+0.87 Context(The vertical stack , which does not have any masking allows):(The vertical stack; does not have; any masking)
+0.71 Context(The vertical stack , which does not have any masking allows):(the receptive ﬁeld; to grow; )
+
+If we had connected the output of the horizontal stack into the vertical stack, it would be able to use information about pixels that are below or to the right of the current pixel which would break the conditional distribution.
+0.45 (we; had connected; the output of the horizontal stack)
+0.45 (it; would be; able to use information about pixels)
+0.41 (it; to use; information about pixels)
+0.88 (pixels; are; below or to the right of the current pixel)
+0.90 (the current pixel; would break; the conditional distribution)
+
+We combine Wf and Wg in a single (masked) convolution to increase parallelization.
+0.50 (We; combine; Wf and Wg; in a single (masked) convolution)
+
+As proposed in [30] we also use a residual connection [11] in the horizontal stack.
+0.57 (we; also use; a residual connection [11] in the horizontal stack)
+
+We have experimented with adding a residual connection in the vertical stack, but omitted it from the ﬁnal model as it did not improve the results in our initial experiments.
+0.27 (We; omitted; it; from the ﬁnal model)
+0.31 (it; did not improve; the results in our initial experiments)
+0.40 (We; have experimented; with adding a residual connection in the vertical stack)
+0.40 Context(We have experimented):(We; have experimented with adding; a residual connection in the vertical stack)
+
+2(cid:101) × 1) and ((cid:100) n Given a high-level image description represented as a latent vector h, we seek to model the conditional distribution p(x|h) of images suiting this description.
+0.93 (a high-level image description; represented; as a latent vector h)
+0.50 (we; seek; to model the conditional distribution p(x|h) of images)
+0.50 Context(we seek):(we; seek to model; the conditional distribution p(x|h) of images)
+
+Formally the conditional PixelCNN models the following distribution: We model the conditional distribution by adding terms that depend on h to the activations before the nonlinearities in Equation 2, which now becomes: y = tanh(Wk,f ∗ x + V T k,f h) (cid:12) σ(Wk,g ∗ x + V T Figure 2: A single layer in the Gated PixelCNN architecture.
+0.44 (We model the conditional distribution by adding terms; f; )
+0.39 Context(We model the conditional distribution by adding terms f):(We; model; the conditional distribution)
+0.31 Context(We model the conditional distribution by adding terms f):(We; model the conditional distribution by adding; terms that depend on h to the activations before the nonlinearities in Equation 2,)
+0.83 (V T k; g; V T  Figure 2)
+0.79 (terms; depend; on h)
+0.95 (Equation 2; becomes; y = tanh; T:now)
+
+For example we could specify that a certain animal or object should appear, but may do so in different positions and poses and with different backgrounds.
+0.91 (a certain animal or object; may do; so; T:in different positions)
+0.27 (we; could specify; that a certain animal or object should appear, but may do so in different positions and poses and with different backgrounds)
+0.74 Context(we could specify):(a certain animal or object; should appear; )
+
+We also developed a variant where the conditioning function was location dependent.
+0.96 (the conditioning function; was; location dependent; L:a variant)
+
+This could be useful for applications where we do have information about the location of certain structures in the image embedded in h.
+0.18 (This; could be; useful)
+0.57 (we; do have; information about the location of certain structures in the image)
+0.77 (the image; embedded; in)
+
+By mapping h to a spatial representation s = m (h) (which has the same width and height as the image but may have an arbitrary number of feature maps) with a deconvolutional neural network m(), we obtain a location dependent bias as follows: y = tanh(Wk,f ∗ x + Vk,f ∗ s) (cid:12) σ(Wk,g ∗ x + Vk,g ∗ s).
+
+Starting with a traditional convolutional auto-encoder architecture [16], we replace the deconvolutional decoder with a conditional PixelCNN and train the complete network end-to-end.
+0.64 (we; replace; the deconvolutional decoder; with a conditional PixelCNN; T:Starting with a traditional convolutional auto-encoder architecture)
+0.41 (we; train; the complete network end-to-end)
+
+Since PixelCNN has proved to be a strong unconditional generative model, we would expect this change to improve the reconstructions.
+0.91 (PixelCNN; to be; a strong unconditional generative model)
+0.39 (we; would expect; this change to improve the reconstructions)
+0.88 Context(we would expect):(this change; to improve; the reconstructions)
+
+Perhaps more interestingly, we also expect it to change the representations that the encoder will learn to extract from the data: since so much of the low level pixel statistics can be handled by the PixelCNN, the encoder should be able to omit these from h and concentrate instead on more high-level abstract information.
+0.92 (the encoder; should be; able to omit these from h and concentrate instead on more high-level abstract information)
+0.89 (the encoder; to omit; these; from h)
+0.88 (the encoder; will learn; to extract from the data)
+0.86 Context(the encoder will learn):(the representations; to extract; from the data)
+0.84 (the encoder; to concentrate instead; on more high-level abstract information)
+0.95 (so much of the low level pixel statistics; can be handled; by the PixelCNN)
+
+In Table 2 we compare the performance of Gated PixelCNN with other models on the ImageNet dataset.
+0.74 (we; compare; the performance of Gated PixelCNN with other models on the ImageNet dataset; T:In Table 2)
+
+Here Gated PixelCNN outperforms PixelRNN; we believe this is because the models are underﬁtting, larger models perform better and the simpler PixelCNN model scales better.
+0.73 (larger models; perform better; )
+0.56 (we; believe; this is because the models are underﬁtting, larger models perform better and the simpler PixelCNN model scales better)
+0.87 Context(we believe):(Here Gated PixelCNN; outperforms; PixelRNN)
+0.56 Context(we believe):(this; is; because the models are underﬁtting, larger models perform better and the simpler PixelCNN model scales better)
+0.73 (the models; are underﬁtting; )
+
+We were able to achieve similar performance to the PixelRNN (Row LSTM [30]) in less than half the training time (60 hours using 32 GPUs).
+0.61 (We; were; able to achieve similar performance to the PixelRNN (Row LSTM [30]) in less than half the training time)
+0.41 (We; to achieve; similar performance; T:in less than half the training time)
+
+For the results in Table 2 we trained a larger model with 20 layers (Figure 2), each having 384 hidden units and ﬁlter size of 5 × 5.
+0.94 (For the results in Table 2; trained; we)
+
+We used 200K synchronous updates over 32 GPUs in TensorFlow [1] using a total batch size of 128.
+0.43 (We; used; 200K synchronous updates; L:in TensorFlow [1)
+0.29 Context(We used):(We; used 200K synchronous updates using; a total batch size of 128)
+
+3.2 Conditioning on ImageNet Classes For our second experiment we explore class-conditional modelling of ImageNet images using Gated PixelCNNs.
+0.56 (3.2; Conditioning; L:on ImageNet Classes; For our second experiment we explore class-conditional modelling of ImageNet images)
+0.50 (we; explore; class-conditional modelling of ImageNet images)
+0.94 (ImageNet images; using; Gated PixelCNNs)
+
+Given a one-hot encoding hi for the i-th class we model p(x|hi).
+0.45 (we; model; p(x|hi)
+
+Still, one could expect that conditioning the image generation on class label could signiﬁcantly improve the log-likelihood results, however we did not observe big differences.
+0.27 (one; could expect; )
+
+On the other hand, as noted in [27], we observed great improvements in the visual quality of the generated samples.
+0.57 (we; observed; great improvements in the visual quality of the generated samples)
+
+In Figure 3 we show samples from a single class-conditional model for 8 different classes.
+0.66 (we; show; samples; L:In Figure 3)
+
+We see that the generated classes are very distinct from one another, and that the corresponding objects, animals and backgrounds are clearly produced.
+0.82 (the corresponding objects, animals and backgrounds; are clearly produced; )
+0.28 (We; see; that the generated classes are very distinct from one another, and that the corresponding objects, animals and backgrounds are clearly produced)
+0.74 Context(We see):(the generated classes; are; very distinct from one another)
+
+3.3 Conditioning on Portrait Embeddings In our next experiment we took the latent representations from the top layer of a convolutional network trained on a large database of portraits automatically cropped from Flickr images using a face detector.
+0.59 (3.3; Conditioning; L:on Portrait Embeddings)
+0.56 (we; took; the latent representations from the top layer of a convolutional network; L:In our next experiment)
+0.95 (a convolutional network; trained; on a large database of portraits automatically cropped from Flickr images)
+0.71 (portraits; automatically cropped; )
+0.93 (Flickr images; using; a face detector)
+
+After the supervised net was trained we took the (image=x, embedding=h) tuples and trained the Conditional PixelCNN to model p(x|h).
+0.75 (the supervised net; was trained; )
+0.64 (we; took; the (image=x, embedding=h) tuples; T:After the supervised net was trained)
+0.60 (we; trained; the Conditional PixelCNN; to model p(x|h; T:After the supervised net was trained)
+0.93 (the Conditional PixelCNN; to model; p(x|h)
+
+Given a new image of a person that was not in the training set we can compute h = f (x) and generate new portraits of the same person.
+0.89 (a person; was not; in the training set)
+0.45 (we; can compute; h = f (x))
+0.41 (we; generate; new portraits of the same person)
+
+Samples from the model are shown in  Finally, we experimented with reconstructions conditioned on linear interpolations between embeddings of pairs of images.
+0.86 (Samples from the model; are shown; L:in  Finally, we experimented with reconstructions)
+0.60 (we; experimented; with reconstructions; T:Finally)
+0.89 (reconstructions; conditioned; on linear interpolations between embeddings of pairs of images)
+
+We trained a PixelCNN auto-encoder on 32x32 ImageNet patches and compared the results with those from a convolutional auto-encoder trained to optimize MSE.
+0.50 (We; trained; a PixelCNN auto-encoder; on 32x32 ImageNet patches)
+0.20 (We; compared; the results; with those from a convolutional auto-encoder)
+0.94 (a convolutional auto-encoder; trained; to optimize MSE)
+
+For the PixelCNN we sample multiple conditional reconstructions.
+0.64 (we; sample; multiple conditional reconstructions; T:For the PixelCNN)
+
+These images support our prediction in Section 2.4 that the information encoded in the bottleneck representation h will be qualitatively different with a PixelCNN decoder than with a more conventional decoder.
+0.78 (These images; support; our prediction in Section 2.4 that the information encoded in the bottleneck representation h will be qualitatively different with a PixelCNN decoder than with a more conventional decoder)
+0.90 (the information; encoded; L:in the bottleneck representation h)
+0.97 (the information encoded in the bottleneck representation h; will be; qualitatively different with a PixelCNN decoder than with a more conventional decoder)
+
+For example, in the lowest row we can see that the model generates different but similar looking indoor scenes with people, instead of trying to exactly reconstruct the input.
+0.40 (we; can see; that the model generates different but similar looking indoor scenes with people, instead of trying to exactly reconstruct the input; T:in the lowest row)
+0.88 Context(we can see):(the model; generates; different but similar looking indoor scenes)
+
+In our new architecture, we use two stacks of CNNs to deal with “blind spots” in the receptive ﬁeld, which limited the original PixelCNN.
+0.91 (the receptive ﬁeld; limited; the original PixelCNN)
+0.54 (we; use; two stacks of CNNs; to deal with "blind spots" in the receptive ﬁeld; L:In our new architecture)
+0.39 Context(we use):(we; use two stacks of CNNs to deal; with "blind spots" in the receptive ﬁeld)
+
+Additionally, we use a gating mechanism which improves performance and convergence speed.
+0.45 (we; use; a gating mechanism which improves performance and convergence speed)
+0.90 (a gating mechanism; improves; performance and convergence speed)
+
+We have shown that the architecture gets similar performance to PixelRNN on CIFAR-10 and is now state-of-the-art on the ImageNet 32x32 and 64x64 datasets.
+0.95 (the architecture; is; T:now; state-of-the-art on the ImageNet 32x32 and 64x64 datasets)
+0.32 (We; have shown; that the architecture gets similar performance to PixelRNN on CIFAR-10 and is now state-of-the-art on the ImageNet 32x32 and 64x64 datasets)
+0.92 Context(We have shown):(the architecture; gets; similar performance to PixelRNN on CIFAR-10)
+
+Furthermore, using the Conditional PixelCNN we explored the conditional modelling of natural images in three different settings.
+0.50 (we; explored; the conditional modelling of natural images in three different settings)
+
+In class-conditional generation we showed that a single model is able to generate diverse and realistic looking images corresponding to different classes.
+0.90 (a single model; to generate; diverse and realistic looking images corresponding to different classes)
+0.93 (diverse and realistic looking images; corresponding; to different classes)
+0.40 (we; showed; that a single model is able to generate diverse and realistic looking images; T:In class-conditional generation)
+0.91 Context(we showed):(a single model; is; able to generate diverse and realistic looking images)
+
+Finally, we demonstrated that the PixelCNN can be used as a powerful image decoder in an autoencoder.
+0.44 (we; demonstrated; that the PixelCNN can be used as a powerful image decoder in an autoencoder; T:Finally)
+0.91 Context(we demonstrated):(the PixelCNN; can be used; as a powerful image decoder in an autoencoder)
+
+In addition to achieving state of the art log-likelihood scores in all these datasets, the samples generated from our model are of very high visual quality showing that the model captures natural variations of objects and lighting conditions.
+0.83 (the samples; generated; from our model)
+0.72 (the samples generated from our model; are; of very high visual quality)
+
+Because the alignDRAW model proposed by the authors tends to output blurry samples we believe that something akin to the Conditional PixelCNN could greatly improve those samples.
+0.91 (the alignDRAW model; proposed; by the authors)
+0.95 (the alignDRAW model proposed by the authors; tends; to output blurry samples)
+0.83 (the alignDRAW model proposed by the authors; to output; blurry samples we believe that something akin to the Conditional PixelCNN could greatly improve those samples)
+0.32 (we; believe; that something akin to the Conditional PixelCNN could greatly improve those samples)
+0.78 Context(we believe):(something akin to the Conditional PixelCNN; could improve; those samples)
+
+Weiss, Niru Maheswaranathan, and Surya Ganguli
+

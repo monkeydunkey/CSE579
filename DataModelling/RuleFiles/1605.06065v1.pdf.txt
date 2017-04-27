@@ -1,0 +1,143 @@
+Here, we demonstrate the ability of a memory-augmented neural network to rapidly assimilate new data, and leverage this data to make accurate predictions after only a few samples.
+0.70 (we; demonstrate; the ability of a memory-augmented neural network to rapidly assimilate new data; L:Here)
+
+We also introduce a new method for accessing an external memory that focuses on memory content, unlike previous methods that additionally use memory locationbased focusing mechanisms.
+0.41 (We; introduce; a new method for accessing an external memory)
+0.90 (an external memory; focuses; on memory content, unlike previous methods)
+0.89 (previous methods; additionally use; memory; locationbased focusing mechanisms)
+
+And so, in this paper we revisit the meta-learning problem and setup from the perspective of a highly capable memory-augmented neural network (MANN) (note: here on, the term MANN will refer to the class of external-memory equipped networks, and not other “internal” memory-based architectures, such as LSTMs).
+0.74 (we; revisit; the meta-learning problem and setup; from the perspective of a highly capable memory-augmented neural network (MANN) (note: here on; L:in this paper)
+0.92 (MANN; will refer; to the class of external-memory equipped networks, and not other "internal" memory-based architectures, such as LSTMs)
+
+We demonstrate that MANNs are capable of meta-learning in tasks that carry signiﬁcant shortand long-term memory demands.
+0.79 (tasks; carry; signiﬁcant shortand long-term memory demands)
+0.28 (We; demonstrate; that MANNs are capable of meta-learning in tasks)
+0.78 Context(We demonstrate):(MANNs; are; capable of meta-learning in tasks)
+
+Additionally, we outline a memory access module that emphasizes memory access by content, and not additionally on memory location, as in original implementations of the NTM (Graves et al., 2014).
+0.37 (we; outline; a memory access module that emphasizes memory access by content, and not additionally on memory location, as in original implementations of the NTM (Graves et al)
+0.91 (a memory access module; emphasizes; memory access by content)
+
+Our approach combines the best of two worlds: the ability to slowly learn an abstract method for obtaining useful representations of raw data, via gradient descent, and the ability to rapidly bind never-beforeseen information after a single presentation, via an external memory module.
+0.64 (Our approach; combines; the best of two worlds)
+
+Meta-Learning Task Methodology Usually, we try to choose parameters θ to minimize a learning cost L across some dataset D.
+0.60 (we; try; to choose parameters θ; T:Usually)
+0.39 Context(we try):(we; try to choose; parameters)
+
+However, for metalearning, we choose parameters to reduce the expected learning cost across a distribution of datasets p(D): To accomplish this, proper task setup is critical (Hochreiter et al., 2001).
+0.79 (proper task setup; is; critical)
+0.50 Context(proper task setup is):(we; choose; parameters; to reduce the expected learning cost across a distribution of datasets)
+0.50 Context(we choose proper task setup is):(we; choose parameters to reduce; the expected learning cost across a distribution of datasets p(D): To accomplish this)
+
+In our setup, a task, or episode, involves the presentation of some dataset D = {dt}T t=1 = {(xt, yt)}T t=1.
+0.95 (a task, or episode; involves; the presentation of some dataset D = {dt}T t=1; L:In our setup)
+
+The controllers employed in our model are are either LSTMs, or feed-forward networks.
+0.83 (The controllers; employed; L:in our model)
+0.76 (The controllers employed in our model; are; are either LSTMs, or feed-forward networks)
+0.73 (The controllers employed in our model; are; either LSTMs, or feed-forward networks)
+
+As such, writing to memory in our model involves the use of a newly designed access module called the Least Recently Used Access (LRUA) module.
+0.72 (writing to memory in our model; involves; the use of a newly designed access module)
+0.94 (a newly designed access module; called; the Least)
+
+First, we introduce the notation m(v, n) to denote the nth smallest element of the vector v.
+0.50 (we; introduce; the notation m(v; n) to denote the nth smallest element of the vector)
+0.29 Context(we introduce):(we; introduce the notation m(v n to denote; the nth smallest element of the vector)
+
+To reduce the risk of overﬁtting, we performed data augmentation by randomly translating and rotating character images.
+0.39 (we; performed; data augmentation)
+0.16 Context(we performed):(we; performed data augmentation by randomly translating; )
+0.29 Context(we performed):(we; performed data augmentation rotating; character images)
+
+We also created new classes through 90◦, 180◦ and 270◦ rotations of existing data.
+0.41 (We; created; new classes)
+
+In order to reduce the computational time of our experiments we downscaled the images to 20 × 20.
+0.45 (we; downscaled; the images; to 20 × 20)
+
+We performed a number of iterations of the basic task described in Section 2.
+0.45 (We; performed; a number of iterations of the basic task)
+0.91 (the basic task; described; L:in Section 2)
+
+First, our MANN was trained using one-hot vector representations as class labels (Figure 2).
+0.81 (our MANN; was trained; using one-hot vector representations as class labels; T:First)
+0.67 (our MANN; using; one-hot vector representations as class labels)
+
+We were unable to accumulate an appreciable amount of data from participants on the ﬁfteen class case, as it proved much too difﬁcult and highly demotivating.
+0.57 (We; were; unable to accumulate an appreciable amount of data from participants on the ﬁfteen class case)
+0.53 (We; to accumulate; an appreciable amount of data from participants on the ﬁfteen class case)
+
+We considered a set of baselines, such as a feed-forward RNN, LSTM, and a nonparametric nearest neighbours classiﬁer that used either raw-pixel input or features extracted by an autoencoder.
+0.37 (We; considered; a set of baselines, such as a feed-forward RNN, LSTM, and a nonparametric nearest neighbours classiﬁer that used either raw-pixel input or features)
+0.89 (features; extracted; by an autoencoder)
+
+The highest accuracies from our experiments are reported, which were achieved using a single nearest neighbour for prediction and features from the output bottleneck layer of the autoencoder.
+0.38 (The highest accuracies from our experiments; are reported; )
+
+To test the effects of memory interference, we performed the classiﬁcation task without wiping the external memory between episodes.
+0.39 (we; performed; the classiﬁcation task)
+0.39 Context(we performed):(we; performed the classiﬁcation task without wiping; the external memory between episodes)
+
+Given the successful one-shot classiﬁcation in episodes with ﬁfteen classes, we employed a curriculum training regime to further scale the classiﬁcation capabilities of the model.
+0.39 (we; employed; a curriculum training regime; to further scale the classiﬁcation capabilities of the model)
+0.29 Context(we employed):(we; employed a curriculum training regime to scale; the classiﬁcation capabilities of the model)
+
+(a) Five classes per episode (b) Ten classes per episode  To test the effects of interference, we did not wipe the external memory store from episode-toepisode.
+0.45 (we; did not wipe; the external memory store; from episode-toepisode)
+
+Since our MANN architecture generated a broad strategy for meta-learning, we reasoned that it would be able to adequately perform regression tasks on never-before-seen functions.
+0.72 (our MANN architecture; generated; a broad strategy for meta-learning)
+0.41 (it; to adequately perform; regression tasks; L:on never-before-seen functions)
+0.17 (we; reasoned; that it would be able to adequately perform regression tasks on never-before-seen functions)
+0.39 Context(we reasoned):(it; would be; able to adequately perform regression tasks on never-before-seen functions)
+
+To test this, we generated functions using from a GP prior with a ﬁxed set of hyper-parameters and trained our network using unique functions in each episode.
+0.50 (we; generated; functions using; from a GP; T:prior with a ﬁxed set of hyper-parameters)
+0.71 (functions; using; )
+0.27 (we; trained; our network)
+
+In our experiments, the GP was initiated with the correct hyper-parameters for the sampled function, giving it an advantage in function prediction.
+0.91 (the GP; was initiated; with the correct hyper-parameters for the sampled function; L:In our experiments)
+0.75 (the GP; giving; it; an advantage in function prediction)
+
+We investigated an approach to this problem based on the idea of meta-learning.
+0.45 (We; investigated; an approach to this problem)
+0.90 (this problem; based; on the idea of meta-learning)
+
+Our central contribution is to demonstrate the special utility of a particular class of MANNs for meta-learning.
+0.83 (Our central contribution; is; to demonstrate the special utility of a particular class of MANNs for meta-learning)
+
+The work we presented leaves several clear openings for next-stage development.
+0.60 (we; presented; leaves; several clear openings for next-stage development; T:The work)
+
+First, our experiments employed a new procedure for writing to memory that was prima facie well suited to the tasks studied.
+0.76 (our experiments; employed; a new procedure; for writing to memory; T:First)
+0.68 (memory; was prima facie well suited; )
+0.73 (the tasks; studied; )
+
+Second, although we tested MANNs in settings where task parameters changed across episodes, the tasks studied contained a high degree of shared high-level structure.
+0.50 (we; tested; MANNs; L:in settings)
+0.94 (task parameters; changed; L:across episodes; L:settings)
+0.73 (the tasks; studied; )
+0.91 (the tasks studied; contained; a high degree of shared high-level structure)
+
+Weston, Jason, Chopra, Sumit, and Bordes, Antoine.
+
+Additional model details Our model is a variant of a Neural Turing Machine (NTM) from Graves et al.
+0.89 (Additional model; details; Our model is a variant of a Neural Turing Machine (NTM) from Graves et al)
+0.78 Context(Additional model details):(Our model; is; a variant of a Neural Turing Machine (NTM) from Graves et al)
+
+The controllers in our experiments are feed-forward networks or Long Short-Term Memories (LSTMs).
+0.45 (The controllers in our experiments; are; feed-forward)
+
+To write to memory, we implemented a new content-based access module called Least Recently Used Access (LRUA).
+0.61 (we; implemented; a new content-based access module called Least Recently Used Access (LRUA))
+0.95 (a new content-based access module; called; Least)
+
+First, we introduce the notation m(v, n) to denote the nth smallest element of the vector v
+0.64 (we; introduce; the notation m; v, n) to denote the nth smallest element of the vector v; T:First)
+0.29 Context(we introduce):(we; introduce the notation m n to denote; the nth smallest element of the vector v)
+

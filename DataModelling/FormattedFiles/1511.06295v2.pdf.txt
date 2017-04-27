@@ -1,0 +1,54 @@
+In this work, we present a novel method called policy distillation that can be used to extract the policy of a reinforcement learning agent and train a new network that performs at the expert level while being dramatically smaller and more efﬁcient.
+We demonstrate these claims using the Atari domain and show that the multi-task distilled agent outperforms the single-task teachers as well as a jointly-trained DQN agent.
+In this paper, we introduce policy distillation for transferring one or more action policies from Q-networks to an untrained network.
+We show that distillation can also be used in the context of reinforcement learning (RL), a signiﬁcant discovery that belies the commonly held belief that supervised learning cannot generalize to sequential prediction tasks (Barto and Dietterich, 2004).
+weighing classiﬁcation of actions by the action gap).
+We show that model compression and distillation can alleviate such issues.
+Before describing policy distillation, we will ﬁrst give a brief review of deep Q-learning, since DQN serves as both the baseline for performance comparisons as well as the teacher for the policy distillation.
+After the DQN summary, we will describe policy distillation for single and multiple tasks.
+Thus, given an environment E whose interface at timestep i comprises actions ai ∈ A = {1, ..., K}, observations xi ∈ Rd, and rewards ri ∈ R, we deﬁne a sequence t(cid:48)=t γt(cid:48)−trt.
+In all cases To test this intuition we consider three methods of policy distillation from T to S.
+we assume that the teacher T has been used to generate a dataset DT = {(si, qi)}N i=0, where each sample consists of a short observation sequence si and a vector qi of unnormalized Q-values with one value per action.
+The ﬁrst method uses only the highest valued action from the teacher, ai,best = argmax(qi), and the student model is trained with a negative log likelihood loss (NLL) to predict the same action: LNLL(DT , θS) = − log P (ai = ai,best|xi, θS) 1.20	1.25	1.30	1.35	Teacher	Q-values	No-op	Up	Down	0.00	0.50	1.00	Dist-KL	Targets	10.00	10.50	11.00	Teacher	Q-values	No-op	Fire	Right	Le9	Right	+	Fire	Le9	+	Fire	0.00	0.50	1.00	Dist-KL	Targets	Under review as a conference paper at ICLR 2016 In the second case, we train using a mean-squared-error loss (MSE).
+LM SE(DT , θS) = In the third case, we adopt the distillation setup of Hinton et al.
+Rather than soften these targets, we expect that we may need to make them sharper.
+We use n DQN single-game experts, each trained separately.
+We also experiment with both the KL and NLL distillation loss functions for multi-task learning.
+We believe this is due to interference between the different policies, different reward scaling, and the inherent instability of learning value functions.
+Since policies are compressed and reﬁned during the distillation process, we surmise that they may also be more effectively combined into a single network.
+For each game we trained a separate DQN agent, as reported in Mnih et al.
+We employed a similar training procedure for multi-task policy distillation, as shown in Figure 2(b).
+To rigorously test the generalization capability of both DQN teachers and distilled agents we followed the evaluation techniques introduced by Nair et al.
+Since the agent is not in control of the distribution over starting states, nor do we generate any training data using human trajectories, we assert that high scores imply good levels of generalization.
+4.2 SINGLE-GAME POLICY DISTILLATION RESULTS In this section we show that the Kullback-Leibler (KL) cost function leads to the best-performing student agents, and that these distilled agents outperform their DQN teachers on most games.
+Dist-MSE score %DQN score %DQN score %DQN 102.9 25.7 15.3 5607.3 Students trained with a MSE loss performed worse than KL or NLL, even though we are successfully minimizing the squared error.
+We determine empirically that a low temperature τ = 0.01 is best suited for distillation in this domain.
+Given the performance of the KL loss, we did not experiment with other possibilities, such as combining the NLL and MSE criteria.
+4.3 POLICY DISTILLATION WITH MODEL COMPRESSION In the single game setting, we also explore model compression through distillation.
+We evaluate single-game distilled agents and DQN teachers using 10 different Atari games, using student networks that were signiﬁcantly smaller (25%, 7%, and 4% of the DQN network parameters).
+We report the geometric mean over 10 Atari games, with error bars showing the 95% conﬁdence interval.
+We speculate that training a larger network accelerates the policy iteration cycle (Sutton and Barto, 1998) of DQN.
+A detailed results table is given in Appendix B We train a multi-task DQN agent using the standard DQN algorithm applied to interleaved experience from three games (Multi-DQN), and compare it against distilled agents (Multi-Dist) which were trained using targets from three different single-game DQN teachers (see Figure 4).
+There is a ceiling effect on Freeway and Pong, since the single-task DQN teachers are virtually optimal, but we do see a considerable improvement on Q*bert, with as much as 50% higher scores for Multi-Dist-KL.
+We use the same approach to distill 10 Atari games into a single student network that is four times larger than a single DQN.
+We don’t offer a comparison to a jointly trained, 10 game DQN agent, as was done for the three game set, because in our preliminary experiments DQN failed to reach higher-than-chance performance on most of the games.
+This highlights the challenges of multi-task reinforcement learning and supports our ﬁndings on the three game set (Figure 4).
+4.5 ONLINE POLICY DISTILLATION RESULTS As a ﬁnal contribution, we investigated online policy distillation, where the student must track the DQN teacher during Q-learning.
+In this work we have applied distillation to policy learnt in deep Q-networks.
+We have shown that in the RL setting, special care must be taken to chose the correct loss function for distillation and have observed that the best results are obtained by weighing action classiﬁcation by a soft-max of the action-gap, similarly to what is suggested by the CAPI framework Farahmand et al.
+Our results show that distillation can be applied to reinforcement learning, even without using an iterative approach and without allowing the student network to control the data distribution it is trained on.
+We recorded the DQN teacher’s outputs (Q-values for all valid actions) and inputs (emulator frames) into a replay memory with a capacity of 10 hours of real-time gameplay (540,000 control steps at 15Hz).
+At the end of each new hour of teacher gameplay added to the replay memory we performed 10,000 minibatch updates on the student network.
+We used the RmsProp (Tieleman and Hinton, 2012) variation of minibatch stochastic gradient descent to train student networks.
+We chose hyper-parameters using preliminary experiments on 4 games.
+Using modern GPUs we can refresh the replay memory and train the students much faster than real-time, with typical convergence in a few days.
+With multi-task students we used separate replay memories for each game, with the same capacity of 10 hours, and the respective DQN teachers took turns adding data.
+Distillation Targets Using DQN outputs we have deﬁned three types of training targets that correspond to the three distillation loss functions discussed in Section3.
+Second, we used only the teacher’s highest valued action as a one-hot target.
+Naturally, we minimized the negative log likelihood (NLL) loss.
+Finally, we passed Q-values through a softmax function whose temperature (τ = 0.01) was selected empirically from [1.0, 0.1, 0.01, 0.001].
+We went on to use the KL cost function for a majority of reported experiments, with a ﬁxed hyper-parameter value.
+We used one unit for each valid action in the output layer, which was linear.
+3 Output up to 18 up to 18 up to 18 up to 18 For compression experiments we scaled down the number of units in each layer without changing the basic architecture.
+We also do not compute a generalization score until the agent’s training process has ended.
+While activations are still game-speciﬁc, we observe higher within-game variance of representations, which probably reﬂect output statistics.

@@ -1,0 +1,302 @@
+s c [     Deep Speech 2: End-to-End Speech Recognition in Baidu Research – Silicon Valley AI Lab∗ Dario Amodei, Rishita Anubhai, Eric Battenberg, Carl Case, Jared Casper, Bryan Catanzaro, Jingdong Chen, Mike Chrzanowski, Adam Coates, Greg Diamos, Erich Elsen, Jesse Engel, Linxi Fan, Christopher Fougner, Tony Han, Awni Hannun, Billy Jun, Patrick LeGresley, Libby Lin, Sharan Narang, Andrew Ng, Sherjil Ozair, Ryan Prenger, Jonathan Raiman, Sanjeev Satheesh, David Seetapun, Shubho Sengupta, Yi Wang, Zhiqian Wang, Chong Wang, Bo Xiao, Dani Yogatama, Jun Zhan, Zhenyao Zhu We show that an end-to-end deep learning approach can be used to recognize either English or Mandarin Chinese speech—two vastly different languages.
+Key to our approach is our application of HPC techniques, resulting in a 7x speedup over our previous system [26].
+As a result, in several cases, our system is competitive with the transcription of human workers when benchmarked on standard datasets.
+Finally, using a technique called Batch Dispatch with GPUs in the data center, we show that our system can be inexpensively deployed in an online setting, delivering low latency when serving users at scale.
+We present the second generation of our speech system that exempliﬁes the major advantages of endto-end learning.
+Since our system is built on end-to-end deep learning, we can employ a spectrum of deep learning techniques: capturing large training sets, training larger models with high performance computing, and methodically exploring the space of neural network architectures.
+We show that through these techniques we are able to reduce error rates of our previous end-to-end system [26] in English by up to 43%, and can also recognize Mandarin speech with high accuracy.
+To meet the expectations of speech recognition users, we believe that a single engine must learn to be similarly competent; able to handle most applications with only minor modiﬁcations and able to learn new languages from scratch without dramatic changes.
+Our end-to-end system puts this goal within reach, allowing us to approach or exceed the performance of human workers on several tests in two very different languages: Mandarin and English.
+Since Deep Speech 2 (DS2) is an end-to-end deep learning system, we can achieve performance gains by focusing on three crucial components: the model architecture, large labeled training datasets, and computational scale.
+This paper details our contribution to these three areas for speech recognition, including an extensive investigation of model architectures and the effect of data and model size on recognition performance.
+In particular, we describe numerous experiments with neural networks trained with the Connectionist Temporal Classiﬁcation (CTC) loss function [22] to predict speech transcriptions from audio.
+We consider networks composed of many layers of recurrent connections, convolutional ﬁlters, and nonlinearities, as well as the impact of a speciﬁc instance of Batch Normalization [63] (BatchNorm) applied to RNNs.
+We not only ﬁnd networks that produce much better predictions than those in previous work [26], but also ﬁnd instances of recurrent models that can be deployed in a production setting with no signiﬁcant loss in accuracy.
+We detail our data capturing pipeline that has enabled us to create larger datasets than what is typically used to train speech recognition systems.
+Our English speech system is trained on 11,940 hours of speech, while the Mandarin system is trained on 9,400 hours.
+We use data synthesis to further augment the data during training.
+Indeed, our models have many more parameters than those used in our previous system.
+This makes model exploration a very time consuming exercise, so we have built a highly optimized training system that uses 8 or 16 GPUs to train one model.
+In contrast to previous large-scale training approaches that use parameter servers and asynchronous updates [18, 10], we use synchronous SGD, which is easier to debug while testing new ideas, and also converges faster for the same degree of data parallelism.
+To make the entire system efﬁcient, we describe optimizations for a single GPU as well as improvements to scalability for multiple GPUs.
+We employ optimization techniques typically found in High Performance Computing to improve scalability.
+We also use carefully integrated compute nodes and a custom implementation of all-reduce to accelerate inter-GPU communication.
+This scalability and efﬁciency cuts training times down to 3 to 5 days, allowing us to iterate more quickly on our models and datasets.
+We benchmark our system on several publicly available test sets and compare the results to our previous end-to-end system [26].
+Our goal is to eventually reach human-level performance not only on speciﬁc benchmarks, where it is possible to improve through dataset-speciﬁc tuning, but on a range of benchmarks that reﬂects a diverse set of scenarios.
+To that end, we have also measured the performance of human workers on each benchmark for comparison.
+We ﬁnd that our system outperforms humans in some commonly-studied benchmarks and has signiﬁcantly closed the gap in much harder cases.
+In addition to public benchmarks, we show the performance of our Mandarin system on internal datasets that reﬂect real-world product scenarios.
+Through model exploration, we ﬁnd high-accuracy, deployable network architectures, which we detail here.
+We also employ a batching scheme suitable for GPU 11 exaFLOP = 1018 FLoating-point OPerations.
+hardware called Batch Dispatch that leads to an efﬁcient, real-time implementation of our Mandarin engine on production servers.
+Our implementation achieves a 98th percentile compute latency of 67 milliseconds, while the server is loaded with 10 simultaneous audio streams.
+We begin with a review of related work in deep learning, end-to-end speech recognition, and scalability in Section 2.
+We discuss the training data and steps taken to further augment the training set in Section 5.
+We end with a description of the steps needed to deploy DS2 to real users in Section 7.
+In contrast, we train the CTC-RNN networks from scratch without the need of framewise alignments for pre-training.
+We take advantage of work in increasing individual GPU efﬁciency for low-level deep learning primitives [9].
+We build on the past work in using modelparallelism [15], data-parallelism [18] or a combination of the two [64, 26] to create a fast and highly scalable system for training deep RNNs in speech recognition.
+We draw inspiration from these past approaches in bootstrapping larger datasets and data augmentation to increase the effective amount of labeled data for our system.
+In order to learn from datasets this large, we increase the model capacity via depth.
+We explore architectures with up to 11 layers including many bidirectional recurrent layers and convolutional layers.
+In order to optimize these models successfully, we use Batch Normalization for RNNs and a novel optimization curriculum we call SortaGrad.
+We also exploit long strides between RNN inputs to reduce computation per example by a factor of 3.
+Finally, though many of our research results make use of bidirectional recurrent layers, we ﬁnd that excellent models exist using only unidirectional recurrent layers—a feature that makes such models much easier to deploy.
+We use a spectrogram of power t normalized audio clips as the features to the system, so x(i) t,p denotes the power of the p’th frequency bin in the audio frame at time t.
+For notational convenience, we drop the superscripts and use x to denote a chosen utterance and y the corresponding label.
+In English we have (cid:96)t ∈ {a, b, c, .
+, z, space, apostrophe, blank}, where we have added the apostrophe as well as a space symbol to denote word boundaries.
+We describe this in more detail in Section 3.9.
+The architectures we experiment with consist of one or more convolutional layers, followed by one or more recurrent layers, followed by one or more fully connected layers.
+We use the clipped rectiﬁedlinear (ReLU) function σ(x) = min{max{x, 0}, 20} as our nonlinearity.
+In some layers, usually the ﬁrst, we sub-sample by striding the convolution by s frames.
+We explore variants of this architecture by varying the number of convolutional layers from 1 to 3 and the number of recurrent or GRU layers from 1 to 7.
+After the bidirectional recurrent layers we apply one or more fully connected layers with t = f (W lhl−1 t = f (W lhl−1 hl k · hL−1 j · hL−1 The output layer L is a softmax computing a probability distribution over characters given by The model is trained using the CTC loss function [22].
+Given an input-output pair (x, y) and the current parameters of the network θ, we compute the loss function L(x, y; θ) and its derivative with respect to the parameters of the network ∇θL(x, y; θ).
+In the following subsections we describe the architectural and algorithmic improvements made relative to DS1 [26].
+We report results on an English speaker held out development set which is an internal dataset containing 2048 utterances of primarily read speech.
+We report Word Error Rate (WER) for the English system and Character Error Rate (CER) for the Mandarin system.
+In both cases we integrate a language model in a beam search decoding step as described in Section 3.8.
+3.2 Batch Normalization for Deep RNNs To efﬁciently scale our model as we scale the training set, we increase the depth of the networks by adding more hidden layers, rather than making each layer larger.
+We explore Batch Normalization (BatchNorm) as a technique to accelerate training for such networks [63] since they often suffer from optimization issues.
+In contrast, we demonstrate that when applied to very deep networks of simple RNNs on large data sets, batch normalization substantially improves ﬁnal generalization error while greatly accelerating training.
+In a typical feed-forward layer containing an afﬁne transformation followed by a non-linearity f (·), we insert a BatchNorm transformation by applying f (B(W h)) instead of f (W h + b), where The terms E and Var are the empirical mean and variance over a minibatch.
+In our convolutional layers the mean and variance are estimated over all the temporal output units for a given convolutional ﬁlter on a minibatch.
+We consider two methods of extending BatchNorm to bidirectional RNNs [37].
+We ﬁnd that this technique does not lead to improvements in optimization.
+We also tried accumulating an average over successive time-steps, so later time-steps are normalized over all present and previous timesteps.
+We ﬁnd that sequence-wise normalization [37] overcomes these issues.
+The recurrent computation is given by t = f (B(W lhl−1 −→h l t + −→U l−→h l t = f (B(W lhl−1 −→h l ) + −→U l−→h l For each hidden unit, we compute the mean and variance statistics over all items in the minibatch over the length of the sequence.
+When comparing depth, in order to control for model size we hold constant the total Figure 2: Training curves of two models trained with and without BatchNorm.
+We start the plot after the ﬁrst epoch of training as the curve is more difﬁcult to interpret due to the SortaGrad curriculum method mentioned in Section 3.3 Table 2: Comparison of WER on a training and development set with and without SortaGrad, and with and without batch normalization.
+We would expect to see even larger improvements from depth if we held constant the number of activations per layer and added layers.
+We also ﬁnd that BatchNorm harms generalization error for the shallowest network just as it converges slower for shallower networks.
+We ﬁnd that normalizing each neuron to its mean and variance over just the sequence degrades performance.
+Instead, we store a running average of the mean and variance for the neuron collected during training, and use these for evaluation in deployment [63].
+Using this technique, we can evaluate a single utterance at a time with better results than evaluating with a large batch.
+The CTC cost function that we use implicitly depends on the length of the utterance, L(x, y; θ) = − log where Align(x, y) is the set of all possible alignments of the characters of the transcription y to frames of input x under the CTC operator.
+This motivates a curriculum learning strategy we title SortaGrad.
+In the ﬁrst training epoch, we iterate through the training set in increasing order of the length of the longest utterance in the minibatch.
+In some sense the two techniques substitute for one another, though we still ﬁnd gains when applying SortaGrad and BatchNorm together.
+Even with BatchNorm we ﬁnd that this curriculum improves numerical stability and sensitivity to small changes in training.
+We suspect that these beneﬁts occur primarily because long utterances tend to have larger gradients, yet we use a ﬁxed learning rate independent of utterance length.
+3.4 Comparison of simple RNNs and GRUs The models we have shown so far are simple RNNs that have bidirectional recurrent layers with the recurrence for both the forward in time and backward in time directions modeled by Equation 3.
+We decided to examine GRUs because experiments on smaller data sets showed the GRU and LSTM reach similar accuracy for the same number of parameters, but the GRUs were faster to train and less likely to diverge.
+The GRUs we use are computed by zt = σ(Wzxt + Uzht−1 + bz) rt = σ(Wrxt + Urht−1 + br) ˜ht = f (Whxt + rt ◦ Uhht−1 + bh) ht = (1 − zt)ht−1 + zt where σ(·) is the sigmoid function, z and r represent the update and reset gates respectively, and we drop the layer superscripts for simplicity.
+We differ slightly from the standard GRU in that we multiply the hidden state ht−1 by Uh prior to scaling by the reset gate.
+However, we ﬁnd similar performance for tanh and clippedReLU nonlinearities and choose to use the clipped-ReLU for simplicity and uniformity with the rest of the network.
+As we discuss in Section 3.8, even simple RNNs are able to implicitly learn a language model due to the large amount of training data.
+We attribute this to the thinning from 1728 hidden units per layer for 1 recurrent layer to 768 hidden units per layer for 7 recurrent layers, to keep the total number of parameters constant.
+However, in later results (Section 6) we ﬁnd that as we scale up the model size, for a ﬁxed computational budget the simple RNN networks perform slightly better.
+We experiment with adding between one and three layers of convolution.
+In all cases we use a same convolution, preserving the number of input features in both frequency and time.
+In some cases, we specify a stride across either dimension which reduces the size of the output.
+We do not explicitly control for the number of parameters, since convolutional layers add a small fraction of parameters to our networks.
+We report results on two datasets—a development set of 2048 utterances (“Regular Dev”) and a much noisier dataset of 2048 utterances (“Noisy Dev”) randomly sampled from the CHiME 2015 development datasets [4].
+We ﬁnd that multiple layers of 1D-invariant convolutions provides a very small beneﬁt.
+In the convolutional layers, we apply a longer stride and wider context to speed up training as fewer time-steps are required to model a given utterance.
+In our Mandarin models, we employ striding in the straightforward way.
+However, in English, striding can reduce accuracy simply because the output of our network requires at least one timestep per output character, and the number of characters in English speech per time-step is high enough to cause problems when striding2.
+To overcome this, we can enrich the English alphabet with symbols representing alternate labellings like whole words, syllables or non-overlapping ngrams.
+In practice, we use non-overlapping bi-graphemes or bigrams, since these are simple to construct, unlike syllables, and there are few of them compared to alternatives such as whole words.
+We transform unigram labels into bigram labels through a simple isomorphism.
+In Table 5 we show results for both the bigram and unigram systems for various levels of striding, with or without a language model.
+We observe that bigrams allow for larger strides without any sacriﬁce in in the word error rate.
+We have found an unidirectional architecture that performs as well as our bidirectional models.
+This allows us to use unidirectional, forward-only RNN layers in our deployment system.
+To accomplish this, we employ a special layer that we call row convolution, shown in  Suppose at time-step t, we use a future context of τ steps.
+We now have a feature matrix ht:t+τ = [ht, ht+1, ..., ht+τ ] of size d × (τ + 1).
+We deﬁne a parameter matrix W of the same size as ht:t+τ .
+This is reﬂected in our training data, where there are on average 14.1 characters/s in English, while only 3.3 characters/s in Mandarin.
+11 is row oriented for both W and ht:t+τ , we call this layer row convolution.
+We place the row convolution layer above all recurrent layers.
+We conjecture that the recurrent layers have learned good feature representations, so the row convolution layer simply gathers the appropriate information to feed to the classiﬁer.
+We train our RNN Models over millions of unique utterances, which enables the network to learn a powerful implicit language model.
+Our best models are quite adept at spelling, without any external language constraints.
+Further, in our development datasets we ﬁnd many cases where our models can implicitly disambiguate homophones—for example, “he expects the Japanese agent to sell it for two hundred seventy ﬁve thousand dollars”.
+Thus we ﬁnd that WER improves when we supplement our system with a language model trained from external text.
+We use an n-gram language model since they scale well to large amounts of unlabeled text [26].
+For English, our language model is a Kneser-Ney smoothed 5-gram model with pruning that is trained using the KenLM toolkit [28] on cleaned text from the Common Crawl Repository3.
+During inference we search for the transcription y that maximizes Q(y) shown in Equation 12.
+We use a beam search to ﬁnd the optimal transcription [27].
+The relative improvement given by the language model drops from 48% to 36% in English and 27% to 23% in Mandarin, as we go from a model with 5 layers and 1 recurrent layer to a model with 9 layers and 7 recurrent layers.
+We hypothesize that the network builds a stronger implicit language model with more recurrent layers.
+We attribute this to the fact that a Chinese character represents a larger block of information than an English character.
+For example, if we output directly to syllables or words in English, the model would make fewer spelling mistakes and the language model would likely help less.
+The techniques that we have described so far can be used to build an end-to-end Mandarin speech recognition system that outputs Chinese characters directly.
+For example we do not need to model Mandarin tones explicitly, as some speech systems must do [59, 45].
+The only architectural changes we make to our networks are due to the characteristics of the Chinese character set.
+We incur an out of vocabulary error at evaluation time if a character is not contained in this set.
+This is not a major concern, as our test set has only 0.74% out of vocab characters.
+We use a character level language model in Mandarin as words are not usually segmented in text.
+In addition, we ﬁnd that the performance of the beam search during decoding levels off at a smaller beam size.
+In Section 6.2, we show that our Mandarin speech models show roughly the same improvements to architectural changes as our English speech models.
+Our networks have tens of millions of parameters, and the training algorithm takes tens of singleprecision exaFLOPs to converge.
+Since our ability to evaluate hypotheses about our data and models depends on the ability to train models quickly, we built a highly optimized training system.
+Our optimized software, running on dense compute nodes with 8 Titan X GPUs per node, allows us to sustain 24 single-precision teraFLOP/second when training a single model on one node.
+We also can scale to multiple nodes, as outlined in the next subsection.
+We use the standard technique of data-parallelism to train on multiple GPUs using synchronous SGD.
+Our most common conﬁguration uses a minibatch of 512 on 8 GPUs.
+Our training pipeline binds one process to each GPU.
+We ﬁnd synchronous SGD useful because it is reproducible and deterministic.
+We have found that the appearance of non-determinism in our system often signals a serious bug, and so having reproducibility as a goal has greatly facilitates debugging.
+It scales well as we add multiple nodes to the training process.
+Figure 4 shows that time taken to train one epoch halves as we double the number of GPUs that we train on, thus achieving near-linear weak scaling.
+We keep the minibatch per GPU constant at 64 during this experiment, effectively doubling the minibatch as we double the number of GPUs.
+Although we have the ability to scale to large minibatches, we typically use either 8 or 16 GPUs during training with a minibatch of 512 or 1024, in order to converge to the best result.
+Since all-reduce is critical to the scalability of our training, we wrote our own implementation of the ring algorithm [48, 65] for higher performance and better stability.
+Our implementation avoids extraneous copies between CPU and GPU, and is fundamental to our scalability.
+We conﬁgure OpenMPI with the smcuda transport that can send and receive buffers residing in the memory of two different GPUs by using GPUDirect.
+We built our implementation using MPI send and receive, along with CUDA kernels for the elementwise operations.
+Table 7 compares the performance of our all-reduce implementation with that provided by OpenMPI version 1.8.5.
+We report the time spent in all-reduce for a full training run that ran for one epoch on our English dataset using a 5 layer, 3 recurrent layer architecture with 2560 hidden units for all layers.
+In this table, we use a minibatch of 64 per GPU, expanding the algorithmic minibatch as we scale to more GPUs.
+We see that our implementation is considerably faster than OpenMPI’s when the communication is within a node (8 GPUs or less).
+As we increase the number of GPUs and increase the amount of inter-node communication, the gap shrinks, although our implementation is still 2-4X faster.
+All of our training runs use either 8 or 16 GPUs, and in this regime, our all-reduce implementation results in 2.5× faster training for the full training run, compared to using OpenMPI directly.
+Optimizing all-reduce has thus resulted in important productivity beneﬁts for our experiments, and has made our simple synchronous SGD approach scalable.
+Performance gain is the ratio of OpenMPI all-reduce time to our all-reduce time.
+4.2 GPU implementation of CTC loss function Calculating the CTC loss function is more complicated than performing forward and back propagation on our RNN architectures.
+Originally, we transferred activations from the GPUs to the CPU, where we calculated the loss function using an OpenMP parallelized implementation of CTC.
+However, this implementation limited our scalability rather signiﬁcantly, for two reasons.
+Firstly, it became computationally more signiﬁcant as we improved efﬁciency and scalability of the RNN itself.
+To overcome this, we wrote a GPU implementation of the CTC loss function.
+Our parallel implementation relies on a slight refactoring to simplify the dependences in the CTC calculation, as well as the use of optimized parallel sort implementations from ModernGPU [5].
+We give more details of this parallelization in the Appendix.
+This reduces overall training time by 10-20%, which is also an important productivity beneﬁt for our experiments.
+Our system makes frequent use of dynamic memory allocations to GPU and CPU memory, mainly to store activation data for variable length utterances, and for intermediate results.
+For these very large allocations we found that CUDA’s memory allocator and even std::malloc introduced signiﬁcant overhead into our application—over a 2x slowdown from using std::malloc in some cases.
+This is a good optimization for systems running multiple applications, all sharing memory resources, but editing page tables is pure overhead for our system where nodes are dedicated entirely to running a single model.
+To get around this limitation, we wrote our own memory allocator for both CPU and GPU allocations.
+Our implementation follows the approach of the last level shared allocator in jemalloc: all allocations are carved out of contiguous memory blocks using the buddy algorithm [34].
+To avoid fragmentation, we preallocate all of GPU memory at the start of training and subdivide individual allocations from this block.
+Similarly, we set the CPU memory block size that we forward to mmap to be substantially larger than std::malloc, at 12GB.
+When a requested memory allocation exceeds available GPU memory, we allocate page-locked GPU-memory-mapped CPU memory using cudaMallocHost instead.
+We have collected an extensive training dataset for both English and Mandarin speech models, in addition to augmenting our training with publicly available datasets.
+In English we use 11,940 hours of labeled speech data containing 8 million utterances summarized in Table 9.
+For the Mandarin system we use 9,400 hours of labeled audio containing 11 million utterances.
+To solve this problem, we developed an alignment, segmentation and ﬁltering pipeline that can generate a training set with shorter utterances and few erroneous transcriptions.
+For a given audio-transcript pair, (x, y), we ﬁnd the alignment that maximizes This is essentially a Viterbi alignment found using a RNN model trained with CTC.
+However, we found that CTC produces an accurate alignment when trained with a bidirectional RNN.
+By tuning the number of consecutive blanks, we can tune the length of the utterances generated.
+For the English speech data, we also require a space token to be within the stretch of blanks in order to segment only on word boundaries.
+We tune the segmentation to generate utterances that are on average 7 seconds long.
+We crowd source the ground truth transcriptions for several thousand examples.
+We then train a linear classiﬁer to accurately predict bad examples given the input features generated from the speech recognizer.
+We ﬁnd the following features useful: the raw CTC cost, the CTC cost normalized by the sequence length, the CTC cost normalized by the transcript length, the ratio of the sequence length to the transcript length, the number of words in the transcription and the number of characters in the transcription.
+For the English dataset, we ﬁnd that the ﬁltering pipeline reduces the WER from 17% to 5% while retaining more than 50% of the examples.
+We augment our training data by adding noise to increase the effective size of our training data and to improve our robustness to noisy speech [26].
+Although the training data contains some intrinsic noise, we can increase the quantity and variety of noise through augmentation.
+We ﬁnd that a good balance is to add noise to 40% of the utterances that are chosen at random.
+Our English and Mandarin corpora are substantially larger than those commonly reported in speech recognition literature.
+In Table 10, we show the effect of increasing the amount of labeled training data on WER.
+We note that the WER decreases with a power law for both the regular and noisy development sets.
+We also observe a consistent gap in WER (∼60% relative) between the regular and noisy datasets, implying that more data beneﬁts both cases equally.
+We hypothesize that equally as important as increasing raw number of hours is increasing the number of speech contexts that are captured in the dataset.
+While we do not have the labels needed to validate this claim, we suspect that measuring WER as a function of speakers in the dataset would lead to much larger relative gains than simple random sampling.
+To better assess the real-world applicability of our speech system, we evaluate on a wide range of test sets.
+We use several publicly available benchmarks and several test sets collected internally.
+We use stochastic gradient descent with Nesterov momentum [61] along with a minibatch of 512 utterances.
+We use a momentum of 0.99 for all models.
+We use a beam size of 500 for the English decoder and a beam size of 200 for the Mandarin decoder.
+We report results on several test sets for both the DS2 and DS1 model.
+We do not tune or adapt either model to any of the speech conditions in the test sets.
+To put the performance of our system in context, we benchmark most of our results against human workers, since speech recognition is an audio perception and language understanding problem that humans excel at.
+We obtain a measure of human level performance by paying workers from Amazon Mechanical Turk to hand-transcribe all of our test sets.
+Two workers transcribe the same audio clip, that is typically about 5 seconds long, and we use the better of the two transcriptions for the ﬁnal WER calculation.
+Our English speech training set is substantially larger than the size of commonly used speech datasets.
+To get the best generalization error, we expect that the model size must increase to fully exploit the patterns in the data.
+In Section 3.2 we explored the effect of model depth while ﬁxing the number of parameters.
+In contrast, here we show the effect of varying model size on the performance of the speech system.
+We only vary the size of each layer, while keeping the depth and other architectural parameters constant.
+We evaluate the models on the same Regular and Noisy development sets that we use in Section 3.5.
+The models in Table 11 differ from those in Table 3 in that we increase the the stride to 3 and output to bigrams.
+Because we increase the model size to as many as 100 million parameters, we ﬁnd that an increase in stride is necessary for fast computation and memory constraints.
+However, in this regime we note that the performance advantage of the GRU networks appears to diminish over the Model size Model type Regular Dev Noisy Dev 18 × 106 38 × 106 70 × 106 70 × 106 100 × 106 100 × 106 Table 11: Comparing the effect of model size on the WER of the English speech system on both the regular and noisy development sets.
+We vary the number of hidden units in all but the convolutional layers.
+We benchmark our system on two test sets from the Wall Street Journal (WSJ) corpus of read news articles.
+We also take advantage of the recently developed LibriSpeech corpus constructed using audio books from the LibriVox project [46].
+Given this result, we suspect that there is little room for a generic speech system to further improve on clean read speech without further domain adaptation.
+Note that we use only one of the six channels to test each utterance.
+Our source for accented speech is the publicly available VoxForge (http://www.voxforge.org) dataset, which has clean speech read from speakers with many different accents.
+We group these accents into four categories.
+We construct a test set from the VoxForge data with 1024 examples from each accent group for a total of 4096 examples.
+Performance on these test sets is to some extent a measure of the breadth and quality of our training data.
+Table 14 shows that our performance improved on all the accents when we include more accented training data and use an architecture that can effectively train on that data.
+We test our performance on noisy speech using the publicly available test sets from the recently completed third CHiME challenge [4].
+We use a single channel for all our results, since multi-channel audio is not pervasive on most devices.
+In Table 16 we compare several architectures trained on the Mandarin Chinese speech, on a development set of 2000 utterances as well as a test set of 1882 examples of noisy speech.
+This development set was also used to tune the decoding parameters We see that the deepest model with 2D-invariant convolution and BatchNorm outperforms the shallow RNN by 48% relative, thus continuing the trend that we saw with the English system—multiple layers of bidirectional recurrence improves performance substantially.
+All the models in the table have about 80 million parameters each We ﬁnd that our best Mandarin Chinese speech system transcribes short voice-query like utterances better than a typical Mandarin Chinese speaker.
+To benchmark against humans we ran a test with 100 randomly selected utterances and had a group of 5 humans label all of them together.
+We also compared a single human transcriber to the speech system on 250 randomly selected utterances.
+Second, since we use a wide beam when decoding with a language model, beam search can be expensive, particularly in Mandarin where the number of possible next characters is very large (around 6000).
+Third, as described in Section 3, we normalize power across an entire utterance, which again requires the entire utterance to be available in advance.
+We solve the power normalization problem by using some statistics from our training set to perform an adaptive normalization of speech inputs during online transcription.
+We can solve the other problems by modifying our network and decoding procedure to produce a model that performs almost as well while having much lower latency.
+We focus on our Mandarin system since some aspects of that system are more challenging to deploy (e.g.
+In this section, latency refers to the computational latency of our speech system as measured from the end of an utterance until the transcription is produced.
+We focus on latency from end of utterance to transcription because it is important to applications using speech recognition.
+In order to deploy our relatively large deep neural networks at low latency, we have paid special attention to efﬁciency during deployment.
+To overcome these issues, we built a batching scheduler called Batch Dispatch that assembles streams of data from user requests into batches before performing forward propagation on these batches.
+The more we buffer user requests to assemble a large batch, the longer users must wait for their results.
+This places constraints on the amount of batching we can perform.
+We use an eager batching scheme that processes each batch as soon as the previous batch is completed, regardless of how much work is ready by that point.
+Figure 5 shows the probability that a request is processed in a batch of given size for our production system running on a single NVIDIA Quadro K1200 GPU, with 10-30 concurrent user requests.
+However, even with a light load of only 10 concurrent user requests, our system performs more than half the work in batches with at least 2 samples.
+Figure 6: Median and 98 percentile latencies as a function of server load We see in Figure 6, that our system achieves a median latency of 44 ms, and a 98 percentile latency of 70 ms when loaded with 10 concurrent streams.
+7.2 Deployment Optimized Matrix Multiply Kernels We have found that deploying our models using half-precision (16-bit) ﬂoating-point arithmetic does not measurably change recognition accuracy.
+We found that standard BLAS libraries are inefﬁcient at this batch size.
+To overcome this, we wrote our own half-precision matrix-matrix multiply kernel.
+We store the A matrix transposed to maximize bandwidth by using the widest possible vector loads while avoiding transposition after loading.
+Figure 7 shows that our deployment kernel sustains a higher computational throughput than those from Nervana Systems [44] on the K1200 GPU, across the entire range of batch sizes that we use in deployment.
+Both our kernels and the Nervana kernels are signiﬁcantly faster than NVIDIA CUBLAS version 7.0, more details are found here [20].
+To deal with this problem, we use a heuristic to further prune the beam search.
+Rather than considering all characters as viable additions to the beam, we only consider the fewest number of characters whose cumulative probability is at least p.
+In practice, we have found that p = 0.99 works well.
+Additionally, we limit ourselves to no more than 40 characters.
+We can deploy our system at low latency and high throughput without sacriﬁcing much accuracy.
+On a held-out set of 2000 utterances, our research system achieves 5.81 character error rate whereas the deployed system achieves 6.10 character error rate.
+In order to accomplish this, we employ a neural network architecture with low deployment latency, reduce the precision of our network to 16-bit, built a batching scheduler to more efﬁciently evaluate RNNs, and ﬁnd a simple heuristic to reduce beam search cost.
+Indeed, our results show that, compared to the previous incarnation, Deep Speech has signiﬁcantly closed the gap in transcription performance with human workers by leveraging more data and larger models.
+Finally, we have also shown that this approach can be efﬁciently deployed by batching user requests together on a GPU server, paving the way to deliver end-to-end Deep Learning technologies to users.
+To achieve these results, we have explored various network architectures, ﬁnding several effective techniques: enhancements to numerical optimization through SortaGrad and Batch Normalization, evaluation of RNNs with larger strides with bigram outputs for English, searching through both bidirectional and unidirectional models.
+This exploration was powered by a well optimized, High Performance Computing inspired training system that allows us to train new, full-scale models on our large datasets in just a few days.
+Overall, we believe our results conﬁrm and exemplify the value of end-to-end Deep Learning methods for speech recognition in several settings.
+In those cases where our system is not already comparable to humans, the difference has fallen rapidly, largely because of application-agnostic Deep Learning techniques.
+We believe these techniques will continue to scale, and thus conclude that the vision of a single speech system that outperforms humans in most scenarios is imminently achievable.
+We are grateful to Baidu’s speech technology group for help with data preparation and useful conversations.
+We would like to thank Scott Gray, Amir Khosrowshahi and all of Nervana Systems for their excellent matrix multiply routines and useful discussions.
+We would also like to thank Natalia Gimelshein of NVIDIA for useful discussions and thoughts on implementing our fast deployment matrix multiply.
+Weston.
+Weinstein, P.
+In this section, we discuss some of our scalability improvements in more detail.
+We use the CPU memory to cache our input data so that we are not directly exposed to the low bandwidth and high latency of spinning disks.
+We replicate our English and Mandarin datasets on each node’s local hard disk.
+This allows us to use our network only for weight updates and avoids having to rely on centralized ﬁle servers.
+Figure 8: Schematic of our training node where PLX indicates a PCI switch and the dotted box includes all devices that are connected by the same PCI root complex.
+Figure 8 shows a schematic diagram of one our nodes, where all devices connected by the same PCI root complex are encapsulated in a dotted box.
+We have tried to maximize the number of GPUs within the root complex for faster communication between GPUs using GPUDirect.
+GPUGPUGPUGPUGPUGPUGPUGPUPLXPLXPLXCPUCPUPLXAll the nodes in our cluster are connected through Fourteen Data Rate (FDR) Inﬁniband which is primarily used for gradient transfer during back-propagation.
+A.2 GPU Implementation of CTC Loss Function The CTC loss function that we use to train our models has two passes: forward and backward, and the gradient computation involves element-wise addition of two matrices, α and β, generated during the forward and backward passes respectively.
+Finally, we sum the gradients using the character in the utterance label as the key, to generate one gradient per character.
+The input to the CTC loss function are probabilities calculated by the softmax function which can be very small, so we compute in log probability space for better numerical stability.
+Our CPU-based implementation of the CTC algorithm assigns one thread to each utterance label in a minibatch, performing the CTC calculation for the utterances in parallel.
+Firstly, since the remainder of our network is computed on the GPU, the output of the softmax function has to be copied to the CPU for CTC calculation.
+Furthermore, we need as much interconnect bandwidth as possible for synchronizing the gradient updates with data parallelism, so this copy incurs a substantial opportunity cost.
+We wrote a GPU-based implementation of CTC in order to overcome these two problems.
+The key insight behind our implementation is that we can compute all elements in each column of the α matrix, rather than just the valid entries.
+If we do so, Figure 9 shows that invalid elements either contain a ﬁnite garbage value (G), or −∞ (I), when we use a special summation function that adds probabilities in log space that discards inputs that are −∞.
+However, when we compute the ﬁnal gradient by element-wise summing α and β, all ﬁnite garbage values will be added with a corresponding −∞ value from the other matrix, which results in −∞, effectively ignoring the garbage value and computing the correct result.
+One important observation is that this element-wise sum of α and β is a simple sum and does not use our summation function.
+To compute the gradient, we take each column of the matrix generated from element-wise addition of α and β matrices, and do a key-value reduction using the character as key, using the ModernGPU library [5].
+Since our summation function in log space effectively ignores the −∞ elements, only the valid elements are combined in the reduction.
+In our GPU implementation, we map each utterance in the minibatch to a CUDA thread block.
+values, with each character as key, we must deal with data dependencies due to repeated characters in an utterance label.
+We solve this problem by performing a key-value sort, where the keys are the characters in the utterance label, and the values are the indices of each character in the utterance.
+We only need to do the sort once for each utterance.
+Our GPU implementation uses fast shared memory and registers to achieve high performance when performing this task.
+However, as we go backward in time, we only need to keep one column of the β matrix as we compute the gradient, adding element-wise the column of the β matrix with the corresponding column of the α matrix.
+Due to on-chip memory space constraints, we read the output of the softmax function directly from off-chip global memory.
+Due to inaccuracies in ﬂoating-point arithmetic, especially in transcendental functions, our GPU and CPU implementation are not bit-wise identical

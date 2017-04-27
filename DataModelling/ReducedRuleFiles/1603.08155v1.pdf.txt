@@ -1,0 +1,114 @@
+The paper  |  uses  | image transformation problems
+The paper  |  uses  | input image
+The paper  |  uses  | output image
+The paper  |  uses  | image transformation problems , where an input image is transformed into an output image
+The paper  |  solves  | use
+The paper  |  solves  | perceptual loss functions
+The paper  |  solves  | feed-forward networks
+The paper  |  solves  | image transformation tasks
+The paper  |  solves  | use of perceptual loss functions for training feed-forward networks for image transformation tasks
+The paper  |  solves  | optimization problem
+The paper  |  solves  | gatys et al
+The paper  |  solves  | real-time
+The paper  |  solves  | optimization problem proposed by gatys et al in real-time
+The paper  |  solves  | gatys et
+The paper  |  outputs  | similar results
+The paper  |  outputs  | al
+The paper  |  outputs  | similar results as gatys et al
+The paper  |  outputs  | ﬁne details
+The paper  |  solves  | optimization problem
+The paper  |  uses  | in-network
+The paper  |  uses  | spatial extent
+The paper  |  uses  | feature maps
+The paper  |  uses  | in-network downsampling to reduce the spatial extent of feature maps
+The paper  |  uses  | spatial extent
+The paper  |  uses  | feature maps
+The paper  |  uses  | in-network
+The paper  |  uses  | spatial extent of feature maps followed by in-network
+The paper  |  uses  | loss network
+The paper  |  uses  | several loss functions
+The paper  |  uses  | semantic information
+The paper  |  uses  | layers
+The paper  |  uses  | l
+The paper  |  uses  | supplementary material
+The paper  |  uses  | l : in the supplementary material
+The paper  |  uses  | several residual blocks
+The paper  |  uses  | log2
+The paper  |  uses  | several residual blocks followed by log2
+The paper  |  uses  | optimization
+The paper  |  uses  | image ^y
+The paper  |  uses  | optimization to ﬁnd an image ^y
+The paper  |  uses  | image ^y
+The paper  |  uses  | feature reconstruction loss
+The paper  |  uses  | cid:96
+The paper  |  uses  | φ
+The paper  |  uses  | j f eat
+The paper  |  uses  | y
+The paper  |  uses  | several layers
+The paper  |  uses  | image ^y that minimizes the feature reconstruction loss ( cid:96 ) φ , j f eat ( ^y , y ) for several layers
+The paper  |  outputs  | higher layers
+The paper  |  uses  | larger network
+The paper  |  uses  | same computational cost
+The paper  |  uses  | larger network for the same computational cost
+The paper  |  uses  | residual block design
+The paper  |  uses  | optimization
+The paper  |  uses  | image ^y
+The paper  |  uses  | optimization to ﬁnd an image ^y
+The paper  |  uses  | image ^y
+The paper  |  uses  | style reconstruction loss
+The paper  |  uses  | cid:96
+The paper  |  uses  | φ
+The paper  |  uses  | j style
+The paper  |  uses  | y
+The paper  |  uses  | several layers
+The paper  |  uses  | image ^y that minimizes the style reconstruction loss ( cid:96 ) φ , j style ( ^y , y ) for several layers
+The paper  |  outputs  | higher layers
+The paper  |  uses  | t
+The paper  |  uses  | ground-truth target y
+The paper  |  uses  | t : when when we have a ground-truth target y
+The paper  |  uses  | optimization
+The paper  |  uses  | images
+The paper  |  uses  | optimization to generate images
+The paper  |  uses  | adam
+The paper  |  uses  | weight decay
+The paper  |  uses  | dropout
+The paper  |  uses  | weight decay or dropout
+The paper  |  uses  | torch
+The paper  |  uses  | image transformation networks
+The paper  |  outputs  | times
+The paper  |  outputs  | numbers
+The paper  |  outputs  | optimization iterations
+The paper  |  outputs  | times for varying numbers of optimization iterations
+The paper  |  uses  | t
+The paper  |  uses  | input
+The paper  |  outputs  | psnr / ssim
+The paper  |  uses  | srcnn
+The paper  |  uses  | state-of-the-art performance
+The paper  |  uses  | srcnn for its state-of-the-art performance
+The paper  |  uses  | identical data
+The paper  |  uses  | architecture
+The paper  |  uses  | training
+The paper  |  uses  | networks
+The paper  |  uses  | identical data , architecture , and training as the networks
+The paper  |  outputs  | psnr
+The paper  |  outputs  | ssim
+The paper  |  outputs  | psnr and ssim
+The paper  |  outputs  | l
+The paper  |  outputs  | y channel
+The paper  |  outputs  | l : both only on the y channel
+The paper  |  outputs  | psnr / ssim
+The paper  |  outputs  | example image
+The paper  |  outputs  | mean
+The paper  |  outputs  | dataset
+The paper  |  outputs  | psnr / ssim for the example image and the mean for each dataset
+The paper  |  outputs  | ﬁne details
+The paper  |  outputs  | edges
+The paper  |  outputs  | ﬁne details and edges
+The paper  |  outputs  | comparable performance
+The paper  |  uses  | example loss networks
+The paper  |  uses  | diﬀerent tasks
+The paper  |  uses  | datasets
+The paper  |  uses  | image transformation networks
+The paper  |  uses  | diﬀerent types
+The paper  |  uses  | semantic knowledge
+The paper  |  uses  | example loss networks trained on diﬀerent tasks or datasets can impart image transformation networks with diﬀerent types of semantic knowledge

@@ -1,0 +1,416 @@
+In this work we break this constraint by decoupling modules by introducing a model of the future computation of the network graph.
+0.53 (we; break; this constraint; L:In this work)
+0.39 Context(we break):(we; break this constraint by decoupling; modules)
+
+In particular we focus on modelling error gradients: by using the modelled synthetic gradient in place of true backpropagated error gradients we decouple subgraphs, and can update them independently and asynchronously i.e.
+0.57 (we; focus; on modelling error gradients: by using the modelled synthetic gradient in place of true backpropagated error gradients)
+0.27 (we; can update independently; them)
+0.44 (we; decouple i.e.; subgraphs)
+
+we realise decoupled neural interfaces.
+0.45 (we; realise; decoupled neural interfaces)
+
+We show results for feed-forward models, where every layer is trained asynchronously, recurrent neural networks (RNNs) where predicting one’s future gradient extends the time over which the RNN can effectively model, and also a hierarchical RNN system with ticking at different timescales.
+0.93 (every layer; is trained asynchronously; L:feed-forward models)
+0.86 (recurrent neural networks (RNNs) where predicting one's future gradient; extends; the time over which the RNN can effectively model)
+0.47 Context(recurrent neural networks ( RNNs ) where predicting one 's future gradient extends):(We; show; results for feed-forward models)
+0.91 (the RNN; can effectively model; T:the time)
+
+Finally, we demonstrate that in addition to predicting gradients, the same framework can be used to predict inputs, resulting in models which are decoupled in both the forward and backwards pass – amounting to independent networks which co-learn such that they can be composed into a single functioning corporation.
+0.40 (we; demonstrate; that in addition to predicting gradients, the same framework can be used to predict inputs, resulting in models; T:Finally)
+0.89 Context(we demonstrate):(the same framework; can be used; to predict inputs)
+0.92 (models; are decoupled; in both the forward and backwards pass - amounting to independent networks)
+0.71 (independent networks; co-learn; such that they can be composed into a single functioning corporation)
+0.62 (they; can be composed; into a single functioning corporation)
+0.90 (the same framework; to predict; inputs)
+
+This process results in several forms of locking, namely: (i) Forward Locking – no module can process its incoming data before the previous nodes in the directed forward graph have executed; (ii) Update Locking – no module can be updated before all dependent modules have executed in forwards mode; also, in many credit-assignment algorithms (including backpropagation [18]) we have (iii) Backwards Locking – no module can be updated before all dependent modules have executed in both forwards mode and backwards mode.
+0.90 (This process; results also; in several forms of locking, namely)
+0.91 (all dependent modules; have executed; L:in forwards mode)
+0.91 (all dependent modules; have executed; L:in both forwards mode and backwards mode)
+0.39 (we; have; Backwards Locking)
+0.88 Context(we have):(no module; can be updated; T:before all dependent modules have executed in forwards mode)
+0.92 Context(we have):(no module; can be updated; T:before all dependent modules have executed in both forwards mode and backwards mode)
+0.83 (the previous nodes in the directed forward graph; have executed; )
+
+To update weights θi of module i we drastically approximate the function implied by backpropagation: = fBprop((hi, xi, yi, θi), (hi+1, xi+1, yi+1, θi+1), .
+0.40 (we; drastically approximate; i we drastically approximate the function implied by backpropagation)
+0.41 (i; implied; by backpropagation)
+
+While the communication protocol is general with respect to the means of generating a training signal, here we focus on a speciﬁc implementation for networks trained with gradient descent – we replace a standard neural interface (a connection between two modules in a neural network) with a Decoupled Neural Interface (DNI).
+0.96 (the communication protocol; is; general with respect to the means of generating a training signal)
+0.89 (networks; trained; with gradient descent)
+0.43 (we; replace; a standard neural interface; with a Decoupled Neural Interface)
+0.53 Context(we replace):(we; focus; on a speciﬁc implementation for networks; L:here)
+0.50 (the communication protocol; is general with; respect)
+
+And by removing updateand backwards locking in this way, we can train networks without a synchronous backward pass.
+0.45 (we; can train; networks)
+
+We also show preliminary results that extend this idea to also remove forward locking – resulting in networks whose modules can also be trained without a synchronous forward pass.
+0.25 (We; show; preliminary results that extend this idea)
+0.36 (a synchronous forward; pass; )
+0.89 (preliminary results; extend; this idea)
+0.90 (preliminary results that extend this idea; to remove; forward; locking - resulting in networks)
+
+When applied to RNNs we show that using synthetic gradients allows RNNs to model much greater time horizons than the limit imposed by truncating backpropagation through time (BPTT).
+0.92 (the limit; imposed; by truncating backpropagation through time (BPTT)
+0.51 (we; show; that using synthetic gradients allows RNNs to model much greater time horizons than the limit; T:When applied to RNNs)
+0.94 Context(we show):(using synthetic gradients; allows; RNNs to model much greater time horizons than the limit)
+0.82 Context(we show using synthetic gradients allows):(RNNs; to model; much greater time horizons than the limit)
+
+We also show that using DNI to decouple a system of two RNNs running at different timescales can greatly increase training speed of the faster RNN.
+0.66 (two RNNs; running; )
+0.33 (We; show; that using DNI to decouple a system of two RNNs running at different timescales can greatly increase training speed of the faster RNN)
+0.87 Context(We show):(using DNI to decouple a system of two RNNs; can increase; training speed of the faster RNN)
+
+Our synthetic gradient model is most analogous to a value function which is used for gradient ascent [2] or a value function used for bootstrapping.
+0.74 (Our synthetic gradient model; is; most analogous to a value function)
+0.90 (a value function; is used; for gradient ascent)
+0.91 (a value function; used; for bootstrapping)
+
+In contrast, by framing the interaction between layers as a local communication problem with DNI, we remove the need for global knowledge of the learning system.
+0.45 (we; remove; the need for global knowledge of the learning system)
+
+We begin by describing the high-level communication protocol that is used to allow asynchronously learning agents to communicate.
+0.92 (the high-level communication protocol; is used; to allow asynchronously learning agents to communicate)
+0.40 (We; begin; by describing the high-level communication protocol)
+0.28 Context(We begin):(We; begin by describing; the high-level communication protocol that is used to allow asynchronously learning agents to communicate)
+0.90 (the high-level communication protocol; to allow; asynchronously learning agents to communicate)
+0.70 Context(the high - level communication protocol to allow):(asynchronously learning agents; to communicate; )
+
+We can apply this protocol to neural networks communicating, resulting in what we call Decoupled Neural Interfaces (DNI).
+0.45 (We; can apply; this protocol; to neural networks)
+0.73 (neural networks; communicating; )
+0.24 (we; call; )
+
+domain, we concentrate our empirical study on differentiable networks trained with backpropagation and gradient-based updates.
+0.31 (we; concentrate; our empirical study on differentiable networks)
+0.90 (differentiable networks; trained; with backpropagation and gradient-based updates)
+
+Therefore, we focus on producing error gradients as the feedback ˆδA which we dub synthetic gradients.
+0.52 (we; dub; synthetic gradients)
+0.39 (we; focus; on producing error gradients as the feedback)
+0.39 Context(we focus):(we; focus on producing; error gradients; as the feedback)
+
+2.1 Synthetic Gradient for Feed-Forward Networks We now apply the above process to the case of a feed-forward neural net consisting of N layers fi, i ∈ {1, .
+0.94 (a feed-forward neural net; consisting; of N layers fi)
+0.20 (i; ∈; 1)
+0.61 Context(i ∈):(We; apply; the above process; to the case of a feed-forward neural net; T:now)
+
+To remove the update locking of layer i to F N i+1 we can use the communication protocol described previously.
+0.45 (we; can use; the communication protocol described previously)
+0.78 (the communication protocol; described; T:previously)
+
+To train the parameters φi+1 of the synthetic gradient model Mi+1 (which is also a neural network), we simply wait for the true error gradient δi to be computed (after a full forwards and backwards execution of F N i+1), and ﬁt the synthetic gradient to the true gradients by minimising a loss Lδi = d(ˆδi, δi).
+0.93 (the synthetic gradient model Mi+1; is also; a neural network)
+0.61 (we; simply wait; for the true error gradient δi to be computed (after a full forwards and backwards execution of F N i+1)
+0.95 (the true error gradient δi; to be computed; T:after a full forwards and backwards execution of F N i+1)
+0.48 (we; ﬁt; the synthetic gradient; to the true gradients)
+
+In our experiments we found using L2 distance as a loss worked well.
+0.73 (a loss; worked well; )
+0.38 (we; found; using L2 distance as a loss worked well; L:In our experiments)
+0.39 Context(we found):(we; found using; L2 distance)
+
+Furthermore, for a feed-forward network, we can use synthetic gradients as communication feedback to decouple every layer in the network, as shown in Fig.
+0.45 (we; can use; synthetic gradients; as communication feedback)
+
+However, using the Decoupled Neural Interfaces framework, we can approximate δT with a synthetic gradient model ˆδT = MT (hT ) as shown and described in Fig.
+0.66 (MT; shown; )
+0.86 (MT; described; L:in Fig)
+0.26 (we; can approximate; δT)
+
+3.2 we show results on sequence-to-sequence tasks and language modelling.
+0.76 (we; show; results on sequence-to-sequence tasks and language modelling; T:3.2)
+
+We also propose an extension to aid learning of synthetic gradient models for RNNs, which is to introduce another auxiliary task from the RNN, described in Fig.
+0.61 (We; also propose; an extension to aid learning of synthetic gradient models for RNNs,)
+0.89 (RNNs; is; to introduce another auxiliary task from the RNN)
+0.86 (RNNs; to introduce; another auxiliary task; from the RNN)
+0.87 (the RNN; described; L:in Fig)
+
+Arbitrary Network Graphs Although we have explicitly described the application of DNI for communication between layers in feed-forward networks, and between recurrent cores in recurrent networks, there is nothing to restrict the use of DNI for arbitrary network graphs.
+0.61 (we; have explicitly described; the application of DNI for communication between layers in feed-forward networks, and between recurrent cores in recurrent networks)
+
+3.3 where we show communication between two RNNs, which tick at different rates, where the communication can be learnt by using DNI.
+0.66 (we; show; communication between two RNNs; L:3.3)
+0.61 (two RNNs; tick; )
+0.93 (the communication; can be learnt; L:different rates)
+
+In this section we apply DNIs to feed-forward networks.
+0.58 (we; apply; DNIs; to feed-forward networks; L:In this section)
+0.29 Context(we apply):(we; apply DNIs to feed forward; networks)
+
+Every layer DNI We ﬁrst look at training an FCN for MNIST digit classiﬁcation [14].
+0.60 (We; ﬁrst look; at training; T:an FCN for MNIST digit classiﬁcation; T:Every layer)
+
+We use DNI as in the scenario illustrated in Fig.
+0.50 (We; use; DNI; as in the scenario)
+0.92 (the scenario; illustrated; L:in Fig)
+
+We perform experiments where we vary the depth of the model (between 3 and 6 layers), on MNIST digit classiﬁcation and CIFAR-10 object recognition [12].
+0.46 (We; perform; experiments where we vary the depth of the model (between 3 and 6 layers), on MNIST digit classiﬁcation and CIFAR-10 object recognition [12])
+0.70 (we; vary; the depth of the model (between 3 and 6 layers; L:experiments)
+
+Looking at the results in Table 1 we can see that DNI does indeed work, successfully update-decoupling all layers at a small cost in accuracy, demonstrating that it is possible to produce effective gradients without either label or true gradient information.
+0.22 (we; can see; that DNI does indeed work, successfully update)
+0.47 Context(we can see):(DNI; does indeed work successfully; )
+0.47 Context(we can see DNI does indeed work successfully):(DNI; does indeed work successfully update; )
+0.49 Context(we can see DNI does indeed work successfully):(DNI; does indeed work successfully demonstrating; that it is possible to produce effective gradients without either label or true gradient information)
+
+Further, once we condition the synthetic gradients on the labels, we can successfully train deep models with very little degradation in accuracy.
+0.45 (we; condition; the synthetic gradients on the labels)
+0.44 (we; can successfully train; deep models; with very little degradation in accuracy; T:once we condition the synthetic gradients on the labels)
+
+For example, on CIFAR-10 we can train a 5 layer model, with backpropagation achieving 42% error, with DNI achieving 47% error, and when conditioning the synthetic gradient on the label (cDNI) get 44%.
+0.64 (we; can train; a 5 layer model; T:on CIFAR-10)
+0.89 (backpropagation; achieving; 42% error)
+0.86 (DNI; achieving; 47% error)
+
+In fact, on MNIST we successfully trained up to 21 layer FCNs with cDNI to 2% error (the same as with using backpropagation).
+0.64 (we; successfully trained; up to 21 layer FCNs; with cDNI; L:on MNIST)
+
+As another baseline, we tried using historical, stale gradients with respect to activations, rather than synthetic gradients.
+0.64 (we; tried; using historical, stale gradients with respect to activations, rather than synthetic gradients; T:As another baseline)
+0.39 Context(we tried):(we; tried using; historical, stale gradients)
+
+We took an exponential average historical gradient, searching over the entire spectrum of decay rates and the best results attained on MNIST classiﬁcation were 9.1%, 11.8%, 15.4%, 19.0% for 3 to 6 layer FCNs respectively – marginally better than using zero gradients (no backpropagation) and far worse than the associated cDNI results of 2.2%, 1.9%, 1.7%, 1.6%.
+0.96 (the entire spectrum of decay rates and the best results; attained; L:on MNIST classiﬁcation)
+0.39 (We; took; an exponential average historical gradient)
+0.11 Context(We took):(We; took an exponential average historical gradient searching; )
+
+Thus, we believe that DNI, which uses a parametric approximation to the gradient with respect to activations, is the most desirable approach.
+0.83 (DNI; uses; a parametric approximation; to the gradient with respect to activations)
+0.31 (we; believe; that DNI, which uses a parametric approximation to the gradient with respect to activations, is the most desirable approach)
+0.84 Context(we believe):(DNI; is; the most desirable approach)
+
+The spatial resolution of activations from layers in a CNN results in high dimensional activations, so we use synthetic gradient models which themselves are CNNs without pooling and with resolution-preserving zero-padding.
+0.35 (we; use; synthetic gradient models which themselves are CNNs)
+0.66 (themselves; are; CNNs)
+
+Sparse Updates To demonstrate the gains by decoupling layers given by DNI, we perform an experiment on a four layer FCN model on MNIST, where the backwards pass and update for every layer occurs in random order and only with some probability pupdate (i.e.
+0.78 (the backwards; pass; )
+0.92 (Updates; To demonstrate; the gains)
+0.70 (the backwards; update; )
+0.91 (layers; given; by DNI)
+
+Right: The same setup as previously described however we also use a synthetic input model before every layer, which allows the network to also be forwards decoupled.
+0.45 (we; also use; a synthetic input model; T:before every layer)
+0.71 (forwards; decoupled; )
+0.86 (every layer; allows; the network to also be forwards)
+0.90 Context(every layer allows):(the network; to also be; The same setup as previously described however we also use a synthetic input model before every layer, which allows the network to also be forwards decoupled)
+
+We ran 100 experiments with different values of pupdate uniformly sampled between 0 and 1.
+0.52 (We; ran; 100 experiments)
+0.80 (different values of pupdate; uniformly sampled; T:between 0 and 1)
+
+Complete Unlock As a drastic extension, we look at making feed-forward networks completely asynchronous, by removing forward locking as well.
+0.50 (we; look; at making feed-forward networks completely asynchronous, by removing forward locking as well)
+0.39 Context(we look):(we; look at making; feed-forward networks completely asynchronous)
+
+We now turn our attention to experiments on the application of DNI to recurrent neural networks as discussed in Sect.
+0.52 (We; turn; our attention; to experiments on the application of DNI; T:now)
+
+We test our models on the Copy task, Repeat Copy task, as well as character-level language modelling.
+0.53 (We; test; our models on the Copy task, Repeat Copy task, as well as character-level language modelling)
+
+For all experiments we use an LSTM [9] of the form in [7], whose output is used for the task at hand, and additionally as input to the synthetic gradient model (which is shared over all timesteps).
+0.61 (we; use; an LSTM [9] of the form in [7; additionally as input to the synthetic gradient model)
+0.91 (the synthetic gradient model; is shared; over all timesteps)
+
+We also look at incorporating an auxiliary task which predicts the output of the synthetic gradient model T steps in the future as explained in Sect.
+0.93 (an auxiliary task; predicts; the output of the synthetic gradient model T steps in the future)
+0.35 (We; look; at incorporating an auxiliary task)
+0.46 Context(We look):(We; look at incorporating; an auxiliary task which predicts the output of the synthetic gradient model T steps in the future)
+
+We train the RNNs with different BPTT unroll lengths with DNI (solid lines) and without DNI (dashed lines).
+0.61 (We; train; the RNNs; with different BPTT unroll lengths with DNI (solid lines) and without DNI (dashed lines)
+
+Copy and Repeat Copy We ﬁrst look at two synthetic tasks – Copy and Repeat Copy tasks from [8].
+0.45 (We; ﬁrst look; at two synthetic tasks)
+
+While normally the RNN would be unrolled for the length of the episode before BPTT is performed, T = Ttask, we wish to test the length of time the RNN is able to model with and without DNI bridging the BPTT limit.
+0.87 (the RNN; to model; with and without DNI bridging the BPTT limit)
+0.63 (BPTT; is performed; )
+0.88 (DNI; bridging; the BPTT limit)
+0.46 (we; wish; to test the length of time)
+0.55 Context(we wish):(we; wish to test; the length of time the RNN is able to model with and without DNI bridging the BPTT limit)
+0.94 (the RNN; is; able to model with and without DNI bridging the BPTT limit)
+
+We train the RNN with truncated BPTT: T ∈ {2, 3, 4, 5} with and without DNI.
+0.50 (We; train; the RNN with truncated BPTT)
+
+However, by introducing DNI we can extend the time dependency that is able to be modelled by an RNN.
+0.37 (we; can extend; the time dependency that is able to be modelled by an RNN)
+0.93 (the time dependency; is; able to be modelled by an RNN)
+
+The additional computational complexity is negligible but we require an additional recurrent core to be stored in memory (this is illustrated in Fig.
+0.84 (The additional computational complexity; is; negligible)
+0.45 (we; require; an additional recurrent core to be stored in memory)
+0.92 (an additional recurrent core; to be stored; L:in memory)
+0.43 (this; is illustrated; L:in Fig)
+
+Because we can model larger time dependencies with a smaller T , our models become more data-efﬁcient, learning faster and having to see less data samples to solve a task.
+0.45 (we; can model; larger time dependencies)
+0.64 (our models; become; more data-efﬁcient)
+0.30 (our models; learning faster; )
+
+Furthermore, when we include the extra task of predicting the synthetic gradient that will be produced T steps in the future (DNI + Aux), the RNNs with DNI are able to model even larger time dependencies.
+0.45 (we; include; the extra task of predicting the synthetic gradient)
+0.90 (the synthetic gradient; will be produced; T steps in the future)
+0.92 (the RNNs with DNI; are; able to model even larger time dependencies; T:when we include the extra task of predicting the synthetic gradient)
+0.87 (the RNNs with DNI; to model; even larger time dependencies)
+
+Language Modelling We also applied our DNI-enabled RNNs to the task of character-level language modelling, using the Penn Treebank dataset [16].
+0.31 (We; applied; our DNI-enabled RNNs; to the task of character-level language modelling)
+
+We use an LSTM with 1024 units, which at every timestep reads a character and must predict the next character in the sequence.
+0.45 (We; use; an LSTM with 1024 units)
+0.89 (1024 units; reads; a character)
+0.89 (1024 units; must predict; the next character in the sequence)
+
+We train with BPTT with and without DNI, as well as when using future synthetic gradient prediction (DNI + Aux), with T ∈ {2, 3, 4, 5, 8} as well as strong baselines with T = 20, 40.
+0.50 (We; train; with BPTT; T:when using future synthetic gradient prediction)
+
+We measure error in bits per character (BPC) as in [7], perform early stopping based on validation set error, and for simplicity do not perform any learning rate decay.
+0.40 (We; measure; error in bits per character)
+0.18 Context(We measure):(We; measure error in bits per character stopping; T:early)
+
+When adding DNI, we see an increase in speed of learning (learning curves can be found in Fig.
+0.69 (we; see; an increase in speed of learning (learning curves can be found in Fig; T:When adding DNI)
+0.94 Context(we see):(an increase in speed of learning (learning curves; can be found; L:in Fig)
+
+Although we report results only with LSTMs, we have found DNI to work similarly for vanilla RNNs and Leaky RNNs [17].
+0.50 (we; report; results only with LSTMs)
+0.43 (we; have found; DNI to work similarly for vanilla RNNs)
+0.82 Context(we have found):(DNI; to work similarly; for vanilla RNNs)
+
+In this section, we explore the use of DNI for communication between arbitrary graphs of networks.
+0.74 (we; explore; the use of DNI for communication between arbitrary graphs of networks; L:In this section)
+
+As a simple proof-of-concept, we look at a system of two RNNs, Network A and Network B, where Network B is executed at a slower rate than Network A, and must use communication from Network A to complete its task.
+0.50 (we; look; at a system of two RNNs)
+0.79 (Network B; is executed; )
+0.31 (we; must use; communication from Network A; to complete its task)
+
+First, we test this system trained end-to-end, with full backpropagation through all connections, which requires the joint Network A-Network B system to be unrolled for T 2 timesteps before a single weight update to both Network A and Network B, as the communication between Network A to Network B causes Network A to be update locked to Network B.
+0.68 (we; test; this system trained end-to-end, with full backpropagation through all connections, which requires the joint Network A-Network B system to be unrolled for T 2 timesteps before a single weight update to both Network A and Network B, as the communication between Network A to Network B causes Network A to be update locked to Network B.)
+0.98 (this system trained end-to-end, with full backpropagation through all connections; requires; the joint Network A-Network B system; to be unrolled for T 2 timesteps before a single weight update to both Network A and Network B, as the communication between Network A to Network B causes Network A to be update locked to Network B.)
+0.89 (the joint Network A-Network B system; to be; unrolled)
+0.71 (Network A; to be locked; )
+
+We the train the same system but using DNI to create a learnable bridge between Network A and Network B, thus decoupling Network A from Network B.
+0.96 (a learnable bridge between Network A and Network B; decoupling; Network A; from Network B.)
+
+In this work we introduced a method, DNI using synthetic gradients, which allows decoupled communication between components, such that they can be indepedently updated.
+0.60 (we; introduced; a method; L:In this work)
+0.65 (DNI; using; synthetic gradients, which allows decoupled communication between components, such that they can be indepedently updated)
+0.71 (a method; allows; decoupled communication between components, such that they can be indepedently updated)
+0.32 (they; can be indepedently updated; )
+
+We demonstrated this in feed-forward nets with all layers decoupled – allowing them to be trained non-sequentially, without locking.
+0.73 (all layers; decoupled; )
+0.17 (them; without locking; )
+0.39 (We; demonstrated; this; L:in feed-forward nets)
+0.18 Context(We demonstrated):(We; demonstrated this allowing; them to be trained non-sequentially, without locking)
+0.16 Context(We demonstrated allowing):(them; to be trained non-sequentially; )
+
+We also showed large gains from the increased time horizon that DNI-enabled RNNs are able to model, as well as faster convergence.
+0.66 (DNI-enabled RNNs; to model; )
+0.35 (We; showed; large gains from the increased time horizon)
+0.86 Context(We showed):(DNI-enabled RNNs; are; able to model, as well as faster convergence)
+
+Finally we demonstrated application to a multi-network system: a communicating pair of fastand slow-ticking RNNs can be decoupled, greatly accelarating learning.
+0.53 (we; demonstrated; application; T:Finally)
+0.81 Context(we demonstrated):(a communicating pair of fastand slow-ticking RNNs; can be decoupled; )
+
+To our knowledge this is the ﬁrst time that neural net modules have been decoupled, and the update locking has been broken.
+0.32 (this; is; the ﬁrst time that neural net modules have been decoupled)
+0.94 (neural net modules; have been decoupled; T:the ﬁrst time)
+0.75 (the update locking; has been broken; )
+
+In this section we give the implementation details of the experimental setup used in the experiments from Sect.
+0.60 (we; give; the implementation details of the experimental setup; L:In this section)
+0.93 (the experimental setup; used; L:in the experiments from Sect)
+
+Conditional DNI (cDNI) In order to provide DNI module with the label information in FCN, we simply concatenate the one-hot representation of a sample’s label to the input of the synthetic gradient model.
+0.57 (we; simply concatenate; the one-hot representation of a sample's label to the input of the synthetic gradient model)
+
+For convolutional networks we add label information in the form of one-hot encoded channel masks, thus we simply concatenate ten additional channels to the activations, nine out of which are ﬁlled with zeros, and one (corresponding to sample’s label) is ﬁlled with ones.
+0.50 (we; simply concatenate; ten additional channels to the activations, nine out of which are ﬁlled with zeros, and one (corresponding to sample's label)
+0.90 Context(we simply concatenate):(For convolutional networks; add; label information)
+0.44 Context(we simply concatenate):(one; is ﬁlled; with ones)
+0.74 (nine out of which; are ﬁlled; with zeros; L:ten additional channels to the activations)
+
+We perform a hyperparameter search over the number of hidden layers in the synthetic gradient model (from 0 to 2, where 0 means we use a linear model such that ˆδ = M (h) = φwh + φb) and select the best number of layers for each experiment type (given below) based on the ﬁnal test performance.
+0.24 (We; perform; a hyperparameter search over the number of hidden layers in the synthetic gradient model (from 0 to 2, where 0 means we use a linear model such that ^δ = M (h) = φwh + φb)
+0.96 (such that ^δ = M (h) = φwh + φb) and select the best number of layers for each experiment type; given; L:below)
+0.99 (such that ^δ = M (h) = φwh + φb) and select the best number of layers for each experiment type; based; on the ﬁnal test performance)
+0.15 (0; means; we use a linear model such that ^δ = M (h) = φwh + φb) and select the best number of layers for each experiment type)
+0.39 Context(0 means):(we; use; a linear model)
+0.53 (we; select; the best number of layers for each experiment type (given below) based on the ﬁnal test performance)
+
+We used cross entropy loss for classiﬁcation and L2 loss for synthetic gradient regression which was weighted by a factor of 1 with respect to the classiﬁcation loss.
+0.45 (We; used; cross entropy loss; for classiﬁcation and L2 loss for synthetic gradient regression)
+0.90 (synthetic gradient regression; was weighted; by a factor of 1)
+
+In the completely unlocked model, we use the identical architecture used for the synthetic gradient model, but for simplicity both synthetic gradient and synthetic input models use a single hidden layer (for both DNI and cDNI), and train it to produce synthetic inputs ˆhi such that ˆhi (cid:39) hi.
+0.60 (we; use; the identical architecture used for the synthetic gradient model; L:In the completely unlocked model)
+0.23 (it; to produce; synthetic inputs ^hi such that)
+0.91 (the identical architecture; used; for the synthetic gradient model)
+0.98 (both synthetic gradient and synthetic input models; use; a single hidden layer (for both DNI and cDNI; T:for simplicity)
+0.87 (both synthetic gradient and synthetic input models; train; it; to produce synthetic inputs)
+
+Single DNI We look at training an FCN for MNIST digit classiﬁcation using a network with 6 layers (5 hidden layers, one classiﬁcation layer), but splitting the network into two unlocked sub-networks by inserting a single DNI at a variable position, as illustrated in Fig.
+0.50 (We; look; at training an FCN for MNIST digit classiﬁcation)
+0.41 (We; splitting; the network; into two unlocked sub-networks)
+
+When training this 6 layer FCN with vanilla backpropagation we attain 1.6% test error.
+0.64 (we; attain; 1.6% test error; T:When training this 6 layer FCN with vanilla backpropagation)
+
+If we decouple the layers without DNI, by just not backpropagating any gradient between them, this results in bad performance – between 2.9% and 23.7% error for after layer 1 and layer 5 respectively.
+0.50 (we; decouple; the layers without DNI)
+
+However, as we show in Sect.
+
+We also plot the synthetic gradient regression error (L2 distance), cosine distance, and the sign error (the number of times the sign of a gradient dimension is predicted incorrectly) compared to the true error gradient in Fig.
+0.64 (We; plot; the synthetic gradient regression error (L2 distance), cosine distance)
+0.75 (the sign error; is predicted; L:incorrectly)
+
+We perform a hyperparameter search of whether or not to backpropagate synthetic gradient model error into the LSTM core (the model was not particularly sensitive to this, but occasionally backpropagating synthetic gradient model error resulted in more unstable training).
+0.61 (We; perform; a hyperparameter search of whether or not to backpropagate synthetic gradient model error into the LSTM core)
+0.77 (the model; was not; particularly sensitive to this)
+0.93 (occasionally backpropagating synthetic gradient model error; resulted; in more unstable training)
+
+Copy and Repeat Copy Task In these tasks we use 256 LSTM units and the model was optimised with Adam with a learning rate of 7 × 10−5 and a batch size of 256.
+0.50 (we; use; 256 LSTM units)
+0.85 (Copy and Repeat Copy Task In these tasks we use 256 LSTM units and the model; was optimised; with Adam)
+
+Learning is performed with the use of Adam with learning rate of 7 × 10−5 (which we select to maximise the score of the baseline model through testing also 1 × 10−4 and 1 × 10−6) without any learning rate decay or additional regularisation.
+0.77 (Learning; is performed; )
+0.91 (Learning; with learning; rate of 7)
+0.57 (we; select; to maximise the score of the baseline model through testing also 1 × 10−4 and 1 × 10−6) without any learning rate decay or additional regularisation)
+0.50 (10−5; to maximise; the score of the baseline model)
+
+Each 5k iterations we record validation error (in terms of average bytes per character) and store the network which achieved the smallest one.
+0.45 (we; record; validation error)
+0.55 (we; store; the network which achieved the smallest one; T:Each 5k iterations)
+0.74 (the network; achieved; the smallest one)
+
+Once validation error starts to increase we stop training and report test error using previously saved network.
+0.78 (validation error; starts; )
+0.70 (validation error; to increase; )
+0.66 (we; stop; training and report test error; T:Once validation error starts to increase)
+
+We train the RNNs with different BPTT unroll lengths with DNI (solid lines) and without DNI (dashed lines).
+0.61 (We; train; the RNNs; with different BPTT unroll lengths with DNI (solid lines) and without DNI (dashed lines)
+
+We performed a hyperparameter search over the factor by which the synthetic gradient should by multiplied by before being backpropagated through Network A, which we selected as 10 by choosing the system with the lowest training error.
+0.45 (We; performed; a hyperparameter search over the factor)
+0.93 (the synthetic gradient; should by multiplied; T:by; T:before being backpropagated through Network A)
+0.79 (Network A; selected; as 10)
+
+We run all models for 2.5M optimisation steps
+0.52 (We; run; all models for 2.5M optimisation steps)
+

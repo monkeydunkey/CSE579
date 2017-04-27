@@ -1,0 +1,339 @@
+Hunt∗, Alexander Pritzel, Nicolas Heess, Tom Erez, Yuval Tassa, David Silver & Daan Wierstra Google Deepmind London, UK {countzero, jjhunt, apritzel, heess, etom, tassa, davidsilver, wierstra} @ google.com We adapt the ideas underlying the success of Deep Q-Learning to the continuous action domain.
+0.61 (We; adapt; the ideas underlying the success of Deep Q-Learning to the continuous action domain)
+0.92 (the ideas; underlying; the success of Deep Q-Learning)
+
+We present an actor-critic, model-free algorithm based on the deterministic policy gradient that can operate over continuous action spaces.
+0.57 (We; present; an actor-critic, model-free algorithm based on the deterministic policy gradient)
+0.95 (an actor-critic, model-free algorithm; based; on the deterministic policy gradient)
+0.91 (the deterministic policy gradient; can operate; L:over continuous action spaces)
+
+Using the same learning algorithm, network architecture and hyper-parameters, our algorithm robustly solves more than 20 simulated physics tasks, including classic problems such as cartpole swing-up, dexterous manipulation, legged locomotion and car driving.
+0.74 (our algorithm; robustly solves; more than 20 simulated physics tasks, including classic problems such as cartpole swing-up, dexterous manipulation, legged locomotion and car driving)
+
+Our algorithm is able to ﬁnd policies whose performance is competitive with those found by a planning algorithm with full access to the dynamics of the domain and its derivatives.
+0.70 (Our algorithm; is; able to ﬁnd policies)
+0.42 (Our algorithm; to ﬁnd; policies whose performance is competitive with those)
+0.55 (policies; is; competitive with those)
+0.21 (those; found; by a planning algorithm with full access to the dynamics of the domain and its derivatives)
+
+We further demonstrate that for many of the tasks the algorithm can learn policies “end-to-end”: directly from raw pixel inputs.
+0.24 (We; demonstrate; that for many of the tasks the algorithm can learn policies "end-to-end": directly from raw pixel inputs)
+0.88 Context(We demonstrate):(the algorithm; can learn; policies; directly from raw pixel inputs)
+
+In this work we present a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces.
+0.70 (we; present; a model-free, off-policy actor-critic algorithm using deep function approximators; L:In this work)
+0.93 (a model-free, off-policy actor-critic algorithm; using; deep function approximators that can learn policies in high-dimensional, continuous action spaces)
+0.90 (deep function approximators; can learn; policies; L:in high-dimensional, continuous action spaces)
+
+Our work is based Published as a conference paper at ICLR 2016 on the deterministic policy gradient (DPG) algorithm (Silver et al., 2014) (itself similar to NFQCA (Hafner & Riedmiller, 2011), and similar ideas can be found in (Prokhorov et al., 1997)).
+0.65 (Our work; is based; Published as a conference paper at ICLR 2016 on the deterministic policy gradient (DPG) algorithm (Silver et al., 2014) (itself similar to NFQCA (Hafner & Riedmiller, 2011), and similar ideas can be found in (Prokhorov et al., 1997)
+0.64 (Our work; Published; as a conference paper at ICLR 2016)
+0.97 (Hafner & Riedmiller, 2011), and similar ideas; can be found; L:in (Prokhorov et al., 1997)
+
+However, as we show below, a naive application of this actor-critic method with neural function approximators is unstable for challenging problems.
+0.28 (we; show; below)
+0.97 (a naive application of this actor-critic method with neural function approximators; is; unstable for challenging problems)
+
+Here we combine the actor-critic approach with insights from the recent success of Deep Q Network (DQN) (Mnih et al., 2013; 2015).
+0.74 (we; combine; the actor-critic approach with insights from the recent success of Deep Q Network; L:Here)
+
+In this work we make use of the same ideas, along with batch normalization (Ioffe & Szegedy, 2015), a recent advance in deep learning.
+0.60 (we; make; use of the same ideas; L:In this work)
+
+In order to evaluate our method we constructed a variety of challenging physical control problems that involve complex multi-joint movements, unstable and rich contact dynamics, and gait behavior.
+0.45 (we; constructed; a variety of challenging physical control problems)
+0.93 (physical control problems; involve; complex multi-joint movements, unstable and rich contact dynamics, and gait behavior)
+
+Accordingly, we place a ﬁxed viewpoint camera in the simulator and attempted all tasks using both low-dimensional observations (e.g.
+0.45 (we; place; a ﬁxed viewpoint camera; in the simulator)
+0.41 (we; attempted; all tasks)
+
+Our model-free approach which we call Deep DPG (DDPG) can learn competitive policies for all of our tasks using low-dimensional observations (e.g.
+0.76 (Our model-free approach; call; Deep DPG)
+0.66 (Our model-free approach which we call Deep DPG (DDPG); can learn; competitive policies for all of our tasks)
+
+In many cases, we are also able to learn good policies directly from pixels, again keeping hyperparameters and network structure constant 1.
+0.60 (we; are also; able to learn good policies directly from pixels; L:In many cases)
+0.31 (we; to learn directly; from pixels; again keeping hyperparameters and network structure constant 1)
+
+For the physical control problems we compare our results to a baseline computed by a planner (Tassa et al., 2012) that has full access to the underlying simulated dynamics and its derivatives (see supplementary information).
+0.31 (we; compare; our results; to a baseline)
+0.90 (a baseline; computed; by a planner)
+0.93 (Tassa et al; has; full access to the underlying simulated dynamics and its derivatives (see supplementary information)
+
+We consider a standard reinforcement learning setup consisting of an agent interacting with an environment E in discrete timesteps.
+0.45 (We; consider; a standard reinforcement learning setup consisting of an agent)
+0.93 (a standard reinforcement learning setup; consisting; of an agent)
+0.90 (an agent; interacting; with an environment E in discrete timesteps)
+
+Here, we assumed the environment is fully-observed so st = xt.
+0.53 (we; assumed; the environment is fully-observed; L:Here)
+0.77 Context(we assumed):(the environment; is; fully-observed)
+
+We model it as a Markov decision process with a state space S, action space A = IRN , an initial state distribution p(s1), transition dynamics p(st+1|st, at), and reward function r(st, at).
+0.91 (transition dynamics; p; st+1|st)
+0.30 Context(transition dynamics p):(We; model; it; as a Markov decision process)
+
+We denote the discounted state visitation distribution for a policy π as ρπ.
+0.57 (We; denote; the discounted state visitation distribution for a policy π as ρπ)
+
+It describes the expected return after taking an action at in state st and thereafter following policy π: Qπ(st, at) = Eri≥t,si>t∼E,ai>t∼π [Rt|st, at] 1You can view a movie of some of the learned policies at https://goo.gl/J4PIAz Published as a conference paper at ICLR 2016 Many approaches in reinforcement learning make use of the recursive relationship known as the Bellman equation: (cid:2)r(st, at) + γ Eat+1∼π [Qπ(st+1, at+1)](cid:3) (2) If the target policy is deterministic we can describe it as a function µ : S ← A and avoid the inner expectation: Qµ(st, at) = Ert,st+1∼E [r(st, at) + γQµ(st+1, µ(st+1))] The expectation depends only on the environment.
+0.95 (1You; can view; a movie of some of the learned policies at https://goo.gl/J4PIAz)
+0.94 (the recursive relationship; known; as the Bellman equation)
+0.41 (we; avoid; the inner expectation)
+0.31 (we; can describe; it; as a function µ)
+0.94 (the learned policies at https://goo.gl/J4PIAz; Published; as a conference paper at ICLR 2016)
+0.83 (the target policy; is; deterministic)
+0.93 (Many approaches in reinforcement learning; make; use of the recursive relationship)
+
+We consider function approximators parameterized by θQ, which we optimize by minimizing the loss: yt = r(st, at) + γQ(st+1, µ(st+1)|θQ).
+0.50 (We; consider; function approximators parameterized by θQ,)
+0.92 (function approximators; parameterized; by θQ)
+0.79 (θQ; optimize; we)
+0.35 Context(θQ optimize):(we; by minimizing; the loss)
+
+We employ these in the context of DDPG and explain their implementation in the next section.
+0.50 (We; employ; these; L:in the context of DDPG)
+0.27 (We; explain; their implementation; L:in the next section)
+
+Instead, here we used an actor-critic approach based on the DPG algorithm (Silver et al., 2014).
+0.74 (we; used; an actor-critic approach based on the DPG algorithm (Silver et al; L:here)
+0.94 (an actor-critic approach; based; on the DPG algorithm (Silver et al)
+
+A minibatch version of NFQCA which does not reset the policy at each update, as would be required to scale to large networks, is equivalent to the original DPG, which we compare to here.
+0.88 (A minibatch version of NFQCA; does not reset; the policy; at each update)
+0.92 (A minibatch version of NFQCA; is; equivalent to the original DPG)
+0.81 (the original DPG; compare; to here)
+
+Our contribution here is to provide modiﬁcations to DPG, inspired by the success of DQN, which allow it to use neural network function approximators to learn in large state and action spaces online.
+0.76 (Our contribution here; is; to provide modiﬁcations to DPG)
+0.90 (the success of DQN; allow; it to use neural network function approximators to learn in large state and action spaces online)
+0.39 Context(the success of DQN allow):(it; to use; neural network function approximators; to learn in large state and action spaces online)
+
+We refer to our algorithm as Deep DPG (DDPG, Algorithm 1).
+0.35 (We; refer; to our algorithm; as Deep DPG)
+
+2In practice, as in commonly done in policy gradient implementations, we ignored the discount in the statehigh dimensional tasks such as gripper, tasks involving contacts such as puck striking (canada) and locomotion tasks such as cheetah (Wawrzy´nski, 2009).
+0.57 (we; ignored; the discount in the statehigh dimensional tasks such as gripper, tasks)
+0.87 (tasks; involving; contacts such as puck striking (canada) and locomotion tasks such as cheetah)
+
+In all tasks, we ran experiments using both a low-dimensional state description (such as joint angles and positions) and high-dimensional renderings of the environment.
+0.60 (we; ran; experiments; L:In all tasks)
+0.50 Context(we ran):(we; ran experiments using; both a low-dimensional state description (such as joint angles and positions) and high-dimensional renderings of the environment)
+
+As in DQN (Mnih et al., 2013; 2015), in order to make the problems approximately fully observable in the high dimensional environment we used action repeats.
+0.45 (we; used; action)
+
+For each timestep of the agent, we step the simulation 3 timesteps, repeating the agent’s action and rendering each time.
+0.46 (we; step; the simulation)
+0.29 Context(we step):(we; step the simulation repeating; the agent's action)
+0.29 Context(we step):(we; step the simulation rendering; each time)
+
+See supplementary information for details of our network structure and hyperparameters.
+
+We evaluated the policy periodically during training by testing it without exploration noise.
+0.23 (We; evaluated periodically; T:during training by testing it without exploration noise)
+
+We also report results with components of our algorithm (i.e.
+0.27 (We; report; results with components of our algorithm)
+
+We normalized the scores using two baselines.
+0.39 (We; normalized; the scores)
+0.39 Context(We normalized):(We; normalized the scores using; two baselines)
+
+As in DQN, we used a replay buffer to address these issues.
+0.39 (we; used; a replay buffer; to address these issues)
+0.39 Context(we used):(we; used a replay buffer to address; these issues)
+
+Our solution is similar to the target network used in (Mnih et al., 2013) but modiﬁed for actor-critic and using “soft” target updates, rather than directly copying the weights.
+0.70 (Our solution; is; similar to the target network)
+0.93 (the target network; used; T:in (Mnih et al., 2013)
+
+We create a copy of the actor and critic networks, Q(cid:48)(s, a|θQ(cid:48) ) and µ(cid:48)(s|θµ(cid:48) ) respectively, that are used for calculating the target values.
+0.45 (We; create; a copy of the actor and critic networks)
+0.99 (a|θQ(cid:48) ) and µ(cid:48)(s|θµ(cid:48) ) respectively; are used; for calculating the target values)
+
+We found that having both a target µ(cid:48) and Q(cid:48) was required to have stable targets yi in order to consistently train the critic without divergence.
+0.32 (We; found; that having both a target µ(cid:48) and Q(cid:48) was required to have stable targets yi in order)
+
+However, in practice we found this was greatly outweighed by the stability of learning.
+0.53 (we; found; this was greatly outweighed by the stability of learning; L:in practice)
+0.24 Context(we found):(this; was outweighed; by the stability of learning)
+
+We address this issue by adapting a recent technique from deep learning called batch normalization (Ioffe & Szegedy, 2015).
+0.39 (We; address; this issue)
+0.39 Context(We address):(We; address this issue by adapting; a recent technique from deep learning)
+
+In addition, it maintains a running average of the mean and variance to use for normalization during testing (in our case, during exploration or evaluation).
+0.42 (it; maintains; a running average of the mean and variance to use for normalization during testing (in our case, during exploration or evaluation)
+0.94 (a running average of the mean and variance; to use; for normalization during testing (in our case, during exploration or evaluation)
+
+In the low-dimensional case, we used batch normalization on the state input and all layers of the µ network and all layers of the Q network prior to the action input (details of the networks are given in the supplementary material).
+0.74 (we; used; batch normalization on the state input and all layers of the µ network and all layers of the Q network prior to the action input; L:In the low-dimensional case)
+0.94 (the action input (details of the networks; are given; L:in the supplementary material)
+
+With batch normalization, we were able to learn effectively across many different tasks with differing types of units, without needing to manually ensure the units were within a set range.
+0.57 (we; were; able to learn effectively across many different tasks with differing types of units, without needing to manually ensure the units were within a set range)
+0.41 (we; to learn effectively; L:across many different tasks with differing types of units)
+
+An advantage of offpolicies algorithms such as DDPG is that we can treat the problem of exploration independently from the learning algorithm.
+0.88 (An advantage of offpolicies algorithms such as DDPG; is; that we can treat the problem of exploration independently from the learning algorithm)
+0.40 Context(An advantage of offpolicies algorithms such as DDPG is):(we; can treat; the problem of exploration; independently from the learning algorithm)
+
+We constructed an exploration policy µ(cid:48) by adding noise sampled from a noise process N to our actor policy (7) N can be chosen to chosen to suit the environment.
+0.71 (noise; sampled; )
+0.59 (N; to chosen; )
+0.39 (We; constructed; an exploration policy µ)
+0.26 Context(We constructed):(We; constructed an exploration policy µ by adding; noise sampled from a noise process N to our actor policy (7))
+0.82 Context(We constructed by adding):(N; can be chosen; to chosen; to suit the environment)
+
+As detailed in the supplementary materials we used an Ornstein-Uhlenbeck process (Uhlenbeck & Ornstein, 1930) to generate temporally correlated exploration for exploration efﬁciency in physical control problems with inertia (similar use of autocorrelated noise was introduced in (Wawrzy´nski, 2015)).
+0.55 (we; used; an Ornstein-Uhlenbeck process; to generate temporally correlated exploration for exploration efﬁciency in physical control problems with inertia)
+0.40 Context(we used):(we; used an Ornstein-Uhlenbeck process to generate; temporally correlated exploration for exploration efﬁciency in physical control problems with inertia)
+
+We constructed simulated physical environments of varying levels of difﬁculty to test our algorithm.
+0.26 (We; constructed; simulated physical environments of varying levels of difﬁculty; to test our algorithm)
+0.26 Context(We constructed):(We; constructed simulated physical environments of varying levels of difﬁculty to test; our algorithm)
+
+We normalize scores so that the naive policy has a mean score of 0 and iLQG has a mean score of 1.
+0.37 (We; normalize; scores; so that the naive policy has a mean score of 0 and iLQG has a mean score of 1)
+0.96 (the naive policy; has; a mean score of 0 and iLQG has a mean score of 1)
+0.89 (iLQG; has; a mean score of 1)
+
+We examined DDPG’s estimates empirically by comparing the values estimated by Q after training with the true returns seen on test episodes.
+0.92 (the values; estimated; by Q; T:after training with the true returns)
+0.91 (the true returns; seen; L:on test episodes)
+0.43 (We; examined empirically; DDPG's estimates)
+0.44 Context(We examined empirically):(We; examined empirically by comparing; the values estimated by Q after training with the true returns)
+
+To demonstrate the generality of our approach we also include Torcs, a racing game where the actions are acceleration, braking and steering.
+0.71 (the generality of our approach; also include; Torcs)
+0.94 (the actions; are; acceleration, braking and steering; L:a racing game)
+
+We used an identical network architecture and learning algorithm hyper-parameters to the physics tasks but altered the noise process for exploration because of the very different time scales involved.
+0.41 (We; altered; the noise process for exploration; because of the very different time scales)
+0.79 (the very different time scales; involved; )
+0.51 (We; used; an identical network architecture and learning algorithm hyper-parameters to the physics tasks)
+0.30 Context(We used):(We; used learning; algorithm hyper-parameters to the physics tasks)
+
+Figure 1: Example screenshots of a sample of environments we attempt to solve with DDPG.
+0.44 (we; attempt; to solve with DDPG)
+0.44 Context(we attempt):(we; attempt to solve; with DDPG)
+
+We tackle all tasks using both low-dimensional feature vector and high-dimensional pixel inputs.
+0.57 (We; tackle; all tasks using both low-dimensional feature vector and high-dimensional pixel inputs)
+
+However, that paper did not demonstrate scaling the approach to large, high-dimensional observation spaces as we have here.
+0.94 (that paper; did not demonstrate; scaling the approach to large, high-dimensional observation spaces)
+0.23 (we; have; L:here)
+
+We report both the average and best observed (across 5 runs).
+0.57 (We; report; both the average and best observed (across 5 runs)
+
+All scores, except Torcs, are normalized so that a random agent receives 0 and a planning algorithm 1; for Torcs we present the raw reward score.
+0.75 (a random agent; receives; )
+0.58 (we; present; the raw reward score; T:for Torcs)
+0.78 Context(we present):(All scores; are normalized; T:so that a random agent receives 0 and a planning algorithm 1)
+
+We include results from the DDPG algorithn in the low-dimensional (lowd) version of the environment and high-dimensional (pix).
+0.61 (We; include; results from the DDPG algorithn in the low-dimensional (lowd) version of the environment)
+
+For comparision we also include results from the original DPG algorithm with a replay buffer and batch normalization (cntrl).
+0.74 (we; also include; results from the original DPG algorithm with a replay buffer and batch normalization; T:For comparision)
+
+Concurrent with our work, Balduzzi & Ghifary (2015) extended the DPG algorithm with a “deviator” network which explicitly learns ∂Q/∂a.
+0.84 (Concurrent with our work, Balduzzi & Ghifary (2015; extended; the DPG algorithm; with a "deviator" network)
+0.93 (a "deviator" network; explicitly learns; ∂Q/∂a)
+
+The techniques we described here for scaling DPG are also applicable to stochastic policies by using the reparametrization trick (Heess et al., 2015; Schulman et al., 2015a).
+0.94 (The techniques; described; L:here; for scaling DPG are also applicable to stochastic policies by using the reparametrization trick (Heess et al., 2015; Schulman et al)
+
+As with most reinforcement learning algorithms, the use of non-linear function approximators nulliﬁes any convergence guarantees; however, our experimental results demonstrate that stable learning without the need for any modiﬁcations between environments.
+0.90 (most reinforcement; learning; algorithms)
+0.31 (our experimental results; demonstrate; )
+0.92 Context(our experimental results demonstrate):(the use of non-linear function approximators; nulliﬁes; any convergence guarantees)
+
+Interestingly, all of our experiments used substantially fewer steps of experience than was used by DQN learning to ﬁnd solutions in the Atari domain.
+0.88 (DQN; learning; to ﬁnd solutions in the Atari domain)
+
+Nearly all of the problems we looked at were solved within 2.5 million steps of experience (and usually far fewer), a factor of 20 fewer steps than Published as a conference paper at ICLR 2016 DQN requires for good Atari solutions.
+0.57 (we; looked; at were solved within 2.5 million steps of experience (and usually far fewer), a factor of 20 fewer steps)
+0.91 (Nearly all of the problems; were solved; within 2.5 million steps of experience)
+0.88 (DQN; requires; for good Atari solutions)
+
+A few limitations to our approach remain.
+0.43 (A few limitations to our approach; remain; )
+
+However, we believe that a robust model-free approach may be an important component of larger systems which may attack these limitations (Gl¨ascher et al., 2010).
+0.89 (larger systems; may attack; these limitations)
+0.27 (we; believe; that a robust model-free approach may be an important component of larger systems)
+0.91 Context(we believe):(a robust model-free approach; may be; an important component of larger systems)
+
+Published as a conference paper at ICLR 2016 Supplementary Information: Continuous control with We used Adam (Kingma & Ba, 2014) for learning the neural network parameters with a learning rate of 10−4 and 10−3 for the actor and critic respectively.
+0.61 (We; used; Adam; Kingma & Ba, 2014) for learning the neural network parameters with a learning rate of 10−4 and 10−3 for the actor and critic respectively)
+0.96 (Kingma & Ba, 2014; for learning respectively; the neural network parameters; with a learning rate of 10−4 and 10−3 for the actor and critic)
+
+For Q we included L2 weight decay of 10−2 and used a discount factor of γ = 0.99.
+0.64 (we; included; L2 weight decay of 10−2; T:For Q)
+
+For the soft target updates we used τ = 0.001.
+0.45 (we; used; τ)
+
+When learning from pixels we used 3 convolutional layers (no pooling) with 32 ﬁlters at each layer.
+0.60 (we; used; 3 convolutional layers; with 32 ﬁlters at each layer; T:When learning from pixels)
+
+We trained with minibatch sizes of 64 for the low dimensional problems and 16 on pixels.
+0.57 (We; trained; with minibatch sizes of 64 for the low dimensional problems and 16 on pixels)
+
+We used a replay buffer size of 106.
+0.45 (We; used; a replay buffer size of 106)
+
+For the exploration noise process we used temporally correlated noise in order to explore well in physical environments that have momentum.
+0.45 (we; used; temporally correlated noise; in order)
+0.89 (physical environments; have; momentum)
+
+We used an Ornstein-Uhlenbeck process (Uhlenbeck & Ornstein, 1930) with θ = 0.15 and σ = 0.2.
+0.50 (We; used; an Ornstein-Uhlenbeck process)
+
+Our planner is implemented as a model-predictive controller (Tassa et al., 2012): at every time step we run a single iteration of trajectory optimization (using iLQG, (Todorov & Li, 2005)), starting from the true state of the system.
+0.74 (we; run; a single iteration of trajectory optimization (using iLQG, (Todorov & Li, 2005); T:at every time step)
+0.58 Context(we run):(Our planner; is implemented; as a model-predictive controller)
+
+We use repeated samples of simulated dynamics to approximate a linear expansion of the dynamics around every step of the trajectory, as well as a quadratic expansion of the cost function.
+0.57 (We; use; repeated samples of simulated dynamics; to approximate a linear expansion of the dynamics around every step of the trajectory, as well as a quadratic expansion of the cost function)
+
+We use this sequence of locally-linear-quadratic models to integrate the value function backwards in time along the nominal trajectory.
+0.45 (We; use; this sequence of locally-linear-quadratic models)
+
+We perform a derivative-free line-search over this direction in the space of action sequences by integrating the dynamics forward (the forwardpass), and choose the best trajectory.
+0.57 (We; perform; a derivative-free line-search over this direction; L:in the space of action sequences)
+0.41 (We; choose; the best trajectory)
+
+We store this action sequence in order to warm-start the next iLQG iteration, and execute the ﬁrst action in the simulator.
+
+For the Torcs environment we used a reward function which provides a positive reward at each step for the velocity of the car projected along the track direction and a penalty of −1 for collisions.
+0.74 (we; used; a reward function which provides a positive reward at each step for the velocity of the car; T:For the Torcs environment)
+0.90 (a reward function; provides; a positive reward)
+0.94 (the car; projected; along the track direction and a penalty of −1 for collisions)
+
+Published as a conference paper at ICLR 2016 For physical control tasks we used reward functions which provide feedback at every step.
+0.45 (we; used; reward functions which provide feedback at every step)
+0.89 (reward functions; provide; feedback; L:at every step)
+
+pendulum swingup and reaching) we provide a smoothly varying reward based on distance to a goal state, and in some cases an additional positive reward when within a small radius of the target state.
+0.57 (we; provide; a smoothly varying reward based on distance to a goal state)
+0.92 (a smoothly varying reward; based; on distance to a goal state)
+
+For grasping and manipulation tasks we used a reward with a term which encourages movement towards the payload and a second component which encourages moving the payload to the target.
+0.60 (we; used; a reward; T:For grasping and manipulation tasks)
+0.89 (a term; encourages; movement towards the payload and a second component)
+0.90 (a second component; encourages; moving the payload to the target)
+
+In locomotion tasks we reward forward action and penalize hard impacts to encourage smooth rather than hopping gaits (Schulman et al., 2015b).
+0.60 (we; reward; forward; action; L:In locomotion tasks)
+0.57 (we; penalize; hard impacts; to encourage smooth rather than hopping gaits (Schulman et al)
+
+In addition, we used a negative reward and early termination for falls which were determined by simple threshholds on the height and torso angle (in the case of walker2d)
+0.57 (we; used; a negative reward and early termination for falls which were determined by simple threshholds on the height and torso angle (in the case of walker2d)
+0.96 (a negative reward and early termination for falls; were determined; by simple threshholds; L:on the height and torso angle (in the case of walker2d)
+

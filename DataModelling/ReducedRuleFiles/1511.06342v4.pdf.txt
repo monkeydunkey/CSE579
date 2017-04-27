@@ -1,0 +1,149 @@
+The paper  |  uses  | atari games
+The paper  |  uses  | environment
+The paper  |  uses  | atari games as a testing environment
+The paper  |  outputs  | methods
+The paper  |  uses  | guidance
+The paper  |  uses  | set
+The paper  |  uses  | game-speciﬁc expert networks
+The paper  |  uses  | guidance from a set of game-speciﬁc expert networks
+The paper  |  outputs  | method
+The paper  |  outputs  | techniques
+The paper  |  outputs  | model compression
+The paper  |  outputs  | single multitask network
+The paper  |  outputs  | method called `` actor-mimic '' that leverages techniques from model compression to train a single multitask network
+The paper  |  uses  | guidance
+The paper  |  uses  | set
+The paper  |  uses  | expert dqn networks
+The paper  |  uses  | guidance from a set of expert dqn networks
+The paper  |  uses  | knowledge
+The paper  |  uses  | expert value functions
+The paper  |  uses  | knowledge from the expert value functions
+The paper  |  uses  | softmax
+The paper  |  uses  | expert
+The paper  |  uses  | l
+The paper  |  uses  | loss
+The paper  |  uses  | l : in the loss
+The paper  |  uses  | -greedy policy
+The paper  |  uses  | feature regression objective
+The paper  |  uses  | primary beneﬁt
+The paper  |  uses  | performance
+The paper  |  uses  | transfer
+The paper  |  uses  | feature regression objective 's primary beneﬁt is that it can increase the performance of transfer
+The paper  |  outputs  | conference paper
+The paper  |  uses  | weights
+The paper  |  uses  | amn
+The paper  |  uses  | instantiation
+The paper  |  uses  | dqn
+The paper  |  uses  | weights of amn as an instantiation for a dqn
+The paper  |  uses  | notation p
+The paper  |  uses  | a|s θ
+The paper  |  uses  | softmax policies
+The paper  |  uses  | policy regression objective
+The paper  |  uses  | notation p ( a|s θ ) for the softmax policies in the policy regression objective
+The paper  |  outputs  | t
+The paper  |  outputs  | amn
+The paper  |  outputs  | t : amn
+The paper  |  uses  | subsets
+The paper  |  uses  | collection
+The paper  |  uses  | atari games
+The paper  |  uses  | subsets of a collection of 20 atari games
+The paper  |  outputs  | effectiveness
+The paper  |  outputs  | amn
+The paper  |  outputs  | multiple games
+The paper  |  outputs  | effectiveness of training an amn over multiple games
+The paper  |  outputs  | maximum test reward
+The paper  |  outputs  | l
+The paper  |  outputs  | maximum test reward
+The paper  |  outputs  | convergence
+The paper  |  outputs  | maximum test reward ever achieved until convergence
+The paper  |  outputs  | t
+The paper  |  outputs  | convergence
+The paper  |  outputs  | t : until convergence
+The paper  |  outputs  | percentage ratio
+The paper  |  outputs  | amn reward
+The paper  |  outputs  | expert
+The paper  |  outputs  | reward
+The paper  |  outputs  | game
+The paper  |  outputs  | max rewards
+The paper  |  outputs  | percentage ratio of the amn reward to the expert dqn reward for every game for both mean and max rewards
+The paper  |  uses  | small amn
+The paper  |  uses  | close-to-expert level
+The paper  |  uses  | multiple source tasks
+The paper  |  uses  | larger amn
+The paper  |  uses  | knowledge
+The paper  |  uses  | tasks
+The paper  |  uses  | source tasks
+The paper  |  uses  | small amn can learn how to behave at a close-to-expert level on multiple source tasks , a larger amn can more easily transfer knowledge to target tasks after being trained on the source tasks
+The paper  |  uses  | amn
+The paper  |  uses  | source tasks
+The paper  |  uses  | transfer
+The paper  |  uses  | amn trained for too long on the source tasks hurt transfer
+The paper  |  outputs  | deﬁnite increase
+The paper  |  outputs  | speed
+The paper  |  outputs  | games
+The paper  |  outputs  | breakout
+The paper  |  outputs  | star gunner
+The paper  |  outputs  | video pinball
+The paper  |  outputs  | deﬁnite increase in learning speed for the 3 games of breakout , star gunner and video pinball
+The paper  |  outputs  | average test reward
+The paper  |  outputs  | technique
+The paper  |  outputs  | al
+The paper  |  outputs  | technique of ( hinton et al
+The paper  |  outputs  | expert guidance
+The paper  |  outputs  | richer training signal
+The paper  |  outputs  | mimic network
+The paper  |  outputs  | samples
+The paper  |  outputs  | expert
+The paper  |  outputs  | action output
+The paper  |  outputs  | richer training signal to the mimic network than just samples of the expert 's action output
+The paper  |  uses  | adam
+The paper  |  uses  | optimization algorithm
+The paper  |  uses  | adam ( kingma & ba , 2015 ) optimization algorithm
+The paper  |  uses  | replay memory
+The paper  |  uses  | game
+The paper  |  uses  | correlations
+The paper  |  uses  | successive frames
+The paper  |  uses  | network training
+The paper  |  uses  | replay memory for each game to reduce correlations between successive frames and stabilize network training
+The paper  |  uses  | network training
+The paper  |  uses  | frame replay memory
+The paper  |  uses  | softmax temperature
+The paper  |  uses  | cases
+The paper  |  uses  | softmax temperature of 1 in all cases
+The paper  |  uses  | -greedy policy
+The paper  |  uses  | weight decay
+The paper  |  uses  | large beneﬁts
+The paper  |  outputs  | large beneﬁts
+The paper  |  uses  | dqn algorithm
+The paper  |  uses  | frame replay memory
+The paper  |  uses  | dqn
+The paper  |  uses  | basic dqn procedure
+The paper  |  outputs  | amn
+The paper  |  outputs  | expert dqn
+The paper  |  outputs  | mdqn test reward
+The paper  |  outputs  | epoch
+The paper  |  outputs  | amn , expert dqn and mdqn test reward for each testing epoch
+The paper  |  outputs  | amn
+The paper  |  outputs  | expert dqn
+The paper  |  outputs  | mcdqn test reward
+The paper  |  outputs  | epoch
+The paper  |  outputs  | amn , expert dqn and mcdqn test reward for each testing epoch
+The paper  |  outputs  | convolutional layers
+The paper  |  outputs  | wxwxcxn-s
+The paper  |  outputs  | convolutional layers as wxwxcxn-s
+The paper  |  outputs  | maximum test reward
+The paper  |  outputs  | t
+The paper  |  outputs  | training
+The paper  |  outputs  | reward
+The paper  |  outputs  | t : over all training epochs , as well as the mean testing reward
+The paper  |  outputs  | t
+The paper  |  outputs  | epochs
+The paper  |  outputs  | t : over the last 10 epochs
+The paper  |  outputs  | maximum test reward
+The paper  |  outputs  | t
+The paper  |  outputs  | training
+The paper  |  outputs  | reward
+The paper  |  outputs  | t : over all training epochs , as well as the mean testing reward
+The paper  |  outputs  | t
+The paper  |  outputs  | epochs
+The paper  |  outputs  | t : over the last 10 epochs

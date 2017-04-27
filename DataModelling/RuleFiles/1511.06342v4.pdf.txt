@@ -1,0 +1,444 @@
+Towards this goal, we deﬁne a novel method of multitask and transfer learning that enables an autonomous agent to learn how to behave in multiple tasks simultaneously, and then generalize its knowledge to new domains.
+0.32 (we; deﬁne; a novel method of multitask and transfer learning that enables an autonomous agent to learn how to behave in multiple tasks simultaneously, and then generalize its knowledge to new domains; L:Towards this goal)
+0.92 (a novel method of multitask and transfer learning; enables; an autonomous agent; to learn how to behave in multiple tasks simultaneously, and then generalize its knowledge to new domains)
+0.90 (an autonomous agent; to learn; how to behave in multiple tasks simultaneously, and then generalize its knowledge to new domains)
+
+We then show that the representations learnt by the deep policy network are capable of generalizing to new tasks with no prior expert guidance, speeding up learning in novel environments.
+0.43 (We; show; that the representations learnt by the deep policy network are capable of generalizing to new tasks with no prior expert guidance, speeding up; T:then)
+0.95 Context(We show):(the representations learnt by the deep policy network; are; capable of generalizing to new tasks with no prior expert guidance, speeding up)
+0.90 (the representations; learnt; by the deep policy network)
+0.93 (the representations learnt by the deep policy network; of generalizing; to new tasks)
+
+Although our method can in general be applied to a wide range of problems, we use Atari games as a testing environment to demonstrate these methods.
+0.54 (our method; can be applied; to a wide range of problems)
+0.43 (we; use; Atari games; as a testing environment)
+0.29 Context(we use):(we; use Atari games to demonstrate; these methods)
+
+To ﬁrst accomplish multitask learning, we design a method called “Actor-Mimic” that leverages techniques from model compression to train a single multitask network using guidance from a set of game-speciﬁc expert networks.
+0.95 (techniques from model compression; to train; a single multitask network using guidance from a set of game-speciﬁc expert networks)
+0.95 (a single multitask network; using; guidance from a set of game-speciﬁc expert networks)
+0.31 (we; design; a method called "Actor-Mimic" that leverages techniques from model compression to train a single multitask network)
+
+To then achieve transfer learning, we treat a multitask network as being a DQN which was pre-trained on a set of source tasks.
+0.50 (we; treat; a multitask network; as being a DQN)
+0.85 (a DQN; was pre-trained; L:on a set of source tasks)
+
+We show experimentally that this multitask pre-training can result in a DQN that learns a target task signiﬁcantly faster than a DQN starting from a random initialization, effectively demonstrating that the source task representations generalize to the target task.
+0.84 (a DQN; learns signiﬁcantly faster; a target task)
+0.87 (a DQN; starting; from a random initialization)
+0.22 (We; show experimentally; that this multitask pre-training can result in a DQN)
+0.90 Context(We show experimentally):(this multitask pre-training; can result; in a DQN)
+0.71 (a DQN; effectively demonstrating; that the source task representations generalize to the target task)
+0.90 Context(a DQN effectively demonstrating):(the source task representations; generalize; to the target task)
+
+For a given policy, we can further deﬁne the Q-value t=0 γtrt|s0 = s, a0 = a] where H is the step when the game ends.
+0.95 (the game; ends; T:the step)
+0.47 (we; can deﬁne; the Q-value t=0 γtrt; T:For a given policy)
+0.57 Context(we can deﬁne):(H; is; )
+
+To train a DQN on the (n+1)th step, we set the network’s loss to (cid:19)2(cid:35) a(cid:48)∈A Q(s(cid:48), a(cid:48); θ(n)) − Q(s, a; θ(n+1)) r + γ · max where M(·) is a uniform probability distribution over a replay memory, which is a set of the m previous (s, a, r, s(cid:48)) transition tuples seen during play, where m is the size of the memory.
+0.91 (m; is; the size of the memory; L:play)
+0.52 (we; set; the network's loss; to (cid:19)2)
+0.87 (M; is; a uniform probability distribution over a replay memory)
+0.92 (a replay memory; is; a set of the m previous (s)
+0.90 (transition tuples; seen; T:during play)
+
+Given a set of source games S1, ..., SN , our ﬁrst goal is to obtain a single multitask policy network that can play any source game at as near an expert level as possible.
+0.72 (our ﬁrst goal; is; to obtain a single multitask policy network)
+0.91 (a single multitask policy network; can play; any source game)
+
+To train this multitask policy network, we use guidance from a set of expert DQN networks E1, ..., EN , where Ei is an expert specialized in source task Si.
+0.50 (we; use; guidance; from a set of expert DQN networks E1)
+0.95 (Ei; is; an expert specialized in source task Si)
+0.92 (an expert; specialized; in source task Si)
+
+As the range of the expert value functions could vary widely between games, we found it difﬁcult to directly distill knowledge from the expert value functions.
+0.94 (the range of the expert value functions; could vary; widely; L:between games)
+0.42 (we; found; it difﬁcult to directly distill knowledge from the expert value functions)
+
+The alternative we develop here is to instead match policies by ﬁrst transforming Q-values using a softmax.
+0.74 (The alternative; develop; L:here)
+0.83 (The alternative we develop here; is; to instead match policies by ﬁrst transforming Q-values)
+
+Intuitively, we can view using the softmax from the perspective of forcing the student to focus more on mimicking the action chosen by the guiding expert at each state, where the exact values of the state are less important.
+0.50 (we; can view; using the softmax from the perspective of forcing the student to focus more on mimicking the action)
+0.39 Context(we can view):(we; can view using; the softmax)
+0.90 (the action; chosen; by the guiding expert; L:at each state)
+0.96 (the exact values of the state; are; less important; L:each state)
+0.90 (the student; to focus; more; on mimicking the action)
+
+We call this method “Actor-Mimic” as it is an actor, i.e.
+0.37 (We; call; this method; as it is an actor)
+0.52 (it; is; an actor)
+
+In particular, our technique ﬁrst transforms each expert DQN into a policy network by a Boltzmann distribution deﬁned over the Q-value outputs, πEi(a|s) = where τ is a temperature parameter and AEi is the action space used by the expert Ei, AEi ⊆ A.
+0.68 (our technique; ﬁrst transforms; each expert; into a policy network by a Boltzmann distribution)
+0.94 (a Boltzmann distribution; deﬁned; over the Q-value outputs)
+0.97 (AEi; is; the action space used by the expert Ei, AEi ⊆ A.)
+0.96 (the Q-value outputs, πEi(a|s) = where τ is a temperature parameter and AEi is the action space; used; by the expert)
+
+Given a state s from source task Si, we then deﬁne the policy objective over the multitask network as the cross-entropy between the expert network’s policy and the current multitask policy: where πAMN(a|s; θ) is the multitask Actor-Mimic Network (AMN) policy, parameterized by θ.
+0.67 (we; deﬁne; the policy objective over the multitask network as the cross-entropy between the expert network's policy and the current multitask policy; T:then)
+
+In contrast to the Q-learning objective which recursively relies on itself as a target value, we now have a stable supervised training signal (the expert network output) to guide the multitask network.
+0.89 (the Q-learning objective; recursively relies; on itself; as a target value)
+0.67 (we; have; a stable supervised training signal (the expert network output) to guide the multitask network; T:now)
+0.91 (the expert network output; to guide; the multitask network)
+
+To acquire training data, we can sample either the expert network or the AMN action outputs to generate the trajectories used in the loss.
+0.50 (we; can sample; either the expert network or the AMN action)
+0.41 (we; to generate; the trajectories used in the loss)
+0.90 (the trajectories; used; L:in the loss)
+
+Empirically we have observed that sampling from the AMN while it is learning gives the best results.
+0.19 (it; is learning; )
+0.20 (we; have observed; that sampling from the AMN while it is learning gives the best results)
+0.91 Context(we have observed):(sampling from the AMN; gives; the best results)
+
+We later prove that in either case of sampling from the expert or AMN as it is learning, the AMN will converge to the expert policy using the policy regression loss, at least in the case when the AMN is a linear function approximator.
+0.94 (the AMN; is; a linear function approximator)
+0.92 (the AMN; will converge; to the expert policy; T:when the AMN is a linear function approximator)
+0.27 Context(the AMN will converge):(We; prove; that in either case of sampling from the expert or AMN as it is learning; T:later)
+0.16 Context(We prove the AMN will converge):(it; is learning; )
+
+We use an -greedy policy no matter which network we sample actions from, which with probability  picks a random action uniformly and with probability 1 −  chooses an action from the network.
+0.44 (We; use no matter; an -greedy policy)
+0.57 (we; sample; actions from, which with probability  picks a random action uniformly and with probability 1 −  chooses an action from the network)
+0.83 (1 −; chooses; an action from the network)
+
+We can obtain further guidance from the expert networks in the following way.
+0.57 (We; can obtain; further guidance from the expert networks in the following way)
+
+Note that the dimension of hAMN(s) does not necessarily need to be equal to hEi(s), and this is the case in some of our experiments.
+0.95 (the dimension of hAMN(s; to be; equal to hEi)
+0.31 (this; is; the case in some of our experiments)
+0.39 (this; is the case in; some)
+
+We deﬁne a feature regression network fi(hAMN(s)) that, for a given state s, attempts to predict the features hEi(s) from hAMN(s).
+0.37 (We; deﬁne; a feature regression network fi(hAMN(s)) that, for a given state s, attempts to predict the features hEi(s) from hAMN(s))
+0.94 (a feature regression network fi; attempts; to predict the features hEi(s) from hAMN(s)
+0.89 Context(a feature regression network fi attempts):(a feature regression network fi; attempts to predict; the features)
+
+A justiﬁcation for this objective is that if we have a perfect regression from multitask to expert features, all the information in the expert features is contained in the multitask features.
+0.45 (we; have; a perfect regression from multitask to expert features)
+0.81 (A justiﬁcation for this objective; is; that if we have a perfect regression from multitask to expert features, all the information in the expert features is contained in the multitask features)
+0.92 Context(A justiﬁcation for this objective is):(all the information in the expert features; is contained; in the multitask features)
+
+Empirically we have found that the feature regression objective’s primary beneﬁt is that it can increase the performance of transfer learning in some target tasks.
+0.26 (we; have found; that the feature regression objective's primary beneﬁt is that it can increase the performance of transfer; T:Empirically)
+0.75 Context(we have found):(the feature regression objective's primary beneﬁt; is; that it can increase the performance of transfer)
+0.39 Context(we have found the feature regression objective 's primary beneﬁt is):(it; can increase; the performance of transfer learning in some target tasks)
+
+Intuitively, we can think of the policy regression objective as a teacher (expert network) telling a student (AMN) how they should act (mimic expert’s actions), while the feature regression objective is analogous to a teacher telling a student why it should act that way (mimic expert’s thinking process).
+0.45 (we; can think; of the policy regression objective)
+0.94 (the feature regression objective; is; analogous to a teacher)
+0.59 (a teacher; telling; a student; why it should act that way)
+0.19 Context(a teacher telling):(it; should act; that way)
+0.84 (a teacher; telling; a student; how they should act (mimic expert's actions))
+0.27 Context(a teacher telling):(they; should act; )
+0.45 Context(a teacher telling they should act):(they; should act mimic; expert's actions)
+
+policy(θ) + β ∗ Li Published as a conference paper at ICLR 2016 3.4 TRANSFERING KNOWLEDGE: ACTOR-MIMIC AS PRETRAINING Now that we have a method of training a network that is an expert at all source tasks, we can proceed to the task of transferring source task knowledge to a novel but related target task.
+0.45 (we; have; a method of training a network)
+0.91 (a network; is; an expert at all source tasks)
+0.26 (we; can proceed; to the task of transferring source task knowledge to a novel; T:Now that we have a method of training a network)
+0.85 Context(we can proceed):(Li; Published; as a conference paper; L:at ICLR 2016 3.4)
+0.27 (that; is an expert at; all source tasks)
+
+To enable transfer to a new task, we ﬁrst remove the ﬁnal softmax layer of the AMN.
+0.50 (we; ﬁrst remove; the ﬁnal softmax layer of the AMN)
+
+We then use the weights of AMN as an instantiation for a DQN that will be trained on the new target task.
+0.60 (We; use; the weights of AMN; as an instantiation for a DQN; T:then)
+0.80 (a DQN; will be trained; on the new target task)
+
+4 CONVERGENCE PROPERTIES OF ACTOR-MIMIC We further study the convergence properties of the proposed Actor-Mimic under a framework similar to (Perkins & Precup, 2002).
+0.50 (We; further study; the convergence properties of the proposed Actor-Mimic)
+
+To avoid confusion onwards, we use notation p(a|s; θ) for the softmax policies in the policy regression objective.
+0.92 (To avoid confusion onwards; use; notation p(a|s; θ) for the softmax policies in the policy regression objective)
+
+A training epoch is 250,000 frames and for each training epoch we evaluate the networks with a testing epoch that lasts 125,000 frames.
+0.93 (A training epoch; is; 250,000 frames)
+0.60 (we; evaluate; the networks with a testing epoch; T:for each training epoch)
+0.92 (a testing epoch; lasts; 125,000 frames)
+
+We report AMN and expert DQN test reward for each testing epoch and the mean and max of DQN performance.
+0.50 (We; report; T:AMN)
+
+In the testing epoch we use  = 0.05 in the -greedy policy.
+0.55 (we; use; 0.05; L:in the -greedy policy; L:In the testing epoch)
+
+Our empirical observations conﬁrm this theoretical prediction.
+0.72 (Our empirical observations; conﬁrm; this theoretical prediction)
+
+5 EXPERIMENTS In the following experiments, we validate the Actor-Mimic method by demonstrating its effectiveness at both multitask and transfer learning in the Arcade Learning Environment (ALE).
+0.91 (transfer; learning; L:in the Arcade Learning Environment)
+0.39 (we; validate; the Actor-Mimic method)
+0.26 Context(we validate):(we; validate the Actor-Mimic method by demonstrating; its effectiveness; L:at both multitask and transfer)
+
+For our experiments, we use subsets of a collection of 20 Atari games.
+0.50 (we; use; subsets of a collection of 20 Atari games)
+
+We additionally chose 1 game, the game of Seaquest, on which the DQN had performed poorly when compared to a human expert.
+0.61 (We; additionally chose; 1 game, the game of Seaquest, on which the DQN had performed poorly)
+0.89 (1 game; had performed poorly; T:when compared to a human expert)
+
+5.1 MULTITASK To ﬁrst evaluate the actor-mimic objective on multitask learning, we demonstrate the effectiveness of training an AMN over multiple games simultaneously.
+0.87 (5.1 MULTITASK; To ﬁrst evaluate; the actor-mimic objective on multitask learning)
+0.61 (we; demonstrate; the effectiveness of training an AMN over multiple games simultaneously)
+
+In this particular case, since our focus is 036#105ATLANTISAMNDQNDQN-MaxDQN-Mean-5025100BOXING0200400BREAKOUT07.515#104CRAZY CLIMBER05010005001000ENDURO050100-40040PONG050100040008000SEAQUEST050100012502500SPACE INVADERSPublished as a conference paper at ICLR 2016 Atlantis Boxing Breakout Crazy Climber 57279 273.15 541000 377.96 165065 347.01 584196 370.32 288.2% 93.61% 127.0% 108.0% 93.00% 97.98% Enduro Seaquest 457.60 4278.9 808.00 6200.5 499.3 1177.3 686.77 1466.0 109.1% 78.01% 27.51% 85.00% 93.25% 23.64% Table 1: Actor-Mimic results on a set of eight Atari games.
+0.38 (Climber; [is] Boxing Breakout Crazy [from]; Atlantis)
+
+We compare the AMN performance to that of the expert DQNs trained separately on each game.
+0.27 (We; compare; the AMN performance; to that of the expert)
+0.86 (DQNs; trained separately; L:on each game)
+
+For the AMN, we report maximum test reward ever achieved in epochs 1-100 and mean test reward in epochs 91-100.
+0.64 (we; report; maximum test reward ever achieved in epochs 1-100; T:For the AMN)
+0.94 (maximum test reward; achieved; L:in epochs 1-100; T:ever)
+0.17 (we; mean; )
+
+For the DQN, we report maximum test reward ever achieved until convergence and mean test reward in the last 10 epochs of DQN training.
+0.64 (we; report; maximum test reward ever achieved until convergence; T:For the DQN)
+0.94 (maximum test reward; achieved; T:until convergence; T:ever)
+0.41 (we; mean; test reward)
+
+Additionally, at the last row of the table we report the percentage ratio of the AMN reward to the expert DQN reward for every game for both mean and max rewards.
+0.74 (we; report; the percentage ratio of the AMN reward to the expert DQN reward for every game for both mean and max rewards; L:at the last row of the table)
+
+These percentage ratios are plotted in  on multitask learning and not transfer learning, we disregard the feature regression objective and set β to 0.
+0.75 (These percentage ratios; not transfer; learning)
+0.48 (we; set; β; to 0)
+0.40 (we; disregard; the feature regression objective)
+0.71 Context(we disregard):(These percentage ratios; are plotted in; )
+
+We can see that the AMN quickly reaches close-to-expert performance on 7 games out of 8, only taking around 20 epochs or 5 million training frames to settle to a stable behaviour.
+0.31 (We; can see; that the AMN quickly reaches close-to-expert performance on 7 games out of 8)
+0.91 Context(We can see):(the AMN; quickly reaches; close-to-expert performance)
+
+We also observed this increase in source task performance again when we later on increased the AMN model complexity for the transfer experiments (see Atlantis experiments in Appendix D).
+0.42 (We; observed; this increase in source task performance; T:again; T:when we later on increased the AMN model complexity for the transfer experiments (see)
+0.71 (we; increased; the AMN model complexity for the transfer experiments (see; T:later on)
+
+We compare the performance of our AMN against a baseline of two different multitask DQN architectures in Appendix C.
+0.46 (We; compare; the performance of our AMN against a baseline of two different multitask DQN architectures in Appendix C.)
+
+5.2 TRANSFER We have found that although a small AMN can learn how to behave at a close-to-expert level on multiple source tasks, a larger AMN can more easily transfer knowledge to target tasks after being trained on the source tasks.
+0.44 (We; have found; that although a small AMN can learn how to behave at a close-to-expert level on multiple source tasks, a larger AMN can more easily transfer knowledge to target tasks after being trained on the source tasks; T:5.2 TRANSFER)
+0.91 Context(We have found):(a larger AMN; can more easily transfer; knowledge; to target tasks; T:after being trained on the source tasks)
+0.94 (a small AMN; can learn; how to behave at a close-to-expert level on multiple source tasks)
+0.92 Context(a small AMN can learn):(a small AMN; can learn to behave; L:at a close-to-expert level on multiple source tasks)
+
+For the transfer experiments, we therefore signiﬁcantly increased the AMN model complexity relative to that of an expert.
+0.47 (we; signiﬁcantly increased; the AMN model complexity relative to that of an expert; T:For the transfer experiments)
+
+We additionally found that using an AMN trained for too long on the source tasks hurt transfer, as it is likely overﬁtting.
+0.31 (We; additionally found; that using an AMN trained for too long on the source tasks hurt transfer)
+0.87 Context(We additionally found):(using an AMN; hurt; transfer; as it is likely overﬁtting)
+0.17 (it; overﬁtting; )
+0.93 (an AMN; trained; T:for too long; on the source tasks)
+0.28 (it; is; likely overﬁtting)
+
+Therefore for the transfer experiments, we train the AMN on only 4 million frames for each of the source games.
+0.61 (we; train; the AMN; on only 4 million frames for each of the source games)
+
+We additionally independently evaluate the beneﬁt of the feature regression objective during transfer by having one AMN trained with only the policy regression objective (AMN-policy) and another trained using both feature and policy regression (AMN-feature).
+0.61 (We; additionally independently evaluate; the beneﬁt of the feature regression objective during transfer by having one AMN)
+0.96 (one AMN; trained; with only the policy regression objective (AMN-policy) and another trained using both feature and policy regression)
+
+We can see that the AMN pretraining provides a deﬁnite increase in learning speed for the 3 games of Breakout, Star Gunner and Video Pinball.
+0.31 (We; can see; that the AMN pretraining provides a deﬁnite increase in learning speed for the 3 games of Breakout, Star Gunner and Video Pinball)
+0.95 Context(We can see):(the AMN pretraining; provides; a deﬁnite increase in learning speed for the 3 games of Breakout, Star Gunner and Video Pinball)
+
+We report the average test reward every 4 training epochs (equivalent to 1 million training frames), where the average is over 4 testing epochs that are evaluated immediately after each training epoch.
+0.45 (We; report; the average test reward)
+0.93 (the average; is; over 4 testing epochs)
+0.90 (4 testing epochs; are evaluated; T:immediately after each training epoch)
+
+For each game, we bold out the network results that have the highest average testing reward for that particular column.
+0.46 (we; bold out; the network results that have the highest average testing reward for that particular column; T:For each game)
+0.76 (the network results; have; the highest average testing reward for that particular column)
+
+When running Krull we observed that the policy learnt by any DQN regardless of the initialization was a sort of unexpected local maximum.
+0.92 (the policy; learnt; by any DQN)
+0.44 (we; observed; that the policy learnt by any DQN regardless of the initialization was a sort of unexpected local maximum; T:When running Krull)
+0.90 Context(we observed):(the policy learnt by any DQN; regardless was; a sort of unexpected local maximum)
+0.39 (the initialization; was a sort of; unexpected local maximum)
+
+For the games of Gopher and Robotank, we can see that the multitask pretraining does not have any signiﬁcant positive effect.
+0.44 (we; can see; that the multitask pretraining does not have any signiﬁcant positive effect; T:For the games of Gopher and Robotank)
+0.89 Context(we can see):(the multitask pretraining; does not have; any signiﬁcant positive effect)
+
+Our approach is most similar to the technique of (Hinton et al., 2015) Published as a conference paper at ICLR 2016 which matches the high-temperature outputs of the mimic network with that of the expert network.
+0.77 (Our approach; is Published; most similar to the technique of (Hinton et al)
+0.82 (a conference paper at ICLR 2016; matches; )
+
+In addition, we also tried an objective that provides expert guidance at the feature level instead of only at the output level.
+0.29 (we; tried; an objective that provides expert guidance at the feature level instead of only at the output level)
+0.93 (an objective; provides; expert guidance; L:at the feature level instead of only at the output level)
+
+In contrast to these model compression techniques, our method is not concerned with decreasing test time computation but instead using experts to provide otherwise unavailable supervision to a mimic network on several distinct tasks.
+0.60 (our method; not concerned; with decreasing test time computation)
+
+One such method, called DAGGER (Ross et al., 2011), is similar to our approach in that it trains a policy to directly mimic an expert’s behaviour while sampling actions from the mimic agent.
+0.91 (One such method; called; DAGGER (Ross et al)
+0.83 (One such method, called DAGGER (Ross et al; is; similar to our approach in that it trains a policy to directly mimic an expert's behaviour while sampling actions from the mimic agent)
+0.45 (it; trains; a policy; to directly mimic an expert's behaviour)
+
+First, we can exploit the automatic feature construction ability of deep networks to transfer knowledge to new tasks, as long as the raw data between tasks is in the same form, i.e.
+0.22 (we; can exploit i.e.; T:First)
+0.94 (the raw data between tasks; is; in the same form)
+
+Second, we can deﬁne objectives which take into account intermediate representations of the state and not just the policy outputs, for example the feature regression objective which provides a richer training signal to the mimic network than just samples of the expert’s action output.
+0.57 (we; can deﬁne; objectives which take into account intermediate representations of the state and not just the policy outputs, for example the feature regression objective)
+0.88 (objectives; take; into account; intermediate representations of the state)
+0.94 (the feature regression objective; provides; a richer training signal; to the mimic network than just samples of the expert's action output)
+
+7 DISCUSSION In this paper we deﬁned Actor-Mimic, a novel method for training a single deep policy network over a set of related source tasks.
+0.64 (we; deﬁned; Actor-Mimic; T:7 DISCUSSION In this paper)
+
+We have shown that a network trained using Actor-Mimic is capable of reaching expert performance on many games simultaneously, while having the same model complexity as a single expert.
+0.32 (We; have shown; that a network trained using Actor-Mimic is capable of reaching expert performance on many games simultaneously)
+0.96 Context(We have shown):(a network trained using Actor-Mimic; is; capable of reaching expert performance on many games simultaneously)
+0.92 (a network; trained; using Actor-Mimic)
+0.90 (a network; using; Actor-Mimic)
+0.94 (a network trained using Actor-Mimic; of reaching simultaneously; expert performance)
+
+Using targeted knowledge transfer can potentially help in cases of negative transfer observed in our experiments.
+0.92 (Using targeted knowledge transfer; can potentially help; in cases of negative transfer)
+0.86 (cases of negative transfer; observed; L:in our experiments)
+
+For any ij elements T 1 ij in the transition matrices, we have, ≤|A|(cid:107)π1(a|sj) − π2(a|sj)(cid:107) ≤|A|(cid:107)π1 − π2(cid:107)∞.
+0.94 (For any ij elements; T; 1 ij in the transition)
+
+We follow a similar contraction argument made in Perkins & Precup (2002) , and show the iterative algorithm is a contraction process.
+0.50 (We; follow; a similar contraction argument made in Perkins & Precup)
+0.93 (a similar contraction argument; made; L:in Perkins & Precup)
+0.43 (We; show; the iterative algorithm is a contraction process)
+0.92 Context(We show):(the iterative algorithm; is; a contraction process)
+
+APPENDIX B AMN TRAINING DETAILS All of our Actor-Mimic Networks (AMNs) were trained using the Adam (Kingma & Ba, 2015) optimization algorithm.
+0.84 (APPENDIX B AMN TRAINING DETAILS All of our Actor-Mimic Networks; were trained; using the Adam (Kingma & Ba, 2015) optimization algorithm)
+0.84 (APPENDIX B AMN TRAINING DETAILS All of our Actor-Mimic Networks; using; the Adam (Kingma & Ba, 2015) optimization algorithm)
+
+While playing a certain game, we mask out AMN action outputs that are not valid for that game and take the softmax over only the subset of valid actions.
+0.81 (AMN action outputs; are not; valid)
+0.92 (AMN action outputs; take; the softmax)
+0.43 (we; mask out; AMN action outputs)
+
+We use a replay memory for each game to reduce correlations between successive frames and stabilize network training.
+0.90 (each game; to reduce; correlations between successive frames)
+0.50 (We; use; a replay memory; for each game to reduce correlations between successive frames and stabilize network training)
+0.29 Context(We use):(We; use a replay memory to stabilize; network training)
+
+Because the memory requirements of having the standard replay memory size of 1,000,000 frames for each game are prohibitive when we are training over many source games, for AMNs we use a per-game 100,000 frame replay memory.
+0.93 (the memory requirements of having the standard replay memory size of 1,000,000 frames for each game; are; prohibitive)
+0.45 (we; are training; over many source games)
+0.91 (for AMNs; use; a per-game 100,000 frame replay memory; T:when we are training over many source games)
+
+For the transfer experiments with the feature regression objective, we set the scaling parameter β to 0.01 and the feature prediction network fi was set to a linear projection from the AMN features to the ith expert features.
+0.66 (we; set; the scaling parameter β; to 0.01; T:For the transfer experiments with the feature regression objective)
+0.94 (the feature prediction network fi; was set; to a linear projection from the AMN)
+
+For the policy regression objective, we use a softmax temperature of 1 in all cases.
+0.45 (we; use; a softmax temperature of 1 in all cases)
+
+Additionally, during training for all AMNs we use an -greedy policy with  set to a constant 0.1.
+0.60 (we; use; an -greedy policy; T:during training for all AMNs)
+
+During training, we choose actions based on the AMN and not the expert DQN.
+0.74 (we; choose; actions based on the AMN and not the expert DQN; T:During training)
+0.91 (actions; based; on the AMN and not the expert)
+
+We do not use weight decay during AMN training as we empirically found that it did not provide any large beneﬁts.
+0.24 (We; do not use; weight decay; T:during AMN training; T:as we empirically found that it did not provide any large beneﬁts)
+0.11 (we; empirically found; that it did not provide any large beneﬁts)
+0.39 Context(we empirically found):(it; did not provide; any large beneﬁts)
+
+For the experiments using the DQN algorithm, we optimize the networks with RMSProp.
+0.92 (the experiments; using; the DQN algorithm)
+0.50 (we; optimize; the networks with RMSProp)
+
+We use the full 1,000,000 frame replay memory when training any DQN.
+0.43 (We; use; the full 1,000,000 frame replay memory; T:when training any DQN)
+0.33 Context(We use):(We; use the full 1,000,000 frame replay memory training; any DQN)
+
+APPENDIX C MULTITASK DQN BASELINE RESULTS As a baseline, we trained DQN networks over 8 games simultaneously to test their performance against the Actor-Mimic method.
+0.39 (we; trained simultaneously; DQN networks; over 8 games simultaneously to test their performance against the Actor-Mimic method)
+0.81 Context(we trained simultaneously):(over 8 games; to test; their performance against the Actor-Mimic method)
+
+We tried two different architectures, the ﬁrst is using the basic DQN procedure on all 8 games.
+0.61 (We; tried; two different architectures, the ﬁrst is using the basic DQN procedure on all 8 games)
+0.85 (the ﬁrst; is using; the basic DQN procedure; L:on all 8 games)
+
+This network has a single 18 action output shared by all games, but when we train or test in a particular game, we mask out and ignore the action values from actions that are invalid for that particular game.
+0.93 (This network; has; a single 18 action output shared by all games)
+0.41 (we; ignore; the action values from actions)
+0.93 (a single 18 action output; shared; by all games)
+0.72 (actions; are; invalid for that particular game)
+0.19 (we; train; )
+0.48 (we; test; L:in a particular game)
+0.19 (we; mask out; )
+
+A training epoch is 250,000 frames and for each training epoch we evaluate the networks with a testing epoch that lasts 125,000 frames.
+0.93 (A training epoch; is; 250,000 frames)
+0.60 (we; evaluate; the networks with a testing epoch; T:for each training epoch)
+0.92 (a testing epoch; lasts; 125,000 frames)
+
+We report AMN, expert DQN and MDQN test reward for each testing epoch.
+0.61 (We; report; AMN, expert DQN and MDQN test reward for each testing epoch)
+
+In the testing epoch we use  = 0.05 in the -greedy policy.
+0.55 (we; use; 0.05; L:in the -greedy policy; L:In the testing epoch)
+
+A training epoch is 250,000 frames and for each training epoch we evaluate the networks with a testing epoch that lasts 125,000 frames.
+0.93 (A training epoch; is; 250,000 frames)
+0.60 (we; evaluate; the networks with a testing epoch; T:for each training epoch)
+0.92 (a testing epoch; lasts; 125,000 frames)
+
+We report AMN, expert DQN and MCDQN test reward for each testing epoch.
+0.61 (We; report; AMN, expert DQN and MCDQN test reward for each testing epoch)
+
+In the testing epoch we use  = 0.05 in the -greedy policy.
+0.55 (we; use; 0.05; L:in the -greedy policy; L:In the testing epoch)
+
+From the ﬁgures, we can observe that the AMN is far more stable during training as well as being consistently higher in performance than either the MDQN or MCDQN methods.
+0.31 (we; can observe; that the AMN is far more stable during training as well as being consistently higher in performance than either the MDQN or MCDQN methods)
+0.96 Context(we can observe):(the AMN; is; far more stable; T:during training as well as being consistently higher in performance than either the MDQN or MCDQN methods)
+
+Between the MDQN and MCDQN, we can see that the MCDQN hardly improves results even though it has signiﬁcantly larger computational cost that scales linearly with the number of source games.
+0.74 (signiﬁcantly larger computational cost; scales linearly; )
+0.33 (we; can see; that the MCDQN hardly improves results; T:Between the MDQN and MCDQN)
+0.83 Context(we can see):(the MCDQN; hardly improves; results)
+
+For the speciﬁc details of the architectures we tested, for the MDQN the architecture was: 8x8x4x324 1 → 4x4x32x64-2 → 3x3x64x64-1 → 512 fully-connected units → 18 actions.
+0.88 (the architectures; tested; we)
+0.96 (the architecture; was; 1 → 4x4x32x64-2; T:for the MDQN)
+
+1 Here we represent convolutional layers as WxWxCxN-S, where W is the width of the (square) convolution kernel, C is the number of input images, N is the number of ﬁlter maps and S is the convolution stride.
+0.94 (W; is; the width of the (square) convolution kernel; L:WxWxCxN-S)
+0.85 (S; is; the convolution stride)
+0.91 (N; is; the number of ﬁlter maps and S is the convolution stride)
+0.82 Context(N is):(C; is; the number of input images)
+0.59 Context(C is N is):(we; represent; convolutional layers as WxWxCxN-S; L:Here)
+
+We compare against the (smaller network) expert DQNs, which are trained until convergence.
+0.45 (We; compare; against the (smaller network)
+0.91 (the (smaller network; are trained; T:until convergence)
+
+We also report the maximum test reward the expert DQN achieved over all training epochs, as well as the mean testing reward achieved over the last 10 epochs.
+0.45 (We; also report; the maximum test reward)
+0.94 (DQN; achieved; T:over all training epochs, as well as the mean testing reward; T:the expert)
+0.92 (the mean testing reward; achieved; T:over the last 10 epochs)
+
+We compare against the (smaller network) expert DQNs, which are trained until convergence.
+0.45 (We; compare; against the (smaller network)
+0.91 (the (smaller network; are trained; T:until convergence)
+
+We also report the maximum test reward the expert DQN achieved over all training epochs, as well as the mean testing reward achieved over the last 10 epochs
+0.41 (We; report; the maximum test reward)
+0.94 (DQN; achieved; T:over all training epochs, as well as the mean testing reward; T:the expert)
+0.92 (the mean testing reward; achieved; T:over the last 10 epochs)
+

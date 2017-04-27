@@ -1,0 +1,373 @@
+In this work we formulate the navigation question as a reinforcement learning problem and show that data efﬁciency and task performance can be dramatically improved by relying on additional auxiliary tasks leveraging multimodal sensory inputs.
+0.60 (we; formulate; the navigation question; as a reinforcement learning problem; L:In this work)
+0.43 (we; show; that data efﬁciency and task performance can be dramatically improved by relying on additional auxiliary tasks; L:In this work)
+0.91 Context(we show):(data efﬁciency and task performance; can be dramatically improved; by relying on additional auxiliary tasks)
+
+In particular we consider jointly learning the goal-driven reinforcement learning problem with auxiliary depth prediction and loop closure classiﬁcation tasks.
+0.57 (we; consider jointly learning; the goal-driven reinforcement learning problem with auxiliary depth prediction and loop closure classiﬁcation tasks)
+
+We provide detailed analysis of the agent behaviour1, its ability to localise, and its network activity dynamics, showing that the agent implicitly learns key navigation abilities.
+0.45 (We; provide; detailed analysis of the agent behaviour1)
+0.35 (its network activity dynamics; showing; that the agent implicitly learns key navigation abilities)
+0.88 Context(its network activity dynamics showing):(the agent; implicitly learns; key navigation abilities)
+
+Whilst conventional robotics methods, such as Simultaneous Localisation and Mapping (SLAM), tackle navigation through an explicit focus on position inference and mapping (Dissanayake et al., 2001), here we follow recent work in deep reinforcement learning (Mnih et al., 2015; 2016) and propose that navigational abilities could emerge as the by-product of an agent learning a policy that maximizes reward.
+0.96 (conventional robotics methods, such as Simultaneous Localisation and Mapping; tackle; navigation)
+0.77 (an agent; learning; a policy that maximizes reward)
+0.60 (we; follow; recent work in deep reinforcement learning; L:here)
+0.89 (a policy; maximizes; reward)
+0.25 (we; propose; that navigational abilities could emerge as the by-product of an agent)
+0.88 Context(we propose):(navigational abilities; could emerge; as the by-product of an agent)
+
+To improve statistical efﬁciency we bootstrap the reinforcement learning procedure by augmenting our loss with auxiliary tasks that provide denser training signals that support navigation-relevant representation learning.
+0.45 (we; bootstrap; the reinforcement learning procedure)
+0.82 (auxiliary tasks; provide; denser training signals that support navigation-relevant representation learning)
+0.90 (denser training signals; support; navigation-relevant representation learning)
+
+We consider two additional losses: the ﬁrst one involves reconstruction of a low-dimensional depth map at each time step by predicting one input modality (the depth channel) from others (the colour channels).
+0.57 (We; consider; two additional losses: the ﬁrst one involves reconstruction of a low-dimensional depth map at each time)
+0.94 (the ﬁrst one; involves; reconstruction of a low-dimensional depth map at each time)
+
+To address the memory requirements of the task we rely on a stacked LSTM architecture (Graves et al., 2013; Pascanu et al., 2013).
+0.50 (we; rely; on a stacked LSTM architecture)
+
+We evaluate our approach using ﬁve 3D maze environments and demonstrate the accelerated learning and increased performance of the proposed agent architecture.
+0.31 (We; evaluate; our approach using ﬁve 3D maze environments)
+0.53 (We; demonstrate; the accelerated learning and increased performance of the proposed agent architecture)
+
+We also provide detailed analysis of the trained agent to show that critical navigation skills are acquired.
+0.39 (We; also provide; detailed analysis of the trained agent)
+0.19 Context(We also provide):(We; also provide detailed analysis of the trained agent to show; that critical navigation skills are acquired)
+0.70 Context(We also provide to show):(critical navigation skills; are acquired; )
+
+In particular, we show that the proposed agent resolves ambiguous observations and quickly localizes itself in a complex maze, and that this localization capability is correlated with higher task reward.
+0.82 (the proposed agent; quickly localizes; itself)
+0.91 (this localization capability; is correlated; with higher task reward)
+0.21 (we; show; that the proposed agent resolves ambiguous observations and quickly localizes itself in a complex maze, and that this localization capability is correlated with higher task reward)
+0.89 Context(we show):(the proposed agent; resolves; ambiguous observations)
+
+We rely on a end-to-end learning framework that incorporates multiple objectives.
+0.45 (We; rely; on a end-to-end learning framework)
+0.93 (a end-to-end learning framework; incorporates; multiple objectives)
+
+The agent setup closely follows the work of (Mnih et al., 2016) and we refer to this work for the details (e.g.
+0.93 (The agent setup; closely follows; the work of (Mnih et al)
+0.44 (we; refer e.g.; to this work for the details)
+
+The baseline that we consider in this work is an A3C agent (Mnih et al., 2016) that receives only RGB input from the environment, using either a recurrent or a purely feed-forward model (see Figure 2a,b).
+0.89 (The baseline; consider; L:in this work)
+0.83 (The baseline that we consider in this work; is; an A3C agent)
+0.93 (Mnih et al; receives; only RGB input)
+
+To support the navigation capability of our approach, we also rely on the Nav A3C agent (Figure 2c) which employs a two-layer stacked LSTM after the convolutional encoder.
+0.50 (we; also rely; on the Nav A3C agent)
+0.96 (the Nav A3C agent; employs; a two-layer stacked LSTM after the convolutional encoder)
+0.93 (a two-layer; stacked; T:LSTM; T:after the convolutional encoder)
+
+We expand the observations of the agents to include agent-relative velocity, the action sampled from the stochastic policy and the immediate reward, from the previous time step.
+0.45 (We; expand; the observations of the agents)
+0.93 (the observations of the agents; to include; agent-relative velocity)
+0.73 (the action; sampled; )
+
+We opt to feed the velocity and previously selected action directly to the second recurrent layer, with the ﬁrst layer only receiving the reward.
+0.91 (the ﬁrst layer; only receiving; the reward)
+0.58 (We; opt; to feed the velocity and previously selected action directly to the second recurrent layer, with the ﬁrst layer)
+0.30 Context(We opt):(We; opt to feed directly; to the second recurrent layer)
+
+We postulate that the ﬁrst layer might be able to make associations between reward and visual observations that are provided as context to the second layer from which the policy is computed.
+0.90 (the ﬁrst layer; to make; associations between reward and visual observations)
+0.89 (visual observations; are provided; as context to the second layer)
+0.94 (the second layer; is computed; the policy)
+0.28 (We; postulate; that the ﬁrst layer might be able to make associations between reward and visual observations)
+0.89 Context(We postulate):(the ﬁrst layer; might be; able to make associations between reward and visual observations)
+
+In particular we consider predicting depth from the convolutional layer (we will refer to this choice as D1), or from the top LSTM layer (D2) or predicting loop closure (L).
+0.50 (we; will refer; to this choice as D1)
+0.39 (we; consider; predicting depth from the convolutional layer)
+0.39 Context(we consider):(we; consider predicting; depth; from the convolutional layer)
+
+While depth could be directly used as an input, we argue that if presented as an additional loss it is actually more valuable to the learning process.
+0.81 (depth; could be directly used; as an input)
+0.17 (we; argue; that if presented as an additional loss it is actually more valuable to the learning process)
+0.39 Context(we argue):(it; is actually; more valuable to the learning process)
+
+Since we know from (Eigen et al., 2014) that a single frame can be enough to predict depth, we know this auxiliary task can be learnt.
+0.24 (we; know; )
+0.90 (a single frame; to predict; depth)
+0.24 (we; know; )
+0.71 (this auxiliary task; can be learnt; )
+0.89 Context(this auxiliary task can be learnt):(a single frame; can be; enough to predict depth)
+
+Since the role of the auxiliary loss is just to build up the representation of the model, we do not necessarily care about the speciﬁc performance obtained or nature of the prediction.
+0.95 (the role of the auxiliary loss; is; just to build up the representation of the model)
+0.45 (we; do not necessarily care; about the speciﬁc performance)
+0.75 (the speciﬁc performance; obtained; )
+
+We do care about the data efﬁciency aspect of the problem and also computational complexity.
+0.57 (We; do care; about the data efﬁciency aspect of the problem and also computational complexity)
+
+If the loss is to be useful for the main task, we should converge faster on it compared to solving the RL problem (using less data samples), and the additional computational cost should be minimal.
+0.93 (the loss; is; to be useful for the main task)
+0.89 (the loss; to be; useful for the main task)
+0.80 (the additional computational cost; should be; minimal)
+0.26 (we; should converge faster; on it)
+
+To achieve this we use a low resolution variant of the depth map, reducing the screen resolution to 4x16 pixels2.
+0.49 (To achieve this; use; a low resolution variant of the depth map)
+0.35 Context(To achieve this use):(we; reducing; the screen resolution; to 4x16 pixels2)
+
+We explore two different variants for the loss.
+0.45 (We; explore; two different variants for the loss)
+
+To address this possible issue, we also consider a classiﬁcation loss, where depth at each position is discretised into 8 different bands.
+0.95 (depth at each position; is discretised; into 8 different bands; L:a classiﬁcation loss)
+0.50 (we; also consider; a classiﬁcation loss, where depth at each position is discretised into 8 different bands)
+
+The bands are non-uniformally distributed such that we pay more attention to far-away objects (details in Appendix B).
+0.73 (The bands; are non-uniformally distributed such; )
+0.45 (we; pay; more attention; to far-away objects)
+
+To produce the training targets, we detect loop closures based on the similarity of local position information during an episode, which is obtained by integrating 2D velocity over time.
+0.57 (we; detect; loop closures based on the similarity of local position information during an episode,)
+0.94 (loop closures; based; on the similarity of local position information during an episode)
+0.70 (an episode; is obtained; )
+
+, pT}, where pt is the position of the agent at time t, we deﬁne a loop closure label lt that is equal to 1 if the position pt of the agent is close to the position pt(cid:48) at an earlier time t(cid:48).
+0.85 (pt; is; the position of the agent at time t)
+0.33 (we; deﬁne; a loop closure label lt that is equal to 1)
+0.83 (a loop closure label lt; is; equal to 1)
+0.95 (the position pt of the agent; is; close to the position pt; T:at an earlier time)
+0.27 (that; is equal to; 1)
+
+In order to avoid trivial loop closures on consecutive points of the trajectory, we add an extra condition on an intermediary position pt(cid:48)(cid:48) being far from pt.
+0.52 (we; add; an extra condition; on an intermediary position pt)
+0.91 (an intermediary position pt; being; far from pt)
+
+However, here we focus on related work in deep RL.
+0.64 (we; focus; on related work in deep RL; L:here)
+
+In contrast, our contribution addresses fundamental questions of how to learn an intrinsic representation of space, geometry, and movement while simultaneously maximising rewards through reinforcement learning.
+0.74 (our contribution; addresses; fundamental questions of how to learn an intrinsic representation of space, geometry, and movement)
+
+Our method is validated in challenging maze domains with random start and goal locations.
+0.34 (Our method; is validated; )
+
+We consider a set of ﬁrst-person 3D mazes from the DeepMind Lab environment (Beattie et al., 2016) (see Fig.
+
+For both variants (static and random goal) we consider a small and large map.
+0.45 (we; consider; a small and large map)
+
+In each case we ran 64 experiments with randomly sampled hyper-parameters (for ranges and details please see the appendix).
+0.76 (we; ran; 64 experiments with randomly sampled hyper-parameters (for ranges and details; L:In each case)
+
+(2015) reward clipping is used to stabilize learning, technique which we employed in this work as well.
+0.92 (2015) reward clipping; is used; to stabilize learning, technique)
+0.91 (2015) reward clipping; to stabilize; learning, technique)
+0.88 (technique; employed; L:in this work; as well)
+
+We clearly indicate whether reward clipping is used by adding an asterisk to the agent name.
+0.50 (We; clearly indicate; whether reward clipping is used by adding an asterisk to the agent name)
+0.88 Context(We clearly indicate):(reward clipping; is used; by adding an asterisk to the agent name)
+
+We can see that the regression agent (Nav A3C*+D1[MSE]) performs worse than one that does classiﬁcation (Nav A3C*+D1).
+0.31 (We; can see; that the regression agent (Nav A3C*+D1[MSE]) performs worse than one)
+
+This result extends to other maps, and we therefore only use the classiﬁcation formulation in all our other results4.
+0.90 (This result; extends; to other maps)
+0.31 (we; therefore only use; the classiﬁcation formulation in all our other results4)
+
+Also we see that predicting depth from the last LSTM layer (hence providing structure to the recurrent layer, not just the convolutional ones) performs better.
+0.93 (the last LSTM layer; hence providing; structure; to the recurrent layer)
+
+We note some particular results from these learning curves.
+0.45 (We; note; some particular results from these learning curves)
+
+We believe that this is mainly due to the slower, data inefﬁcient learning that is generally seen in pure RL approaches.
+0.93 (the slower, data inefﬁcient learning; is generally seen; L:in pure RL approaches)
+0.28 (We; believe; that this is mainly due to the slower, data inefﬁcient learning)
+0.33 Context(We believe):(this; is mainly; due to the slower, data inefﬁcient learning)
+
+Supporting this we see that adding the auxiliary prediction targets of depth and loop closure (Nav A3C+D1D2L, black curve) speeds up learning dramatically on most of the mazes (see Table 1: AUC metric).
+0.31 (we; see; that adding the auxiliary prediction targets of depth and loop closure (Nav A3C+D1D2L, black curve) speeds up learning dramatically on most of the mazes (see Table 1: AUC metric)
+0.96 Context(we see):(adding the auxiliary prediction targets of depth and loop closure; speeds up; learning dramatically on most of the mazes (see Table 1: AUC metric)
+
+Although we place more value on the task performance than on the auxiliary losses, we report the results from the loop closure prediction task.
+0.57 (we; place; more value on the task performance than on the auxiliary losses)
+0.45 (we; report; the results from the loop closure prediction task)
+
+While it does worse, we include it because some analysis is based on this agent.
+0.19 (it; does worse; )
+0.31 (we; include; it; because some analysis is based on this agent)
+0.90 (some analysis; is based; on this agent)
+
+In order to evaluate the internal representation of location within the agent (either in the hidden units ht of the last LSTM, or, in the case of the FF A3C agent, in the features ft on the last layer of the conv-net), we train a position decoder that takes that representation as input, consisting of a linear classiﬁer with multinomial probability distribution over the discretized maze locations.
+0.76 (a position decoder; takes; that representation; as input)
+0.44 (we; train; a position decoder that takes that representation as input,; L:either in the hidden units ht of the last LSTM)
+
+Note that we do not backpropagate the gradients from the position decoder through the rest of the network.
+
+We observe that position entropy spikes after a respawn, then decreases once the agent acquires certainty about its location.
+0.90 (the agent; acquires; certainty)
+
+We observe that once the goal is ﬁrst found, the Nav A3C*+D1L agent is capable of directly returning to the correct branch in order to achieve the maximal score.
+0.76 (the goal; is found; T:ﬁrst)
+0.32 (We; observe; that once the goal is ﬁrst found, the Nav A3C*+D1L agent is capable of directly returning to the correct branch in order)
+0.98 Context(We observe):(the Nav A3C*+D1L agent; is; capable of directly returning to the correct branch in order; T:once the goal is ﬁrst found)
+
+We hypothesize that the symmetry of the I-maze will induce a symmetric policy that need not be sensitive to the exact position of the agent (see analysis below).
+0.37 (We; hypothesize; the symmetry of the I-maze will induce a symmetric policy)
+0.50 (the I-maze; will induce; that the symmetry of the I-maze will induce a symmetric policy that need not be sensitive to the exact position of the agent (see analysis below))
+0.93 (a symmetric policy; need not be; sensitive to the exact position of the agent (see analysis below)
+
+A desired property of navigation agents in our Random Goal tasks is to be able to ﬁrst ﬁnd the goal, and reliably return to the goal via an efﬁcient route after subsequent re-spawns.
+0.92 (A desired property of navigation agents in our Random Goal tasks; is; to be able to ﬁrst ﬁnd the goal, and reliably return to the goal via an efﬁcient route after subsequent re-spawns)
+0.89 (A desired property of navigation agents in our Random Goal tasks; to be; able to ﬁrst ﬁnd the goal, and reliably return to the goal via an efﬁcient route after subsequent re-spawns)
+
+We visualize the agent’s policy by applying tSNE dimension reduction (Maaten & Hinton, 2008) to the cell activations at each step of the agent for each of the four goal locations.
+0.39 (We; visualize; the agent's policy)
+0.39 Context(We visualize):(We; visualize the agent's policy by applying; tSNE dimension reduction; to the cell activations)
+
+INVESTIGATING DIFFERENT COMBINATIONS OF AUXILIARY TASKS Our results suggest that depth prediction from the policy LSTM yields optimal results.
+0.86 (LSTM; yields; optimal results)
+
+However, several other auxiliary tasks have been concurrently introduced in (Jaderberg et al., 2017), and thus we provide a comparison of reward prediction against depth prediction.
+0.93 (several other auxiliary tasks; have been concurrently introduced; in (Jaderberg et al)
+0.45 (we; provide; a comparison of reward prediction against depth prediction)
+
+Following that paper, we implemented two additional agent architectures, one performing reward prediction from the convnet using a replay buffer, called Nav A3C*+R, and one combining reward prediction from the convnet and depth prediction from the LSTM (Nav A3C+RD2).
+0.91 (a replay buffer; called; Nav A3C*+R)
+0.95 (two additional agent architectures; combining; reward prediction; from the convnet and depth prediction from the LSTM (Nav A3C+RD2)
+0.44 (we; implemented; two additional agent architectures, one performing reward prediction from the convnet using a replay buffer, called Nav A3C*+R, and one combining reward prediction from the convnet and depth prediction from the LSTM (Nav A3C+RD2; using a replay buffer; T:Following that paper)
+0.33 Context(we implemented):(we; implemented using; a replay buffer, called Nav A3C*+R)
+
+We report the AUC (Area under learning curve), averaged over the best 5 hyperparameters.
+0.56 (We; report; the AUC (Area under learning curve), averaged over the best 5 hyperparameters)
+0.90 Context(We report):(the AUC; averaged; over the best 5 hyperparameters)
+
+We proposed a deep RL method, augmented with memory and auxiliary learning targets, for training agents to navigate within large and visually rich environments that include frequently changing start and goal locations.
+0.50 (We; proposed; a deep RL method)
+0.93 (a deep RL method; augmented; with memory and auxiliary learning targets)
+0.90 (training agents; to navigate; within large and visually rich environments)
+0.91 (large and visually rich environments; include; frequently changing start and goal locations)
+
+Our results and analysis highlight the utility of un/self-supervised auxiliary objectives, namely depth prediction and loop closure, in providing richer training signals that bootstrap learning and enhance data efﬁciency.
+0.77 (Our results and analysis; highlight; the utility of un/self-supervised auxiliary objectives)
+0.72 (richer training signals; bootstrap learning; )
+0.90 (richer training signals; enhance; data efﬁciency)
+
+Further, we examine the behavior of trained agents, their ability to localise, and their network activity dynamics, in order to analyse their navigational abilities.
+0.45 (we; examine; the behavior of trained agents; in order)
+
+Our approach of augmenting deep RL with auxiliary objectives allows end-end learning and may encourage the development of more general navigation strategies.
+0.82 (Our approach of augmenting deep RL with auxiliary objectives; allows; end-end learning)
+0.80 (Our approach of augmenting deep RL with auxiliary objectives; may encourage; the development of more general navigation strategies)
+
+Notably, our work with auxiliary losses is related to (Jaderberg et al., 2017) which independently looks at data efﬁciency when exploiting auxiliary losses.
+0.94 (Jaderberg et al., 2017; independently looks; at data efﬁciency; T:when exploiting auxiliary losses)
+
+One difference between the two works is that our auxiliary losses are online (for the current frame) and do not rely on any form of replay.
+0.82 (One difference between the two works; is; that our auxiliary losses are online (for the current frame) and do not rely on any form of replay)
+0.35 Context(One difference between the two works is):(our auxiliary losses; are; online)
+
+Finally our focus is on the navigation domain and understanding if navigation emerges as a bi-product of solving an RL problem, while Jaderberg et al.
+0.81 (our focus; is; on the navigation domain and understanding; T:Finally)
+0.91 (navigation; emerges; as a bi-product of solving an RL problem)
+
+Whilst our best performing agents are relatively successful at navigation, their abilities would be stretched if larger demands were placed on rapid memory (e.g.
+0.90 (larger demands; were placed e.g.; on rapid memory)
+0.29 (their abilities; would be stretched; )
+
+ACKNOWLEDGEMENTS Under review as a conference paper at ICLR 2017 We would like to thank Alexander Pritzel, Thomas Degris and Joseph Modayil for useful discussions, Charles Beattie, Julian Schrittwieser, Marcus Wainwright, and Stig Petersen for environment design and development, and Amir Sadik and Sarah York for expert human game testing.
+0.55 (We; would like; to thank Alexander Pritzel, Thomas Degris and Joseph Modayil for useful discussions, Charles Beattie, Julian Schrittwieser, Marcus Wainwright, and Stig Petersen for environment design and development, and Amir Sadik and Sarah York for expert human game testing)
+0.43 Context(We would like):(We; would like to thank; Alexander Pritzel, Thomas Degris and Joseph Modayil; for useful discussions)
+
+Under review as a conference paper at ICLR 2017 A VIDEOS OF TRAINED NAVIGATION AGENTS We show the behaviour of Nav A3C*+D1L agent in 5 videos, corresponding to the 5 navigation environments: I-maze5, (small) static maze6, (large) static maze7, (small) random goal maze8 and (large) random goal maze9.
+0.70 (We; show; the behaviour of Nav A3C*+D1L agent; L:Under review as a conference paper at ICLR 2017)
+
+B NETWORK ARCHITECTURE AND TRAINING B.1 THE ONLINE MULTI-LEARNER ALGORITHM FOR MULTI-TASK LEARNING We introduce a class of neural network-based agents that have modular structures and that are trained on multiple tasks, with inputs coming from different modalities (vision, depth, past rewards and past actions).
+0.45 (We; introduce; a class of neural network-based agents)
+0.91 (neural network-based agents; have; modular structures)
+0.91 (neural network-based agents; are trained; on multiple tasks)
+0.89 (inputs; coming; from different modalities)
+
+Implementing our agent architecture is simpliﬁed by its modular nature.
+0.51 (our agent architecture; is simpliﬁed; by its modular nature)
+
+Essentially, we construct multiple networks, one per task, using shared building blocks, and optimise these networks jointly.
+0.40 (we; optimise jointly; these networks)
+
+Within each thread, we use a ﬂag-based system to subordinate gradient updates to the A3C reinforcement learning procedure.
+0.69 (we; use; a ﬂag-based system; to subordinate gradient updates to the A3C reinforcement learning procedure; T:Within each thread)
+0.43 Context(we use):(we; use a ﬂag-based system to subordinate; gradient updates; to the A3C reinforcement learning procedure)
+
+B.2 NETWORK AND TRAINING DETAILS For all the experiments we use an encoder model with 2 convolutional layers followed by a fully connected layer, or recurrent layer(s), from which we predict the policy and value function.
+0.45 (we; use; an encoder model; with 2 convolutional layers)
+0.75 (2 convolutional layers; followed; )
+0.45 (we; predict; the policy and value function)
+
+We illustrate on Figure 8 the architecture of the Nav A3C+D+L+Dr agent.
+0.45 (We; illustrate; the architecture of the Nav A3C+D+L+Dr agent)
+
+We empirically decided to use the following quantization: {0, 0.05, 0.175, 0.3, 0.425, 0.55, 0.675, 0.8, 1} to ensure a uniform 5Video of the Nav A3C*+D1L agent on the I-maze: https://youtu.be/PS4iJ7Hk_BU 6Video of the Nav A3C*+D1L agent on static maze 1: https://youtu.be/-HsjQoIou_c 7Video of the Nav A3C*+D1L agent on static maze 2: https://youtu.be/kH1AvRAYkbI 8Video of the Nav A3C*+D1L agent on random goal maze 1: https://youtu.be/5IBT2UADJY0 9Video of the Nav A3C*+D1L agent on random goal maze 2: https://youtu.be/e10mXgBG9yo Under review as a conference paper at ICLR 2017 Figure 8: Details of the architecture of the Nav A3C+D+L+Dr agent, taking in RGB visual inputs xt, past reward rt−1, previous action at−1 as well as agent-relative velocity vt, and producing policy π, value function V , depth predictions gd(ft) and g(cid:48) d(ht) as well as loop closure detection gl(ht).
+0.40 (We; empirically decided; to use the following quantization: {0, 0.05, 0.175, 0.3, 0.425, 0.55, 0.675, 0.8, 1} to ensure a uniform 5Video of the Nav A3C*+D1L agent on the I-maze)
+0.40 Context(We empirically decided):(We; empirically decided to use; the following quantization; to ensure a uniform 5Video of the Nav A3C*+D1L agent on the I-maze)
+0.40 Context(We empirically decided to use):(We; empirically decided to use the following quantization producing; policy π, value function V , depth predictions gd(ft) and g(cid:48) d(ht) as well as loop closure detection gl)
+
+We optimise these parameters using an asynchronous version of RMSProp (Tieleman & Hinton, 2012).
+0.61 (We; optimise; these parameters using an asynchronous version of RMSProp (Tieleman & Hinton, 2012))
+0.92 (these parameters; using; an asynchronous version of RMSProp)
+
+(Nair et al., 2015) was a recent example of asynchronous and parallel gradient updates in deep reinforcement learning; in our case, we focus on the speciﬁc Asynchronous Advantage Actor Critic (A3C) reinforcement learning procedure in (Mnih et al., 2016).
+0.92 (Asynchronous Advantage Actor Critic (A3C) reinforcement; learning; procedure)
+0.38 (we; focus; on the speciﬁc Asynchronous Advantage Actor Critic; L:in our case)
+
+We use 16 workers and the same RMSProp algorithm without momentum or centering of the variance.
+0.61 (We; use; 16 workers and the same RMSProp algorithm without momentum or centering of the variance)
+
+For this reason through out the paper we actually report results in terms of agent perceived steps rather than environment steps.
+0.45 (we; actually report; results)
+
+That is, the maximal number of agent perceived step that we do for any particular run is 2.5e7.
+0.92 (agent perceived step; do; for any particular run)
+0.86 (the maximal number of agent perceived step; is; 2.5e7)
+
+In our grid we sample hyper-parameters from categorical distributions: • Learning rate was sampled from [10−4, 5 · 10−4].
+0.38 (we; sample; hyper-parameters; L:In our grid)
+0.91 Context(we sample):(Learning rate; was sampled; from [10−4, 5 · 10−4)
+
+In our previous set of experiments, rewards were scaled by a factor from {0.3, 0.5} and clipped to 1 prior to back-propagation in the Advantage Actor-Critic algorithm.
+0.89 (rewards; were scaled; by a factor; T:from {0.3; L:In our previous set of experiments)
+0.87 (rewards; clipped; to 1; T:prior to back-propagation; T:in the Advantage Actor-Critic algorithm; L:In our previous set of experiments)
+
+In our previous set of experiments, we used chunks of 100 steps.
+0.44 (we; used; chunks of 100 steps; L:In our previous set of experiments)
+
+In particular in the left plot we show that the baselines (A3C FF and A3C LSTM) as well as Nav A3C agent without auxiliary losses, perform worse without reward clipping than with reward clipping.
+0.51 (we; show; that the baselines (A3C FF and A3C LSTM) as well as Nav A3C agent without auxiliary losses, perform worse without reward clipping than with reward clipping; L:In particular in the left plot)
+0.64 Context(we show):(the baselines; perform worse; )
+
+For this particular reason we chose to show the baselines with reward clipping in our main results.
+0.82 (reward; clipping; L:in our main results)
+0.40 (we; chose; to show the baselines with reward)
+0.40 Context(we chose):(we; chose to show; the baselines; with reward)
+
+C.3 NON-NAVIGATION TASKS IN 3D MAZE ENVIRONMENTS We have evaluated the behaviour of the agents introduced in this paper, as well as agents with reward prediction, introduced in (Jaderberg et al., 2017) (Nav A3C*+R) and with a combination of reward prediction from the convnet and depth prediction from the policy LSTM (Nav A3C+RD2), on different 3D maze environments with non-navigation speciﬁc tasks.
+0.45 (We; have evaluated; the behaviour of the agents)
+0.90 (the agents; introduced; L:in this paper)
+0.90 (reward prediction; introduced; T:in (Jaderberg et al., 2017)
+
+C.5 ASYMPTOTIC PERFORMANCE OF THE AGENTS Finally, we compared the asymptotic performance of the agents, both in terms of navigation (ﬁnal rewards obtained at the end of the episode) and in terms of their representation in the policy LSTM.
+0.56 (we; compared; the asymptotic performance of the agents, both in terms of navigation (ﬁnal rewards obtained at the end of the episode) and in terms of their representation in the policy; T:Finally)
+
+Rather than visualising the convolutional ﬁlters, we quantify the change in representation, with and Under review as a conference paper at ICLR 2017 Table 3: Asymptotic performance analysis of two agents in the Random Goal 2 maze, comparing training for 120M Labyrinth frames vs.
+0.39 (we; quantify; the change in representation)
+
+Speciﬁcally, we compare the baseline agent (LSTM A3C*) to a navigation agent with one auxiliary task (depth prediction), that gets about twice as many gradient updates for the same number of frames seen in the environment: once for the RL task and once for the auxiliary depth prediction task.
+0.45 (we; compare; the baseline agent; to a navigation agent with one auxiliary task)
+0.95 (one auxiliary task; gets; about twice as many gradient updates for the same number of frames)
+0.94 (frames; seen; L:in the environment; T:once for the RL task and once for the auxiliary depth prediction task)
+
+For this reason, we believe that the auxiliary task do more than simply accelerate training.
+0.19 (we; believe; that the auxiliary task do more)
+0.91 Context(we believe):(the auxiliary task; do; more than simply accelerate training)
+

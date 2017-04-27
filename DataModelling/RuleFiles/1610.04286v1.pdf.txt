@@ -1,0 +1,154 @@
+We propose using progressive networks to bridge the reality gap and transfer learned policies from simulation to the real world.
+0.51 (We; propose; using progressive networks to bridge the reality gap and transfer learned policies from simulation to the real world)
+0.51 Context(We propose):(We; propose using; progressive networks; to bridge the reality gap and transfer learned policies from simulation to the real world)
+
+We present an early demonstration of this approach with a number of experiments in the domain of robot manipulation that focus on bridging the reality gap.
+0.57 (We; present; an early demonstration of this approach with a number of experiments in the domain of robot manipulation)
+0.89 (robot manipulation; focus; on bridging the reality gap)
+
+Unlike other proposed approaches, our real-world experiments demonstrate successful task learning from raw visual input on a fully actuated robot manipulator.
+0.79 (our real-world experiments; demonstrate; successful task learning from raw visual input on a fully actuated robot manipulator)
+0.90 (successful task; learning; from raw visual input)
+
+While recent advances in simulation-driven deep RL are impressive [8, 19, 6, 12, 20, 15, 5], demonstrating learning capabilities on real robots remains the bar by which we must measure the practical applicability of these methods.
+0.89 (recent advances in simulation-driven deep RL; are; impressive)
+0.95 (demonstrating learning capabilities on real robots; remains; 8, 19, 6, 12, 20, 15, 5], demonstrating learning capabilities on real robots remains the bar by which we must measure the practical applicability of these methods)
+0.89 (the bar; must measure; the practical applicability of these methods)
+
+In this paper, we use progressive networks, a deep learning architecture that has recently been proposed for transfer learning, to demonstrate such an approach, thus providing a proof-of-concept pathway by which deep RL can be used to effect fast policy learning on a real robot.
+0.64 (we; use; progressive networks; to demonstrate such an approach, thus providing a proof-of-concept pathway; L:In this paper)
+0.40 Context(we use):(we; use progressive networks providing; a proof-of-concept pathway by which deep RL can be used to effect fast policy)
+0.89 (deep RL; to effect; fast policy learning on a real robot)
+0.92 (a deep learning architecture; has been proposed; for transfer learning; T:recently)
+0.90 (fast policy; learning; L:on a real robot)
+0.90 (deep RL; can be used; to effect fast policy)
+
+From the LSTM state, using a linear layer, we compute a set of discrete action outputs that control the different degrees of freedom of the simulated robot as well as the value function.
+0.39 (we; compute; a set of discrete action)
+0.84 Context(we compute):(From the LSTM state; using; a linear layer; we)
+
+Our initial ﬁndings show that the inductive bias imparted by the features and encoded policy of the simulation net is enough to give a dramatic learning speed-up on the real robot.
+0.94 (the inductive bias; imparted; by the features and encoded policy of the simulation net)
+0.55 (Our initial ﬁndings; show; that the inductive bias imparted by the features and encoded policy of the simulation net is enough to give a dramatic learning speed-up on the real robot)
+0.98 Context(Our initial ﬁndings show):(the inductive bias imparted by the features and encoded policy of the simulation net; is; enough to give a dramatic learning speed-up on the real robot)
+
+2 Transfer Learning from Simulation to Real Our approach relies on the progressive nets architecture, which enables transfer learning through lateral connections which connect each layer of previously learnt network columns to each new column, thus supporting rich compositionality of features.
+0.95 (2 Transfer Learning from Simulation to Real; relies; on the progressive nets architecture)
+0.90 (each new column; supporting; rich compositionality of features)
+0.91 (the progressive nets architecture; enables; transfer learning through lateral connections)
+0.71 (transfer; learning; )
+0.89 (lateral connections; connect; each layer of previously learnt network columns)
+
+We ﬁrst summarize progressive nets and then discuss its application for transfer in robot domains.
+0.45 (We; ﬁrst summarize; progressive nets)
+0.40 (We; discuss; its application for transfer in robot domains; T:then)
+
+f is an element-wise non-linearity: we use f (x) = max(0, x) for all intermediate layers.
+0.45 (f; is; an element-wise non-linearity)
+0.23 (we; use; f)
+0.21 (we; f; )
+
+In contrast, we make no assumptions about the relationship between tasks, which may in practice be orthogonal or even adversarial.
+0.45 (we; make; no assumptions about the relationship between tasks)
+0.46 (tasks; may be; orthogonal or even adversarial)
+
+For training in simulation, we use the Async Advantage Actor-Critic (A3C) framework introduced in [15].
+0.50 (we; use; the Async Advantage Actor-Critic)
+0.75 (framework; introduced; T:in [15)
+
+We evaluate both feedforward and recurrent neural networks.
+0.45 (We; evaluate; both feedforward and recurrent neural networks)
+
+A standard-sized network is used for the simulation-trained column and a reduced-capacity network is used for the robot-trained columns, chosen because we found empirically that more capacity does not accelerate learning (see Section4.2), presumably because of the features reused from the previous column.
+0.93 (A standard-sized network; is used; for the simulation-trained column)
+0.70 (more capacity; learning; )
+0.93 (a reduced-capacity network; is used; for the robot-trained columns)
+0.80 (a reduced-capacity network; chosen; because we found empirically that more capacity does not accelerate learning (see Section4.2), presumably because of the features)
+0.90 (the features; reused; from the previous column)
+0.31 (we; found; T:empirically; that more capacity does not accelerate learning (see Section4.2), presumably because of the features)
+0.90 Context(we found):(more capacity; does not accelerate; learning (see Section4.2; presumably because of the features)
+
+The MuJoCo physics simulator [22] is used to train the ﬁrst column for our experiments, with a rendered camera view to provide observations.
+0.92 (The MuJoCo physics simulator; is used; to train the ﬁrst column for our experiments, with a rendered camera view)
+0.88 (The MuJoCo physics simulator; to train; the ﬁrst column for our experiments; with a rendered camera view)
+
+We veriﬁed this intuition by comparing wide and narrow network architectures, and found that the narrow network had slower learning and worse performance (see Figure 4).
+0.39 (We; veriﬁed; this intuition)
+0.39 Context(We veriﬁed):(We; veriﬁed this intuition by comparing; wide and narrow network architectures)
+0.28 (We; found; that the narrow network had slower learning and worse performance (see Figure 4)
+0.93 Context(We found):(the narrow network; had; slower learning and worse performance (see Figure 4)
+
+We also see that the LSTM model out-performs the feedforward model by an average Figure 4: Learning curves are shown for wide and narrow versions of the feedforward (left) and recurrent (right) models, which are trained with the MuJoCo simulator.
+0.94 (Learning curves; are shown; for wide and narrow versions of the feedforward (left) and recurrent (right) models)
+0.96 (the feedforward (left) and recurrent (right) models; are trained; with the MuJoCo simulator)
+0.31 (We; also see; that the LSTM model out-performs the feedforward model by an average Figure 4: Learning curves are shown for wide and narrow versions of the feedforward (left) and recurrent (right) models)
+0.92 Context(We also see):(the LSTM model; out performs; the feedforward model; L:by an average Figure 4: Learning curves are shown for wide and narrow versions of the feedforward (left) and recurrent (right) models)
+
+h4(1)h2(1)h1(1)(cid:7528)1(cid:7528)2(cid:7528)9v...h3(1)h4(2)h2(2)h1(2)xt(cid:7528)1(cid:7528)2(cid:7528)9v...h3(2)LSTMconv2conv1fc01234Steps1e70510152025303540RewardsSimulation-trained first columnWide networkNarrow network01234Steps1e70510152025303540RewardsSimulation-trained first column (LSTM)Narrow networkWide networkFigure 5: Real robot training: We compare progressive, ﬁnetuning, and ‘from scratch’ learning curves.
+0.19 (We; compare; progressive)
+0.11 Context(We compare):(We; compare progressive ﬁnetuning; )
+
+We compare wide and narrow columns for both the progressive experiments and the randomly initialized baseline.
+0.57 (We; compare; wide and narrow columns; for both the progressive experiments and the randomly initialized baseline)
+
+We calculate that learning this task, which trains to convergence in 24 hours using a CPU compute cluster, would take 53 days on the real robot even with continuous training for 24 hours a day.
+0.28 (We; calculate; that learning this task, which trains to convergence in 24 hours using a CPU compute cluster, would take 53 days on the real robot even with continuous training for 24 hours a day)
+0.87 Context(We calculate):(learning this task; would take; 53 days; on the real robot)
+0.91 (this task; trains; to convergence in 24 hours using a CPU compute cluster)
+0.86 Context(this task trains):(this task; trains to convergence; T:in 24 hours)
+
+In simulation, we explore learning rates and entropy costs, which are sampled uniformly at random on a log scale.
+0.89 (entropy costs; are sampled uniformly; L:at random; L:on a log scale)
+0.53 (we; explore; learning rates and entropy costs; L:In simulation)
+0.39 Context(we explore):(we; explore learning; rates and entropy costs)
+
+We train a baseline from scratch, a ﬁnetuned ﬁrst column, and a progressive second column.
+0.57 (We; train; a baseline; from scratch, a ﬁnetuned ﬁrst column, and a progressive second column)
+
+We also try a randomly initialized wide network.
+0.48 (We; try; a randomly initialized wide network)
+
+To assess this empirically, we start with a simulator-trained ﬁrst column, as described above, and then either ﬁnetune that column or add a narrow progressive column and 0100002000030000400005000060000Steps55152535RewardsReal-robot-trained progressive nets vs.
+0.52 (we; start; with a simulator-trained ﬁrst column)
+0.31 (we; ﬁnetune; that column; T:then)
+0.60 (we; add; a narrow progressive column and 0100002000030000400005000060000Steps55152535RewardsReal-robot-trained progressive nets)
+
+progressive approaches, we add color or perspective changes to the environment in simulation and then train 300 networks with different random seeds, learning rates, and entropy costs.
+0.52 (we; add; color or perspective changes; to the environment in simulation)
+0.67 (we; train; 300 networks; with different random seeds, learning rates, and entropy costs; T:then)
+
+For each of these environment perturbations, we train 300 times with different seeds, learning rates, and entropy costs, which are the most sensitive hyperparameters.
+0.57 (we; train; 300 times; with different seeds, learning rates, and entropy costs)
+0.89 (entropy costs; are; the most sensitive hyperparameters)
+
+As shown in Figure 6, we ﬁnd that progressive networks are more stable and reach higher ﬁnal performance than ﬁnetuning.
+0.89 (progressive networks; reach; higher ﬁnal performance than ﬁnetuning)
+0.33 (we; ﬁnd; that progressive networks are more stable and reach higher ﬁnal performance than ﬁnetuning)
+0.72 Context(we ﬁnd):(progressive networks; are; more stable)
+
+To demonstrate this, we train a second column on the reacher task but add proprioceptive features as an additional input, alongside the RGB images.
+0.45 (we; train; a second column on the reacher task)
+0.53 (we; add; proprioceptive features; as an additional input, alongside the RGB images)
+
+To evaluate this architecture, we train on a dynamic target task.
+0.45 (we; train; on a dynamic target task)
+
+If the second column is instead trained on the static reacher task, and the third column is then trained on the conveyor task, we observe immediate transfer, and full performance is reached almost immediately (Figure 7, right).
+0.91 (the second column; is instead trained; on the static reacher task)
+0.92 (the third column; is trained; on the conveyor task; T:then)
+0.45 (we; observe; immediate transfer)
+0.77 (full performance; is reached; T:almost immediately)
+
+We took full advantage of the ﬂexibility and computational scaling afforded by simulation and compared many hyperparameters and architectures for a random start, random target control task with visual input, then successfully transferred the skill to an agent training on the real robot.
+0.93 (the ﬂexibility and computational scaling; afforded; by simulation)
+
+We have described an initial set of experiments that prove that progressive nets can be used to achieve reliable, fast transfer for pixel-to-action RL policies.
+0.45 (We; have described; an initial set of experiments)
+0.94 (progressive nets; to achieve; reliable, fast transfer for pixel-to-action RL policies)
+0.80 (experiments; prove; that progressive nets can be used to achieve reliable, fast transfer for pixel-to-action RL policies)
+0.93 Context(experiments prove):(progressive nets; can be used; to achieve reliable, fast transfer for pixel-to-action RL policies)
+
+Welling, C.
+
+Weinberger, editors, Advances in Neural Information Processing Systems 27, pages 1071–1079
+

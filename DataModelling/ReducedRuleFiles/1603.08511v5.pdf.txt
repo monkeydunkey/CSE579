@@ -1,0 +1,174 @@
+The paper  |  solves  | automatic approach
+The paper  |  solves  | realistic colorizations
+The paper  |  solves  | automatic approach that produces vibrant and realistic colorizations
+The paper  |  outputs  | vibrant
+The paper  |  outputs  | realistic colorizations
+The paper  |  outputs  | vibrant and realistic colorizations
+The paper  |  uses  | class-rebalancing
+The paper  |  uses  | diversity
+The paper  |  uses  | colors
+The paper  |  uses  | result
+The paper  |  uses  | class-rebalancing to increase the diversity of colors in the result
+The paper  |  uses  | colorization
+The paper  |  uses  | test
+The paper  |  uses  | human participants
+The paper  |  uses  | ground truth color image
+The paper  |  uses  | colorization turing test , '' asking human participants to choose between a generated and ground truth color image
+The paper  |  uses  | loss
+The paper  |  uses  | colorization problem
+The paper  |  uses  | loss tailored to the colorization problem
+The paper  |  outputs  | ﬁnal colorization
+The paper  |  outputs  | novel way
+The paper  |  outputs  | colorization results
+The paper  |  outputs  | novel way of evaluating colorization results
+The paper  |  outputs  | perceptual realism
+The paper  |  outputs  | l
+The paper  |  outputs  | many cases
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | photorealistic results
+The paper  |  outputs  | figure
+The paper  |  outputs  | successful examples
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | many cases , our algorithm is producing nearly photorealistic results ( see figure 1 for selected successful examples from our algorithm
+The paper  |  uses  | own source
+The paper  |  uses  | supervision
+The paper  |  uses  | own source of supervision
+The paper  |  outputs  | appropriate objective function
+The paper  |  outputs  | multimodal uncertainty
+The paper  |  outputs  | colorization problem
+The paper  |  outputs  | wide diversity
+The paper  |  outputs  | colors
+The paper  |  outputs  | b
+The paper  |  outputs  | novel framework
+The paper  |  outputs  | colorization algorithms
+The paper  |  outputs  | other image synthesis tasks
+The paper  |  outputs  | c
+The paper  |  outputs  | new high-water mark
+The paper  |  outputs  | task
+The paper  |  outputs  | color photos
+The paper  |  outputs  | appropriate objective function that handles the multimodal uncertainty of the colorization problem and captures a wide diversity of colors , ( b ) introducing a novel framework for testing colorization algorithms , potentially applicable to other image synthesis tasks , and ( c ) setting a new high-water mark on the task by training on a million color photos
+The paper  |  outputs  | colorization task
+The paper  |  outputs  | straightforward method
+The paper  |  outputs  | self-supervised representation learning
+The paper  |  outputs  | colorization task as a competitive and straightforward method for self-supervised representation learning
+The paper  |  uses  | classiﬁcation loss
+The paper  |  uses  | rare classes
+The paper  |  uses  | classiﬁcation loss , with rebalanced rare classes
+The paper  |  uses  | local features
+The paper  |  uses  | single-stream
+The paper  |  outputs  | quantitative comparisons
+The paper  |  outputs  | al
+The paper  |  outputs  | quantitative comparisons to larsson et al
+The paper  |  uses  | multinomial cross entropy loss lcl
+The paper  |  uses  | soft-encoding
+The paper  |  uses  | training
+The paper  |  uses  | network
+The paper  |  uses  | relationship
+The paper  |  uses  | elements
+The paper  |  uses  | output space
+The paper  |  uses  | soft-encoding worked well for training , and allowed the network to quickly learn the relationship between elements in the output space
+The paper  |  uses  | values
+The paper  |  uses  | λ =
+The paper  |  uses  | σ =
+The paper  |  uses  | values of λ = 1 2 and σ =
+The paper  |  outputs  | peaked distribution
+The paper  |  uses  | temperature
+The paper  |  uses  | middle column
+The paper  |  uses  | figure
+The paper  |  uses  | vibrancy
+The paper  |  uses  | mode
+The paper  |  uses  | spatial coherence
+The paper  |  uses  | mean
+The paper  |  uses  | temperature t = 0.38 , shown in the middle column of figure 4 , captures the vibrancy of the mode while maintaining the spatial coherence of the mean
+The paper  |  outputs  | predicted distribution
+The paper  |  outputs  | pixels
+The paper  |  outputs  | predicted distribution over all pixels
+The paper  |  outputs  | ﬁnal prediction
+The paper  |  uses  | t
+The paper  |  uses  | cnns
+The paper  |  outputs  | vibrant results
+The paper  |  outputs  | regression loss
+The paper  |  outputs  | classiﬁcation loss
+The paper  |  outputs  | vibrant results than a regression loss or a classiﬁcation loss
+The paper  |  outputs  | l
+The paper  |  outputs  | equation
+The paper  |  outputs  | l : in equation
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | baseline
+The paper  |  outputs  | algorithm or a baseline
+The paper  |  outputs  | ground truth colors
+The paper  |  outputs  | higher results
+The paper  |  outputs  | practical use
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | practical use for our algorithm
+The paper  |  outputs  | cumulative mass function
+The paper  |  solves  | plausibility
+The paper  |  outputs  | same score
+The paper  |  uses  | full method
+The paper  |  uses  | iterations
+The paper  |  uses  | full method for 450k iterations
+The paper  |  outputs  | higher performance
+The paper  |  outputs  | object classiﬁcation
+The paper  |  outputs  | segmentation tasks
+The paper  |  outputs  | higher performance on object classiﬁcation and segmentation tasks
+The paper  |  outputs  | object-level semantics
+The paper  |  outputs  | semantic labels
+The paper  |  outputs  | competitive performance
+The paper  |  outputs  | t
+The paper  |  outputs  | [
+The paper  |  outputs  | t : in [
+The paper  |  outputs  | strong performance
+The paper  |  uses  | method
+The paper  |  outputs  | state-of-the-art accuracy
+The paper  |  uses  | r-cnn
+The paper  |  outputs  | %
+The paper  |  uses  | fcn architecture
+The paper  |  outputs  | performance
+The paper  |  outputs  | %
+The paper  |  outputs  | al
+The paper  |  outputs  | performance of 35.0 % , approximately equal to donahue et al
+The paper  |  outputs  | good colorizations
+The paper  |  outputs  | useful graphics output
+The paper  |  outputs  | l
+The paper  |  outputs  | original arxiv v1
+The paper  |  outputs  | paper
+The paper  |  outputs  | l : in our original arxiv v1 paper
+The paper  |  uses  | colorization
+The paper  |  uses  | pretext task
+The paper  |  uses  | representation learning
+The paper  |  uses  | colorization as a pretext task for representation learning
+The paper  |  uses  | single channel input
+The paper  |  uses  | vgg classiﬁer
+The paper  |  uses  | semantic interpretability
+The paper  |  uses  | colorization results
+The paper  |  uses  | vgg classiﬁer to evaluate the semantic interpretability of our colorization results
+The paper  |  uses  | semantic interpretability
+The paper  |  uses  | colorization results
+The paper  |  uses  | semantic interpretability of our colorization results
+The paper  |  uses  | species
+The paper  |  uses  | diﬀerent color patches
+The paper  |  uses  | image
+The paper  |  uses  | diﬀerent color patches in this image
+The paper  |  outputs  | prediction
+The paper  |  outputs  | respect
+The paper  |  outputs  | low-level lightness
+The paper  |  outputs  | contrast changes
+The paper  |  outputs  | prediction is somewhat stable with respect to low-level lightness and contrast changes
+The paper  |  uses  | chromatic aberration cues
+The paper  |  uses  | l
+The paper  |  uses  | architecture
+The paper  |  uses  | l : in our architecture
+The paper  |  outputs  | photos
+The paper  |  outputs  | scene-centric sun dataset
+The paper  |  outputs  | photos from the scene-centric sun dataset
+The paper  |  outputs  | quantitative comparison
+The paper  |  outputs  | method
+The paper  |  outputs  | quantitative comparison of our method
+The paper  |  uses  | same grayscale input
+The paper  |  outputs  | qualitative comparisons
+The paper  |  outputs  | test images
+The paper  |  outputs  | ]
+The paper  |  outputs  | website
+The paper  |  outputs  | qualitative comparisons to the 23 test images in [ 1 ] on the website
+The paper  |  outputs  | good colorizations
+The paper  |  outputs  | plausible colorization

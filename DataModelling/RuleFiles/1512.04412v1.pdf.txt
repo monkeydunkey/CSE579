@@ -1,0 +1,456 @@
+In this paper, we present Multitask Network Cascades for instance-aware semantic segmentation.
+0.64 (we; present; Multitask Network Cascades; for instance-aware semantic segmentation; L:In this paper)
+
+Our model consists of three networks, respectively differentiating instances, estimating masks, and categorizing objects.
+0.64 (Our model; consists; of three networks)
+0.89 (three networks; respectively differentiating; instances)
+
+We develop an algorithm for the nontrivial end-to-end training of this causal, cascaded structure.
+
+Our solution is a clean, single-step training framework and can be generalized to cascades that have more stages.
+0.70 (Our solution; is; a clean, single-step training framework)
+0.88 (cascades; have; more stages)
+
+We demonstrate state-of-the-art instance-aware semantic segmentation accuracy on PASCAL VOC.
+0.57 (We; demonstrate; state-of-the-art instance-aware semantic segmentation accuracy)
+
+Meanwhile, our method takes only 360ms testing an image using VGG-16, which is two orders of magnitude faster than previous systems for this challenging problem.
+0.76 (our method; takes; only 360ms testing an image; T:Meanwhile)
+0.91 (only 360ms; testing; an image)
+0.92 (VGG-16; is faster; two orders of magnitude)
+
+As a by product, our method also achieves compelling object detection results which surpass the competitive Fast/Faster R-CNN systems.
+0.74 (our method; achieves; compelling object detection results which surpass the competitive Fast/Faster R-CNN systems)
+0.92 (compelling object detection results; surpass; the competitive Fast/Faster R-CNN systems)
+
+The method described in this paper is the foundation of our submissions to the MS COCO 2015 segmentation competition, where we won the 1st place.
+0.90 (The method; described; L:in this paper)
+0.95 (The method described in this paper; is; the foundation of our submissions to the MS COCO 2015 segmentation competition)
+0.70 (we; won; the 1st place; L:the MS COCO 2015 segmentation competition)
+
+ In this work, we address instance-aware semantic segmentation solely based on CNNs, without using external modules (e.g., [1]).
+0.44 (we; address aware e.g.; L:In this work)
+0.92 (semantic segmentation; solely based; L:on CNNs)
+
+We observe that the instance-aware semantic segmentation task can be decomposed into three different and related sub-tasks.
+0.28 (We; observe; that the instance-aware semantic segmentation task can be decomposed into three different and related sub-tasks)
+0.92 Context(We observe):(the instance-aware semantic segmentation task; can be decomposed; into three different and related sub-tasks)
+
+We expect that each sub-task is simpler than the original instance segmentation task, and is more easily addressed by convolutional networks.
+0.89 (each sub-task; is more easily addressed; by convolutional networks)
+0.28 (We; expect; that each sub-task is simpler than the original instance segmentation task, and is more easily addressed by convolutional networks)
+0.91 Context(We expect):(each sub-task; is; simpler than the original instance segmentation task)
+
+Driven by this decomposition, we propose Multi-task Network Cascades (MNCs) for accurate and fast instanceaware semantic segmentation.
+0.50 (we; propose; Multi-task Network Cascades; for accurate and fast instanceaware semantic segmentation)
+
+Our network cascades have three stages, each of which addresses one sub-task.
+0.66 (Our network cascades; have; three stages)
+
+But unlike many multi-task learning applications, in our method a later stage depends on the outputs of an earlier stage, forming a causal cascade (see Fig.
+0.91 (a later stage; depends; on the outputs of an earlier stage)
+
+So we call our structures “multi-task cascades”.
+0.37 (we; call; our structures; multi-task cascades)
+
+For example, our mask estimating layer takes convolutional features and predicted box instances as inputs, both of which are outputs of other layers.
+0.64 (our mask estimating layer; predicted; box instances; as inputs)
+0.88 (inputs; are; outputs of other layers)
+0.62 (our mask estimating layer; takes; convolutional features)
+
+To achieve theoretically valid backpropagation, we develop a layer that is differentiable with respect to the spatial coordinates, so the gradient terms can be computed.
+0.33 (we; develop; a layer that is differentiable with respect to the spatial coordinates)
+0.91 (a layer; is; differentiable with respect to the spatial coordinates)
+0.75 (the gradient terms; can be computed; )
+
+Our cascade model can thus be trained end-to-end via a clean, single-step framework.
+0.56 (Our cascade model; can be trained; end-to-end)
+
+Meanwhile, under this training framework, our cascade model can be extended to more stages, leading to improvements on accuracy.
+0.78 (our cascade model; can be extended; to more stages; T:Meanwhile; L:under this training framework)
+
+We comprehensively evaluate our method on the PASCAL VOC dataset.
+0.35 (We; comprehensively evaluate; our method on the PASCAL VOC dataset)
+
+Our method results in 63.5% mean Average Precision (mAPr), about 3.0% higher than the previous best results [14, 7] using the same VGG network [27].
+
+We demonstrate excellent accuracy on the challenging MS COCO segmentation dataset using an extremely deep 101-layer residual net (ResNet-101) [16], and also report our 1st-place result in the COCO segmentation track in ILSVRC & COCO 2015 competitions.
+0.42 (We; report; our 1st-place result in the COCO segmentation track in ILSVRC & COCO 2015 competitions)
+0.43 (We; demonstrate; excellent accuracy on the challenging MS COCO segmentation dataset)
+0.46 Context(We demonstrate):(We; demonstrate excellent accuracy on the challenging MS COCO segmentation dataset using; an extremely deep 101-layer residual net)
+
+We train the entire network cascade end-to-end with a uniﬁed loss function.
+0.45 (We; train; the entire network cascade end-to-end)
+
+2 illustrates our cascade model.
+0.25 (2; illustrates; our cascade model)
+
+In our MNC model, the network takes an image of arbitrary size as the input, and outputs instance-aware semantic segmentation results.
+0.92 (the network; takes; an image of arbitrary size as the input; L:In our MNC model)
+0.89 (the network; outputs; instance-aware semantic segmentation results)
+
+In this section we describe the deﬁnition for each stage.
+0.60 (we; describe; the deﬁnition; for each stage; L:In this section)
+
+In the next section we introduce an end-to-end training algorithm to address the causal dependency.
+0.70 (we; introduce; an end-to-end training algorithm to address the causal dependency; L:In the next section)
+
+The network structure and loss function of this stage follow the work of Region Proposal Networks (RPNs) [26], which we brieﬂy describe as follows for completeness.
+0.96 (The network structure and loss function of this stage; follow; the work of Region Proposal Networks)
+0.41 (we; brieﬂy; T:as follows for completeness)
+0.82 (the work of Region Proposal Networks; describe; )
+
+We use the RPN loss function given in [26].
+0.50 (We; use; the RPN loss function)
+0.84 (the RPN loss function; given; T:in [26)
+
+This loss function serves as the loss term L1 of our stage 1.
+0.85 (This loss function; serves; as the loss term L1 of our stage 1)
+
+Given a box predicted by stage 1, we extract a feature of this box by Region-of-Interest (RoI) pooling [15, 9].
+0.90 (a box; predicted; by stage 1)
+0.61 (we; extract; a feature of this box by Region-of-Interest)
+0.88 (a feature of this box by Region-of-Interest; pooling; 15, 9)
+
+We append two extra fully-connected (fc) layers to this feature for each box.
+0.45 (We; append; two extra fully-connected (fc) layers; to this feature for each box)
+
+DeepMask applies the regression layers to dense sliding windows (fully-convolutionally), but our method only regresses masks from a few proposed boxes and so reduces computational cost.
+0.92 (DeepMask; applies; the regression layers; to dense sliding windows (fully-convolutionally)
+0.64 (our method; only regresses; masks)
+0.60 (our method; reduces; computational cost)
+
+Moreover, mask regression is only one stage in our network cascade that shares features among multiple stages, so the marginal cost of the mask regression layers is very small.
+0.87 (mask regression; is; only one stage in our network cascade)
+0.62 (our network cascade; shares; features; among multiple stages)
+0.89 (the marginal cost of the mask regression layers; is; very small)
+
+Given a box predicted by stage 1, we also extract a feature by RoI pooling.
+0.90 (a box; predicted; by stage 1)
+0.50 (we; also extract; a feature by RoI pooling)
+
+Following [13], we also use another box-based pathway, where the RoI pooled features directly fed into two 4096-d fc layers (this pathway is not illustrated in Fig.
+0.95 (the RoI; pooled; features directly fed into two 4096-d fc layers)
+0.89 (features; directly fed; into two 4096-d fc layers)
+0.90 (this pathway; is not illustrated; L:in Fig)
+0.69 Context(this pathway is not illustrated):(we; also use; another box-based pathway, where the RoI pooled features; T:Following [13)
+
+We deﬁne the loss function of the entire cascade as: L(Θ) =L1(B(Θ)) + L2(M (Θ) | B(Θ)) + L3(C(Θ) | B(Θ), M (Θ)), where balance weights of 1 are implicitly used among the three terms.
+0.50 (We; deﬁne; the loss function of the entire cascade; as: L(Θ) =L1)
+0.92 (balance weights of 1; are implicitly used; among the three terms)
+
+In this section, we develop a differentiable RoI warping layer to account for the gradient w.r.t.
+0.94 (a differentiable RoI warping layer; to account; for the gradient)
+
+the box position, we perform RoI pooling by a differentiable RoI warping layer followed by standard max pooling.
+0.50 (we; perform; RoI pooling by a differentiable RoI warping layer)
+0.83 (a differentiable RoI warping layer; followed; )
+
+We use F(Θ) to denote the full-image convolutional feature map.
+0.43 (We; use; F; to denote the full-image convolutional feature map)
+0.29 Context(We use):(We; use F to denote; the full-image convolutional feature map)
+
+We note that these operations are performed for each channel independently.
+0.19 (We; note; that these operations are performed for each channel independently)
+0.59 Context(We note):(these operations; are performed independently; )
+
+We note that because κ is non-zero in a small interval, the actual computation of Eqn.(7) involves a very few terms.
+0.85 (κ; is; non-zero in a small interval)
+0.32 (We; note; that because κ is non-zero in a small interval, the actual computation of Eqn.(7) involves a very few terms)
+0.92 Context(We note):(the actual computation of Eqn; involves; a very few terms)
+
+According to the chain rule, for backpropagation involving Eqn.(6) we need to compute: where we use ∂Bi to denote ∂xi, ∂yi, ∂wi, and ∂hi for in Eqn.(9) can be derived from simplicity.
+0.91 (backpropagation; involving; Eqn)
+0.50 (we; use; ∂Bi; to denote ∂xi, ∂yi, ∂wi)
+
+After the differentiable RoI warping layer, we append a max pooling layer to perform the RoI max pooling behavior.
+0.74 (we; append; a max pooling layer to perform the RoI max pooling behavior; T:After the differentiable RoI warping layer)
+0.84 (max; pooling; layer to perform the RoI max pooling behavior)
+0.93 (a max pooling layer; to perform; the RoI max pooling behavior)
+0.93 (RoI max; pooling; behavior)
+
+We expect the RoI warping layer to produce a sufﬁciently ﬁne resolution, which is set as W (cid:48) × H(cid:48) = 28 × 28 in this paper.
+0.95 (a sufﬁciently ﬁne resolution; is set; as W (cid:48) × H(cid:48) = 28 × 28)
+0.44 (We; expect; the RoI warping layer)
+0.91 Context(We expect):(the RoI; warping; layer)
+0.95 Context(We expect the RoI warping):(the RoI; warping layer to produce; a sufﬁciently ﬁne resolution, which is set as W (cid:48) × H(cid:48) = 28 × 28 in this paper)
+
+Our RoI warping layer is also driven by the differentiable property of interpolating features.
+0.74 (Our RoI warping layer; is also driven; by the differentiable property of interpolating features)
+
+But due to concerns on fast inference, we only present MNCs with up to 5 stages.
+
+For generating the proposals for stage 2, we use non-maximum suppression (NMS) to reduce redundant candidates.
+0.39 (we; use; non-maximum suppression; to reduce redundant candidates)
+0.29 Context(we use):(we; use non-maximum suppression to reduce; redundant candidates)
+
+During inference, we use the same NMS strategy to produce 300 proposals for stage 2.
+0.53 (we; use; the same NMS strategy; to produce 300 proposals for stage 2; T:During inference)
+0.39 Context(we use):(we; use the same NMS strategy to produce; 300 proposals for stage 2)
+
+(ii) On stage 2, for each proposed box we ﬁnd its highest overlapping ground truth mask.
+0.51 (we; ﬁnd; its highest overlapping ground truth mask; T:ii) On stage 2)
+
+(iii) On stage 3, we consider two sets of positive/negative samples.
+0.60 (we; consider; two sets of positive/negative samples; T:iii) On stage 3)
+
+We use the ImageNet pretrained models (e.g., VGG-16 [27]) to initialize the shared convolutional layers and the corresponding 4096-d fc layers.
+0.61 (We; use; the ImageNet pretrained models; e.g., VGG-16 [27]) to initialize the shared convolutional layers and the corresponding 4096-d fc layers)
+
+We adopt an image-centric training framework [9]: the shared convolutional layers are computed on the entire image, while the RoIs are randomly sampled for computing loss functions.
+0.93 (the RoIs; are randomly sampled; for computing loss functions)
+0.90 (the shared convolutional layers; are computed; on the entire image)
+0.39 Context(the shared convolutional layers are computed):(We; adopt; an image-centric training framework)
+
+In our system, each mini-batch involves 1 image, 256 sampled anchors for stage 1 as in [26]2, and 64 2Though we sample 256 anchors on stage 1 for computing the loss  On stage 3, bounding boxes updated by the box regression layer are used as the input to stage 4.
+0.90 (each mini-batch; involves; 1 image; L:In our system)
+0.89 (boxes; updated; by the box regression layer)
+0.45 (we; sample; 256 anchors; L:on stage 1)
+
+We also compute the gradients involved in L3(C(Θ) | B(Θ), M (Θ)), where the dependency on B(Θ) and M (Θ) is determined by Eqn.(3).
+0.57 (We; compute; the gradients involved in L3(C(Θ))
+0.92 (the gradients; involved; in L3)
+0.97 (the dependency on B(Θ) and M (Θ; is determined; by Eqn)
+
+In summary, given the differentiable RoI warping module, we have all the necessary components for backpropagation (other components are either standard, or trivial to implement).
+0.72 (other components; are; either standard, or trivial to implement)
+0.40 Context(other components are):(we; have; all the necessary components for backpropagation)
+
+We train the model by stochastic gradient descent (SGD), implemented in the Caffe library [19].
+0.45 (We; train; the model)
+0.91 (stochastic gradient descent; implemented; L:in the Caffe library)
+
+Cascades with More Stages Next we extend the cascade model to more stages within In Fast R-CNN [9], the (N+1)-way classiﬁer is trained jointly with class-wise bounding box regression.
+0.44 (we; extend within; the cascade model; to more stages)
+0.90 (way classiﬁer; is trained jointly; with class-wise bounding box regression)
+
+Inspired by this practice, on stage 3, we add a 4(N+1)-d fc layer for regression class-wise bounding boxes [9], which is a sibling layer with the classiﬁer layer.
+0.79 (we; add; a 4(N+1)-d fc layer for regression class-wise bounding boxes; T:on stage 3)
+0.98 (a 4(N+1)-d fc layer for regression class-wise bounding boxes; is; a sibling layer with the classiﬁer layer)
+
+The inference step with box regression, however, is not as straightforward as in object detection, because our ultimate outputs are masks instead of boxes.
+0.86 (The inference step with box regression; is not; as straightforward as in object detection; because our ultimate outputs are masks instead of boxes)
+0.66 (our ultimate outputs; are; masks instead of boxes)
+
+So during inference, we ﬁrst run the entire 3-stage network and obtain the regressed boxes on stage 3.
+0.66 (we; ﬁrst run; the entire 3-stage network; T:during inference)
+0.55 (we; obtain; the regressed boxes; T:during inference)
+
+This inference process can be iterated, but we have observed negligible gains.
+0.75 (This inference process; can be iterated; )
+0.45 (we; have observed; negligible gains)
+
+3), it is easy to adopt our algorithm in Sec.
+
+Training the model in this way makes the training-time structure consistent with the 1To avoid multiplying the number of proposals by the number of categories, for each box we only use the highest scored category’s bounding box regressor.
+0.93 (the 1To avoid; multiplying; the number of proposals by the number of categories)
+0.95 (Training the model in this way; makes; the training-time structure consistent with the 1To avoid)
+0.40 Context(Training the model in this way makes):(we; only use; the highest scored category's bounding box regressor)
+
+We train the model using a learning rate of 0.001 for 32k iterations, and 0.0001 for the next 8k.
+0.45 (We; train; the model)
+
+We train the model in 8 GPUs, each GPU holding 1 mini-batch (so the effective mini-batch size is ×8).
+0.50 (We; train; the model; in 8 GPUs)
+0.95 (each GPU; holding; 1 mini-batch (so the effective mini-batch size is ×8)
+
+We do not adopt multi-scale training/testing [15, 9], as it provides no good trade-off on speed vs.
+0.45 (We; do not adopt; multi-scale training/testing)
+0.45 (it; provides; no good trade-off on speed)
+
+We use 5-stage inference for both 3-stage and 5-stage trained structures.
+0.57 (We; use; 5-stage inference for both 3-stage and 5-stage trained structures)
+
+We post-process this list to reduce similar predictions.
+0.39 (We; post-process; this list; to reduce similar predictions)
+0.39 Context(We post-process):(We; post-process this list to reduce; similar predictions)
+
+We ﬁrst apply NMS (using box-level IoU 0.3 [10]) on the list of 600 instances based on their category scores.
+0.50 (We; ﬁrst apply; NMS)
+
+After that, for each not-suppressed instance, we ﬁnd its “similar” instances which are deﬁned as the suppressed instances that overlap with it by IoU ≥ 0.5.
+0.38 (we; ﬁnd; its "similar" instances which are deﬁned as the suppressed instances; T:After that)
+0.67 (its "similar" instances; are deﬁned; as the suppressed instances)
+0.85 (the suppressed instances; overlap; with it; T:by IoU >= 0.5)
+
+Experiments on PASCAL VOC 2012 We follow the protocols used in recent papers [13, 7, 14] for evaluating instance-aware semantic segmentation.
+0.57 (We; follow; the protocols used in recent papers [13, 7, 14] for evaluating instance-aware semantic segmentation)
+0.90 (the protocols; used; L:in recent papers)
+
+We use the segmentation annotations in [12] for training and evaluation, following [13, 7, 14].
+0.39 (We; use; the segmentation annotations; T:in [12; for training and evaluation)
+0.11 Context(We use):(We; use the segmentation annotations following; )
+
+We evaluate the mean Average Precision, which is referred to as mean APr [13] or simply mAPr.
+0.50 (We; evaluate; the mean Average Precision)
+0.94 (the mean Average Precision; is referred; to; as mean APr [13] or simply mAPr)
+
+We evaluate mAPr using IoU thresholds at 0.5 and 0.7.
+0.50 (We; evaluate; mAPr using IoU thresholds at 0.5 and 0.7)
+0.88 (mAPr; using; IoU thresholds; T:at 0.5 and 0.7)
+
+We remark that in this table all results are obtained function, the network of stage 1 is still computed fully-convolutionally on the entire image and produces all proposals that are used by later stages.
+0.94 (the network of stage 1; is computed convolutionally; on the entire image; T:still)
+0.79 (the network of stage 1; produces; all proposals that are used by later stages)
+0.89 (all proposals; are used; by later stages)
+0.28 (We; remark; that in this table all results are obtained function, the network of stage 1 is still computed fully-convolutionally on the entire image and produces all proposals)
+
+We show results using ZF net [30] that has 5 convolutional layers and 3 fc layers, and VGG-16 net [27] that has 13 convolutional layers and 3 fc layers.
+0.62 (net [30; has; 5 convolutional layers and 3 fc layers)
+0.94 (VGG-16 net; has; 13 convolutional layers and 3 fc layers)
+0.46 (We; show; results)
+0.43 Context(We show):(We; show results using; ZF)
+
+As a simple baseline (Table 1, a), we train the three stages step-by-step without sharing their features.
+0.42 (we; train; the three stages step-by-step without sharing their features)
+
+We note that this baseline result is competitive (see also Table 2), suggesting that decomposing the task into three sub-tasks is an effective solution.
+0.19 (We; note; that this baseline result is competitive)
+0.79 Context(We note):(this baseline result; is; competitive)
+0.85 (also Table 2; suggesting; that decomposing the task into three sub-tasks is an effective solution)
+0.94 Context(also Table 2 suggesting):(decomposing the task into three sub-tasks; is; an effective solution)
+
+Next we experiment with the single-step, end-to-end training algorithm developed in Sec.
+0.70 (we; experiment; with the single-step, end-to-end training algorithm; L:Next)
+0.97 (the single-step, end-to-end training algorithm; developed; L:in Sec)
+
+We note that in Table 1 (a), (b), and (c), the models have the same structure for training.
+0.19 (We; note; )
+0.95 (the models; have; the same structure for training; L:in Table 1)
+
+4, we are able to train the network by backpropagation in a theoretically sound way.
+0.57 (we; are; able to train the network by backpropagation in a theoretically sound way)
+0.41 (we; to train; the network)
+
+We note that all results in Table 1 are based on the same 5-stage inference strategy.
+0.32 (We; note; that all results in Table 1 are based on the same 5-stage inference strategy)
+0.93 Context(We note):(all results in Table 1; are based; on the same 5-stage inference strategy)
+
+The series of comparisons are also observed when using the ZF net as the pre-trained model (Table 1, left), showing the generality of our ﬁndings.
+0.90 (The series of comparisons; are observed; T:when using the ZF net)
+0.77 (the pre-trained model; left; )
+
+The running time of [14] is our estimation based on the description from the paper.
+0.89 (The running time of [14; is; our estimation based on the description from the paper)
+0.64 (our estimation; based; on the description from the paper)
+
+Detailed testing time (seconds) per image of our method using 5-stage inference.
+
+Our baseline segmentation result (%) on the MS COCO test-dev set.
+
+In Table 2 we compare with SDS [13], Hypercolumn [14], and CFM [7], which are existing CNN-based semantic segmentation methods that are able to identify instances.
+0.64 (we; compare; with SDS [13; T:In Table 2)
+0.86 (CFM; are existing; CNN-based semantic segmentation methods)
+0.94 (CNN-based semantic segmentation methods; are; able to identify instances)
+0.94 (CNN-based semantic segmentation methods; to identify; instances)
+
+These papers reported their mAPr under the same protocol used by our experiments.
+0.83 (These papers; reported; their mAPr; L:under the same protocol)
+0.85 (the same protocol; used; by our experiments)
+
+Our MNC has ∼3% higher mAPr@0.5 than previous best results.
+0.76 (Our MNC; has; ~3% higher mAPr@0.5 than previous best results)
+
+Our method also has higher mAPr@0.7 than previous methods.
+0.66 (Our method; has; higher mAPr@0.7 than previous methods)
+
+Fig 4 shows some examples of our results on the validation set.
+0.49 (Fig 4; shows; some examples of our results on the validation set)
+
+Our method can handle challenging cases where multiple instances of the same category are spatially connected to each other (e.g., Fig 4, ﬁrst row).
+0.77 (Our method; can handle; challenging cases where multiple instances of the same category are spatially connected to each other (e.g., Fig 4, ﬁrst row))
+0.95 (multiple instances of the same category; are spatially connected; L:challenging cases)
+
+Our method has an inference-time speed of 360ms per image (Table 2), evaluated on an Nvidia K40 GPU.
+0.79 (Our method; has; an inference-time speed of 360ms per image)
+
+Our method does not require any external region proposal method, whereas the region proposal step in SDS, Hypercolumn, and CFM costs 30s using MCG.
+0.77 (Our method; does not require; any external region proposal method; whereas the region proposal step in SDS, Hypercolumn, and CFM costs 30s)
+0.95 (the region proposal step in SDS, Hypercolumn, and CFM; costs; 30s)
+
+Furthermore, our method uses the shared convolutional features for the three sub-tasks and avoids redundant computation.
+0.74 (our method; uses; the shared convolutional features for the three sub-tasks and avoids)
+
+Our system is about two orders of magnitude faster than previous systems.
+0.70 (Our system; is; about two orders of magnitude faster than previous systems)
+
+We are also interested in the box-level object detection performance (mAPb), so that we can compare with more systems that are designed for object detection.
+0.45 (We; are also; interested in the box-level object detection performance)
+0.45 (we; can compare; with more systems)
+0.89 (more systems; are designed; for object detection)
+
+We train our model on the PASCAL VOC 2012 trainval set, and evaluate on the PASCAL VOC 2012 test set for object detection.
+0.35 (We; train; our model on the PASCAL VOC 2012 trainval set)
+0.46 (We; evaluate; L:on the PASCAL VOC 2012 test)
+0.92 (the PASCAL VOC 2012 test; set; for object detection)
+
+Given mask-level instances generated by our model, we simply assign a tight bounding box to each instance.
+0.86 (mask-level instances; generated; by our model)
+0.45 (we; simply assign; a tight bounding box; to each instance)
+
+Table 4 shows that our result (70.9%) compares favorably to the recent Fast/Faster R-CNN systems [9, 26].
+0.74 (our result; compares favorably; to the recent Fast/Faster R-CNN systems)
+
+We note that our result is obtained with fewer training images (without the 2007 set), but with mask-level annotations.
+0.17 (We; note; that our result is obtained with fewer training images (without the 2007 set), but with mask-level annotations)
+0.29 Context(We note):(our result; is obtained; )
+
+This experiment shows the effectiveness of our algorithm for detecting both boxand mask-level instances.
+0.91 (This experiment; shows; the effectiveness of our algorithm for detecting both boxand mask-level instances)
+
+But our method also has box-level outputs from the box regression layers in stage 3/5.
+0.76 (our method; has; box-level outputs from the box regression layers in stage 3/5)
+
+Using these box layers’ outputs (box coordinates and scores) in place of the mask-level outputs, we obtain an mAPb of 73.5% (Table 4).
+0.39 (we; obtain; an mAPb of 73.5%)
+
+Finally, we train the MNC model on the union set of 2007 trainval+test and 2012 trainval.
+0.74 (we; train; the MNC model on the union set of 2007 trainval+test and 2012 trainval; T:Finally)
+
+Under this setting, we obtain an mAPb of 75.9% (Table 4), substantially better than Fast/Faster R-CNN [9, 26].
+0.44 (we; obtain substantially better; L:Under this setting)
+
+Experiments on MS COCO Segmentation We further evaluate on the MS COCO dataset [22].
+0.50 (We; further evaluate; L:on the MS COCO dataset)
+
+Following the COCO guidelines, we use the 80k+40k trainval images to train, and report the results on the test-dev set.
+0.69 (we; use; the 80k+40k trainval images; to train, and report the results on the test-dev set; T:Following the COCO guidelines)
+0.29 Context(we use):(we; use the 80k+40k trainval images to report; the results on the test-dev set)
+
+We evaluate the standard COCO metric (mAPr@IoU=[0.5:0.95]) and also the PASCAL metrics (mAPr@IoU=0.5).
+0.50 (We; evaluate; the standard COCO metric)
+
+Table 5 shows our method using VGG-16 has a result of 19.5%/39.7%.
+0.34 (our method; using; )
+0.43 (Table 5; shows; our method using)
+0.94 Context(Table 5 shows):(VGG-16; has; a result of 19.5%)
+
+The end-to-end training behavior and the independence of external models make our method easily enjoy gains from deeper representations.
+0.93 (The end-to-end training behavior and the independence of external models; make; our method easily enjoy gains from deeper representations)
+0.59 Context(The end - to - end training behavior and the independence of external models make):(our method; easily enjoy; gains from deeper representations)
+
+By replacing VGG-16 with an extremely deep 101-layer network (ResNet-101) [16], we achieve 24.6%/44.3% on the MS COCO test-dev set (Table 5).
+0.45 (we; achieve; 24.6%)
+
+On our baseline result, we further adopt global context modeling and multi-scale testing as in [16], and ensembling.
+0.45 (we; further adopt; global context modeling and multi-scale testing)
+
+Our ﬁnal result on the test-challenge set is 28.2%/51.5%, which won the 1st place in the COCO segmentation track3 of ILSVRC & COCO 2015 competitions.
+0.90 (Our ﬁnal result on the test-challenge set; is; 28.2%/51.5%, which won the 1st place in the COCO segmentation track3 of ILSVRC & COCO 2015 competitions)
+0.96 (28.2%/51.5%; won; the 1st place; L:in the COCO segmentation track3 of ILSVRC & COCO 2015 competitions)
+
+We have presented Multi-task Network Cascades for fast and accurate instance segmentation.
+0.50 (We; have presented; Multi-task Network Cascades; for fast and accurate instance segmentation)
+
+We believe that the idea of exploiting network cascades in a multi-task learning framework is general.
+0.28 (We; believe; that the idea of exploiting network cascades in a multi-task learning framework is general)
+0.89 Context(We believe):(the idea of exploiting network cascades in a multi-task learning framework; is; general)
+
+Our method is designed with fast inference in mind, and is orthogonal to some other successful strategies developed previously for semantic segmentation.
+0.34 (Our method; is designed; )
+0.66 (Our method; is; orthogonal to some other successful strategies)
+0.92 (some other successful strategies; developed; T:previously; T:for semantic segmentation)
+
+Weaklyand semi-supervised learning of a dcnn for semantic image segmentation
+0.92 (Weaklyand; semi-supervised learning; of a dcnn for semantic image segmentation)
+

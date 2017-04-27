@@ -1,0 +1,348 @@
+In this paper, we conjecture that the use of a ﬁxed-length vector is a bottleneck in improving the performance of this basic encoder–decoder architecture, and propose to extend this by allowing a model to automatically (soft-)search for parts of a source sentence that are relevant to predicting a target word, without having to form these parts as a hard segment explicitly.
+0.40 (we; conjecture; that the use of a ﬁxed-length vector is a bottleneck in improving the performance of this basic encoder-decoder architecture; L:In this paper)
+0.96 Context(we conjecture):(the use of a ﬁxed-length vector; is; a bottleneck in improving the performance of this basic encoder-decoder architecture)
+0.94 (parts of a source sentence; are; relevant to predicting a target word, without having to form these parts as a hard segment explicitly)
+
+With this new approach, we achieve a translation performance comparable to the existing state-of-the-art phrase-based system on the task of English-to-French translation.
+0.61 (we; achieve; a translation performance comparable to the existing state-of-the-art phrase-based system on the task of English-to-French translation)
+
+Furthermore, qualitative analysis reveals that the (soft-)alignments found by the model agree well with our intuition.
+0.93 (the (soft-)alignments; found; by the model)
+0.70 (qualitative analysis; reveals; that the (soft-)alignments found by the model agree well with our intuition)
+0.89 Context(qualitative analysis reveals):(the (soft-)alignments found by the model; agree well; with our intuition)
+
+In order to address this issue, we introduce an extension to the encoder–decoder model which learns to align and translate jointly.
+0.45 (we; introduce; an extension to the encoder-decoder model)
+0.76 (the encoder-decoder model; to align; )
+0.74 (the encoder-decoder model; learns; to align and translate jointly)
+0.70 Context(the encoder - decoder model learns):(the encoder-decoder model; learns to align and translate jointly to translate jointly; )
+
+We show this allows a model to cope better with long sentences.
+0.58 (We; show; this allows a model to cope better with long sentences)
+0.33 Context(We show):(this; allows; a model to cope better with long sentences)
+0.88 Context(We show this allows):(a model; to cope better; with long sentences)
+
+In this paper, we show that the proposed approach of jointly learning to align and translate achieves signiﬁcantly improved translation performance over the basic encoder–decoder approach.
+0.53 (we; show; that the proposed approach of jointly learning to align and translate achieves signiﬁcantly improved translation performance over the basic encoder-decoder approach; L:In this paper)
+
+In neural machine translation, we ﬁt a parameterized model to maximize the conditional probability of sentence pairs using a parallel training corpus.
+0.76 (we; ﬁt; a parameterized model to maximize the conditional probability of sentence pairs; L:In neural machine translation)
+
+Here, we describe brieﬂy the underlying framework, called RNN Encoder–Decoder, proposed by Cho et al.
+0.74 (we; describe; brieﬂy the underlying framework, called RNN Encoder-Decoder, proposed by Cho et al; L:Here)
+0.97 (brieﬂy the underlying framework, called RNN Encoder-Decoder; proposed; by Cho et al)
+
+(2014) upon which we build a novel architecture that learns to align and translate simultaneously.
+0.33 (we; build; a novel architecture that learns to align and translate simultaneously)
+0.70 (a novel architecture; learns; to align and translate simultaneously)
+0.66 Context(a novel architecture learns):(a novel architecture; learns to align and translate simultaneously to align; )
+0.66 Context(a novel architecture learns):(a novel architecture; learns to align and translate simultaneously to translate simultaneously; )
+
+c = q ({h1,··· , hTx}) , 1 We mean by the state-of-the-art performance, the performance of the conventional phrase-based system without using any neural network-based component.
+0.19 (We; mean; )
+
+2 Although most of the previous works (see, e.g., Cho et al., 2014a; Sutskever et al., 2014; Kalchbrenner and Blunsom, 2013) used to encode a variable-length input sentence into a ﬁxed-length vector, it is not necessary, and even it may be beneﬁcial to have a variable-length vector, as we will show later.
+0.23 (we; will show; T:later)
+0.92 (Kalchbrenner and Blunsom; to encode; a variable-length input sentence)
+0.23 (it; is not; necessary)
+
+3 LEARNING TO ALIGN AND TRANSLATE In this section, we propose a novel architecture for neural machine translation.
+0.45 (we; propose; a novel architecture for neural machine translation)
+
+In a new model architecture, we deﬁne each conditional probability in Eq.
+0.64 (we; deﬁne; each conditional probability; L:in Eq; L:In a new model architecture)
+
+We explain in detail how the annotations are computed in the next section.
+0.35 (We; explain; how the annotations are computed in the next section)
+0.88 Context(We explain):(the annotations; are computed; L:in the next section)
+
+We parametrize the alignment model a as a feedforward neural network which is jointly trained with all the other components of the proposed system.
+0.45 (We; parametrize; the alignment model a as a feedforward neural network)
+0.92 (a as a feedforward neural network; is jointly trained; with all the other components of the proposed system)
+
+We can understand the approach of taking a weighted sum of all the annotations as computing an expected annotation, where the expectation is over possible alignments.
+0.57 (We; can understand; the approach of taking a weighted sum of all the annotations as computing an expected annotation)
+0.96 (the expectation; is; over possible alignments; L:an expected annotation)
+
+By letting the decoder have an attention mechanism, we relieve the encoder from the burden of having to encode all information in the source sentence into a ﬁxedlength vector.
+0.57 (we; relieve; the encoder from the burden of having to encode all information in the source sentence into a ﬁxedlength vector)
+
+However, in the proposed scheme, we would like the annotation of each word to summarize not only the preceding words, but also the following words.
+0.53 (we; would like; the annotation of each word; L:in the proposed scheme)
+0.50 Context(we would like):(we; would like the annotation of each word to summarize; not only the preceding words, but also the following words)
+
+Hence, we propose to use a bidirectional RNN (BiRNN, Schuster and Paliwal, 1997), which has been successfully used recently in speech recognition (see, e.g., Graves et al., 2013).
+0.92 (a bidirectional RNN; has been successfully used; T:recently; L:in speech recognition)
+0.43 (we; propose; to use a bidirectional RNN)
+0.43 Context(we propose):(we; propose to use; a bidirectional RNN)
+
+←− f reads the sequence in the reverse order (from xTx to x1), resulting in a ←− h j, i.e., hj = −→ We obtain an annotation for each word xj by concatenating the forward hidden state h j and the backward one .
+0.92 (←−; f reads; the sequence in the reverse order (from xTx to x1)
+0.95 (each word; xj; by concatenating the forward hidden state h j and the backward one)
+
+We evaluate the proposed approach on the task of English-to-French translation.
+0.61 (We; evaluate; the proposed approach on the task of English-to-French translation)
+
+We use the bilingual, parallel corpora provided by ACL WMT ’14.3 As a comparison, we also report the performance of an RNN Encoder–Decoder which was proposed recently by Cho et al.
+0.94 (the bilingual, parallel corpora; provided; by ACL WMT '14.3; As a comparison)
+0.94 (an RNN Encoder-Decoder; was proposed; T:recently; by Cho et al)
+0.43 (we; also report; the performance of an RNN Encoder-Decoder)
+0.55 Context(we also report):(We; use; the bilingual, parallel corpora provided by ACL WMT '14.3 As a comparison)
+
+We use the same training procedures and the same dataset for both models.4 WMT ’14 contains the following English-French parallel corpora: Europarl (61M words), news commentary (5.5M), UN (421M) and two crawled corpora of 90M and 272.5M words respectively, totaling 850M words.
+0.42 (two; crawled respectively; corpora of 90M and 272.5M words)
+0.92 (WMT '14; contains; the following English-French parallel corpora)
+0.51 Context(WMT '14 contains):(We; use; the same training procedures and the same dataset for both models.4)
+
+(2014a), we reduce the size of the combined corpus to have 348M words using the data selection method by Axelrod et al.
+0.61 (we; reduce; the size of the combined corpus to have 348M words)
+
+(2011).5 We do not use any monolingual data other than the mentioned parallel corpora, although it may be possible to use a much larger monolingual corpus to pretrain an encoder.
+0.45 (We; do not use; any monolingual data other than the mentioned parallel corpora)
+
+We concatenate news-testdescent is difﬁcult.
+0.40 (We; concatenate; news-testdescent is difﬁcult)
+0.79 Context(We concatenate):(news-testdescent; is; difﬁcult)
+
+After a usual tokenization6, we use a shortlist of 30,000 most frequent words in each language to train our models.
+0.70 (we; use; a shortlist of 30,000 most frequent words in each language; T:After a usual tokenization6)
+
+We do not apply any other special preprocessing, such as lowercasing or stemming, to the data.
+0.57 (We; do not apply; any other special preprocessing, such as lowercasing or stemming, to the data)
+
+We train two types of models.
+0.45 (We; train; two types of models)
+
+The ﬁrst one is an RNN Encoder–Decoder (RNNencdec, Cho et al., 2014a), and the other is the proposed model, to which we refer as RNNsearch.
+0.96 (The ﬁrst one; is; an RNN Encoder-Decoder (RNNencdec, Cho et al)
+0.65 (the other; is; the proposed model, to which we refer as RNNsearch)
+0.91 (the proposed model; refer; as RNNsearch)
+
+We train each model twice: ﬁrst with the sentences of length up to 30 words (RNNencdec-30, RNNsearch-30) and then with the sentences of length up to 50 word (RNNencdec-50, RNNsearch-50).
+0.45 (We; train; each model; T:twice)
+
+In both cases, we use a multilayer network with a single maxout (Goodfellow et al., 2013) hidden layer to compute the conditional probability of each target word (Pascanu et al., 2014).
+0.60 (we; use; a multilayer network with a single maxout; L:In both cases)
+
+We use a minibatch stochastic gradient descent (SGD) algorithm together with Adadelta (Zeiler, 2012) to train each model.
+0.39 (We; use; a minibatch stochastic gradient descent; to train each model)
+0.29 Context(We use):(We; use a minibatch stochastic gradient descent to train; each model)
+
+We trained each model for approximately 5 days.
+0.45 (We; trained; each model; T:for approximately 5 days)
+
+Once a model is trained, we use a beam search to ﬁnd a translation that approximately maximizes the conditional probability (see, e.g., Graves, 2012; Boulanger-Lewandowski et al., 2013).
+0.94 (a translation; approximately maximizes; the conditional probability (see, e.g., Graves, 2012)
+0.53 (we; use; a beam search; to ﬁnd a translation; T:Once a model is trained)
+0.31 Context(we use):(we; use a beam search to ﬁnd; a translation that approximately maximizes the conditional probability (see, e.g., Graves, 2012)
+
+In Table 1, we list the translation performances measured in BLEU score.
+0.70 (we; list; the translation performances measured in BLEU score; L:In Table 1)
+0.93 (the translation performances; measured; in BLEU score)
+
+This is a signiﬁcant achievement, considering that Moses uses a separate monolingual corpus (418M words) in addition to the parallel corpora we used to train the RNNsearch and RNNencdec.
+0.45 (This; is; a signiﬁcant achievement)
+0.46 (we; to train; the RNNsearch and RNNencdec)
+
+6 We used the tokenization script from the open-source machine translation package, Moses.
+0.60 (We; used; the tokenization script; from the open-source machine translation package; T:6)
+
+7 In this paper, by a ’hidden unit’, we always mean the gated hidden unit (see Appendix A.1.1).
+0.60 (we; mean; the gated hidden unit (see Appendix A.1.1; T:always)
+
+We conjectured that this limitation may make the basic encoder–decoder approach to underperform with long sentences.
+0.28 (We; conjectured; that this limitation may make the basic encoder-decoder approach to underperform with long sentences)
+0.92 Context(We conjectured):(this limitation; may make; the basic encoder-decoder approach to underperform with long sentences)
+
+2, we see that the performance of RNNencdec dramatically drops as the length of the sentences increases.
+0.31 (we; see; that the performance of RNNencdec dramatically drops as the length of the sentences increases)
+0.78 Context(we see):(the performance of RNNencdec; dramatically drops; )
+
+(◦) We disallowed the models to generate [UNK] tokens when only the sentences having no unknown words were evaluated (last column).
+0.91 (only the sentences; having; no unknown words)
+0.82 (only the sentences having no unknown words; were evaluated; )
+
+From this we see which positions in the source sentence were considered more important when generating the target word.
+0.50 (we; see; which positions in the source sentence were considered more important when generating the target word)
+
+We can see from the alignments in Fig.
+0.50 (We; can see; from the alignments in Fig)
+
+We see strong weights along the diagonal of each matrix.
+0.45 (We; see; strong weights along the diagonal of each matrix)
+
+However, we also observe a number of non-trivial, non-monotonic alignments.
+0.41 (we; observe; a number of non-trivial, non-monotonic alignments)
+
+Adjectives and nouns are typically ordered differently between French and English, and we see an example in Fig.
+0.81 (Adjectives and nouns; are ordered differently; between French and English; T:typically)
+0.50 (we; see; an example in Fig)
+
+From this ﬁgure, we see that the model correctly translates a phrase [European Economic Area] into [zone ´economique europ´een].
+0.31 (we; see; that the model correctly translates a phrase [European Economic Area] into [zone 'economique europ'een)
+0.88 Context(we see):(the model; correctly translates; a phrase; into [zone 'economique europ'een)
+
+Our soft-alignment solves this issue naturally by letting the model look at both [the] and [man], and in this example, we see that the model was able to correctly translate [the] into [l’].
+0.31 (Our soft-alignment; solves naturally; by letting the model look at both [the] and [man], and in this example, we see that the model was able to correctly translate [the] into [l)
+0.87 (the model; to correctly translate; into [l)
+0.28 (we; see; that the model was able to correctly translate [the] into [l)
+0.94 Context(we see):(the model; was; able to correctly translate [the] into [l)
+
+We observe similar behaviors in all the presented cases in Fig.
+0.50 (We; observe; similar behaviors; L:in all the presented cases in Fig)
+
+In conjunction with the quantitative results presented already, these qualitative observations conﬁrm our hypotheses that the RNNsearch architecture enables far more reliable translation of long sentences than the standard RNNencdec model.
+0.78 (the quantitative results; presented; T:already)
+0.91 (these qualitative observations; conﬁrm; our hypotheses; L:In conjunction with the quantitative results)
+0.95 Context(these qualitative observations conﬁrm):(the RNNsearch architecture; enables; far more reliable translation of long sentences than the standard RNNencdec model)
+
+In Appendix C, we provide a few more sample translations of long source sentences generated by the RNNencdec-50, RNNsearch-50 and Google Translate along with the reference translations.
+0.64 (we; provide; a few more sample translations of long source sentences; L:In Appendix C)
+0.93 (long source sentences; generated; by the RNNencdec-50)
+
+The main difference from our approach is that, in (Graves, 2013), the modes of the weights of the annotations only move in one direction.
+0.66 (The main difference from our approach; is; that, in (Graves, 2013), the modes of the weights of the annotations only move in one direction)
+0.93 Context(The main difference from our approach is):(the modes of the weights of the annotations; only move; in one direction)
+
+Our approach, on the other hand, requires computing the annotation weight of every word in the source sentence for each word in the translation.
+0.71 (Our approach; requires; computing the annotation weight of every word in the source sentence for each word in the translation)
+
+Although the above approaches were shown to improve the translation performance over the stateof-the-art machine translation systems, we are more interested in a more ambitious objective of designing a completely new translation system based on neural networks.
+0.75 (the above approaches; were shown; )
+0.93 (the above approaches; to improve; the translation performance over the stateof-the-art machine translation systems)
+0.57 (we; are; more interested in a more ambitious objective of designing a completely new translation system)
+0.93 (a completely new translation system; based; on neural networks)
+
+The neural machine translation approach we consider in this paper is therefore a radical departure from these earlier works.
+0.91 (The neural machine translation approach; consider; L:in this paper)
+0.79 (The neural machine translation approach we consider in this paper; is therefore; a radical departure from these earlier works)
+
+Rather than using a neural network as a part of the existing system, our model works on its own and generates a translation from a source sentence directly.
+0.41 (our model; works; )
+0.60 (our model; generates; a translation from a source sentence directly)
+
+We conjectured that the use of a ﬁxed-length context vector is problematic for translating long sentences, based on a recent empirical study reported by Cho et al.
+0.89 (long sentences; based; on a recent empirical study)
+0.93 (a recent empirical study; reported; by Cho et al)
+0.28 (We; conjectured; that the use of a ﬁxed-length context vector is problematic for translating long sentences)
+0.95 Context(We conjectured):(the use of a ﬁxed-length context vector; is; problematic for translating long sentences)
+
+In this paper, we proposed a novel architecture that addresses this issue.
+0.35 (we; proposed; a novel architecture that addresses this issue; L:In this paper)
+0.90 (a novel architecture; addresses; this issue)
+
+We extended the basic encoder–decoder by letting a model (soft-)search for a set of input words, or their annotations computed by an encoder, when generating each target word.
+0.42 (We; extended; the basic encoder-decoder; by letting a model (soft-)search for a set of input words, or their annotations)
+
+We tested the proposed model, called RNNsearch, on the task of English-to-French translation.
+0.61 (We; tested; the proposed model, called RNNsearch, on the task of English-to-French translation)
+0.91 (the proposed model; called; RNNsearch)
+
+From the qualitative analysis where we investigated the (soft-)alignment generated by the RNNsearch, we were able to conclude that the model can correctly align each target word with the relevant words, or their annotations, in the source sentence as it generated a correct translation.
+0.74 (we; investigated; the (soft-)alignment generated by the RNNsearch; L:the qualitative analysis)
+0.45 (it; generated; a correct translation)
+0.94 (the (soft-)alignment; generated; by the RNNsearch)
+0.32 (we; were; able to conclude that the model can correctly align each target word with the relevant words, or their annotations; T:From the qualitative analysis)
+0.15 (we; to conclude; that the model can correctly align each target word with the relevant words, or their annotations, in the source sentence as it generated a correct translation)
+0.88 Context(we to conclude):(the model; can correctly align; each target word; with the relevant words)
+
+We believe the architecture proposed here is a promising step toward better machine translation and a better understanding of natural languages in general.
+0.77 (the architecture; proposed; L:here)
+0.51 (We; believe; the architecture proposed here is a promising step toward better machine translation and a better understanding of natural languages in general)
+0.95 Context(We believe):(the architecture proposed here; is; a promising step toward better machine translation and a better understanding of natural languages in general)
+
+We acknowledge the support of the following agencies for research funding and computing support: NSERC, Calcul Qu´ebec, Compute Canada, the Canada Research Chairs and CIFAR.
+0.57 (We; acknowledge; the support of the following agencies for research funding and computing support)
+
+We also thank Felix Hill, Bart van Merri´enboer, Jean Pouget-Abadie, Coline Devin and Tae-Ho Kim.
+0.64 (We; thank; Felix Hill, Bart van Merri'enboer, Jean Pouget-Abadie, Coline Devin and Tae-Ho Kim)
+
+Here, we describe the choices we made for the experiments in this paper.
+0.56 (we; describe; the choices we made for the experiments in this paper; L:Here)
+0.45 (we; made; for the experiments in this paper)
+
+For the activation function f of an RNN, we use the gated hidden unit recently proposed by Cho et al.
+0.97 (For the activation function f of an RNN; use; we; , we use the gated hidden unit recently proposed by Cho et al)
+0.95 (the gated hidden unit; proposed; by Cho et al; T:recently)
+
+Whenever possible, we omit bias terms to make the equations less cluttered.
+0.53 (we; omit; bias terms; to make the equations less cluttered; T:Whenever possible)
+0.39 Context(we omit):(we; omit bias terms to make; the equations less cluttered)
+
+We compute them by zi = σ (Wze(yi−1) + Uzsi−1 + Czci) , ri = σ (Wre(yi−1) + Ursi−1 + Crci) , where σ (·) is a logistic sigmoid function.
+0.26 (We; compute; them)
+0.79 Context(We compute):(σ; is; a logistic sigmoid function)
+
+At each step of the decoder, we compute the output probability (Eq.
+0.60 (we; compute; the output probability; L:At each step of the decoder)
+
+We use a single hidden layer of maxout units (Goodfellow et al., 2013) and normalize the output probabilities (one for each word) with a softmax function (see Eq.
+0.45 (We; use; a single hidden layer of maxout units)
+0.41 (We; normalize; the output probabilities)
+
+In order to reduce computation, we use a singlelayer multilayer perceptron such that a tanh (Wasi−1 + Uahj) , where Wa ∈ Rn×n, Ua ∈ Rn×2n and va ∈ Rn are the weight matrices.
+0.45 (we; use; a singlelayer multilayer perceptron such)
+0.86 (Wa ∈ Rn×n; are; the weight matrices)
+
+Since Uahj does not depend on i, we can pre-compute it in advance to minimize the computational cost.
+0.86 (Uahj; does not depend; on i)
+0.26 (we; can pre-compute; it; T:in advance; to minimize the computational cost)
+0.29 Context(we can pre-compute):(we; can pre-compute it to minimize; the computational cost)
+
+8 Here, we show the formula of the decoder.
+0.52 (we; show; the formula of the decoder)
+
+Published as a conference paper at ICLR 2015 A.2 DETAILED DESCRIPTION OF THE MODEL In this section, we describe in detail the architecture of the proposed model (RNNsearch) used in the experiments (see Sec.
+0.41 (we; describe; the architecture of the proposed model)
+0.90 (the proposed model; used; L:in the experiments)
+
+From here on, we omit all bias terms in order to increase readability.
+0.60 (we; omit; all bias terms; in order; T:From here on)
+
+We concatenate the forward and backward states to to obtain the annotations (h1, h2,··· , hTx ), where ←− h Tx ) are computed similarly.
+0.64 (←− h Tx; are computed similarly; )
+0.39 (We; concatenate; the forward and backward states; to to obtain the annotations)
+0.55 Context(We concatenate):(We; concatenate the forward and backward states to to obtain; the annotations (h1, h2,··· , hTx ), where ←− h Tx ) are computed similarly)
+
+We share the word embedding matrix The hidden state si of the decoder given the annotations from the encoder is computed by si =(1 − zi) ◦ si−1 + zi ◦ ˜si, ˜si = tanh (W Eyi−1 + U [ri ◦ si−1] + Cci) zi =σ (WzEyi−1 + Uzsi−1 + Czci) ri =σ (WrEyi−1 + Ursi−1 + Crci) E is the word embedding matrix for the target language.
+0.35 (We; share; ◦ si−1 + zi ◦ ~si)
+0.97 Context(We share):(the word embedding matrix The hidden state si of the decoder given the annotations from the encoder; is computed; by si =(1 − zi)
+0.96 Context(We share):(WrEyi−1 + Ursi−1 + Crci) E; is; the word embedding matrix for the target language)
+0.90 (the word; embedding; matrix; for the target language)
+0.91 (the word embedding matrix; given; the annotations from the encoder)
+
+Note that the model becomes RNN Encoder–Decoder (Cho et al., 2014a), if we ﬁx ci to With the decoder state si−1, the context ci and the last generated word yi−1, we deﬁne the probability of a target word yi as p(yi|si, yi−1, ci) ∝ exp(cid:0)y(cid:62) ti =(cid:2)max(cid:8)˜ti,2j−1, ˜ti,2j (cid:9)(cid:3)(cid:62) and ˜ti,k is the k-th element of a vector ˜ti which is computed by ˜ti =Uosi−1 + VoEyi−1 + Coci.
+0.92 (k; is; the k-th element of a vector ~ti which is computed by ~ti =Uosi−1 + VoEyi−1 + Coci)
+0.94 (the k-th element of a vector; is computed; by ~ti =Uosi−1 + VoEyi−1 + Coci)
+0.49 (we; ﬁx; ci; to With the decoder state si−1, the context ci and the last generated word yi−1, we deﬁne the probability of a target word yi as p(yi|si, yi−1, ci) ∝ exp(cid:0)y(cid:62)
+0.45 (we; deﬁne; the probability of a target word yi)
+
+For Wa and Ua, we initialized them by sampling each element from the Gaussian distribution of mean 0 and variance 0.0012.
+0.20 (we; variance; 0.0012)
+0.43 (we; initialized; them; T:For Wa and Ua)
+0.39 Context(we initialized):(we; initialized them by sampling; each element)
+
+We used the stochastic gradient descent (SGD) algorithm.
+0.45 (We; used; the stochastic gradient descent)
+
+We explicitly Published as a conference paper at ICLR 2015 normalized the L2-norm of the gradient of the cost function each time to be at most a predeﬁned threshold of 1, when the norm was larger than the threshold (Pascanu et al., 2013b).
+0.50 (We; explicitly Published; as a conference paper at ICLR 2015)
+0.57 (We; normalized; the L2-norm of the gradient of the cost function; T:each time to be at most a predeﬁned threshold of 1, when the norm was larger than the threshold ()
+0.93 (the norm; was; larger than the threshold)
+
+At each update our implementation requires time proportional to the length of the longest sentence in a minibatch.
+0.76 (our implementation; requires; time proportional; L:At each update)
+
+Hence, to minimize the waste of computation, before every 20-th update, we retrieved 1600 sentence pairs, sorted them according to the lengths and split them into 20 minibatches.
+0.39 (we; retrieved; 1600 sentence pairs)
+0.18 Context(we retrieved):(we; retrieved 1600 sentence pairs sorted; them)
+0.18 Context(we retrieved):(we; retrieved 1600 sentence pairs split; them; into 20 minibatches)
+
+In Tables 2 we present the statistics related to training all the models used in the experiments.
+0.60 (we; present; the statistics related to training all the models; L:In Tables 2)
+0.90 (the statistics; related; to training all the models)
+0.91 (all the models; used; L:in the experiments)
+
+For each source sentence, we also show the goldstandard translation
+0.48 (we; show; the goldstandard translation)
+

@@ -1,0 +1,406 @@
+s c [     We describe a simple neural language model that relies only on character-level inputs.
+0.33 (We; describe; a simple neural language model that relies only on character-level inputs)
+0.91 (a simple neural language model; relies; only on character-level inputs)
+
+Our model employs a convolutional neural network (CNN) and a highway network over characters, whose output is given to a long short-term memory (LSTM) recurrent neural network language model (RNN-LM).
+0.64 (Our model; employs; a convolutional neural network)
+
+In this work, we propose a language model that leverages subword information through a character-level convolutional neural network (CNN), whose output is used as an input to a recurrent neural network language model (RNN-LM).
+0.51 (we; propose; a language model that leverages subword information through a character-level convolutional neural network (CNN),; L:In this work)
+0.95 (a character-level convolutional neural network; is used; as an input to a recurrent neural network language model)
+
+Unlike previous works that utilize subword information via morphemes (Botha and Blunsom 2014; Luong, Socher, and Manning 2013), our model does not require morphological tagging as a pre-processing step.
+0.89 (previous works; utilize; subword information)
+0.64 (our model; does not require; morphological tagging as a pre-processing step)
+
+And, unlike the recent line of work which combines input word embeddings with features from a character-level model (dos Santos and Zadrozny 2014; dos Santos and Guimaraes 2015), our model does not utilize word embeddings at all in the input layer.
+0.79 (work; combines; input word embeddings; with features from a character-level model)
+0.64 (our model; does not utilize; word embeddings; L:at all in the input layer)
+
+To summarize, our contributions are as follows: • on English, we achieve results on par with the existing state-of-the-art on the Penn Treebank (PTB), despite having approximately 60% fewer parameters, and • on morphologically rich languages (Arabic, Czech, French, German, Spanish, and Russian), our model outperforms various baselines (Kneser-Ney, wordlevel/morpheme-level LSTM), again with fewer parameters.
+0.64 (our model; outperforms; various baselines)
+0.55 (we; achieve; results on par with the existing state-of-the-art on the Penn Treebank)
+0.32 Context(we achieve):(our contributions; are; as follows)
+
+We have released all the code for the models described in this paper.1 The architecture of our model, shown in Figure 1, is straightforward.
+0.45 (We; have released; all the code for the models)
+0.90 (the models; described; L:in this paper.1)
+0.73 (The architecture of our model; shown; L:in Figure 1)
+0.60 (The architecture of our model, shown in Figure 1; is; straightforward)
+
+Whereas a conventional NLM takes word embeddings as inputs, our model instead takes the output from a single-layer character-level convolutional neural network with max-over-time pooling.
+0.91 (a conventional NLM; takes; word embeddings; as inputs)
+0.74 (our model; instead takes; the output; from a single-layer character-level convolutional neural network with max-over-time pooling)
+
+For notation, we denote vectors with bold lower-case (e.g.
+0.44 (we; denote e.g.; vectors; with bold lower-case)
+
+For notational convenience we assume that words and characters have already been converted into indices.
+0.27 (we; assume; that words and characters have already been converted into indices)
+0.90 Context(we assume):(words and characters; have been converted; into indices; T:already)
+
+It is easy to extend the RNN/LSTM to two (or more) layers by having another network whose Figure 1: Architecture of our language model applied to an example sentence.
+0.87 (the RNN/LSTM; by having; another network)
+0.70 (Architecture of our language model; applied; to an example sentence)
+
+Note that in the above example we have twelve ﬁlters—three ﬁlters of width two (blue), four ﬁlters of width three (yellow), and ﬁve ﬁlters of width four (red).
+
+Our model simply replaces the input embeddings X with the output from a character-level convolutional neural network, to be described below.
+0.64 (Our model; simply replaces; the input embeddings)
+0.79 (a character-level convolutional neural network; to be described below; )
+
+If we denote w1:T = [w1,··· , wT ] to be the sequence of words in the training corpus, training involves minimizing the negative log-likelihood (N LL) of the sequence which is typically done by truncated backpropagation through time (Werbos 1990; Graves 2013).
+0.23 (we; denote; w1)
+0.79 (···; to be; the sequence of words in the training corpus)
+0.97 (training; involves; minimizing the negative log-likelihood (N LL) of the sequence; T:T)
+0.89 (the sequence; is typically done; by truncated backpropagation; T:through time)
+
+Character-level Convolutional Neural Network In our model, the input at time t is an output from a character-level convolutional neural network (CharCNN), which we describe in this section.
+0.96 (the input at time t; is; an output from a character-level convolutional neural network; L:In our model)
+0.93 (a character-level convolutional neural network; describe; L:in this section)
+
+the cj-th column of Q).4 We apply a narrow convolution between Ck and a ﬁlter (or kernel) H ∈ Rd×w of width w, after which we add a bias and apply a nonlinearity to obtain a feature map f k ∈ Rl−w+1.
+0.61 (We; apply; a narrow convolution between Ck and a ﬁlter (or kernel) H ∈ Rd×w of width w)
+0.52 (we; add; a bias)
+0.41 (we; apply; a nonlinearity)
+
+2In our work, predictions are at the word-level, and hence we 3Given that |C| is usually small, some authors work with onehot representations of characters.
+0.89 (predictions; are; at the word-level)
+0.93 (some authors; work; with onehot representations of characters)
+
+However we found that using lower dimensional representations of characters (i.e.
+0.19 (we; found; that using lower dimensional representations of characters)
+
+4Two technical details warrant mention here: (1) we append start-of-word and end-of-word characters to each word to better represent preﬁxes and sufﬁxes and hence Ck actually has l + 2 columns; (2) for batch processing, we zero-pad Ck so that the number of columns is constant (equal to the max word length) for all words in V.
+0.57 (we; append; start-of-word and end-of-word characters; to each word)
+0.97 (the number of columns; is; constant (equal to the max word length) for all words in V.)
+
+Finally, we take the max-over-time as the feature corresponding to the ﬁlter H (when applied to word k).
+0.60 (we; take; the max-over-time; as the feature corresponding to the ﬁlter H; T:Finally)
+0.73 (the feature; corresponding; )
+
+, yk We have described the process by which one feature is obtained from one ﬁlter matrix.
+0.57 (We; have described; the process by which one feature is obtained from one ﬁlter matrix)
+0.90 (one feature; is obtained; from one ﬁlter matrix)
+
+Our CharCNN uses multiple ﬁlters of varying widths to obtain the feature vector for k.
+0.65 (Our CharCNN; uses; multiple ﬁlters of varying widths; to obtain the feature vector for)
+0.65 Context(Our CharCNN uses):(Our CharCNN; uses multiple ﬁlters of varying widths to obtain; the feature vector; for)
+
+So if we have a total of h ﬁlters H1, .
+
+Highway Network We could simply replace xk (the word embedding) with yk at each t in the RNN-LM, and as we show later, this simple model performs well on its own (Table 7).
+0.61 (We; could simply replace; xk; with yk at each t in the RNN-LM)
+0.73 (the word; embedding; )
+0.28 (we; show; T:later)
+0.87 (this simple model; performs well; L:on its own (Table 7)
+
+One could also have a multilayer perceptron (MLP) over yk to model interactions between the character n-grams picked up by the ﬁlters, but we found that this resulted in worse performance.
+0.51 (One; could have; a multilayer perceptron)
+0.89 (the character; picked up; by the ﬁlters)
+0.19 (we; found; that this resulted in worse performance)
+0.33 Context(we found):(this; resulted; in worse performance)
+
+Instead we obtained improvements by running yk through a highway network, recently proposed by Srivastava et al.
+0.39 (we; obtained; improvements)
+0.39 Context(we obtained):(we; obtained improvements by running; yk)
+
+As is standard in language modeling, we use perplexity (P P L) to evaluate the performance of our models.
+0.26 (we; use; perplexity; to evaluate the performance of our models)
+0.18 Context(we use):(we; use perplexity to evaluate; the performance of our models)
+
+We test the model on corpora of varying languages and sizes (statistics available in Table 1).
+0.52 (We; test; the model on corpora of varying languages and sizes)
+
+We conduct hyperparameter search, model introspection, and ablation studies on the English Penn Treebank (PTB) (Marcus, Santorini, and Marcinkiewicz 1993), utilizing the 5Srivastava et al.
+0.56 (We; conduct; hyperparameter search, model introspection, and ablation studies on the English Penn Treebank)
+0.34 Context(We conduct):(We; conduct hyperparameter search, model introspection, and ablation studies on the English Penn Treebank utilizing; the 5Srivastava et al)
+
+We initialized bT to a small interval around −2.
+0.50 (We; initialized; bT; to a small interval around −2)
+
+With approximately 1m tokens and |V| = 10k, this version has been extensively used by the language modeling community and is publicly available.6 With the optimal hyperparameters tuned on PTB, we apply the model to various morphologically rich languages: Czech, German, French, Spanish, Russian, and Arabic.
+0.79 (this version; is; publicly)
+0.75 (the optimal hyperparameters; tuned; )
+0.39 (we; apply; the model; to various morphologically rich languages)
+0.88 Context(we apply):(this version; has been extensively used; by the language modeling community)
+
+NonArabic data comes from the 2013 ACL Workshop on Machine Translation,7 and we use the same train/validation/test splits as in Botha and Blunsom (2014).
+0.45 (we; use; the same train/validation/test)
+
+While the raw data are publicly available, we obtained the preprocessed versions from the authors,8 whose morphological NLM serves as a baseline for our work.
+0.78 (the raw data; are; publicly available)
+0.45 (we; obtained; the preprocessed versions from the authors)
+
+We train on both the small datasets (DATA-S) with 1m tokens per language, and the large datasets (DATA-L) including the large English data which has a much bigger |V| than the PTB.
+0.45 (We; train; on both the small datasets; with 1m tokens per language)
+0.94 (the large English data; has; a much bigger |V)
+
+Arabic data comes from the News-Commentary corpus,9 and we perform our own preprocessing and train/validation/test splits.
+0.92 (Arabic data; comes; from the News-Commentary corpus)
+0.42 (we; perform; our own preprocessing and train/validation/test splits)
+
+In these datasets only singleton words were replaced with <unk> and hence we effectively use the full vocabulary.
+0.95 (only singleton words; were replaced; with <unk>; L:In these datasets)
+
+It is worth noting that the character model can utilize surface forms of OOV tokens (which were replaced with <unk>), but we do not do this and stick to the preprocessed versions (despite disadvantaging the character models) for exact comparison against prior work.
+0.44 (It; is; worth noting that the character model can utilize surface forms of OOV tokens)
+0.48 (we; stick; to the preprocessed versions)
+0.79 (OOV tokens; were replaced; with <unk>)
+0.23 (we; do not do; this)
+
+We backpropagate for 35 time steps using stochastic gradient descent where the learning rate is initially set to 1.0 and halved if the perplexity does not decrease by more than 1.0 on the validation set after an epoch.
+0.45 (We; backpropagate; for 35 time steps)
+0.93 (the validation; set; T:after an epoch)
+0.94 (35 time steps; using; stochastic gradient descent where the learning rate is initially set to 1.0 and halved)
+0.81 (the learning rate; is set; to 1.0; T:initially)
+0.82 (the learning rate; halved; T:initially)
+0.90 (the perplexity; does not decrease; by more than 1.0; L:on the validation)
+
+On DATA-S we use a batch size of 20 and on DATA-L we use a batch size of 100 (for d w [1, 2, 3, 4, 5, 6] h f 15 [1, 2, 3, 4, 5, 6, 7] [min{200, 50 · w}] tanh 2 ReLU 2 650 Table 2: Architecture of the small and large models.
+0.64 (we; use; a batch size of 20; L:On DATA-S)
+0.74 (we; use; a batch size of 100 (for d w [1, 2, 3, 4, 5, 6; L:on DATA-L)
+
+We train for 25 epochs on non-Arabic and 30 epochs on Arabic data (which was sufﬁcient for convergence), picking the best performing model on the validation set.
+0.91 (30 epochs on Arabic data; was sufﬁcient; for convergence)
+0.50 (We; train; for 25 epochs on non-Arabic and 30 epochs on Arabic data)
+0.29 Context(We train):(We; train for 25 epochs on non-Arabic and 30 epochs on Arabic data picking; the best performing model on the validation set)
+
+For regularization we use dropout (Hinton et al.
+0.89 (For regularization; use; dropout)
+
+We further constrain the norm of the gradients to be below 5, so that if the L2 norm of the gradient exceeds 5 then we renormalize it to have || · || = 5 before updating.
+0.45 (We; further constrain; the norm of the gradients)
+0.20 (We; to be; below 5)
+0.87 (the L2 norm of the gradient; exceeds; 5)
+0.50 (we; renormalize; it; to have || · || = 5 before updating; T:then)
+0.35 Context(we renormalize):(we; renormalize it to have | |; || = 5; T:before updating)
+
+of clusters c = (cid:100)(cid:112)|V|(cid:101) and randomly split V into mutually Finally, in order to speed up training on DATA-L we employ a hierarchical softmax (Morin and Bengio 2005)—a common strategy for training language models with very large |V|—instead of the usual softmax.
+0.45 (we; employ; a hierarchical softmax)
+
+We pick the number exclusive and collectively exhaustive subsets V1, .
+0.52 (We; pick; the number exclusive)
+
+Botha and Blunsom (2014) use Brown clusering), we used random clusters as our implementation enjoys the best speed-up when the number of words in each cluster is approximately equal.
+0.64 (our implementation; enjoys; the best speed-up)
+0.88 (the number of words in each cluster; is; approximately equal)
+0.40 (we; used; random clusters)
+0.92 Context(we used):(Botha and Blunsom; use; Brown clusering)
+
+We found random clustering to work surprisingly well.
+0.40 (We; found; random clustering to work surprisingly well)
+0.69 Context(We found):(random clustering; to work surprisingly well; )
+
+2014) Size 5 m 5 m 20 m 19 m 2 m 6 m 7 m 8 m 6 m 6 m 5 m 20 m 52 m Table 3: Performance of our model versus other neural language models on the English Penn Treebank test set.
+0.95 (2014) Size 5; m; 5 m)
+
+†For these models the authors did not explicitly state the number of parameters, and hence sizes shown here are estimates based on our understanding of their papers or private correspondence with the respective authors.
+0.90 (†For these models; did not explicitly state; the number of parameters)
+0.80 (sizes; shown; L:here)
+0.88 (estimates; based; on our understanding of their papers or private correspondence with the respective authors)
+
+We found that hierarchical softmax was not necessary for models trained on DATA-S.
+0.91 (models; trained; on DATA-S)
+0.19 (We; found; that hierarchical softmax was not necessary for models)
+0.88 Context(We found):(hierarchical softmax; was not; necessary for models)
+
+English Penn Treebank We train two versions of our model to assess the trade-off between performance and size.
+0.42 (We; train; two versions of our model to assess the trade-off between performance and size)
+
+As another baseline, we also train two comparable LSTM models that use word embeddings only (LSTM-Word-Small, LSTM-Word-Large).
+0.46 (we; train; two comparable LSTM models)
+0.93 (two comparable LSTM models; use; word embeddings)
+
+As can be seen from Table 3, our large model is on par with the existing state-of-the-art (Zaremba et al.
+0.81 (our large model; is; on par with the existing state-of-the-art)
+
+Our small model signiﬁcantly outperforms other NLMs of similar size, even though it is penalized by the fact that the dataset already has OOV words replaced with <unk> (other models are purely word-level models).
+0.66 (Our small model; signiﬁcantly outperforms; other NLMs of similar size)
+0.96 (the dataset; has; OOV words; T:already)
+0.82 (OOV words; replaced; with <)
+0.90 (other models; are purely; word-level models)
+
+While lower perplexities have been reported with model ensembles (Mikolov and Zweig 2012), we do not include them here as they are not comparable to the current work.
+0.90 (lower perplexities; have been reported; with model ensembles)
+0.31 (we; do not include; them; L:here; as they are not comparable to the current work)
+0.62 (they; are not; comparable to the current work)
+
+First two rows are from Botha (2014) (except on Arabic where we trained our own KN-4 model) while the last six are from this paper.
+0.92 (two rows; are; from Botha (2014)
+0.49 (we; trained; our own KN-4 model; L:Arabic)
+0.59 (the last six; are; from this paper)
+
+from a morphological standpoint, and thus our next set of results (and arguably the main contribution of this paper) is focused on languages with richer morphology (Table 4, Table 5).
+0.83 (our next set of results (and arguably the main contribution of this paper; is focused; on languages with richer morphology)
+
+We compare our results against the morphological logbilinear (MLBL) model from Botha and Blunsom (2014), whose model also takes into account subword information through morpheme embeddings that are summed at the input and output layers.
+0.46 (We; compare; our results; against the morphological logbilinear (MLBL) model from Botha and Blunsom)
+0.89 (morpheme embeddings; are summed; at the input and output layers)
+
+As comparison against the MLBL models is confounded by our use of LSTMs—widely known to outperform their feed-forward/log-bilinear cousins—we also train an LSTM version of the morphological NLM, where the input representation of a word given to the LSTM is a summation of the word’s morpheme embeddings.
+0.92 (comparison against the MLBL models; is confounded; by our use of LSTMs)
+0.97 (the input representation of a word; is; a summation of the word's morpheme embeddings; L:the morphological NLM)
+0.85 (LSTMs; known; to outperform their feed-forward/log-bilinear cousins)
+0.46 (we; train; an LSTM version of the morphological NLM)
+0.92 (a word; given; to the LSTM)
+
+Given the input word k, we feed the following representation to the LSTM: where xk is the word embedding (as in a word-level model) and Mk ⊂ M is the set of morphemes for word k.
+0.90 (xk; is; , we feed the following representation to the LSTM: where xk is the word embedding (as in a word-level model)
+0.90 (Mk ⊂ M; is; the set of morphemes for word)
+
+The morphemes are obtained by running an unsupervised morphological tagger as a preprocessing step.11 We emphasize that the word embedding itself (i.e.
+0.89 (The morphemes; by running; an unsupervised morphological tagger; as a preprocessing step.11)
+0.69 (The morphemes; are obtained; )
+0.12 Context(The morphemes are obtained):(We; emphasize; that the word embedding itself (i.e.)
+0.80 Context(The morphemes are obtained We emphasize):(the word; embedding i.e.; itself)
+
+We further train wordlevel LSTM models as another baseline.
+0.50 (We; further train; wordlevel LSTM models; as another baseline)
+
+Due to memory constraints13 we only train the small models on DATA-L (Table 5).
+0.50 (we; only train; the small models on DATA-L)
+
+Interestingly we do not observe signiﬁcant differences going from word to morpheme LSTMs on Spanish, French, and English.
+
+We also observe signiﬁcant perplexity reductions even on English when V is large.
+0.45 (We; also observe; signiﬁcant perplexity reductions; T:when V is large)
+0.67 (V; is; large)
+
+We conclude this section by noting that we used the same architecture for all languages and did not perform any language-speciﬁc tuning of hyperparameters.
+0.41 (we; did not perform; any language-speciﬁc tuning of hyperparameters)
+0.39 (We; conclude; this section)
+0.17 Context(We conclude):(We; conclude this section by noting; that we used the same architecture for all languages and did not perform any language-speciﬁc tuning of hyperparameters)
+0.39 Context(We conclude by noting):(we; used; the same architecture; for all languages)
+
+Discussion Learned Word Representations We explore the word representations learned by the models on the PTB.
+0.93 (the word representations; learned; by the models on the PTB)
+0.89 (Discussion; Learned; Word Representations)
+0.56 Context(Discussion Learned):(We; explore; the word representations learned by the models on the PTB)
+
+For the character models we compare the representations obtained before and after highway layers.
+0.90 (the character models; compare; the representations obtained before and after highway layers)
+0.90 (the representations; obtained; T:before and after highway layers)
+
+his and hhs), highlighting the limits of our approach, although this could be due to the small dataset.
+0.47 (his and hhs; highlighting; the limits of our approach)
+0.38 (this; could be; due to the small dataset)
+
+Our initial expectation was that each ﬁlter would learn to activate on different morphemes and then build up semantic representations of words from the identiﬁed morphemes.
+0.54 (Our initial expectation; was; that each ﬁlter would learn to activate on different morphemes and then build up semantic representations of words from the identiﬁed morphemes)
+0.92 Context(Our initial expectation was):(each ﬁlter; would learn; to activate on different morphemes and then build up semantic representations of words from the identiﬁed morphemes)
+0.89 Context(Our initial expectation was each ﬁlter would learn):(each ﬁlter; would learn to build up; semantic representations of words from the identiﬁed morphemes; T:then)
+
+those that maximized the value of the ﬁlter), we found that they did not (in general) correspond to valid morphemes.
+0.21 (those; maximized; the value of the ﬁlter)
+0.17 (we; found; that they did not (in general) correspond to valid morphemes)
+0.52 Context(we found):(they; correspond; to valid morphemes)
+
+To get a better intuition for what the character composition model is learning, we plot the learned representations of all character n-grams (that occurred as part of at least two words in V) via principal components analysis (Figure 2).
+0.77 (the character composition model; is learning; )
+0.52 (we; plot; the learned representations of all character)
+0.82 (n-grams; occurred; as part of at least two words in V)
+
+We feed each character n-gram into the CharCNN and use the CharCNN’s output as the ﬁxed dimensional representation for the corresponding character n-gram.
+0.45 (We; feed; each character)
+0.57 (We; use; the CharCNN's output as the ﬁxed dimensional representation for the corresponding character)
+
+We also ﬁnd that the representations are particularly sensitive to character n-grams containing hyphens (orange), presumably because this is a strong signal of a word’s part-of-speech.
+0.84 (n-grams; containing; hyphens)
+0.29 (We; ﬁnd; that the representations are particularly sensitive to character n-grams containing hyphens (orange), presumably because this is a strong signal of a word's part-of-speech)
+0.88 Context(We ﬁnd):(the representations; are; particularly sensitive to character)
+
+Highway Layers We quantitatively investigate the effect of highway network layers via ablation studies (Table 7).
+0.45 (We; quantitatively investigate; the effect of highway network layers via ablation studies)
+
+We train a model without any highway layers, and ﬁnd that performance decreases signiﬁcantly.
+0.45 (We; train; a model)
+0.21 (We; ﬁnd; that performance decreases signiﬁcantly)
+0.69 Context(We ﬁnd):(that performance; decreases signiﬁcantly; )
+
+As the difference in performance could be due to the decrease in model size, we also train a model that feeds yk (i.e.
+0.74 (a model; feeds; yk (i.e.)
+0.16 (we; train; a model that feeds yk (i.e.)
+0.91 Context(we train):(As the difference in performance; could be; due to the decrease in model size)
+
+We ﬁnd that the MLP does poorly, although this could be due to optimization issues.
+0.24 (We; ﬁnd; )
+0.66 (the MLP; does poorly; )
+0.38 (this; could be; due to optimization issues)
+
+We hypothesize that highway networks are especially well-suited to work with CNNs, adaptively combining local features detected by the individual ﬁlters.
+0.90 (highway networks; to work; with CNNs)
+0.90 (local features; detected; by the individual ﬁlters)
+0.32 (We; hypothesize; that highway networks are especially well-suited to work with CNNs)
+0.90 Context(We hypothesize):(highway networks; are; especially well-suited to work with CNNs)
+
+2014; Kalchbrenner, Grefenstette, and Blunsom 2014; Kim 2014; Zhang, Zhao, and LeCun 2015; Lei, Barzilay, and Jaakola 2015), and we posit that further gains could be achieved by employing highway layers on top of existing CNN architectures.
+0.90 (further gains; by employing; highway layers; on top of existing CNN architectures)
+0.32 (we; posit; that further gains could be achieved by employing highway layers on top of existing CNN architectures)
+0.69 Context(we posit):(further gains; could be achieved; )
+
+We also anecdotally note that (1) having one to two highway layers was important, but more highway layers generally resulted in similar performance (though this may depend on the size of the datasets), (2) having more convolutional layers before max-pooling did not help, and (3) highway layers did not improve models that only used word embeddings as inputs.
+0.24 (We; anecdotally note; that (1) having one to two highway layers was important, but more highway layers generally resulted in similar performance (though this may depend on the size of the datasets)
+0.75 (max-pooling; did not help; )
+0.77 (highway layers; did not improve; models that only used word embeddings as inputs)
+0.89 (more highway layers; generally resulted; in similar performance)
+0.32 Context(more highway layers generally resulted):(this; may depend; on the size of the datasets)
+0.88 (models; only used; word embeddings; as inputs)
+
+Effect of Corpus/Vocab Sizes We next study the effect of training corpus/vocabulary sizes on the relative performance between the different models.
+0.90 (Effect of Corpus/Vocab; Sizes; We next study)
+
+We take the German (DE) dataset from DATA-L and vary the training corpus/vocabulary sizes, calculating the perplexity reductions as a result of going from a small word-level model to a small character-level model.
+0.61 (We; take; the German (DE) dataset from DATA-L)
+0.41 (We; vary; the training corpus/vocabulary sizes)
+
+To vary the vocabulary size we take the most frequent k words and replace the rest with <unk>.
+0.45 (we; take; the most frequent k words)
+0.41 (we; replace; the rest; with <unk)
+
+Although Table 8 suggests that the perplexity reductions become less pronounced as the corpus size increases, we nonetheless ﬁnd that the character-level model outperforms the word-level model in all scenarios.
+0.86 (Table 8; suggests; that the perplexity reductions become less pronounced as the corpus size increases)
+0.89 Context(Table 8 suggests):(the perplexity reductions; become; less pronounced as the corpus size increases)
+0.27 (we; nonetheless ﬁnd; that the character-level model outperforms the word-level model in all scenarios)
+0.91 Context(we nonetheless ﬁnd):(the character-level model; outperforms; the word-level model in all scenarios)
+
+Further Observations We report on some further experiments and observations: • Combining word embeddings with the CharCNN’s output to form a combined representation of a word (to be used as input to the LSTM) resulted in slightly worse performance (81 on PTB with a large model).
+0.45 (We; report; on some further experiments and observations)
+0.99 (a combined representation of a word (to be used as input to the LSTM; resulted; in slightly worse performance (81 on PTB with a large model)
+0.43 (•; Combining; word embeddings; with the CharCNN's output)
+
+While this could be due to insufﬁcient experimentation on our part,14 it suggests that for some tasks, word embeddings are superﬂuous— character inputs are good enough.
+0.25 (this; could be; due  to insufﬁcient experimentation on our part)
+0.27 (it; suggests; that for some tasks, word embeddings are superﬂuous- character inputs are good enough)
+0.88 Context(it suggests):(word embeddings; are; superﬂuous- character inputs are good enough)
+0.75 Context(it suggests word embeddings are):(superﬂuous- character inputs; are; good enough)
+
+• While our model requires additional convolution operations over characters and is thus slower than a comparable word-level model which can perform a simple lookup at the input layer, we found that the difference was manageable with optimized GPU implementations—for example on PTB the large character-level model trained at 1500 tokens/sec compared to the word-level model which trained at 3000 tokens/sec.
+0.64 (our model; requires; additional convolution operations over characters)
+0.66 (our model; is; thus slower than a comparable word-level model)
+0.93 (the large character-level model; trained; at 1500 tokens/sec)
+0.92 (a comparable word-level model; can perform; a simple lookup; L:at the input layer)
+0.91 (the word-level model; trained; at 3000 tokens/sec)
+0.31 (we; found; that the difference was manageable with optimized GPU implementations-for example on PTB)
+0.95 Context(we found):(the difference; was; manageable with optimized GPU implementations-for example on PTB)
+
+For scoring, our model can have the same running time as a pure word-level model, as the CharCNN’s outputs can be pre-computed for all words in V.
+0.76 (our model; can have; the same running time; as a pure word-level model; T:For scoring)
+0.95 (the CharCNN's outputs; can be pre-computed; for all words in V.)
+
+We have introduced a neural language model that utilizes only character-level inputs.
+0.33 (We; have introduced; a neural language model that utilizes only character-level inputs)
+0.91 (a neural language model; utilizes; only character-level inputs)
+
+Despite having fewer parameters, our model outperforms baseline models that utilize word/morpheme embeddings in the input layer.
+0.51 (our model; outperforms; baseline models that utilize word/morpheme embeddings in the input layer)
+0.89 (baseline models; utilize; word/morpheme embeddings; L:in the input layer)
+
+Our work questions the necessity of word embeddings (as inputs) for neural language modeling.
+0.64 (Our work; questions; the necessity of word embeddings)
+
+We are especially grateful to Jan Botha for providing the preprocessed datasets and the model results.
+0.61 (We; are; especially grateful to Jan Botha for providing the preprocessed datasets and the model results)
+
+Werbos, P
+

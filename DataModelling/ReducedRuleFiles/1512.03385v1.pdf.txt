@@ -1,0 +1,149 @@
+The paper  |  outputs  | residual learning framework
+The paper  |  outputs  | training
+The paper  |  outputs  | networks
+The paper  |  outputs  | residual learning framework to ease the training of networks
+The paper  |  uses  | t
+The paper  |  outputs  | comprehensive empirical evidence
+The paper  |  outputs  | residual networks
+The paper  |  outputs  | comprehensive empirical evidence showing that these residual networks
+The paper  |  outputs  | analysis
+The paper  |  outputs  | models
+The paper  |  outputs  | dataset
+The paper  |  outputs  | layers
+The paper  |  outputs  | models on this dataset with over 100 layers
+The paper  |  outputs  | l
+The paper  |  outputs  | imagenet
+The paper  |  outputs  | l : on imagenet
+The paper  |  outputs  | accuracy gains
+The paper  |  outputs  | increased depth
+The paper  |  outputs  | accuracy gains with extremely increased depth
+The paper  |  outputs  | identity mappings
+The paper  |  uses  | building block
+The paper  |  uses  | y = f
+The paper  |  uses  | +
+The paper  |  uses  | building block deﬁned as : y = f ( x , { wi } ) +
+The paper  |  uses  | square matrix
+The paper  |  uses  | t
+The paper  |  uses  | dimensions
+The paper  |  uses  | t : when matching dimensions
+The paper  |  outputs  | models
+The paper  |  outputs  | imagenet
+The paper  |  outputs  | models for imagenet
+The paper  |  uses  | options
+The paper  |  uses  | shortcut
+The paper  |  uses  | identity mapping
+The paper  |  uses  | extra zero entries
+The paper  |  uses  | dimensions
+The paper  |  uses  | options : ( a ) the shortcut still performs identity mapping , with extra zero entries padded for increasing dimensions
+The paper  |  uses  | sgd
+The paper  |  uses  | weight decay
+The paper  |  uses  | momentum
+The paper  |  uses  | weight decay of 0.0001 and a momentum
+The paper  |  uses  | dropout
+The paper  |  uses  | practice
+The paper  |  outputs  | test server
+The paper  |  uses  | gradients
+The paper  |  uses  | identity mapping
+The paper  |  uses  | shortcuts
+The paper  |  uses  | zero-padding
+The paper  |  uses  | dimensions
+The paper  |  uses  | identity mapping for all shortcuts and zero-padding for increasing dimensions
+The paper  |  uses  | dimensions
+The paper  |  outputs  | projection shortcuts
+The paper  |  uses  | option c
+The paper  |  uses  | memory/time complexity
+The paper  |  uses  | model sizes
+The paper  |  uses  | option c to reduce memory/time complexity and model sizes
+The paper  |  uses  | memory/time complexity
+The paper  |  uses  | model sizes
+The paper  |  uses  | memory/time complexity and model sizes
+The paper  |  uses  | stack
+The paper  |  uses  | layers
+The paper  |  uses  | fig
+The paper  |  uses  | stack of 3 layers instead of 2 ( fig
+The paper  |  uses  | option b
+The paper  |  uses  | dimensions
+The paper  |  uses  | option b for increasing dimensions
+The paper  |  outputs  | 152-layer resnets
+The paper  |  outputs  | 3-layer blocks
+The paper  |  outputs  | competitive accuracy
+The paper  |  uses  | t
+The paper  |  uses  | identity shortcuts
+The paper  |  uses  | weight decay
+The paper  |  uses  | momentum
+The paper  |  uses  | weight decay of 0.0001 and momentum
+The paper  |  outputs  | accuracy gains
+The paper  |  uses  | training
+The paper  |  uses  | training error
+The paper  |  uses  | %
+The paper  |  uses  | iterations
+The paper  |  uses  | training until the training error is below 80 % ( about 400 iterations
+The paper  |  uses  | training
+The paper  |  uses  | maxout/dropout
+The paper  |  outputs  | training error
+The paper  |  outputs  | detection method
+The paper  |  uses  | t
+The paper  |  uses  | [
+The paper  |  uses  | t : in [
+The paper  |  uses  | layers
+The paper  |  uses  | strides
+The paper  |  uses  | image
+The paper  |  uses  | pixels
+The paper  |  uses  | conv1
+The paper  |  uses  | conv2 x
+The paper  |  uses  | conv3 x
+The paper  |  uses  | conv4 x
+The paper  |  uses  | conv layers
+The paper  |  uses  | layers whose strides on the image are no greater than 16 pixels ( i.e. , conv1 , conv2 x , conv3 x , and conv4 x , totally 91 conv layers
+The paper  |  uses  | layers
+The paper  |  uses  | trainval images
+The paper  |  uses  | voc
+The paper  |  uses  | trainval images
+The paper  |  uses  | voc
+The paper  |  uses  | trainval images in voc 2007 and 16k trainval images in voc
+The paper  |  uses  | trainval+test images
+The paper  |  uses  | voc
+The paper  |  uses  | trainval images
+The paper  |  uses  | voc
+The paper  |  uses  | training
+The paper  |  uses  | trainval+test images in voc 2007 and 16k trainval images in voc 2012 for training
+The paper  |  uses  | images
+The paper  |  uses  | train
+The paper  |  uses  | images on the train
+The paper  |  outputs  | improvements
+The paper  |  outputs  | competitions
+The paper  |  outputs  | improvements made for the competitions
+The paper  |  uses  | trainval
+The paper  |  uses  | training
+The paper  |  uses  | test-dev set
+The paper  |  uses  | evaluation
+The paper  |  uses  | trainval set for training and the 20k test-dev set for evaluation
+The paper  |  uses  | ensemble
+The paper  |  uses  | regions
+The paper  |  uses  | ensemble for proposing regions
+The paper  |  outputs  | % map
+The paper  |  uses  | other ilsvrc
+The paper  |  uses  | data
+The paper  |  uses  | other ilsvrc 2015 data
+The paper  |  uses  | mini-batch size
+The paper  |  uses  | images
+The paper  |  uses  | ﬁne-tuning
+The paper  |  uses  | mini-batch size of 256 images for ﬁne-tuning
+The paper  |  uses  | net
+The paper  |  outputs  | excellent performance
+The paper  |  outputs  | framework
+The paper  |  outputs  | excellent performance of our framework
+The paper  |  uses  | ground truth classes
+The paper  |  uses  | original rcnn
+The paper  |  uses  | ]
+The paper  |  uses  | place
+The paper  |  uses  | fast r-cnn
+The paper  |  uses  | original rcnn [ 8 ] that is roi-centric , in place of fast r-cnn
+The paper  |  uses  | per-class rpn
+The paper  |  uses  | training images
+The paper  |  uses  | bounding boxes
+The paper  |  uses  | ground truth class
+The paper  |  uses  | per-class rpn trained as above on the training images to predict bounding boxes for the ground truth class
+The paper  |  outputs  | top-5 localization error
+The paper  |  outputs  | %
+The paper  |  outputs  | top-5 localization error of 9.0 %

@@ -1,0 +1,60 @@
+The paper  |  uses  | softmax function f
+The paper  |  uses  | probability distribution
+The paper  |  uses  | predeﬁned classes
+The paper  |  uses  | softmax function f to compute the probability distribution over the predeﬁned classes
+The paper  |  uses  | probability distribution
+The paper  |  uses  | predeﬁned classes
+The paper  |  uses  | probability distribution over the predeﬁned classes
+The paper  |  uses  | hierarchical softmax
+The paper  |  uses  | goodman
+The paper  |  uses  | huffman
+The paper  |  uses  | tree
+The paper  |  uses  | mikolov et al.
+The paper  |  uses  | hierarchical softmax ( goodman , 2001 ) based on the huffman coding tree ( mikolov et al.
+The paper  |  uses  | bag
+The paper  |  uses  | additional features
+The paper  |  uses  | bag of n-grams as additional features
+The paper  |  uses  | partial information
+The paper  |  uses  | local word order
+The paper  |  uses  | partial information about the local word order
+The paper  |  uses  | bigrams
+The paper  |  outputs  | zhang
+The paper  |  outputs  | al
+The paper  |  outputs  | zhang et al
+The paper  |  outputs  | main baselines
+The paper  |  outputs  | approaches
+The paper  |  outputs  | main baselines as well as their two approaches
+The paper  |  outputs  | results
+The paper  |  outputs  | l
+The paper  |  outputs  | tang
+The paper  |  outputs  | al
+The paper  |  outputs  | l : in tang et al
+The paper  |  outputs  | test accuracy
+The paper  |  uses  | threads
+The paper  |  uses  | images
+The paper  |  outputs  | dataset
+The paper  |  outputs  | numbers
+The paper  |  outputs  | dataset so that our numbers
+The paper  |  outputs  | precision
+The paper  |  uses  | frequency-based baseline
+The paper  |  uses  | tag
+The paper  |  uses  | frequency-based baseline which tag
+The paper  |  outputs  | comparable performance
+The paper  |  uses  | linear version
+The paper  |  uses  | comparable performance
+The paper  |  uses  | linear version , which achieves comparable performance
+The paper  |  outputs  | training time
+The paper  |  outputs  | test time
+The paper  |  outputs  | training time and test time
+The paper  |  solves  | simple baseline method
+The paper  |  solves  | text classiﬁcation
+The paper  |  solves  | simple baseline method for text classiﬁcation
+The paper  |  outputs  | code
+The paper  |  outputs  | research community
+The paper  |  outputs  | top
+The paper  |  outputs  | work
+The paper  |  outputs  | code so that the research community can easily build on top of our work
+The paper  |  solves  | l
+The paper  |  solves  | top
+The paper  |  solves  | work
+The paper  |  solves  | l : on top of our work

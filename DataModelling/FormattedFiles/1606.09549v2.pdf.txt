@@ -1,0 +1,65 @@
+In this paper we equip a basic tracking algorithm with a novel fully-convolutional Siamese network trained end-to-end on the ILSVRC15 dataset for object detection in video.
+Our tracker operates at frame-rates beyond real-time and, despite its extreme simplicity, achieves state-of-the-art performance in multiple benchmarks.
+Keywords: object-tracking, Siamese-network, similarity-learning, deeplearning We consider the problem of tracking an arbitrary object in video, where the object is identiﬁed solely by a rectangle in the ﬁrst frame.
+We advocate an alternative approach in which a deep conv-net is trained to address a more general similarity learning problem in an initial oﬄine phase, and then this function is simply evaluated online during tracking.
+Speciﬁcally, we train a Siamese network to locate an exemplar image within a larger search image.
+We posit that the similarity learning approach has gone relatively neglected because the tracking community did not have access to vast labelled datasets.
+However, we believe that the emergence of the ILSVRC dataset for object detection in video [10] (henceforth ImageNet Video) makes it possible to train such a model.
+We show that our model generalizes from the ImageNet Video domain to the ALOV/OTB/VOT [1,11,12] domain, enabling the videos of tracking benchmarks to be reserved for testing purposes.
+We propose to learn a function f (z, x) that compares an exemplar image z to a candidate image x of the same size and returns a high score if the two images depict the same object and a low score otherwise.
+To ﬁnd the position of the object in a new image, we can then exhaustively test all possible locations and choose the candidate with the maximum similarity to the past appearance of the object.
+In experiments, we will simply use the initial appearance of the object as the exemplar.
+Given their widespread success in computer vision [13,14,15,16], we will use a deep conv-net as the function f .
+Our architecture is fullyconvolutional with respect to the search image x.
+We propose a Siamese architecture which is fully-convolutional with respect to the candidate image x.
+We say that a function is fully-convolutional if it commutes with translation.
+(When x is a ﬁnite signal, this only need hold for the valid region of the output.) The advantage of a fully-convolutional network is that, instead of a candidate image of the same size, we can provide as input to the network a much larger search image and it will compute the similarity at all translated sub-windows on a dense grid in a single evaluation.
+To achieve this, we use a convolutional embedding function ϕ and combine the resulting feature maps using a crosscorrelation layer f (z, x) = ϕ(z) ∗ ϕ(x) + b 1, L.
+During tracking, we use a search image centred at the previous position of the target.
+2.2 Training with large search images We employ a discriminative approach, training the network on positive and negative pairs and adopting the logistic loss (cid:96)(y, v) = log(1 + exp(−yv)) (3) where v is the real-valued score of a single exemplar-candidate pair and y ∈ {+1,−1} is its ground-truth label.
+We exploit the fully-convolutional nature of our network during training by using pairs that comprise an exemplar image and a larger search image.
+We deﬁne the loss of a score map to be the mean of the individual losses requiring a true label y[u] ∈ {+1,−1} for each position u ∈ D in the score map.
+Since our network is fully-convolutional, there is no risk that it learns a bias for the sub-window at the centre.
+We believe that it is eﬀective to consider search images centred on the target because it is likely that the most diﬃcult sub-windows, and those which have the most inﬂuence on the performance of the tracker, are those adjacent to the target.
+While this allows us to use diﬀerent size exemplar images for diﬀerent objects in theory, we assume uniform sizes because it simpliﬁes the mini-batch implementation.
+We believe that this dataset should be of extreme interest to the tracking community not only for its vast size, but also because it depicts scenes and objects diﬀerent to those found in the canonical tracking benchmarks.
+2.4 Practical considerations Dataset curation During training, we adopt exemplar images that are 127 × 127 and search images that are 255 × 255 pixels.
+(7) We use the area of the exemplar images A = 1272 and set the amount of context to be half of the mean dimension p = (w + h)/4.
+In a preliminary version of this work, we adopted a few heuristics to limit the number of frames from which to extract the training data.
+For the experiments of this paper, instead, we have used all 4417 videos of ImageNet Video, which account for more than 2 million labelled bounding boxes.
+Network architecture The architecture that we adopt for the embedding function ϕ resembles the convolutional stage of the network of Krizhevsky et al.
+Tracking algorithm Since our purpose is to prove the eﬃcacy of our fullyconvolutional Siamese network and its generalization capability when trained on ImageNet Video, we use an extremely simplistic algorithm to perform tracking.
+Unlike more sophisticated trackers, we do not update a model or maintain a memory of past appearances, we do not incorporate additional cues such as optical ﬂow or colour histograms, and we do not reﬁne our prediction with bounding box regression.
+Yet, despite its simplicity, the tracking algorithm achieves surprisingly good results when equipped with our oﬄine-learnt similarity metric.
+map 11 × 11 3 × 3 5 × 5 3 × 3 3 × 3 3 × 3 3 × 3 96 × 3 256 × 48 384 × 256 384 × 192 256 × 192 for exemplar 127 × 127 59 × 59 29 × 29 25 × 25 12 × 12 10 × 10 8 × 8 6 × 6 for search 255 × 255 ×3 123 × 123 ×96 61 × 61 ×96 57 × 57 ×256 ×256 28 × 28 ×192 26 × 26 24 × 24 ×192 22 × 22 ×128 Online, we do incorporate some elementary temporal constraints: we only search for the object within a region of approximately four times its previous size, and a cosine window is added to the score map to penalize large displacements.
+We remark that an interesting parallel can be drawn between this approach and ours, by interpreting a Siamese network as an unrolled RNN that is trained and evaluated on sequences of length two.
+Concurrently with our own work, some other authors have also proposed using conv-nets for object tracking by learning a function of pairs of images.
+Unlike our approach, they cannot adjust the size of the search region dynamically after training.
+In contrast to our approach, they do not adopt an architecture which is fully-convolutional with respect to the search image.
+Thus an important contribution of our work is to demonstrate that a conv-net can be trained for eﬀective object tracking without using videos from the same distribution as the testing set.
+We found that updating (the feature representation of) the exemplar online through simple strategies, such as linear interpolation, does not gain much performance and thus we keep it ﬁxed.
+We found that upsampling the score map using bicubic interpolation, from 17 × 17 to 272 × 272, results in more accurate localization since the original map is relatively coarse.
+To handle scale variations, we also search for the object over ﬁve scales 1.025{−2,−1,0,1,2}, and update the scale by linear interpolation with a factor of 0.35 to provide damping.
+In order to make our experimental results reproducible, we share training and tracking code, together with the scripts to generate the curated dataset at http: //www.robots.ox.ac.uk/~luca/siamese-fc.html.
+On a machine equipped with a single NVIDIA GeForce GTX Titan X and an Intel Core i7-4790K at 4.0GHz, our full online tracking pipeline operates at 86 and 58 frames-per-second, when searching respectively over 3 and 5 scales.
+We evaluate two variants of our simplistic tracker: SiamFC (Siamese FullyConvolutional) and SiamFC-3s, which searches over 3 scales instead of 5.
+In addition to the trackers reported by [11], in Figure 3 we also compare against seven more recent state-of-the-art trackers presented in the major computer vision conferences and that can run at frame-rate speed: Staple [33], LCT [34], CCT [35], SCT4 [36], DLSSVM NU [37], DSST [38] and KCFDP [39].
+Given the nature of the sequences, for this benchmark only we convert 25% of the pairs to grayscale during training.
+For our experiments, we use the latest stable version of the Visual Object Tracking (VOT) toolkit (tag vot2015-final), which evaluates trackers on sequences chosen from a pool of 356, selected so that seven diﬀerent challenging situations are well represented.
+We compare our method SiamFC (and the variant SiamFC3s) against the best 10 trackers that participated in the 2014 edition of the VOT challenge [40].
+We also include Staple [33] and GOTURN [28], two recent realtime trackers presented respectively at CVPR 2016 and ECCV 2016.
+We also compare our method against the 40 best participants in the 2015 edition [12].
+However, to facilitate an early comparison with our method, we report our scores.
+For SiamFC and SiamFC-3s we obtain, respectively, an overall expected overlap (average between the baseline and unsupervised experiments) of 0.3876 and 0.4051.
+Please note that these results are diﬀerent from the VOT-16 report, as our entry in the challenge was a preliminary version of this work.
+Despite its simplicity, our method improves over recent state-of-the-art realtime trackers (Figures 3 and 4).
+These results demonstrate that the expressiveness of the similarity metric learnt by our fully-convolutional Siamese network on ImageNet Video alone is enough to achieve very strong results, comparable or superior to recent state-of-the-art methods, which often are several orders of magnitude slower.
+We believe that considerably higher performance could be obtained by augmenting the minimalist online tracking pipeline with the methods often adopted by the tracking community (e.g.
+In this work, we depart from the traditional online learning methodology employed in tracking, and show an alternative approach that focuses on learning strong embeddings in an oﬄine phase.
+Diﬀerently from their use in classiﬁcation settings, we demonstrate that for tracking applications Siamese fullyconvolutional deep networks have the ability to use the available data more eﬃciently.
+We believe that this approach is complementary to more sophisticated online tracking methodologies, and expect future work to explore this relationship more thoroughly.
+Order1591317212529333741Average expected overlap0.10.150.20.250.30.350.40.45Expected overlap scores for baselineMDNetEBTDeepSRDCFSiamFC_3s (ours)SiamFC (ours)srdcfsPSTLDPscebtnsamfstruck_PAMIs3trackerrajsscsumshiftDATSODLTRobStruckMCTMEEMOACFHMMTxDASMSggtmkcf_plusAOGTrackertricmvcftsmesratdtrackersamfkcfv2musterTGPRcmilACTLGTkcf_mtsaKCF2DSSTMILHTVOT15winner(1 fps)VOT14winner(24 fps)SiamFC-3s(86 fps)SiamFC(58 fps)Fully-Convolutional Siamese Networks for Object Tracking Table 2: Raw scores, overlap and reported speed for our proposed method and the best 15 performing trackers of the VOT-15 challenge.
+Where available, we compare with the speed reported by the authors, otherwise (*) we report the values from the VOT-15 results [12] in EFO units, which roughly correspond to fps (e.g.
+6: Snapshots of the simple tracker described in Section 2.4 equipped with our proposed fully-convolutional Siamese network trained from scratch on ImageNet Video.
+Our method does not perform any model update, so it uses only the ﬁrst frame to compute ϕ(z).
+On the other hand, our method is sensitive to scenes with confusion (row 5), arguably because the model is never updated and thus the cross-correlation gives a high scores for all the windows that are similar to the ﬁrst appearance of the target

@@ -1,0 +1,112 @@
+In this paper, we propose to learn the natural image manifold directly from data using a generative adversarial neural network.
+We then deﬁne a class of image editing operations, and constrain their output to lie on that learned manifold at all times.
+All our manipulations are expressed in terms of constrained optimization and are applied in near-real time.
+We evaluate our algorithm on the task of realistic photo manipulation of shape and color.
+We all perceive information in the visual form (through photographs, paintings, sculpture, etc), but only a chosen few are talented enough to eﬀectively express themselves visually.
+We use generative adversarial networks (GAN) [1,2] to perform image editing on the natural image manifold.
+We ﬁrst project an original photo (a) onto a lowdimensional latent vector representation (b) by regenerating it using GAN.
+We then modify the color and shape of the generated image (d) using various brush tools (c) (for example, dragging the top of the shoe).
+Finally, we apply the same amount of geometric and color changes to the original photo to achieve the ﬁnal result (e).
+See our interactive image editing demo on Youtube.
+In this paper, we use the generative adversarial neural network to learn the manifold of natural images, but we do not actually employ it for image generation.
+Instead, we use it as a constraint on the output of various image manipulation operations, to make sure the results lie on the learned manifold at all times.
+We show three applications based on our system: (1) Manipulating an existing photo based on an underlying generative model to achieve a diﬀerent look (shape and color); (2) “Generative transformation” of one image to look more like another; (3) Generate a new image from scratch based on user’s scribbles and warping UI.
+We hope (a) original photo (b) projection on manifoldProjectEdit Transfer(d) smooth transition between the original and edited projection(e) different degree of image manipulation(c) Editing UIGenerative Visual Manipulation on the Natural Image Manifold that this work inspires further research in data-driven generative image editing, and thus release the code and data at our website.
+Here we extend this idea and produce a morph that is both close to the two sources and stays on, or close to, the natural image manifold.
+In this paper we try to remedy this by learning a generative model that can be easily controlled via a few intuitive user edits.
+Following the recent success of deep generative networks in generating natural looking images, we approximate the image manifold by learning a model using generative adversarial networks (GAN) [1,2] from a large-scale image collection.
+Beside the high quality results, GAN has a few other useful properties for our task we will discuss next.
+For simplicity, we denote G(z; θG) and D(x; θD) as G(z) and D(x) in later sections.
+We formally deﬁne ˜M = {G(z)|z ∈ Z} and use it as an approximation to the ideal manifold M (i.e ˜M ≈ M).
+We also approximate the distance function (a) random samples(b) random jittering(c) linear interpolationGenerative Visual Manipulation on the Natural Image Manifold of two generated images as an Euclidean distance between their corresponding latent vectors, i.e., S(G(z1), G(z2)) ≈ (cid:107)z1 − z2(cid:107)2.
+GAN as a manifold approximation: We use GAN to approximate an ideal manifold for two reasons: ﬁrst, it produces high-quality samples (see Figure 2 (a) for example).
+We therefore argue that GAN is a powerful generative model for modeling the image manifold.
+In our case, we t=0 S(G(zt), G(zt+1)) where S is the distance function.
+In our case N )· z0 + t N · zN t=0 is the shortest path.
+We will now use this approximation of the manifold of natural images for realistic photo editing.
+Figure 1 illustrates the overview of our approach.
+Given a real photo, we ﬁrst project it onto our approximation of the image manifold by ﬁnding the closest latent feature vector z of the GAN to the original image.
+Then, we present a realtime method for gradually and smoothly updating the latent vector z so that it generates a desired image that both satisﬁes the user’s edits (e.g.
+We therefore propose a dense correspondence method that estimates both per-pixel color and shape changes from the edits applied to the generative model.
+We then transfer these changes to the original photo using an edge-aware interpolation technique and produce the ﬁnal manipulated result.
+However for an approximate manifold ˜M, our goal here is to ﬁnd a generated image x∗ ∈ ˜M close to xR in some distance metric L(x1, x2) as x∗ = arg min x∈ ˜M Jun-Yan Zhu, Philipp Kr¨ahenb¨uhl, Eli Shechtman, Alexei A.
+Efros For the GAN manifold ˜M we can rewrite the above equation as follows: Our goal is to reconstruct the original photo xR using the generative model G by minimizing the reconstruction error, where L(x1, x2) = (cid:107)C(x1) − C(x2)(cid:107)2 in some diﬀerentiable feature space C.
+We found that a weighted combination of raw pixels and conv4 features (×0.002) extracted from AlexNet [27] trained on ImageNet [28] to perform best.
+Projection via optimization: As both the feature extractor C and the generative model G are diﬀerentiable, we can directly optimize the above objective using L-BFGS-B [29].
+We can start from multiple random initializations and output the solution with the minimal cost.
+We instead train a deep neural network to minimize equation 2 directly.
+Projection via a feedforward network: We train a feedforward neural network P (x; θP ) that directly predicts the latent vector z from a x.
+We attribute this behavior to the regularity in the projection problem and the limited capacity of the network P .
+Given a real photo xR, we ﬁrst predict P (xR; θP ) and then use it as the initialization for the optimization objective (Equation 2).
+So the predictive model we have trained serves as a fast bottom-up initialization method for a non-convex optimization problem.
+We show the reconstruction loss below each image.
+4.2 Manipulating the Latent Vector 0 projected onto the manifold ˜M as x0 = G(z0) via the projecWith the image xR tion methods just described, we can start modifying the image on that manifold.
+We update the initial projection x0 by simultaneously matching the user intentions while staying on the manifold, close to the original image x0.
+Given an initial projection x0, we ﬁnd a new image x ∈ M close to x0 trying to satisfy as many constraints as possible + λs · S(x, x0) where the data term measures deviation from the constraint and the smoothness term enforces moving in small steps on the manifold, so that the image content is not altered too much.
+We set λs = 5 in our experiments.
+By default, we turn oﬀ this term to increase frame rates.
+We solve it using gradient descent, which allows us to provide the user with a real-time feedback as she manipulates the image.
+For computational reasons, we only perform a few gradient descent updates after changing the constraints vg.
+Then our update method smoothly changes the image appearance (Figure 4 b) by adding more and more of the user constraints.
+In the next section we show how edits on the approximate manifold can be transferred to the original image.
+a black shoe) and its projection on the manifold G(z0), and a user modiﬁcation G(z1) by our method (e.g.
+Following user edits on the left shoe G(z0) we obtain an interpolation sequence in the generated latent space G(z) (top right).
+We then compute the motion and color ﬂows (right middle and bottom) between neighboring images in G(z).
+The generated image G(z1) captures the roughly change we want, albeit the quality is degraded w.r.t the original image.
+Can we instead adjust the original photo and produce a more photo-realistic result xR 1 that exhibits the changes in the generated image? A straightforward 0 + (G(z1)− G(z0)).
+We way is to transfer directly the pixel changes (i.e.
+To address this issue, we develop a dense correspondence algorithm to estimate both the geometric and color changes induced by the editing process.
+any number of intermediate frames(cid:2)G((1− t Speciﬁcally, given two generated images G(z0) and G(z1), we can generate t=0, where consecutive frames only exhibit minor visual variations.
+Motion+Color ﬂow algorithm: We then estimate the color and geometric changes by generalizing the brightness constancy assumption in traditional optical ﬂow methods [31,32].
+We solve the objective by iteratively estimating the ﬂow (u, v) using a traditional optical ﬂow algorithm, and computing the color change A by solving a system of linear equations [33].
+We iterate 3 times.
+We produce 8 intermediate frames (i.e.
+For simplicity, we omit the pixel subscript (x, y) for all the variables.
+Efros We estimate the changes between nearby frames, and concatenate these changes frame by frame to obtain long-range changes between any two frames along the interpolation sequence z0 → z1.
+Figure 5 shows a warping sequence after we apply the ﬂow to the initial projection G(z0).
+Transfer edits to the original photo: After estimating the color and shape changes in the generated image sequence, we apply them to the original photo and produce an interesting transition sequence of photo-realistic images as shown in e.
+64 × 64), we upsample those edits using a guided image ﬁlter [34].
+Please see our supplemental video for more details.
+Candidate results: Given the objective (Equation 5) derived with the user guidance, we generate multiple diﬀerent results by initializing z as random perturbations of z0.
+We generate 64 examples and show the best 9 results sorted by the objective cost (Equation 5).
+We call this “relative edits” as it allows a user to explore more alternatives with a single edit.
+Our system provides three constraints to edit the photo in diﬀerent aspects: coloring, sketching and warping.
+In the following, we explain the usage of each brush, and the corresponding constraints.
+For each pixel marked with this brush we constrain the color fg(I) = Ip = vg of a pixel p to the selected values vg.
+We constrain fg(I) = HOG(I)p a diﬀerentiable HOG descriptor [37] at a certain location p in the image to be close to the user stroke (i.e.
+We chose the HOG feature extractor because it is binned, which makes it robust to sketching inaccuracies.
+We then place both a color and sketching constraint on the displaced pixels encouraging the target patch to mimic the appearance of the dragged region.
+Network architecture: We follow the same architecture of deep convolutional generative adversarial networks (DCGAN) [2].
+We train the generator G to produce a 64 × 64 × 3 image given a 100-dimensional random vector.
+Notice that our method can also use other generative models (e.g.
+Computational time: We run our system on a Titan X GPU.
+Once an edit is ﬁnished, it takes 5 ∼ 10 seconds for our edit transfer method to produce high-resolution ﬁnal result.
+We ﬁrst introduce the statistics of our dataset.
+We then show three main applications: realistic image manipulation, generative image transformation, and generating a photo from scratch using our brush tools.
+Finally, we evaluate our image reconstruction methods, and perform a human perception study to understand the realism of generated results.
+Datasets: We experiment with multiple photo collections from various sources as follows: “shoes” dataset [39], which has 50K shoes collected from Zappos.com (the shoes are roughly centered but not well aligned, and roughly facing left, with frontal to side view); “church outdoor” dataset (126K images) from the LSUN challenge [40]; “outdoor natural” images (150K) from the MIT Places dataset [41]; and two query-based product collections downloaded from Amazon, including “handbags” (138K) and “shirts” (137K).
+Our main application is photo-realistic image manipulation using the brush interactions described in Section 5.1.
+Image manipulation examples: for each example, we show the original photo and user edits on the left.
+We call it “generative transformation”.
+We use this sequence to transform the shape and color of one image to look like another image automatically, i.e., without any user edits.
+Another byproduct of our method is that if there is no image to begin with and all we have are the user brush strokes, the method would generate a natural image that best satisﬁes the user constraints.
+Image reconstruction evaluation: We evaluate three image reconstruction methods described in Section 4.1: optimization-based, network-based and our hybrid approach that combines the last two.
+We run these on 500 test images Generative Visual Manipulation on the Natural Image Manifold Fig.
+In the last row, we show the most similar real images to the generated images.
+We can see the optimization-based and neural network-based methods perform comparably, where their combination yields better results.
+We include PSNR (in dB) results in the supplementary material.
+Class-speciﬁc model: So far, we have trained the generative model on a particular class of images.
+As a comparison, we train a cross-class model on three datasets altogether (i.e.
+We also have tried to use a class-speciﬁc model to reconstruct images from a diﬀerent class.
+However, we expect a model trained on many categories (e.g.
+Perception study: We perform a small perception study to compare the photo realism of four types of images: real photos, generated samples produced by GAN, our method (shape only), and our method (shape+color).
+We collect 20 annotations for 400 images by asking Amazon Mechanical Turk workers if the image look realistic or not.
+DCGAN model alone produces less photo-realistic images, but when combined with our edit transfer, the realism signiﬁcantly improves.
+Additional evaluation: In the supplemental material, we evaluate our motion+color ﬂow method, and compare our results against popular alignment methods that are designed to handle large displacement between two images [46,47].
+We presented a step towards image editing with a direct constraint to stay close to the manifold of real images.
+We approximate this manifold using the state-ofthe-art in deep generative models (DCGAN).
+We show how to make interactive edits to the generated images and transfer the resulting changes in shape and color back to the original image.
+Thus, the quality of the generated results (low resolution, missing texture and details) and the types of data DCGAN is applicable to (works well on structured datasets such as product images and worse on more general imagery), limits how far we can get with this editing approach.
+However our method is not tied to a particular generative method and will improve with the advancement of this ﬁeld.
+Our current editing brush tools allow rough changes in color and shape but not texture and more complex structure changes.
+We leave these for future work

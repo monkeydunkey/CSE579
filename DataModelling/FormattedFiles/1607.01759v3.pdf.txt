@@ -1,0 +1,47 @@
+s c [     This paper explores a simple and efﬁcient Our exbaseline for text classiﬁcation.
+periments show that our fast text classiﬁer fastText is often on par with deep learning classiﬁers in terms of accuracy, and many orders of magnitude faster for training and evaluation.
+We can train fastText on more than one billion words in less than ten minutes using a standard multicore CPU, and classify half a million sentences among 312K classes in less than a minute.
+In this work, we explore ways to scale these baselines to very large corpus with a large output space, in the context of text classiﬁcation.
+Inspired by the recent work in efﬁcient word representation learning (Mikolov et al., 2013; Levy et al., 2015), we show that linear models with a rank constraint and a fast loss approximation can train on a billion words within ten minutes, while achieving performance on par with the state-of-the-art.
+We evaluate the quality of our approach fastText1 on two different tasks, namely tag prediction and sentiment analysis.
+We use the softmax function f to compute the probability distribution over the predeﬁned classes.
+In order to improve our running time, we use a hierarchical softmax (Goodman, 2001) based on the Huffman coding tree (Mikolov et al., 2013).
+In practice, we observe a reduction of the complexity to O(h log2(k)) at test time.
+Instead, we use a bag of n-grams as additional features to capture some partial information about the local word order.
+We maintain a fast and memory efﬁcient mapping of the n-grams by using the hashing trick (Weinberger et al., 2009) with the same hashing function as in Mikolov et al.
+(2011) and 10M bins if we only used bigrams, and 100M otherwise.
+We evaluate fastText on two different tasks.
+First, we compare it to existing text classifers on the problem of sentiment analysis.
+Then, we evaluate its capacity to scale to large output space on a tag prediction dataset.
+Note that our model could be implemented with the Vowpal Wabbit library,2 but we observe in practice, that our tailored implementation is at least 2-5× faster.
+We report from Zhang et al.
+(2015), and TFIDF baselines level convolutional as well as model (char-CNN) of Zhang and LeCun (2015), the character based convolution recurrent network (char-CRNN) of (Xiao and Cho, 2016) and the very deep convolutional network (VDCNN) We also compare of Conneau et al.
+It has 10 hidden units and we evaluate it with and without bigrams.
+For char-CNN, we show the best reported numbers without data augmentation.
+We report their main baselines as well as their two approaches based on recurrent networks (Conv-GRNN and LSTM-GRNN).
+We present the results in 05, 0.1, 0.25, 0.5}.
+Overall our accuracy is slightly better than char-CNN and char-CRNN and, a bit worse than VDCNN.
+Note that we can increase the accuracy slightly by using more n-grams, for example with trigrams, the performance on Sogou goes up to 97.1%.
+Finally, Figure 3 shows that our method is competitive with the methods presented in Tang et al.
+We tune the hyperparameters on the validation set and observe that using n-grams up to 5 leads to the best performance.
+We report the test accuracy.
+Both char-CNN and VDCNN are trained on a NVIDIA Tesla K40 GPU, while our models are trained on a CPU using 20 threads.
+Our speedtaiyoucon 2011 digitals: individuals digital photos from the anime convention taiyoucon 2011 in mesa, arizona.
+We show a few correct and incorrect tag predictions.
+To test scalability of our approach, further evaluation is carried on the YFCC100M dataset (Thomee et al., 2016) which consists of almost 100M images with captions, titles and tags.
+We focus on predicting the tags according to the title and caption (we do not use the images).
+We remove the words and tags occurring less than 100 times and split the data into a train, validation and test set.
+We will release a script that recreates this dataset so that our numbers could be reproduced.
+We report precision at 1.
+We consider a frequency-based baseline which tag.
+We also compredicts the most frequent pare with Tagspace (Weston et al., 2014), which is a tag prediction model similar to ours, but based on the Wsabie model of Weston et al.
+While the Tagspace model is described using convolutions, we consider the linear version, which achieves comparable performance but is much faster.
+We run fastText for 5 epochs and compare it to Tagspace for two sizes of the hidden layer, i.e., 50 Freq.
+We also report the training time and test time.
+At test time, Tagspace needs to compute the scores for all the classes which makes it relatively slow, while our fast inference gives a signiﬁcant speed-up when the number of classes is large (more than 300K here).
+Overall, we are more than an order of magnitude faster to obtain model with a better quality.
+In this work, we propose a simple baseline method for text classiﬁcation.
+Unlike unsupervisedly trained word vectors from word2vec, our word features can be averaged together to form good sentence representations.
+We will publish our code so that the research community can easily build on top of our work.
+We thank Gabriel Synnaeve, Herv´e G´egou, Jason Weston and L´eon Bottou for their help and comments.
+We also thank Alexis Conneau, Duyu Tang and Zichao Zhang for providing us with information about their methods

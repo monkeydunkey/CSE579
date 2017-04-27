@@ -1,0 +1,80 @@
+The paper  |  outputs  | correspondingly-sized output
+The paper  |  outputs  | efﬁcient inference
+The paper  |  outputs  | learning
+The paper  |  outputs  | correspondingly-sized output with efﬁcient inference and learning
+The paper  |  outputs  | accurate
+The paper  |  outputs  | detailed segmentations
+The paper  |  outputs  | accurate and detailed segmentations
+The paper  |  outputs  | segmentation
+The paper  |  outputs  | pascal voc
+The paper  |  outputs  | segmentation of pascal voc
+The paper  |  outputs  | experimental framework
+The paper  |  outputs  | architecture
+The paper  |  outputs  | in-network upsampling
+The paper  |  outputs  | architecture with in-network upsampling
+The paper  |  outputs  | accuracy
+The paper  |  outputs  | pascal voc
+The paper  |  outputs  | accuracy on pascal voc
+The paper  |  uses  | fcn
+The paper  |  outputs  | previous best segmentation results
+The paper  |  outputs  | pascal voc
+The paper  |  outputs  | nyudv2
+The paper  |  outputs  | previous best segmentation results on pascal voc and nyudv2
+The paper  |  uses  | features
+The paper  |  uses  | layers
+The paper  |  uses  | nonlinear local-to-global representation
+The paper  |  uses  | features across layers to deﬁne a nonlinear local-to-global representation
+The paper  |  uses  | nonlinear local-to-global representation
+The paper  |  outputs  | coarse output maps
+The paper  |  uses  | implementation
+The paper  |  uses  | convolution
+The paper  |  uses  | implementation of convolution
+The paper  |  uses  | training
+The paper  |  uses  | patchwise sampling
+The paper  |  uses  | training by patchwise sampling
+The paper  |  uses  | training
+The paper  |  outputs  | t
+The paper  |  uses  | alexnet2 architecture
+The paper  |  uses  | 19-layer net
+The paper  |  uses  | task
+The paper  |  uses  | 19-layer net on this task
+The paper  |  uses  | ﬁnal loss layer
+The paper  |  outputs  | best results
+The paper  |  outputs  | convergence
+The paper  |  outputs  | ﬁxed learning rate
+The paper  |  outputs  | epochs
+The paper  |  outputs  | best results achieved after convergence at a ﬁxed learning rate ( at least 175 epochs
+The paper  |  outputs  | t
+The paper  |  outputs  | convergence
+The paper  |  outputs  | t : after convergence
+The paper  |  uses  | momentum
+The paper  |  uses  | own reimplementation
+The paper  |  uses  | googlenet
+The paper  |  uses  | own reimplementation of googlenet
+The paper  |  uses  | small learning rate
+The paper  |  uses  | regimes
+The paper  |  outputs  | l
+The paper  |  outputs  | section
+The paper  |  outputs  | l : in section
+The paper  |  uses  | features
+The paper  |  uses  | ×
+The paper  |  uses  | convolution
+The paper  |  uses  | × 1 convolution
+The paper  |  uses  | max fusion
+The paper  |  uses  | difﬁcult due
+The paper  |  uses  | continued improvements
+The paper  |  outputs  | metrics
+The paper  |  outputs  | common semantic segmentation
+The paper  |  outputs  | scene
+The paper  |  outputs  | evaluations
+The paper  |  outputs  | metrics from common semantic segmentation and scene parsing evaluations
+The paper  |  outputs  | best results
+The paper  |  outputs  | results
+The paper  |  outputs  | standard split
+The paper  |  outputs  | training images
+The paper  |  outputs  | images
+The paper  |  outputs  | results on the standard split of 795 training images and 654 testing images
+The paper  |  uses  | learning
+The paper  |  uses  | inference
+The paper  |  uses  | convolutional networks
+The paper  |  uses  | learning and inference of fully convolutional networks

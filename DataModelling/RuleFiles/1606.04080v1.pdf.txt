@@ -1,0 +1,529 @@
+In this work, we employ ideas from metric learning based on deep neural features and from recent advances that augment neural networks with external memories.
+0.60 (we; employ; ideas; from metric learning; L:In this work)
+0.90 (metric learning; based; on deep neural features and from recent advances)
+0.89 (recent advances; augment; neural networks with external memories)
+
+Our framework learns a network that maps a small labelled support set and an unlabelled example to its label, obviating the need for ﬁne-tuning to adapt to new class types.
+0.36 (Our framework; learns; a network that maps a small labelled support set and an unlabelled example to its label,)
+0.90 (a network; maps; a small labelled support set and an unlabelled example to its label)
+0.71 (its label; obviating; the need for ﬁne-tuning to adapt to new class types)
+0.91 (ﬁne-tuning; to adapt; to new class types)
+
+We then deﬁne one-shot learning problems on vision (using Omniglot, ImageNet) and language tasks.
+0.71 (We; deﬁne; one-shot learning problems on vision (using Omniglot, ImageNet) and language tasks; T:then)
+
+Our algorithm improves one-shot accuracy on ImageNet from 87.6% to 93.2% and from 88.0% to 93.8% on Omniglot compared to competing approaches.
+0.68 (Our algorithm; improves; one-shot accuracy on ImageNet)
+
+We also demonstrate the usefulness of the same model on language modeling by introducing a one-shot task on the Penn Treebank.
+0.41 (We; demonstrate; the usefulness of the same model on language modeling)
+
+a child can generalize the concept of “giraffe” from a single picture in a book – yet our best deep learning systems need hundreds or thousands of examples.
+0.90 (a child; can generalize; the concept of "giraffe; from a single picture in a book)
+0.70 (our best deep learning systems; need; hundreds or thousands of examples)
+
+This motivates the setting we are interested in: “one-shot” learning, which consists of learning a class from a single labelled example.
+0.35 (This; motivates; the setting we are interested in: "one-shot" learning,)
+0.45 (we; are; interested in: "one-shot" learning)
+0.91 (one-shot" learning; consists; of learning a class from a single labelled example)
+
+This, in our view, is mostly due to the parametric aspect of the model, in which training examples need to be slowly learnt by the model into its parameters.
+0.34 (This; is mostly; due to the parametric aspect of the model; L:in our view)
+0.94 (training examples; need; to be slowly learnt by the model into its parameters; L:the model)
+0.81 (training examples; to be slowly learnt; by the model; into its parameters)
+
+Previous work on metric learning in non-parametric setups [18] has been inﬂuential on our model, and we aim to incorporate the best characteristics from both parametric and non-parametric models – namely, rapid acquisition of new examples while providing excellent generalisation from common examples.
+0.88 (Previous work on metric learning in non-parametric setups; has been inﬂuential; on our model)
+0.51 (we; aim; to incorporate the best characteristics from both parametric and non-parametric models)
+0.51 Context(we aim):(we; aim to incorporate; the best characteristics from both parametric and non-parametric models - namely, rapid acquisition of new examples while providing excellent generalisation from common examples)
+
+The novelty of our work is twofold: at the modeling level, and at the training procedure.
+0.52 (The novelty of our work; is; twofold)
+
+We propose Matching Nets (MN), a neural network which uses recent advances in attention and memory that enable rapid learning.
+0.50 (We; propose; Matching Nets)
+0.80 (a neural network; uses; recent advances in attention and memory that enable rapid learning)
+0.81 Context(a neural network uses):(a neural network; uses enable; rapid learning)
+
+Secondly, our training procedure is based on a simple machine learning principle: test and train conditions must match.
+0.66 (our training procedure; is based; on a simple machine)
+0.91 (a simple machine; learning; principle)
+0.71 (conditions; must match; )
+
+Thus to train our network to do rapid learning, we Figure 1: Matching Networks architecture train it by showing only a few examples per class, switching the task from minibatch to minibatch, much like how it will be tested when presented with a few examples of a new task.
+0.64 (our network; to do; rapid learning)
+0.57 (it; will be tested; T:when presented with a few examples of a new task)
+0.85 (Matching Networks architecture; train; it)
+0.18 Context(Matching Networks architecture train):(we; Figure; 1)
+
+Besides our contributions in deﬁning a model and training criterion amenable for one-shot learning, we contribute by the deﬁnition of tasks that can be used to benchmark other approaches on both ImageNet and small scale language modeling.
+0.19 (we; contribute; )
+0.88 (tasks; can be used; to benchmark other approaches on both ImageNet and small scale language modeling)
+0.88 (tasks; to benchmark; other approaches on both ImageNet and small scale language modeling)
+
+We hope that our results will encourage others to work on this challenging problem.
+0.89 (others; to work; on this challenging problem)
+0.17 (We; hope; that our results will encourage others to work on this challenging problem)
+0.59 Context(We hope):(our results; will encourage; others; to work on this challenging problem)
+
+We organized the paper by ﬁrst deﬁning and explaining our model whilst linking its several components to related work.
+0.42 (We; organized; the paper by ﬁrst deﬁning and explaining our model whilst linking its several components to related work)
+0.70 (the paper; deﬁning; )
+0.87 (the paper; explaining; our model whilst linking its several components to related work)
+
+Then in the following section we brieﬂy elaborate on some of the related work to the task and our model.
+0.89 (the following section; brieﬂy; we)
+
+In Section 4 we describe both our general setup and the experiments we performed, demonstrating strong results on one-shot learning on a variety of tasks and setups.
+0.44 (we; describe; both our general setup and the experiments; L:In Section 4)
+0.19 (we; performed; )
+0.74 (the experiments we performed; demonstrating; strong results; on one-shot learning on a variety of tasks and setups)
+
+2 Model Our non-parametric approach to solving one-shot learning is based on two components which we describe in the following subsections.
+0.85 (2 Model Our non-parametric approach to solving one-shot learning; is based; on two components)
+0.89 (two components; describe; L:in the following subsections)
+
+First, our model architecture follows recent advances in neural networks augmented with memory (as discussed in Section 3).
+0.78 (our model architecture; follows; recent advances in neural networks; T:First)
+0.73 (neural networks; augmented; )
+
+Given a (small) support set S, our model deﬁnes a function cS (or classiﬁer) for each S, i.e.
+0.64 (our model; deﬁnes; a function)
+
+Second, we employ a training strategy which is tailored for one-shot learning from the support set S.
+0.61 (we; employ; a training strategy which is tailored for one-shot learning from the support set S.)
+0.94 (a training strategy; is tailored; for one-shot learning from the support set S.)
+
+We draw inspiration from models such as sequence to sequence (seq2seq) with attention [2], memory networks [29] and pointer networks [27].
+0.52 (We; draw; inspiration; from models such as sequence to sequence)
+
+Our contribution is to cast the problem of one-shot learning within the set-to-set framework [26].
+0.79 (Our contribution; is; to cast the problem of one-shot learning within the set-to-set framework)
+
+More precisely, we wish to map from a (small) support set of k examples of image-label pairs S = {(xi, yi)}k i=1 to a classiﬁer cS(ˆx) which, given a test example ˆx, deﬁnes a probability distribution over outputs ˆy.
+0.99 (a (small) support set of k examples of image-label pairs S = {(xi, yi; deﬁnes; a probability distribution over outputs)
+
+We deﬁne the mapping S → cS(ˆx) to be P (ˆy|ˆx, S) where P is parameterised by a neural network.
+0.45 (We; deﬁne; the mapping S)
+0.90 (→ cS; to be; P (^y|^x, S) where P is parameterised by a neural network)
+0.89 (P; is parameterised; by a neural network; L:P (^y|^x, S)
+
+Thus, when given a new support set of examples S(cid:48) from which to one-shot learn, we simply use the parametric neural network deﬁned by P to make predictions about the appropriate label ˆy for each test example ˆx: P (ˆy|ˆx, S(cid:48)).
+0.92 (the parametric neural network; deﬁned; by P)
+0.49 (we; simply use; to make predictions about the appropriate label; T:when given a  new support set of examples)
+0.29 Context(we simply use):(we; simply use to make; predictions about the appropriate label)
+
+In general, our predicted output class for a given input unseen example ˆx and a support set S becomes arg maxy P (y|ˆx, S).
+0.95 (a support set S; becomes; arg maxy P (y|^x, S; L:In general, our predicted output class for a given input unseen example)
+
+Our model in its simplest form computes ˆy as follows: where xi, yi are the samples and labels from the support set S = {(xi, yi)}k i=1, and a is an attention mechanism which we discuss below.
+0.31 (a; is; an attention mechanism which we discuss below)
+0.89 (an attention mechanism; discuss below; we)
+0.36 (Our model in its simplest form computes; follows; )
+0.92 Context(Our model in its simplest form computes follows):(yi; are; the samples and labels from the support set S = {(xi, yi)
+
+Where the attention mechanism is zero for the b furthest xi from ˆx according to some distance metric and an appropriate constant otherwise, then (1) is equivalent to ‘k − b’-nearest neighbours (although this requires an extension to the attention mechanism that we describe in Section 2.1.2).
+0.80 (the attention mechanism; is; )
+0.38 (this; requires; an extension to the attention mechanism)
+0.90 (the attention mechanism; describe; L:in Section 2.1.2)
+
+In this case we can understand this as a particular kind of associative memory where, given an input, we “point” to the corresponding example in the support set, retrieving its label.
+0.60 (we; can understand; this; L:In this case)
+0.91 (a particular kind of associative memory; given; an input, we "point" to the corresponding example in the support set)
+0.82 (the support set; retrieving; its label)
+
+In our experiments we shall see examples where f and g are parameterised variously as deep convolutional networks for image tasks (as in VGG[22] or Inception[24]) or a simple form word embedding for language tasks (see Section 4).
+0.44 (we; shall see; examples where f and g are parameterised variously; L:In our experiments)
+0.89 (f and g; are parameterised variously; L:examples)
+0.92 (a simple form word; embedding; for language tasks)
+
+We note that, though related to metric learning, the classiﬁer deﬁned by Equation 1 is discriminative.
+0.92 (the classiﬁer; deﬁned; by Equation 1)
+0.32 (We; note; that, though related to metric learning, the classiﬁer deﬁned by Equation 1 is discriminative)
+0.87 Context(We note):(the classiﬁer deﬁned by Equation 1; is; discriminative)
+
+However, the objective that we are trying to optimize is precisely aligned with multi-way, one-shot classiﬁcation, and thus we expect it to perform better than its counterparts.
+0.81 (the objective that we are trying to optimize; is; precisely aligned with multi-way, one-shot classiﬁcation)
+0.73 (the objective that we are trying to optimize; precisely aligned; with multi-way, one-shot classiﬁcation)
+0.19 (we; are trying; to optimize)
+0.84 Context(we are trying):(the objective; to optimize; we)
+0.26 (we; expect; it to perform better than its counterparts)
+0.16 Context(we expect):(it; to perform better; )
+
+The main novelty of our model lies in reinterpreting a well studied framework (neural networks with external memories) to do one-shot learning.
+0.72 (The main novelty of our model; lies; in reinterpreting a well studied framework)
+0.87 (well; studied; framework (neural networks with external memories) to do one-shot learning)
+
+Despite the fact that the classiﬁcation strategy is fully conditioned on the whole support set through P (.|ˆx, S), the embeddings on which we apply the cosine similarity to “attend”, “point” or simply compute the nearest neighbor are myopic in the sense that each element xi gets embedded by g(xi) independently of other elements in the support set S.
+0.87 (the classiﬁcation strategy; is conditioned; on the whole support)
+0.80 (the whole support; set; )
+0.96 (each element xi; gets; embedded by g(xi) independently of other elements in the support)
+0.86 (the embeddings; apply; the cosine similarity)
+0.09 Context(the embeddings apply):(we; to attend; )
+0.91 (each element xi; gets embedded; by g)
+
+Furthermore, S should be able to modify how we embed the test image ˆx through f.
+0.79 (S; should be; able to modify how we embed the test image ^x through)
+0.61 (S; to modify; how we embed the test image)
+0.39 Context(S to modify):(we; embed; the test image)
+
+We propose embedding the elements of the set through a function which takes as input the full set S in addition to xi, i.e.
+0.89 (a function; takes; as input)
+0.40 (We; propose; embedding the elements of the set through a function)
+0.40 Context(We propose):(We; propose embedding; the elements of the set)
+
+This could be useful when some element xj is very close to xi, in which case it may be beneﬁcial to change the function with which we embed xi – some evidence of this is discussed in Section 4.
+0.38 (This; could be; useful; T:when some element xj is very close to xi)
+0.92 (some evidence of this; is discussed; L:in Section 4)
+0.93 (some element xj; is; very close to xi)
+0.45 (we; embed; xi)
+
+We use a bidirectional Long-Short Term Memory (LSTM) [8] to encode xi in the context of the support set S, considered as a sequence (see appendix for a more precise deﬁnition).
+0.61 (We; use; a bidirectional Long-Short Term Memory; to encode xi in the context of the support set S)
+0.74 (the support set S; considered; )
+
+K is the ﬁxed number of unrolling steps of the LSTM, and g(S) is the set over which we attend, embedded with g.
+0.94 (K; is; the ﬁxed number of unrolling steps of the LSTM, and g)
+0.88 (the set; attend; we)
+
+f (ˆx, S) = attLSTM(f(cid:48)(ˆx), g(S), K) In the previous subsection we described Matching Networks which map a support set to a classiﬁcation function, S → c(ˆx).
+0.64 (we; described; Matching Networks; L:In the previous subsection)
+0.93 (a support; set; to a classiﬁcation function)
+
+We achieve this via a modiﬁcation of the set-to-set paradigm augmented with attention, with the resulting mapping being of the form Pθ(.|ˆx, S), noting that θ are the parameters of the model (i.e.
+0.95 (a modiﬁcation of the set-to-set paradigm; augmented; with attention)
+0.91 (the resulting mapping; being; of the form)
+0.18 (We; achieve; this)
+0.20 Context(We achieve):(We; achieve this noting; that θ are the parameters of the model (i.e.)
+0.77 Context(We achieve noting):(θ; are; the parameters of the model (i.e.)
+
+Our model has to perform well with support sets S(cid:48) which contain classes never seen during training.
+0.60 (Our model; to perform well; with support sets)
+0.89 (support sets; contain; classes never seen during training)
+0.89 (classes; never seen; T:during training)
+
+Typically we consider T to uniformly weight all data sets of up to a few unique classes (e.g., 5), with a few examples per class (e.g., up to 5).
+
+To form an “episode” to compute gradients and update our model, we ﬁrst sample L from T (e.g., L could be the label set {cats, dogs}).
+
+We then use L to sample the support set S and a batch B (i.e., both S and B are labelled examples of cats and dogs).
+0.65 (We; use; L; to sample the support set S and a batch B (i.e., both S and B are labelled examples of cats and dogs; T:then)
+0.51 Context(We use):(We; use L to sample; the support set S and a batch B (i.e., both S and B are labelled examples of cats and dogs)
+
+Crucially, our model does not need any ﬁne tuning on the classes it has never seen due to its non-parametric nature.
+0.64 (our model; does not need; any ﬁne tuning on the classes)
+0.81 (the classes; has never seen; due to its non-parametric nature)
+
+Obviously, as T (cid:48) diverges far from the T from which we sampled to learn θ, the model will not work – we belabor this point further in Section 4.1.2.
+0.83 (T; diverges; far from the T)
+0.40 (we; sampled; to learn θ)
+0.40 Context(we sampled):(we; sampled to learn; θ)
+0.39 (we; belabor; this point further; L:in Section 4.1.2)
+0.68 Context(we belabor):(the model; will not work; )
+
+Our work takes the metalearning paradigm of [21], where an LSTM learnt to learn quickly from data presented sequentially, but we treat the data as a set.
+0.64 (Our work; takes; the metalearning paradigm of [21)
+0.93 (an LSTM learnt; to learn quickly; from data)
+0.75 (data; presented; L:sequentially)
+0.45 (we; treat; the data; as a set)
+
+The one-shot learning task we deﬁned on the Penn Treebank [15] relates to evaluation techniques and models presented in [6], and we discuss this in Section 4.
+0.93 (The one-shot learning task; deﬁned; L:on the Penn Treebank)
+0.89 (The one-shot learning task we deﬁned on the Penn Treebank [15]; relates; to evaluation techniques and models)
+0.80 (evaluation techniques and models; presented; T:in [6)
+0.45 (we; discuss; this; L:in Section 4)
+
+The loss is very similar to ours, except we use the whole support set S instead of pair-wise comparisons which is more amenable to one-shot learning.
+0.87 (The loss; is; very similar to ours; except we use the whole support set S)
+0.45 (we; use; the whole support set S)
+0.91 (pair-wise comparisons; is; more amenable to one-shot learning)
+
+However, there is not much one-shot literature on ImageNet, which we hope to amend via our benchmark and task deﬁnitions in the following section.
+0.36 (we; hope; to amend via our benchmark and task deﬁnitions in the following section)
+0.87 Context(we hope):(ImageNet; to amend; L:in the following section)
+
+In this section we describe the results of many experiments, comparing our Matching Networks model against strong baselines.
+0.53 (we; describe; the results of many experiments; L:In this section)
+0.21 Context(we describe):(we; describe the results of many experiments comparing; our Matching Networks model; against strong baselines)
+
+All of our experiments revolve around the same basic task: an N-way k-shot learning task.
+0.68 (All of our experiments; revolve; around the same basic task)
+
+We compared a number of alternative models, as baselines, to Matching Networks.
+0.61 (We; compared; a number of alternative models, as baselines, to Matching Networks)
+
+L(cid:48) denotes the held-out subset of labels which we only use for one-shot.
+0.83 (L; denotes; the held-out subset of labels)
+0.88 (labels; only use; for one-shot)
+
+We ran one-shot experiments on three data sets: two image classiﬁcation sets (Omniglot [14] and ImageNet [19, ILSVRC-2012]) and one language modeling (Penn Treebank).
+0.52 (We; ran; one-shot experiments)
+
+For vision problems, we considered four kinds of baselines: matching on raw pixels, matching on discriminative features from a state-of-the-art classiﬁer (Baseline Classiﬁer), MANN [21], and our reimplementation of the Convolutional Siamese Net [11].
+0.61 (we; considered; four kinds of baselines: matching on raw pixels, matching on discriminative features from a state-of-the-art classiﬁer (Baseline Classiﬁer), MANN [21], and our reimplementation of the Convolutional Siamese Net [11]; T:For vision problems)
+0.74 (four kinds of baselines; matching; )
+
+We then took this network and used the features from the last layer (before the softmax) for nearest neighbour matching, a strategy commonly used in computer vision [3] which has achieved excellent results across many tasks.
+0.55 (We; took; this network; T:then)
+0.55 (We; used; the features; from the last layer; T:then)
+0.90 (a strategy; commonly used; L:in computer vision)
+0.89 (computer vision; has achieved; excellent results; L:across many tasks)
+
+We also tried further ﬁne tuning the features using only the support set S(cid:48) sampled from L(cid:48).
+0.41 (We; tried; further ﬁne tuning the features)
+0.95 (the features; using; only the support set S(cid:48) sampled from L(cid:48))
+0.76 (only the support set S; sampled; )
+
+This yields massive overﬁtting, but given that our networks are highly regularized, can yield extra gains.
+0.38 (This; yields; massive overﬁtting)
+0.14 (This; given; that our networks are highly regularized, can yield extra gains)
+0.38 (our networks; are; highly regularized)
+0.30 (our networks; regularized; )
+0.60 (our networks; can yield; extra gains)
+
+Our model makes far less mistakes than the Inception baseline.
+0.68 (Our model; makes; far less mistakes than the Inception baseline)
+
+Following [21], we augmented the data set with random rotations by multiples of 90 degrees and used 1200 characters for training, and the remaining character classes for evaluation.
+0.55 (we; augmented; the remaining character classes for evaluation; T:Following [21)
+0.93 (the data; set; with random rotations; by multiples of 90 degrees)
+0.55 (we; used; 1200 characters; for training; T:Following [21)
+
+We used a simple yet powerful CNN as the embedding function – consisting of a stack of modules, each of which is a 3 × 3 convolution with 64 ﬁlters followed by batch normalization [10], a Relu non-linearity and 2 × 2 max-pooling.
+0.50 (We; used; a simple yet powerful CNN)
+0.79 (each of which; is; a 3 × 3 convolution with 64 ﬁlters followed by batch normalization [10], a Relu non-linearity and 2 × 2 max-pooling)
+0.95 (the embedding function - consisting of a stack of modules, each of which is a 3 × 3 convolution with 64 ﬁlters; followed; )
+
+We resized all the images to 28 × 28 so that, when we stack 4 modules, the resulting feature map is 1 × 1 × 64, resulting in our embedding function f (x).
+0.52 (we; stack; 4 modules)
+0.84 (the resulting feature map; resulting; in our embedding function f (x)
+0.39 (We; resized; all the images; to 28 × 28)
+0.92 Context(We resized):(the resulting feature map; is; 1 × 1 × 64; T:when we stack 4 modules)
+
+Results comparing the baselines to our model on Omniglot are shown in Table 1.
+0.85 (Results comparing the baselines to our model on Omniglot; are shown; L:in Table 1)
+
+For both 1-shot and 5-shot, 5-way and 20-way, our model outperforms the baselines.
+0.64 (our model; outperforms; the baselines)
+
+We note that the Baseline Classiﬁer improves a bit when ﬁne tuning on S(cid:48), and using cosine distance versus training a small softmax from the small training set (thus requiring ﬁne tuning) also performs well.
+0.22 (We; note; that the Baseline Classiﬁer improves a bit)
+0.92 Context(We note):(the Baseline Classiﬁer; improves; a bit)
+0.96 (ﬁne tuning on S(cid:48), and using cosine distance versus training a small softmax from the small training set; also performs well; )
+0.91 (the small training set; requiring; ﬁne tuning; T:also performs well)
+
+Siamese nets fare well versus our Matching Nets when using 5 examples per class, but their performance degrades rapidly in one-shot.
+0.89 (Siamese nets; fare well; T:when using 5 examples per class)
+0.64 (their performance; degrades rapidly; L:in one-shot)
+
+Like the authors in [11], we also test our method trained on Omniglot on a completely disjoint task – one-shot, 10 way MNIST classiﬁcation.
+0.35 (we; also test; our method trained on Omniglot)
+0.68 (our method; trained; on Omniglot)
+
+Our model achieves 72%.
+0.64 (Our model; achieves; 72%)
+
+Our experiments followed the same setup as Omniglot for testing, but we considered a rand and a dogs (harder) setup.
+0.45 (we; considered; a rand and a dogs (harder) setup)
+
+In the rand setup, we removed 118 labels at random from the training set, then tested only on these 118 classes (which we denote as Lrand).
+0.60 (we; removed; 118 labels at random from the training set; L:In the rand setup)
+0.91 (these 118 classes; denote; as Lrand)
+
+For the dogs setup, we removed all classes in ImageNet descended from dogs (totalling 118) and trained on all non-dog classes, then tested on dog classes (Ldogs).
+0.50 (we; removed; all classes in ImageNet)
+0.56 (dogs; totalling; 118)
+
+Thus, as well as using the full ImageNet data set, we devised a new data set – miniImageNet – consisting of 60, 000 colour images of size 84 × 84 with 100 classes, each having 600 examples.
+0.54 (each; having; 600 examples)
+0.55 (we; devised; a new data set - miniImageNet - consisting of 60, 000 colour images of size 84 × 84 with 100 classes)
+
+We used 80 classes for training and tested on the remaining 20 classes.
+0.45 (We; used; 80 classes; for training)
+0.41 (We; tested; L:on the remaining 20 classes)
+
+In total, thus, we have randImageNet, dogsImageNet, and miniImageNet.
+0.64 (we; have; randImageNet, dogsImageNet, and miniImageNet; L:In total)
+
+As we an see, FCE improves the performance of Matching Networks, with and without ﬁne tuning, typically improving performance by around two percentage points.
+0.17 (we; see; )
+0.88 (FCE; improves; the performance of Matching Networks)
+
+PIXELS INCEPTION CLASSIFIER MATCHING NETS (OURS) INCEPTION ORACLE Cosine Cosine Cosine (FCE) Softmax (Full) Y (Full) (cid:54)=Ldogs Lrand (cid:54)=Lrand Ldogs 41.4% 43.0% 42.0% 42.8% 59.8% 90.0% 87.6% 92.6% 93.2% 97.0% 58.8% 96.4% ≈ 99% ≈ 99% ≈ 99% ≈ 99% Next we turned to experiments based upon full size, full scale ImageNet.
+0.45 (we; turned; to experiments)
+0.91 (experiments; based; upon full size, full scale ImageNet)
+0.99 (PIXELS INCEPTION CLASSIFIER MATCHING NETS (OURS) INCEPTION ORACLE Cosine Cosine Cosine (FCE) Softmax (Full) Y (Full) (cid:54)=Ldogs Lrand (cid:54)=Lrand Ldogs 41.4% 43.0%; ≈; 99% ≈)
+0.74 Context(PIXELS INCEPTION CLASSIFIER MATCHING NETS ( OURS ) INCEPTION ORACLE Cosine Cosine Cosine ( FCE ) Softmax ( Full ) Y ( Full ) ( cid:54 ) =Ldogs Lrand ( cid:54 ) =Lrand Ldogs 41.4 % 43.0 % ≈):(99%; ≈; )
+0.38 (Cosine Cosine Cosine; [is] ORACLE [of]; INCEPTION)
+
+Our baseline classiﬁer for this data set was Inception [25] trained to classify on all classes except those in the test set of classes (for randImageNet) or those concerning dogs (for dogsImageNet).
+0.50 (Our baseline classiﬁer for this data; set; )
+0.23 (those; concerning; dogs)
+
+We also compared to features from an Inception Oracle classiﬁer trained on all classes in ImageNet, as an upper bound.
+0.50 (We; also compared; to features from an Inception Oracle classiﬁer; as an upper)
+0.95 (an Inception Oracle classiﬁer; trained; on all classes in ImageNet)
+0.73 (an upper; bound; )
+
+Our Baseline Classiﬁer is one of the strongest published ImageNet models at 79% top-1 accuracy on the standard ImageNet validation set.
+0.87 (Our Baseline Classiﬁer; is; one of the strongest published ImageNet models at 79% top-1 accuracy on the standard ImageNet validation set)
+
+Instead of training Matching Networks from scratch on these large tasks, we initialised their feature extractors f and g with the parameters from the Inception classiﬁer (pretrained on the appropriate subset of the data) and then further trained the resulting network on random 5-way 1-shot tasks from the training data set, incorporating Full Context Embeddings and our Matching Networks and training strategy.
+0.40 (we; initialised; their feature extractors f and g with the parameters from the Inception classiﬁer)
+0.37 Context(we initialised):(their feature extractors; f; )
+0.91 (the training data set; incorporating; Full Context Embeddings and our Matching Networks and training strategy)
+0.72 (their feature extractors; g; with the parameters from the Inception classiﬁer)
+0.94 (the parameters from the Inception classiﬁer; pretrained; L:on the appropriate subset of the data)
+
+However, on the much more challenging Ldogs subset, our model degrades by 1%.
+0.61 (much more; challenging; Ldogs)
+
+We hypothesize this to the fact that the sampled set during training, S, comes from a random distribution of labels (from (cid:54)=Ldogs), whereas the testing support set S(cid:48) from Ldogs contains similar classes, more akin to ﬁne grained classiﬁcation.
+0.23 (We; hypothesize; this)
+0.95 (the sampled set during training, S; comes; from a random distribution of labels (from (cid:54)=Ldogs)
+0.96 (the testing support set S(cid:48) from Ldogs; contains; similar classes, more akin to ﬁne)
+
+Thus, we believe that if we adapted our training strategy to samples S from ﬁne grained sets of labels instead of sampling uniformly from the leafs of the ImageNet class tree, improvements could be attained.
+0.31 (we; adapted; our training strategy; from ﬁne grained sets of labels)
+0.20 (we; believe; that if we adapted our training strategy to samples S from ﬁne grained sets of labels instead of sampling uniformly from the leafs of the ImageNet class tree, improvements could be attained)
+0.66 Context(we believe):(improvements; could be attained; )
+
+We leave this as future work.
+0.45 (We; leave; this; as future work)
+
+We also introduce a new one-shot language task which is analogous to those examined for images.
+0.29 (We; introduce; a new one-shot language task which is analogous to those)
+0.69 (a new one-shot language task; is; analogous to those)
+0.23 (those; examined; for images)
+
+Here we show a single example, though note that the words on the right are not provided and the labels for the set are given as 1-hot-of-5 vectors.
+0.66 (we; show; a single example; L:Here)
+0.79 (the words on the right; are not provided; )
+0.93 (the labels for the set; are given; as 1-hot-of-5 vectors)
+
+we had a lot of people who threw in the <blank_token> today said <unk> ellis a partner in benjamin jacobson & sons a specialist in trading ual stock on the big board.
+0.74 (people; threw; )
+0.66 (we had a lot of people; said unk; T:today)
+0.46 Context(we had a lot of people said unk):(we; had; a lot of people)
+
+On each trial, we make sure that the set and batch are populated with sentences that are non-overlapping.
+0.46 (we; make; sure that the set and batch are populated with sentences; L:On each trial)
+0.92 (the set and batch; are populated; with sentences)
+0.72 (sentences; are; non-overlapping)
+
+This means that we do not use words with very low frequency counts; e.g.
+0.14 (This; means; that we do not use words with very low frequency counts; e.g.)
+0.40 Context(This means):(we; do not use; words; with very low frequency counts; e.g.)
+
+if there is only a single sentence for a given word we do not use this data since the sentence would need to be in both the set and the batch.
+0.57 (we; do not use; this data; since the sentence would need to be in both the set and the batch)
+0.90 (the sentence; would need; to be in both the set and the batch)
+0.89 (the sentence; to be; in both the set and the batch)
+
+We used a batch size of 20 throughout the sentence matching task (SMT) and varied the set size across k=1,2,3.
+0.61 (We; used; a batch size of 20; T:throughout the sentence matching task (SMT) and varied the set size across k=1,2)
+
+We ensured that the same number of sentences were available for each class in the set.
+0.28 (We; ensured; that the same number of sentences were available for each class in the set)
+0.91 Context(We ensured):(the same number of sentences; were; available for each class in the set)
+
+We split the words into a randomly sampled 9000 for training and 1000 for testing.
+0.64 (We; split; the words; into a randomly sampled 9000 for training and 1000 for testing)
+
+As well, we trained and tested using sentences taken from the standard PTB training set and tested with sentences from the standard test set.
+0.19 (we; trained; )
+0.41 (we; tested; using sentences)
+0.91 (sentences; taken; from the standard PTB training set)
+
+We compared our one-shot matching model to an oracle LSTM language model (LSTM-LM) [30] trained on all the words.
+0.35 (We; compared; our one-shot matching model; to an oracle LSTM language model)
+0.93 (an oracle LSTM language model; trained; on all the words)
+
+To do so, we examined a similar setup wherein a sentence was presented to the model with a single word ﬁlled in with 5 different possible words (including the correct answer).
+0.90 (a sentence; was presented; to the model with a single word)
+0.94 (a single word; ﬁlled in; with 5 different possible words (including the correct answer)
+0.50 (we; examined; a similar setup wherein a sentence was presented to the model with a single word)
+
+In our sentence matching task the sentences provided in the set are randomly drawn from the PTB corpus and are related to the sentences in the query batch only by the fact that they share a word.
+0.90 (the sentences; provided; L:in the set)
+0.94 (the sentences provided in the set; are randomly drawn; from the PTB; L:In our sentence matching task)
+0.87 (the sentences provided in the set; are; related to the sentences in the query batch only by the fact that they share a word; L:In our sentence matching task)
+0.62 (they; share; a word)
+
+In this paper we introduced Matching Networks, a new neural architecture that, by way of its corresponding training regime, is capable of state-of-the-art performance on a variety of one-shot classiﬁcation tasks.
+0.58 (we; introduced; Matching Networks; L:In this paper)
+0.18 Context(we introduced):(that; is; capable of state-of-the-art performance on a variety of one-shot classiﬁcation tasks)
+
+Further, we have deﬁned new one-shot tasks on ImageNet, a reduced version of ImageNet (for rapid experimentation), and a language modeling task.
+0.50 (we; have deﬁned; new one-shot tasks; on ImageNet)
+
+An obvious drawback of our model is the fact that, as the support set S grows in size, the computation for each gradient update becomes more expensive.
+0.67 (An obvious drawback of our model; is; the fact that, as the support set S grows in size, the computation for each gradient update becomes more expensive)
+0.81 (the support set S; grows; )
+0.96 (the computation for each gradient update; becomes; more expensive; T:as the support set S grows in size)
+
+Although there are sparse and sampling-based methods to alleviate this, much of our future efforts will concentrate around this limitation.
+0.70 (much of our future efforts; will concentrate; around this limitation)
+
+Further, as exempliﬁed in the ImageNet dogs subtask, when the label distribution has obvious biases (such as being ﬁne grained), our model suffers.
+0.93 (the label distribution; has; obvious biases)
+0.70 (our model; suffers; T:when the label distribution has obvious biases (such as being ﬁne grained)
+
+We feel this is an area with exciting challenges which we hope to keep improving in future work.
+0.40 (We; feel; this is an area with exciting challenges)
+0.40 Context(We feel):(this; is; an area with exciting challenges)
+0.40 (we; hope; to keep improving in future work)
+0.40 Context(we hope):(we; hope to keep; improving in future work)
+0.16 Context(we hope to keep):(we; hope to keep improving in future work improving; )
+
+We would like to thank Nal Kalchbrenner for brainstorming around the design of the function g, and Sander Dieleman and Sergio Guadarrama for their help setting up ImageNet.
+0.68 (their help; setting up; ImageNet)
+0.40 (We; would like; to thank Nal Kalchbrenner for brainstorming around the design of the function g, and Sander Dieleman and Sergio Guadarrama for their help)
+0.43 Context(We would like):(We; would like to thank; Nal Kalchbrenner; for brainstorming around the design of the function g)
+
+We would also like thank Simon Osindero for useful discussions around the tasks discussed in this paper, and Theophane Weber and Remi Munos for following some early developments.
+0.90 (the tasks; discussed; L:in this paper)
+0.55 (We; would also like; thank Simon Osindero for useful discussions around the tasks discussed in this paper, and Theophane Weber and Remi Munos for following some early developments)
+0.43 Context(We would also like):(We; would also like thank; Simon Osindero; for useful discussions around the tasks)
+
+Thanks also to Geoff Hinton and Alex Toshev for discussions about our results.
+
+arXiv preprint In this section we fully specify the models which condition the embedding functions f and g on the whole support set S.
+0.53 (we; specify; the models which condition the embedding functions f and g on the whole support)
+0.89 (the models; condition; the embedding functions f)
+0.91 (the models; g; on the whole support)
+
+Much previous work has fully described similar mechanisms, which is why we left the precise details for this appendix.
+0.91 (Much previous work; has fully described; similar mechanisms)
+
+We deﬁne K to be the number of “processing” steps following work from [26] from their “Process” block.
+0.56 (We; deﬁne; K to be the number of "processing" steps)
+0.83 Context(We deﬁne):(K; to be; the number of "processing" steps)
+
+Since we do K steps of “reads”, attLSTM(f(cid:48)(ˆx), g(S), K) = hK where hk is as described in eq.
+0.57 (we; do; K steps of "reads)
+0.85 (hk; is; T:as described in eq)
+
+A.2 The Fully Conditional Embedding g In section 2.1.2 we described the encoding function for the elements in the support set S, g(xi, S), as a bidirectional LSTM.
+0.45 (we; described; the encoding function; for the elements in the support set S)
+
+Then we deﬁne g(xi, S) = (cid:126)hi + (cid:126)hi + g(cid:48)(xi) with: (cid:126)hi, (cid:126)ci = LSTM(g(cid:48)(xi), (cid:126)hi−1, (cid:126)ci−1) (cid:126)hi, (cid:126)ci = LSTM(g(cid:48)(xi), (cid:126)hi+1, (cid:126)ci+1) where, as in above, LSTM(x, h, c) follows the same LSTM implementation deﬁned in [23] with x the input, h the output (i.e., cell after the output gate), and c the cell.
+0.60 (we; deﬁne; g; T:Then)
+0.84 (the same LSTM implementation; deﬁned; T:in [23)
+0.83 (h; c; the cell)
+
+3, we add a skip connection between input and outputs.
+0.66 (we; add; a skip connection between input and outputs; T:3)
+
+Here we deﬁne the two class splits used in our full ImageNet experiments – these classes were excluded for training during our one-shot experiments described in section 4.1.2.
+0.88 (the two class splits; used; L:in our full ImageNet experiments)
+0.70 (our one-shot experiments; described; L:in section 4.1.2)
+0.80 (these classes; were excluded; for training; T:during our one-shot experiments)
+0.54 Context(these classes were excluded):(we; deﬁne; the two class splits used in our full ImageNet experiments; L:Here)
+
+n01498041, n01537544, n01580077, n01592084, n01632777, n01644373, n01665541, n01675722, n01688243, n01729977, n01775062, n01818515, n01843383, n01883070, n01950731, n02002724, n02013706, n02092339, n02093256, n02095314, n02097130, n02097298, n02098413, n02101388, n02106382, n02108089, n02110063, n02111129, n02111500, n02112350, n02115913, n02117135, n02120505, n02123045, n02125311, n02134084, n02167151, n02190166, n02206856, n02231487, n02256656, n02398521, n02480855, n02481823, n02490219, n02607072, n02666196, n02672831, n02704792, n02708093, n02814533, n02817516, n02840245, n02843684, n02870880, n02877765, n02966193, n03016953, n03017168, n03026506, n03047690, n03095699, n03134739, n03179701, n03255030, n03388183, n03394916, n03424325, n03467068, n03476684, n03483316, n03627232, n03658185, n03710193, n03721384, n03733131, n03785016, n03786901, n03792972, n03794056, n03832673, n03843555, n03877472, n03899768, n03930313, n03935335, n03954731, n03995372, n04004767, n04037443, n04065272, n04069434, n04090263, n04118538, n04120489, n04141975, n04152593, n04154565, n04204347, n04208210, n04209133, n04258138, n04311004, n04326547, n04367480, n04447861, n04483307, n04522168, n04548280, n04554684, n04597913, n04612504, n07695742, n07697313, n07697537, n07716906, n12998815, n13133613 n02085620, n02085782, n02085936, n02086079, n02086240, n02086646, n02086910, n02087046, n02087394, n02088094, n02088238, n02088364, n02088466, n02088632, n02089078, n02089867, n02089973, n02090379, n02090622, n02090721, n02091032, n02091134, n02091244, n02091467, n02091635, n02091831, n02092002, n02092339, n02093256, n02093428, n02093647, n02093754, n02093859, n02093991, n02094114, n02094258, n02094433, n02095314, n02095570, n02095889, n02096051, n02096177, n02096294, n02096437, n02096585, n02097047, n02097130, n02097209, n02097298, n02097474, n02097658, n02098105, n02098286, n02098413, n02099267, n02099429, n02099601, n02099712, n02099849, n02100236, n02100583, n02100735, n02100877, n02101006, n02101388, n02101556, n02102040, n02102177, n02102318, n02102480, n02102973, n02104029, n02104365, n02105056, n02105162, n02105251, n02105412, n02105505, n02105641, n02105855, n02106030, n02106166, n02106382, n02106550, n02106662, n02107142, n02107312, n02107574, n02107683, n02107908, n02108000, n02108089, n02108422, n02108551, n02108915, n02109047, n02109525, n02109961, n02110063, n02110185, n02110341, n02110627, n02110806, n02110958, n02111129, n02111277, n02111500, n02111889, n02112018, n02112137, n02112350, n02112706, n02113023, n02113186, n02113624, n02113712, n02113799, n02113978 Here we deﬁne the two class splits used in our PTB experiments – these classes were excluded for training during our one-shot language experiments described in section 4.1.3
+0.88 (the two class splits; used; L:in our PTB experiments)
+0.72 (our one-shot language experiments; described; L:in section 4.1.3)
+0.80 (these classes; were excluded; for training; T:during our one-shot language experiments)
+0.43 Context(these classes were excluded):(we; deﬁne; the two class splits used in our PTB experiments; L:Here)
+

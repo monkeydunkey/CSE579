@@ -1,0 +1,284 @@
+In this paper we equip a basic tracking algorithm with a novel fully-convolutional Siamese network trained end-to-end on the ILSVRC15 dataset for object detection in video.
+0.60 (we; equip; a basic tracking algorithm; with a novel; L:In this paper)
+
+Our tracker operates at frame-rates beyond real-time and, despite its extreme simplicity, achieves state-of-the-art performance in multiple benchmarks.
+
+Keywords: object-tracking, Siamese-network, similarity-learning, deeplearning We consider the problem of tracking an arbitrary object in video, where the object is identiﬁed solely by a rectangle in the ﬁrst frame.
+0.94 (the object; is identiﬁed; solely by a rectangle in the ﬁrst frame; L:video)
+0.92 (Siamese-network, similarity-learning; deeplearning; We consider the problem of tracking an arbitrary object in video)
+0.40 Context(Siamese - network , similarity - learning deeplearning):(We; consider; the problem of tracking an arbitrary object in video)
+
+We advocate an alternative approach in which a deep conv-net is trained to address a more general similarity learning problem in an initial oﬄine phase, and then this function is simply evaluated online during tracking.
+0.57 (We; advocate; an alternative approach in which a deep conv-net is trained to address a more general similarity)
+0.96 (a deep conv-net; is trained; to address a more general similarity; L:an alternative approach)
+0.94 (a deep conv-net; to address; a more general similarity learning problem in an initial oﬄine phase)
+0.92 (a more general similarity; learning; problem; L:in an initial oﬄine phase)
+0.94 (this function; is simply evaluated; L:online; T:during tracking; T:then)
+
+Speciﬁcally, we train a Siamese network to locate an exemplar image within a larger search image.
+0.57 (we; train; a Siamese network; to locate an exemplar image within a larger search image)
+0.91 (a Siamese network; to locate; an exemplar image; L:within a larger search image)
+
+We posit that the similarity learning approach has gone relatively neglected because the tracking community did not have access to vast labelled datasets.
+0.91 (the tracking community; did not have; access to vast labelled datasets)
+0.28 (We; posit; that the similarity learning approach has gone relatively neglected because the tracking community did not have access to vast labelled datasets)
+0.94 Context(We posit):(the similarity learning approach; has gone relatively neglected; because the tracking community did not have access to vast labelled datasets)
+
+However, we believe that the emergence of the ILSVRC dataset for object detection in video [10] (henceforth ImageNet Video) makes it possible to train such a model.
+0.20 (we; believe; that the emergence of the ILSVRC dataset for object detection in video [10] (henceforth ImageNet Video) makes it possible)
+0.85 Context(we believe):(the emergence of the ILSVRC dataset for object detection in video; makes; it possible to train such a model)
+
+We show that our model generalizes from the ImageNet Video domain to the ALOV/OTB/VOT [1,11,12] domain, enabling the videos of tracking benchmarks to be reserved for testing purposes.
+0.90 (1,11,12] domain; enabling; the videos of tracking benchmarks)
+0.89 (benchmarks; to be reserved; for testing purposes)
+0.25 (We; show; that our model generalizes from the ImageNet Video domain to the ALOV/OTB/VOT [1,11,12] domain)
+0.73 Context(We show):(our model; generalizes; from the ImageNet Video domain to the ALOV/OTB/VOT)
+
+We propose to learn a function f (z, x) that compares an exemplar image z to a candidate image x of the same size and returns a high score if the two images depict the same object and a low score otherwise.
+0.91 (the two images; depict; the same object and a low score otherwise)
+
+To ﬁnd the position of the object in a new image, we can then exhaustively test all possible locations and choose the candidate with the maximum similarity to the past appearance of the object.
+0.49 (we; can exhaustively test; all possible locations; T:then)
+0.55 (we; choose; the candidate; T:then)
+
+In experiments, we will simply use the initial appearance of the object as the exemplar.
+0.60 (we; will simply use; the initial appearance of the object as the exemplar; L:In experiments)
+
+Given their widespread success in computer vision [13,14,15,16], we will use a deep conv-net as the function f .
+0.45 (we; will use; a deep conv-net; as the function f)
+
+Our architecture is fullyconvolutional with respect to the search image x.
+0.70 (Our architecture; is; fullyconvolutional with respect to the search image)
+
+We propose a Siamese architecture which is fully-convolutional with respect to the candidate image x.
+0.57 (We; propose; a Siamese architecture which is fully-convolutional with respect to the candidate image)
+0.92 (a Siamese architecture; is; fully-convolutional with respect to the candidate image)
+
+We say that a function is fully-convolutional if it commutes with translation.
+0.19 (it; commutes; )
+0.17 (We; say; that a function is fully-convolutional if it commutes with translation)
+0.78 Context(We say):(a function; is; fully-convolutional)
+
+(When x is a ﬁnite signal, this only need hold for the valid region of the output.) The advantage of a fully-convolutional network is that, instead of a candidate image of the same size, we can provide as input to the network a much larger search image and it will compute the similarity at all translated sub-windows on a dense grid in a single evaluation.
+0.45 (x; is; a ﬁnite signal)
+0.52 (this; only need; hold for the valid region of the output; T:When x is a ﬁnite signal)
+0.57 (it; will compute; the similarity; at all translated sub-windows on a dense grid in a single evaluation)
+
+To achieve this, we use a convolutional embedding function ϕ and combine the resulting feature maps using a crosscorrelation layer f (z, x) = ϕ(z) ∗ ϕ(x) + b 1, L.
+0.57 (we; combine; the resulting feature maps using a crosscorrelation layer f (z, x) = ϕ(z) * ϕ(x) + b 1, L.)
+0.92 (the resulting feature maps; using; a crosscorrelation layer f)
+0.49 (To achieve this; use; a convolutional embedding function ϕ)
+
+During tracking, we use a search image centred at the previous position of the target.
+0.70 (we; use; a search image centred at the previous position of the target; T:During tracking)
+0.91 (a search image; centred; L:at the previous position of the target)
+
+2.2 Training with large search images We employ a discriminative approach, training the network on positive and negative pairs and adopting the logistic loss (cid:96)(y, v) = log(1 + exp(−yv)) (3) where v is the real-valued score of a single exemplar-candidate pair and y ∈ {+1,−1} is its ground-truth label.
+0.57 (v; is; the real-valued score of a single exemplar-candidate pair and y)
+0.73 (−1; is; its ground-truth label)
+0.40 (We; employ; a discriminative approach)
+0.30 Context(We employ):(We; employ a discriminative approach training; the network; on positive and negative pairs)
+0.30 Context(We employ):(We; employ a discriminative approach adopting; the logistic loss)
+
+We exploit the fully-convolutional nature of our network during training by using pairs that comprise an exemplar image and a larger search image.
+0.31 (We; exploit; the fully-convolutional nature of our network; T:during training by using pairs)
+0.88 (pairs; comprise; an exemplar image and a larger search image)
+
+We deﬁne the loss of a score map to be the mean of the individual losses requiring a true label y[u] ∈ {+1,−1} for each position u ∈ D in the score map.
+0.45 (We; deﬁne; the loss of a score map; to be the mean of the individual losses)
+0.91 (the individual losses; requiring; a true label y)
+
+Since our network is fully-convolutional, there is no risk that it learns a bias for the sub-window at the centre.
+0.45 (our network; is; fully-convolutional)
+0.45 (it; learns; a bias for the sub-window at the centre)
+
+We believe that it is eﬀective to consider search images centred on the target because it is likely that the most diﬃcult sub-windows, and those which have the most inﬂuence on the performance of the tracker, are those adjacent to the target.
+0.17 (We; believe; that it is eﬀective to consider search images centred on the target because it is likely that the most diﬃcult sub-windows, and those which have the most inﬂuence on the performance of the tracker, are those adjacent to the target)
+0.21 (those; have; the most inﬂuence; L:on the performance of the tracker)
+0.90 (search images; centred; L:on the target)
+0.24 (it; is; likely)
+0.79 Context(it is):(the most diﬃcult sub-windows, and those; are; those adjacent to the target)
+
+While this allows us to use diﬀerent size exemplar images for diﬀerent objects in theory, we assume uniform sizes because it simpliﬁes the mini-batch implementation.
+0.31 (we; assume; uniform sizes; because it simpliﬁes the mini-batch implementation)
+0.45 (it; simpliﬁes; the mini-batch implementation)
+0.30 (this; allows; us to use diﬀerent size exemplar images for diﬀerent objects in theory)
+0.40 Context(this allows):(us; to use; diﬀerent size exemplar images; for diﬀerent objects in theory)
+
+We believe that this dataset should be of extreme interest to the tracking community not only for its vast size, but also because it depicts scenes and objects diﬀerent to those found in the canonical tracking benchmarks.
+0.23 (it; depicts; scenes and objects diﬀerent to those)
+0.23 (those; found; L:in the canonical tracking benchmarks)
+0.17 (We; believe; that this dataset should be of extreme interest to the tracking community not only for its vast size)
+0.88 Context(We believe):(this dataset; should be; of extreme interest to the tracking community)
+
+2.4 Practical considerations Dataset curation During training, we adopt exemplar images that are 127 × 127 and search images that are 255 × 255 pixels.
+0.33 (we; adopt; exemplar images that are 127 × 127 and search images)
+0.82 (exemplar images; are; 127 × 127 and search images that are 255 × 255 pixels)
+0.92 (127 × 127 and search images; are; 255 × 255 pixels)
+
+(7) We use the area of the exemplar images A = 1272 and set the amount of context to be half of the mean dimension p = (w + h)/4.
+0.45 (We; use; the area of the exemplar images)
+0.60 (We; set; the amount of context; to be half of the mean dimension p = (w + h)/4)
+0.95 (the amount of context; to be; half of the mean dimension p = (w + h)/4)
+
+In a preliminary version of this work, we adopted a few heuristics to limit the number of frames from which to extract the training data.
+0.53 (we; adopted; a few heuristics to limit the number of frames; L:In a preliminary version of this work)
+0.29 Context(we adopted):(we; adopted to limit; the number of frames)
+
+For the experiments of this paper, instead, we have used all 4417 videos of ImageNet Video, which account for more than 2 million labelled bounding boxes.
+0.64 (we; have used; all 4417 videos of ImageNet Video; T:For the experiments of this paper)
+0.91 (ImageNet Video; account; for more than 2 million labelled bounding boxes)
+
+Network architecture The architecture that we adopt for the embedding function ϕ resembles the convolutional stage of the network of Krizhevsky et al.
+0.89 (The architecture; adopt; for the embedding function ϕ)
+0.96 (Network architecture The architecture; resembles; the convolutional stage of the network of Krizhevsky et al)
+
+Tracking algorithm Since our purpose is to prove the eﬃcacy of our fullyconvolutional Siamese network and its generalization capability when trained on ImageNet Video, we use an extremely simplistic algorithm to perform tracking.
+0.39 (we; use; an extremely simplistic algorithm; to perform tracking)
+0.72 Context(we use):(Tracking algorithm Since our purpose; is; to prove the eﬃcacy of our fullyconvolutional Siamese network and its generalization capability when trained on ImageNet Video)
+0.18 Context(we use):(we; use an extremely simplistic algorithm to perform; tracking)
+
+Unlike more sophisticated trackers, we do not update a model or maintain a memory of past appearances, we do not incorporate additional cues such as optical ﬂow or colour histograms, and we do not reﬁne our prediction with bounding box regression.
+0.41 (we; maintain; a memory of past appearances)
+0.31 (we; do not reﬁne; our prediction)
+0.39 (we; do not incorporate; additional cues such as optical ﬂow or colour histograms)
+0.39 Context(we do not incorporate):(we; do not update; a model)
+
+Yet, despite its simplicity, the tracking algorithm achieves surprisingly good results when equipped with our oﬄine-learnt similarity metric.
+0.81 (the tracking algorithm; achieves; surprisingly good results; T:when equipped with our oﬄine-learnt similarity metric)
+
+map 11 × 11 3 × 3 5 × 5 3 × 3 3 × 3 3 × 3 3 × 3 96 × 3 256 × 48 384 × 256 384 × 192 256 × 192 for exemplar 127 × 127 59 × 59 29 × 29 25 × 25 12 × 12 10 × 10 8 × 8 6 × 6 for search 255 × 255 ×3 123 × 123 ×96 61 × 61 ×96 57 × 57 ×256 ×256 28 × 28 ×192 26 × 26 24 × 24 ×192 22 × 22 ×128 Online, we do incorporate some elementary temporal constraints: we only search for the object within a region of approximately four times its previous size, and a cosine window is added to the score map to penalize large displacements.
+0.91 (a cosine window; is added; to the score map; to penalize large displacements)
+0.39 (we; only search; for the object)
+0.39 Context(we only search):(we; do incorporate; some elementary temporal constraints)
+
+We remark that an interesting parallel can be drawn between this approach and ours, by interpreting a Siamese network as an unrolled RNN that is trained and evaluated on sequences of length two.
+0.78 (an unrolled RNN; is trained; )
+0.92 (an unrolled RNN; evaluated; L:on sequences of length two)
+0.32 (We; remark; that an interesting parallel can be drawn between this approach and ours, by interpreting a Siamese network as an unrolled RNN)
+0.89 Context(We remark):(an interesting parallel; can be drawn; L:between this approach and ours)
+
+Concurrently with our own work, some other authors have also proposed using conv-nets for object tracking by learning a function of pairs of images.
+0.93 (some other authors; have also proposed; using conv-nets for object tracking by learning a function of pairs of images)
+0.93 Context(some other authors have also proposed):(some other authors; have also proposed using; conv-nets; for object tracking by learning a function of pairs of images)
+
+Unlike our approach, they cannot adjust the size of the search region dynamically after training.
+0.62 (they; can not adjust; the size of the search region; T:dynamically after training)
+
+In contrast to our approach, they do not adopt an architecture which is fully-convolutional with respect to the search image.
+0.72 (they; do not adopt; an architecture which is fully-convolutional with respect to the search image)
+0.91 (an architecture; is; fully-convolutional with respect to the search image)
+
+Thus an important contribution of our work is to demonstrate that a conv-net can be trained for eﬀective object tracking without using videos from the same distribution as the testing set.
+0.67 (an important contribution of our work; is; to demonstrate that a conv-net can be trained for eﬀective object tracking without using videos from the same distribution as the testing set)
+
+We found that updating (the feature representation of) the exemplar online through simple strategies, such as linear interpolation, does not gain much performance and thus we keep it ﬁxed.
+0.31 (we; keep; it)
+0.28 (We; found; that updating (the feature representation of) the exemplar online through simple strategies, such as linear interpolation, does not gain much performance)
+0.94 Context(We found):(the exemplar online through simple strategies, such as linear interpolation; does not gain; much performance)
+
+We found that upsampling the score map using bicubic interpolation, from 17 × 17 to 272 × 272, results in more accurate localization since the original map is relatively coarse.
+0.83 (the original map; is; relatively coarse)
+0.28 (We; found; that upsampling the score map using bicubic interpolation, from 17 × 17 to 272 × 272, results in more accurate localization since the original map is relatively coarse)
+0.91 Context(We found):(upsampling the score map using bicubic interpolation; results; in more accurate localization)
+
+To handle scale variations, we also search for the object over ﬁve scales 1.025{−2,−1,0,1,2}, and update the scale by linear interpolation with a factor of 0.35 to provide damping.
+0.45 (we; also search; for the object over ﬁve scales)
+0.41 (we; update; the scale)
+
+In order to make our experimental results reproducible, we share training and tracking code, together with the scripts to generate the curated dataset at http: //www.robots.ox.ac.uk/~luca/siamese-fc.html.
+0.39 (we; share; training and tracking code)
+0.29 Context(we share):(we; share training and tracking code to generate; the curated dataset at http)
+
+On a machine equipped with a single NVIDIA GeForce GTX Titan X and an Intel Core i7-4790K at 4.0GHz, our full online tracking pipeline operates at 86 and 58 frames-per-second, when searching respectively over 3 and 5 scales.
+0.70 (our full online tracking pipeline; operates; T:at 86 and 58 frames-per-second)
+0.38 (X; [is] single Titan [of]; NVIDIA GeForce GTX)
+
+We evaluate two variants of our simplistic tracker: SiamFC (Siamese FullyConvolutional) and SiamFC-3s, which searches over 3 scales instead of 5.
+0.31 (We; evaluate; two variants of our simplistic tracker)
+0.93 (SiamFC-3s; searches; over 3 scales instead of 5)
+
+In addition to the trackers reported by [11], in Figure 3 we also compare against seven more recent state-of-the-art trackers presented in the major computer vision conferences and that can run at frame-rate speed: Staple [33], LCT [34], CCT [35], SCT4 [36], DLSSVM NU [37], DSST [38] and KCFDP [39].
+0.77 (the trackers; reported; by [11)
+0.74 (11; also compare; against seven more recent state-of-the-art trackers; L:in Figure 3)
+0.96 (seven more recent state-of-the-art trackers; presented; L:in the major computer vision conferences)
+0.04 (that; can run; )
+
+Given the nature of the sequences, for this benchmark only we convert 25% of the pairs to grayscale during training.
+
+For our experiments, we use the latest stable version of the Visual Object Tracking (VOT) toolkit (tag vot2015-final), which evaluates trackers on sequences chosen from a pool of 356, selected so that seven diﬀerent challenging situations are well represented.
+0.61 (we; use; the latest stable version of the Visual Object Tracking (VOT) toolkit)
+0.77 (seven diﬀerent challenging situations; are well represented; )
+0.91 (tag vot2015-final; evaluates; trackers on sequences)
+0.89 (sequences; chosen; from a pool of 356)
+0.74 (a pool of 356; selected; )
+
+We compare our method SiamFC (and the variant SiamFC3s) against the best 10 trackers that participated in the 2014 edition of the VOT challenge [40].
+0.31 (We; compare; our method; against the best 10 trackers)
+0.92 (the best 10 trackers; participated; in the 2014 edition of the VOT challenge)
+
+We also include Staple [33] and GOTURN [28], two recent realtime trackers presented respectively at CVPR 2016 and ECCV 2016.
+0.91 (two recent realtime trackers; presented respectively; L:at CVPR 2016 and ECCV 2016)
+0.43 Context(two recent realtime trackers presented respectively):(We; also include; Staple [33] and GOTURN [28)
+
+We also compare our method against the 40 best participants in the 2015 edition [12].
+0.31 (We; also compare; our method; against the 40 best participants in the 2015 edition)
+
+However, to facilitate an early comparison with our method, we report our scores.
+0.31 (we; report; our scores)
+
+For SiamFC and SiamFC-3s we obtain, respectively, an overall expected overlap (average between the baseline and unsupervised experiments) of 0.3876 and 0.4051.
+0.93 (SiamFC-3s; obtain; we)
+
+Please note that these results are diﬀerent from the VOT-16 report, as our entry in the challenge was a preliminary version of this work.
+
+Despite its simplicity, our method improves over recent state-of-the-art realtime trackers (Figures 3 and 4).
+0.34 (our method; improves; )
+
+These results demonstrate that the expressiveness of the similarity metric learnt by our fully-convolutional Siamese network on ImageNet Video alone is enough to achieve very strong results, comparable or superior to recent state-of-the-art methods, which often are several orders of magnitude slower.
+0.86 (recent state-of-the-art methods; are slower; T:often)
+0.74 (These results; demonstrate; that the expressiveness of the similarity metric learnt by our fully-convolutional Siamese network on ImageNet Video alone is enough to achieve very strong results, comparable or superior to recent state-of-the-art methods)
+0.95 Context(These results demonstrate):(the expressiveness of the similarity metric learnt by our fully-convolutional Siamese network on ImageNet Video alone; is; enough to achieve very strong results, comparable or superior to recent state-of-the-art methods)
+
+We believe that considerably higher performance could be obtained by augmenting the minimalist online tracking pipeline with the methods often adopted by the tracking community (e.g.
+0.90 (considerably higher performance; by augmenting; the minimalist online tracking pipeline with the methods)
+0.76 (the methods; adopted e.g.; T:often)
+0.28 (We; believe; that considerably higher performance could be obtained by augmenting the minimalist online tracking pipeline with the methods)
+0.71 Context(We believe):(considerably higher performance; could be obtained; )
+
+In this work, we depart from the traditional online learning methodology employed in tracking, and show an alternative approach that focuses on learning strong embeddings in an oﬄine phase.
+0.60 (we; depart; from the traditional online learning methodology; L:In this work)
+0.93 (the traditional online learning methodology; employed; L:in tracking)
+0.35 (we; show; an alternative approach that focuses on learning strong embeddings in an oﬄine phase)
+0.90 (an alternative approach; focuses; on learning strong embeddings in an oﬄine phase)
+
+Diﬀerently from their use in classiﬁcation settings, we demonstrate that for tracking applications Siamese fullyconvolutional deep networks have the ability to use the available data more eﬃciently.
+
+We believe that this approach is complementary to more sophisticated online tracking methodologies, and expect future work to explore this relationship more thoroughly.
+0.28 (We; believe; that this approach is complementary to more sophisticated online tracking methodologies)
+0.91 Context(We believe):(this approach; is; complementary to more sophisticated online tracking methodologies)
+0.36 (We; expect; future work to explore this relationship more thoroughly)
+0.88 Context(We expect):(future work; to explore more thoroughly; this relationship)
+
+Order1591317212529333741Average expected overlap0.10.150.20.250.30.350.40.45Expected overlap scores for baselineMDNetEBTDeepSRDCFSiamFC_3s (ours)SiamFC (ours)srdcfsPSTLDPscebtnsamfstruck_PAMIs3trackerrajsscsumshiftDATSODLTRobStruckMCTMEEMOACFHMMTxDASMSggtmkcf_plusAOGTrackertricmvcftsmesratdtrackersamfkcfv2musterTGPRcmilACTLGTkcf_mtsaKCF2DSSTMILHTVOT15winner(1 fps)VOT14winner(24 fps)SiamFC-3s(86 fps)SiamFC(58 fps)Fully-Convolutional Siamese Networks for Object Tracking Table 2: Raw scores, overlap and reported speed for our proposed method and the best 15 performing trackers of the VOT-15 challenge.
+0.89 (Order1591317212529333741Average; expected; overlap0.10.150.20.250.30.350.40.45Expected overlap scores for baselineMDNetEBTDeepSRDCFSiamFC_3s)
+
+Where available, we compare with the speed reported by the authors, otherwise (*) we report the values from the VOT-15 results [12] in EFO units, which roughly correspond to fps (e.g.
+0.90 (the speed; reported; by the authors)
+0.91 (EFO units; roughly correspond e.g.; to fps)
+
+6: Snapshots of the simple tracker described in Section 2.4 equipped with our proposed fully-convolutional Siamese network trained from scratch on ImageNet Video.
+0.91 (the simple tracker; described; L:in Section 2.4)
+0.83 (Section 2.4; equipped; with our proposed fully-convolutional Siamese network)
+0.74 (our proposed fully-convolutional Siamese network; trained; from scratch)
+
+Our method does not perform any model update, so it uses only the ﬁrst frame to compute ϕ(z).
+0.64 (Our method; does not perform; any model update)
+0.45 (it; uses; only the ﬁrst frame; to compute ϕ)
+
+On the other hand, our method is sensitive to scenes with confusion (row 5), arguably because the model is never updated and thus the cross-correlation gives a high scores for all the windows that are similar to the ﬁrst appearance of the target
+0.70 (our method; is; sensitive to scenes with confusion)
+0.90 (the cross-correlation; gives; a high scores for all the windows)
+0.90 (all the windows; are; similar to the ﬁrst appearance of the target)
+0.39 (our method; is sensitive to; scenes)
+

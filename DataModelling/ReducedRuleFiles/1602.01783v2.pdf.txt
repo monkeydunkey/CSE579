@@ -1,0 +1,167 @@
+The paper  |  uses  | asynchronous gradient descent
+The paper  |  uses  | optimization
+The paper  |  uses  | deep neural network controllers
+The paper  |  uses  | asynchronous gradient descent for optimization of deep neural network controllers
+The paper  |  outputs  | different paradigm
+The paper  |  outputs  | deep reinforcement learning
+The paper  |  outputs  | different paradigm for deep reinforcement learning
+The paper  |  solves  | al
+The paper  |  uses  | standard reinforcement
+The paper  |  uses  | agent
+The paper  |  uses  | environment
+The paper  |  uses  | standard reinforcement learning setting where an agent interacts with an environment
+The paper  |  outputs  | multi-threaded asynchronous variants
+The paper  |  outputs  | one-step sarsa
+The paper  |  outputs  | multi-threaded asynchronous variants of one-step sarsa
+The paper  |  uses  | main ideas
+The paper  |  uses  | algorithms practical
+The paper  |  uses  | main ideas to make all four algorithms practical
+The paper  |  uses  | algorithms practical
+The paper  |  uses  | asynchronous actor-learners
+The paper  |  uses  | gorila framework
+The paper  |  uses  | asynchronous actor-learners similarly to the gorila framework
+The paper  |  uses  | multiple cpu threads
+The paper  |  uses  | replay memory
+The paper  |  uses  | different exploration policies
+The paper  |  uses  | on-policy reinforcement
+The paper  |  uses  | methods such
+The paper  |  uses  | sarsa
+The paper  |  uses  | neural networks
+The paper  |  uses  | stable way
+The paper  |  uses  | on-policy reinforcement learning methods such as sarsa and actor-critic to train neural networks in a stable way
+The paper  |  outputs  | variants
+The paper  |  outputs  | one-step qlearning
+The paper  |  outputs  | variants of one-step qlearning
+The paper  |  uses  | target network
+The paper  |  uses  | q-learning loss
+The paper  |  uses  | target network in computing the q-learning loss
+The paper  |  uses  | thread
+The paper  |  uses  | different exploration policy
+The paper  |  uses  | robustness
+The paper  |  uses  | thread a different exploration policy helps improve robustness
+The paper  |  uses  | target network
+The paper  |  uses  | updates
+The paper  |  uses  | multiple timesteps
+The paper  |  uses  | target network and updates accumulated over multiple timesteps
+The paper  |  uses  | forward view
+The paper  |  uses  | same mix
+The paper  |  uses  | n-step returns
+The paper  |  uses  | policy
+The paper  |  uses  | value-function
+The paper  |  uses  | same mix of n-step returns to update both the policy and the value-function
+The paper  |  uses  | convolutional neural network
+The paper  |  uses  | softmax output
+The paper  |  uses  | policy π
+The paper  |  uses  | at|st
+The paper  |  uses  | convolutional neural network that has one softmax output for the policy π ( at|st
+The paper  |  uses  | entropy
+The paper  |  uses  | policy π
+The paper  |  uses  | objective function
+The paper  |  uses  | exploration
+The paper  |  uses  | premature convergence
+The paper  |  uses  | deterministic policies
+The paper  |  uses  | entropy of the policy π to the objective function improved exploration by discouraging premature convergence to suboptimal deterministic policies
+The paper  |  uses  | standard non-centered rmsprop update
+The paper  |  uses  | different platforms
+The paper  |  uses  | properties
+The paper  |  uses  | framework
+The paper  |  uses  | different platforms for assessing the properties of the proposed framework
+The paper  |  uses  | atari domain
+The paper  |  uses  | state
+The paper  |  uses  | art results
+The paper  |  uses  | atari domain to compare against state of the art results
+The paper  |  uses  | torcs
+The paper  |  uses  | car
+The paper  |  uses  | simulator
+The paper  |  uses  | torcs 3d car racing simulator
+The paper  |  uses  | asynchronous methods
+The paper  |  uses  | deep reinforcement
+The paper  |  uses  | dqn
+The paper  |  uses  | asynchronous methods for deep reinforcement learning dqn
+The paper  |  uses  | cpu cores
+The paper  |  uses  | l
+The paper  |  uses  | supplementary section
+The paper  |  uses  | l : in supplementary section
+The paper  |  outputs  | training speed
+The paper  |  outputs  | new methods
+The paper  |  outputs  | training speed of the new methods
+The paper  |  uses  | ﬁnal network weights
+The paper  |  uses  | evaluation
+The paper  |  uses  | ﬁnal network weights for evaluation
+The paper  |  uses  | results
+The paper  |  uses  | original results table
+The paper  |  uses  | results more comparable to the original results table
+The paper  |  uses  | t
+The paper  |  uses  | dueling double
+The paper  |  uses  | dqn
+The paper  |  uses  | al
+The paper  |  uses  | t : dueling double dqn ( wang et al
+The paper  |  outputs  | l
+The paper  |  outputs  | work
+The paper  |  outputs  | similar potential improvements
+The paper  |  outputs  | l : in this work with similar potential improvements
+The paper  |  outputs  | l
+The paper  |  outputs  | double dqn
+The paper  |  outputs  | van hasselt
+The paper  |  outputs  | al
+The paper  |  outputs  | l : in double dqn ( van hasselt et al
+The paper  |  uses  | same neural network architecture
+The paper  |  uses  | l
+The paper  |  uses  | atari experiments
+The paper  |  uses  | l : in the atari experiments
+The paper  |  uses  | different settings
+The paper  |  uses  | mujoco
+The paper  |  uses  | set
+The paper  |  uses  | tasks
+The paper  |  uses  | set of tasks
+The paper  |  uses  | method
+The paper  |  uses  | number
+The paper  |  uses  | threads
+The paper  |  uses  | method and number of threads
+The paper  |  uses  | ﬁxed reference score
+The paper  |  uses  | rgb images
+The paper  |  uses  | input
+The paper  |  uses  | rgb images as input
+The paper  |  solves  | training time
+The paper  |  solves  | data efﬁciency changes
+The paper  |  solves  | number
+The paper  |  solves  | parallel actor-learners
+The paper  |  solves  | training time and data efﬁciency changes with the number of parallel actor-learners
+The paper  |  outputs  | particular score
+The paper  |  uses  | particular score
+The paper  |  uses  | more parallel actor-learners
+The paper  |  uses  | particular score when using more parallel actor-learners
+The paper  |  outputs  | asynchronous versions
+The paper  |  outputs  | standard reinforcement
+The paper  |  outputs  | algorithms
+The paper  |  outputs  | asynchronous versions of four standard reinforcement learning algorithms
+The paper  |  outputs  | many possibilities
+The paper  |  outputs  | immediate improvements
+The paper  |  outputs  | methods
+The paper  |  outputs  | many possibilities for immediate improvements to the methods
+The paper  |  uses  | agents
+The paper  |  uses  | paper
+The paper  |  uses  | agents in the paper
+The paper  |  uses  | locking
+The paper  |  uses  | different random initialization
+The paper  |  uses  | rate
+The paper  |  uses  | different random initialization and initial learning rate
+The paper  |  uses  | mujoco physics simulator
+The paper  |  uses  | asynchronous advantage actor-critic
+The paper  |  uses  | algorithm
+The paper  |  uses  | mujoco
+The paper  |  uses  | mujoco physics simulator to apply the asynchronous advantage actor-critic algorithm to the mujoco
+The paper  |  uses  | continuous action domains
+The paper  |  uses  | l
+The paper  |  uses  | discrete action domains
+The paper  |  uses  | l : in the discrete action domains
+The paper  |  uses  | rgb pixel inputs
+The paper  |  uses  | pixels
+The paper  |  uses  | bootstrapping
+The paper  |  uses  | constant multiplier
+The paper  |  uses  | cost
+The paper  |  uses  | tasks
+The paper  |  uses  | constant multiplier of 10−4 for this cost across all of the tasks
+The paper  |  uses  | discover solutions
+The paper  |  uses  | hours
+The paper  |  uses  | discover solutions within 24 hours

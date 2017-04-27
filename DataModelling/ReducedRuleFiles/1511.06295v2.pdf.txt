@@ -1,0 +1,76 @@
+The paper  |  outputs  | novel method
+The paper  |  outputs  | policy distillation
+The paper  |  outputs  | novel method called policy distillation
+The paper  |  uses  | policy
+The paper  |  uses  | reinforcement learning agent
+The paper  |  uses  | new network
+The paper  |  uses  | policy of a reinforcement learning agent and train a new network
+The paper  |  outputs  | claims
+The paper  |  outputs  | atari domain
+The paper  |  outputs  | claims using the atari domain
+The paper  |  outputs  | policy distillation
+The paper  |  outputs  | more action policies
+The paper  |  outputs  | q-networks
+The paper  |  outputs  | untrained network
+The paper  |  outputs  | policy distillation for transferring one or more action policies from q-networks to an untrained network
+The paper  |  outputs  | more action policies
+The paper  |  outputs  | q-networks
+The paper  |  outputs  | untrained network
+The paper  |  outputs  | more action policies from q-networks to an untrained network
+The paper  |  uses  | l
+The paper  |  uses  | context
+The paper  |  uses  | reinforcement learning
+The paper  |  uses  | l : in the context of reinforcement learning
+The paper  |  outputs  | policy distillation
+The paper  |  uses  | methods
+The paper  |  uses  | policy distillation
+The paper  |  uses  | t
+The paper  |  uses  | methods of policy distillation from t
+The paper  |  uses  | dataset
+The paper  |  uses  | action
+The paper  |  uses  | teacher best
+The paper  |  uses  | = argmax
+The paper  |  uses  | action from the teacher best = argmax
+The paper  |  uses  | dqn single-game experts
+The paper  |  uses  | similar training procedure
+The paper  |  uses  | multi-task policy distillation
+The paper  |  uses  | similar training procedure for multi-task policy distillation
+The paper  |  outputs  | al
+The paper  |  uses  | human trajectories
+The paper  |  uses  | student networks
+The paper  |  uses  | %
+The paper  |  uses  | %
+The paper  |  uses  | %
+The paper  |  uses  | dqn network parameters
+The paper  |  uses  | student networks that were signiﬁcantly smaller ( 25 % , 7 % , and 4 % of the dqn network parameters
+The paper  |  outputs  | geometric mean
+The paper  |  outputs  | atari games
+The paper  |  outputs  | error bars
+The paper  |  outputs  | geometric mean over 10 atari games , with error bars
+The paper  |  uses  | standard dqn algorithm
+The paper  |  uses  | same approach
+The paper  |  uses  | atari games
+The paper  |  uses  | single student network
+The paper  |  uses  | same approach to distill 10 atari games into a single student network
+The paper  |  uses  | rmsprop
+The paper  |  uses  | student networks
+The paper  |  uses  | rmsprop to train student networks
+The paper  |  uses  | preliminary experiments
+The paper  |  uses  | games
+The paper  |  uses  | preliminary experiments on 4 games
+The paper  |  uses  | separate replay memories
+The paper  |  uses  | game
+The paper  |  uses  | separate replay memories for each game
+The paper  |  uses  | dqn outputs
+The paper  |  uses  | teacher
+The paper  |  uses  | action
+The paper  |  uses  | one-hot target
+The paper  |  uses  | teacher 's highest valued action as a one-hot target
+The paper  |  uses  | kl cost function
+The paper  |  uses  | majority
+The paper  |  uses  | reported experiments
+The paper  |  uses  | kl cost function for a majority of reported experiments
+The paper  |  uses  | unit
+The paper  |  uses  | valid action
+The paper  |  uses  | output layer
+The paper  |  uses  | unit for each valid action in the output layer

@@ -1,0 +1,446 @@
+Published as a conference paper at ICLR 2016 Net2Net: ACCELERATING LEARNING VIA KNOWLEDGE TRANSFER Tianqi Chen∗, Ian Goodfellow, and Jonathon Shlens Google Inc., Mountain View, CA tqchen@cs.washington.edu, {goodfellow,shlens}@google.com We introduce techniques for rapidly transferring the information stored in one neural net into another neural net.
+0.90 (the information; stored; L:in one neural net)
+0.64 (We; introduce; techniques; for rapidly transferring the information stored in one neural net into another neural net; L:google.com)
+0.39 Context(We introduce):(We; introduce techniques for rapidly transferring; the information stored in one neural net; into another neural net)
+0.38 (Tianqi Chen*; [is] TRANSFER [of]; ACCELERATING LEARNING VIA KNOWLEDGE)
+
+Our Net2Net technique accelerates the experimentation process by instantaneously transferring the knowledge from a previous network to each new deeper or wider network.
+0.72 (Our Net2Net technique; accelerates; the experimentation process)
+
+Our techniques are based on the concept of functionpreserving transformations between neural network speciﬁcations.
+0.74 (Our techniques; are based; on the concept of functionpreserving transformations between neural network speciﬁcations)
+
+Using our knowledge transfer mechanism to add depth to Inception modules, we demonstrate a new state of the art accuracy rating on the ImageNet dataset.
+0.55 (we; demonstrate; a new state of the art accuracy rating on the ImageNet dataset)
+
+1 We propose a new kind of operation to perform on large neural networks: rapidly transfering knowledge contained in one neural network to another neural network.
+0.57 (We; propose; a new kind of operation to perform on large neural networks)
+
+We call this the Net2Net family of operations.
+0.57 (We; call; this; the Net2Net family of operations)
+
+We use Net2Net as a general term describing any process of training a student network signiﬁcantly faster than would otherwise be possible by leveraging knowledge from a teacher network that was already trained on the same task.
+0.50 (We; use; Net2Net; as a general term)
+0.91 (a general term; describing; any process of training a student network signiﬁcantly faster)
+0.91 (a teacher network; was trained; L:on the same task; T:already)
+
+In this article, we propose two speciﬁc Net2Net methodologies.
+0.64 (we; propose; two speciﬁc Net2Net methodologies; L:In this article)
+
+Speciﬁcally, we initialize the student to be a neural network that represents the same function as the teacher, but using a different parameterization.
+0.29 (we; to be; a neural network that represents the same function as the teacher)
+0.90 (a neural network; represents; the same function as the teacher)
+0.39 (we; initialize; the student; to be a neural network)
+0.29 Context(we initialize):(we; initialize the student using; a different parameterization)
+
+We advocate Net2Net operations as a useful tool for accelerating real-world workﬂows.
+0.50 (We; advocate; Net2Net operations)
+
+We can think of a lifelong learning system as experiencing a continually growing training set.
+0.45 (We; can think; of a lifelong learning system; as experiencing a continually growing training set)
+
+Net2Net operations allow us to smoothly instantiate a signiﬁcantly larger model and immediately begin using it in our lifelong learning system, rather than needing to spend weeks or months re-train a larger model from scratch on the latest, largest version of the training set.
+0.90 (Net2Net operations; allow; us to smoothly instantiate a signiﬁcantly larger model and immediately begin using it in our lifelong learning system, rather than needing to spend weeks or months re-train a larger model from scratch on the latest, largest version of the training set)
+0.40 Context(Net2Net operations allow):(us; to smoothly instantiate; a signiﬁcantly larger model)
+0.34 (us; to begin; using it in our lifelong learning system; T:immediately)
+
+2 METHODOLOGY In this section, we describe our new Net2Net operations and how we applied them on real deep neural nets.
+0.49 (we; describe; our new Net2Net operations; T:2 METHODOLOGY In this section)
+0.31 (we; applied; them; on real deep neural nets)
+
+2.1 FEATURE PREDICTION We brieﬂy experimented with a method that proved not to offer a signiﬁcant advantage: training a large student network beginning from a random initialization, and introducing a set of extra “teacher prediction” layers into the student network.
+0.92 (a large student network; beginning; from a random initialization)
+0.17 (We; experimented; )
+0.86 (a method; proved; not to offer a signiﬁcant advantage)
+0.91 Context(a method proved):(a method; proved not to offer; a signiﬁcant advantage: training a large student network beginning from a random initialization, and introducing a set of extra "teacher prediction" layers into the student network)
+
+Unfortunately, we did not ﬁnd that this method offered any compelling speedup or other advantage relative to the baseline approach.
+
+This may be because our baseline was very strong, based on training with batch normalization (Ioffe & Szegedy, 2015).
+0.35 (This; may be; because our baseline was very strong, based on training with batch normalization)
+0.45 (our baseline; was; very strong)
+
+Though we were not able to make this general approach work, we encourage other researchers to attempt to design fully general Net2Net strategies in the future.
+0.45 (we; were not; able to make this general approach work)
+0.41 (we; to make; this general approach work)
+0.90 (other researchers; to attempt; to design fully general Net2Net strategies in the future)
+0.90 Context(other researchers to attempt):(other researchers; to attempt to design; fully general Net2Net strategies in the future)
+
+We instead turned to different Net2Net strategies that were limited in scope but more effective.
+0.50 (We; instead turned; to different Net2Net strategies)
+0.92 (different Net2Net strategies; were limited; L:in scope)
+
+2.2 FUNCTION-PRESERVING INITIALIZATIONS We introduce two effective Net2Net strategies.
+0.50 (We; introduce; two effective Net2Net strategies)
+
+In our experiments, f is deﬁned by a convolutional network, x is an input image, and y is a vector of probabilities representing the conditional distribution over object categories given x.
+0.38 (f; is deﬁned; by a convolutional network)
+0.85 (x; is; an input image; L:In our experiments; L:f is deﬁned by a convolutional network)
+0.89 (probabilities; representing; the conditional distribution over object categories)
+
+Our strategy is to choose a new set of parameters θ(cid:48) for a student network g(x; θ(cid:48)) such that ∀x, f (x; θ) = g(x; θ(cid:48)).
+0.79 (Our strategy; is; to choose a new set of parameters θ(cid:48) for a student network g)
+
+In our description of the method, we assume for simplicity that both the teacher and student networks contain compositions of standard linear neural network layers of the form h(i) = φ(W (i)(cid:62)h(i−1)) where h(i) is the activations of hidden layer i, W (i) is the matrix of incoming weights for this layer, and φ is an activation function, such as as the rectiﬁed linear activation function (Jarrett et al., 2009; Glorot et al., 2011) or the maxout activation function (Goodfellow et al., 2013).
+0.90 (φ; is; an activation function, such as as the rectiﬁed linear activation function)
+0.96 (both the teacher and student networks; contain; compositions of standard linear neural network layers of the form h(i)
+0.50 (we; assume; φ(W (i)(cid:62)h(i−1)) where h(i) is the activations of hidden layer i, W (i) is the matrix of incoming weights for this layer, and φ is an activation function, such as as the rectiﬁed linear activation function (Jarrett et al., 2009; Glorot et al., 2011) or the maxout activation function; L:In our description of the method)
+0.87 Context(we assume):(W (i); is; the matrix of incoming weights for this layer)
+0.79 Context(we assume W (i) is):(h; is; the activations of hidden layer)
+
+We use this layer formalization for clarity, but our method generalizes to arbitrary composition structure of these layers, such as Inception (Szegedy et al., 2014).
+0.45 (We; use; this layer formalization for clarity)
+0.77 (our method; generalizes; to arbitrary composition structure of these layers, such as Inception (Szegedy et al., 2014)
+
+All of our experiments are in fact performed using Inception networks.
+0.68 (All of our experiments; are; in fact)
+
+Though we describe the method in terms of matrix multiplication for simplicity, it readily extends to convolution (by observing that convolution is multiplication by a doubly block circulant matrix) and to the addition of biases (by treating biases as a row of W that are multiplied by a constant input of 1).
+0.45 (we; describe; the method)
+0.45 (it; readily extends; to convolution)
+0.93 (a row of W; are multiplied; by a constant input of 1)
+
+We will also give a speciﬁc description for the convolutional case in subsequent discussions of the details of the method.
+0.57 (We; will also give; a speciﬁc description for the convolutional case in subsequent discussions of the details of the method)
+
+2.3 NET2WIDERNET Our ﬁrst proposed transformation is Net2WiderNet transformation.
+0.90 (2.3 NET2WIDERNET; is; Net2WiderNet transformation)
+
+To widen layer i, we replace W (i) and W (i+1).
+0.50 (we; replace; W (i) and W (i+1)
+
+We use the Net2WiderNet operator to create a student network that represents the same function as the teacher network.
+0.50 (We; use; the Net2WiderNet operator; to create a student network)
+0.90 (a student network; represents; the same function as the teacher network)
+
+The student network is larger because we replicate the h[2] unit of the teacher.
+0.88 (The student network; is; larger; because we replicate the h)
+0.45 (we; replicate; the h)
+
+To replicate the h[2] unit, we copy its weights c and d to the new h[3] unit.
+0.26 (we; copy; its weights c and d to the new h)
+0.60 Context(we copy):(its weights; c; to the new h)
+
+For a practical application, we would simultaneously replicate many randomly chosen units, and we would add a small amount of noise to break symmetry after the replication.
+0.49 (we; would replicate; many randomly chosen units; T:For a practical application; T:simultaneously)
+0.57 (we; would add; a small amount of noise to break symmetry after the replication)
+
+We also typically widen many layers rather than just one layer, by recursively applying the Net2WiderNet operator.
+0.39 (We; also typically widen; many layers rather than just one layer)
+0.33 Context(We also typically widen):(We; also typically widen many layers rather than just one layer by recursively applying; the Net2WiderNet operator)
+
+We will introduce a random mapping function g : {1, 2,··· , q} → {1, 2,··· , n}, that satisﬁes random sample from {1, 2,··· n} j ≤ n j > n We introduce a new weight matrix U (i) and U (i+1) representing the weights for these layers in the new student network.
+0.45 (We; will introduce; a random mapping function g)
+0.92 (U (i+1; representing; the weights)
+
+For weights in U (i+1), we must account for the replication by dividing the weight by replication factor given by |{x|g(x)=g(j)}|, so all the units have the exactly the same value as the unit in the original net.
+0.64 (we; must account; for the replication; T:For weights in U (i+1)
+0.95 (replication factor; given; by |{x|g(x)=g(j)}|)
+0.94 (all the units; have; the exactly the same value as the unit in the original net)
+
+So far we have only discussed the use of a single random mapping function to expand one layer.
+0.70 (we; have only discussed; the use of a single random mapping function to expand one layer; T:So far)
+
+We can in fact introduce a random mapping function g(i) for every non-output layer.
+0.35 (We; can introduce; a random mapping function g(i; for every non-output layer)
+
+To explain, we provide examples of two computational graph structures that impose speciﬁc constraints on the random remapping functions.
+0.45 (we; provide; examples of two computational graph structures)
+0.91 (two computational graph structures; impose; speciﬁc constraints; on the random remapping functions)
+
+Otherwise we could generate a new unit that uses the weight vector for pre-existing unit i but is scaled by the multiplication parameter for unit j.
+0.21 (we; could generate; a new unit that uses the weight vector for pre-existing unit i but is scaled by the multiplication parameter for unit)
+0.90 (a new unit; uses; the weight vector for pre-existing unit)
+0.41 (i; is scaled; by the multiplication parameter; for unit)
+
+If we concatenate the output of layer 1 and layer 2, then pass this concatenated output to layer 3, the remapping function for layer 3 needs to take the concatenation into account.
+0.45 (we; concatenate; the output of layer 1 and layer 2)
+0.92 (the remapping function for layer 3; needs; to take the concatenation into account)
+0.92 Context(the remapping function for layer 3 needs):(the remapping function for layer 3; needs to take; the concatenation; into account)
+
+To make Net2WiderNet a fully general algorithm, we would need a remapping inference algorithm that makes a forward pass through the graph, querying each operation in the graph about how to make the remapping functions consistent.
+0.27 (we; would need; a remapping inference algorithm that makes a forward pass through the graph)
+0.29 Context(we would need):(we; would need a remapping inference algorithm that makes a forward pass through the graph querying; each operation; in the graph)
+0.91 (a remapping inference algorithm; makes; a forward pass)
+
+For our experiments, we manually designed all of the inference necessary rules for the Inception network, which also works for most feed forward network.
+0.44 (we; manually designed; necessary rules for the Inception network; L:For our experiments)
+0.94 (the Inception network; works; for most feed forward network)
+
+After we get the random mapping, we can copy the weight over and divide by the replication factor, which is formally given by the following equation.
+0.52 (we; get; the random mapping)
+0.44 (we; can copy; the weight; over; T:After we get the random mapping)
+0.40 (we; divide; by the replication factor; T:After we get the random mapping)
+0.90 (the replication factor; is formally given; by the following equation)
+
+This operator can be applied arbitrarily many times; we can expand only one layer of the network, or we can expand all non-output layers.
+0.45 (we; can expand; all non-output layers)
+0.39 (we; can expand; only one layer of the network)
+0.88 Context(we can expand):(This operator; can be applied; T:arbitrarily many times)
+
+We can add such constraint to the random mapping generation, such that source of weight is consistent.
+0.45 (We; can add; such constraint; to the random mapping generation)
+0.83 (source of weight; is; consistent)
+
+When training with certain forms of randomization on the widened layer, such as dropout (Srivastava et al., 2014), it is acceptable to use perfectly transformation preserving Net2WiderNet, as we have described so far.
+0.23 (we; have described; T:so far)
+
+2.4 NET2DEEPERNET We also introduce a second function-preserving transformation, Net2DeeperNet.
+0.41 (We; introduce; a second function-preserving transformation)
+
+When we apply it to convolution networks, we can simply set the convolution kernels to be identity ﬁlters.
+0.31 (we; apply; it; to convolution networks)
+0.44 (we; can simply set; the convolution kernels; to be identity ﬁlters; T:When we apply it to convolution networks)
+0.91 (the convolution kernels; to be; identity ﬁlters)
+
+For example, when using batch normalization, we must set the output scale and output bias of the normalization layer to undo the normalization of the layer’s statistics.
+0.64 (we; must set; the output scale and output bias of the normalization layer; to undo the normalization of the layer's statistics; T:when using batch normalization)
+0.39 Context(we must set):(we; must set the output scale and output bias of the normalization layer to undo; the normalization of the layer's statistics)
+
+The approach we take is a speciﬁc case of a more general approach, that is to build a multiple layer network that factorizes the original layer.
+0.88 (The approach; take; we)
+0.62 (The approach we take; is; a speciﬁc case of a more general approach, that is to build a multiple layer network)
+0.17 (that; is; to build a multiple layer network)
+0.91 (a multiple layer network; factorizes; the original layer)
+
+Restricting to adding identity transformation allows us to handle such non-linear transformations, and apply the methodology to the network architectures that we care about.
+0.35 (us; to apply; the methodology; to the network architectures)
+0.89 (the network architectures; care; we)
+0.90 (Restricting to adding identity transformation; allows; us to handle such non-linear transformations, and apply the methodology to the network architectures)
+0.40 Context(Restricting to adding identity transformation allows):(us; to handle; such non-linear transformations)
+
+We think support for general factorization of layers is an interesting future direction that is worth exploring.
+0.82 (an interesting future direction; is; worth exploring)
+0.58 (We; think; support for general factorization of layers is an interesting future direction)
+0.84 Context(We think):(support for general factorization of layers; is; an interesting future direction that is worth exploring)
+
+We can begin training with a student network that represents exactly the same function as the teacher network.
+0.90 (a student network; represents; exactly the same function as the teacher network)
+0.39 (We; can begin; training with a student network)
+0.39 Context(We can begin):(We; can begin training; with a student network)
+
+However, Net2WiderNet may be composed with Net2DeeperNet, so we may in fact add any hidden layer that is at least as wide as the layer below it.
+0.86 (any hidden layer; is; at least as wide as the layer below it)
+0.12 (we; may add; any hidden layer that is at least as wide as the layer below it)
+0.91 Context(we may add):(Net2WiderNet; may be composed; with Net2DeeperNet)
+
+3 EXPERIMENTS 3.1 EXPERIMENTAL SETUP We evaluated our Net2Net operators in three different settings.
+0.49 (We; evaluated; our Net2Net operators; L:in three different settings; T:3 EXPERIMENTS)
+
+In all cases we used an InceptionBN network (Ioffe & Szegedy, 2015) trained on ImageNet.
+0.64 (we; used; an InceptionBN network; L:In all cases)
+0.93 (an InceptionBN network; trained; on ImageNet)
+
+In the ﬁrst setting, we demonstrate that Net2WiderNet can be used to accelerate the training of a standard Inception network by initializing it with a smaller network.
+0.30 (we; demonstrate; that Net2WiderNet can be used to accelerate the training of a standard Inception network by initializing it with a smaller network; L:In the ﬁrst setting)
+0.88 Context(we demonstrate):(Net2WiderNet; can be used; to accelerate the training of a standard Inception network by initializing it with a smaller network)
+0.88 (Net2WiderNet; to accelerate; the training of a standard Inception network)
+0.80 Context(Net2WiderNet to accelerate):(Net2WiderNet; to accelerate the training of a standard Inception network by initializing; it)
+
+In the second setting, we demonstrate that Net2DeeperNet allows us to increase the depth of the Inception modules.
+0.30 (we; demonstrate; that Net2DeeperNet allows us to increase the depth of the Inception modules; L:In the second setting)
+0.85 Context(we demonstrate):(Net2DeeperNet; allows; us to increase the depth of the Inception modules)
+0.43 Context(we demonstrate Net2DeeperNet allows):(us; to increase; the depth of the Inception modules)
+
+Finally, we use our Net2Net operators in a realistic setting, where we make more dramatic changes to the model size and explore the model space for better performance.
+0.49 (we; use; our Net2Net operators; L:in a realistic setting; T:Finally)
+0.45 (we; make; more dramatic changes to the model size)
+0.41 (we; explore; the model space for better performance)
+
+In this setting, we demonstrate an improved result on ImageNet.
+0.64 (we; demonstrate; an improved result on ImageNet; L:In this setting)
+
+We will be comparing our method to some baseline methods: • “Random pad”: This is a baseline for Net2WiderNet.
+0.44 (This; is; a baseline for Net2WiderNet)
+0.26 Context(This is):(We; will be comparing; our method; to some baseline methods)
+
+We widen the network by adding new units with random weights, rather than by replicating units to perform functionpreserving initialization.
+0.39 (We; widen; the network)
+0.39 Context(We widen):(We; widen the network by adding; new units; with random weights)
+
+We compare the training of a deep network accelerated by initialization from a shallow one against the training of an identical deep network initialized randomly.
+0.45 (We; compare; the training of a deep network)
+0.94 (a deep network; accelerated; by initialization; from a shallow one against the training of an identical deep network)
+0.77 (an identical deep network; initialized randomly; )
+
+3.2 NET2WIDERNET We start by evaluating the method of Net2WiderNet.
+0.20 (We; start; )
+0.43 Context(We start):(We; start by evaluating; the method of Net2WiderNet)
+
+We began by constructing a teacher network that was narrower than the standard Inception.
+0.92 (a teacher network; was; narrower than the standard Inception)
+0.40 (We; began; by constructing a teacher network)
+0.28 Context(We began):(We; began by constructing; a teacher network that was narrower than the standard Inception)
+
+We reduced the number of convolution channels at each layer within all Inception modules by a factor of 0.3.
+0.45 (We; reduced; the number of convolution channels; by a factor of 0.3)
+
+To simplify the software for our experiments, we did not modify any component of the network other than the Inception modules.
+0.61 (we; did not modify; any component of the network other than the Inception modules)
+
+After training this small teacher network, we used it to accelerated the training of a standard-sized student network.
+0.50 (we; used; it; to accelerated the training of a standard-sized student network; T:After training this small teacher network)
+0.39 Context(we used):(we; used it to accelerated; the training of a standard-sized student network)
+
+We can ﬁnd that the proposed approach gives faster convergence than the baseline approaches.
+0.33 (We; can ﬁnd; that the proposed approach gives faster convergence than the baseline approaches)
+0.89 Context(We can ﬁnd):(the proposed approach; gives; faster convergence than the baseline approaches)
+
+3.3 NET2DEEPERNET We conducted experiments with using Net2DeeperNet to make the network deeper.
+0.39 (We; conducted; experiments)
+0.43 Context(We conducted):(We; conducted experiments with using; Net2DeeperNet; to make the network deeper)
+
+For these experiments, we used a standard Inception model as the teacher network, and increased the depth of each inception module.
+0.45 (we; used; a standard Inception model; as the teacher network)
+0.41 (we; increased; the depth of each inception module)
+
+Everywhere that a pair of vertical-horizontal convolution layers appears, we added two more pairs of such layers, conﬁgured to result in an identity transformation.
+0.83 (a pair of vertical-horizontal convolution layers; appears; )
+0.46 (we; added; two more pairs of such layers, conﬁgured to result in an identity transformation; L:Everywhere that a pair of vertical-horizontal convolution layers appears)
+
+We ﬁnd that Net2DeeperNet obtains good accuracy much faster than training from random initialization, both in terms of training and validation accuracy.
+0.38 (We; ﬁnd; that Net2DeeperNet obtains good accuracy much faster than training from random initialization)
+0.90 Context(We ﬁnd):(Net2DeeperNet; obtains much faster; good accuracy)
+
+In this experiment, we made an ambitious exploration of model design space in both wider and deeper directions.
+0.70 (we; made; an ambitious exploration of model design space in both wider and deeper directions; L:In this experiment)
+
+Speciﬁcally, we enlarged the 2 times of the original one.
+0.45 (we; enlarged; T:the 2 times of the original one)
+
+We also built another deeper net by width of an Inception model to adding four vertical-horizontal convolutional layer pairs on top of every inception modules in the original Inception model.
+0.23 (We; also built; another deeper net)
+
+This last approach paid off, yielding a model that sets a new state of the art of 78.5% on our ImageNet validation set.
+0.75 (This last approach; paid off; )
+0.77 (This last approach; yielding; a model that sets a new state of the art of 78.5% on our ImageNet validation set)
+0.92 (a model; sets; a new state of the art of 78.5% on our ImageNet validation set)
+
+We did not train these larger models from scratch, due to resource and time constraints.
+0.45 (We; did not train; these larger models; from scratch; due to resource and time constraints)
+
+However, we reported the convergence curve of the original 0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.800.850.900.95Accuracy on Training SetNet2WiderNet learning-rate=0.002Net2WiderNet learning-rate=0.005Net2WiderNet learning-rate=0.01random pad learning-rate=0.002random pad learning-rate=0.005random pad learning-rate=0.01Training from random initializationAccuracy of Teacher Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2WiderNet learning-rate=0.002Net2WiderNet learning-rate=0.005Net2WiderNet learning-rate=0.01random pad learning-rate=0.002random pad learning-rate=0.005random pad learning-rate=0.01Training from random initializationAccuracy of Teacher ModelPublished as a conference paper at ICLR 2016 (a) Training Accuracy of Different Methods (b) Validation Accuracy of Different Methods Figure 5: Comparison of methods of training a deeper model inception model for reference, which should be easier to train than these larger models.
+0.61 (we; reported; the convergence curve of the original 0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.800.850.900.95Accuracy)
+0.99 (Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2WiderNet learning-rate=0.002Net2WiderNet learning-rate=0.005Net2WiderNet learning-rate=0.01random pad learning-rate=0.002random pad learning-rate=0.005random pad learning-rate=0.01Training from random initializationAccuracy of Teacher Model; Published; as a conference paper at ICLR)
+0.88 (reference; should be; easier to train than these larger models)
+
+We can ﬁnd that the models initialized with Net2Net operations converge even faster than the standard model.
+0.92 (the models; initialized; with Net2Net operations)
+0.37 (We; can ﬁnd; that the models initialized with Net2Net operations converge even faster than the standard model)
+0.81 Context(We can ﬁnd):(the models initialized with Net2Net operations; converge even faster; )
+
+4 DISCUSSION Our Net2Net operators have demonstrated that it is possible to rapidly transfer knowledge from a small neural network to a signiﬁcantly larger neural network under some architectural constraints.
+0.30 (4 DISCUSSION Our Net2Net operators; have demonstrated; that it is possible to rapidly transfer knowledge from a small neural network to a signiﬁcantly larger neural network under some architectural constraints)
+
+We have demonstrated that we can train larger neural networks to improve performance on ImageNet recognition using this approach.
+0.93 (larger neural networks; to improve; performance on ImageNet recognition)
+0.93 (ImageNet recognition; using; this approach)
+0.20 (We; have demonstrated; that we can train larger neural networks to improve performance on ImageNet recognition)
+0.44 Context(We have demonstrated):(we; can train; larger neural networks; to improve performance on ImageNet recognition)
+
+We hope that future research will uncover new ways of transferring knowledge between neural networks.
+0.28 (We; hope; that future research will uncover new ways of transferring knowledge between neural networks)
+0.88 Context(We hope):(future research; will uncover; new ways of transferring knowledge between neural networks)
+
+In particular, we hope future research will reveal more general knowledge transfer methods 0.00.20.40.60.81.0Number of Mini-batches passed1e70.50.60.70.80.91.0Accuracy on Training SetNet2DeeperNetTraining from random initializationPrecision of Teacher Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2DeeperNetTraining from random initializationPrecision of Teacher ModelPublished as a conference paper at ICLR 2016 (a) Training Accuracy of Different Methods (b) Validation Accuracy of Different Methods Figure 6: Using Net2Net to quickly explore designs of larger nets.
+0.97 (more general knowledge transfer methods 0.00.20.40.60.81.0Number of Mini-batches passed1e70.50.60.70.80.91.0Accuracy on Training SetNet2DeeperNetTraining from random initializationPrecision of Teacher; Published; as a conference paper at ICLR)
+0.55 (we; hope; future research will reveal more general knowledge transfer methods 0.00.20.40.60.81.0Number of Mini-batches passed1e70.50.60.70.80.91.0Accuracy on Training SetNet2DeeperNetTraining from random initializationPrecision of Teacher Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2DeeperNetTraining from random initializationPrecision of Teacher Model Published as a conference paper at ICLR 2016 (a) Training Accuracy of Different Methods (b) Validation Accuracy of Different Methods Figure 6)
+0.93 Context(we hope):(future research; will reveal; more general knowledge transfer methods 0.00.20.40.60.81.0Number of Mini-batches passed1e70.50.60.70.80.91.0Accuracy on Training SetNet2DeeperNetTraining from random initializationPrecision of Teacher Model0.00.20.40.60.81.0Number of Mini-batches passed1e70.500.550.600.650.700.750.80Accuracy on Validation SetNet2DeeperNetTraining from random initializationPrecision of Teacher Model)
+
+By adding eight layers to each Inception module, we obtained a new state of the art test error on ImageNet.
+0.55 (we; obtained; a new state of the art test error on ImageNet)
+
+ACKNOWLEDGMENTS We would like to thank Jeff Dean and George Dahl for helpful discussions.
+0.55 (We; would like; to thank Jeff Dean and George Dahl for helpful discussions)
+0.43 Context(We would like):(We; would like to thank; Jeff Dean and George Dahl; for helpful discussions)
+
+We also thank the developers of TensorFlow (Abadi et al., 2015), which we used for all of our experiments.
+0.46 (We; thank; the developers of TensorFlow (Abadi et al)
+0.26 Context(We thank):(we; used; for all of our experiments)
+
+We would like to thank Conrado Miranda for helpful feedback that we used to improve the clarity and comprehensiveness of this manuscript.
+0.41 (we; to improve; the clarity and comprehensiveness of this manuscript)
+0.43 (We; would like; to thank Conrado Miranda for helpful feedback)
+0.43 Context(We would like):(We; would like to thank; Conrado Miranda; for helpful feedback)
+
+We found that, fortunately, nearly all of the hyperparameters that are typically used to train a network from scratch may be used to train a network with Net2Net.
+0.90 (the hyperparameters; are used; to train a network from scratch; T:typically)
+0.89 (the hyperparameters; to train; a network; from scratch)
+0.32 (We; found; that, fortunately, nearly all of the hyperparameters that are typically used to train a network from scratch may be used to train a network with Net2Net)
+
+In our experience, the student network needs only one modiﬁcation, which is to use a smaller learning rate than usual.
+0.94 (the student network; needs; only one modiﬁcation, which is to use a smaller learning rate than usual; L:In our experience)
+0.92 (only one modiﬁcation; is; to use a smaller learning rate than usual)
+0.90 (only one modiﬁcation; to use; a smaller learning rate than usual)
+
+We ﬁnd that the initial learning rate for the student network should be approximately 1 10 the initial learning rate for the teacher network.
+0.34 (We; ﬁnd; that the initial learning rate for the student network should be approximately 1 10)
+0.82 Context(We ﬁnd):(the initial learning rate for the student network; should be; approximately 1 10)
+
+This makes sense because we can think of the student network as continuing the training process begun by the teacher network, and typically the teacher network training process involves shrinking the learning rate to a smaller value than the initial learning rate.
+0.35 (This; makes; sense; because we can think of the student network as continuing the training process begun by the teacher network, and typically the teacher network training process involves shrinking the learning rate to a smaller value than the initial learning rate)
+0.45 (we; can think; of the student network as continuing the training process)
+0.91 (the training process; begun; by the teacher network)
+
+Our function-preserving initializations avoid that period of low performance.
+0.46 (Our function-preserving initializations; avoid; that period of low performance)
+
+(In principle we could avoid this period entirely, but in practice we usually add some noise to the student model in order to break symmetry more rapidly—this results in a brief period of reduced performance, but it is a shorter period and the performance is less impaired than in previous approaches) Also, these approaches do not allow pre-existing portions of the model to co-adapt with new portions of the model to attain greater performance, while our method does.
+0.52 (it; is; a shorter period)
+0.62 (we; add; some noise; to the student model; in order; T:usually)
+0.93 (the performance; is; less impaired than in previous approaches)
+0.70 (the performance; impaired; )
+0.33 (this; results; in a brief period of reduced performance)
+0.39 Context(this results):(we; could avoid entirely; this period)
+0.34 (our method; does; )
+
+Somewhat perplexingly, we were able to train models of considerably greater depth without needing to use knowledge transfer, suggesting that deep models do not pose nearly as much difﬁculty as previous authors have believed.
+0.70 (we; were; able to train models of considerably greater depth without needing to use knowledge transfer; T:Somewhat perplexingly)
+0.41 (we; to train; models of considerably greater depth)
+0.73 (previous authors; have believed; )
+
+This may be due to our use of a very strong baseline: Inception (Szegedy et al., 2014) networks with batch normalization (Ioffe & Szegedy, 2015) trained using RMSProp (Tieleman & Hinton, 2012).
+0.25 (This; may be; due to our use of a very strong baseline)
+
+The models we refer to as “standard size” have 25 weight layers on the shortest path from input to output, and 47 weight layers on the longest path (3 convolution layers + 11 Inception modules, each Inception module featuring a convolution layer followed by three forked paths, the shortest of which involves only one more convolution and the longest of which involves three more).
+0.45 (we; refer; to; as "standard size)
+0.61 (the shortest of which; involves; only one more convolution and the longest of which)
+0.86 (The models we refer to as "standard size"; have; 25 weight layers on the shortest path from input to output, and 47 weight layers on the longest path)
+0.81 (each Inception module; involves; three more)
+0.93 (each Inception module; featuring; a convolution layer followed by three forked paths,)
+0.75 (a convolution layer; followed; )
+
+Rather than using knowledge transfer to make greater depth possible, our goal is merely to accelerate the training of a new model when a pre-existing one is available.
+0.74 (our goal; is merely; to accelerate the training of a new model when a pre-existing one is available)
+0.83 (a pre-existing one; is; available)
+
+It serves a different purpose than our Net2Net technique.
+0.35 (It; serves; a different purpose than our Net2Net technique)
+
+Our Net2DeeperNet operator involves inserting layers initialized to represent identity functions into deep networks.
+0.72 (Our Net2DeeperNet operator; involves; inserting layers)
+0.71 (layers; initialized; )
+
+(2013), but to our knowledge that have not previously been used to design function-preserving transformations of pre-existing neural networks.
+0.74 (our knowledge; have not been used; to design function-preserving transformations of pre-existing neural networks; T:previously)
+0.60 (our knowledge; to design; function-preserving transformations of pre-existing neural networks)
+
+The speciﬁc operators we propose are both based on the idea of transformations of a neural network that preserve the function it represents.
+0.89 (The speciﬁc operators; propose; we)
+0.61 (The speciﬁc operators we propose; are based; on the idea of transformations of a neural network)
+0.85 (transformations of a neural network; preserve; the function it represents)
+0.88 (the function; represents; it)
+
+Our function-preserving transformations are similar in spirit.
+0.70 (Our function-preserving transformations; are; similar in spirit)
+
+However, our transformations preserve the function represented by a feed-forward network.
+0.64 (our transformations; preserve; the function represented by a feed-forward network)
+0.90 (the function; represented; by a feed-forward network)
+
+Our function-preserving transformations are more general in the Published as a conference paper at ICLR 2016 sense that they allow adding a layer with any width greater than the layer below it, while DBN growth is only known to be distribution-preserving for one speciﬁc size of new layer.
+0.82 (Our function-preserving transformations; are; more general in the  Published as a conference paper at ICLR)
+0.58 (they; allow adding; a layer with any width greater than the layer below it)
+0.66 (DBN growth; is only known; )
+0.85 (DBN growth; to be; distribution-preserving)
+
