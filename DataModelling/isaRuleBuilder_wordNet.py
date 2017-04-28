@@ -6,7 +6,8 @@ isa(<word-meaning from wordnet>,<word picked from document>)
 import os
 from wordnet_match_27 import wordnet_match
     
-dir = os.path.dirname(__file__)
+dir = os.getcwd()#os.path.dirname(__file__)
+print dir
 path =  dir + '/ReducedRuleFiles'
 outputPath = dir + '/CompleteKB'
 isAKB = open(outputPath + "/CompleteKB.txt", 'w')
@@ -29,7 +30,7 @@ for filename in os.listdir(path):
             names = item.lemma_names()
             for meaning in names:
                 #print (meaning,names[0])
-                isAKB.write('isa(' + meaning.encode('utf-8') + ',' + names[0].encode('utf-8') + ')\n')
+                isAKB.write('isa(' + meaning.encode('utf-8') + ',' + names[0].encode('utf-8') + ',' + entity.encode('utf-8') + ')\n')
     isAKB.write('\n')
     inFile.close()
     #break
