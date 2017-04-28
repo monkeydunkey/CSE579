@@ -39,9 +39,6 @@ The paper  |  uses  | effect fast policy
 The paper  |  uses  | linear layer
 The paper  |  uses  | f
 The paper  |  uses  | async advantage actor-critic
-The paper  |  outputs  | t
-The paper  |  outputs  | [
-The paper  |  outputs  | t : in [
 The paper  |  uses  | simulation-trained column
 The paper  |  uses  | robot-trained columns
 The paper  |  uses  | previous column

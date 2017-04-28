@@ -117,11 +117,6 @@ The paper  |  outputs  | interesting transition sequence
 The paper  |  outputs  | photo-realistic images
 The paper  |  outputs  | interesting transition sequence of photo-realistic images
 The paper  |  uses  | guided image ﬁlter
-The paper  |  outputs  | constraints
-The paper  |  outputs  | photo
-The paper  |  outputs  | diﬀerent aspects
-The paper  |  outputs  | coloring
-The paper  |  outputs  | constraints to edit the photo in diﬀerent aspects : coloring
 The paper  |  outputs  | ×
 The paper  |  outputs  | ×
 The paper  |  outputs  | image
@@ -133,9 +128,6 @@ The paper  |  outputs  | statistics of our dataset
 The paper  |  uses  | brush interactions
 The paper  |  uses  | section
 The paper  |  uses  | brush interactions described in section
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
 The paper  |  uses  | sequence
 The paper  |  uses  | shape
 The paper  |  uses  | color
@@ -148,9 +140,6 @@ The paper  |  uses  | color
 The paper  |  uses  | image
 The paper  |  uses  | shape and color of one image
 The paper  |  uses  | image
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
 The paper  |  uses  | class-speciﬁc model
 The paper  |  uses  | images
 The paper  |  uses  | diﬀerent class

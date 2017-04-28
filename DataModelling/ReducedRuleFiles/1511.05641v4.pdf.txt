@@ -60,7 +60,6 @@ The paper  |  uses  | weight vector for pre-existing unit
 The paper  |  outputs  | necessary rules
 The paper  |  outputs  | inception network
 The paper  |  outputs  | necessary rules for the inception network
-The paper  |  outputs  | t
 The paper  |  outputs  | second function-preserving transformation
 The paper  |  uses  | second function-preserving transformation
 The paper  |  uses  | networks

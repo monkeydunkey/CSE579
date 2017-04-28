@@ -49,10 +49,6 @@ The paper  |  outputs  | variable-length encoding of words for nmt
 The paper  |  outputs  | new words
 The paper  |  solves  | speciﬁc merges
 The paper  |  uses  | bpe
-The paper  |  outputs  | l
-The paper  |  outputs  | moses
-The paper  |  outputs  | al
-The paper  |  outputs  | l : in moses ( koehn et al
 The paper  |  uses  | development set
 The paper  |  uses  | report results
 The paper  |  uses  | newstest2015

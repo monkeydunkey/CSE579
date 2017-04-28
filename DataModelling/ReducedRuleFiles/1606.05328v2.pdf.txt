@@ -1,4 +1,3 @@
-The paper  |  solves  | left
 The paper  |  outputs  | conditional variant
 The paper  |  outputs  | gated pixelcnn
 The paper  |  outputs  | conditional variant of the gated pixelcnn
@@ -12,10 +11,6 @@ The paper  |  uses  | dogs
 The paper  |  uses  | lawn mowers
 The paper  |  uses  | coral reefs
 The paper  |  uses  | images from diverse classes such as dogs , lawn mowers and coral reefs
-The paper  |  uses  | l
-The paper  |  uses  | embeddings
-The paper  |  uses  | e.g
-The paper  |  uses  | l : in the embeddings - e.g
 The paper  |  uses  | information
 The paper  |  uses  | pixels
 The paper  |  uses  | information about pixels
@@ -46,9 +41,6 @@ The paper  |  uses  | face detector
 The paper  |  uses  | p
 The paper  |  uses  | x|h
 The paper  |  uses  | p ( x|h
-The paper  |  uses  | l
-The paper  |  uses  | bottleneck representation h
-The paper  |  uses  | l : in the bottleneck representation h
 The paper  |  uses  | stacks
 The paper  |  uses  | cnns
 The paper  |  uses  | blind spots

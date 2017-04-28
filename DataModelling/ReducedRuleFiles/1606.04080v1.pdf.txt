@@ -27,9 +27,6 @@ The paper  |  uses  | other approaches on both imagenet and small scale language
 The paper  |  outputs  | general setup
 The paper  |  outputs  | experiments
 The paper  |  outputs  | general setup and the experiments
-The paper  |  outputs  | l
-The paper  |  outputs  | following subsections
-The paper  |  outputs  | l : in the following subsections
 The paper  |  uses  | training strategy
 The paper  |  uses  | one-shot learning
 The paper  |  uses  | support
@@ -44,9 +41,6 @@ The paper  |  uses  | predictions about the appropriate label
 The paper  |  uses  | extension
 The paper  |  uses  | attention mechanism
 The paper  |  uses  | extension to the attention mechanism
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
 The paper  |  uses  | cosine similarity
 The paper  |  solves  | elements
 The paper  |  solves  | set
@@ -86,10 +80,6 @@ The paper  |  uses  | examples
 The paper  |  uses  | cats
 The paper  |  uses  | dogs
 The paper  |  uses  | support set s and a batch b ( i.e. , both s and b are labelled examples of cats and dogs
-The paper  |  outputs  | l
-The paper  |  outputs  | t
-The paper  |  outputs  | [
-The paper  |  outputs  | t : in [
 The paper  |  uses  | whole support
 The paper  |  uses  | s
 The paper  |  uses  | whole support set s
@@ -99,31 +89,10 @@ The paper  |  outputs  | results of many experiments
 The paper  |  outputs  | networks
 The paper  |  outputs  | strong baselines
 The paper  |  outputs  | networks model against strong baselines
-The paper  |  uses  | kinds
-The paper  |  uses  | baselines
-The paper  |  uses  | matching
-The paper  |  uses  | raw pixels
-The paper  |  uses  | discriminative features
-The paper  |  uses  | state-of-the-art classiﬁer
-The paper  |  uses  | baseline classiﬁer
-The paper  |  uses  | ]
-The paper  |  uses  | reimplementation
-The paper  |  uses  | convolutional siamese net [
-The paper  |  uses  | ]
-The paper  |  uses  | kinds of baselines : matching on raw pixels , matching on discriminative features from a state-of-the-art classiﬁer ( baseline classiﬁer ) , mann [ 21 ] , and our reimplementation of the convolutional siamese net [ 11 ]
 The paper  |  uses  | features
 The paper  |  uses  | last layer
 The paper  |  uses  | features from the last layer
-The paper  |  uses  | l
-The paper  |  uses  | computer vision
-The paper  |  uses  | l : in computer vision
 The paper  |  outputs  | excellent results
-The paper  |  uses  | support
-The paper  |  uses  | s
-The paper  |  uses  | cid:48
-The paper  |  uses  | l
-The paper  |  uses  | cid:48
-The paper  |  uses  | support set s ( cid:48 ) sampled from l ( cid:48
 The paper  |  uses  | characters
 The paper  |  uses  | training
 The paper  |  uses  | characters for training
@@ -156,9 +125,6 @@ The paper  |  uses  | sentence
 The paper  |  uses  | model
 The paper  |  uses  | single word
 The paper  |  uses  | similar setup wherein a sentence was presented to the model with a single word
-The paper  |  outputs  | l
-The paper  |  outputs  | set
-The paper  |  outputs  | l : in the set
 The paper  |  outputs  | networks
 The paper  |  outputs  | similar mechanisms
 The paper  |  outputs  | encoding function
@@ -166,15 +132,3 @@ The paper  |  outputs  | elements
 The paper  |  outputs  | support
 The paper  |  outputs  | s
 The paper  |  outputs  | encoding function for the elements in the support set s
-The paper  |  uses  | l
-The paper  |  uses  | full imagenet experiments
-The paper  |  uses  | l : in our full imagenet experiments
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
-The paper  |  uses  | l
-The paper  |  uses  | ptb experiments
-The paper  |  uses  | l : in our ptb experiments
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section

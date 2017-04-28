@@ -16,12 +16,6 @@ The paper  |  uses  | new state-of-the-art result
 The paper  |  uses  | wmt'15 english
 The paper  |  uses  | different attention architectures yields a new state-of-the-art result in the wmt'15 english
 The paper  |  outputs  | state-of-the-art performances
-The paper  |  outputs  | l
-The paper  |  outputs  | work
-The paper  |  outputs  | l : in this work
-The paper  |  solves  | l
-The paper  |  solves  | al
-The paper  |  solves  | l : in ( xu et al
 The paper  |  uses  | various alignment functions
 The paper  |  uses  | attention-based models
 The paper  |  uses  | various alignment functions for our attention-based models
@@ -49,14 +43,6 @@ The paper  |  uses  | information
 The paper  |  uses  | vectors
 The paper  |  uses  | simple concatenation layer to combine the information from both vectors
 The paper  |  outputs  | attentional hidden state
-The paper  |  outputs  | predictive distribution
-The paper  |  outputs  | model type
-The paper  |  outputs  | source-side context vector ct
-The paper  |  outputs  | predictive distribution formulated as : we now detail how each model type computes the source-side context vector ct
-The paper  |  uses  | different alternatives
-The paper  |  uses  | besides
-The paper  |  uses  | early attempts
-The paper  |  uses  | different alternatives : besides , in our early attempts
 The paper  |  solves  | al
 The paper  |  uses  | location-based function
 The paper  |  uses  | alignment scores
@@ -109,12 +95,6 @@ The paper  |  outputs  | model
 The paper  |  outputs  | ﬂexibility for the model
 The paper  |  uses  | input-feeding approach
 The paper  |  uses  | development
-The paper  |  outputs  | translation quality
-The paper  |  outputs  | types
-The paper  |  outputs  | bleu
-The paper  |  outputs  | tokenized12 bleu
-The paper  |  outputs  | nmt work
-The paper  |  outputs  | translation quality using two types of bleu : ( a ) tokenized12 bleu to be comparable with existing nmt work
 The paper  |  uses  | types
 The paper  |  uses  | bleu
 The paper  |  uses  | nmt work
@@ -122,9 +102,6 @@ The paper  |  uses  | types of bleu to be comparable with existing nmt work
 The paper  |  uses  | dropout
 The paper  |  uses  | lstms
 The paper  |  uses  | dropout for our lstms
-The paper  |  uses  | l
-The paper  |  uses  | pararentheses
-The paper  |  uses  | l : in pararentheses
 The paper  |  outputs  | speed
 The paper  |  outputs  | target words
 The paper  |  outputs  | second
@@ -135,9 +112,6 @@ The paper  |  outputs  | signiﬁcant gain
 The paper  |  outputs  | bleu points
 The paper  |  outputs  | non-attentional baseline
 The paper  |  outputs  | signiﬁcant gain of 5.0 bleu points over the non-attentional baseline
-The paper  |  solves  | l
-The paper  |  solves  | al
-The paper  |  solves  | l : in ( luong et al
 The paper  |  outputs  | new sota result
 The paper  |  outputs  | bleu
 The paper  |  outputs  | new sota result of 23.0 bleu

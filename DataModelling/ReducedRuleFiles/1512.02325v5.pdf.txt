@@ -14,13 +14,10 @@ The paper  |  outputs  | ssd framework for detection
 The paper  |  uses  | high quality image classiﬁcation
 The paper  |  outputs  | detections
 The paper  |  outputs  | good results
-The paper  |  uses  | l
-The paper  |  uses  | r-cnn
-The paper  |  uses  | l : in faster r-cnn
-The paper  |  uses  | l
+The paper  |  uses  | good results
 The paper  |  uses  | several feature maps
 The paper  |  uses  | different resolutions
-The paper  |  uses  | l to several feature maps of different resolutions
+The paper  |  uses  | good results to several feature maps of different resolutions
 The paper  |  uses  | upper feature maps
 The paper  |  uses  | detection
 The paper  |  uses  | upper feature maps for detection
@@ -45,13 +42,12 @@ The paper  |  uses  | fc7
 The paper  |  uses  | conv4 3 , conv7 ( fc7
 The paper  |  uses  | l2 normalization technique
 The paper  |  uses  | scale
-The paper  |  outputs  | t
 The paper  |  outputs  | feature norm
 The paper  |  outputs  | location
 The paper  |  outputs  | feature map
 The paper  |  outputs  | scale
 The paper  |  outputs  | back propagation
-The paper  |  outputs  | t : in [ 12 to scale the feature norm at each location in the feature map to 20 and learn the scale during back propagation
+The paper  |  outputs  | feature norm at each location in the feature map to 20 and learn the scale during back propagation
 The paper  |  outputs  | best results
 The paper  |  uses  | detection analysis tool
 The paper  |  uses  | default boxes
@@ -86,9 +82,6 @@ The paper  |  uses  | parameters
 The paper  |  uses  | fc6
 The paper  |  uses  | fc7
 The paper  |  uses  | parameters from fc6 and fc7
-The paper  |  uses  | l
-The paper  |  uses  | r-cnn
-The paper  |  uses  | l : in faster r-cnn
 The paper  |  uses  | boxes
 The paper  |  uses  | boundary
 The paper  |  uses  | boxes which are on the boundary
@@ -119,9 +112,6 @@ The paper  |  uses  | nms
 The paper  |  uses  | jaccard overlap
 The paper  |  uses  | class
 The paper  |  uses  | nms with jaccard overlap of 0.45 per class
-The paper  |  outputs  | l
-The paper  |  outputs  | % map
-The paper  |  outputs  | l : above 70 % map
 The paper  |  uses  | ﬁxed set
 The paper  |  uses  | default
 The paper  |  uses  | boxes

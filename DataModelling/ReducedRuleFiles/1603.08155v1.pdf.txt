@@ -29,23 +29,12 @@ The paper  |  uses  | loss network
 The paper  |  uses  | several loss functions
 The paper  |  uses  | semantic information
 The paper  |  uses  | layers
-The paper  |  uses  | l
-The paper  |  uses  | supplementary material
-The paper  |  uses  | l : in the supplementary material
 The paper  |  uses  | several residual blocks
 The paper  |  uses  | log2
 The paper  |  uses  | several residual blocks followed by log2
 The paper  |  uses  | optimization
 The paper  |  uses  | image ^y
 The paper  |  uses  | optimization to ﬁnd an image ^y
-The paper  |  uses  | image ^y
-The paper  |  uses  | feature reconstruction loss
-The paper  |  uses  | cid:96
-The paper  |  uses  | φ
-The paper  |  uses  | j f eat
-The paper  |  uses  | y
-The paper  |  uses  | several layers
-The paper  |  uses  | image ^y that minimizes the feature reconstruction loss ( cid:96 ) φ , j f eat ( ^y , y ) for several layers
 The paper  |  outputs  | higher layers
 The paper  |  uses  | larger network
 The paper  |  uses  | same computational cost
@@ -54,18 +43,7 @@ The paper  |  uses  | residual block design
 The paper  |  uses  | optimization
 The paper  |  uses  | image ^y
 The paper  |  uses  | optimization to ﬁnd an image ^y
-The paper  |  uses  | image ^y
-The paper  |  uses  | style reconstruction loss
-The paper  |  uses  | cid:96
-The paper  |  uses  | φ
-The paper  |  uses  | j style
-The paper  |  uses  | y
-The paper  |  uses  | several layers
-The paper  |  uses  | image ^y that minimizes the style reconstruction loss ( cid:96 ) φ , j style ( ^y , y ) for several layers
 The paper  |  outputs  | higher layers
-The paper  |  uses  | t
-The paper  |  uses  | ground-truth target y
-The paper  |  uses  | t : when when we have a ground-truth target y
 The paper  |  uses  | optimization
 The paper  |  uses  | images
 The paper  |  uses  | optimization to generate images
@@ -79,7 +57,6 @@ The paper  |  outputs  | times
 The paper  |  outputs  | numbers
 The paper  |  outputs  | optimization iterations
 The paper  |  outputs  | times for varying numbers of optimization iterations
-The paper  |  uses  | t
 The paper  |  uses  | input
 The paper  |  outputs  | psnr / ssim
 The paper  |  uses  | srcnn
@@ -93,9 +70,6 @@ The paper  |  uses  | identical data , architecture , and training as the networ
 The paper  |  outputs  | psnr
 The paper  |  outputs  | ssim
 The paper  |  outputs  | psnr and ssim
-The paper  |  outputs  | l
-The paper  |  outputs  | y channel
-The paper  |  outputs  | l : both only on the y channel
 The paper  |  outputs  | psnr / ssim
 The paper  |  outputs  | example image
 The paper  |  outputs  | mean

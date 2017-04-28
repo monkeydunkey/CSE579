@@ -13,12 +13,6 @@ The paper  |  solves  | navigational abilities could emerge as the by-product of
 The paper  |  outputs  | denser training signals
 The paper  |  outputs  | navigation-relevant representation learning
 The paper  |  outputs  | denser training signals that support navigation-relevant representation learning
-The paper  |  uses  | additional losses
-The paper  |  uses  | ﬁrst
-The paper  |  uses  | reconstruction
-The paper  |  uses  | low-dimensional depth map
-The paper  |  uses  | time
-The paper  |  uses  | additional losses : the ﬁrst one involves reconstruction of a low-dimensional depth map at each time
 The paper  |  outputs  | accelerated learning
 The paper  |  outputs  | performance
 The paper  |  outputs  | agent architecture
@@ -29,9 +23,6 @@ The paper  |  outputs  | detailed analysis of the trained agent
 The paper  |  outputs  | critical navigation skills
 The paper  |  solves  | ambiguous observations
 The paper  |  uses  | multiple objectives
-The paper  |  uses  | l
-The paper  |  uses  | work
-The paper  |  uses  | l : in this work
 The paper  |  uses  | two-layer stacked lstm
 The paper  |  uses  | convolutional encoder
 The paper  |  uses  | two-layer stacked lstm after the convolutional encoder
@@ -57,9 +48,6 @@ The paper  |  uses  | large map
 The paper  |  uses  | learning
 The paper  |  uses  | technique
 The paper  |  uses  | learning , technique
-The paper  |  uses  | l
-The paper  |  uses  | work
-The paper  |  uses  | l : in this work
 The paper  |  uses  | asterisk
 The paper  |  uses  | agent name
 The paper  |  uses  | asterisk to the agent name
@@ -69,9 +57,6 @@ The paper  |  uses  | classiﬁcation formulation in all our other results4
 The paper  |  outputs  | results
 The paper  |  outputs  | loop closure prediction task
 The paper  |  outputs  | results from the loop closure prediction task
-The paper  |  uses  | t
-The paper  |  uses  | ﬁrst
-The paper  |  uses  | t : ﬁrst
 The paper  |  solves  | goal
 The paper  |  solves  | goal
 The paper  |  solves  | efﬁcient route
@@ -116,16 +101,6 @@ The paper  |  uses  | following quantization
 The paper  |  uses  | nav a3c*+d1l agent
 The paper  |  uses  | i-maze
 The paper  |  uses  | following quantization to ensure a uniform 5video of the nav a3c*+d1l agent on the i-maze
-The paper  |  uses  | policy π
-The paper  |  uses  | value function v
-The paper  |  uses  | depth predictions
-The paper  |  uses  | ft
-The paper  |  uses  | g
-The paper  |  uses  | cid:48
-The paper  |  uses  | d
-The paper  |  uses  | ht
-The paper  |  uses  | loop closure detection gl
-The paper  |  uses  | policy π , value function v , depth predictions gd ( ft ) and g ( cid:48 ) d ( ht ) as well as loop closure detection gl
 The paper  |  uses  | asynchronous version
 The paper  |  uses  | rmsprop
 The paper  |  uses  | asynchronous version of rmsprop
@@ -139,9 +114,3 @@ The paper  |  outputs  | results
 The paper  |  uses  | chunks
 The paper  |  uses  | steps
 The paper  |  uses  | chunks of 100 steps
-The paper  |  outputs  | l
-The paper  |  outputs  | paper
-The paper  |  outputs  | l : in this paper
-The paper  |  outputs  | t
-The paper  |  outputs  | jaderberg et al.
-The paper  |  outputs  | t : in ( jaderberg et al.

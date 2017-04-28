@@ -32,10 +32,6 @@ The paper  |  uses  | information
 The paper  |  uses  | types
 The paper  |  uses  | objects
 The paper  |  uses  | class-level labeling or information about the types of objects
-The paper  |  uses  | l
-The paper  |  uses  | http
-The paper  |  uses  | //davheld.github.io/goturn/goturn.html
-The paper  |  uses  | l : at http : //davheld.github.io/goturn/goturn.html
 The paper  |  uses  | novel objects
 The paper  |  uses  | test time
 The paper  |  uses  | novel objects at test time
@@ -57,50 +53,11 @@ The paper  |  uses  | dropout
 The paper  |  uses  | non-linearities
 The paper  |  uses  | caﬀenet
 The paper  |  uses  | dropout and relu non-linearities as in caﬀenet
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
-The paper  |  uses  | l
-The paper  |  uses  | training videos
-The paper  |  uses  | l : in our training videos
 The paper  |  uses  | laplace distribution
 The paper  |  uses  | mean
 The paper  |  uses  | details
 The paper  |  uses  | laplace distribution with a mean of 0 ( see appendix for details
-The paper  |  uses  | size changes
-The paper  |  uses  | w
-The paper  |  uses  | cid:48
-The paper  |  uses  | w · γw h
-The paper  |  uses  | cid:48
-The paper  |  uses  | = h · γh
-The paper  |  uses  | w
-The paper  |  uses  | cid:48
-The paper  |  uses  | h
-The paper  |  uses  | cid:48
-The paper  |  uses  | current width
-The paper  |  uses  | height
-The paper  |  uses  | bounding box
-The paper  |  uses  | w
-The paper  |  uses  | h
-The paper  |  uses  | previous width
-The paper  |  uses  | height
-The paper  |  uses  | bounding box
-The paper  |  uses  | size changes by w ( cid:48 ) = w · γw h ( cid:48 ) = h · γh ( 4 ) where w ( cid:48 ) and h ( cid:48 ) are the current width and height of the bounding box and w and h are the previous width and height of the bounding box
-The paper  |  outputs  | l
-The paper  |  outputs  | above
-The paper  |  outputs  | figures
-The paper  |  outputs  | examples
-The paper  |  outputs  | l : above ( see figures 3 and 4 for examples
-The paper  |  uses  | l
-The paper  |  uses  | classiﬁcation tasks
-The paper  |  uses  | l : in classiﬁcation tasks
 The paper  |  uses  | video training example
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
-The paper  |  outputs  | l
-The paper  |  outputs  | above
-The paper  |  outputs  | l : above
 The paper  |  outputs  | motions
 The paper  |  outputs  | sections
 The paper  |  outputs  | motions '' ( see sections
@@ -123,16 +80,7 @@ The paper  |  outputs  | value
 The paper  |  outputs  | oﬄine training
 The paper  |  outputs  | performance
 The paper  |  outputs  | value of oﬄine training for improving tracking performance
-The paper  |  uses  | l
-The paper  |  uses  | case
-The paper  |  uses  | l : in each case
 The paper  |  uses  | single feed
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
-The paper  |  uses  | l
-The paper  |  uses  | training
-The paper  |  uses  | l : in our training
 The paper  |  uses  | tracker
 The paper  |  outputs  | tracker
 The paper  |  outputs  | novel objects
@@ -158,9 +106,6 @@ The paper  |  outputs  | variety
 The paper  |  outputs  | objects
 The paper  |  outputs  | oﬄine training procedure has already taught the network how to track a variety of objects
 The paper  |  outputs  | performance
-The paper  |  uses  | l
-The paper  |  uses  | training set
-The paper  |  uses  | l : in the training set
 The paper  |  outputs  | tracker
 The paper  |  outputs  | novel objects
 The paper  |  outputs  | tracker can generalize to novel objects
@@ -190,9 +135,6 @@ The paper  |  uses  | idea
 The paper  |  uses  | small motions
 The paper  |  uses  | large motions
 The paper  |  uses  | idea that small motions are more likely than large motions
-The paper  |  uses  | l
-The paper  |  uses  | training set
-The paper  |  uses  | l : in the training set
 The paper  |  uses  | laplace distributions
 The paper  |  uses  | random
 The paper  |  uses  | procedure

@@ -12,18 +12,12 @@ The paper  |  outputs  | transfer performance
 The paper  |  outputs  | traditional ﬁnetuning
 The paper  |  outputs  | transfer performance to traditional ﬁnetuning
 The paper  |  uses  | f
-The paper  |  outputs  | l
-The paper  |  outputs  | below
-The paper  |  outputs  | l : below
 The paper  |  outputs  | architecture
 The paper  |  uses  | visual discrimination task
 The paper  |  uses  | synthetic versions
 The paper  |  uses  | pong
 The paper  |  uses  | synthetic versions of pong
 The paper  |  outputs  | performance
-The paper  |  outputs  | t
-The paper  |  outputs  | [
-The paper  |  outputs  | t : in [
 The paper  |  outputs  | results
 The paper  |  uses  | sec
 The paper  |  uses  | same components
@@ -54,9 +48,6 @@ The paper  |  solves  | ﬁnal column
 The paper  |  solves  | target tasks
 The paper  |  solves  | components of the source columns materially contribute to the performance of the ﬁnal column on the target tasks
 The paper  |  uses  | network
-The paper  |  uses  | l
-The paper  |  uses  | ﬁnal
-The paper  |  uses  | l : in the ﬁnal
 The paper  |  uses  | model
 The paper  |  uses  | workers
 The paper  |  uses  | same rmsprop algorithm

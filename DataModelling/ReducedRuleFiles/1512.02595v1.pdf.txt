@@ -37,9 +37,6 @@ The paper  |  uses  | data synthesis
 The paper  |  uses  | data
 The paper  |  uses  | training
 The paper  |  uses  | data synthesis to further augment the data during training
-The paper  |  uses  | l
-The paper  |  uses  | previous system
-The paper  |  uses  | l : in our previous system
 The paper  |  uses  | gpus
 The paper  |  uses  | model
 The paper  |  uses  | gpus to train one model
@@ -54,9 +51,6 @@ The paper  |  outputs  | optimizations for a single gpu as well as improvements
 The paper  |  uses  | optimization techniques
 The paper  |  uses  | high performance computing
 The paper  |  uses  | optimization techniques typically found in high performance computing
-The paper  |  uses  | l
-The paper  |  uses  | high performance
-The paper  |  uses  | l : in high performance
 The paper  |  uses  | compute nodes
 The paper  |  uses  | custom implementation
 The paper  |  uses  | all-reduce
@@ -69,10 +63,6 @@ The paper  |  uses  | batching scheme suitable for gpu 11 exaflop = 1018 floatin
 The paper  |  outputs  | percentile compute latency
 The paper  |  outputs  | milliseconds
 The paper  |  outputs  | percentile compute latency of 67 milliseconds
-The paper  |  solves  | l
-The paper  |  solves  | past work
-The paper  |  solves  | modelparallelism
-The paper  |  solves  | l : on the past work in using modelparallelism
 The paper  |  uses  | batch normalization
 The paper  |  uses  | rnns
 The paper  |  uses  | novel optimization curriculum
@@ -182,7 +172,6 @@ The paper  |  outputs  | larger block
 The paper  |  outputs  | information
 The paper  |  outputs  | english character
 The paper  |  outputs  | larger block of information than an english character
-The paper  |  outputs  | t
 The paper  |  uses  | end-to-end mandarin speech recognition system
 The paper  |  solves  | end-to-end mandarin speech recognition system
 The paper  |  uses  | mandarin tones
@@ -221,15 +210,6 @@ The paper  |  uses  | gpus
 The paper  |  uses  | openmp parallelized implementation
 The paper  |  uses  | ctc
 The paper  |  uses  | openmp parallelized implementation of ctc
-The paper  |  uses  | cuda
-The paper  |  uses  | memory allocator
-The paper  |  uses  | std
-The paper  |  uses  | :malloc
-The paper  |  uses  | signiﬁcant overhead
-The paper  |  uses  | application-over
-The paper  |  uses  | slowdown
-The paper  |  uses  | std
-The paper  |  uses  | cuda 's memory allocator and even std : :malloc introduced signiﬁcant overhead into our application-over a 2x slowdown from using std
 The paper  |  outputs  | signiﬁcant overhead
 The paper  |  outputs  | application
 The paper  |  outputs  | signiﬁcant overhead into our application
@@ -248,9 +228,6 @@ The paper  |  uses  | stretch
 The paper  |  uses  | blanks
 The paper  |  uses  | order
 The paper  |  uses  | space token to be within the stretch of blanks in order
-The paper  |  outputs  | l
-The paper  |  outputs  | speech recognition literature
-The paper  |  outputs  | l : in speech recognition literature
 The paper  |  uses  | available benchmarks
 The paper  |  uses  | several test sets
 The paper  |  uses  | available benchmarks and several test sets
@@ -278,9 +255,6 @@ The paper  |  uses  | transcriptions for the ﬁnal wer calculation
 The paper  |  uses  | number
 The paper  |  uses  | parameters
 The paper  |  uses  | number of parameters
-The paper  |  uses  | l
-The paper  |  uses  | section
-The paper  |  uses  | l : in section
 The paper  |  outputs  | test set
 The paper  |  outputs  | voxforge data
 The paper  |  outputs  | examples
@@ -326,10 +300,6 @@ The paper  |  uses  | models using half-precision ( 16-bit ) ﬂoating-point ari
 The paper  |  uses  | standard blas libraries
 The paper  |  uses  | batch size
 The paper  |  uses  | standard blas libraries are inefﬁcient at this batch size
-The paper  |  uses  | l
-The paper  |  uses  | deployment
-The paper  |  uses  | l : in deployment
-The paper  |  uses  | l
 The paper  |  uses  | beam search
 The paper  |  uses  | beam search
 The paper  |  uses  | fewest number

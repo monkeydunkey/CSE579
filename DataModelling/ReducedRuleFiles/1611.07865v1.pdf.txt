@@ -13,11 +13,9 @@ The paper  |  outputs  | vincent van gogh
 The paper  |  outputs  | wheatﬁeld
 The paper  |  outputs  | cypresses
 The paper  |  outputs  | artwork such as vincent van gogh 's a wheatﬁeld with cypresses
-The paper  |  solves  | l
-The paper  |  solves  | hypothesis
 The paper  |  solves  | meaningful control
 The paper  |  solves  | recent image stylisation method
-The paper  |  solves  | l : on this hypothesis to introduce meaningful control to a recent image stylisation method
+The paper  |  solves  | meaningful control to a recent image stylisation method
 The paper  |  outputs  | meaningful control
 The paper  |  outputs  | recent image stylisation method
 The paper  |  outputs  | meaningful control to a recent image stylisation method
@@ -94,12 +92,7 @@ The paper  |  uses  | neural style transfer
 The paper  |  uses  | ﬁne-scale style image
 The paper  |  uses  | coarse-scale style image
 The paper  |  uses  | neural style transfer from the ﬁne-scale style image to the coarse-scale style image
-The paper  |  uses  | l
-The paper  |  uses  | neural style transfer
-The paper  |  uses  | l : in neural style transfer
-The paper  |  outputs  | l
 The paper  |  outputs  | fast neural style transfer methods
-The paper  |  outputs  | l : above to these fast neural style transfer methods
 The paper  |  uses  | colour control
 The paper  |  uses  | fast neural style transfer methods
 The paper  |  uses  | colour control described above to these fast neural style transfer methods

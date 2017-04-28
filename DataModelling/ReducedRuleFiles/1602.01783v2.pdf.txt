@@ -79,9 +79,6 @@ The paper  |  uses  | deep reinforcement
 The paper  |  uses  | dqn
 The paper  |  uses  | asynchronous methods for deep reinforcement learning dqn
 The paper  |  uses  | cpu cores
-The paper  |  uses  | l
-The paper  |  uses  | supplementary section
-The paper  |  uses  | l : in supplementary section
 The paper  |  outputs  | training speed
 The paper  |  outputs  | new methods
 The paper  |  outputs  | training speed of the new methods
@@ -91,24 +88,7 @@ The paper  |  uses  | ﬁnal network weights for evaluation
 The paper  |  uses  | results
 The paper  |  uses  | original results table
 The paper  |  uses  | results more comparable to the original results table
-The paper  |  uses  | t
-The paper  |  uses  | dueling double
-The paper  |  uses  | dqn
-The paper  |  uses  | al
-The paper  |  uses  | t : dueling double dqn ( wang et al
-The paper  |  outputs  | l
-The paper  |  outputs  | work
-The paper  |  outputs  | similar potential improvements
-The paper  |  outputs  | l : in this work with similar potential improvements
-The paper  |  outputs  | l
-The paper  |  outputs  | double dqn
-The paper  |  outputs  | van hasselt
-The paper  |  outputs  | al
-The paper  |  outputs  | l : in double dqn ( van hasselt et al
 The paper  |  uses  | same neural network architecture
-The paper  |  uses  | l
-The paper  |  uses  | atari experiments
-The paper  |  uses  | l : in the atari experiments
 The paper  |  uses  | different settings
 The paper  |  uses  | mujoco
 The paper  |  uses  | set
@@ -152,9 +132,6 @@ The paper  |  uses  | algorithm
 The paper  |  uses  | mujoco
 The paper  |  uses  | mujoco physics simulator to apply the asynchronous advantage actor-critic algorithm to the mujoco
 The paper  |  uses  | continuous action domains
-The paper  |  uses  | l
-The paper  |  uses  | discrete action domains
-The paper  |  uses  | l : in the discrete action domains
 The paper  |  uses  | rgb pixel inputs
 The paper  |  uses  | pixels
 The paper  |  uses  | bootstrapping

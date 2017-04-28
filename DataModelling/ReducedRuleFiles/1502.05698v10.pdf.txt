@@ -6,9 +6,6 @@ The paper  |  solves  | algorithms
 The paper  |  solves  | text understanding
 The paper  |  solves  | reasoning
 The paper  |  solves  | framework and a set of synthetic tasks for the goal of helping to develop learning algorithms for text understanding and reasoning
-The paper  |  outputs  | l
-The paper  |  outputs  | feedback loop
-The paper  |  outputs  | l : a feedback loop
 The paper  |  solves  | set
 The paper  |  solves  | improvements
 The paper  |  solves  | recent memory network method
@@ -45,9 +42,6 @@ The paper  |  uses  | training
 The paper  |  uses  | questions for training
 The paper  |  outputs  | test accuracy
 The paper  |  uses  | task
-The paper  |  outputs  | l
-The paper  |  outputs  | tasks
-The paper  |  outputs  | l : tasks
 The paper  |  outputs  | bag-of-n -grams
 The paper  |  outputs  | sentences
 The paper  |  outputs  | story
@@ -116,9 +110,6 @@ The paper  |  uses  | n = 1 , 2 and 3 in the bag
 The paper  |  uses  | alternative neural network approach
 The paper  |  uses  | multilinear map
 The paper  |  uses  | alternative neural network approach , which we call a multilinear map
-The paper  |  uses  | score
-The paper  |  uses  | s
-The paper  |  uses  | score with : s
 The paper  |  uses  | d
 The paper  |  uses  | = e
 The paper  |  uses  | q

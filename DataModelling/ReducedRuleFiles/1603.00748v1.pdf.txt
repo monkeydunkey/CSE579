@@ -14,9 +14,6 @@ The paper  |  solves  | complementary techniques
 The paper  |  solves  | efﬁciency
 The paper  |  solves  | deep reinforcement
 The paper  |  solves  | complementary techniques for improving the efﬁciency of deep reinforcement
-The paper  |  uses  | l
-The paper  |  uses  | continuous domains
-The paper  |  uses  | l : in continuous domains
 The paper  |  uses  | elements
 The paper  |  uses  | model-based rl
 The paper  |  uses  | elements of model-based rl
@@ -75,27 +72,9 @@ The paper  |  uses  | ﬁnite horizon
 The paper  |  uses  | tasks
 The paper  |  uses  | experiments
 The paper  |  uses  | ﬁnite horizon for all of the tasks in our experiments
-The paper  |  solves  | l
-The paper  |  solves  | l
-The paper  |  solves  | standard q-learning
-The paper  |  solves  | l : on standard q-learning
 The paper  |  uses  | model-based rl
 The paper  |  uses  | optimal control
 The paper  |  uses  | model-based rl and optimal control
-The paper  |  outputs  | linear-gaussian controller
-The paper  |  outputs  | c
-The paper  |  outputs  | arbitrary scaling
-The paper  |  outputs  | reward magnitudes
-The paper  |  outputs  | +
-The paper  |  outputs  | + kt
-The paper  |  outputs  | xt − ^xt
-The paper  |  outputs  | dynamics
-The paper  |  outputs  | effective way
-The paper  |  outputs  | ilqg
-The paper  |  outputs  | time-varying continuous deep q-learning
-The paper  |  outputs  | model-based acceleration linear
-The paper  |  outputs  | models
-The paper  |  outputs  | linear-gaussian controller , where c is a scalar to adjust for arbitrary scaling of the reward magnitudes : ( ut|xt ) = n ( ^ut + kt + kt ( xt − ^xt ) , −cq−1 when the dynamics are not known , a particularly effective way to use ilqg is to combine it with learned time-varying continuous deep q-learning with model-based acceleration linear models
 The paper  |  outputs  | method
 The paper  |  outputs  | variant
 The paper  |  outputs  | dyna-q
@@ -111,9 +90,6 @@ The paper  |  solves  | q-learning
 The paper  |  solves  | continuous action spaces
 The paper  |  solves  | deep neural networks
 The paper  |  solves  | simple method to enable q-learning in continuous action spaces with deep neural networks
-The paper  |  uses  | l
-The paper  |  uses  | implementation
-The paper  |  uses  | l : in our implementation
 The paper  |  uses  | representation
 The paper  |  uses  | deep q-learning
 The paper  |  uses  | al
@@ -178,9 +154,6 @@ The paper  |  outputs  | tasks
 The paper  |  outputs  | impressive gains in sample efﬁciency on tasks
 The paper  |  uses  | mujoco simulator
 The paper  |  outputs  | results
-The paper  |  outputs  | l
-The paper  |  outputs  | prior work
-The paper  |  outputs  | l : in prior work
 The paper  |  uses  | neural networks
 The paper  |  uses  | layers
 The paper  |  uses  | rectiﬁed linear
@@ -266,6 +239,3 @@ The paper  |  outputs  | undesirable additional degree of freedom
 The paper  |  uses  | heuristic adaptive-scaling trick
 The paper  |  uses  | noise magnitudes
 The paper  |  uses  | heuristic adaptive-scaling trick to stabilize the noise magnitudes
-The paper  |  outputs  | l
-The paper  |  outputs  | figures
-The paper  |  outputs  | l : in figures

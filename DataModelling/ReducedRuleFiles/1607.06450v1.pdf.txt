@@ -29,10 +29,6 @@ The paper  |  uses  | layer normalization
 The paper  |  uses  | lstm
 The paper  |  uses  | layer normalization within the lstm
 The paper  |  uses  | former model
-The paper  |  uses  | l
-The paper  |  uses  | kiros
-The paper  |  uses  | al
-The paper  |  uses  | l : in kiros et al
 The paper  |  uses  | cnmem
 The paper  |  uses  | performance rate
 The paper  |  uses  | ln

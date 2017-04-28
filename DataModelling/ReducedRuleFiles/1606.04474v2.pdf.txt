@@ -6,9 +6,6 @@ The paper  |  solves  | own set
 The paper  |  solves  | parameters
 The paper  |  solves  | hand-designed update rules with a learned update rule , which we call the optimizer g , speciﬁed by its own set of parameters
 The paper  |  solves  | generalization power
-The paper  |  solves  | l
-The paper  |  solves  | work
-The paper  |  solves  | l : on this work
 The paper  |  uses  | optimizer
 The paper  |  uses  | notation ∇t = ∇θf
 The paper  |  uses  | θt
@@ -43,10 +40,6 @@ The paper  |  solves  | different method
 The paper  |  solves  | inputs
 The paper  |  solves  | optimizer inputs
 The paper  |  solves  | different method of preprocessing inputs to the optimizer inputs
-The paper  |  uses  | t
-The paper  |  uses  | optimizer
-The paper  |  uses  | order
-The paper  |  uses  | t : when training the optimizer in order
 The paper  |  uses  | optimizer
 The paper  |  uses  | order
 The paper  |  uses  | optimizer in order
@@ -54,9 +47,6 @@ The paper  |  outputs  | average performance
 The paper  |  outputs  | number
 The paper  |  outputs  | test problems
 The paper  |  outputs  | average performance on a number of freshly sampled test problems
-The paper  |  uses  | l
-The paper  |  uses  | deep learning
-The paper  |  uses  | l : in deep learning
 The paper  |  uses  | default values
 The paper  |  uses  | optim package
 The paper  |  uses  | torch7
@@ -115,9 +105,6 @@ The paper  |  uses  | style and 1800 content images
 The paper  |  uses  | behavior
 The paper  |  uses  | step directions
 The paper  |  uses  | behavior of the step directions
-The paper  |  uses  | l
-The paper  |  uses  | deep learning
-The paper  |  uses  | l : in deep learning
 The paper  |  solves  | optimizer
 The paper  |  solves  | inputs
 The paper  |  solves  | optimizer 's inputs

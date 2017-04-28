@@ -37,9 +37,6 @@ The paper  |  uses  | reliability of each cnn
 The paper  |  outputs  | high scores
 The paper  |  outputs  | background objects
 The paper  |  outputs  | high scores for background objects
-The paper  |  uses  | l
-The paper  |  uses  | object detection
-The paper  |  uses  | l : in object detection
 The paper  |  uses  | bounding box regression technique
 The paper  |  uses  | object detection
 The paper  |  uses  | target localization quality

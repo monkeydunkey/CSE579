@@ -71,7 +71,6 @@ The paper  |  solves  | model
 The paper  |  solves  | ]
 The paper  |  solves  | [ l
 The paper  |  solves  | model look at both [ the ] and [ man ] , and in this example , we see that the model was able to correctly translate [ the ] into [ l
-The paper  |  outputs  | t
 The paper  |  outputs  | few more sample translations
 The paper  |  outputs  | long source sentences
 The paper  |  outputs  | few more sample translations of long source sentences
@@ -81,14 +80,10 @@ The paper  |  uses  | source sentence
 The paper  |  uses  | word
 The paper  |  uses  | translation
 The paper  |  uses  | annotation weight of every word in the source sentence for each word in the translation
-The paper  |  uses  | l
-The paper  |  uses  | paper
-The paper  |  uses  | l : in this paper
 The paper  |  outputs  | al
 The paper  |  solves  | novel architecture
 The paper  |  solves  | issue
 The paper  |  solves  | novel architecture that addresses this issue
-The paper  |  solves  | l
 The paper  |  outputs  | choices
 The paper  |  outputs  | experiments
 The paper  |  outputs  | paper
@@ -105,15 +100,9 @@ The paper  |  uses  | singlelayer multilayer perceptron such
 The paper  |  outputs  | architecture
 The paper  |  outputs  | model
 The paper  |  outputs  | architecture of the proposed model
-The paper  |  uses  | l
-The paper  |  uses  | experiments
-The paper  |  uses  | l : in the experiments
 The paper  |  uses  | stochastic gradient descent
 The paper  |  outputs  | conference paper
 The paper  |  uses  | time proportional
 The paper  |  outputs  | statistics
 The paper  |  outputs  | models
 The paper  |  outputs  | statistics related to training all the models
-The paper  |  uses  | l
-The paper  |  uses  | experiments
-The paper  |  uses  | l : in the experiments

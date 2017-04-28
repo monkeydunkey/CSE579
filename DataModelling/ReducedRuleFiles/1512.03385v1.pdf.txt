@@ -2,7 +2,6 @@ The paper  |  outputs  | residual learning framework
 The paper  |  outputs  | training
 The paper  |  outputs  | networks
 The paper  |  outputs  | residual learning framework to ease the training of networks
-The paper  |  uses  | t
 The paper  |  outputs  | comprehensive empirical evidence
 The paper  |  outputs  | residual networks
 The paper  |  outputs  | comprehensive empirical evidence showing that these residual networks
@@ -11,30 +10,14 @@ The paper  |  outputs  | models
 The paper  |  outputs  | dataset
 The paper  |  outputs  | layers
 The paper  |  outputs  | models on this dataset with over 100 layers
-The paper  |  outputs  | l
-The paper  |  outputs  | imagenet
-The paper  |  outputs  | l : on imagenet
 The paper  |  outputs  | accuracy gains
 The paper  |  outputs  | increased depth
 The paper  |  outputs  | accuracy gains with extremely increased depth
 The paper  |  outputs  | identity mappings
-The paper  |  uses  | building block
-The paper  |  uses  | y = f
-The paper  |  uses  | +
-The paper  |  uses  | building block deﬁned as : y = f ( x , { wi } ) +
 The paper  |  uses  | square matrix
-The paper  |  uses  | t
-The paper  |  uses  | dimensions
-The paper  |  uses  | t : when matching dimensions
 The paper  |  outputs  | models
 The paper  |  outputs  | imagenet
 The paper  |  outputs  | models for imagenet
-The paper  |  uses  | options
-The paper  |  uses  | shortcut
-The paper  |  uses  | identity mapping
-The paper  |  uses  | extra zero entries
-The paper  |  uses  | dimensions
-The paper  |  uses  | options : ( a ) the shortcut still performs identity mapping , with extra zero entries padded for increasing dimensions
 The paper  |  uses  | sgd
 The paper  |  uses  | weight decay
 The paper  |  uses  | momentum
@@ -67,7 +50,6 @@ The paper  |  uses  | option b for increasing dimensions
 The paper  |  outputs  | 152-layer resnets
 The paper  |  outputs  | 3-layer blocks
 The paper  |  outputs  | competitive accuracy
-The paper  |  uses  | t
 The paper  |  uses  | identity shortcuts
 The paper  |  uses  | weight decay
 The paper  |  uses  | momentum
@@ -82,9 +64,6 @@ The paper  |  uses  | training
 The paper  |  uses  | maxout/dropout
 The paper  |  outputs  | training error
 The paper  |  outputs  | detection method
-The paper  |  uses  | t
-The paper  |  uses  | [
-The paper  |  uses  | t : in [
 The paper  |  uses  | layers
 The paper  |  uses  | strides
 The paper  |  uses  | image

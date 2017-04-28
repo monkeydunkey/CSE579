@@ -23,9 +23,6 @@ The paper  |  uses  | slow optimization process
 The paper  |  outputs  | interesting showcase
 The paper  |  outputs  | conceptually-simple feedforward architectures
 The paper  |  outputs  | interesting showcase of training conceptually-simple feedforward architectures
-The paper  |  uses  | l
-The paper  |  uses  | statistics
-The paper  |  uses  | l : in particular the statistics
 The paper  |  solves  | gatys et al.
 The paper  |  uses  | speciﬁc statistics
 The paper  |  uses  | applications
@@ -39,10 +36,6 @@ The paper  |  uses  | weighted combination
 The paper  |  uses  | texture loss
 The paper  |  uses  | content loss
 The paper  |  uses  | weighted combination of the texture loss ( 5 ) and the content loss
-The paper  |  uses  | t
-The paper  |  uses  | generator network
-The paper  |  uses  | texture synthesis
-The paper  |  uses  | t : when training a generator network for texture synthesis
 The paper  |  uses  | generator network
 The paper  |  uses  | texture synthesis
 The paper  |  uses  | generator network for texture synthesis

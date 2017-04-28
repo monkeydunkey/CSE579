@@ -29,9 +29,6 @@ The paper  |  uses  | images
 The paper  |  uses  | diﬀerent objects
 The paper  |  uses  | theory
 The paper  |  uses  | diﬀerent size exemplar images for diﬀerent objects in theory
-The paper  |  uses  | l
-The paper  |  uses  | canonical tracking benchmarks
-The paper  |  uses  | l : in the canonical tracking benchmarks
 The paper  |  uses  | area
 The paper  |  uses  | exemplar images
 The paper  |  uses  | area of the exemplar images
@@ -73,17 +70,11 @@ The paper  |  uses  | more accurate localization
 The paper  |  uses  | original map
 The paper  |  uses  | score map using bicubic interpolation , from 17 × 17 to 272 × 272 , results in more accurate localization since the original map
 The paper  |  outputs  | [
-The paper  |  outputs  | l
-The paper  |  outputs  | major computer vision conferences
-The paper  |  outputs  | l : in the major computer vision conferences
 The paper  |  uses  | latest stable version
 The paper  |  uses  | visual object tracking
 The paper  |  uses  | vot
 The paper  |  uses  | toolkit
 The paper  |  uses  | latest stable version of the visual object tracking ( vot ) toolkit
-The paper  |  outputs  | l
-The paper  |  outputs  | cvpr
-The paper  |  outputs  | l : at cvpr
 The paper  |  outputs  | scores
 The paper  |  outputs  | expressiveness
 The paper  |  outputs  | similarity metric
@@ -93,14 +84,10 @@ The paper  |  outputs  | imagenet video
 The paper  |  outputs  | strong results
 The paper  |  outputs  | recent state-of-the-art methods
 The paper  |  outputs  | expressiveness of the similarity metric learnt by our fully-convolutional siamese network on imagenet video alone is enough to achieve very strong results , comparable or superior to recent state-of-the-art methods
-The paper  |  uses  | l
 The paper  |  uses  | strong embeddings
 The paper  |  uses  | oﬄine phase
 The paper  |  uses  | strong embeddings in an oﬄine phase
 The paper  |  outputs  | authors
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
 The paper  |  uses  | ﬁrst frame
 The paper  |  uses  | ϕ
 The paper  |  uses  | ﬁrst frame to compute ϕ

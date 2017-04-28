@@ -1,6 +1,3 @@
-The paper  |  uses  | t
-The paper  |  uses  | time
-The paper  |  uses  | t : the time
 The paper  |  outputs  | addition
 The paper  |  outputs  | gradients
 The paper  |  outputs  | same framework
@@ -21,7 +18,6 @@ The paper  |  uses  | case
 The paper  |  uses  | feed-forward neural net
 The paper  |  uses  | above process to the case of a feed-forward neural net
 The paper  |  uses  | communication protocol
-The paper  |  outputs  | t
 The paper  |  uses  | l2 distance
 The paper  |  uses  | loss
 The paper  |  uses  | l2 distance as a loss
@@ -29,9 +25,6 @@ The paper  |  uses  | l2 distance
 The paper  |  uses  | synthetic gradients
 The paper  |  uses  | communication feedback
 The paper  |  uses  | synthetic gradients as communication feedback
-The paper  |  outputs  | l
-The paper  |  outputs  | fig
-The paper  |  outputs  | l : in fig
 The paper  |  solves  | extension
 The paper  |  solves  | learning
 The paper  |  solves  | synthetic gradient models
@@ -40,9 +33,6 @@ The paper  |  solves  | extension to aid learning of synthetic gradient models f
 The paper  |  outputs  | auxiliary task
 The paper  |  outputs  | rnn
 The paper  |  outputs  | auxiliary task from the rnn
-The paper  |  outputs  | l
-The paper  |  outputs  | fig
-The paper  |  outputs  | l : in fig
 The paper  |  outputs  | application
 The paper  |  outputs  | dni
 The paper  |  outputs  | communication
@@ -87,9 +77,6 @@ The paper  |  uses  | larger time dependencies
 The paper  |  uses  | lstm
 The paper  |  uses  | units
 The paper  |  uses  | lstm with 1024 units
-The paper  |  uses  | l
-The paper  |  uses  | fig
-The paper  |  uses  | l : in fig
 The paper  |  outputs  | results
 The paper  |  outputs  | lstms
 The paper  |  outputs  | results only with lstms
@@ -118,10 +105,6 @@ The paper  |  uses  | communication
 The paper  |  uses  | components
 The paper  |  uses  | synthetic gradients , which allows decoupled communication between components
 The paper  |  outputs  | application
-The paper  |  uses  | l
-The paper  |  uses  | experiments
-The paper  |  uses  | sect
-The paper  |  uses  | l : in the experiments from sect
 The paper  |  uses  | linear model
 The paper  |  uses  | cross entropy loss
 The paper  |  uses  | classiﬁcation

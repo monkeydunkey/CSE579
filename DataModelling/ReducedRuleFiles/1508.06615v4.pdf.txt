@@ -20,12 +20,6 @@ The paper  |  outputs  | par
 The paper  |  outputs  | state-of-the-art
 The paper  |  outputs  | penn treebank
 The paper  |  outputs  | results on par with the existing state-of-the-art on the penn treebank
-The paper  |  outputs  | l
-The paper  |  outputs  | paper.1
-The paper  |  outputs  | l : in this paper.1
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in this section
 The paper  |  uses  | narrow convolution
 The paper  |  uses  | ck
 The paper  |  uses  | ﬁlter

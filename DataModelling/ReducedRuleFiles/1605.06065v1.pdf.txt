@@ -15,9 +15,6 @@ The paper  |  outputs  | manns
 The paper  |  outputs  | meta-learning
 The paper  |  outputs  | tasks
 The paper  |  outputs  | manns are capable of meta-learning in tasks
-The paper  |  uses  | l
-The paper  |  uses  | model
-The paper  |  uses  | l : in our model
 The paper  |  outputs  | notation m
 The paper  |  outputs  | v n
 The paper  |  outputs  | nth smallest element
@@ -27,9 +24,6 @@ The paper  |  outputs  | nth smallest element
 The paper  |  outputs  | vector
 The paper  |  outputs  | nth smallest element of the vector
 The paper  |  outputs  | new classes
-The paper  |  outputs  | l
-The paper  |  outputs  | section
-The paper  |  outputs  | l : in section
 The paper  |  uses  | one-hot vector representations
 The paper  |  uses  | class labels
 The paper  |  uses  | one-hot vector representations as class labels

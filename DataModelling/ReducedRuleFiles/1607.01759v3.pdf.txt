@@ -25,10 +25,6 @@ The paper  |  outputs  | main baselines
 The paper  |  outputs  | approaches
 The paper  |  outputs  | main baselines as well as their two approaches
 The paper  |  outputs  | results
-The paper  |  outputs  | l
-The paper  |  outputs  | tang
-The paper  |  outputs  | al
-The paper  |  outputs  | l : in tang et al
 The paper  |  outputs  | test accuracy
 The paper  |  uses  | threads
 The paper  |  uses  | images
@@ -54,7 +50,3 @@ The paper  |  outputs  | research community
 The paper  |  outputs  | top
 The paper  |  outputs  | work
 The paper  |  outputs  | code so that the research community can easily build on top of our work
-The paper  |  solves  | l
-The paper  |  solves  | top
-The paper  |  solves  | work
-The paper  |  solves  | l : on top of our work

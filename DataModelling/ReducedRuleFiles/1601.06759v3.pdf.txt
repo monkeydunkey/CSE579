@@ -105,9 +105,6 @@ The paper  |  uses  | bounded receptive ﬁeld
 The paper  |  uses  | features
 The paper  |  uses  | pixel positions
 The paper  |  uses  | features for all pixel positions
-The paper  |  uses  | l
-The paper  |  uses  | experiments
-The paper  |  uses  | l : in the experiments
 The paper  |  uses  | diagonal bilstm
 The paper  |  uses  | layers
 The paper  |  uses  | value
@@ -152,12 +149,6 @@ The paper  |  outputs  | performance
 The paper  |  outputs  | diagonal bilstm model
 The paper  |  outputs  | results
 The paper  |  outputs  | performance of the diagonal bilstm model and that of previous published results
-The paper  |  solves  | l
-The paper  |  solves  | upon deep recurrent neural
-The paper  |  solves  | networks
-The paper  |  solves  | generative models
-The paper  |  solves  | natural images
-The paper  |  solves  | l : upon deep recurrent neural networks as generative models for natural images
 The paper  |  outputs  | novel two-dimensional lstm layers
 The paper  |  uses  | softmax layer
 The paper  |  uses  | conditional distributions

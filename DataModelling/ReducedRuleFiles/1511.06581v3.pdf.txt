@@ -59,7 +59,6 @@ The paper  |  uses  | prioritized variant of ddqn
 The paper  |  uses  | gradient
 The paper  |  uses  | new approaches
 The paper  |  uses  | gradient clipping in all the new approaches
-The paper  |  uses  | t
 The paper  |  outputs  | new neural network architecture
 The paper  |  outputs  | value
 The paper  |  outputs  | advantage

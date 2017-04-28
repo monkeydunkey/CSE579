@@ -6,9 +6,6 @@ The paper  |  outputs  | object detection results
 The paper  |  outputs  | competitive fast/faster r-cnn
 The paper  |  outputs  | systems
 The paper  |  outputs  | object detection results which surpass the competitive fast/faster r-cnn systems
-The paper  |  outputs  | l
-The paper  |  outputs  | paper
-The paper  |  outputs  | l : in this paper
 The paper  |  solves  | multi-task network cascades
 The paper  |  solves  | accurate
 The paper  |  solves  | fast instanceaware semantic
@@ -45,14 +42,6 @@ The paper  |  uses  | ∂xi
 The paper  |  uses  | ∂yi
 The paper  |  uses  | ∂wi
 The paper  |  uses  | ∂bi to denote ∂xi , ∂yi , ∂wi
-The paper  |  outputs  | ﬁne resolution
-The paper  |  outputs  | w
-The paper  |  outputs  | cid:48
-The paper  |  outputs  | × h
-The paper  |  outputs  | cid:48
-The paper  |  outputs  | ×
-The paper  |  outputs  | paper
-The paper  |  outputs  | ﬁne resolution , which is set as w ( cid:48 ) × h ( cid:48 ) = 28 × 28 in this paper
 The paper  |  uses  | non-maximum suppression
 The paper  |  uses  | redundant candidates
 The paper  |  uses  | non-maximum suppression to reduce redundant candidates
@@ -84,9 +73,6 @@ The paper  |  uses  | 5-stage inference
 The paper  |  uses  | 5-stage trained structures
 The paper  |  uses  | 5-stage inference for both 3-stage and 5-stage trained structures
 The paper  |  uses  | nms
-The paper  |  uses  | l
-The paper  |  uses  | recent papers
-The paper  |  uses  | l : in recent papers
 The paper  |  uses  | segmentation annotations
 The paper  |  uses  | training
 The paper  |  uses  | evaluation

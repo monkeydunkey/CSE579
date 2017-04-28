@@ -20,9 +20,6 @@ The paper  |  uses  | expert value functions
 The paper  |  uses  | knowledge from the expert value functions
 The paper  |  uses  | softmax
 The paper  |  uses  | expert
-The paper  |  uses  | l
-The paper  |  uses  | loss
-The paper  |  uses  | l : in the loss
 The paper  |  uses  | -greedy policy
 The paper  |  uses  | feature regression objective
 The paper  |  uses  | primary beneﬁt
@@ -40,9 +37,6 @@ The paper  |  uses  | a|s θ
 The paper  |  uses  | softmax policies
 The paper  |  uses  | policy regression objective
 The paper  |  uses  | notation p ( a|s θ ) for the softmax policies in the policy regression objective
-The paper  |  outputs  | t
-The paper  |  outputs  | amn
-The paper  |  outputs  | t : amn
 The paper  |  uses  | subsets
 The paper  |  uses  | collection
 The paper  |  uses  | atari games
@@ -52,13 +46,9 @@ The paper  |  outputs  | amn
 The paper  |  outputs  | multiple games
 The paper  |  outputs  | effectiveness of training an amn over multiple games
 The paper  |  outputs  | maximum test reward
-The paper  |  outputs  | l
 The paper  |  outputs  | maximum test reward
 The paper  |  outputs  | convergence
 The paper  |  outputs  | maximum test reward ever achieved until convergence
-The paper  |  outputs  | t
-The paper  |  outputs  | convergence
-The paper  |  outputs  | t : until convergence
 The paper  |  outputs  | percentage ratio
 The paper  |  outputs  | amn reward
 The paper  |  outputs  | expert
@@ -132,18 +122,4 @@ The paper  |  outputs  | convolutional layers
 The paper  |  outputs  | wxwxcxn-s
 The paper  |  outputs  | convolutional layers as wxwxcxn-s
 The paper  |  outputs  | maximum test reward
-The paper  |  outputs  | t
-The paper  |  outputs  | training
-The paper  |  outputs  | reward
-The paper  |  outputs  | t : over all training epochs , as well as the mean testing reward
-The paper  |  outputs  | t
-The paper  |  outputs  | epochs
-The paper  |  outputs  | t : over the last 10 epochs
 The paper  |  outputs  | maximum test reward
-The paper  |  outputs  | t
-The paper  |  outputs  | training
-The paper  |  outputs  | reward
-The paper  |  outputs  | t : over all training epochs , as well as the mean testing reward
-The paper  |  outputs  | t
-The paper  |  outputs  | epochs
-The paper  |  outputs  | t : over the last 10 epochs

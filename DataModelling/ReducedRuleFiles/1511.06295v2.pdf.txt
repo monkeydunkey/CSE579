@@ -17,10 +17,6 @@ The paper  |  outputs  | more action policies
 The paper  |  outputs  | q-networks
 The paper  |  outputs  | untrained network
 The paper  |  outputs  | more action policies from q-networks to an untrained network
-The paper  |  uses  | l
-The paper  |  uses  | context
-The paper  |  uses  | reinforcement learning
-The paper  |  uses  | l : in the context of reinforcement learning
 The paper  |  outputs  | policy distillation
 The paper  |  uses  | methods
 The paper  |  uses  | policy distillation
