@@ -20,8 +20,4 @@ The file [PixelInformationExtraction_last.txt](https://github.com/monkeydunkey/C
    * The cleaned file can be found [here](https://github.com/monkeydunkey/CSE579/blob/master/DataModelling/PixelRecurrentNeuralNetworks_formatted_reduced.txt)
 2. The cleaned file is now provided as an input to the openie information extractor you can read more about it [here](https://github.com/allenai/openie-standalone). The output of this process can be found in: "PixelInformationExtraction_reduced.txt"
 3. Apply fileReducer.py to reduce the number of relations and keep only those that match to one of the 4 types of relation described above
-
-## TODO
-1. We need to make sense of the relationships as the phrase in the relationship can be a whole line for a single word. We can proabably use WordNET or Knowledge graph for some more reduction here
-2. We need to establish "is a" sort of relationship as well. We can get this from WordNet as well as Knowledge Graph but if we can extract this from the text itself then we will have a much better understanding of our own domain
-3. Come up with more relations if required
+4. The isaRuleBUilder files create the isa type hierachical rules that would be required by our model. There would 2 isaRuleBuilder one for Knowledge base (DBPedia) and one for WordNet
