@@ -1,0 +1,21 @@
+// predicates
+isa(term,term)
+paperuses(term)
+queryuses(term)
+
+paperoutput(term)
+queryoutput(term)
+
+papersolves(term)
+querysolves(term)
+
+isa(a, b) ^ paperuses(a) => paperuses(b).
+isa(a, b) ^ queryuses(a) => queryuses(b).
+isa(a, b) ^ paperoutput(a) => paperoutput(b).
+isa(a, b) ^ queryoutput(a) => queryoutput(b).
+isa(a, b) ^ papersolves(a) => papersolves(b).
+isa(a, b) ^ papersolves(a) => papersolves(b).
+
+0 paperuses(a1) <=> queryuses(a1)
+0 paperoutput(a1) <=> queryoutput(a1)
+0 papersolves(a1) <=> querysolves(a1)

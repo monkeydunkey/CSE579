@@ -46,7 +46,7 @@ for i,q in enumerate(expandedTerms):
             ERR_FILE.write('There was an error in processing ' + term + ' ' + e.message)
 print "Terms fetched"
 
-expandedTerms = [map(lambda z: 'query'+ruleType[i]+'('+ '_'.join(z.split(' ')) +')\n', y) for i, y in enumerate(expandedTerms)]
+expandedTerms = [map(lambda z: 'query'+ruleType[i]+'("'+ z +'")\n', y) for i, y in enumerate(expandedTerms)]
 #Flatteting the output
 expandedTerms = [item for sublist in expandedTerms for item in sublist]
 
@@ -69,7 +69,7 @@ for i,f in enumerate(files):
     outputFile.writelines(commonRules)
     for line in inputFile.readlines():
         linePart = line.split(' | ')
-        outputFile.write('paper'+linePart[1].strip()+'('+'_'.join(linePart[2].strip().split(' '))+')'+'\n')
+        outputFile.write('paper'+linePart[1].strip()+'("'+linePart[2].strip()+'")\n')
 
     outputFile.writelines(expandedTerms)
     inputFile.close()
