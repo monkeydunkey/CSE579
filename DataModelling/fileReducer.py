@@ -36,6 +36,12 @@ def reduceRule(rule):
     if len(parts) < 3:
         return ''
     inAny = False
+    #Filtering out rules of type l: or t:
+    tagPatt = re.compile("\s?\w\s?:")
+    for i in xrange(len(parts)):
+        if tagPatt.search(parts[i]) is not None:
+            parts[i] = ""
+
     #Checking for outputs type relation
     if any(t in parts[1] for t in outputRelationTerms):
         parts[1] = 'outputs'
@@ -49,7 +55,7 @@ def reduceRule(rule):
 
     if inAny:
         parts[0] = 'The paper'
-        parts[2] = '; '.join(parts[2:])
+        parts[2] = '; '.join(parts[2:]).strip(' ;')
         return ' $ '.join(parts[:3])
     #Handling cases for solves type of relation
     solvesSpecialVerbs = ['is', 'was']
@@ -103,17 +109,14 @@ def breakRulesPOS(rule):
     return output
 
 def resolvePropositions(rules, ind, rulesToResolve, ruleParts):
-    # pattern to find and remove rules of the form L:, T:
-    # This just basically identify some more meta information about the thing at hand
-    #Older pattern " \w:"
-    tagPatt = re.compile(" \w\s?:")
-    #TODO we will find all the errors and corner cases only after the whole thing is run on a sizeable dataset
+    #Final combined rule output
     resolvedRule = ""
     for r in rulesToResolve:
+        if not r.strip():
+            continue
         terms = r.strip().split(" ")
-        if len(terms) > 1 or tagPatt.search(r):
-            if tagPatt.search(r) is None:
-                resolvedRule += r
+        if len(terms) > 1:
+            resolvedRule += r
         else:
             r_pos = pos_tag([r.strip()])
             if "PRP" in r_pos[0][1]: #the tag is a proposition
@@ -159,7 +162,7 @@ for i,f in enumerate(files):
     output_file_path = os.path.join(DIR, outFolder,f)
     inputFile = open(input_file_path)
     rules = inputFile.read().split('\n\n')
-    RuleGroups = filter(lambda x: len(x.strip()) > 2, map(reduceRuleGroup, rules))
+    RuleGroups = filter(lambda x: len(x.strip()) > 2 and len(x.split(' $ ')) > 2, map(reduceRuleGroup, rules))
     reducedRules = []
     for rules in RuleGroups:
         reducedRules.extend(rules.split("\n"))
