@@ -1,0 +1,58 @@
+The paper  |  outputs  | ability
+The paper  |  outputs  | memory-augmented neural network
+The paper  |  outputs  | new data
+The paper  |  outputs  | ability of a memory-augmented neural network to rapidly assimilate new data
+The paper  |  outputs  | new method
+The paper  |  outputs  | external memory
+The paper  |  outputs  | new method for accessing an external memory
+The paper  |  uses  | memory content
+The paper  |  uses  | previous methods
+The paper  |  uses  | memory content , unlike previous methods
+The paper  |  uses  | memory
+The paper  |  uses  | mechanisms
+The paper  |  uses  | memory locationbased focusing mechanisms
+The paper  |  outputs  | manns
+The paper  |  outputs  | meta-learning
+The paper  |  outputs  | tasks
+The paper  |  outputs  | manns are capable of meta-learning in tasks
+The paper  |  outputs  | notation m
+The paper  |  outputs  | v n
+The paper  |  outputs  | nth smallest element
+The paper  |  outputs  | vector
+The paper  |  outputs  | notation m ( v n ) to denote the nth smallest element of the vector
+The paper  |  outputs  | nth smallest element
+The paper  |  outputs  | vector
+The paper  |  outputs  | nth smallest element of the vector
+The paper  |  outputs  | new classes
+The paper  |  uses  | one-hot vector representations
+The paper  |  uses  | class labels
+The paper  |  uses  | one-hot vector representations as class labels
+The paper  |  uses  | set
+The paper  |  uses  | baselines
+The paper  |  uses  | feed-forward rnn
+The paper  |  uses  | lstm
+The paper  |  uses  | nonparametric nearest neighbours
+The paper  |  uses  | raw-pixel input
+The paper  |  uses  | features
+The paper  |  uses  | set of baselines , such as a feed-forward rnn , lstm , and a nonparametric nearest neighbours classiﬁer that used either raw-pixel input or features
+The paper  |  uses  | curriculum training regime
+The paper  |  uses  | classiﬁcation capabilities
+The paper  |  uses  | model
+The paper  |  uses  | curriculum training regime to further scale the classiﬁcation capabilities of the model
+The paper  |  uses  | classiﬁcation capabilities
+The paper  |  uses  | model
+The paper  |  uses  | classiﬁcation capabilities of the model
+The paper  |  outputs  | leaves several clear
+The paper  |  outputs  | openings
+The paper  |  outputs  | next-stage development
+The paper  |  outputs  | leaves several clear openings for next-stage development
+The paper  |  uses  | new procedure
+The paper  |  uses  | memory
+The paper  |  uses  | new procedure for writing to memory
+The paper  |  outputs  | notation m v
+The paper  |  outputs  | nth smallest element
+The paper  |  outputs  | vector v
+The paper  |  outputs  | notation m v , n ) to denote the nth smallest element of the vector v
+The paper  |  outputs  | nth smallest element
+The paper  |  outputs  | vector v
+The paper  |  outputs  | nth smallest element of the vector v

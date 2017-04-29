@@ -1,0 +1,352 @@
+The paper  |  uses  | different languages
+The paper  |  outputs  | second generation
+The paper  |  outputs  | speech system
+The paper  |  outputs  | second generation of our speech system
+The paper  |  uses  | spectrum
+The paper  |  uses  | techniques
+The paper  |  uses  | sets
+The paper  |  uses  | larger models
+The paper  |  uses  | high performance computing
+The paper  |  uses  | space
+The paper  |  uses  | neural network architectures
+The paper  |  uses  | spectrum of deep learning techniques capturing large training sets , training larger models with high performance computing , and methodically exploring the space of neural network architectures
+The paper  |  uses  | sets
+The paper  |  uses  | larger models
+The paper  |  uses  | high performance computing
+The paper  |  uses  | larger models with high performance computing
+The paper  |  solves  | performance
+The paper  |  solves  | human workers
+The paper  |  solves  | several tests
+The paper  |  solves  | different languages
+The paper  |  solves  | performance of human workers on several tests in two very different languages
+The paper  |  outputs  | performance gains
+The paper  |  outputs  | numerous experiments
+The paper  |  outputs  | neural networks
+The paper  |  outputs  | numerous experiments with neural networks
+The paper  |  uses  | networks
+The paper  |  uses  | many layers
+The paper  |  uses  | recurrent connections
+The paper  |  uses  | networks composed of many layers of recurrent connections
+The paper  |  outputs  | much better predictions
+The paper  |  outputs  | previous work
+The paper  |  outputs  | much better predictions than those in previous work
+The paper  |  outputs  | larger datasets
+The paper  |  outputs  | speech recognition systems
+The paper  |  outputs  | larger datasets than what is typically used to train speech recognition systems
+The paper  |  uses  | data synthesis
+The paper  |  uses  | data
+The paper  |  uses  | training
+The paper  |  uses  | data synthesis to further augment the data during training
+The paper  |  uses  | gpus
+The paper  |  uses  | model
+The paper  |  uses  | gpus to train one model
+The paper  |  uses  | parameter servers
+The paper  |  uses  | asynchronous updates
+The paper  |  uses  | parameter servers and asynchronous updates
+The paper  |  uses  | synchronous sgd
+The paper  |  outputs  | optimizations
+The paper  |  outputs  | single gpu
+The paper  |  outputs  | improvements
+The paper  |  outputs  | optimizations for a single gpu as well as improvements
+The paper  |  uses  | optimization techniques
+The paper  |  uses  | high performance computing
+The paper  |  uses  | optimization techniques typically found in high performance computing
+The paper  |  uses  | compute nodes
+The paper  |  uses  | custom implementation
+The paper  |  uses  | all-reduce
+The paper  |  uses  | inter-gpu communication
+The paper  |  uses  | compute nodes and a custom implementation of all-reduce to accelerate inter-gpu communication
+The paper  |  uses  | batching scheme suitable
+The paper  |  uses  | exaflop =
+The paper  |  uses  | floating-point operations
+The paper  |  uses  | batching scheme suitable for gpu 11 exaflop = 1018 floating-point operations
+The paper  |  outputs  | percentile compute latency
+The paper  |  outputs  | milliseconds
+The paper  |  outputs  | percentile compute latency of 67 milliseconds
+The paper  |  uses  | batch normalization
+The paper  |  uses  | rnns
+The paper  |  uses  | novel optimization curriculum
+The paper  |  uses  | batch normalization for rnns and a novel optimization curriculum
+The paper  |  uses  | spectrogram
+The paper  |  uses  | power t normalized audio
+The paper  |  uses  | clips
+The paper  |  uses  | features
+The paper  |  uses  | system
+The paper  |  uses  | spectrogram of power t normalized audio clips as the features to the system
+The paper  |  uses  | x
+The paper  |  uses  | chosen utterance
+The paper  |  uses  | corresponding label
+The paper  |  uses  | x to denote a chosen utterance and y the corresponding label
+The paper  |  uses  | clipped rectiﬁedlinear
+The paper  |  uses  | layers
+The paper  |  uses  | t =
+The paper  |  uses  | layers with t =
+The paper  |  outputs  | algorithmic improvements
+The paper  |  outputs  | ]
+The paper  |  outputs  | algorithmic improvements made relative to ds1 [ 26 ]
+The paper  |  outputs  | results
+The paper  |  outputs  | english speaker
+The paper  |  outputs  | development set
+The paper  |  outputs  | results on an english speaker held out development set
+The paper  |  outputs  | word error rate
+The paper  |  outputs  | deep networks
+The paper  |  outputs  | simple rnns
+The paper  |  outputs  | large data sets
+The paper  |  outputs  | batch normalization
+The paper  |  outputs  | ﬁnal generalization error
+The paper  |  outputs  | training
+The paper  |  outputs  | deep networks of simple rnns on large data sets , batch normalization substantially improves ﬁnal generalization error while greatly accelerating training
+The paper  |  uses  | f
+The paper  |  uses  | methods
+The paper  |  uses  | batchnorm
+The paper  |  uses  | rnns
+The paper  |  uses  | methods of extending batchnorm to bidirectional rnns
+The paper  |  uses  | evaluation
+The paper  |  uses  | deployment
+The paper  |  uses  | evaluation in deployment
+The paper  |  uses  | sortagrad
+The paper  |  uses  | batchnorm
+The paper  |  uses  | sortagrad and batchnorm
+The paper  |  uses  | ﬁxed learning rate independent
+The paper  |  uses  | utterance length
+The paper  |  uses  | ﬁxed learning rate independent of utterance length
+The paper  |  uses  | equation
+The paper  |  uses  | grus
+The paper  |  outputs  | update
+The paper  |  outputs  | σ
+The paper  |  outputs  | ·
+The paper  |  outputs  | sigmoid function
+The paper  |  outputs  | z
+The paper  |  outputs  | r
+The paper  |  outputs  | σ ( · ) is the sigmoid function , z and r
+The paper  |  uses  | same convolution
+The paper  |  uses  | number
+The paper  |  uses  | input features
+The paper  |  uses  | number of input features
+The paper  |  outputs  | results
+The paper  |  outputs  | datasets
+The paper  |  outputs  | results on two datasets
+The paper  |  outputs  | small beneﬁt
+The paper  |  uses  | stride
+The paper  |  uses  | wider context
+The paper  |  uses  | stride and wider context
+The paper  |  uses  | utterance
+The paper  |  uses  | utterance
+The paper  |  uses  | straightforward way
+The paper  |  uses  | problems
+The paper  |  outputs  | alternate labellings
+The paper  |  outputs  | whole words
+The paper  |  outputs  | syllables
+The paper  |  outputs  | non-overlapping ngrams
+The paper  |  outputs  | alternate labellings like whole words , syllables or non-overlapping ngrams
+The paper  |  uses  | non-overlapping bi-graphemes
+The paper  |  uses  | bigrams
+The paper  |  uses  | non-overlapping bi-graphemes or bigrams
+The paper  |  uses  | unidirectional architecture
+The paper  |  uses  | bidirectional models
+The paper  |  uses  | unidirectional architecture that performs as well as our bidirectional models
+The paper  |  uses  | forward-only rnn layers
+The paper  |  uses  | deployment system
+The paper  |  uses  | forward-only rnn layers in our deployment system
+The paper  |  uses  | future context
+The paper  |  uses  | τ steps
+The paper  |  uses  | future context of τ steps
+The paper  |  uses  | special layer
+The paper  |  uses  | row convolution
+The paper  |  uses  | suppose
+The paper  |  uses  | time-step t
+The paper  |  uses  | special layer that we call row convolution , shown in suppose at time-step t
+The paper  |  uses  | n-gram language model
+The paper  |  uses  | large amounts
+The paper  |  uses  | unlabeled text
+The paper  |  uses  | n-gram language model since they scale well to large amounts of unlabeled text
+The paper  |  uses  | kenlm toolkit
+The paper  |  uses  | beam search
+The paper  |  uses  | optimal transcription
+The paper  |  uses  | beam search to ﬁnd the optimal transcription
+The paper  |  uses  | optimal transcription
+The paper  |  solves  | stronger implicit language model
+The paper  |  solves  | recurrent layers
+The paper  |  solves  | stronger implicit language model with more recurrent layers
+The paper  |  outputs  | larger block
+The paper  |  outputs  | information
+The paper  |  outputs  | english character
+The paper  |  outputs  | larger block of information than an english character
+The paper  |  uses  | end-to-end mandarin speech recognition system
+The paper  |  solves  | end-to-end mandarin speech recognition system
+The paper  |  uses  | mandarin tones
+The paper  |  uses  | character level language model
+The paper  |  uses  | synchronous sgd
+The paper  |  uses  | standard technique
+The paper  |  uses  | data-parallelism
+The paper  |  uses  | multiple gpus
+The paper  |  uses  | standard technique of data-parallelism to train on multiple gpus
+The paper  |  uses  | multiple gpus
+The paper  |  uses  | minibatch
+The paper  |  uses  | appearance
+The paper  |  uses  | non-determinism
+The paper  |  uses  | system
+The paper  |  uses  | serious bug
+The paper  |  uses  | reproducibility
+The paper  |  uses  | goal
+The paper  |  uses  | facilitates
+The paper  |  uses  | appearance of non-determinism in our system often signals a serious bug , and so having reproducibility as a goal has greatly facilitates
+The paper  |  uses  | gpus
+The paper  |  uses  | mpi send
+The paper  |  uses  | receive
+The paper  |  uses  | cuda kernels
+The paper  |  uses  | elementwise operations
+The paper  |  uses  | mpi send and receive , along with cuda kernels for the elementwise operations
+The paper  |  outputs  | openmpi version
+The paper  |  outputs  | time
+The paper  |  outputs  | all-reduce
+The paper  |  outputs  | full training run
+The paper  |  outputs  | time spent in all-reduce for a full training run
+The paper  |  uses  | minibatch
+The paper  |  uses  | gpu
+The paper  |  uses  | minibatch of 64 per gpu
+The paper  |  uses  | algorithmic minibatch
+The paper  |  uses  | gpus
+The paper  |  uses  | openmp parallelized implementation
+The paper  |  uses  | ctc
+The paper  |  uses  | openmp parallelized implementation of ctc
+The paper  |  outputs  | signiﬁcant overhead
+The paper  |  outputs  | application
+The paper  |  outputs  | signiﬁcant overhead into our application
+The paper  |  uses  | hours
+The paper  |  uses  | labeled speech data
+The paper  |  uses  | hours of labeled speech data
+The paper  |  uses  | hours
+The paper  |  uses  | labeled audio
+The paper  |  uses  | hours of labeled audio
+The paper  |  uses  | ctc
+The paper  |  uses  | accurate alignment
+The paper  |  uses  | ctc produces an accurate alignment
+The paper  |  outputs  | accurate alignment
+The paper  |  uses  | space token
+The paper  |  uses  | stretch
+The paper  |  uses  | blanks
+The paper  |  uses  | order
+The paper  |  uses  | space token to be within the stretch of blanks in order
+The paper  |  uses  | available benchmarks
+The paper  |  uses  | several test sets
+The paper  |  uses  | available benchmarks and several test sets
+The paper  |  uses  | stochastic gradient descent
+The paper  |  uses  | nesterov momentum
+The paper  |  uses  | minibatch
+The paper  |  uses  | utterances
+The paper  |  uses  | stochastic gradient descent with nesterov momentum along with a minibatch of 512 utterances
+The paper  |  uses  | momentum
+The paper  |  uses  | models
+The paper  |  uses  | momentum of 0.99 for all models
+The paper  |  uses  | beam size
+The paper  |  uses  | english decoder
+The paper  |  uses  | beam size
+The paper  |  uses  | mandarin decoder
+The paper  |  uses  | beam size of 500 for the english decoder and a beam size of 200 for the mandarin decoder
+The paper  |  outputs  | results
+The paper  |  outputs  | several test sets
+The paper  |  outputs  | ds2
+The paper  |  outputs  | model
+The paper  |  outputs  | results on several test sets for both the ds2 and ds1 model
+The paper  |  uses  | transcriptions
+The paper  |  uses  | ﬁnal wer calculation
+The paper  |  uses  | transcriptions for the ﬁnal wer calculation
+The paper  |  uses  | number
+The paper  |  uses  | parameters
+The paper  |  uses  | number of parameters
+The paper  |  outputs  | test set
+The paper  |  outputs  | voxforge data
+The paper  |  outputs  | examples
+The paper  |  outputs  | accent group
+The paper  |  outputs  | total
+The paper  |  outputs  | examples
+The paper  |  outputs  | test set from the voxforge data with 1024 examples from each accent group for a total of 4096 examples
+The paper  |  uses  | available test sets
+The paper  |  uses  | third chime challenge
+The paper  |  uses  | available test sets from the recently completed third chime challenge
+The paper  |  uses  | single channel
+The paper  |  uses  | results
+The paper  |  uses  | multi-channel audio
+The paper  |  uses  | most devices
+The paper  |  uses  | single channel for all our results since multi-channel audio is not pervasive on most devices
+The paper  |  uses  | decoding parameters
+The paper  |  uses  | wide beam
+The paper  |  uses  | entire utterance
+The paper  |  uses  | advance
+The paper  |  uses  | entire utterance to be available in advance
+The paper  |  solves  | power normalization problem
+The paper  |  solves  | statistics
+The paper  |  solves  | training
+The paper  |  solves  | power normalization problem by using some statistics from our training
+The paper  |  uses  | statistics
+The paper  |  uses  | training
+The paper  |  uses  | statistics from our training
+The paper  |  solves  | other problems
+The paper  |  solves  | network
+The paper  |  solves  | decoding procedure
+The paper  |  solves  | other problems by modifying our network and decoding procedure
+The paper  |  uses  | eager batching scheme
+The paper  |  uses  | batch
+The paper  |  uses  | eager batching scheme that processes each batch
+The paper  |  outputs  | median latency
+The paper  |  outputs  | ms
+The paper  |  outputs  | median latency of 44 ms
+The paper  |  uses  | models
+The paper  |  uses  | half-precision
+The paper  |  uses  | ﬂoating-point arithmetic
+The paper  |  uses  | recognition accuracy
+The paper  |  uses  | models using half-precision ( 16-bit ) ﬂoating-point arithmetic does not measurably change recognition accuracy
+The paper  |  uses  | standard blas libraries
+The paper  |  uses  | batch size
+The paper  |  uses  | standard blas libraries are inefﬁcient at this batch size
+The paper  |  uses  | beam search
+The paper  |  uses  | beam search
+The paper  |  uses  | fewest number
+The paper  |  uses  | characters
+The paper  |  uses  | fewest number of characters
+The paper  |  uses  | works
+The paper  |  uses  | works
+The paper  |  outputs  | character error rate
+The paper  |  outputs  | deployed system
+The paper  |  outputs  | character error rate
+The paper  |  outputs  | character error rate whereas the deployed system achieves 6.10 character error rate
+The paper  |  outputs  | character error rate
+The paper  |  uses  | neural network architecture
+The paper  |  uses  | cpu memory
+The paper  |  uses  | input data
+The paper  |  uses  | low bandwidth
+The paper  |  uses  | high latency
+The paper  |  uses  | disks
+The paper  |  uses  | cpu memory to cache our input data so that we are not directly exposed to the low bandwidth and high latency of spinning disks
+The paper  |  uses  | input data
+The paper  |  uses  | low bandwidth
+The paper  |  uses  | high latency
+The paper  |  uses  | disks
+The paper  |  uses  | input data so that we are not directly exposed to the low bandwidth and high latency of spinning disks
+The paper  |  uses  | network
+The paper  |  uses  | weight updates
+The paper  |  uses  | avoids
+The paper  |  uses  | network only for weight updates and avoids
+The paper  |  uses  | gradient transfer
+The paper  |  uses  | back-propagation
+The paper  |  uses  | gradient transfer during back-propagation
+The paper  |  uses  | models
+The paper  |  uses  | character
+The paper  |  uses  | special summation function
+The paper  |  uses  | probabilities
+The paper  |  uses  | log space
+The paper  |  uses  | special summation function that adds probabilities in log space
+The paper  |  solves  | problem
+The paper  |  solves  | key-value sort
+The paper  |  solves  | problem by performing a key-value sort
+The paper  |  solves  | key-value sort
+The paper  |  solves  | keys
+The paper  |  solves  | characters
+The paper  |  solves  | utterance label
+The paper  |  solves  | key-value sort , where the keys are the characters in the utterance label
+The paper  |  uses  | memory
+The paper  |  uses  | registers
+The paper  |  uses  | high performance
+The paper  |  uses  | task
+The paper  |  uses  | memory and registers to achieve high performance when performing this task

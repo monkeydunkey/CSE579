@@ -1,0 +1,134 @@
+The paper  |  uses  | ideas
+The paper  |  outputs  | usefulness
+The paper  |  outputs  | same model
+The paper  |  outputs  | language modeling
+The paper  |  outputs  | usefulness of the same model on language modeling
+The paper  |  solves  | best characteristics
+The paper  |  solves  | non-parametric models
+The paper  |  solves  | best characteristics from both parametric and non-parametric models
+The paper  |  uses  | best characteristics
+The paper  |  uses  | non-parametric models
+The paper  |  uses  | rapid acquisition
+The paper  |  uses  | new examples
+The paper  |  uses  | excellent generalisation
+The paper  |  uses  | common examples
+The paper  |  uses  | best characteristics from both parametric and non-parametric models - namely , rapid acquisition of new examples while providing excellent generalisation from common examples
+The paper  |  solves  | nets
+The paper  |  uses  | recent advances
+The paper  |  uses  | attention
+The paper  |  uses  | memory
+The paper  |  uses  | enable rapid learning
+The paper  |  uses  | recent advances in attention and memory that enable rapid learning
+The paper  |  uses  | rapid learning
+The paper  |  uses  | other approaches
+The paper  |  uses  | imagenet
+The paper  |  uses  | small scale language modeling
+The paper  |  uses  | other approaches on both imagenet and small scale language modeling
+The paper  |  outputs  | general setup
+The paper  |  outputs  | experiments
+The paper  |  outputs  | general setup and the experiments
+The paper  |  uses  | training strategy
+The paper  |  uses  | one-shot learning
+The paper  |  uses  | support
+The paper  |  uses  | s
+The paper  |  uses  | training strategy which is tailored for one-shot learning from the support set s
+The paper  |  uses  | predictions
+The paper  |  uses  | appropriate label
+The paper  |  uses  | predictions about the appropriate label
+The paper  |  uses  | predictions
+The paper  |  uses  | appropriate label
+The paper  |  uses  | predictions about the appropriate label
+The paper  |  uses  | extension
+The paper  |  uses  | attention mechanism
+The paper  |  uses  | extension to the attention mechanism
+The paper  |  uses  | cosine similarity
+The paper  |  solves  | elements
+The paper  |  solves  | set
+The paper  |  solves  | function
+The paper  |  solves  | elements of the set through a function
+The paper  |  solves  | elements
+The paper  |  solves  | set
+The paper  |  solves  | elements of the set
+The paper  |  uses  | bidirectional long-short term memory
+The paper  |  uses  | xi
+The paper  |  uses  | context
+The paper  |  uses  | support
+The paper  |  uses  | s
+The paper  |  uses  | bidirectional long-short term memory to encode xi in the context of the support set s
+The paper  |  outputs  | networks
+The paper  |  outputs  | parameters
+The paper  |  outputs  | model
+The paper  |  outputs  | parameters of the model
+The paper  |  uses  | l
+The paper  |  uses  | support
+The paper  |  uses  | s
+The paper  |  uses  | batch b
+The paper  |  uses  | i.e.
+The paper  |  uses  | s
+The paper  |  uses  | b
+The paper  |  uses  | examples
+The paper  |  uses  | cats
+The paper  |  uses  | dogs
+The paper  |  uses  | l to sample the support set s and a batch b ( i.e. , both s and b are labelled examples of cats and dogs
+The paper  |  uses  | support
+The paper  |  uses  | s
+The paper  |  uses  | batch b
+The paper  |  uses  | i.e.
+The paper  |  uses  | s
+The paper  |  uses  | b
+The paper  |  uses  | examples
+The paper  |  uses  | cats
+The paper  |  uses  | dogs
+The paper  |  uses  | support set s and a batch b ( i.e. , both s and b are labelled examples of cats and dogs
+The paper  |  uses  | whole support
+The paper  |  uses  | s
+The paper  |  uses  | whole support set s
+The paper  |  outputs  | results
+The paper  |  outputs  | many experiments
+The paper  |  outputs  | results of many experiments
+The paper  |  outputs  | networks
+The paper  |  outputs  | strong baselines
+The paper  |  outputs  | networks model against strong baselines
+The paper  |  uses  | features
+The paper  |  uses  | last layer
+The paper  |  uses  | features from the last layer
+The paper  |  outputs  | excellent results
+The paper  |  uses  | characters
+The paper  |  uses  | training
+The paper  |  uses  | characters for training
+The paper  |  uses  | powerful cnn
+The paper  |  outputs  | %
+The paper  |  uses  | rand
+The paper  |  uses  | dogs
+The paper  |  uses  | harder
+The paper  |  uses  | setup
+The paper  |  uses  | rand and a dogs ( harder ) setup
+The paper  |  uses  | classes
+The paper  |  uses  | training
+The paper  |  uses  | classes for training
+The paper  |  outputs  | new one-shot language task
+The paper  |  uses  | images
+The paper  |  uses  | words
+The paper  |  uses  | low frequency
+The paper  |  uses  | words with very low frequency
+The paper  |  uses  | data
+The paper  |  uses  | sentence
+The paper  |  uses  | set
+The paper  |  uses  | batch
+The paper  |  uses  | data since the sentence would need to be in both the set and the batch
+The paper  |  uses  | batch size
+The paper  |  outputs  | model
+The paper  |  outputs  | single word
+The paper  |  outputs  | model with a single word
+The paper  |  uses  | similar setup
+The paper  |  uses  | sentence
+The paper  |  uses  | model
+The paper  |  uses  | single word
+The paper  |  uses  | similar setup wherein a sentence was presented to the model with a single word
+The paper  |  outputs  | networks
+The paper  |  outputs  | similar mechanisms
+The paper  |  outputs  | encoding function
+The paper  |  outputs  | elements
+The paper  |  outputs  | support
+The paper  |  outputs  | s
+The paper  |  outputs  | encoding function for the elements in the support set s

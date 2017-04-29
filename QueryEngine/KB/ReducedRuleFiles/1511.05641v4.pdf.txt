@@ -1,0 +1,147 @@
+The paper  |  outputs  | techniques
+The paper  |  outputs  | information
+The paper  |  outputs  | neural net
+The paper  |  outputs  | neural net
+The paper  |  outputs  | techniques for rapidly transferring the information stored in one neural net into another neural net
+The paper  |  outputs  | information
+The paper  |  outputs  | neural net
+The paper  |  outputs  | neural net
+The paper  |  outputs  | information stored in one neural net into another neural net
+The paper  |  outputs  | new state
+The paper  |  outputs  | art accuracy rating
+The paper  |  outputs  | imagenet dataset
+The paper  |  outputs  | new state of the art accuracy rating on the imagenet dataset
+The paper  |  solves  | new kind
+The paper  |  solves  | operation
+The paper  |  solves  | large neural networks
+The paper  |  solves  | new kind of operation to perform on large neural networks
+The paper  |  uses  | net2net
+The paper  |  uses  | general term
+The paper  |  uses  | net2net as a general term
+The paper  |  solves  | speciﬁc net2net methodologies
+The paper  |  outputs  | same function
+The paper  |  outputs  | teacher
+The paper  |  outputs  | same function as the teacher
+The paper  |  uses  | different parameterization
+The paper  |  outputs  | new net2net operations
+The paper  |  outputs  | general net2net strategies
+The paper  |  outputs  | future
+The paper  |  outputs  | general net2net strategies in the future
+The paper  |  outputs  | effective net2net strategies
+The paper  |  outputs  | conditional distribution
+The paper  |  outputs  | object categories
+The paper  |  outputs  | conditional distribution over object categories
+The paper  |  uses  | layer formalization
+The paper  |  uses  | clarity
+The paper  |  uses  | layer formalization for clarity
+The paper  |  outputs  | method
+The paper  |  uses  | net2widernet operator
+The paper  |  uses  | student network
+The paper  |  uses  | net2widernet operator to create a student network
+The paper  |  outputs  | same function
+The paper  |  outputs  | teacher network
+The paper  |  outputs  | same function as the teacher network
+The paper  |  uses  | net2widernet operator
+The paper  |  outputs  | random
+The paper  |  outputs  | function g
+The paper  |  outputs  | random mapping function g
+The paper  |  outputs  | weights
+The paper  |  outputs  | random
+The paper  |  outputs  | function g
+The paper  |  outputs  | i
+The paper  |  outputs  | non-output layer
+The paper  |  outputs  | random mapping function g ( i for every non-output layer
+The paper  |  outputs  | examples
+The paper  |  outputs  | computational graph structures
+The paper  |  outputs  | examples of two computational graph structures
+The paper  |  uses  | weight vector
+The paper  |  uses  | pre-existing unit
+The paper  |  uses  | weight vector for pre-existing unit
+The paper  |  outputs  | necessary rules
+The paper  |  outputs  | inception network
+The paper  |  outputs  | necessary rules for the inception network
+The paper  |  outputs  | second function-preserving transformation
+The paper  |  uses  | second function-preserving transformation
+The paper  |  uses  | networks
+The paper  |  uses  | second function-preserving transformation to convolution networks
+The paper  |  solves  | speciﬁc case
+The paper  |  solves  | general approach
+The paper  |  solves  | multiple layer network
+The paper  |  solves  | speciﬁc case of a more general approach , that is build a multiple layer network
+The paper  |  uses  | methodology
+The paper  |  uses  | network architectures
+The paper  |  uses  | methodology to the network architectures
+The paper  |  outputs  | same function
+The paper  |  outputs  | teacher network
+The paper  |  outputs  | same function as the teacher network
+The paper  |  uses  | inceptionbn network
+The paper  |  outputs  | net2widernet
+The paper  |  outputs  | training
+The paper  |  outputs  | standard inception network
+The paper  |  outputs  | smaller network
+The paper  |  outputs  | net2widernet can be used to accelerate the training of a standard inception network by initializing it with a smaller network
+The paper  |  uses  | training
+The paper  |  uses  | standard inception network
+The paper  |  uses  | smaller network
+The paper  |  uses  | training of a standard inception network by initializing it with a smaller network
+The paper  |  outputs  | net2deepernet
+The paper  |  outputs  | depth
+The paper  |  outputs  | inception modules
+The paper  |  outputs  | net2deepernet allows us to increase the depth of the inception modules
+The paper  |  uses  | net2net operators
+The paper  |  outputs  | improved result
+The paper  |  outputs  | imagenet
+The paper  |  outputs  | improved result on imagenet
+The paper  |  outputs  | teacher network
+The paper  |  outputs  | standard inception
+The paper  |  outputs  | teacher network that was narrower than the standard inception
+The paper  |  uses  | teacher network
+The paper  |  uses  | training
+The paper  |  uses  | standard-sized student network
+The paper  |  uses  | teacher network to accelerated the training of a standard-sized student network
+The paper  |  uses  | training
+The paper  |  uses  | standard-sized student network
+The paper  |  uses  | training of a standard-sized student network
+The paper  |  uses  | net2deepernet
+The paper  |  uses  | network deeper
+The paper  |  uses  | net2deepernet to make the network deeper
+The paper  |  uses  | standard inception model
+The paper  |  uses  | teacher network
+The paper  |  uses  | standard inception model as the teacher network
+The paper  |  outputs  | convergence curve
+The paper  |  outputs  | mini-batches passed1e70.500.550.600.650.700.750.800.850.900.95accuracy
+The paper  |  outputs  | convergence curve of the original 0.00.20.40.60.81.0number of mini-batches passed1e70.500.550.600.650.700.750.800.850.900.95accuracy
+The paper  |  outputs  | conference paper
+The paper  |  outputs  | iclr
+The paper  |  outputs  | conference paper at iclr
+The paper  |  outputs  | knowledge
+The paper  |  outputs  | small neural network
+The paper  |  outputs  | larger neural network
+The paper  |  outputs  | architectural constraints
+The paper  |  outputs  | knowledge from a small neural network to a signiﬁcantly larger neural network under some architectural constraints
+The paper  |  uses  | approach
+The paper  |  outputs  | larger neural networks
+The paper  |  outputs  | performance
+The paper  |  outputs  | imagenet recognition
+The paper  |  outputs  | larger neural networks to improve performance on imagenet recognition
+The paper  |  outputs  | conference paper
+The paper  |  outputs  | iclr
+The paper  |  outputs  | conference paper at iclr
+The paper  |  uses  | experiments
+The paper  |  uses  | network
+The paper  |  uses  | scratch
+The paper  |  uses  | network from scratch
+The paper  |  uses  | hyperparameters
+The paper  |  uses  | network
+The paper  |  uses  | scratch
+The paper  |  uses  | network
+The paper  |  uses  | net2net
+The paper  |  uses  | hyperparameters that are typically used to train a network from scratch may be used to train a network with net2net
+The paper  |  uses  | smaller learning rate
+The paper  |  uses  | function-preserving transformations
+The paper  |  uses  | pre-existing neural networks
+The paper  |  uses  | function-preserving transformations of pre-existing neural networks
+The paper  |  outputs  | function-preserving transformations
+The paper  |  outputs  | pre-existing neural networks
+The paper  |  outputs  | function-preserving transformations of pre-existing neural networks
+The paper  |  outputs  | feed-forward network

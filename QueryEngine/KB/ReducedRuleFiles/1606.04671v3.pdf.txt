@@ -1,0 +1,58 @@
+The paper  |  outputs  | transfer
+The paper  |  outputs  | low-level sensory
+The paper  |  outputs  | high-level control layers
+The paper  |  outputs  | learned policy
+The paper  |  outputs  | transfer occurs at both low-level sensory and high-level control layers of the learned policy
+The paper  |  uses  | learning method
+The paper  |  uses  | catastrophic forgetting
+The paper  |  uses  | foreknowledge
+The paper  |  uses  | task similarity
+The paper  |  uses  | learning method that can support transfer learning without catastrophic forgetting , but also foreknowledge of task similarity
+The paper  |  outputs  | transfer performance
+The paper  |  outputs  | traditional ﬁnetuning
+The paper  |  outputs  | transfer performance to traditional ﬁnetuning
+The paper  |  uses  | f
+The paper  |  outputs  | architecture
+The paper  |  uses  | visual discrimination task
+The paper  |  uses  | synthetic versions
+The paper  |  uses  | pong
+The paper  |  uses  | synthetic versions of pong
+The paper  |  outputs  | performance
+The paper  |  outputs  | results
+The paper  |  uses  | sec
+The paper  |  uses  | same components
+The paper  |  uses  | mid-level vision
+The paper  |  uses  | same components of low and mid-level vision
+The paper  |  uses  | average fisher sensitivity
+The paper  |  uses  | column case
+The paper  |  uses  | e.g.
+The paper  |  uses  | fig
+The paper  |  uses  | average fisher sensitivity for the 3 column case ( e.g. , see fig
+The paper  |  outputs  | second method
+The paper  |  outputs  | perturbation analysis
+The paper  |  outputs  | appendix
+The paper  |  outputs  | second method based on perturbation analysis in this appendix
+The paper  |  outputs  | details
+The paper  |  outputs  | method
+The paper  |  outputs  | details of the method
+The paper  |  solves  | components
+The paper  |  solves  | source columns
+The paper  |  solves  | performance
+The paper  |  solves  | ﬁnal column
+The paper  |  solves  | target tasks
+The paper  |  solves  | components of the source columns materially contribute to the performance of the ﬁnal column on the target tasks
+The paper  |  solves  | components
+The paper  |  solves  | source columns
+The paper  |  solves  | performance
+The paper  |  solves  | ﬁnal column
+The paper  |  solves  | target tasks
+The paper  |  solves  | components of the source columns materially contribute to the performance of the ﬁnal column on the target tasks
+The paper  |  uses  | network
+The paper  |  uses  | model
+The paper  |  uses  | workers
+The paper  |  uses  | same rmsprop algorithm
+The paper  |  uses  | momentum
+The paper  |  uses  | centring
+The paper  |  uses  | variance
+The paper  |  uses  | workers and the same rmsprop algorithm without momentum or centring of the variance
+The paper  |  outputs  | results

@@ -1,0 +1,108 @@
+The paper  |  outputs  | translation performance comparable
+The paper  |  outputs  | state-of-the-art phrase-based system
+The paper  |  outputs  | task
+The paper  |  outputs  | english-to-french translation
+The paper  |  outputs  | translation performance comparable to the existing state-of-the-art phrase-based system on the task of english-to-french translation
+The paper  |  uses  | model
+The paper  |  outputs  | extension
+The paper  |  outputs  | encoder-decoder model
+The paper  |  outputs  | extension to the encoder-decoder model
+The paper  |  outputs  | underlying framework
+The paper  |  outputs  | rnn encoder-decoder
+The paper  |  outputs  | cho et
+The paper  |  outputs  | underlying framework , called rnn encoder-decoder , proposed by cho et
+The paper  |  solves  | al
+The paper  |  solves  | novel architecture
+The paper  |  uses  | variable-length input sentence
+The paper  |  solves  | novel architecture
+The paper  |  solves  | neural machine translation
+The paper  |  solves  | novel architecture for neural machine translation
+The paper  |  solves  | bidirectional rnn
+The paper  |  uses  | bidirectional rnn
+The paper  |  outputs  | acl wmt
+The paper  |  outputs  | comparison
+The paper  |  outputs  | acl wmt '14.3 as a comparison
+The paper  |  solves  | al
+The paper  |  outputs  | performance
+The paper  |  outputs  | rnn encoder-decoder
+The paper  |  outputs  | performance of an rnn encoder-decoder
+The paper  |  uses  | parallel corpora
+The paper  |  uses  | acl wmt
+The paper  |  uses  | comparison
+The paper  |  uses  | parallel corpora provided by acl wmt '14.3 as a comparison
+The paper  |  uses  | same training procedures
+The paper  |  uses  | same dataset
+The paper  |  uses  | models.4
+The paper  |  uses  | same training procedures and the same dataset for both models.4
+The paper  |  uses  | monolingual data other
+The paper  |  uses  | mentioned parallel corpora
+The paper  |  uses  | monolingual data other than the mentioned parallel corpora
+The paper  |  uses  | shortlist
+The paper  |  uses  | most frequent words
+The paper  |  uses  | language
+The paper  |  uses  | shortlist of 30,000 most frequent words in each language
+The paper  |  uses  | other special preprocessing
+The paper  |  uses  | data
+The paper  |  uses  | other special preprocessing , such as lowercasing or stemming , to the data
+The paper  |  uses  | multilayer network
+The paper  |  uses  | single maxout
+The paper  |  uses  | multilayer network with a single maxout
+The paper  |  uses  | minibatch stochastic
+The paper  |  uses  | gradient descent
+The paper  |  uses  | model
+The paper  |  uses  | minibatch stochastic gradient descent to train each model
+The paper  |  uses  | model
+The paper  |  uses  | beam search
+The paper  |  uses  | translation
+The paper  |  uses  | beam search to ﬁnd a translation
+The paper  |  uses  | translation
+The paper  |  uses  | conditional probability
+The paper  |  uses  | graves
+The paper  |  uses  | translation that approximately maximizes the conditional probability ( see , e.g. , graves
+The paper  |  uses  | tokenization script
+The paper  |  uses  | open-source machine translation package
+The paper  |  uses  | tokenization script from the open-source machine translation package
+The paper  |  solves  | model look
+The paper  |  solves  | [
+The paper  |  solves  | ]
+The paper  |  solves  | [ man ]
+The paper  |  solves  | example
+The paper  |  solves  | model
+The paper  |  solves  | ]
+The paper  |  solves  | [ l
+The paper  |  solves  | model look at both [ the ] and [ man ] , and in this example , we see that the model was able to correctly translate [ the ] into [ l
+The paper  |  outputs  | few more sample translations
+The paper  |  outputs  | long source sentences
+The paper  |  outputs  | few more sample translations of long source sentences
+The paper  |  uses  | annotation weight
+The paper  |  uses  | word
+The paper  |  uses  | source sentence
+The paper  |  uses  | word
+The paper  |  uses  | translation
+The paper  |  uses  | annotation weight of every word in the source sentence for each word in the translation
+The paper  |  outputs  | al
+The paper  |  solves  | novel architecture
+The paper  |  solves  | issue
+The paper  |  solves  | novel architecture that addresses this issue
+The paper  |  outputs  | choices
+The paper  |  outputs  | experiments
+The paper  |  outputs  | paper
+The paper  |  outputs  | choices we made for the experiments in this paper
+The paper  |  uses  | choices
+The paper  |  uses  | gated hidden unit
+The paper  |  uses  | al
+The paper  |  uses  | choices , we use the gated hidden unit recently proposed by cho et al
+The paper  |  solves  | cho et
+The paper  |  uses  | single hidden layer
+The paper  |  uses  | units
+The paper  |  uses  | single hidden layer of maxout units
+The paper  |  uses  | singlelayer multilayer perceptron such
+The paper  |  outputs  | architecture
+The paper  |  outputs  | model
+The paper  |  outputs  | architecture of the proposed model
+The paper  |  uses  | stochastic gradient descent
+The paper  |  outputs  | conference paper
+The paper  |  uses  | time proportional
+The paper  |  outputs  | statistics
+The paper  |  outputs  | models
+The paper  |  outputs  | statistics related to training all the models

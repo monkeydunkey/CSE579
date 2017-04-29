@@ -1,0 +1,79 @@
+The paper  |  solves  | bottleneck
+The paper  |  outputs  | large scale
+The paper  |  outputs  | efﬁcacy
+The paper  |  outputs  | new corpora
+The paper  |  outputs  | efﬁcacy of our new corpora
+The paper  |  outputs  | novel deep learning models
+The paper  |  outputs  | comprehension
+The paper  |  outputs  | novel deep learning models for reading comprehension
+The paper  |  outputs  | higher accuracy
+The paper  |  solves  | methodology
+The paper  |  solves  | real-world
+The paper  |  solves  | methodology for creating real-world
+The paper  |  outputs  | machine
+The paper  |  outputs  | corpora
+The paper  |  outputs  | machine reading corpora
+The paper  |  outputs  | online newspaper articles
+The paper  |  outputs  | matching summaries
+The paper  |  outputs  | online newspaper articles and their matching summaries
+The paper  |  outputs  | corpus
+The paper  |  outputs  | document-query- answer triples
+The paper  |  outputs  | corpus of document-query- answer triples
+The paper  |  outputs  | style questions
+The paper  |  uses  | method
+The paper  |  uses  | other sources
+The paper  |  uses  | method to other sources
+The paper  |  solves  | queries
+The paper  |  uses  | number
+The paper  |  uses  | rules
+The paper  |  uses  | recall/precision trade-off
+The paper  |  uses  | number of rules with an increasing recall/precision trade-off
+The paper  |  uses  | baseline
+The paper  |  uses  | word distance measurements
+The paper  |  uses  | baseline that relies on word distance measurements
+The paper  |  solves  | neural models
+The paper  |  solves  | probability
+The paper  |  solves  | word
+The paper  |  solves  | neural models for estimating the probability of word
+The paper  |  uses  | deep lstm cell
+The paper  |  uses  | hidden layer
+The paper  |  uses  | deep lstm cell to every hidden layer
+The paper  |  solves  | circumvent
+The paper  |  uses  | complex inference
+The paper  |  solves  | task
+The paper  |  uses  | layer
+The paper  |  uses  | ]
+The paper  |  uses  | depths
+The paper  |  uses  | layer sizes [ 64 , 128 , 256 ] , depths
+The paper  |  outputs  | results
+The paper  |  outputs  | best model
+The paper  |  outputs  | results on the best model
+The paper  |  uses  | layer
+The paper  |  uses  | ]
+The paper  |  uses  | single layer
+The paper  |  uses  | rates
+The paper  |  uses  | ]
+The paper  |  uses  | batch sizes
+The paper  |  uses  | ]
+The paper  |  uses  | dropout
+The paper  |  uses  | layer sizes [ 64 , 128 , 256 ] , single layer , initial learning rates [ 1e−4 , 5e−5 , 2.5e−5 , 1e−5 ] , batch sizes [ 8 , 16 , 32 ] and dropout
+The paper  |  uses  | asynchronous rmsprop
+The paper  |  solves  | attention variables
+The paper  |  solves  | uniform reader
+The paper  |  solves  | attention variables are ignored in the uniform reader
+The paper  |  outputs  | methodology
+The paper  |  outputs  | large number
+The paper  |  outputs  | document-queryanswer triples
+The paper  |  outputs  | methodology for obtaining a large number of document-queryanswer triples
+The paper  |  outputs  | effective modelling framework
+The paper  |  outputs  | task
+The paper  |  outputs  | effective modelling framework for this task
+The paper  |  outputs  | scalable challenge
+The paper  |  outputs  | nlp research
+The paper  |  outputs  | future
+The paper  |  outputs  | scalable challenge that should support nlp research into the future
+The paper  |  uses  | examples
+The paper  |  outputs  | fearlessness
+The paper  |  outputs  | model
+The paper  |  outputs  | fearlessness of our model
+The paper  |  uses  | similar visualisation technique

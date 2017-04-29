@@ -1,0 +1,57 @@
+The paper  |  outputs  | network
+The paper  |  outputs  | diversity
+The paper  |  outputs  | artistic styles
+The paper  |  outputs  | painting
+The paper  |  outputs  | point
+The paper  |  outputs  | embedding space
+The paper  |  outputs  | network generalizes across a diversity of artistic styles by reducing a painting to a point in an embedding space
+The paper  |  outputs  | useful step towards
+The paper  |  outputs  | rich models
+The paper  |  outputs  | paintings
+The paper  |  outputs  | useful step towards building rich models of paintings
+The paper  |  outputs  | approach
+The paper  |  outputs  | single-purpose style transfer networks
+The paper  |  outputs  | terms
+The paper  |  outputs  | convergence properties
+The paper  |  outputs  | approach is ﬂexible yet comparable to single-purpose style transfer networks , both qualitatively and in terms of convergence properties
+The paper  |  solves  | single conditional style transfer network t
+The paper  |  solves  | s
+The paper  |  solves  | n styles
+The paper  |  solves  | single conditional style transfer network t ( c , s ) for n styles
+The paper  |  solves  | single conditional style transfer network t
+The paper  |  solves  | n styles
+The paper  |  solves  | single conditional style transfer network t ( c , s for n styles
+The paper  |  uses  | same network architecture
+The paper  |  uses  | johnson
+The paper  |  uses  | al
+The paper  |  uses  | same network architecture as in johnson et al
+The paper  |  uses  | high frequency
+The paper  |  uses  | johnson et al
+The paper  |  uses  | high frequency noise as proposed in johnson et al
+The paper  |  uses  | imagenet dataset
+The paper  |  uses  | corpus
+The paper  |  uses  | training content images
+The paper  |  uses  | imagenet dataset as a corpus of training content images
+The paper  |  uses  | style transfer network
+The paper  |  uses  | works
+The paper  |  uses  | art
+The paper  |  uses  | style transfer network on 32 works of art
+The paper  |  uses  | style transfer network
+The paper  |  uses  | monet
+The paper  |  uses  | plum trees
+The paper  |  uses  | blossom painting
+The paper  |  uses  | network
+The paper  |  uses  | style transfer network to incrementally incorporate monet 's plum trees in blossom painting to the network
+The paper  |  uses  | monet
+The paper  |  uses  | plum trees
+The paper  |  uses  | network
+The paper  |  uses  | monet 's plum trees to the network
+The paper  |  outputs  | conference paper
+The paper  |  outputs  | figure
+The paper  |  outputs  | conference paper at iclr 2017 figure
+The paper  |  uses  | γ = α
+The paper  |  outputs  | conditional instance normalization
+The paper  |  outputs  | scalable modiﬁcation
+The paper  |  outputs  | style transfer networks
+The paper  |  outputs  | conditional instance normalization constitutes a simple , efﬁcient and scalable modiﬁcation of style transfer networks
+The paper  |  uses  | multiple styles

@@ -1,0 +1,241 @@
+The paper  |  outputs  | sample complexity
+The paper  |  outputs  | deep reinforcement
+The paper  |  outputs  | sample complexity of deep reinforcement
+The paper  |  solves  | complementary techniques
+The paper  |  solves  | efﬁciency
+The paper  |  solves  | such algorithms
+The paper  |  solves  | complementary techniques for improving the efﬁciency of such algorithms
+The paper  |  outputs  | domains
+The paper  |  solves  | method
+The paper  |  solves  | algorithm
+The paper  |  solves  | learned models
+The paper  |  solves  | method for combining this continuous qlearning algorithm with learned models
+The paper  |  solves  | complementary techniques
+The paper  |  solves  | efﬁciency
+The paper  |  solves  | deep reinforcement
+The paper  |  solves  | complementary techniques for improving the efﬁciency of deep reinforcement
+The paper  |  uses  | elements
+The paper  |  uses  | model-based rl
+The paper  |  uses  | elements of model-based rl
+The paper  |  uses  | learning
+The paper  |  solves  | alternative approach
+The paper  |  solves  | learned models
+The paper  |  solves  | continuous-action q-learning algorithm
+The paper  |  solves  | alternative approach to incorporating learned models into our continuous-action q-learning algorithm
+The paper  |  outputs  | local linear models
+The paper  |  outputs  | latest batch
+The paper  |  outputs  | on-policy
+The paper  |  outputs  | offpolicy rollouts
+The paper  |  outputs  | sufﬁcient local accuracy
+The paper  |  outputs  | substantial improvement
+The paper  |  outputs  | local linear models to the latest batch of on-policy or offpolicy rollouts provides sufﬁcient local accuracy to achieve substantial improvement
+The paper  |  outputs  | sufﬁcient local accuracy
+The paper  |  outputs  | main contributions
+The paper  |  outputs  | value function
+The paper  |  uses  | beneﬁts
+The paper  |  uses  | value function estimation
+The paper  |  uses  | continuous deep reinforcement learning
+The paper  |  uses  | beneﬁts of value function estimation into continuous deep reinforcement learning
+The paper  |  uses  | networks
+The paper  |  uses  | policy
+The paper  |  uses  | networks to represent the policy
+The paper  |  outputs  | policy
+The paper  |  outputs  | simplicity
+The paper  |  outputs  | elegance
+The paper  |  outputs  | q-learning
+The paper  |  outputs  | continuous domains
+The paper  |  outputs  | single network
+The paper  |  outputs  | simplicity and elegance of q-learning can be ported into continuous domains , by learning a single network
+The paper  |  outputs  | continuous q-learning algorithm achieves
+The paper  |  outputs  | effective learning
+The paper  |  outputs  | set
+The paper  |  outputs  | benchmark tasks
+The paper  |  outputs  | continuous actor-critic methods
+The paper  |  outputs  | simplicity
+The paper  |  outputs  | approach
+The paper  |  outputs  | continuous q-learning algorithm achieves faster and more effective learning on a set of benchmark tasks compared to continuous actor-critic methods , and we believe that the simplicity of this approach
+The paper  |  outputs  | effective learning
+The paper  |  uses  | simulated experience
+The paper  |  uses  | real-world on-policy rollouts
+The paper  |  uses  | simulated experience to supplement real-world on-policy rollouts
+The paper  |  outputs  | local linear models
+The paper  |  outputs  | better results
+The paper  |  outputs  | imagination rollouts
+The paper  |  outputs  | more complex neural network models
+The paper  |  outputs  | local linear models achieves substantially better results with imagination rollouts than more complex neural network models
+The paper  |  outputs  | better results
+The paper  |  outputs  | imagination rollouts
+The paper  |  outputs  | more complex neural network models
+The paper  |  outputs  | better results with imagination rollouts than more complex neural network models
+The paper  |  uses  | more data
+The paper  |  uses  | ﬁnite horizon
+The paper  |  uses  | tasks
+The paper  |  uses  | experiments
+The paper  |  uses  | ﬁnite horizon for all of the tasks in our experiments
+The paper  |  uses  | model-based rl
+The paper  |  uses  | optimal control
+The paper  |  uses  | model-based rl and optimal control
+The paper  |  outputs  | method
+The paper  |  outputs  | variant
+The paper  |  outputs  | dyna-q
+The paper  |  outputs  | range
+The paper  |  outputs  | continuous control tasks
+The paper  |  outputs  | complex neural network policies
+The paper  |  outputs  | section
+The paper  |  outputs  | sensitivity
+The paper  |  outputs  | method
+The paper  |  outputs  | method can be extended into a variant of dyna-q to achieve substantially faster learning on a range of continuous control tasks with complex neural network policies , and in section 6 , we empirically analyze the sensitivity of this method
+The paper  |  solves  | simple method
+The paper  |  solves  | q-learning
+The paper  |  solves  | continuous action spaces
+The paper  |  solves  | deep neural networks
+The paper  |  solves  | simple method to enable q-learning in continuous action spaces with deep neural networks
+The paper  |  uses  | representation
+The paper  |  uses  | deep q-learning
+The paper  |  uses  | al
+The paper  |  uses  | representation with a deep q-learning algorithm analogous to mnih et al
+The paper  |  uses  | policies
+The paper  |  uses  | range
+The paper  |  uses  | continuous control tasks
+The paper  |  uses  | policies for a range of challenging continuous control tasks
+The paper  |  outputs  | advantages
+The paper  |  outputs  | actor-critic model-free rl methods
+The paper  |  outputs  | continuous domains
+The paper  |  outputs  | advantages over actor-critic model-free rl methods in continuous domains
+The paper  |  uses  | ilqg algorithm
+The paper  |  uses  | good trajectories
+The paper  |  uses  | model
+The paper  |  uses  | ilqg algorithm to generate good trajectories under the model
+The paper  |  uses  | good trajectories
+The paper  |  uses  | model
+The paper  |  uses  | good trajectories under the model
+The paper  |  uses  | discrete systems
+The paper  |  uses  | nonlinear neural network models
+The paper  |  uses  | dynamics
+The paper  |  uses  | nonlinear neural network models for the dynamics
+The paper  |  uses  | time-varying linear dynamics
+The paper  |  uses  | better results
+The paper  |  uses  | time-varying linear dynamics produced substantially better results
+The paper  |  outputs  | better results
+The paper  |  uses  | real world experience
+The paper  |  solves  | imagination rollouts
+The paper  |  solves  | number
+The paper  |  solves  | iterations.1
+The paper  |  solves  | framework
+The paper  |  solves  | imagination rollouts after a given number of iterations.1 in this framework
+The paper  |  solves  | imagination rollouts
+The paper  |  uses  | data-efﬁcient model
+The paper  |  uses  | algorithm
+The paper  |  uses  | data-efﬁcient model learning algorithm
+The paper  |  solves  | variety
+The paper  |  solves  | model classes
+The paper  |  solves  | neural networks
+The paper  |  solves  | variety of model classes , including neural networks
+The paper  |  uses  | good results
+The paper  |  uses  | time-varying linear models
+The paper  |  uses  | levine
+The paper  |  uses  | abbeel
+The paper  |  uses  | good results by using iteratively reﬁtted time-varying linear models , as proposed by levine & abbeel
+The paper  |  solves  | good local model
+The paper  |  solves  | latest set
+The paper  |  solves  | samples
+The paper  |  solves  | good local model around the latest set of samples
+The paper  |  solves  | good local model
+The paper  |  uses  | mixture
+The paper  |  uses  | gaussian initial states
+The paper  |  uses  | separate time-varying linear models
+The paper  |  uses  | mixture of gaussian initial states with separate time-varying linear models
+The paper  |  outputs  | additional assumptions
+The paper  |  outputs  | standard modelfree rl
+The paper  |  outputs  | additional assumptions beyond the standard modelfree rl
+The paper  |  outputs  | impressive gains
+The paper  |  outputs  | sample efﬁciency
+The paper  |  outputs  | tasks
+The paper  |  outputs  | impressive gains in sample efﬁciency on tasks
+The paper  |  uses  | mujoco simulator
+The paper  |  outputs  | results
+The paper  |  uses  | neural networks
+The paper  |  uses  | layers
+The paper  |  uses  | rectiﬁed linear
+The paper  |  uses  | units
+The paper  |  uses  | neural networks with two layers of 200 rectiﬁed linear units
+The paper  |  outputs  | output parameters
+The paper  |  uses  | sensitive hyperparameters
+The paper  |  uses  | presence
+The paper  |  uses  | absence
+The paper  |  uses  | batch normalization
+The paper  |  uses  | base learning rate
+The paper  |  uses  | adam
+The paper  |  uses  | exploration noise scale ∈
+The paper  |  uses  | sensitive hyperparameters to be presence or absence of batch normalization , base learning rate for adam ( kingma & ba , 2014 ) ∈ { 1e−4 , 1e−3 , 1e−2 } , and exploration noise scale ∈
+The paper  |  outputs  | best performance
+The paper  |  outputs  | domain
+The paper  |  outputs  | best performance for each domain
+The paper  |  outputs  | good results
+The paper  |  outputs  | method
+The paper  |  outputs  | rawlik
+The paper  |  outputs  | al
+The paper  |  outputs  | good results with the method of rawlik et al
+The paper  |  uses  | challenges due
+The paper  |  outputs  | good results
+The paper  |  uses  | time-varying linear models
+The paper  |  uses  | imagination rollout algorithm
+The paper  |  uses  | neural network dynamics models
+The paper  |  uses  | tasks
+The paper  |  uses  | time-varying linear models following the imagination rollout algorithm is substantially better than ﬁtting neural network dynamics models for the tasks
+The paper  |  outputs  | signiﬁcant improvement
+The paper  |  outputs  | model-free variant
+The paper  |  outputs  | naf
+The paper  |  outputs  | signiﬁcant improvement over the fully model-free variant of naf
+The paper  |  uses  | imagination rollouts
+The paper  |  uses  | length
+The paper  |  uses  | sufﬁcient
+The paper  |  uses  | tasks
+The paper  |  uses  | signiﬁcant improvement
+The paper  |  uses  | model-free variant
+The paper  |  uses  | naf
+The paper  |  uses  | imagination rollouts of length 5 to 10 were sufﬁcient for these tasks to achieve signiﬁcant improvement over the fully model-free variant of naf
+The paper  |  solves  | method
+The paper  |  solves  | standard q-learning methods
+The paper  |  solves  | continuous domains
+The paper  |  solves  | method for applying standard q-learning methods to high-dimensional , continuous domains
+The paper  |  uses  | off-policy experience
+The paper  |  uses  | need
+The paper  |  outputs  | alternative method
+The paper  |  outputs  | synthetic on-policy rollouts
+The paper  |  outputs  | sample complexity
+The paper  |  outputs  | model
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | alternative method based on synthetic on-policy rollouts achieves substantially improved sample complexity , but only when the model learning algorithm
+The paper  |  outputs  | sample complexity
+The paper  |  outputs  | substantial improvement
+The paper  |  outputs  | domains
+The paper  |  outputs  | substantial improvement on domains
+The paper  |  outputs  | neural network models
+The paper  |  outputs  | substantive improvement
+The paper  |  outputs  | domains
+The paper  |  outputs  | neural network models does not provide substantive improvement in our domains
+The paper  |  outputs  | substantive improvement
+The paper  |  outputs  | domains
+The paper  |  outputs  | substantive improvement in our domains
+The paper  |  outputs  | linear-gaussian controller
+The paper  |  outputs  | c
+The paper  |  outputs  | arbitrary scaling
+The paper  |  outputs  | reward magnitudes
+The paper  |  outputs  | +
+The paper  |  outputs  | + kt
+The paper  |  outputs  | xt − ^xt
+The paper  |  outputs  | dynamics
+The paper  |  outputs  | effective way
+The paper  |  outputs  | ilqg
+The paper  |  outputs  | time-varying linear models
+The paper  |  outputs  | linear-gaussian controller , where c is a scalar to adjust for arbitrary scaling of the reward magnitudes , ( ut|xt ) = n ( ^ut + kt + kt ( xt − ^xt ) , −cq−1 when the dynamics are not known , a particularly effective way to use ilqg is to combine it with learned time-varying linear models
+The paper  |  uses  | correlation
+The paper  |  uses  | action dimensions
+The paper  |  uses  | correlation between action dimensions
+The paper  |  outputs  | undesirable additional degree
+The paper  |  outputs  | freedom
+The paper  |  outputs  | undesirable additional degree of freedom
+The paper  |  uses  | heuristic adaptive-scaling trick
+The paper  |  uses  | noise magnitudes
+The paper  |  uses  | heuristic adaptive-scaling trick to stabilize the noise magnitudes

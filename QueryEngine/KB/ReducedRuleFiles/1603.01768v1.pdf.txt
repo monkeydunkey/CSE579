@@ -1,0 +1,49 @@
+The paper  |  outputs  | algorithms
+The paper  |  outputs  | service
+The paper  |  outputs  | algorithms as a service
+The paper  |  outputs  | architecture
+The paper  |  outputs  | gap
+The paper  |  outputs  | generative algorithms
+The paper  |  outputs  | pixel
+The paper  |  outputs  | neural networks
+The paper  |  outputs  | architecture that bridges the gap between generative algorithms and pixel labeling neural networks
+The paper  |  uses  | regular ﬁlters
+The paper  |  uses  | n channels
+The paper  |  uses  | top
+The paper  |  uses  | regular ﬁlters of n channels ( top
+The paper  |  outputs  | additional user control point
+The paper  |  uses  | optimization
+The paper  |  uses  | content reconstruction error ec
+The paper  |  uses  | α
+The paper  |  uses  | style
+The paper  |  uses  | error es
+The paper  |  uses  | weight β
+The paper  |  uses  | optimization to minimize content reconstruction error ec ( weighted by α ) and style remapping error es ( weight β
+The paper  |  outputs  | augmented cnn
+The paper  |  uses  | semantic information
+The paper  |  outputs  | interpretations
+The paper  |  outputs  | observations
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | observations from working with the algorithm
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | pixel classes
+The paper  |  outputs  | semantic embeddings
+The paper  |  outputs  | pixel classes
+The paper  |  outputs  | semantic embeddings '' that compactly describe pixel classes
+The paper  |  uses  | more memory
+The paper  |  uses  | extra computation
+The paper  |  uses  | predecessor
+The paper  |  uses  | more memory as well as extra computation compared to its predecessor
+The paper  |  solves  | issues
+The paper  |  solves  | input images
+The paper  |  solves  | semantic map
+The paper  |  solves  | algorithms
+The paper  |  solves  | input images with a semantic map , either manually authored or from pixel labeling algorithms
+The paper  |  outputs  | augmented cnn architecture
+The paper  |  outputs  | information
+The paper  |  outputs  | runtime
+The paper  |  outputs  | augmented cnn architecture to leverage this information at runtime
+The paper  |  outputs  | advances
+The paper  |  outputs  | image segmentation
+The paper  |  outputs  | advances in image segmentation
+The paper  |  uses  | minor adjustments

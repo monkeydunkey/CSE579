@@ -1,0 +1,116 @@
+The paper  |  outputs  | simpler
+The paper  |  outputs  | effective approach
+The paper  |  outputs  | simpler and more effective approach
+The paper  |  outputs  | nmt model capable
+The paper  |  outputs  | open-vocabulary translation
+The paper  |  outputs  | unknown words
+The paper  |  outputs  | sequences
+The paper  |  outputs  | subword units
+The paper  |  outputs  | nmt model capable of open-vocabulary translation by encoding rare and unknown words as sequences of subword units
+The paper  |  outputs  | accuracy
+The paper  |  outputs  | translation
+The paper  |  outputs  | rare words
+The paper  |  outputs  | large-vocabulary models
+The paper  |  outputs  | back-off dictionaries
+The paper  |  outputs  | accuracy for the translation of rare words than large-vocabulary models and back-off dictionaries
+The paper  |  outputs  | unseen words.2
+The paper  |  outputs  | empirical support
+The paper  |  outputs  | hytion
+The paper  |  outputs  | different subword units
+The paper  |  outputs  | step
+The paper  |  outputs  | unseen words.2 we provide empirical support for this hytion on different subword units at each step
+The paper  |  outputs  | empirical support
+The paper  |  outputs  | hytion
+The paper  |  outputs  | empirical support for this hytion
+The paper  |  uses  | phrase-based smt
+The paper  |  solves  | aggressive segmentation
+The paper  |  solves  | segmentation algorithm
+The paper  |  solves  | byte pair
+The paper  |  solves  | bpe
+The paper  |  solves  | segmentation algorithm based on byte pair encoding ( bpe
+The paper  |  outputs  | good compression rate
+The paper  |  outputs  | text
+The paper  |  outputs  | good compression rate of the text
+The paper  |  outputs  | word
+The paper  |  outputs  | sequence
+The paper  |  outputs  | characters
+The paper  |  outputs  | word as a sequence of characters
+The paper  |  uses  | pairs
+The paper  |  uses  | word boundaries
+The paper  |  uses  | pairs that cross word boundaries
+The paper  |  solves  | variable-length encoding
+The paper  |  solves  | words
+The paper  |  solves  | nmt
+The paper  |  solves  | variable-length encoding of words for nmt
+The paper  |  outputs  | variable-length encoding
+The paper  |  outputs  | words
+The paper  |  outputs  | nmt
+The paper  |  outputs  | variable-length encoding of words for nmt
+The paper  |  outputs  | new words
+The paper  |  solves  | speciﬁc merges
+The paper  |  uses  | bpe
+The paper  |  uses  | development set
+The paper  |  uses  | report results
+The paper  |  uses  | newstest2015
+The paper  |  uses  | development set , and report results on newstest2014 and newstest2015
+The paper  |  outputs  | results
+The paper  |  uses  | latin alphabet
+The paper  |  uses  | latin bpe operations
+The paper  |  outputs  | separate statistics
+The paper  |  uses  | adadelta
+The paper  |  outputs  | single models
+The paper  |  outputs  | most settings
+The paper  |  outputs  | single models for most settings
+The paper  |  outputs  | results
+The paper  |  outputs  | system
+The paper  |  outputs  | results of the system
+The paper  |  uses  | beam size
+The paper  |  uses  | beam search
+The paper  |  uses  | beam size of 12 for beam search
+The paper  |  uses  | bilingual dictionary
+The paper  |  uses  | fast-align
+The paper  |  uses  | al
+The paper  |  uses  | bilingual dictionary based on fast-align ( dyer et al
+The paper  |  uses  | dictionary
+The paper  |  uses  | translation
+The paper  |  uses  | experiments
+The paper  |  uses  | dictionary to speed up translation for all experiments
+The paper  |  uses  | translation
+The paper  |  uses  | experiments
+The paper  |  uses  | translation for all experiments
+The paper  |  uses  | softmax
+The paper  |  uses  | ﬁltered list
+The paper  |  uses  | candidate translations
+The paper  |  uses  | jean
+The paper  |  uses  | al
+The paper  |  uses  | softmax over a ﬁltered list of candidate translations ( like jean et al
+The paper  |  uses  | k =
+The paper  |  outputs  | translation results
+The paper  |  outputs  | tokens
+The paper  |  outputs  | statistics
+The paper  |  outputs  | several word segmentation techniques
+The paper  |  outputs  | statistics for several word segmentation techniques
+The paper  |  solves  | unknown word problem
+The paper  |  uses  | big improvements
+The paper  |  uses  | translation
+The paper  |  uses  | unseen words
+The paper  |  uses  | big improvements in the translation of rare and unseen words
+The paper  |  outputs  | smt results
+The paper  |  uses  | ensemble
+The paper  |  uses  | trained models
+The paper  |  uses  | ensemble of 8 independently trained models
+The paper  |  outputs  | strong improvements
+The paper  |  outputs  | dropout
+The paper  |  outputs  | strong improvements from applying dropout
+The paper  |  outputs  | results
+The paper  |  outputs  | model
+The paper  |  outputs  | dev
+The paper  |  outputs  | results of the model that performs best on dev
+The paper  |  outputs  | low precision
+The paper  |  outputs  | %
+The paper  |  outputs  | low precision of 29.1 %
+The paper  |  outputs  | oov words
+The paper  |  outputs  | variant
+The paper  |  outputs  | byte pair
+The paper  |  outputs  | word segmentation
+The paper  |  outputs  | variant of byte pair encoding for word segmentation

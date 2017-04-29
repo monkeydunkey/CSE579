@@ -1,0 +1,157 @@
+The paper  |  solves  | hand-designed update rules
+The paper  |  solves  | learned update rule
+The paper  |  solves  | optimizer g
+The paper  |  solves  | speciﬁed
+The paper  |  solves  | own set
+The paper  |  solves  | parameters
+The paper  |  solves  | hand-designed update rules with a learned update rule , which we call the optimizer g , speciﬁed by its own set of parameters
+The paper  |  solves  | generalization power
+The paper  |  uses  | optimizer
+The paper  |  uses  | notation ∇t = ∇θf
+The paper  |  uses  | θt
+The paper  |  uses  | notation ∇t = ∇θf ( θt
+The paper  |  outputs  | different weights
+The paper  |  uses  | wt
+The paper  |  uses  | [ t = t
+The paper  |  uses  | original problem
+The paper  |  uses  | wt = 1 [ t = t to match the original problem
+The paper  |  uses  | original problem
+The paper  |  solves  | problem
+The paper  |  solves  | objective
+The paper  |  solves  | problem by relaxing the objective
+The paper  |  solves  | objective
+The paper  |  uses  | wt
+The paper  |  uses  | t
+The paper  |  uses  | wt = 1 for every t
+The paper  |  uses  | optimizer m
+The paper  |  uses  | coordinatewise
+The paper  |  uses  | parameters
+The paper  |  uses  | objective function
+The paper  |  uses  | other common update rules
+The paper  |  uses  | rmsprop
+The paper  |  uses  | adam
+The paper  |  uses  | optimizer m which operates coordinatewise on the parameters of the objective function , similar to other common update rules like rmsprop and adam
+The paper  |  uses  | two-layer long short term memory
+The paper  |  uses  | lstm
+The paper  |  uses  | network
+The paper  |  uses  | two-layer long short term memory ( lstm ) network
+The paper  |  uses  | now-standard forget gate architecture
+The paper  |  solves  | different method
+The paper  |  solves  | inputs
+The paper  |  solves  | optimizer inputs
+The paper  |  solves  | different method of preprocessing inputs to the optimizer inputs
+The paper  |  uses  | optimizer
+The paper  |  uses  | order
+The paper  |  uses  | optimizer in order
+The paper  |  outputs  | average performance
+The paper  |  outputs  | number
+The paper  |  outputs  | test problems
+The paper  |  outputs  | average performance on a number of freshly sampled test problems
+The paper  |  uses  | default values
+The paper  |  uses  | optim package
+The paper  |  uses  | torch7
+The paper  |  uses  | default values from the optim package in torch7
+The paper  |  uses  | optimizer
+The paper  |  uses  | simple class
+The paper  |  uses  | synthetic 10-dimensional quadratic functions
+The paper  |  uses  | optimizer on a simple class of synthetic 10-dimensional quadratic functions
+The paper  |  uses  | optimizer
+The paper  |  uses  | simple class
+The paper  |  uses  | synthetic 10-dimensional quadratic functions
+The paper  |  uses  | optimizer on a simple class of synthetic 10-dimensional quadratic functions
+The paper  |  uses  | functions
+The paper  |  uses  | form
+The paper  |  uses  | functions of the form
+The paper  |  uses  | functions
+The paper  |  uses  | form
+The paper  |  uses  | functions of the form
+The paper  |  uses  | preprocessing
+The paper  |  uses  | input
+The paper  |  uses  | appendix
+The paper  |  uses  | input preprocessing described in appendix
+The paper  |  uses  | lstm optimizer
+The paper  |  uses  | previous experiment
+The paper  |  uses  | lstm optimizer from the previous experiment
+The paper  |  uses  | optimizer
+The paper  |  uses  | layer
+The paper  |  uses  | units
+The paper  |  uses  | sigmoid non-linearities
+The paper  |  uses  | layer of 20 units and sigmoid non-linearities
+The paper  |  uses  | non-linearities
+The paper  |  uses  | model
+The paper  |  uses  | feed-forward layers
+The paper  |  uses  | model with both convolutional and feed-forward layers
+The paper  |  outputs  | section due
+The paper  |  outputs  | differences
+The paper  |  outputs  | convolutional layers
+The paper  |  outputs  | section due to the differences between the fully connected and convolutional layers
+The paper  |  uses  | decomposition
+The paper  |  uses  | model architecture
+The paper  |  uses  | decomposition was not sufﬁcient for the model architecture
+The paper  |  solves  | parameter updates
+The paper  |  solves  | layers
+The paper  |  solves  | other updates
+The paper  |  solves  | parameter updates for the fully connected layers and the other updates
+The paper  |  uses  | coordinatewise decomposition
+The paper  |  uses  | weights
+The paper  |  uses  | individual hidden states
+The paper  |  uses  | coordinatewise decomposition with shared weights and individual hidden states
+The paper  |  uses  | convolutional networks
+The paper  |  uses  | neural art [ gatys et al.
+The paper  |  uses  | convolutional networks , or neural art [ gatys et al.
+The paper  |  uses  | style
+The paper  |  uses  | content images
+The paper  |  uses  | style and 1800 content images
+The paper  |  uses  | behavior
+The paper  |  uses  | step directions
+The paper  |  uses  | behavior of the step directions
+The paper  |  solves  | optimizer
+The paper  |  solves  | inputs
+The paper  |  solves  | optimizer 's inputs
+The paper  |  solves  | optimizer
+The paper  |  solves  | inputs
+The paper  |  solves  | optimizer 's inputs
+The paper  |  uses  | preprocessing formula
+The paper  |  uses  | p
+The paper  |  uses  | parameter
+The paper  |  uses  | preprocessing formula where p is a parameter
+The paper  |  uses  | p
+The paper  |  solves  | coordinate
+The paper  |  solves  | lstm optimizer
+The paper  |  solves  | single trajectory
+The paper  |  solves  | optimization
+The paper  |  solves  | coordinate by the lstm optimizer over a single trajectory of optimization
+The paper  |  solves  | sgd
+The paper  |  solves  | adam
+The paper  |  solves  | sgd and adam
+The paper  |  uses  | coordinatewise architecture
+The paper  |  uses  | analogy
+The paper  |  uses  | learned version
+The paper  |  uses  | rmsprop
+The paper  |  uses  | adam
+The paper  |  uses  | coordinatewise architecture , which corresponds by analogy to a learned version of rmsprop or adam
+The paper  |  uses  | sophisticated optimizers
+The paper  |  uses  | sophisticated optimizers
+The paper  |  uses  | correlations
+The paper  |  uses  | coordinates
+The paper  |  uses  | effect
+The paper  |  uses  | sophisticated optimizers that take the correlations between coordinates into effect
+The paper  |  outputs  | mechanism
+The paper  |  outputs  | different lstms
+The paper  |  outputs  | mechanism allowing different lstms
+The paper  |  uses  | lstm+gac architecture
+The paper  |  uses  | external memory
+The paper  |  uses  | lstm+gac architecture with an external memory
+The paper  |  uses  | lstm+gac architecture
+The paper  |  uses  | external memory
+The paper  |  uses  | lstm+gac architecture with an external memory
+The paper  |  outputs  | memory architecture
+The paper  |  uses  | mt
+The paper  |  uses  | inverse hessian
+The paper  |  uses  | approximation
+The paper  |  uses  | iteration t
+The paper  |  uses  | mt to represent the inverse hessian approximation at iteration t
+The paper  |  outputs  | inverse hessian
+The paper  |  outputs  | approximation
+The paper  |  outputs  | iteration t
+The paper  |  outputs  | inverse hessian approximation at iteration t

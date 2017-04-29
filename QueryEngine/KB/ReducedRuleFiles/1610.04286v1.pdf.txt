@@ -1,0 +1,66 @@
+The paper  |  solves  | progressive networks
+The paper  |  solves  | reality gap
+The paper  |  solves  | transfer learned
+The paper  |  solves  | policies
+The paper  |  solves  | simulation
+The paper  |  solves  | real world
+The paper  |  solves  | progressive networks to bridge the reality gap and transfer learned policies from simulation to the real world
+The paper  |  uses  | progressive networks
+The paper  |  uses  | reality gap
+The paper  |  uses  | transfer learned
+The paper  |  uses  | policies
+The paper  |  uses  | simulation
+The paper  |  uses  | real world
+The paper  |  uses  | progressive networks to bridge the reality gap and transfer learned policies from simulation to the real world
+The paper  |  outputs  | early demonstration
+The paper  |  outputs  | approach
+The paper  |  outputs  | number
+The paper  |  outputs  | experiments
+The paper  |  outputs  | domain
+The paper  |  outputs  | robot manipulation
+The paper  |  outputs  | early demonstration of this approach with a number of experiments in the domain of robot manipulation
+The paper  |  outputs  | successful task
+The paper  |  outputs  | raw visual input
+The paper  |  outputs  | robot manipulator
+The paper  |  outputs  | successful task learning from raw visual input on a fully actuated robot manipulator
+The paper  |  uses  | progressive networks
+The paper  |  uses  | approach
+The paper  |  uses  | proof-of-concept pathway
+The paper  |  uses  | progressive networks to demonstrate such an approach , thus providing a proof-of-concept pathway
+The paper  |  uses  | proof-of-concept pathway
+The paper  |  uses  | deep rl
+The paper  |  uses  | effect fast
+The paper  |  uses  | policy
+The paper  |  uses  | proof-of-concept pathway by which deep rl can be used to effect fast policy
+The paper  |  solves  | transfer learning
+The paper  |  uses  | effect fast
+The paper  |  uses  | policy
+The paper  |  uses  | effect fast policy
+The paper  |  uses  | linear layer
+The paper  |  uses  | f
+The paper  |  uses  | async advantage actor-critic
+The paper  |  uses  | simulation-trained column
+The paper  |  uses  | robot-trained columns
+The paper  |  uses  | previous column
+The paper  |  uses  | more capacity
+The paper  |  uses  | learning
+The paper  |  uses  | section4.2
+The paper  |  uses  | features
+The paper  |  uses  | more capacity does not accelerate learning ( see section4.2 ) , presumably because of the features
+The paper  |  uses  | ﬁrst column
+The paper  |  uses  | experiments
+The paper  |  uses  | rendered camera view
+The paper  |  uses  | ﬁrst column for our experiments , with a rendered camera view
+The paper  |  uses  | narrow network
+The paper  |  uses  | slower learning
+The paper  |  uses  | worse performance
+The paper  |  uses  | narrow network had slower learning and worse performance
+The paper  |  outputs  | initial set
+The paper  |  outputs  | experiments
+The paper  |  outputs  | initial set of experiments
+The paper  |  outputs  | fast transfer
+The paper  |  outputs  | pixel-to-action rl policies
+The paper  |  outputs  | fast transfer for pixel-to-action rl policies
+The paper  |  uses  | fast transfer
+The paper  |  uses  | pixel-to-action rl policies
+The paper  |  uses  | fast transfer for pixel-to-action rl policies

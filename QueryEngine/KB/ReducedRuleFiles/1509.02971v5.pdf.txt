@@ -1,0 +1,197 @@
+The paper  |  outputs  | model-free algorithm
+The paper  |  outputs  | deterministic policy gradient
+The paper  |  outputs  | model-free algorithm based on the deterministic policy gradient
+The paper  |  solves  | simulated physics tasks
+The paper  |  solves  | classic problems such
+The paper  |  solves  | cartpole swing-up
+The paper  |  solves  | dexterous manipulation
+The paper  |  solves  | locomotion
+The paper  |  solves  | car driving
+The paper  |  solves  | simulated physics tasks , including classic problems such as cartpole swing-up , dexterous manipulation , legged locomotion and car driving
+The paper  |  uses  | planning algorithm
+The paper  |  uses  | full access
+The paper  |  uses  | dynamics
+The paper  |  uses  | domain
+The paper  |  uses  | derivatives
+The paper  |  uses  | planning algorithm with full access to the dynamics of the domain and its derivatives
+The paper  |  outputs  | tasks
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | policies
+The paper  |  outputs  | raw pixel inputs
+The paper  |  outputs  | tasks the algorithm can learn policies `` end-to-end '' : directly from raw pixel inputs
+The paper  |  outputs  | off-policy actor-critic algorithm
+The paper  |  outputs  | deep function approximators
+The paper  |  outputs  | off-policy actor-critic algorithm using deep function approximators
+The paper  |  uses  | deep function approximators
+The paper  |  uses  | policies
+The paper  |  uses  | continuous action spaces
+The paper  |  uses  | deep function approximators that can learn policies in high-dimensional , continuous action spaces
+The paper  |  outputs  | conference paper
+The paper  |  outputs  | variety
+The paper  |  outputs  | physical control problems
+The paper  |  outputs  | variety of challenging physical control problems
+The paper  |  uses  | standard reinforcement
+The paper  |  uses  | setup consisting
+The paper  |  uses  | agent
+The paper  |  uses  | standard reinforcement learning setup consisting of an agent
+The paper  |  uses  | standard reinforcement
+The paper  |  uses  | markov decision process
+The paper  |  uses  | standard reinforcement as a markov decision process
+The paper  |  outputs  | standard reinforcement
+The paper  |  outputs  | function µ
+The paper  |  outputs  | standard reinforcement as a function µ
+The paper  |  outputs  | conference paper
+The paper  |  uses  | function approximators
+The paper  |  uses  | θq
+The paper  |  uses  | function approximators parameterized by θq
+The paper  |  uses  | actor-critic approach
+The paper  |  uses  | dpg algorithm
+The paper  |  uses  | silver et al
+The paper  |  uses  | actor-critic approach based on the dpg algorithm ( silver et al
+The paper  |  uses  | neural network function approximators
+The paper  |  uses  | large state
+The paper  |  uses  | action spaces
+The paper  |  uses  | neural network function approximators to learn in large state and action spaces
+The paper  |  uses  | low-dimensional state description
+The paper  |  uses  | joint angles
+The paper  |  uses  | positions
+The paper  |  uses  | high-dimensional renderings
+The paper  |  uses  | environment
+The paper  |  uses  | low-dimensional state description ( such as joint angles and positions ) and high-dimensional renderings of the environment
+The paper  |  uses  | action
+The paper  |  outputs  | results
+The paper  |  outputs  | components
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | results with components of our algorithm
+The paper  |  uses  | baselines
+The paper  |  uses  | replay buffer
+The paper  |  uses  | issues
+The paper  |  uses  | replay buffer to address these issues
+The paper  |  uses  | issues
+The paper  |  outputs  | copy
+The paper  |  outputs  | actor
+The paper  |  outputs  | critic networks
+The paper  |  outputs  | copy of the actor and critic networks
+The paper  |  uses  | target values
+The paper  |  uses  | stability
+The paper  |  uses  | normalization
+The paper  |  uses  | case
+The paper  |  uses  | exploration
+The paper  |  uses  | evaluation
+The paper  |  uses  | normalization during testing ( in our case , during exploration or evaluation
+The paper  |  uses  | batch normalization
+The paper  |  uses  | state input
+The paper  |  uses  | layers
+The paper  |  uses  | µ network
+The paper  |  uses  | layers
+The paper  |  uses  | q network
+The paper  |  uses  | action input
+The paper  |  uses  | batch normalization on the state input and all layers of the µ network and all layers of the q network prior to the action input
+The paper  |  outputs  | exploration policy µ
+The paper  |  outputs  | noise process n
+The paper  |  outputs  | actor policy
+The paper  |  outputs  | noise process n to our actor policy
+The paper  |  uses  | ornstein-uhlenbeck process
+The paper  |  uses  | exploration
+The paper  |  uses  | exploration efﬁciency
+The paper  |  uses  | physical control problems
+The paper  |  uses  | inertia
+The paper  |  uses  | ornstein-uhlenbeck process to generate temporally correlated exploration for exploration efﬁciency in physical control problems with inertia
+The paper  |  uses  | exploration
+The paper  |  uses  | exploration efﬁciency
+The paper  |  uses  | physical control problems
+The paper  |  uses  | inertia
+The paper  |  uses  | exploration for exploration efﬁciency in physical control problems with inertia
+The paper  |  outputs  | simulated physical environments
+The paper  |  outputs  | levels
+The paper  |  outputs  | difﬁculty
+The paper  |  outputs  | algorithm
+The paper  |  outputs  | simulated physical environments of varying levels of difﬁculty to test our algorithm
+The paper  |  outputs  | algorithm
+The paper  |  uses  | ddpg
+The paper  |  uses  | estimates
+The paper  |  uses  | ddpg 's estimates
+The paper  |  uses  | values
+The paper  |  uses  | q
+The paper  |  uses  | true returns
+The paper  |  uses  | values estimated by q after training with the true returns
+The paper  |  uses  | identical network architecture
+The paper  |  uses  | algorithm hyper-parameters
+The paper  |  uses  | physics tasks
+The paper  |  uses  | identical network architecture and learning algorithm hyper-parameters to the physics tasks
+The paper  |  uses  | hyper-parameters
+The paper  |  uses  | physics tasks
+The paper  |  uses  | hyper-parameters to the physics tasks
+The paper  |  solves  | ddpg
+The paper  |  outputs  | approach
+The paper  |  outputs  | high-dimensional observation spaces
+The paper  |  outputs  | approach to large , high-dimensional observation spaces
+The paper  |  outputs  | average
+The paper  |  outputs  | runs
+The paper  |  outputs  | average and best observed ( across 5 runs
+The paper  |  outputs  | raw reward score
+The paper  |  outputs  | dpg
+The paper  |  outputs  | stochastic policies
+The paper  |  outputs  | reparametrization trick
+The paper  |  outputs  | heess et al.
+The paper  |  outputs  | schulman
+The paper  |  outputs  | al
+The paper  |  outputs  | dpg are also applicable to stochastic policies by using the reparametrization trick ( heess et al. , 2015 schulman et al
+The paper  |  solves  | steps
+The paper  |  solves  | experience
+The paper  |  solves  | steps of experience
+The paper  |  uses  | good atari solutions
+The paper  |  uses  | adam kingma
+The paper  |  uses  | ba
+The paper  |  uses  | neural network parameters
+The paper  |  uses  | rate
+The paper  |  uses  | actor
+The paper  |  uses  | adam kingma & ba , 2014 ) for learning the neural network parameters with a learning rate of 10−4 and 10−3 for the actor
+The paper  |  uses  | τ
+The paper  |  uses  | convolutional layers
+The paper  |  uses  | ﬁlters
+The paper  |  uses  | layer
+The paper  |  uses  | convolutional layers with 32 ﬁlters at each layer
+The paper  |  uses  | replay buffer size
+The paper  |  uses  | noise
+The paper  |  uses  | order
+The paper  |  uses  | noise in order
+The paper  |  uses  | ornstein-uhlenbeck process
+The paper  |  uses  | samples
+The paper  |  uses  | simulated dynamics
+The paper  |  uses  | linear expansion
+The paper  |  uses  | dynamics
+The paper  |  uses  | step
+The paper  |  uses  | trajectory
+The paper  |  uses  | quadratic expansion
+The paper  |  uses  | cost function
+The paper  |  uses  | samples of simulated dynamics to approximate a linear expansion of the dynamics around every step of the trajectory , as well as a quadratic expansion of the cost function
+The paper  |  uses  | sequence
+The paper  |  uses  | locally-linear-quadratic models
+The paper  |  uses  | sequence of locally-linear-quadratic models
+The paper  |  uses  | reward function
+The paper  |  uses  | positive reward
+The paper  |  uses  | step
+The paper  |  uses  | velocity
+The paper  |  uses  | car
+The paper  |  uses  | reward function which provides a positive reward at each step for the velocity of the car
+The paper  |  outputs  | positive reward
+The paper  |  uses  | reward functions
+The paper  |  uses  | feedback
+The paper  |  uses  | step
+The paper  |  uses  | reward functions which provide feedback at every step
+The paper  |  outputs  | feedback
+The paper  |  outputs  | reward
+The paper  |  outputs  | distance
+The paper  |  outputs  | goal state
+The paper  |  outputs  | reward based on distance to a goal state
+The paper  |  uses  | reward
+The paper  |  uses  | negative reward
+The paper  |  uses  | early termination
+The paper  |  uses  | falls
+The paper  |  uses  | simple threshholds
+The paper  |  uses  | height
+The paper  |  uses  | torso angle
+The paper  |  uses  | case
+The paper  |  uses  | walker2d
+The paper  |  uses  | negative reward and early termination for falls which were determined by simple threshholds on the height and torso angle ( in the case of walker2d

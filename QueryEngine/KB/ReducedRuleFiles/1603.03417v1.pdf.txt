@@ -1,0 +1,105 @@
+The paper  |  solves  | alternative approach
+The paper  |  solves  | computational burden
+The paper  |  solves  | learning stage
+The paper  |  solves  | alternative approach that moves the computational burden to a learning stage
+The paper  |  outputs  | textures
+The paper  |  outputs  | quality
+The paper  |  outputs  | diversity comparable
+The paper  |  outputs  | descriptive method
+The paper  |  outputs  | textures of the quality and diversity comparable to the descriptive method
+The paper  |  solves  | generative method
+The paper  |  solves  | orders
+The paper  |  solves  | magnitude
+The paper  |  solves  | order
+The paper  |  solves  | magnitude more
+The paper  |  solves  | memory efﬁcient
+The paper  |  solves  | perceptual quality
+The paper  |  solves  | feed-forwardly generated textures
+The paper  |  solves  | results
+The paper  |  solves  | related method
+The paper  |  solves  | gatys et al.
+The paper  |  solves  | generative method that is two orders of magnitude faster and one order of magnitude more memory efﬁcient than the the perceptual quality of the feed-forwardly generated textures is similar to the results of the closely related method suggested in ( gatys et al.
+The paper  |  uses  | slow optimization process
+The paper  |  outputs  | interesting showcase
+The paper  |  outputs  | conceptually-simple feedforward architectures
+The paper  |  outputs  | interesting showcase of training conceptually-simple feedforward architectures
+The paper  |  solves  | gatys et al.
+The paper  |  uses  | speciﬁc statistics
+The paper  |  uses  | applications
+The paper  |  uses  | al
+The paper  |  uses  | speciﬁc statistics and applications quite different from the considered in ( li et al
+The paper  |  outputs  | method
+The paper  |  outputs  | detail
+The paper  |  outputs  | method in detail
+The paper  |  outputs  | texture sample g
+The paper  |  uses  | weighted combination
+The paper  |  uses  | texture loss
+The paper  |  uses  | content loss
+The paper  |  uses  | weighted combination of the texture loss ( 5 ) and the content loss
+The paper  |  uses  | generator network
+The paper  |  uses  | texture synthesis
+The paper  |  uses  | generator network for texture synthesis
+The paper  |  outputs  | reasonable results
+The paper  |  uses  | multi-scale architectures
+The paper  |  uses  | images
+The paper  |  uses  | smaller texture loss
+The paper  |  uses  | better perceptual quality
+The paper  |  uses  | multi-scale architectures result in images with smaller texture loss and better perceptual quality
+The paper  |  uses  | training
+The paper  |  uses  | batch normalization layers
+The paper  |  uses  | training beneﬁted significantly from inserting batch normalization layers
+The paper  |  uses  | layer-wise training
+The paper  |  uses  | beneﬁcial
+The paper  |  uses  | learning
+The paper  |  uses  | distribution
+The paper  |  uses  | natural images
+The paper  |  uses  | small pool
+The paper  |  uses  | images
+The paper  |  uses  | e.g
+The paper  |  uses  | learning is surprisingly resilient to overﬁtting and that it sufﬁces to approximate the distribution on natural images y with a very small pool of images ( e.g
+The paper  |  uses  | many example images
+The paper  |  uses  | local operations
+The paper  |  outputs  | better results
+The paper  |  uses  | multiple example images
+The paper  |  uses  | training
+The paper  |  uses  | multiple example images for training
+The paper  |  uses  | multiple example images
+The paper  |  uses  | images
+The paper  |  uses  | larger noise tensor
+The paper  |  uses  | multiple example images to generate larger 256× 256 images simply by inputting a larger noise tensor
+The paper  |  uses  | images
+The paper  |  uses  | style transfer
+The paper  |  uses  | tradeoff parameter α
+The paper  |  uses  | texture
+The paper  |  uses  | content loss
+The paper  |  uses  | style transfer is sensitive to the tradeoff parameter α between texture and content loss
+The paper  |  uses  | trade-off
+The paper  |  uses  | magnitude
+The paper  |  uses  | input noise z
+The paper  |  uses  | trade-off can still be adjusted by changing the magnitude of the input noise z
+The paper  |  uses  | numerous style
+The paper  |  uses  | content images
+The paper  |  uses  | ones
+The paper  |  uses  | numerous style and content images , including the ones
+The paper  |  uses  | results
+The paper  |  outputs  | feedforward algorithm
+The paper  |  uses  | seconds
+The paper  |  uses  | sample x
+The paper  |  uses  | seconds to generate a sample x
+The paper  |  uses  | ~20ms
+The paper  |  outputs  | speed-up
+The paper  |  outputs  | real-time applications such
+The paper  |  outputs  | video processing
+The paper  |  outputs  | speed-up , which is sufﬁcient for real-time applications such as video processing
+The paper  |  uses  | single network evaluation
+The paper  |  uses  | less memory
+The paper  |  uses  | ×
+The paper  |  uses  | sample
+The paper  |  uses  | less memory to generate a 256 × 256 sample
+The paper  |  outputs  | new deep learning approach
+The paper  |  outputs  | texture synthesis
+The paper  |  outputs  | image stylization
+The paper  |  outputs  | new deep learning approach for texture synthesis and image stylization
+The paper  |  outputs  | stylization quality comparable
+The paper  |  outputs  | al
+The paper  |  outputs  | stylization quality comparable to ( gatys et al
