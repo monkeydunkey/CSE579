@@ -1,0 +1,57 @@
+//predicate declarations
+queryuses(term)
+papersolves(term)
+isa(term,term)
+queryoutput(term)
+paperoutput(term)
+paperuses(term)
+querysolves(term)
+
+// isa(a,b) ^ paperuses(a) => paperuses(b).
+!isa(a1,a2) v paperuses(a2) v !paperuses(a1).
+
+// isa(a,b) ^ queryuses(a) => queryuses(b).
+!isa(a1,a2) v queryuses(a2) v !queryuses(a1).
+
+// isa(a,b) ^ paperoutput(a) => paperoutput(b).
+!isa(a1,a2) v paperoutput(a2) v !paperoutput(a1).
+
+// isa(a,b) ^ queryoutput(a) => queryoutput(b).
+!isa(a1,a2) v queryoutput(a2) v !queryoutput(a1).
+
+// isa(a,b) ^ papersolves(a) => papersolves(b).
+!isa(a1,a2) v papersolves(a2) v !papersolves(a1).
+
+// 3.74856  paperuses(a1) <=> queryuses(a1)
+-0.000332381  paperuses(a1) v !queryuses(a1)
+3.74889  !paperuses(a1) v queryuses(a1)
+
+// 0       paperoutput(a1) <=> queryoutput(a1)
+0       paperoutput(a1) v !queryoutput(a1)
+0       !paperoutput(a1) v queryoutput(a1)
+
+// 0       papersolves(a1) <=> querysolves(a1)
+0       papersolves(a1) v !querysolves(a1)
+0       !papersolves(a1) v querysolves(a1)
+
+// 0       isa(a1,a2)
+0       isa(a1,a2)
+
+// -3.75072  paperuses(a1)
+-3.75072  paperuses(a1)
+
+// 0       queryuses(a1)
+0       queryuses(a1)
+
+// 0       paperoutput(a1)
+0       paperoutput(a1)
+
+// 0       queryoutput(a1)
+0       queryoutput(a1)
+
+// 0       papersolves(a1)
+0       papersolves(a1)
+
+// 0       querysolves(a1)
+0       querysolves(a1)
+
