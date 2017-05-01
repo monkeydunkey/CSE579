@@ -1,0 +1,21 @@
+//Evidence
+paperuses(word)
+
+papersolves(word)
+
+paperoutputs(word)
+
+isa(word, word)
+
+//query
+queryuses(word)
+querysolves(word)
+queryoutputs(word)
+
+//Rule
+0 (isa(x, y) ^ queryuses(x)) <=> (isa(x,y) ^ paperuses(x))
+0 (isa(x, y) ^ querysolves(x)) <=> (isa(x,y) ^ papersolves(x))
+0 (isa(x, y) ^ queryoutputs(x)) <=> (isa(x,y) ^ paperoutputs(x)) 
+0 paperuses(x) <=> usr_query(x)
+0 papersolves(x) <=> usr_query(x)
+0 paperoutputs(x) <=> usr_query(x)
