@@ -19,3 +19,6 @@ queryoutputs(word)
 0 paperuses(x) <=> queryuses(x)
 0 papersolves(x) <=> querysolves(x)
 0 paperoutputs(x) <=> queryoutputs(x)
+
+#include "test/1603.03417v1.pdf.txt.db"
+

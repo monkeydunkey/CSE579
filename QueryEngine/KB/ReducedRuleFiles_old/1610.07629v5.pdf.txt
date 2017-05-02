@@ -55,6 +55,3 @@ The paper  |  outputs  | scalable modiﬁcation
 The paper  |  outputs  | style transfer networks
 The paper  |  outputs  | conditional instance normalization constitutes a simple , efﬁcient and scalable modiﬁcation of style transfer networks
 The paper  |  uses  | multiple styles
-The Paper | outputs | convergence
-The Paper | uses | incorporate
-The Paper | outputs | iclr

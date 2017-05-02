@@ -143,4 +143,3 @@ The paper  |  uses  | empty fact
 The paper  |  uses  | case
 The paper  |  uses  | empty fact '' for the case
 The paper  |  solves  | similar structured svm
-The Paper | uses | nlp

@@ -158,9 +158,3 @@ The paper  |  outputs  | website
 The paper  |  outputs  | qualitative comparisons to the 23 test images in [ 1 ] on the website
 The paper  |  outputs  | good colorizations
 The paper  |  outputs  | plausible colorization
-The Paper | outputs | photorealistic
-The Paper | outputs | photos
-The Paper | uses | entropy
-The Paper | outputs | segmentation
-The Paper | uses | fcn
-The Paper | uses | channel

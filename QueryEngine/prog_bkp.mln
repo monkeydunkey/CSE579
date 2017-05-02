@@ -1,0 +1,23 @@
+// predicates
+isa(term,term)
+paperuses(paper, term)
+queryuses(term)
+
+paperoutputs(paper, term)
+queryoutputs(term)
+
+papersolves(paper, term)
+querysolves(term)
+relevant(paper)
+
+(isa(+a, +b) ^ paperuses(p, +a)) => paperuses(p, +b).
+(isa(+a, +b) ^ queryuses(+a)) => queryuses(+b).
+//(isa(+a, +b) ^ paperoutputs(p, +a)) => paperoutputs(p, +b).
+//(isa(+a, +b) ^ queryoutputs(+a)) => queryoutputs(+b).
+//(isa(+a, +b) ^ papersolves(p, +a)) => papersolves(p, +b).
+//(isa(+a, +b) ^ queryoutputs(+a)) => queryoutputs(+b).
+
+(queryuses(+a) ^ paperuses(p, +a)) => relevant(p).
+
+//1 (paperoutputs(p, +a) ^ queryoutputs(+a)) => relevant(p)
+//v (papersolves(p, +a) ^ querysolves(+a))

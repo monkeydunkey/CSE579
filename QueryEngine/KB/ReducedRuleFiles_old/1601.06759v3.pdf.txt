@@ -170,15 +170,3 @@ The paper  |  outputs  | generative image
 The paper  |  outputs  | imagenet dataset
 The paper  |  outputs  | new benchmarks for generative image modeling on the imagenet dataset
 The paper  |  uses  | long-range correlations
-The Paper | uses | pixel
-The Paper | outputs | imagenet
-The Paper | uses | rnns
-The Paper | uses | images
-The Paper | uses | convolutions
-The Paper | uses | softmax
-The Paper | outputs | pixelcnn
-The Paper | outputs | convolutional
-The Paper | outputs | lstm
-The Paper | uses | bilstm
-The Paper | uses | channels
-The Paper | uses | correlations

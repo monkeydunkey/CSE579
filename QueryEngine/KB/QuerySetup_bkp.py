@@ -3,6 +3,7 @@
 Sample Query:
 sparql.setQuery("""
     prefix dbpr: <http://dbpedia.org/resource/>
+
     select ?Predicate ?Object where {
       ?Subject ?Predicate ?Object
       filter(?Subject = dbpr:Deep_learning && !isLiteral(?Object))
@@ -20,6 +21,13 @@ sparql = SPARQLWrapper("http://dbpedia.org/sparql")
 queryTerms = [x.strip() for x in sys.argv[1].split(';')]
 expandedTerms = [map(lambda z: z.strip(), y) for y in [x.split(',') for x in queryTerms]]
 
+impOneWord = ['lstm', 'svm', 'ensemble', 'ann', 'softmax', 'nlp', 'srl', 'corpora', 'dropout', 'encoder', 'nmt',
+              'cnn', 'rnn', 'charcnn', 'oov', 'oob', 'dpg', 'net2net', 'imagenet', 'iclr','rmsprop', 'dqn',
+              'amn', 'epoch', 'conv', 'nms', 'jaccard', 'ssd', 'grams', 'sgd', 'image', 'sound', 'voice',
+              'segmentation', 'roi', 'sds', 'entropy', 'correlation', 'subnet', 'pixel', 'photo', 'k3', 'video',
+              'fcn', 'pascal', 'nyudv2', 'googlenet', 'torch', 'adam', 'cnmem', 'dni', 'bptt', 'cdni', 'gan', 'auc',
+              'sigmoid']
+
 print "Gathering the expansions from DBPedia"
 for i,q in enumerate(expandedTerms):
     for term in q:
@@ -28,6 +36,7 @@ for i,q in enumerate(expandedTerms):
             #Does a simple DBpedia lookup to get the resources
             sparql.setQuery("""
                 prefix dbpr: <http://dbpedia.org/resource/>
+
                 select ?Predicate ?Object where {
                 ?Subject ?Predicate ?Object
                 filter(?Subject = dbpr:%s && !isLiteral(?Object))
@@ -44,7 +53,7 @@ for i,q in enumerate(expandedTerms):
             ERR_FILE.write('There was an error in processing ' + term + ' ' + e.message)
 print "Terms fetched"
 
-expandedTerms = [map(lambda z: 'query'+ruleType[i]+'("'+ z +'")\n', y) for i, y in enumerate(expandedTerms)]
+expandedTerms = [map(lambda z: 'query'+ruleType[i]+'("'+ z.replace('-','_') +'")\n', y) for i, y in enumerate(expandedTerms)]
 #Flatteting the output
 expandedTerms = [item for sublist in expandedTerms for item in sublist]
 
@@ -54,23 +63,30 @@ KB_DIR = "KB"
 TMP_DIR = "tmp"
 RED_RULE_DIR = os.path.join(DIR, KB_DIR, "ReducedRuleFiles")
 
-CommonKB = open(os.path.join(DIR, KB_DIR, "CommonKB.txt"))
-commonRules = CommonKB.readlines();
+CommonKB = open(os.path.join(DIR, KB_DIR, "CommonKBFiltered.txt"))
+commonRules = map(lambda x: x.replace('-','_'), CommonKB.readlines())
 CommonKB.close()
+
+output_file_path = os.path.join(DIR, KB_DIR, 'CommonEvidence.db')
+outputFile = open(output_file_path, 'w')
+outputFile.writelines(commonRules)
+paperRules = set()
 files = os.listdir(RED_RULE_DIR)
 for i,f in enumerate(files):
     if '.DS_Store' in f:
         continue
     input_file_path = os.path.join(RED_RULE_DIR, f)
-    output_file_path = os.path.join(DIR, KB_DIR, TMP_DIR, f+'.db')
-
     inputFile = open(input_file_path)
-    outputFile = open(output_file_path, 'w')
-    outputFile.writelines(commonRules)
     for line in inputFile.readlines():
         linePart = line.split(' | ')
-        outputFile.write('paper'+linePart[1].strip()+'("'+linePart[2].strip()+'")\n')
-
-    outputFile.writelines(expandedTerms)
+        print linePart
+        if (len(linePart[2].split(' ')) < 2 and not any(x in linePart[2].lower() for x in impOneWord)) or '=' in linePart[2] or len(linePart[2].split(' ')) > 3:
+            continue
+        ruleToWrite = 'paper'+linePart[1].strip()+'(P'+ f.replace('.','_') +', "'+linePart[2].strip().replace('-','_')+'")\n'
+        if ruleToWrite not in paperRules:
+            outputFile.write(ruleToWrite)
+            paperRules.add(ruleToWrite)
     inputFile.close()
-    outputFile.close()
+
+outputFile.writelines(expandedTerms)
+outputFile.close()

@@ -1,0 +1,5 @@
+isa("cnns","cnn")
+isa("cnn","cnns")
+isa("convolutional neural network", "neural network")
+paperoutputs(P1601_06759v3_pdf_txt, "cnn")
+queryuses("cnns")

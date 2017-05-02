@@ -1,0 +1,24 @@
+// predicates
+isa(term,term)
+paperuses(term)
+queryuses(term)
+
+paperoutputs(term)
+queryoutputs(term)
+
+papersolves(term)
+querysolves(term)
+
+isa(+a, +b) ^ paperuses(w+) => paperuses(w+).
+isa(w+, w+) ^ queryuses(w+) => queryuses(w+).
+isa(w+, w+) ^ paperoutputs(w+) => paperoutputs(w+).
+isa(w+, w+) ^ queryoutputs(w+) => queryoutputs(w+).
+isa(w+, w+) ^ papersolves(w+) => papersolves(w+).
+isa(w+, w+) ^ papersolves(w+) => papersolves(w+).
+
+0 paperuses(a+) <=> queryuses(a+)
+0 paperoutputs(a+) <=> queryoutputs(a+)
+0 papersolves(a+) <=> querysolves(a+)
+
+#include "test/test.db"
+

@@ -1,23 +1,24 @@
 // predicates
-*isa(term,term)
-*paperuses(term)
-*queryuses(term)
+isa(term,term)
+paperuses(term)
+queryuses(term)
 
-*paperoutput(term)
-*queryoutput(term)
+paperoutputs(term)
+queryoutputs(term)
 
-*papersolves(term)
-*querysolves(term)
+papersolves(term)
+querysolves(term)
+
 
 isa(a, b), paperuses(a) => paperuses(b).
 isa(a, b), queryuses(a) => queryuses(b).
 
-isa(a, b), paperoutput(a) => paperoutput(b).
-isa(a, b), queryoutput(a) => queryoutput(b).
+isa(a, b), paperoutputs(a) => paperoutputs(b).
+isa(a, b), queryoutputs(a) => queryoutputs(b).
 
 isa(a, b), papersolves(a) => papersolves(b).
 isa(a, b), papersolves(a) => papersolves(b).
 
-1 paperuses(a1) => queryuses(a1)
-1 paperoutput(a1) => queryoutput(a1)
-1 papersolves(a1) => querysolves(a1)
+0 (paperuses(a1) <=> queryuses(a1))
+0 (paperoutput(a1) <=> queryoutput(a1))
+0 (papersolves(a1) <=> querysolves(a1))
