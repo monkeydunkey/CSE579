@@ -16,6 +16,12 @@ queryoutputs(word)
 0 (isa(x, y) ^ queryuses(x)) <=> (isa(x,y) ^ paperuses(x))
 0 (isa(x, y) ^ querysolves(x)) <=> (isa(x,y) ^ papersolves(x))
 0 (isa(x, y) ^ queryoutputs(x)) <=> (isa(x,y) ^ paperoutputs(x)) 
+<<<<<<< HEAD
 0 paperuses(x) <=> usr_query(x)
 0 papersolves(x) <=> usr_query(x)
 0 paperoutputs(x) <=> usr_query(x)
+=======
+0 paperuses(x) <=> queryuses(x)
+0 papersolves(x) <=> querysolves(x)
+0 paperoutputs(x) <=> queryoutputs(x)
+>>>>>>> 2b26f4bf41e714d33f0d364034460f061036ac09
