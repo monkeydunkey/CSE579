@@ -1,9 +1,12 @@
 from nltk.corpus import wordnet as wn
+from nltk.corpus import stopwords as sw
 from collections import Counter
-
+import re
 
 def wordnet_match(query):
-    
+    stop = sw.words('english')
+    regex = re.compile('[^a-zA-Z]')
+    query = regex.sub(' ', query)
     query_terms = query.split()
     involved_terms = Counter(query_terms)
     involved_meanings = []
@@ -12,6 +15,8 @@ def wordnet_match(query):
     #print(involved_terms)
     
     for term in involved_terms:
+        if term in stop:
+            continue
         involved_meanings = involved_meanings + wn.synsets(term)
         priory_meanings.append(wn.synsets(term))
     
