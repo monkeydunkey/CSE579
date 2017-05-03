@@ -1,0 +1,94 @@
+We present a deep neural network that sequentially 
+predicts the pixels in an image along the two spatial 
+dimensions.
+Our method models the discrete probability of the raw 
+pixel values and encodes the complete set of dependencies
+in the image.
+We achieve log-likelihood scores on natural images that are considerably better than the previous state of the art.
+Our main results also provide benchmarks on the diverse ImageNet dataset.
+In this paper we advance two-dimensional RNNs and apply them to large-scale modeling of natural images.
+We design two types of these layers.
+The networks also incorporate residual connections (He et al., 2015) around LSTM layers; we observe that this helps with training of the PixelRNN for up to twelve layers of depth.
+We also consider a second, simpliﬁed architecture which shares the same core components as the PixelRNN.
+We observe that Convolutional Neural Networks (CNN) can also be used as sequence model with a ﬁxed dependency range, by using Masked convolutions.
+(2014)), we model the pixels as discrete values using a multinomial distribution implemented with a simple softmax layer.
+We observe that this approach gives both representational and training advantages for our models.
+In Section 3 we design two types of PixelRNNs corresponding to the two types of LSTM layers; we describe the purely convolutional PixelCNN that is our fastest architecture; and we design a Multi-Scale version of the PixelRNN.
+In Section 5 we show the relative beneﬁts of using the discrete softmax distribution in our models and of adopting residual connections for the LSTM layers.
+Next we test the models on MNIST and on CIFAR-10 and show that they obtain loglikelihood scores that are considerably better than previous results.
+We also provide results for the large-scale ImageNet dataset resized to both 32 × 32 and 64 × 64 pixels; to our knowledge likelihood values from generative models have not previously been reported on this dataset.
+Finally, we give a qualitative evaluation of the samples generated from the PixelRNNs.
+Model Our aim is to estimate a distribution over natural images that can be used to tractably compute the likelihood of images and to generate new ones.
+In this section we ﬁrst focus on the form of the distribution, whereas the next section will be devoted to describing the architectural innovations inside PixelRNN.
+We can write the image x as a onedimensional sequence x1, ..., xn2 where pixels are taken from the image row by row.
+To estimate the joint distribution p(x) we write it as the product of the conditional distributions over the pixels:  Center: To generate a pixel in the multi-scale case we can also condition on the subsampled image pixels (in light blue).
+We rewrite the distribution p(xi|x<i) as the following product: p(xi,R|x<i)p(xi,G|x<i, xi,R)p(xi,B|x<i, xi,R, xi,G) (2) Each of the colors is thus conditioned on the other channels as well as on all the previously generated pixels.
+By contrast we model p(x) as a discrete distribution, with every conditional distribution in Equation 2 being a multinomial that is modeled with a softmax layer.
+Experimentally we also ﬁnd the discrete distribution to be easy to learn and to produce better performance compared to a continuous distribution (Section 5).
+Pixel Recurrent Neural Networks In this section we describe the architectural components that compose the PixelRNN.
+In Sections 3.1 and 3.2, we describe the two types of LSTM layers that use convolutions to compute at once the states along one of the spatial dimensions.
+In Section 3.3 we describe how to incorporate residual connections to improve the training of a PixelRNN with many LSTM layers.
+In Section 3.4 we describe the softmax layer that computes the discrete joint distribution of the colors and the masking technique that ensures the proper conditioning scheme.
+In Section 3.5 we describe the PixelCNN architecture.
+Finally in Section 3.6 we describe the multi-scale architecture.
+We train PixelRNNs of up to twelve layers of depth.
+As a means to both increase convergence speed and propagate signals more directly through the network, we deploy residual connections (He et al., 2015) from one LSTM layer to the next.
+In the experiments we evaluate the relative effectiveness of residual and layer-to-output skip connections.
+To restrict connections in the network to these dependencies, we apply a mask to the inputto-state convolutions and to other purely convolutional layers in a PixelRNN.
+We use two types of masks that we indicate with mask A and mask B, as shown in Figure 2 (Right).
+We ﬁrst skew the input map into a space that makes it easy to apply convolutions along diagonals.
+At this point we can compute the input-to-state and state-to-state components of the Diagonal BiLSTM.
+We can use standard convolutional layers to capture a bounded receptive ﬁeld and compute features for all pixel positions at once.
+Speciﬁcations of Models In this section we give the speciﬁcations of the PixelRNNs used in the experiments.
+We have four types of networks: the PixelRNN based on Row LSTM, the one based on Diagonal BiLSTM, the fully convolutional one and the MultiScale one.
+For MNIST we use a Diagonal BiLSTM with 7 layers and a value of h = 16 (Section 3.3 and Figure 5 right).
+For 32 × 32 ImageNet we adopt a 12 layer Row LSTM with h = 384 units and for 64 × 64 ImageNet we use a 4 layer Row LSTM with h = 512 units; the latter model does not use residual connections.
+Experiments In this section we describe our experiments and results.
+We begin by describing the way we evaluate and compare our results.
+In Section 5.2 we give details about the training.
+Then we give results on the relative effectiveness of architectural components and our best results on the MNIST, CIFAR-10 and ImageNet datasets.
+All our models are trained and evaluated on the loglikelihood loss function coming from a discrete distribution.
+Although natural image data is usually modeled with continuous distributions using density functions, we can compare our results with previous art in the following way.
+In our case, we can use the values from the discrete distribution as a piecewiseuniform continuous function that has a constant value for every interval [i, i + 1], i = 1, 2, .
+For MNIST we report the negative log-likelihood in nats as it is common practice in literature.
+For CIFAR-10 and ImageNet we report negative log-likelihoods in bits per dimension.
+Our models are trained on GPUs using the Torch toolbox.
+For smaller datasets such as MNIST and CIFAR-10 we use smaller batch sizes of 16 images as this seems to regularize the models.
+For ImageNet we use as large a batch size as allowed by the GPU memory; this corresponds to 64 images/batch for 32 × 32 ImageNet, and 32 images/batch for 64 × 64 ImageNet.
+Apart from scaling and centering the images at the input of the network, we don’t use any other preprocessing or augmentation.
+For the multinomial loss function we use the raw pixel color values as categories.
+For all the PixelRNN models, we learn the initial recurrent state of the network.
+Apart from being intuitive and easy to implement, we ﬁnd that using a softmax on discrete pixel values instead of a mixture density approach on continuous pixel values gives better results.
+For the Row LSTM model with a softmax output distribution we obtain 3.06 bits/dim on the CIFAR10 validation set.
+For the same model with a Mixture of Conditional Gaussian Scale Mixtures (MCGSM) (Theis & Bethge, 2015) we obtain 3.22 bits/dim.
+In Figure 6 we show a few softmax activations from the model.
+Although we don’t embed prior information about the meaning or relations of the 256 color categories, e.g.
+Another advantage of the discrete distribution is that we do not worry about parts of the distribution mass lying outside the interval [0, 255], which is something that typically happens with continuous distributions.
+In Table 2 we show the results of having residual connections, having standard skip connections or having both, in the 12-layer CIFAR-10 Row LSTM model.
+We see that using residual connections is as effective as using skip connections; using both is also effective and preserves the advantage.
+When using both the residual and skip connections, we see in Table 3 that performance of the Row LSTM improves with increased depth.
+This holds for up to the 12 LSTM layers that we tried.
+ 0 50 100 150 200 250 0 50 100 150 200 250 0 50 100 150 200 250 0 50 100 150 200 250 0                                                                               2550                                                                            255 0                                                                               255 0                                                                               255 0                                                                               255Pixel Recurrent Neural Networks  In general we can see that the models capture local spatial dependencies relatively well.
+Although the goal of our work was to model natural images on a large scale, we also tried our model on the binary version (Salakhutdinov & Murray, 2008) of MNIST (LeCun et al., 1998) as it is a good sanity check and there is a lot of previous art on this dataset to compare with.
+In Table 4 we report the performance of the Diagonal BiLSTM model and that of previous published results.
+To our knowledge this is the best reported result on MNIST so far.
+Next we test our models on the CIFAR-10 dataset (Krizhevsky, 2009).
+Table 5 lists the results of our models and that of previously published approaches.
+All our results were obtained without data augmentation.
+Although to our knowledge the are no published results on the ILSVRC ImageNet dataset (Russakovsky et al., 2015) that we can compare our models with, we give our ImageNet log-likelihood performance in Table 6 (without data augmentation).
+On ImageNet the current PixelRNNs do not appear to overﬁt, as we saw that their validation performance improved with size and depth.
+For our models we give training performance in brackets.
+As these are sampled from the model, we can easily generate millions of different completions.
+likely resized with a different algorithm than the one we used for ImageNet images.
+Because the downsampling method can inﬂuence the compression performance, we have made the used downsampled images available1.
+Figure 7 (right) shows 32 × 32 samples drawn from our model trained on ImageNet.
+Finally, we also show image completions sampled from the model in Figure 9.
+Conclusion In this paper we signiﬁcantly improve and build upon deep recurrent neural networks as generative models for natural images.
+We have described novel two-dimensional LSTM layers: the Row LSTM and the Diagonal BiLSTM, that scale more easily to larger datasets.
+We treated the pixel values as discrete random variables by using a softmax layer in the conditional distributions.
+We employed masked convolutions to allow PixelRNNs to model full dependencies between the color channels.
+We proposed and evaluated architectural improvements in these models resulting in PixelRNNs with up to 12 LSTM layers.
+We have shown that the PixelRNNs signiﬁcantly improve the state of the art on the MNIST and CIFAR-10 datasets.
+We also provide new benchmarks for generative image modeling on the ImageNet dataset.
+Based on the samples and completions drawn from the models we can conclude that the PixelRNNs are able to model both spatially local and long-range correlations and are able to produce images that are sharp and coherent.
+Given that these models improve as we make them larger and that there is practically unlimited data available to train on, more computation and larger models are likely to further improve the results

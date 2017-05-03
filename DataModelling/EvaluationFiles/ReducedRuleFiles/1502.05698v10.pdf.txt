@@ -1,0 +1,146 @@
+The paper  |  solves  | framework
+The paper  |  solves  | set
+The paper  |  solves  | synthetic tasks
+The paper  |  solves  | goal
+The paper  |  solves  | algorithms
+The paper  |  solves  | text understanding
+The paper  |  solves  | reasoning
+The paper  |  solves  | framework and a set of synthetic tasks for the goal of helping to develop learning algorithms for text understanding and reasoning
+The paper  |  solves  | set
+The paper  |  solves  | improvements
+The paper  |  solves  | recent memory network method
+The paper  |  solves  | set of improvements to the recent memory network method
+The paper  |  uses  | open problems
+The paper  |  outputs  | feedback
+The paper  |  uses  | test set
+The paper  |  solves  | many additional ones
+The paper  |  uses  | extreme case
+The paper  |  uses  | sentences
+The paper  |  uses  | words
+The paper  |  uses  | extreme case where sentences feature reordered words
+The paper  |  uses  | statements
+The paper  |  uses  | possibilities
+The paper  |  uses  | certainties
+The paper  |  uses  | statements that describe possibilities rather than certainties
+The paper  |  outputs  | possibilities
+The paper  |  outputs  | certainties
+The paper  |  outputs  | possibilities rather than certainties
+The paper  |  outputs  | possibilities
+The paper  |  outputs  | i
+The paper  |  outputs  | possibilities ( i
+The paper  |  uses  | simple automated grammar
+The paper  |  uses  | data
+The paper  |  uses  | nlp tasks
+The paper  |  uses  | data from existing nlp tasks
+The paper  |  outputs  | set
+The paper  |  outputs  | facts
+The paper  |  outputs  | training time
+The paper  |  outputs  | testing time
+The paper  |  outputs  | set of supporting facts at training time ( but not testing time
+The paper  |  uses  | questions
+The paper  |  uses  | training
+The paper  |  uses  | questions for training
+The paper  |  outputs  | test accuracy
+The paper  |  uses  | task
+The paper  |  outputs  | bag-of-n -grams
+The paper  |  outputs  | sentences
+The paper  |  outputs  | story
+The paper  |  outputs  | bag-of-n -grams for all sentences in the story
+The paper  |  uses  | extensions
+The paper  |  uses  | model
+The paper  |  uses  | extensions to this model
+The paper  |  uses  | bag
+The paper  |  uses  | 3-grams
+The paper  |  uses  | bag-of-words
+The paper  |  uses  | text
+The paper  |  uses  | bag of 3-grams rather than a bag-of-words to represent the text
+The paper  |  uses  | classical 2-layer neural network
+The paper  |  uses  | structured support vector machine
+The paper  |  uses  | svm
+The paper  |  uses  | coreference resolution
+The paper  |  uses  | semantic role labeling
+The paper  |  uses  | srl
+The paper  |  uses  | steps
+The paper  |  uses  | structured support vector machine ( svm ) , which incorporates coreference resolution and semantic role labeling ( srl ) preprocessing steps
+The paper  |  uses  | coreference resolution
+The paper  |  uses  | semantic role labeling
+The paper  |  uses  | coreference resolution and semantic role labeling
+The paper  |  solves  | similar structured svm
+The paper  |  solves  | response stage
+The paper  |  solves  | similar structured svm for the response stage
+The paper  |  uses  | three-way interactions
+The paper  |  uses  | match
+The paper  |  uses  | query
+The paper  |  uses  | match between query
+The paper  |  uses  | model
+The paper  |  uses  | general search algorithm
+The paper  |  uses  | inference procedure
+The paper  |  uses  | general search algorithm to be built into the inference procedure
+The paper  |  solves  | tasks
+The paper  |  uses  | same kind
+The paper  |  uses  | reasoning
+The paper  |  uses  | same kind of reasoning
+The paper  |  outputs  | methods
+The paper  |  outputs  | training
+The paper  |  outputs  | test sets
+The paper  |  outputs  | capability
+The paper  |  outputs  | models
+The paper  |  outputs  | training and test sets because we intend to evaluate the capability of models
+The paper  |  outputs  | useful extensions
+The paper  |  outputs  | sec
+The paper  |  outputs  | useful extensions ( in sec
+The paper  |  uses  | tasks
+The paper  |  uses  | sentences
+The paper  |  solves  | improvements
+The paper  |  solves  | model
+The paper  |  solves  | following section
+The paper  |  solves  | improvements to their model in the following section
+The paper  |  uses  | variable number
+The paper  |  uses  | facts
+The paper  |  uses  | dependent
+The paper  |  uses  | question
+The paper  |  uses  | variable number of supporting facts that is automatically adapted dependent on the question
+The paper  |  uses  | special fact m∅
+The paper  |  uses  | special fact m∅
+The paper  |  uses  | limit
+The paper  |  uses  | order
+The paper  |  uses  | n =
+The paper  |  uses  | bag
+The paper  |  uses  | n = 1 , 2 and 3 in the bag
+The paper  |  uses  | alternative neural network approach
+The paper  |  uses  | multilinear map
+The paper  |  uses  | alternative neural network approach , which we call a multilinear map
+The paper  |  uses  | d
+The paper  |  uses  | = e
+The paper  |  uses  | q
+The paper  |  uses  | · e
+The paper  |  uses  | d
+The paper  |  uses  | e
+The paper  |  uses  | x
+The paper  |  uses  | tanh
+The paper  |  uses  | x whereby
+The paper  |  uses  | linear map
+The paper  |  uses  | word dependent
+The paper  |  uses  | position
+The paper  |  uses  | tanh nonlinearity
+The paper  |  uses  | sum
+The paper  |  uses  | mappings
+The paper  |  uses  | d ) = e ( q ) · e ( d ) e ( x ) = tanh ( x whereby we apply a linear map for each word dependent on its position , followed by a tanh nonlinearity on the sum of mappings
+The paper  |  uses  | word position
+The paper  |  uses  | straight-forward combination
+The paper  |  uses  | bag-of-n -grams
+The paper  |  uses  | nonlinearity
+The paper  |  uses  | straight-forward combination of bag-of-n -grams followed by this nonlinearity
+The paper  |  uses  | structured svm
+The paper  |  uses  | coreference resolution
+The paper  |  uses  | semantic role labeling
+The paper  |  uses  | coreference resolution and semantic role labeling
+The paper  |  uses  | strong supervision
+The paper  |  uses  | empty fact
+The paper  |  uses  | case
+The paper  |  uses  | empty fact '' for the case
+The paper  |  uses  | empty fact
+The paper  |  uses  | case
+The paper  |  uses  | empty fact '' for the case
+The paper  |  solves  | similar structured svm
+The Paper | uses | nlp

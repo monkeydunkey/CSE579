@@ -1,0 +1,191 @@
+We propose a fully automatic approach that produces vibrant and realistic colorizations.
+We embrace the underlying uncertainty of the problem by posing it as a classiﬁcation task and use class-rebalancing at training time to increase the diversity of colors in the result.
+We evaluate our algorithm using a “colorization Turing test,” asking human participants to choose between a generated and ground truth color image.
+Our method successfully fools humans on 32% of the trials, signiﬁcantly higher than previous methods.
+Moreover, we show that colorization can be a powerful pretext task for self-supervised feature learning, acting as a cross-channel encoder.
+However, for this paper, our goal is not necessarily to recover the actual ground truth color, but rather to produce a plausible colorization that could potentially fool a human observer.
+Therefore, our task becomes much more achievable: to model enough of the statistical dependencies between the semantics and the textures of grayscale images and their color versions in order to produce visually compelling results.
+Given the lightness channel L, our system predicts the corresponding a and b color channels of the image in the CIE Lab colorspace.
+Example input grayscale photos and output colorizations from our algorithm.
+These examples are cases where our model works especially well.
+Please visit http://richzhang.github.io/colorization/ to see the full range of results and to try our model and code.
+we leverage large-scale data.
+We instead utilize a loss tailored to the colorization problem.
+To appropriately model the multimodal nature of the problem, we predict a distribution of possible colors for each pixel.
+Furthermore, we re-weight the loss at training time to emphasize rare colors.
+This encourages our model to exploit the full diversity of the large-scale data on which it is trained.
+Lastly, we produce a ﬁnal colorization by taking the annealedmean of the distribution.
+Since our ultimate goal is to make results that are compelling to a human observer, we introduce a novel way of evaluating colorization results, directly testing their perceptual realism.
+We set up a “colorization Turing test,” in which we show participants real and synthesized colors for an image, and ask them to identify the fake.
+In this quite diﬃcult paradigm, we are able to fool participants on 32% of the instances (ground truth colorizations would achieve 50% on this metric), significantly higher than prior work [2].
+This test demonstrates that in many cases, our algorithm is producing nearly photorealistic results (see Figure 1 for selected successful examples from our algorithm).
+We also show that our system’s colorizations are realistic enough to be useful for downstream tasks, in particular object classiﬁcation, using an oﬀ-the-shelf VGG network [5].
+We additionally explore colorization as a form of self-supervised representation learning, where raw data is used as its own source of supervision.
+Our method follows in this line, and can be termed a cross-channel encoder.
+We test how well our model performs in generalization tasks, compared to previous [14,8,15,10] and concurrent [16] self-supervision algorithms, and ﬁnd that our method performs surprisingly well, achieving state-of-the-art performance on several metrics.
+Our contributions in this paper are in two areas.
+First, we make progress on the graphics problem of automatic image colorization by (a) designing an appropriate objective function that handles the multimodal uncertainty of the colorization problem and captures a wide diversity of colors, (b) introducing a novel framework for testing colorization algorithms, potentially applicable to other image synthesis tasks, and (c) setting a new high-water mark on the task by training on a million color photos.
+Secondly, we introduce the colorization task as a competitive and straightforward method for self-supervised representation learning, achieving state-of-the-art results on several benchmarks.
+Our method also learns to classify colors, but does so with a larger model, trained on more data, and with several innovations in the loss function and mapping to a ﬁnal continuous output.
+Concurrent work on colorization Concurrently with our paper, Larsson et al.
+While we use a classiﬁcation loss, with rebalanced rare classes, Larsson et al.
+In Section 3.1, we compare the eﬀect of each of these types of loss function in conjunction with our architecture.
+use a two-stream architecture in which they fuse global and local features, and we use a single-stream, VGG-styled network with added depth and dilated convolutions [26,27].
+In addition, while we and Larsson et al.
+train our models on ImageNet [28], Iizuka et al.
+Our network architecture.
+In Section 3.1, we provide quantitative comparisons to Larsson et al., and encourage interested readers to investigate both concurrent papers.
+We train a CNN to map from a grayscale input to a distribution over quantized color value outputs using the architecture shown in  In the following, we focus on the design of the objective function, and our technique for inferring point estimates of color from the predicted color distribution.
+2.1 Objective Function Given an input lightness channel X ∈ RH×W×1, our objective is to learn a mapping (cid:98)Y = F(X) to the two associated color channels Y ∈ RH×W×2, where (We denote predictions with a(cid:98)· symbol and ground truth without.) We perform this task in CIE Lab color space.
+Instead, we treat the problem as multinomial classiﬁcation.
+We quantize the ab output space into bins with grid size 10 and keep the Q = 313 values which are in-gamut, as shown in Figure 3(a).
+For a given input X, we learn a mapping (cid:98)Z = G(X) to a probability distribution over possible colors (cid:98)Z ∈ [0, 1]H×W×Q, To compare predicted(cid:98)Z against ground truth, we deﬁne function Z = H−1 gt (Y), which converts ground truth color Y to vector Z, using a soft-encoding scheme2.
+We then use multinomial cross entropy loss Lcl(·,·), deﬁned as: where Q is the number of quantized ab values.
+Finally, we map probability distribution (cid:98)Z to color values (cid:98)Y with function (cid:98)Y = H((cid:98)Z), which will be further The distribution of ab values in natural images is strongly biased towards values with low ab values, due to the appearance of backgrounds such as clouds, pavement, dirt, and walls.
+However, we found that soft-encoding worked well for training, and allowed the network to quickly learn the relationship between elements in the output space [31].
+We ﬁnd the 5-nearest neighbors to Yh,w in the output space and weight them proportionally to their distance from the ground truth using a Gaussian kernel with σ = 5.
+We account for the classimbalance problem by reweighting the loss of each pixel at train time based on the pixel color rarity.
+v(Zh,w) = wq∗ , where q∗ = arg max To obtain smoothed empirical distribution(cid:101)p ∈ ∆Q, we estimate the empirical probability of colors in the quantized ab space p ∈ ∆Q from the full ImageNet training set and smooth the distribution with a Gaussian kernel Gσ.
+We then mix the distribution with a uniform distribution with weight λ ∈ [0, 1], take the reciprocal, and normalize so the weighting factor is 1 on expectation.
+We found that values of λ = 1 2 and σ = 5 worked well.
+We compare results with and without class rebalancing in Section 3.1.
+2.3 Class Probabilities to Point Estimates Finally, we deﬁne H, which maps the predicted distribution (cid:98)Z to point estimate (cid:98)Y in ab space.
+To try to get the best of both worlds, we interpolate by re-adjusting the temperature T of the softmax distribution, and taking the mean of the result.
+We draw inspiration from the simulated annealing technique [33], and thus refer to the operation as taking the annealed-mean of the distribution: Setting T = 1 leaves the distribution unchanged, lowering the temperature T produces a more strongly peaked distribution, and setting T → 0 results in a 1-hot encoding at the distribution mode.
+We found that temperature T = 0.38, shown in the middle column of Figure 4, captures the vibrancy of the mode while maintaining the spatial coherence of the mean.
+Our ﬁnal system F is the composition of CNN G, which produces a predicted distribution over all pixels, and the annealed-mean operation H, which produces a ﬁnal prediction.
+We use T = 0.38 in our system.
+In Section 3.1, we assess the graphics aspect of our algorithm, evaluating the perceptual realism of our colorizations, along with other measures of accuracy.
+We compare our full algorithm to several variants, along with recent [2] and concurrent work [23].
+In Section 3.2, we test colorization as a method for selfsupervised representation learning.
+Finally, in Section 10.1, we show qualitative examples on legacy black and white images.
+We train our network on the 1.3M images from the ImageNet training set [28], validate on the ﬁrst 10k images in the ImageNet validation set, and test on a separate 10k images in the validation set, same as in [23].
+We show quantitative results in Table 1 on three metrics.
+A qualitative comparison for selected success and failure cases is shown in  To speciﬁcally test the eﬀect of diﬀerent loss functions, we train our CNN with various losses.
+We also compare to previous [2] and concurrent methods [23], which both use CNNs trained on ImageNet, along with naive baselines: 1.
+Ours (full) Our full method, with classiﬁcation loss, deﬁned in Equation 2, and class rebalancing, as described in Section 2.2.
+Ours (class) Our network on classiﬁcation loss but no class rebalancing (λ = 1 in Equation 4).
+Example results from our ImageNet test set.
+Our classiﬁcation loss with rebalancing produces more accurate and vibrant results than a regression loss or a classiﬁcation loss without rebalancing.
+Column 4 shows results from our AMT real vs.
+Ours (L2) Our network trained from scratch, with L2 regression loss, described in Equation 1, following the same training protocol.
+Ours (L2, ft) Our network trained with L2 regression loss, ﬁne-tuned from our full classiﬁcation with rebalancing network.
+To address the shortcomings of any individual evaluation, we test three that measure diﬀerent senses of quality, shown in Table 1.
+To test this, we ran a real vs.
+Each pair consisted of a color photo next to a re-colorized version, produced by either our algorithm or a baseline.
+Images sorted by how often AMT participants chose our algorithm’s colorization over the ground truth.
+In all pairs to the left of the dotted line, participants believed our colorizations to be more real than the ground truth on ≥ 50% of the trials.
+In some cases, this may be due to poor white balancing in the ground truth image, corrected by our algorithm, which predicts a more prototypical appearance.
+Figure 6 gives a better sense of the participants’ competency at detecting subtle errors made by our algorithm.
+Close inspection reveals that on these images, our colorizations tend to have giveaway artifacts, such as the yellow blotches on the two trucks, which ruin otherwise decent results.
+Nonetheless, our full algorithm fooled participants on 32% of trials, as shown in Table 1.
+Ground truthOurs82%67%64%64%60%58%55%55%55%55%55%50%0%0%0%0%Fooled more oftenFooled less oftenGround truthOursGround truthOursGround truthOursColorful Image Colorization Note that if our algorithm exactly reproduced the ground truth colors, the forced choice would be between two identical images, and participants would be fooled 50% of the time on expectation.
+Interestingly, we can identify cases where participants were fooled more often than 50% of the time, indicating our results were deemed more realistic than the ground truth.
+Semantic interpretability (VGG classiﬁcation): Does our method produce realistic enough colorizations to be interpretable to an oﬀ-the-shelf object classiﬁer? We tested this by feeding our fake colorized images to a VGG network [5] that was trained to predict ImageNet classes from real color photos.
+After re-colorizing using our full method, the performance is improved to 56.0% (other variants of our method achieve slightly higher results).
+In addition to serving as a perceptual metric, this analysis demonstrates a practical use for our algorithm: without any additional training or ﬁne-tuning, we can improve performance on grayscale image classiﬁcation, simply by colorizing images with our algorithm and passing them to an oﬀ-the-shelf classiﬁer.
+Raw accuracy (AuC): As a low-level test, we compute the percentage of predicted pixel colors within a thresholded L2 distance of the ground truth in ab color space.
+We then sweep across thresholds from 0 to 150 to produce a cumulative mass function, as introduced in [22], integrate the area under the curve (AuC), and normalize.
+Note that this AuC metric measures raw prediction accuracy, whereas our method aims for plausibility.
+Our network, trained on classiﬁcation without rebalancing, outperforms our L2 variant (when trained from scratch).
+As a result, even predicting gray for every pixel does quite well, and our full method with class rebalancing achieves approximately the same score.
+As such, we compute a class-balanced variant of the AuC metric by re-weighting the pixels inversely by color class probability (Equation 4, setting λ = 0).
+Under this metric, our full method outperforms all variants and compared algorithms, indicating that class-rebalancing in the training objective achieved its desired eﬀect.
+Task Generalization on ImageNet We freeze pre-trained networks and learn linear classiﬁers on internal layers for ImageNet [28] classiﬁcation.
+We ﬁne-tune our network with grayscale inputs (gray) and color inputs (color).
+3.2 Cross-Channel Encoding as Self-Supervised Feature Learning In addition to making progress on the graphics task of colorization, we evaluate how colorization can serve as a pretext task for representation learning.
+Our model is akin to an autoencoder, except that the input and output are diﬀerent image channels, suggesting the term cross-channel encoder.
+To evaluate the feature representation learned through this kind of crosschannel encoding, we run two sets of tests on our network.
+First, we test the task generalization capability of the features by ﬁxing the learned representation and training linear classiﬁers to perform object classiﬁcation on already seen data (Figure 7).
+Second, we ﬁne-tune the network on the PASCAL dataset [37] for the tasks of classiﬁcation, detection, and segmentation.
+To fairly compare to previous feature learning algorithms, we retrain an AlexNet [38] network on the colorization task, using our full method, for 450k iterations.
+We ﬁnd that the resulting learned representation achieves higher performance on object classiﬁcation and segmentation tasks relative to previous methods tested (Table 2).
+We test how well the learned features represent the object-level semantics.
+To do this, we freeze the weights of the network, provide semantic labels, and train linear classiﬁers on each convolutional layer.
+Because our representation is learned on grayscale images, the network is handicapped at the input.
+To quantify the eﬀect of this loss of information, we ﬁne-tune AlexNet on grayscale image classiﬁcation, and also run the random initialization schemes on grayscale images.
+We compare our model to other recent self-supervised methods pre-trained on ImageNet [14,10,16].
+To begin, our conv1 representation results in worse linear classiﬁcation performance than competiting methods [14,16], but is comparable to other methods which have a grayscale input.
+However, this performance gap is immediately bridged at conv2, and our network achieves competitive performance to [14,16] throughout the remainder of the network.
+PASCAL classiﬁcation, detection, and segmentation We test our model on the commonly used self-supervision benchmarks on PASCAL classiﬁcation, detection, and segmentation, introduced in [14,36,10].
+Our network achieves strong performance across all three tasks, and state-of-the-art numbers in classiﬁcation and segmentation.
+We use the method from [36], which rescales the layers so they “learn” at the same rate.
+We test our model in two modes: (1) keeping the input grayscale by disregarding color information (Ours (gray)) and (2) modifying conv1 to receive a full 3-channel Lab input, initializing the weights on the ab channels to be zero (Ours (color)).
+We ﬁrst test the network on PASCAL VOC 2007 [39] classiﬁcation, following the protocol in [16].
+Across all three classiﬁcation tests, we achieve state-of-the-art accuracy.
+We also test detection on PASCAL VOC 2007, using Fast R-CNN [41], following the procedure in [36].
+[14] achieves 51.1%, while we reach 46.9% and 47.9% with grayscale and color inputs, respectively.
+Our method is well above the strong k-means [36] baseline of 45.6%, but all self-supervised methods still fall short of pre-training with ImageNet semantic supervision, which reaches 56.8%.
+Finally, we test semantic segmentation on PASCAL VOC 2012 [40], using the FCN architecture of [42], following the protocol in [10].
+Our colorization task shares similarities to the semantic segmentation task, as both are per-pixel classiﬁcation problems.
+Our grayscale ﬁne-tuned network achieves performance of 35.0%, approximately equal to Donahue et al.
+Applying our method to legacy black and white photos.
+3.3 Legacy Black and White Photos Since our model was trained using “fake” grayscale images generated by stripping ab channels from color photos, we also ran our method on real legacy black and white photographs, as shown in Figure 8 (additional results can be viewed on our project webpage).
+One can see that our model is still able to produce good colorizations, even though the low-level image statistics of the legacy photographs are quite diﬀerent from those of the modern-day photos on which it was trained.
+Here we have shown that colorization with a deep CNN and a well-chosen objective function can come closer to producing results indistinguishable from real color photos.
+Our method not only provides a useful graphics output, but can also be viewed as a pretext task for representation learning.
+Although only trained to color, our network learns a representation that is surprisingly useful for object classiﬁcation, detection, and segmentation, performing strongly compared to other self-supervised pre-training methods.
+We thank members of the Berkeley Vision Lab and Aditya Deshpande for helpful discussions, Philipp Kr¨ahenb¨uhl and Jeﬀ Donahue for help with self-supervision experiments, and Gustav Larsson for providing images for comparison to [23].
+Welsh, T., Ashikhmin, M., Mueller, K.: Transferring color to greyscale images.
+In: Computer Vision and Pattern Recognition (CVPR), 2012 IEEE Conference on, IEEE (2012) 2751–2758 The main paper is our ECCV 2016 camera ready submission.
+Due to space constraints, we were unable to include many of the analyses presented in our original arXiv v1 paper.
+We include these analyses in this Appendix, which were generated from a previous v1 version of the model.
+All models are publicly available on our website.
+In Section 7, we explore how low-level queues aﬀect the output.
+In Section 10, we compare our algorithm to previous approaches [22] and [1], and show additional examples on legacy grayscale images.
+5 Cross-Channel Encoding as Self-Supervised Feature In Section 3.2, we discussed using colorization as a pretext task for representation learning.
+In addition to learning linear classiﬁers on internal layers for ImageNet classiﬁers, we run the additional experiment of learning non-linear classiﬁers, as proposed in [43].
+Our method performs strongly throughout, and best across methods at the conv5 layer.
+We note the eﬀect of these modiﬁcations by the number of model parameters, number of features per image, and run-time, as a multiple of Alexnet [38] without modiﬁcations, up to the pool5 layer.
+Ours removes LRN and uses a single channel input.
+We also note the source of performance numbers.
+6 Semantic Interpretability of Colorizations In Section 3.1, we investigated using the VGG classiﬁer to evaluate the semantic interpretability of our colorization results.
+In Section 6.1, we show the categories which perform well, and the ones which perform poorly, using this metric.
+In Section 6.2, we show commonly confused categories after recolorization.
+In Figure 9, we show a selection of classes that have the most improvement in VGG classiﬁcation with respect to grayscale, along with the classes for which our colorizations hurt the most.
+The bottom classes show some common errors of our system, such as coloring clothing incorrectly and inconsistently and coloring an animal with a plausible but incorrect color.
+Our process for sorting categories and images is described below.
+For each category, we compute the top-5 classiﬁcation performance on grayscale and recolorized images, agray, arecolor ∈ [0, 1]C , where C = 1000 categories.
+We sort the categories by arecolor − agray.
+Images colorized by our algorithm from selected categories.
+Categories are sorted by VGG object classiﬁcation accuracy of our colorized images relative to accuracy on gracyscale images.
+Top: example categories where our colorization helps the most.
+Bottom: example categories where our colorization hurts the most.
+The bottom examples show several kinds of failures: 1) artiﬁcial objects such as modems and clothes have ambiguous colors; color is not very informative for classiﬁcation, and moreover, our algorithm tends to predict an incoherent distribution of red and blue, 2) for certain categories, like the gray fox, our algorithm systematically predicts the wrong color, confusing the species.
+To further investigate the biases in our system, we look at the common classiﬁcation confusions that often occur after image recolorization, but not with the original ground truth image.
+To ﬁnd common confusions, we compute the rate of top-5 confusion Corig, Crecolor ∈ [0, 1]C×C , with ground truth colors and after recolorization.
+We ﬁnd the class-confusion added after recolorization by computing A = Crecolor − Corig, and sort the oﬀ-diagonal entries.
+For each category pair (c, d), we extract the images that contained the confusion after recolorization, but Green  snake (6)Orange (9)Goldﬁnch (10)Lorikeet (2)Rapeseed (1)Pomegranate (5)Rock beauty (26)Jellyﬁsh (43)Military (-1)Modem (-6)Grey fox (-26)Sweatshirt (-15)20 not with the original colorization.
+We then sort the images in descending order of the classiﬁcation score of the confused category.
+We have investigated how colorization generalizes to high-level semantic tasks in Section 3.2.
+Could our network be exploiting a simple, low-level relationship like this, in order to predict color?4 We tested this hypothesis with the simple demonstration in  This is true, despite the fact that the lightness values vary considerably for the diﬀerent color patches in this image.
+In Figure 12, we also demonstrate that the prediction is somewhat stable with respect to low-level lightness and contrast changes.
+8 Does our model learn multimodal color distributions? As discussed in Section 2.1, formulating color prediction as a multinomial classiﬁcation problem allows the system to predict multimodal distributions, and can capture the inherent ambiguity in the color of natural objects.
+In Figure 13, we illustrate the 4 E.g., previous work showed that CNNs can learn to use chromatic aberration cues to predict, given an image patch, its (x,y) location within an image [14].
+The system output (cid:98)Y is shown in the top-left of  For clarity, we show a subsampling of the Q total output bins and coarsely quantize the probability values.
+Figure 2 showed a diagram of our network architecture.
+Table 4 in this document thoroughly lists the layers used in our architecture during training time.
+The top-left image is ﬁnal prediction of our system.
+10 Colorization comparisons on held-out datasets 10.1 Comparison to LEARCH [22] Though our model was trained on object-centric ImageNet dataset, we demonstrate that it nonetheless remains eﬀective for photos from the scene-centric SUN dataset [45] selected by Deshpande et al.
+Table 5 provides a quantitative comparison of our method to Deshpande et al..
+For fair comparison, we use the same grayscale input as [22], which is R+G+B .
+Note that this input space is non-linearly related to the L channel on which we trained.
+Despite diﬀerences in grayscale space and training dataset, our method outperforms Deshpande et al.
+Figure 14 shows qualitative comparisons between our method and Deshpande et al., one from each of the six scene categories.
+Our results are able to fool participants in the real vs.
+10.2 Comparison to Deep Colorization [1] We provide qualitative comparisons to the 23 test images in [1] on the website, which we obtained by manually cropping from the paper.
+Our results are about the same X C S D Sa De BN L conv1 1 conv1 2 conv2 1 conv2 1 conv3 1 conv3 2 conv3 3 conv4 1 conv4 2 conv4 3 conv5 1 conv5 2 conv5 3 conv6 1 conv6 2 conv6 3 conv7 1 conv7 2 conv7 3 conv8 1 conv8 2 conv8 3 224 1 1 224 1 112 2 1 112 128 1 1 128 2 56 1 256 1 56 1 56 256 1 1 256 2 28 1 512 1 28 1 512 1 28 1 512 1 28 2 512 1 28 2 28 512 1 2 512 1 28 2 512 1 28 2 512 1 28 2 512 1 28 1 256 1 28 1 28 256 1 256 1 28 1 128 .5 1 56 1 128 1 56 56 128 1 1 1 (cid:88) 1 2 (cid:88) 2 4 4 (cid:88) 4 8 8 (cid:88) 8 16 16 16 (cid:88) 16 16 16 (cid:88) 8 8 (cid:88) 8 4 4 (cid:88) 4 Table 4.
+Our network architecture.
+Note that Deep Colorization [1] has several advantages in this setting: (1) the test images are from the SUN dataset [47], which we did not train on and (2) the 23 images were hand-selected from 1344 by the authors, and is not necessarily representative of algorithm performance.
+We were unable to obtain the 1344 test set results through correspondence with the authors.
+Additionally, we compare the methods on several important dimensions in Table 6: algorithm pipeline, learning, dataset, and run-time.
+Our method is faster, straightforward to train and understand, has fewer hand-tuned parameters and components, and has been demonstrated on a broader and more diverse set of test images than Deep Colorization [1].
+10.3 Additional Examples on Legacy Grayscale Images Here, we show additional qualitative examples of applying our model to legacy black and white photographs.
+One can see that our model is often able to produce good colorizations, even though the low-level image statistics of old legacy photographs are quite diﬀerent from those of modern-day photos.
+Results column 2 are from our AMT real vs.
+Our model generalizes well to datasets on which it was not trained.
+Here we show results on the dataset from [22], which consists of six scene categories from SUN [45].
+Compared to the state of the art algorithm on this dataset [22], our method produces more perceptually plausible colorization (see also Table 5 and Figure 14).
+Applying our method to black and white photographs by Ansel Adams.
+Applying our method to black and white photographs by Henri CartierBresson.
+Applying our method to legacy black and white photographs
