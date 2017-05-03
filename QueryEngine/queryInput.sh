@@ -9,5 +9,5 @@ dest='output'
 #To change once we have MLN from Ashish
 for filename in KB/tmp/*.db; do
     outputFile="${filename/\KB\/tmp/$dest}.mln"
-    learnwts -i prog.mln -o $outputFile -t $filename -ne paperuses paperoutputpwd
+    learnwts -i prog.mln -o $outputFile -t $filename -ne paperuses,paperoutputs,papersolves 
 done
