@@ -14,8 +14,8 @@ queryoutputs(word)
 
 //Rule
 0 (isa(x, y) ^ queryuses(x)) => (paperuses(y))
-0 (isa(x, y) ^ querysolves(x)) => (papersolves(y))
 0 (isa(x, y) ^ queryoutputs(x)) => (paperoutputs(y))
+0 (isa(x, y) ^ querysolves(x)) => (papersolves(y))
 0 paperuses(x) <=> queryuses(x)
-0 papersolves(x) <=> querysolves(x)
 0 paperoutputs(x) <=> queryoutputs(x)
+0 papersolves(x) <=> querysolves(x)

@@ -54,7 +54,7 @@ KB_DIR = "KB"
 TMP_DIR = "tmp"
 RED_RULE_DIR = os.path.join(DIR, KB_DIR, "ReducedRuleFiles")
 
-CommonKB = open(os.path.join(DIR, KB_DIR, "CommonKB.txt"))
+CommonKB = open(os.path.join(DIR, KB_DIR, "CommonKBFiltered.txt"))
 commonRules = CommonKB.readlines();
 CommonKB.close()
 files = os.listdir(RED_RULE_DIR)

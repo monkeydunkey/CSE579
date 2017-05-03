@@ -9,20 +9,28 @@ each of the terms in uses, outputs and solves should be separated by a comma
 '''
 import re
 import os
+import sys
+queryTerms = [x.strip() for x in sys.argv[1].split(';')]
 
-rulePatt = re.compile("// \d.?\d*\s*paper\w*\(a1\) <=> query\w*\(a1\)")
-folderPath = '../QueryEngine/test'
+rulePatt = re.compile("// -?\d.?\d*\s*paper\w*\(x\) <=> query\w*\(x\)")
+folderPath = '../QueryEngine/output'
 files = os.listdir(folderPath)
 queryResults = open('queryResult', 'w')
+print queryResults
 for i,f in enumerate(files):
     if '.mln' in f:
         inputFilePath = os.path.join(folderPath, f)
         with open(inputFilePath, "r") as openfile:
             lines = openfile.readlines()
             relevantLines = filter(lambda x: rulePatt.search(x), lines)
-            scores = map(lambda x: float(x.split('pa')[0].strip().split('//')[1].strip()), relevantLines)
-            print 'For file', str(f), 'Rules found', len(relevantLines)
-            if len(relevantLines) > 0:
+            scores = []
+
+            for j, queryTerm in enumerate(queryTerms):
+                if len(queryTerm.strip()) == 0:
+                    continue
+                scores.append(float(relevantLines[j].split('pa')[0].strip().split('//')[1].strip()))
+            print 'For file', str(f), 'Rules found', len(scores)
+            if len(scores) > 0:
                 totalScore = reduce(lambda x, y: x+y, scores)
-                queryResults.write(str(f) + ' : ' + str(totalScore/len(relevantLines)) + '\n')
+                queryResults.write(str(f) + ' : ' + str(totalScore/len(scores)) + '\n')
 queryResults.close()

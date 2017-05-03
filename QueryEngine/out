@@ -1,4 +1,5 @@
-paperuses(P1601_06759v3_pdf_txt,"cnns") 0.371013
-paperuses(P1601_06759v3_pdf_txt,"cnn") 0.371013
-paperuses(P1601_06759v3_pdf_txt,"convolutional neural network") 0.322018
-paperuses(P1601_06759v3_pdf_txt,"neural network") 0.654985
+relevant(P1502_05698v10_pdf_txt) 0.955954
+relevant(P1601_06759v3_pdf_txt) 0.99995
+relevant(P1603_08511v5_pdf_txt) 0.99995
+relevant(P1607_01759v3_pdf_txt) 0.962954
+relevant(P1610_07629v5_pdf_txt) 0.993951

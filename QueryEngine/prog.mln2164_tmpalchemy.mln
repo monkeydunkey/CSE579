@@ -1,0 +1,24 @@
+//Evidence
+paperuses(word)
+
+papersolves(word)
+
+paperoutputs(word)
+
+isa(word, word)
+
+//query
+queryuses(word)
+querysolves(word)
+queryoutputs(word)
+
+//Rule
+0 (isa(x, y) ^ queryuses(x)) <=> (isa(x,y) ^ paperuses(x))
+0 (isa(x, y) ^ querysolves(x)) <=> (isa(x,y) ^ papersolves(x))
+0 (isa(x, y) ^ queryoutputs(x)) <=> (isa(x,y) ^ paperoutputs(x))
+0 paperuses(x) <=> queryuses(x)
+0 papersolves(x) <=> querysolves(x)
+0 paperoutputs(x) <=> queryoutputs(x)
+
+#include "KB/tmp/1610.07629v5.pdf.txt.db"
+

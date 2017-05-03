@@ -10,32 +10,32 @@ querysolves(word)
 // 0       (isa(x,y) ^ queryuses(x)) => (paperuses(y))
 0       paperuses(a1) v !isa(a2,a1) v !queryuses(a2)
 
-// 0       (isa(x,y) ^ querysolves(x)) => (papersolves(y))
-0       papersolves(a1) v !isa(a2,a1) v !querysolves(a2)
-
 // 0       (isa(x,y) ^ queryoutputs(x)) => (paperoutputs(y))
 0       paperoutputs(a1) v !isa(a2,a1) v !queryoutputs(a2)
 
-// 0.566905  paperuses(x) <=> queryuses(x)
--0.561258  paperuses(a1) v !queryuses(a1)
-1.12816  !paperuses(a1) v queryuses(a1)
+// 0       (isa(x,y) ^ querysolves(x)) => (papersolves(y))
+0       papersolves(a1) v !isa(a2,a1) v !querysolves(a2)
 
-// 1.87914  papersolves(x) <=> queryuses(x)
--0.313406  papersolves(a1) v !queryuses(a1)
-2.19255  !papersolves(a1) v queryuses(a1)
+// 0.598337  paperuses(x) <=> queryuses(x)
+-0.538639  paperuses(a1) v !queryuses(a1)
+1.13698  !paperuses(a1) v queryuses(a1)
 
-// 0.750183  paperoutputs(x) <=> queryuses(x)
--0.516058  paperoutputs(a1) v !queryuses(a1)
-1.26624  !paperoutputs(a1) v queryuses(a1)
+// 1.81714  papersolves(x) <=> querysolves(x)
+-0.373895  papersolves(a1) v !querysolves(a1)
+2.19104  !papersolves(a1) v querysolves(a1)
 
-// -1.14656  paperuses(a1)
--1.14656  paperuses(a1)
+// 0.798296  paperoutputs(x) <=> queryoutputs(x)
+-0.468548  paperoutputs(a1) v !queryoutputs(a1)
+1.26684  !paperoutputs(a1) v queryoutputs(a1)
 
-// -2.22119  papersolves(a1)
--2.22119  papersolves(a1)
+// -1.15103  paperuses(a1)
+-1.15103  paperuses(a1)
 
-// -1.27607  paperoutputs(a1)
--1.27607  paperoutputs(a1)
+// -2.20913  papersolves(a1)
+-2.20913  papersolves(a1)
+
+// -1.28021  paperoutputs(a1)
+-1.28021  paperoutputs(a1)
 
 // 0       isa(a1,a2)
 0       isa(a1,a2)

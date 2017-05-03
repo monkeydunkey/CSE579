@@ -60,16 +60,13 @@ expandedTerms = [item for sublist in expandedTerms for item in sublist]
 print "Setting the KBs"
 DIR = os.getcwd()
 KB_DIR = "KB"
-TMP_DIR = "tmp"
+TMP_DIR = "tmp2"
 RED_RULE_DIR = os.path.join(DIR, KB_DIR, "ReducedRuleFiles")
 
 CommonKB = open(os.path.join(DIR, KB_DIR, "CommonKBFiltered.txt"))
 commonRules = map(lambda x: x.replace('-','_'), CommonKB.readlines())
 CommonKB.close()
 
-output_file_path = os.path.join(DIR, KB_DIR, 'CommonEvidence.db')
-outputFile = open(output_file_path, 'w')
-outputFile.writelines(commonRules)
 paperRules = set()
 files = os.listdir(RED_RULE_DIR)
 for i,f in enumerate(files):
@@ -77,9 +74,13 @@ for i,f in enumerate(files):
         continue
     input_file_path = os.path.join(RED_RULE_DIR, f)
     inputFile = open(input_file_path)
+    output_file_path = os.path.join(DIR, KB_DIR, TMP_DIR, f+'.db')
+    outputFile = open(output_file_path, 'w')
+    outputFile.writelines(commonRules)
+
     for line in inputFile.readlines():
         linePart = line.split(' | ')
-        print linePart
+
         if (len(linePart[2].split(' ')) < 2 and not any(x in linePart[2].lower() for x in impOneWord)) or '=' in linePart[2] or len(linePart[2].split(' ')) > 3:
             continue
         ruleToWrite = 'paper'+linePart[1].strip()+'(P'+ f.replace('.','_') +', "'+linePart[2].strip().replace('-','_')+'")\n'
@@ -87,6 +88,5 @@ for i,f in enumerate(files):
             outputFile.write(ruleToWrite)
             paperRules.add(ruleToWrite)
     inputFile.close()
-
-outputFile.writelines(expandedTerms)
-outputFile.close()
+    outputFile.writelines(expandedTerms)
+    outputFile.close()
